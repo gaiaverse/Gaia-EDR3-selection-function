@@ -24,7 +24,7 @@ def save_as_pickled_object(obj, filepath):
             f_out.write(bytes_out[idx:idx+max_bytes])
             
 ##### Load in sources and assign to bins
-N_core = 1
+N_core = 4
 
 bins = np.array([0.0, 5.0, 16.0, 17.0, 18.0, 18.2, 18.4, 18.6, 18.8, 19.0, 19.1, 19.2, 19.3, 19.4, 19.5, 19.6, 19.7, 19.8, 19.9, 20.0, 20.1, 20.2, 20.3, 20.4, 20.5, 20.6, 20.7, 20.8, 20.9, 21.0, 21.1, 21.2, 21.3, 21.4, 21.5, 25.0])
 N_bins = bins.size-1
@@ -33,13 +33,13 @@ source_keys = ['ra','dec','phot_g_mean_mag','matched_transits']
 source_box = {}
 with h5py.File('./gaiaedr3.h5', 'r') as f:
     for key in source_keys:
-        source_box[key] = f[key][:1000000]
+        source_box[key] = f[key][:]
 source_box['matched_transits'] = source_box['matched_transits'].astype(np.int)
 print('Loaded sources')
         
 input_box = {}
 #source_index = np.searchsorted(bins,source_box['G'])-1
-for i_bin in range(N_bins):
+for i_bin in tqdm.tqdm(range(N_bins)):
     in_bin = np.where( (source_box['phot_g_mean_mag'] >= bins[i_bin]) & (source_box['phot_g_mean_mag'] < bins[i_bin+1]) )
     input_box[i_bin] = [i_bin]+[source_box[key][in_bin] for key in ['ra','dec','matched_transits']]
 del source_box
@@ -161,7 +161,7 @@ def mp_worker(args):
 
         return _n_source, _t_previous
 
-    for _tidx in tqdm.tqdm(range(0,xyz_fov_1.shape[0])):
+    for _tidx in range(0,xyz_fov_1.shape[0]):
         _in_fov = tree_source.query_ball_point([xyz_fov_1[_tidx].copy(order='C'),xyz_fov_2[_tidx].copy(order='C')],r_search)
         _in_fov = np.array(_in_fov[0]+_in_fov[1])
         if _in_fov.size < 1:
@@ -174,7 +174,7 @@ def mp_worker(args):
     ##### Output
     filename = 'ObservationTimes_'+str(i_bin)+'.csv'
     #print(t_lists_1)
-    with open(filename, 'a') as f:
+    with open(filename, 'w') as f:
         for i in range(N_source):
             _times = list(t_lists_1[i][1:])+list(t_lists_2[i][1:])
             _times.sort()
@@ -186,9 +186,9 @@ def mp_worker(args):
 
 def mp_handler():
     pool = multiprocessing.Pool(N_core)
-    _input = [input_box[i_bin] for i_bin in [2]]#range(N_bins)]
-    #result = list(tqdm.tqdm(pool.imap_unordered(mp_worker, _input), total=N_bins))
-    result = list(pool.imap(mp_worker, _input))
+    _input = [input_box[i_bin] for i_bin in range(N_bins)]
+    result = list(tqdm.tqdm(pool.imap(mp_worker, _input), total=N_bins))
+    #result = list(pool.imap(mp_worker, _input))
     return result
 
 _output = mp_handler()
