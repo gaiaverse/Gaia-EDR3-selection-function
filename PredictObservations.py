@@ -10,185 +10,150 @@ import multiprocessing
 import os
 import time
 import h5py
-
-##### Script for saving data to pickle
-def save_as_pickled_object(obj, filepath):
-    """
-    This is a defensive way to write pickle.write, allowing for very large files on all platforms
-    """
-    max_bytes = 2**31 - 1
-    bytes_out = pickle.dumps(obj)
-    n_bytes = sys.getsizeof(bytes_out)
-    with open(filepath, 'wb') as f_out:
-        for idx in range(0, n_bytes, max_bytes):
-            f_out.write(bytes_out[idx:idx+max_bytes])
+from scipy import interpolate
+from math import sqrt, atan2, asin
+from numba import njit
             
 ##### Load in sources and assign to bins
-N_core = 4
+N_core = 10
+N_sources = 1811709771
+N_chunk = 3*17*6791
+N_block = 5231
+N_maxobs = 256
+print('Using',N_core,'cores.')
 
-bins = np.array([0.0, 5.0, 16.0, 17.0, 18.0, 18.2, 18.4, 18.6, 18.8, 19.0, 19.1, 19.2, 19.3, 19.4, 19.5, 19.6, 19.7, 19.8, 19.9, 20.0, 20.1, 20.2, 20.3, 20.4, 20.5, 20.6, 20.7, 20.8, 20.9, 21.0, 21.1, 21.2, 21.3, 21.4, 21.5, 25.0])
-N_bins = bins.size-1
+##### Load in data that all will need
+    
+# Scanning law
+_data = pd.read_csv('./CommandedScanLaw_001.csv')
+_columns = ['jd_time', 'ra_fov1', 'dec_fov1', 'ra_fov2', 'dec_fov2']
+_keys = ['tcb_at_gaia', 'ra_fov_1', 'dec_fov_1', 'ra_fov_2', 'dec_fov_2']
+_box = {}
+_order = np.argsort(_data['jd_time'].values)
+for j,k in zip(_columns,_keys):
+    _box[k] = _data[j].values[_order]
+del _data
+print('There are',_box['tcb_at_gaia'].size,'time points.')
+    
+fov_1_xyz = np.stack([np.cos(np.deg2rad(_box['ra_fov_1']))*np.cos(np.deg2rad(_box['dec_fov_1'])), np.sin(np.deg2rad(_box['ra_fov_1']))*np.cos(np.deg2rad(_box['dec_fov_1'])), np.sin(np.deg2rad(_box['dec_fov_1']))]).T
+fov_2_xyz = np.stack([np.cos(np.deg2rad(_box['ra_fov_2']))*np.cos(np.deg2rad(_box['dec_fov_2'])), np.sin(np.deg2rad(_box['ra_fov_2']))*np.cos(np.deg2rad(_box['dec_fov_2'])), np.sin(np.deg2rad(_box['dec_fov_2']))]).T
+fov_1_tree = spatial.cKDTree(fov_1_xyz)
+fov_2_tree = spatial.cKDTree(fov_2_xyz)
+fov_times = _box['tcb_at_gaia']
+del _box
+print('Loaded scanning law.')
 
-source_keys = ['ra','dec','phot_g_mean_mag','matched_transits']
-source_box = {}
-with h5py.File('./gaiaedr3.h5', 'r') as f:
-    for key in source_keys:
-        source_box[key] = f[key][:]
-source_box['matched_transits'] = source_box['matched_transits'].astype(np.int)
-print('Loaded sources')
-        
-input_box = {}
-#source_index = np.searchsorted(bins,source_box['G'])-1
-for i_bin in tqdm.tqdm(range(N_bins)):
-    in_bin = np.where( (source_box['phot_g_mean_mag'] >= bins[i_bin]) & (source_box['phot_g_mean_mag'] < bins[i_bin+1]) )
-    input_box[i_bin] = [i_bin]+[source_box[key][in_bin] for key in ['ra','dec','matched_transits']]
-del source_box
-print('Created inputs')
+# Emphemeris
+speed_of_light_AU_per_day = 299792458.0*(86400.0/149597870.700/1e3)
+gaia_ephem_data = pd.read_csv('./horizons_results_gaia.txt',skiprows=64)
+gaia_ephem_box = {k:gaia_ephem_data[k].values for k in ['JDTDB','X','Y','Z','VX','VY','VZ']}
+gaia_ephem_velocity = interpolate.interp1d( gaia_ephem_box['JDTDB']-2455197.5, np.stack([gaia_ephem_box['VX'],gaia_ephem_box['VY'],gaia_ephem_box['VZ']])/speed_of_light_AU_per_day, kind='cubic')
+gaia_velocity = gaia_ephem_velocity(fov_times).T
+print('Loaded emphemeris data.')
 
-##### Loop through sources
+# Compute rotation matrices
+_xaxis = fov_1_xyz
+_zaxis = np.cross(fov_1_xyz,fov_2_xyz)
+_yaxis = -np.cross(_xaxis,_zaxis)
+_yaxis /= np.linalg.norm(_yaxis,axis=1)[:,np.newaxis]
+_zaxis /= np.linalg.norm(_zaxis,axis=1)[:,np.newaxis]
+
+_uaxis = np.array([1,0,0])
+_vaxis = np.array([0,1,0])
+_waxis = np.array([0,0,1])
+
+_matrix = np.moveaxis(np.stack([np.dot(_xaxis,_uaxis),np.dot(_xaxis,_vaxis),np.dot(_xaxis,_waxis),
+                                np.dot(_yaxis,_uaxis),np.dot(_yaxis,_vaxis),np.dot(_yaxis,_waxis),
+                                np.dot(_zaxis,_uaxis),np.dot(_zaxis,_vaxis),np.dot(_zaxis,_waxis)]).reshape((3,3,_xaxis.shape[0])),2,0)
+print('Computed rotation matrices.')
 
 def mp_worker(args):
     
-    i_bin, ra_source, dec_source, k_source = args
+    block_idx = args
     
-    N_source = ra_source.size
+    # Load in data
+    with h5py.File('./gaiaedr3.h5', 'r') as f:
+        source_id  = f['source_id'][block_idx*N_chunk:(block_idx+1)*N_chunk]
+        source_ra  = np.deg2rad(f['ra'][block_idx*N_chunk:(block_idx+1)*N_chunk])
+        source_dec = np.deg2rad(f['dec'][block_idx*N_chunk:(block_idx+1)*N_chunk])
     
-    ##### Compute tree
-    xyz_source = np.stack([np.cos(np.deg2rad(ra_source))*np.cos(np.deg2rad(dec_source)), np.sin(np.deg2rad(ra_source))*np.cos(np.deg2rad(dec_source)), np.sin(np.deg2rad(dec_source))]).T
-    tree_source = spatial.cKDTree(xyz_source)
-    
-    from scipy import interpolate
-
-    # Define units
-    speed_of_light_AU_per_day = 299792458.0*(86400.0/149597870.700/1e3)
-
-    # Prepare ephem data
-    gaia_ephem_data = pd.read_csv('./horizons_results_gaia.txt',skiprows=64)
-    gaia_ephem_box = {k:gaia_ephem_data[k].values for k in ['JDTDB','X','Y','Z','VX','VY','VZ']}
-    gaia_ephem_velocity = interpolate.interp1d( gaia_ephem_box['JDTDB']-2455197.5, np.stack([gaia_ephem_box['VX'],gaia_ephem_box['VY'],gaia_ephem_box['VZ']])/speed_of_light_AU_per_day, kind='cubic')
-    
-    ##### Load in scanning law
-    _data = pd.read_csv('./CommandedScanLaw_001.csv')
-    _columns = ['jd_time', 'bjd_fov1', 'bjd_fov2','ra_fov1', 'dec_fov1', 'scan_angle_fov1', 'ra_fov2', 'dec_fov2', 'scan_angle_fov2']
-    _keys = ['tcb_at_gaia','tcb_at_bary1','tcb_at_bary2','ra_fov_1','dec_fov_1','angle_fov_1','ra_fov_2','dec_fov_2','angle_fov_2']
-    #print('There are',_box['tcb_at_gaia'].size,'time points.')
-    _box = {}
-    _order = np.argsort(_data['jd_time'].values)
-    for j,k in zip(_columns,_keys):
-        _box[k] = _data[j].values[_order]
-    
-    xyz_fov_1 = np.stack([np.cos(np.deg2rad(_box['ra_fov_1']))*np.cos(np.deg2rad(_box['dec_fov_1'])),np.sin(np.deg2rad(_box['ra_fov_1']))*np.cos(np.deg2rad(_box['dec_fov_1'])),np.sin(np.deg2rad(_box['dec_fov_1']))]).T
-    xyz_fov_2 = np.stack([np.cos(np.deg2rad(_box['ra_fov_2']))*np.cos(np.deg2rad(_box['dec_fov_2'])),np.sin(np.deg2rad(_box['ra_fov_2']))*np.cos(np.deg2rad(_box['dec_fov_2'])),np.sin(np.deg2rad(_box['dec_fov_2']))]).T
-    #print('Loaded scanning law.')
-
-    ##### Compute rotation matrices
-    _xaxis = xyz_fov_1
-    _zaxis = np.cross(xyz_fov_1,xyz_fov_2)
-    _yaxis = -np.cross(_xaxis,_zaxis)
-    _yaxis /= np.linalg.norm(_yaxis,axis=1)[:,np.newaxis]
-    _zaxis /= np.linalg.norm(_zaxis,axis=1)[:,np.newaxis]
-
-    _uaxis = np.array([1,0,0])
-    _vaxis = np.array([0,1,0])
-    _waxis = np.array([0,0,1])
-
-    _matrix = np.moveaxis(np.stack([np.dot(_xaxis,_uaxis),np.dot(_xaxis,_vaxis),np.dot(_xaxis,_waxis),
-          np.dot(_yaxis,_uaxis),np.dot(_yaxis,_vaxis),np.dot(_yaxis,_waxis),
-          np.dot(_zaxis,_uaxis),np.dot(_zaxis,_vaxis),np.dot(_zaxis,_waxis)]).reshape((3,3,_xaxis.shape[0])),2,0)
-
-    #print('Computed rotation matrix.')
-
-
+    # Compute tree
+    source_xyz = np.stack([np.cos(source_ra)*np.cos(source_dec), np.sin(source_ra)*np.cos(source_dec), np.sin(source_dec)]).T
+    source_tree = spatial.cKDTree(source_xyz)
     
     ##### Find intersections
-    n_source = np.zeros(N_source)
-    t_previous = -99999*np.ones(N_source)
+    source_N = N_chunk
+    source_fov_1_n = np.zeros(source_N).astype(np.uint8)
+    source_fov_2_n = np.zeros(source_N).astype(np.uint8)
+    source_fov_1_times = np.zeros((source_N,N_maxobs)).astype(np.uint32)
+    source_fov_2_times = np.zeros((source_N,N_maxobs)).astype(np.uint32)
     t_diff = 1.0/24.0 # 1 hours
-    r_search = np.tan(np.deg2rad((0.345+0.05)*np.sqrt(2)))
-    
-    from numba.typed import List
-    t_lists_1, t_lists_2 = List(), List()
-    for _idx in range(N_source):
-        l_1 = List()
-        l_2 = List()
-        l_1.append(-1.0)
-        l_2.append(-1.0)
-        t_lists_1.append(l_1)
-        t_lists_2.append(l_2)
-
+    time_idx_diff = 360
+    r_search = np.tan(np.deg2rad((0.345+0.05+0.05)*np.sqrt(2)))
     b_fov = 0.345
     zeta_origin_1 = +220.997922127812/3600
     zeta_origin_2 = -220.997922127812/3600
-    b_upp_1 = b_fov+zeta_origin_1
-    b_low_1 = -b_fov+zeta_origin_1
-    b_upp_2 = b_fov+zeta_origin_2
-    b_low_2 = -b_fov+zeta_origin_2
-    l_fov_1 = 0.0
-    l_fov_2 = 106.5
     
-    from numba import njit
-
+    #l_fov_1 = 0.0
+    #l_fov_2 = 106.5
+    rad2deg = np.rad2deg(1.0)
+    
+    source_fov_1_pairs = [np.array(_pairs) for _pairs in source_tree.query_ball_tree(fov_1_tree, r = r_search)]
+    source_fov_2_pairs = [np.array(_pairs) for _pairs in source_tree.query_ball_tree(fov_2_tree, r = r_search)]
+    
     @njit
-    def test_validity(_tidx,_in_this_fov,_n_source,_t_previous,_t_lists_1,_t_lists_2,_t_now,_gaia_velocity):
-        #_xyz = xyz_source[_in_this_fov].T
-        #_uvw = np.dot(_matrix[_tidx],_xyz)
-        #_l = np.rad2deg(np.arctan2(_uvw[1],_uvw[0]))
-        #_b = np.rad2deg(np.arctan2(_uvw[2],np.sqrt(_uvw[0]**2.0+_uvw[1]**2.0)))
-
-        _xyz = xyz_source[_in_this_fov] + _gaia_velocity
-        #_xyz = _xyz/np.linalg.norm(_xyz,axis=1)[:,np.newaxis]
-        _norm = np.sqrt(_xyz[:,0]**2+_xyz[:,1]**2+_xyz[:,2]**2)
+    def test_validity(xyz,source_fov_pairs,source_fov_times,zeta_origin):
         
-        #_xyz = xyz_source[_in_this_fov]
-        _rot = _matrix[_tidx]
-        _U = (_rot[0,0] * _xyz[:,0] + _rot[0,1] * _xyz[:,1] + _rot[0,2] * _xyz[:,2])/_norm
-        _V = (_rot[1,0] * _xyz[:,0] + _rot[1,1] * _xyz[:,1] + _rot[1,2] * _xyz[:,2])/_norm
-        _W = (_rot[2,0] * _xyz[:,0] + _rot[2,1] * _xyz[:,1] + _rot[2,2] * _xyz[:,2])/_norm
-        _l = np.rad2deg(np.arctan2(_V,_U))
-        _b = np.rad2deg(np.arcsin(_W))
+        b_upp = zeta_origin+b_fov
+        b_low = zeta_origin-b_fov
 
-        _valid_fov_1 =  _in_this_fov[np.where(((np.abs(_l-l_fov_1)<1.0)&(_b<b_upp_1)&(_b>b_low_1))&(_t_now-_t_previous[_in_this_fov]>t_diff))[0]]
-        _n_source[_valid_fov_1] += 1
-        _t_previous[_valid_fov_1] = _t_now
-        for _sidx in _valid_fov_1:
-            _t_lists_1[_sidx].append(_tidx)
-
-        _valid_fov_2 =  _in_this_fov[np.where(((np.abs(_l-l_fov_2)<1.0)&(_b<b_upp_2)&(_b>b_low_2))&(_t_now-_t_previous[_in_this_fov]>t_diff))[0]]
-        _n_source[_valid_fov_2] += 1
-        _t_previous[_valid_fov_2] = _t_now
-        for _sidx in _valid_fov_2:
-            _t_lists_2[_sidx].append(_tidx)
-
-        return _n_source, _t_previous
-
-    for _tidx in range(0,xyz_fov_1.shape[0]):
-        _in_fov = tree_source.query_ball_point([xyz_fov_1[_tidx].copy(order='C'),xyz_fov_2[_tidx].copy(order='C')],r_search)
-        _in_fov = np.array(_in_fov[0]+_in_fov[1])
-        if _in_fov.size < 1:
-            continue
-        _gaia_velocity = gaia_ephem_velocity(_box['tcb_at_gaia'][_tidx])
-        n_source, t_previous = test_validity(_tidx,_in_fov,n_source,t_previous,t_lists_1,t_lists_2,_box['tcb_at_gaia'][_tidx],_gaia_velocity)
+        time_previous_idx = -99999
+        _n = 0
+            
+        for time_idx in source_fov_pairs:
+                
+            _xyz = xyz + gaia_velocity[time_idx]
+            _norm = sqrt(_xyz[0]**2+_xyz[1]**2+_xyz[2]**2)
+        
+            _rot = _matrix[time_idx]
+            #_U = (_rot[0,0] * _xyz[0] + _rot[0,1] * _xyz[1] + _rot[0,2] * _xyz[2])/_norm
+            #_V = (_rot[1,0] * _xyz[0] + _rot[1,1] * _xyz[1] + _rot[1,2] * _xyz[2])/_norm
+            _W = (_rot[2,0] * _xyz[0] + _rot[2,1] * _xyz[1] + _rot[2,2] * _xyz[2])/_norm
+                
+            #_l = rad2deg*atan2(_V,_U)
+            _b = rad2deg*asin(_W)
+                
+            if _b < b_upp and _b > b_low and time_idx - time_previous_idx > time_idx_diff:
+                source_fov_times[_n] = time_idx
+                time_previous_idx = time_idx
+                _n += 1
+        
+        return _n
     
-    
-    
-    ##### Output
-    filename = 'ObservationTimes_'+str(i_bin)+'.csv'
-    #print(t_lists_1)
-    with open(filename, 'w') as f:
-        for i in range(N_source):
-            _times = list(t_lists_1[i][1:])+list(t_lists_2[i][1:])
-            _times.sort()
-            if len(_times) == 0:
-                continue
-            line = str(k_source[i])+','+str(int(n_source[i]))+','+','.join(map(str, map(int,_times)))+'\n'
-            f.write(line)
-    return 1
+    for source_idx in range(source_N):
+        source_fov_1_n[source_idx] = test_validity(source_xyz[source_idx],source_fov_1_pairs[source_idx],source_fov_1_times[source_idx],zeta_origin_1)
+        source_fov_2_n[source_idx] = test_validity(source_xyz[source_idx],source_fov_2_pairs[source_idx],source_fov_2_times[source_idx],zeta_origin_2)
 
-def mp_handler():
-    pool = multiprocessing.Pool(N_core)
-    _input = [input_box[i_bin] for i_bin in range(N_bins)]
-    result = list(tqdm.tqdm(pool.imap(mp_worker, _input), total=N_bins))
-    #result = list(pool.imap(mp_worker, _input))
-    return result
+    return block_idx, source_id, source_fov_1_n, source_fov_1_times, source_fov_2_n, source_fov_2_times
 
-_output = mp_handler()
+pool = multiprocessing.Pool(N_core)
+    
+with h5py.File('gaiaedr3_times.h5', 'w') as f:
+        
+    # Create datasets
+    f.create_dataset('source_id', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint64, fletcher32 = False, shuffle = True, scaleoffset=0)
+    f.create_dataset('fov_1_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+    f.create_dataset('fov_2_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+    f.create_dataset('fov_1_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
+    f.create_dataset('fov_2_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
+        
+    for result in tqdm.tqdm(pool.imap_unordered(mp_worker, range(N_block)),total=N_block):
+            
+        block_idx, source_id, source_fov_1_n, source_fov_1_times, source_fov_2_n, source_fov_2_times = result
+            
+        f['source_id'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_id
+        f['fov_1_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_1_n
+        f['fov_2_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_2_n
+        f['fov_1_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_1_times
+        f['fov_2_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_2_times
+
