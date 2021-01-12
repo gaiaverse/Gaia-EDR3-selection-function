@@ -134,26 +134,44 @@ def mp_worker(args):
         source_fov_1_n[source_idx] = test_validity(source_xyz[source_idx],source_fov_1_pairs[source_idx],source_fov_1_times[source_idx],zeta_origin_1)
         source_fov_2_n[source_idx] = test_validity(source_xyz[source_idx],source_fov_2_pairs[source_idx],source_fov_2_times[source_idx],zeta_origin_2)
 
-    return block_idx, source_id, source_fov_1_n, source_fov_1_times, source_fov_2_n, source_fov_2_times
+        
+    with h5py.File(f'./store/gaiaedr3_times_{block_idx}.h5', 'w') as f:
+        
+        # Create datasets
+        f.create_dataset('source_id', data=source_id, compression = "lzf", chunks = (N_chunk,), shape = (N_chunk,), dtype = np.uint64, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_1_n', data=source_fov_1_n, compression = "lzf", chunks = (N_chunk,), shape = (N_chunk,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_2_n', data=source_fov_2_n, compression = "lzf", chunks = (N_chunk,), shape = (N_chunk,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_1_times', data=source_fov_1_times, compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_chunk, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_2_times', data=source_fov_2_times, compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_chunk, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)    
+    return block_idx
 
-pool = multiprocessing.Pool(N_core)
+if True:
     
-with h5py.File('gaiaedr3_times.h5', 'w') as f:
+    with h5py.File('gaiaedr3_times.h5', 'w') as f:
         
-    # Create datasets
-    f.create_dataset('source_id', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint64, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('fov_1_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('fov_2_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('fov_1_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('fov_2_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
-        
-    for result in tqdm.tqdm(pool.imap_unordered(mp_worker, range(N_block)),total=N_block):
-            
-        block_idx, source_id, source_fov_1_n, source_fov_1_times, source_fov_2_n, source_fov_2_times = result
-            
-        f['source_id'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_id
-        f['fov_1_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_1_n
-        f['fov_2_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_2_n
-        f['fov_1_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_1_times
-        f['fov_2_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = source_fov_2_times
+        # Create datasets
+        f.create_dataset('source_id', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint64, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_1_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_2_n', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint8, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_1_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
+        f.create_dataset('fov_2_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
 
+
+with h5py.File('gaiaedr3_times.h5', 'a') as f:
+    #flag = f['source_id'][::N_chunk]
+    
+    
+    pool = multiprocessing.Pool(N_core)
+    for result in tqdm.tqdm(pool.imap(mp_worker, range(N_block)),total=N_block):
+            
+        block_idx = result
+        
+        with h5py.File(f'./store/gaiaedr3_times_{block_idx}.h5', 'r') as g:
+        
+            f['source_id'][block_idx*N_chunk:(block_idx+1)*N_chunk] = g['source_id'][:]
+            f['fov_1_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = g['fov_1_n'][:]
+            f['fov_2_n'][block_idx*N_chunk:(block_idx+1)*N_chunk] = g['fov_2_n'][:]
+            f['fov_1_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = g['fov_1_times'][:]
+            f['fov_2_times'][block_idx*N_chunk:(block_idx+1)*N_chunk] = g['fov_2_times'][:]
+        
+        os.remove(f'./store/gaiaedr3_times_{block_idx}.h5')
