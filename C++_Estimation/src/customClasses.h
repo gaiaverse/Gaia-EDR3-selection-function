@@ -6,7 +6,13 @@
 #include <limits>
 
 
+//custom classes is a nursery for new classes as I build them and they move out into their own properly maintained files
+//anything here is probably temporary or badly written....
 
+
+//NOT CURRENTLY IN USE
+//a class for rapidly indexing the line breaks in large files, allowing for non-linear memory access into large files
+//once indexed, it is particularly optimized to jump to a line and read sequentially from that point
 
 class IndexedFile
 {
@@ -25,6 +31,8 @@ class IndexedFile
 };
 
 
+// The star class (once fully integrated) will be used to store line-by-line data from the Gaia data files
+// There will be ~1.8bn of these objects, so minimising the memory they occupy will be a high priority
 class Star
 {
 	public:

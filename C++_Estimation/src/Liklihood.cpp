@@ -8,7 +8,8 @@ Liklihood::Liklihood(const std::vector<Star> &data, int nPoints, int id): Data(d
 
 }
 
-void Liklihood::Calculate(std::vector<double> & x)
+
+void Liklihood::Calculate(Eigen::VectorXd& x)
 {
 	double a = x[0];
 	double b = x[1];

@@ -1,6 +1,12 @@
 #pragma once
 #include <vector>
+#include "libs/Eigen/Core"
+#define EIGEN_MPL2_ONLY
+
 #include "customClasses.h"
+using Eigen::VectorXd;
+//Liklihood class acts as a container for the values of the log liklihood and its gradient
+//Also contains the data necessary to update these values when Calculate(newPosition) is called
 class Liklihood
 {
 	public:
@@ -12,6 +18,6 @@ class Liklihood
 		
 		Liklihood(const std::vector<Star> & data, int nPoints, int id);
 		
-		void Calculate(std::vector<double> &position);
+		void Calculate(Eigen::VectorXd& position);
 };
 

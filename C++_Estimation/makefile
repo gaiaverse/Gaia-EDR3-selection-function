@@ -6,7 +6,7 @@ CC = mpic++
 # Run Options       
 COMMANDLINE_OPTIONS = /dev/ttyS0
 
-# Compiler options during compilation
+# Compiler options during compilation (remove march=native if having issues with illegal instruction errors)
 COMPILE_OPTIONS =  -std=c++11 -pthread -O3 -w -march=native
 
 #Header include directories

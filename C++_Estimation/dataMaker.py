@@ -7,8 +7,8 @@ b = 2
 c = 10
 sigmaFrac = 0.2
 
-nFile = 10
-nDataPerFile = 1500
+nFile = 4
+nDataPerFile = 100000
 
 
 xRange = (-10,10)

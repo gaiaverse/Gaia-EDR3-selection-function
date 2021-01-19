@@ -9,19 +9,24 @@ using Eigen::VectorXd;
 
 
 
- 
+//DescentFunctor is a function-like class which acts as a wrapper for the gradient descent algorithm. 
+//The overloaded operator () allows the class to be called as a function by LBFGs, but the classlike nature allows the function to 
+//access data without needing to continually reload it into the function
 class DescentFunctor
 {
-private:
-	int RunningID;
-	const std::vector<Star> &Data; 
-	Liklihood L;
-	
-public:
-    DescentFunctor(int n,const std::vector<Star> & data, int nParams) : RunningID(n), Data(data), L(data,nParams,n)
-    {
-			
-	}
-    double operator()(const Eigen::VectorXd& x, Eigen::VectorXd& grad);
+	private:
+		int RunningID;
+		
+		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
+		//the structures needed to do liklihood analysis stored within
+		const std::vector<Star> &Data; 
+		Liklihood L;
+		
+	public:
+	    DescentFunctor(int n,const std::vector<Star> & data, int nParams) : Data(data), L(data,nParams,n) //initializer list (complicated, not really sure what it is, but it needs to be here)
+	    {
+				RunningID = n;
+		}
+	    double operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad);
  
 };
