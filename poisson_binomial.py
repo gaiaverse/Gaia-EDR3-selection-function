@@ -34,6 +34,14 @@ def poisson_binomial_pmf(probs,probslen,result):
         oldlen += 1
 
     #return result
+    
+@njit
+def poisson_binomial_pmf_direct(probs):
+
+    probslen = probs.size
+    result = np.zeros(probslen+1)
+    poisson_binomial_pmf(probs,probslen,result)
+    return result
 
 @njit
 def poisson_binomial_selection(probs,probslen,result,k,c):
