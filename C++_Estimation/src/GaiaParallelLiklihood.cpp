@@ -32,7 +32,7 @@ std::vector<Star> Data;
 void RootProcess()
 {
 	//tell the workers to resize their parameter vectors
-	int nParameters = 3;
+	int nParameters = 300;
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	

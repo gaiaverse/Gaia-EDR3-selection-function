@@ -11,7 +11,6 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 	int circuitBreaker = 1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
-	
 	//send position vector to workers
 	MPI_Bcast(&x[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 
@@ -30,9 +29,6 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 	double Lsum = 0;
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &grad[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-
-	
-
 
 	return Lsum;
 }
