@@ -1,0 +1,220 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <math.h>
+#include <iomanip>
+
+#include <thread>
+#include <future>
+#include <iostream>
+
+
+//~ #include <Eigen/Core>
+//~ #include "libs/LBFG/LBFGS.h"
+
+
+//#include <LBFGS.h>
+
+//~ //custom includes
+//~ #include "customClasses.h"
+
+using Eigen::VectorXd;
+using namespace LBFGSpp;
+//thread active is the locking vector, if element i is true, then core i is processing, and cannot be assigned a new job
+std::vector<bool> threadActive(1,false);
+std::vector<Liklihood> threadReturns(1,Liklihood());
+
+
+
+void LaunchProcess(int id,const Eigen::VectorXd& x)
+{	
+
+	//Here is where the custom job for each core is processed
+	
+	//save the output to the threadReturns[id] vector
+	
+	
+	int n = x.size();
+	gradCont[id]= Eigen::VectorXd::Zero(x.size());
+
+	
+
+	fCont[id] = f;
+	gradCont[id][id] = gi;
+	
+	//~ //unlock the core, telling the parent core that it has been called. 
+	threadActive[id] = false;
+}
+
+
+
+//~ Liklihood Gradient(Position X)
+//~ {
+	//~ auto start = std::chrono::high_resolution_clock::now();
+	
+
+	//~ Liklihood L = Liklihood();
+	
+	//~ //initialising threads
+	//~ int currentThread = 0;
+	//~ int nThreads = 3;
+	
+	//~ std::vector<std::thread> Pool(nThreads);
+
+	//~ threadActive.resize(nThreads);
+	
+	//~ for (int i = 0; i < nThreads; ++i)
+	//~ {
+		//~ threadActive[i] = false;
+	//~ }
+	
+	//~ bool noThreadAssigned = false;
+
+	//~ //if more indices are provided than threads, this allows them to be queued until after the process has been evaluated
+	//~ //by default assume that this is equal to nThreads, however
+	//~ int NChunks = nThreads;
+
+	//~ for (int k = 0; k < NChunks; ++k)
+	//~ {	
+		//~ while (noThreadAssigned == true)
+		//~ {
+			//~ for (int j = 0; j < nThreads; ++j)
+			//~ {
+
+				//~ if (threadActive[j]==false)
+				//~ {
+					//~ if (Pool[j].joinable())
+					//~ {
+						//~ Pool[j].join();
+						
+						
+						//~ //extract data from threadReturns[j]
+						//~ //L.Value += threadReturns[j].Value;
+						//~ //L.Gradient += threadReturns[j].Gradient;
+					//~ }
+					//~ currentThread = j;
+					//~ j = nThreads;
+					//~ noThreadAssigned = false;
+				//~ }
+			//~ }
+			
+		//~ }
+
+		//~ threadActive[currentThread] = true;
+
+		//~ Pool[currentThread] = std::thread(LaunchProcess,X,currentThread);
+		
+		//~ noThreadAssigned = true;	
+		
+		
+		
+		
+	//~ }
+	
+	//~ for (int j = 0; j < nThreads; ++j)
+	//~ {
+		//~ if (Pool[j].joinable())
+		//~ {
+			//~ Pool[j].join();
+			
+			//~ //extract data from threadReturns[j]
+			//~ //L.Value += threadReturns[j].Value;
+			//~ //L.Gradient += threadReturns[j].Gradient;s
+		//~ }
+	//~ }
+	//~ std::cout << "All threads closed" << std::endl;
+	
+//~ }
+
+
+
+
+ 
+class TestFunc
+{
+private:
+    int n;
+    std::vector<std::thread> * ParPool;
+public:
+    TestFunc(int ni,std::vector<std::thread> * pool) : n(ni), ParPool(pool)
+    {
+
+	}
+    double operator()(const Eigen::VectorXd& x, Eigen::VectorXd& grad)
+    {
+        for(int i = 0; i < n; i += 1)
+        {
+
+            threadActive[i] = false;
+            
+            ParPool[0][i] = std::thread(LaunchProcess,i,x);
+            
+            
+        }
+        
+        
+        double fx = 0.0;
+        int nCollected = 0;
+        grad = VectorXd::Zero(n);
+        while (nCollected < n)
+        {
+			for(int i = 0; i < n; i += 1)
+			{
+				if (threadActive[i] == false && ParPool[0][i].joinable())
+				{
+					ParPool[0][i].join();
+					++nCollected;
+					double t = x[i] - 4.3;
+					grad = grad + gradCont[i];
+					fx += fCont[i];
+				}
+           
+			}
+		}
+        std::cout << "f(" << x.transpose() << ")  = " << fx << "   grad = " << grad.transpose() << std::endl;
+        return fx;
+    }
+};
+
+
+
+//~ int main(int argc, char** argv)
+//~ {
+	
+	//~ std::cout << "Routine Initialised" << std::endl;
+	
+	//~ int nThreads = 10;
+	
+	//~ std::vector<std::thread> Pool(nThreads);
+	//~ fCont.resize(nThreads);
+	//~ gradCont.resize(nThreads);
+	//~ threadActive.resize(nThreads);
+
+    //~ // Set up parameters
+    //~ LBFGSParam<double> param;
+    //~ param.epsilon = 1e-15;
+    //~ param.max_iterations = 10000;
+ 
+    //~ // Create solver and function object
+    //~ LBFGSSolver<double> solver(param);
+    //~ TestFunc fun(nThreads,&Pool);
+ 
+    //~ // Initial guess
+    //~ VectorXd x = VectorXd::Zero(nThreads);
+    //~ // x will be overwritten to be the best point found
+    //~ double fx;
+    //~ int niter = solver.minimize(fun, x, fx);
+ 
+    //~ std::cout << niter << " iterations" << std::endl;
+    //~ std::cout << "x = \n" << x.transpose() << std::endl;
+    //~ std::cout << "f(x) = " << fx << std::endl;
+
+    //~ return 0;
+//~ }
+
+
+
