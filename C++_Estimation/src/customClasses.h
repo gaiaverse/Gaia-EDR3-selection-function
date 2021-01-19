@@ -4,8 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <limits>
-#include "libs/Eigen/Core"
-using Eigen::VectorXd;
+
 
 
 

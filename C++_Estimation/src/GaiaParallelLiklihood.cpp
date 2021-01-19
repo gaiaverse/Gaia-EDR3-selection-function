@@ -4,6 +4,8 @@
 #include <string.h>
 
 #include "libs/Eigen/Core"
+#define EIGEN_MPL2_ONLY
+
 #include "libs/LBFG/LBFGS.h"
 
 #include "customClasses.h"

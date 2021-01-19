@@ -2,6 +2,7 @@
 #include <vector>
 #include <mpi.h>
 #include "libs/Eigen/Core"
+#define EIGEN_MPL2_ONLY
 #include "customClasses.h"
 #include "Liklihood.h"
 using Eigen::VectorXd;
