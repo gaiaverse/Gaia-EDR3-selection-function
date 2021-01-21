@@ -7,8 +7,8 @@ b = 2
 c = 10
 sigmaFrac = 0.2
 
-nFile = 4
-nDataPerFile = 100000
+nFile = 10
+nDataPerFile = 1000000
 
 
 xRange = (-10,10)
@@ -17,7 +17,7 @@ for fileID in range(0,nFile):
 	
 	
 	name = "Data/MockData_" + str(fileID) + ".dat"
-	
+	print(name)
 	f = open(name,'w')
 	
 	for n in range(0,nDataPerFile):
