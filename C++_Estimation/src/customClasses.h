@@ -43,6 +43,7 @@ class Star
 		
 		double x;
 		double y;
+		double w;
 		double z;
 		double err;
 		

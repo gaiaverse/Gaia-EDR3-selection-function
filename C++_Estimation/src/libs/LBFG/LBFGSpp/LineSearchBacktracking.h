@@ -4,7 +4,7 @@
 #ifndef LINE_SEARCH_BACKTRACKING_H
 #define LINE_SEARCH_BACKTRACKING_H
 
-#include <Eigen/Core>
+#include "../../Eigen/Core"
 #include <stdexcept>  // std::runtime_error
 
 

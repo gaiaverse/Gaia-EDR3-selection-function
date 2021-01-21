@@ -12,7 +12,7 @@ COMPILE_OPTIONS =  -std=c++11 -pthread -O3 -w -march=native
 #Header include directories
 HEADERS = 
 #Libraries for linking
-LIBS = -lpthread
+LIBS = -lpthread 
 
 # Dependency options
 DEPENDENCY_OPTIONS =  -MM -std=c++11 

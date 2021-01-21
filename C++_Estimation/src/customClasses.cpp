@@ -60,6 +60,7 @@ Star::Star()
 {
 	x = 0;
 	y = 0;
+	w = 0;
 	z = 0;
 	err = 0;
 }
@@ -67,6 +68,7 @@ Star::Star(std::vector<std::string> data)
 {
 	x = std::stod(data[0]);
 	y = std::stod(data[1]);
-	z = std::stod(data[2]);
-	err = std::stod(data[3]);
+	w = std::stod(data[2]);
+	z = std::stod(data[3]);
+	err = std::stod(data[4]);
 }

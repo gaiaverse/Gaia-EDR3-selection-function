@@ -6,7 +6,7 @@
 
 #include <stdexcept>  // std::invalid_argument
 #include <vector>
-#include <Eigen/Core>
+#include <../Eigen/Core>
 #include "LBFGSpp/Param.h"
 #include "LBFGSpp/BFGSMat.h"
 #include "LBFGSpp/Cauchy.h"
