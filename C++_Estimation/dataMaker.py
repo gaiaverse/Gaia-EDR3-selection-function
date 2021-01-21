@@ -4,9 +4,9 @@ import math
 
 a = 3
 b = 2
-c = 10
-d = 7
-sigmaFrac = 0.2
+c = -10
+d = 7500
+sigmaFrac = 1
 
 nFile = 10
 nDataPerFile = 500000

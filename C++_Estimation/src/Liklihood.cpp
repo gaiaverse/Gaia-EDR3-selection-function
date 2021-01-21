@@ -32,7 +32,7 @@ void Liklihood::Calculate(Eigen::VectorXd& x)
 		Value += 0.5 * arg*arg / errSq;
 		Gradient[0] += -Data[i].x * arg / errSq;
 		Gradient[1] += -Data[i].y * arg / errSq;
-		Gradient[2] += -Data[i].z * arg / errSq;
+		Gradient[2] += -Data[i].w * arg / errSq;
 		Gradient[3] += -1 * arg / errSq;
 	}
 
