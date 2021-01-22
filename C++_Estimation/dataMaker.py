@@ -6,10 +6,10 @@ a = 3
 b = 2
 c = -10
 d = 7500
-sigmaFrac = 100
+sigmaFrac = 10
 
-nFile = 20
-nDataPerFile = 800000000
+nFile = 4
+nDataPerFile = 1800000
 
 box = 100000
 xRange = (-box,box)
@@ -24,14 +24,14 @@ for fileID in range(0,nFile):
         f = open(name,'w')
                 
         prevFrac = 0
-        fracGap = 0.5
+        fracGap = 10
         for n in range(0,nDataPerFile):
                 
                 x = random.uniform(xRange[0],xRange[1])
                 y = random.uniform(yRange[0],yRange[1])
                 w = random.uniform(wRange[0],wRange[1])
                 zTrue = a * x + b*y + c*w + d
-                sigma = max(abs(zTrue) * sigmaFrac,0.1)
+                sigma = max(abs(zTrue) * sigmaFrac,1)
                 
                 zMeasure = random.gauss(zTrue,sigma)
                 
