@@ -81,12 +81,52 @@ void Liklihood::PriorVariance(double& variance, int& param_index)
     Gradient[param_index] -= variance;
 }
 
-def log_prior_variance(sigma2):
+void Liklihood::PriorMu(Eigen::VectorXd& mu, double& m, double& tau2)
+{
+    // Implements a Gamma(1,1) prior for the variances
     
-    # Gamma(1,1)
+    Matrix<double, Ng, Ng> J;
     
-    lnS = - sigma2
+    // Build covariance matrix
+    for (int i = 0; i < Ng; i++) {
+        for (int j = 0; j < Ng; j++) {
+            J(i,j) = exp(-pow(magnitude(i)-magnitude(j),2)/(2.0*m*m));
+        }
+    }
     
-    dlnSdsigma2 = - 1.0
+    // LU decomposition (with pivoting!)
+    // It's possible that this is all broken.
+    Eigen::FullPivLU< Matrix<double, Ng, Ng> > lu(J);
+    Vector<double, Ng> invJmu = lu.solve(mu);
+    double muinvJmu = invJmu.dot(mu);
     
-    return lnS, dlnSsigma2
+    // lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
+    Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*lu.logAbsDeterminant() -0.5*muinvJmu/tau2;
+    
+    Gradient[3] += 0.0;
+    
+    // dlnQ_dlntau2, correcting for log factor
+    Gradient[4] += -0.5*Ng + 0.5*muinvJmu/tau2;
+    
+    Gradient.segment(Nh,Ng) -= invJmu/tau2;
+}
+
+/*
+def log_prior_mu(mu,m,tau2):
+    
+    J = tau2*np.exp(-G_squared/2.0/m**2)
+    J_inv = np.linalg.pinv(J)
+    J_inv_mu = np.dot(J_inv,mu)
+    
+    lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
+    
+    dJdm = J*G2/m**3
+    dJdtau2 = J/tau2
+
+    dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
+    dlnQdtau2 = -0.5*np.trace(np.dot(J_inv,dJdtau2))+0.5*np.dot(J_inv_mu.T,np.dot(dJdtau2,J_inv_mu))
+    dlnQdmu = -J_inv_mu
+    
+    return lnQ, dlnQdmu, dlnQdm, dlnQdtau2
+    
+*/

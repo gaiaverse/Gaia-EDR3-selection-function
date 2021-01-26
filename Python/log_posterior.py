@@ -255,3 +255,4 @@ def log_posterior(args,Nh,Ng,Nt,G):
     dlnF_dargs[Nh+M:] = dlnF_dx
     
     return lnF, dlnFdargs
+
