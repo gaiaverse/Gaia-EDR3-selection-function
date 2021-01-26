@@ -33,8 +33,19 @@ void Liklihood::Calculate(Eigen::VectorXd& x)
 }
 
 
-void Liklihood::Prior()
+void Liklihood::Prior(Eigen::VectorXd& params)
 {
+    
+    // Unpack parameters
+    double lt = exp(params(0));
+    double lg = exp(params(1));
+    double sigma2 = exp(params(2));
+    double m = exp(params(3));
+    double tau2 = exp(params(4));
+    
+    VectorXd mu = params.segment(Nh, Ng);
+    VectorXd x = params.segment(Nh+Ng, Ng*Nt);
+    
 	//Value += whatever
 	//Gradient[i] += etc
 }

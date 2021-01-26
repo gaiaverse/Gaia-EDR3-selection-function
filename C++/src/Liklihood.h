@@ -11,6 +11,9 @@ class Liklihood
 {
 	public:
 		int ID;
+        int Nh = 5; // number of hyper-hyper-parameters
+        int Ng = 35; // number of magnitude bins
+        int Nt = 8967691; // number of time bins
 		long double Value;
 		std::vector<double> Gradient;
 		const std::vector<Star> &Data;
