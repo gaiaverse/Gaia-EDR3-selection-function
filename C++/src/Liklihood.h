@@ -15,15 +15,17 @@ class Liklihood
 		std::vector<double> Gradient;
 		const std::vector<Star> &Data;
 		
-		
+		int MinVisits;
 		Liklihood(const std::vector<Star> & data, int nPoints, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 	private:
-		//std::vector<double> pmf
-		//std::vector<double> subpmf
+		std::vector<double> pmf
+		std::vector<double> subpmf
 		
 		void Prior();
+		
+		void PerStarContribution(int id,Eigen::VectorXd& position);
 		//new member functions go here:
 };
 

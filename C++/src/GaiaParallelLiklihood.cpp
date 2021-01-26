@@ -161,31 +161,25 @@ int main(int argc, char *argv[])
 	
 	
 	auto start = std::chrono::system_clock::now();
-	std::vector<double> v;
-	for (int i = 0; i < 1e8; ++i)
+	
+	if (ProcessRank == RootID)
 	{
-		v.push_back(exp(-i*0.54));
+		std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
+		printTime();
+		std::cout << std::endl;
 	}
-	std::cout << v.size() << std::endl;
+	MPI_Barrier(MPI_COMM_WORLD);
 	
-	//~ if (ProcessRank == RootID)
-	//~ {
-		//~ std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
-		//~ printTime();
-		//~ std::cout << std::endl;
-	//~ }
-	//~ MPI_Barrier(MPI_COMM_WORLD);
-	
-	//~ //enter workers into their main action loops
-	//~ LoadData(ProcessRank);
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ WorkerProcess();
-	//~ }
+	//enter workers into their main action loops
+	LoadData(ProcessRank);
+	if (ProcessRank == RootID) 
+	{
+		RootProcess();
+	}
+	else
+	{
+		WorkerProcess();	
+	}
 	
 	auto end = std::chrono::system_clock::now();
 	if (ProcessRank == RootID)
