@@ -45,7 +45,7 @@ binDict = {'0.csv': 2168,
  '34.csv': 2684287}
 
 
-
+def generateDict
 def Load(assignment):
 	bins = np.zeros(M)
 	if len(assignment) > 0:
@@ -163,6 +163,7 @@ def nameSubstruct(name):
 		bin = int(stripped)
 	
 	return [name,bin]
+
 def printAllocation(fileAssign):
 	
 	coreAssigns = [None] * M

@@ -19,5 +19,11 @@ class Liklihood
 		Liklihood(const std::vector<Star> & data, int nPoints, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
+	private:
+		//std::vector<double> pmf
+		//std::vector<double> subpmf
+		
+		void Prior();
+		//new member functions go here:
 };
 

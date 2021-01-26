@@ -23,7 +23,7 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 	// IMPORTANT!
 	// The Root also executes their own calculations of L on their provided data 
 	L.Calculate(x);
-	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
+	double l = L.Value; // + prior //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	
 	//collect values
 	double Lsum = 0;

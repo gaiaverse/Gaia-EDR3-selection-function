@@ -41,12 +41,7 @@ class Star
 		unsigned int gBin;
 		std::vector<unsigned int> TimeSeries;
 		
-		double x;
-		double y;
-		double w;
-		double z;
-		double err;
-		
+
 		Star();
 		Star(std::vector<std::string> data);
 };
