@@ -45,9 +45,12 @@ void Liklihood::Prior(Eigen::VectorXd& params)
     VectorXd mu = params.segment(Nh, Ng);
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
-    PriorLengthscale(lt, 0);
-    PriorLengthscale(lg, 1);
-    PriorLengthscale(m,  3);
+    // Apply the priors on the hyper-hyper-parameters
+    PriorLengthscale(lt,  0);
+    PriorLengthscale(lg,  1);
+    PriorVariance(sigma2, 2);
+    PriorLengthscale(m,   3);
+    PriorVariance(tau2,   4);
     
 	//Value += whatever
 	//Gradient[i] += etc
@@ -67,13 +70,23 @@ void Liklihood::PriorLengthscale(double& lengthscale, int& param_index)
     Gradient[param_index] += two_over_lengthscale*(1.0-lengthscale);
 }
 
+void Liklihood::PriorVariance(double& variance, int& param_index)
+{
+    // Implements a Gamma(1,1) prior for the variances
+    
+    // lnS = - sigma2
+    Value -= variance;
+    
+    // dlnSdsigma2 = - 1.0, return dlnSdlnsigma2 = sigma2*dlnSdsigma2
+    Gradient[param_index] -= variance;
+}
 
-def log_prior_lengthscale(l):
+def log_prior_variance(sigma2):
     
-    # InvGamma(1,2)
+    # Gamma(1,1)
     
-    lnA = np.log(2.0)-2.0*np.log(l)-2.0/l
+    lnS = - sigma2
     
-    dlnAdl = 2.0*(1.0-l)/l/l
+    dlnSdsigma2 = - 1.0
     
-    return lnA, dlnAdl
+    return lnS, dlnSsigma2
