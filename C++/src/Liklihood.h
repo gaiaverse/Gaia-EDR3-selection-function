@@ -27,6 +27,7 @@ class Liklihood
 		//std::vector<double> subpmf
 		
 		void Prior();
+        void PriorLengthscale(double& lengthscale, int& param_index)
 		//new member functions go here:
 };
 
