@@ -118,7 +118,7 @@ void GetAssignments(int id)
 {
 	std::string fileRoot = "../../MainData/";
 	std::string assignmentFile = "coreAssignments.dat";
-	forLineVectorInFile(fileName,',',
+	forLineVectorInFile(assignmentFile,',',
 		int core = stoi(FILE_LINE_VECTOR[0]);
 		
 		
@@ -139,7 +139,7 @@ void LoadData(int id)
 	//read in the data assigned to this worker - for the full code will need to work out the assignment protocols
 	
 	
-	std::cout << "\tProcess " << ProcessRank << " beginning data readin from " << fileName<< std::endl;
+	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
 	
 	auto start = std::chrono::system_clock::now();
 
