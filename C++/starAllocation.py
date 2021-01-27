@@ -219,7 +219,7 @@ def printAllocation(fileAssign):
 		else:
 			coreAssigns[core].append(fileName)
 			
-	delim = ",\t"
+	delim = ","
 	output = ""
 	for j in range(0,M):
 		s = str(j)+ delim

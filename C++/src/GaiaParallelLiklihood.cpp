@@ -119,7 +119,7 @@ void GetAssignments(int id)
 	std::string fileRoot = "../../MainData/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
-	forLineVectorInFile(assignmentFile,',\t',
+	forLineVectorInFile(assignmentFile,',',
 		
 		int core = stoi(FILE_LINE_VECTOR[0]);
 		if (core == id)
@@ -128,6 +128,8 @@ void GetAssignments(int id)
 			{
 				Files.push_back(fileRoot + FILE_LINE_VECTOR[i]);
 				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
+				
+				std::cout << fileRoot + FILE_LINE_VECTOR[i] << std::endl;
 			}
 		}
 	);

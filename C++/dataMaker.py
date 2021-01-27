@@ -9,7 +9,7 @@ d = 7500
 sigmaFrac = 10
 
 nFile = 45
-nDataPerFile = 18000
+nDataPerFile = 180000
 
 box = 100000
 xRange = (-box,box)
@@ -19,7 +19,7 @@ wRange = (-box,box)
 for fileID in range(0,nFile):
         
         
-        name = "../../MockData/" + str(fileID) + ".dat"
+        name = "../../MainData/" + str(fileID) + ".dat"
         print(name)
         f = open(name,'w')
                 
