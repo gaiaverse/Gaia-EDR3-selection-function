@@ -210,18 +210,18 @@ int main(int argc, char *argv[])
 		//~ WorkerProcess();	
 	//~ }
 	
-	//~ auto end = std::chrono::system_clock::now();
-	//~ if (ProcessRank == RootID)
-	//~ {
-		//~ std::cout << "Root process reports job has finished. \n";
-		//~ std::cout << "Duration was: " << formatDuration(start,end) << "\n";
-		//~ std::cout << "Closing MPI and exiting gracefully" << std::endl;
+	auto end = std::chrono::system_clock::now();
+	if (ProcessRank == RootID)
+	{
+		std::cout << "Root process reports job has finished. \n";
+		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
+		std::cout << "Closing MPI and exiting gracefully" << std::endl;
 	
 	
-	//~ }
+	}
 	//exit gracefully
 	MPI_Finalize();
-	//return 0;
+	return 0;
 }
 
 
