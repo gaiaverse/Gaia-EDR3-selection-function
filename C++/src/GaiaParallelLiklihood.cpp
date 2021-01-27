@@ -129,8 +129,6 @@ void GetAssignments(int id)
 			{
 				Files.push_back(fileRoot + FILE_LINE_VECTOR[i]);
 				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
-				
-				std::cout << fileRoot + FILE_LINE_VECTOR[i] << std::endl;
 			}
 		}
 	);
@@ -156,7 +154,7 @@ void LoadData(int id)
 		int gBin = Bins[i];
 		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
-		std::cout << ProcessRank << " is opening " << file << std::endl;
+		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
 		forLineVectorInFile(file,',',
 			Star s = Star(FILE_LINE_VECTOR,gBin);
 			Data.push_back(s);
