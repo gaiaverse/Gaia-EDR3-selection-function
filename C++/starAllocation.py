@@ -53,6 +53,8 @@ binDict = {};
 def wc(filename):
     return int(check_output(["wc", "-l", filename]).split()[0])
 
+def size(filename):
+	return os.path.getsize(filename)
 def getUniqueFiles(rootToFiles):
 	list = os.listdir(rootToFiles)
 
@@ -83,7 +85,7 @@ def generateBinDict(rootToFiles):
 	
 	for file in files:
 		print("Opening " + file)
-		v = wc(rootToFiles + file)
+		v = size(rootToFiles + file)
 		print(file + " has " + str(v))
 		binDict[file] = v
 
