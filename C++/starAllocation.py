@@ -45,7 +45,7 @@ global lBar
  # ~ '33.csv': 1385543,
  # ~ '34.csv': 2684287}
 
-rootToFiles = "../../MockData/"
+rootToFiles = "../../MainData/"
 
 
 binDict = {};
