@@ -142,7 +142,7 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
 	
 	auto start = std::chrono::system_clock::now();
-	GetAssignments();
+	GetAssignments(id);
 	bool isReporter = (ProcessRank == JobSize - 1);
 	int meaningfullyLargeNumber = 1e8;
 	int readIn = 0;
