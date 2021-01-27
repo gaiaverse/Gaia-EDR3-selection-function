@@ -45,7 +45,7 @@ global lBar
  # ~ '33.csv': 1385543,
  # ~ '34.csv': 2684287}
 
-rootToFiles = "../../MainData/"
+rootToFiles = "../../MockData/"
 
 
 binDict = {};
@@ -82,6 +82,7 @@ def generateBinDict(rootToFiles):
 	files = getUniqueFiles(rootToFiles)
 	
 	for file in files:
+		print("Opening " + file)
 		v = wc(rootToFiles + file)
 		print(file + " has " + str(v))
 		binDict[file] = v
