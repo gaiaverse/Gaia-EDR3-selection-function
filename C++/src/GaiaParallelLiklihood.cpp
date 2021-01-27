@@ -196,7 +196,7 @@ int main(int argc, char *argv[])
 	MPI_Barrier(MPI_COMM_WORLD);
 	
 	//enter workers into their main action loops
-	//~ LoadData(ProcessRank);
+	LoadData(ProcessRank);
 	//~ if (ProcessRank == RootID) 
 	//~ {
 		//~ RootProcess();
