@@ -118,10 +118,10 @@ void GetAssignments(int id)
 {
 	std::string fileRoot = "../../MainData/";
 	std::string assignmentFile = "coreAssignments.dat";
-	forLineVectorInFile(assignmentFile,',',
+	
+	forLineVectorInFile(assignmentFile,',\t',
+		
 		int core = stoi(FILE_LINE_VECTOR[0]);
-		
-		
 		if (core == id)
 		{
 			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
@@ -130,7 +130,6 @@ void GetAssignments(int id)
 				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
 			}
 		}
-	
 	);
 }
 
@@ -148,27 +147,29 @@ void LoadData(int id)
 	int readIn = 0;
 	int lastCheckPoint = 0;
 	
-	for (auto file : Files)
+	for (int i = 0; i < Files.size(); ++i)
 	{
+		std::string gile = Files[i];
+		int gBin = Bins[i];
 		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
 		std::cout << ProcessRank << " is opening " << file << std::endl;
-		//~ forLineVectorInFile(fileName,',',
-			//~ Star s = Star(FILE_LINE_VECTOR);
-			//~ Data.push_back(s);
+		forLineVectorInFile(fileName,',',
+			Star s = Star(FILE_LINE_VECTOR,gBin);
+			Data.push_back(s);
 			
-			//~ if (isReporter)
-			//~ {
-				//~ ++readIn;
-				//~ if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
-				//~ {
-					//~ lastCheckPoint = readIn;
-					//~ auto checkpoint = std::chrono::system_clock::now();
-					//~ std::string duration = formatDuration(start,checkpoint);
-					//~ std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
-				//~ }
-			//~ }
-		//~ );
+			if (isReporter)
+			{
+				++readIn;
+				if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
+				{
+					lastCheckPoint = readIn;
+					auto checkpoint = std::chrono::system_clock::now();
+					std::string duration = formatDuration(start,checkpoint);
+					std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
+				}
+			}
+		);
 	}
 	
 	auto end = std::chrono::system_clock::now();

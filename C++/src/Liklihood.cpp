@@ -39,11 +39,12 @@ void direct_convolution_local(std::vector<double> probs, int probslen, std::vect
 	}
 }
 
-Liklihood::Liklihood(const std::vector<Star> &data, int nPoints, int id): Data(data)
+Liklihood::Liklihood(const std::vector<Star> &data, const std::vector<int> & magBins, int dimension, int id): Data(data)
 {
 	ID = id;
 	Value = 0.0;
-	Gradient = std::vector<double>(nPoints,0.0);
+	Gradient = std::vector<double>(dimension,0.0);
+	MagBins = magBins;
 	
 	MinVisits = 5; //hard-coded parameter, the number of times a star has to be detected for it to enter gaia pipeline
 	Nt = 9e6;

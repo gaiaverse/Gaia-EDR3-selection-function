@@ -1,25 +1,32 @@
 #include "Star.h"
 Star::Star()
 {
-	//~ x = 0;
-	//~ y = 0;
-	//~ w = 0;
-	//~ z = 0;
-	//~ err = 0;
+	//designed to throw an error when it uses an unitialized star to access memory
+	gBin = -1;
 }
-Star::Star(std::vector<std::string> data)
+Star::Star(std::vector<std::string> data, int bin)
 {
-	//~ x = std::stod(data[0]);
-	//~ y = std::stod(data[1]);
-	//~ w = std::stod(data[2]);
-	//~ z = std::stod(data[3]);
-	//~ err = std::stod(data[4]);
 	
-	//how is
-	//k = # measure
-	//n = # visists
-	// t_1....t_n (variable size)
+	//the gaia data is stored as a csv with columns as follows:
+	//Column 0: Number of Measurements reported by Gaia
+	//Column 1: Number of visits predicted 
+	//Column 2->?, the predicted times at which the star was visited (variable number of columns) 
 	
-	 
-	// if k > n, then set k = n 
+	nMeasure = stoi(data[0]);
+	nVisit = stoi(data[1]);
+	
+	//predictions not perfect so perform an adjustment to prevent BAD memory access issues
+	if (nMeasure > nVisit)
+	{
+		nMeasure = nVisit;
+	}
+	
+	TimeSeries = std::vector<int>(data.size() - 2,0);
+	for (int i = 2; i < data.size(); ++i)
+	{
+		TimeSeries[i -2] = stoid(data[i]);
+	}
+	
+	//the bin # is derived from the file name, so has to be inserted manually
+	gBin = bin;
 }

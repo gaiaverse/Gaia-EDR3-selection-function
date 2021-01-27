@@ -14,6 +14,6 @@ class Star
 		
 
 		Star();
-		Star(std::vector<std::string> data);
+		Star(std::vector<std::string> data, int bin);
 };
 

@@ -45,7 +45,7 @@ global lBar
  # ~ '33.csv': 1385543,
  # ~ '34.csv': 2684287}
 
-rootToFiles = "../../MainData/"
+rootToFiles = "../../MockData/"
 
 
 binDict = {};
@@ -225,9 +225,13 @@ def printAllocation(fileAssign):
 		s = str(j)+ delim
 		
 		if coreAssigns[j] != None:
+			i = 0
 			for file in coreAssigns[j]:
 				d = nameSubstruct(file)
-				s = s + d[0] + delim + str(d[1]) + delim
+				s = s + d[0] + delim + str(d[1])
+				i += 1
+				if i < len(coreAssigns[j]):
+					s= s + delim
 		output = output + s+ "\n"
 	print(output)
 	f = open("coreAssignments.dat","w")

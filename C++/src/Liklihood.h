@@ -11,13 +11,13 @@ using Eigen::VectorXd;
 class Liklihood
 {
 	public:
-		int ID;
+		
 		long double Value;
 		std::vector<double> Gradient;
-		const std::vector<Star> &Data;
 		
 		
-		Liklihood(const std::vector<Star> & data, int nPoints, int id);
+		
+		Liklihood(const std::vector<Star> & data, std::vector<int> magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 	private:
@@ -35,5 +35,8 @@ class Liklihood
 		int Ng;
 		int Nt;
 		
+		int ID;
+		const std::vector<Star> &Data;
+		const std::vector<int> MagBins;
 };
 
