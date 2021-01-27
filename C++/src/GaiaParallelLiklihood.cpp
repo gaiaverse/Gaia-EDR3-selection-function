@@ -109,6 +109,7 @@ void WorkerProcess()
 		else
 		{
 			hasFinished = true;
+			std::cout << "Worker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
 	}
 }
