@@ -142,7 +142,7 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
 	
 	auto start = std::chrono::system_clock::now();
-
+	GetAssignments();
 	bool isReporter = (ProcessRank == JobSize - 1);
 	int meaningfullyLargeNumber = 1e8;
 	int readIn = 0;
@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 		printTime();
 		std::cout << std::endl;
 	}
-	MPI_Barrier(MPI_COMM_WORLD);
+
 	
 	//enter workers into their main action loops
 	LoadData(ProcessRank);
