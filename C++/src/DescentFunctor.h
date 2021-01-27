@@ -3,7 +3,7 @@
 #include <mpi.h>
 #include "libs/Eigen/Core"
 #define EIGEN_MPL2_ONLY
-#include "customClasses.h"
+#include "Star.h"
 #include "Liklihood.h"
 #include "timeCodes.h"
 using Eigen::VectorXd;

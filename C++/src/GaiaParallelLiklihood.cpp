@@ -10,7 +10,7 @@
 
 #include "libs/LBFG/LBFGS.h"
 
-#include "customClasses.h"
+#include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
 #include "Liklihood.h"
@@ -171,23 +171,33 @@ int main(int argc, char *argv[])
 	MPI_Barrier(MPI_COMM_WORLD);
 	
 	//enter workers into their main action loops
-	LoadData(ProcessRank);
-	if (ProcessRank == RootID) 
-	{
-		RootProcess();
-	}
-	else
-	{
-		WorkerProcess();	
-	}
+	//~ LoadData(ProcessRank);
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ WorkerProcess();	
+	//~ }
 	
-	auto end = std::chrono::system_clock::now();
-	if (ProcessRank == RootID)
-	{
-		std::cout << "Root process reports job has finished. \n";
-		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
-		std::cout << "Closing MPI and exiting gracefully" << std::endl;
-	}
+	//~ auto end = std::chrono::system_clock::now();
+	//~ if (ProcessRank == RootID)
+	//~ {
+		//~ std::cout << "Root process reports job has finished. \n";
+		//~ std::cout << "Duration was: " << formatDuration(start,end) << "\n";
+		//~ std::cout << "Closing MPI and exiting gracefully" << std::endl;
+	
+	Star mockStar;
+	mockStar.nMeasure = 6;
+	mockStar.nVisit = 9;
+	mockStar.gBin = 0;
+	mockStar.TimeSeries = {1,2,3,4,5,6,7,8,9,10,11};
+	Data = {mockStar};
+	Liklihood L = Liklihood(Data,15,ProcessRank);
+	Eigen::VectorXd x = {};
+	L.Calculate(x);
+	//~ }
 	//exit gracefully
 	MPI_Finalize();
 	return 0;
