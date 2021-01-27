@@ -209,15 +209,13 @@ int main(int argc, char *argv[])
 	//~ {
 		//~ WorkerProcess();	
 	//~ }
-	
 	auto end = std::chrono::system_clock::now();
+	
+	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
+	
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Root process reports job has finished. \n";
 		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
-		std::cout << "Closing MPI and exiting gracefully" << std::endl;
-	
-	
 	}
 	//exit gracefully
 	MPI_Finalize();
