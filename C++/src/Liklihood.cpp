@@ -62,7 +62,7 @@ void Liklihood::Calculate(Eigen::VectorXd& x)
 	Reset();	
 	
 	
-	
+	std::vector<double> probs;
 	if (ID == 0)
 	{
 		Prior();
