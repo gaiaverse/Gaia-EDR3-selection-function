@@ -213,19 +213,11 @@ int main(int argc, char *argv[])
 		//~ std::cout << "Duration was: " << formatDuration(start,end) << "\n";
 		//~ std::cout << "Closing MPI and exiting gracefully" << std::endl;
 	
-	Star mockStar;
-	mockStar.nMeasure = 6;
-	mockStar.nVisit = 9;
-	mockStar.gBin = 0;
-	mockStar.TimeSeries = {1,2,3,4,5,6,7,8,9,10,11};
-	Data = {mockStar};
-	Liklihood L = Liklihood(Data,15,ProcessRank);
-	Eigen::VectorXd x = {};
-	L.Calculate(x);
+	
 	//~ }
 	//exit gracefully
 	MPI_Finalize();
-	return 0;
+	//return 0;
 }
 
 
