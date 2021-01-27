@@ -21,10 +21,10 @@ Star::Star(std::vector<std::string> data, int bin)
 		nMeasure = nVisit;
 	}
 	
-	TimeSeries = std::vector<int>(data.size() - 2,0);
+	TimeSeries = std::vector<unsigned int>(data.size() - 2,0);
 	for (int i = 2; i < data.size(); ++i)
 	{
-		TimeSeries[i -2] = stoid(data[i]);
+		TimeSeries[i -2] = stoi(data[i]);
 	}
 	
 	//the bin # is derived from the file name, so has to be inserted manually

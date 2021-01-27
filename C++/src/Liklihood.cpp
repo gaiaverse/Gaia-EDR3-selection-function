@@ -39,7 +39,7 @@ void direct_convolution_local(std::vector<double> probs, int probslen, std::vect
 	}
 }
 
-Liklihood::Liklihood(const std::vector<Star> &data, const std::vector<int> & magBins, int dimension, int id): Data(data)
+Liklihood::Liklihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
 {
 	ID = id;
 	Value = 0.0;

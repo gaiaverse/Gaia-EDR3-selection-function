@@ -46,7 +46,7 @@ void RootProcess()
     param.max_iterations = 100;
     
     LBFGSSolver<double> solver(param);
-    DescentFunctor fun(ProcessRank,Data,nParameters);
+    DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
     // position vector - load with initial guess, will be overwritten by the final estimate
     VectorXd x = VectorXd::Zero(nParameters);
@@ -69,18 +69,18 @@ void RootProcess()
 void WorkerProcess()
 {
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
-	int vecSize;
-	MPI_Bcast(&vecSize, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	int dimensionality;
+	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	Liklihood L = Liklihood(Data,vecSize,ProcessRank);
-	VectorXd pos = VectorXd::Zero(vecSize);
+	Liklihood L = Liklihood(Data,Bins,dimensionality,ProcessRank);
+	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
-	std::vector<double> emptyVec(vecSize,0.0);
+	std::vector<double> emptyVec(dimensionality,0.0);
 	double emptyS=0;
 	
 
@@ -96,7 +96,7 @@ void WorkerProcess()
 		{
 			
 			//recive new position data, copy it into position vector
-			MPI_Bcast(&pos[0], vecSize, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
 			//key bit! Liklihood updat
 			L.Calculate(pos);
@@ -104,7 +104,7 @@ void WorkerProcess()
 			
 			//broadcast results back to root - they're summed up pointwise across all workers, giving the total L and gradient contributions
 			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&L.Gradient[0], &emptyVec[0], vecSize,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 		}
 		else
 		{
@@ -149,12 +149,12 @@ void LoadData(int id)
 	
 	for (int i = 0; i < Files.size(); ++i)
 	{
-		std::string gile = Files[i];
+		std::string file = Files[i];
 		int gBin = Bins[i];
 		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
 		std::cout << ProcessRank << " is opening " << file << std::endl;
-		forLineVectorInFile(fileName,',',
+		forLineVectorInFile(file,',',
 			Star s = Star(FILE_LINE_VECTOR,gBin);
 			Data.push_back(s);
 			

@@ -27,7 +27,7 @@ class DescentFunctor
 		void ExamineInterestVectors(Eigen::VectorXd &position);
 		
 	public:
-	    DescentFunctor(int n,const std::vector<Star> & data, int nParams) : Data(data), L(data,nParams,n) //initializer list (complicated, not really sure what it is, but it needs to be here)
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams) : Data(data), L(data,bins, nParams,n) //initializer list (complicated, not really sure what it is, but it needs to be here)
 	    {
 				RunningID = n;
 				LoopID = 0;

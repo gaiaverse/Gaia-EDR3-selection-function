@@ -17,7 +17,7 @@ class Liklihood
 		
 		
 		
-		Liklihood(const std::vector<Star> & data, std::vector<int> magBins, int dimensionality, int id);
+		Liklihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 	private:
@@ -37,6 +37,6 @@ class Liklihood
 		
 		int ID;
 		const std::vector<Star> &Data;
-		const std::vector<int> MagBins;
+		std::vector<int> MagBins;
 };
 
