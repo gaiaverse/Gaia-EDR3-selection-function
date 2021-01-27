@@ -27,8 +27,8 @@ int RootID = 0; //<- declare that process 0 is always Root.
 
 
 std::vector<Star> Data;
-
-
+std::vector<int> Bins;
+std::vector<std::string> Files;
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
@@ -114,10 +114,30 @@ void WorkerProcess()
 }
 
 
+void GetAssignments(int id)
+{
+	std::string fileRoot = "../../MainData/";
+	std::string assignmentFile = "coreAssignments.dat";
+	forLineVectorInFile(fileName,',',
+		int core = stoi(FILE_LINE_VECTOR[0]);
+		
+		
+		if (core == id)
+		{
+			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
+			{
+				Files.push_back(fileRoot + FILE_LINE_VECTOR[i]);
+				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
+			}
+		}
+	
+	);
+}
+
 void LoadData(int id)
 {
 	//read in the data assigned to this worker - for the full code will need to work out the assignment protocols
-	std::string fileName = "Data/MockData_" + std::to_string(id) + ".dat";	
+	
 	
 	std::cout << "\tProcess " << ProcessRank << " beginning data readin from " << fileName<< std::endl;
 	
@@ -127,23 +147,29 @@ void LoadData(int id)
 	int meaningfullyLargeNumber = 1e8;
 	int readIn = 0;
 	int lastCheckPoint = 0;
-	//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
-	forLineVectorInFile(fileName,',',
-		Star s = Star(FILE_LINE_VECTOR);
-		Data.push_back(s);
+	
+	for (auto file : Files)
+	{
+		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
-		if (isReporter)
-		{
-			++readIn;
-			if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
-			{
-				lastCheckPoint = readIn;
-				auto checkpoint = std::chrono::system_clock::now();
-				std::string duration = formatDuration(start,checkpoint);
-				std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
-			}
-		}
-	);
+		std::cout << ProcessRank << " is opening " << file << std::endl;
+		//~ forLineVectorInFile(fileName,',',
+			//~ Star s = Star(FILE_LINE_VECTOR);
+			//~ Data.push_back(s);
+			
+			//~ if (isReporter)
+			//~ {
+				//~ ++readIn;
+				//~ if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
+				//~ {
+					//~ lastCheckPoint = readIn;
+					//~ auto checkpoint = std::chrono::system_clock::now();
+					//~ std::string duration = formatDuration(start,checkpoint);
+					//~ std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
+				//~ }
+			//~ }
+		//~ );
+	}
 	
 	auto end = std::chrono::system_clock::now();
 	std::string duration = formatDuration(start,end);
@@ -156,7 +182,6 @@ int main(int argc, char *argv[])
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
-	
 	
 	
 	
