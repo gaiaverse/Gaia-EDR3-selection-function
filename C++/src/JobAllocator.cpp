@@ -211,7 +211,7 @@ int main(int argc, char *argv[])
 
 	
 	//enter workers into their main action loops
-	LoadData(ProcessRank);
+	//LoadData(ProcessRank);
 	//~ if (ProcessRank == RootID) 
 	//~ {
 		//~ RootProcess();
@@ -220,6 +220,15 @@ int main(int argc, char *argv[])
 	//~ {
 		//~ WorkerProcess();	
 	//~ }
+	int dimensionality = Nh + Ng*(Nt + 1);
+	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	
+	Eigen::VectorXd position = VectorXd::Random(dimensionality);
+	
+	//true value
+	L.Calculate(position);
+	
+	
 	auto end = std::chrono::system_clock::now();
 	
 	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
