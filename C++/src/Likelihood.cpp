@@ -144,10 +144,11 @@ void Likelihood::PerStarContribution(int star)
 		}
 		subpmf[n-1] = pmf[n]/p;
 		
-		double gradi = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[MinVisits-1]/correction;
+		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[MinVisits-1]/correction;
+		double dPdX = p * (1 - p);
 		int t= candidate.TimeSeries[i];
 
-		Gradient[offset + t] = gradi;
+		Gradient[offset + t] = dFdP * dPdX;
 	}
 }
 

@@ -159,17 +159,6 @@ void LoadData(int id)
 			Star s = Star(FILE_LINE_VECTOR,gBin);
 			Data.push_back(s);
 			
-			if (isReporter)
-			{
-				++readIn;
-				if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
-				{
-					lastCheckPoint = readIn;
-					auto checkpoint = std::chrono::system_clock::now();
-					std::string duration = formatDuration(start,checkpoint);
-					std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
-				}
-			}
 		);
 	}
 	
@@ -199,14 +188,14 @@ int main(int argc, char *argv[])
 	
 	//enter workers into their main action loops
 	LoadData(ProcessRank);
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ WorkerProcess();	
-	//~ }
+	if (ProcessRank == RootID) 
+	{
+		RootProcess();
+	}
+	else
+	{
+		WorkerProcess();	
+	}
 	auto end = std::chrono::system_clock::now();
 	
 	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
