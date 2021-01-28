@@ -7,9 +7,11 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 {
 	ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
+	
 	int n = x.size();
 	int circuitBreaker = 1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
+	
 	
 	//send position vector to workers
 	MPI_Bcast(&x[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);

@@ -32,11 +32,21 @@ std::vector<std::string> Files;
 	//RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
+void FinalResult(Eigen::VectorXd finalpos)
+{
+	//what to do here?
+}
+
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
 	//tell the workers to resize their parameter vectors
-	int nParameters = 4;
+	
+	int Nh = 5;
+	int Ng = 35;
+	int Nt = 9e6;
+	
+	int nParameters = Nh+Ng*(Nt + 1);
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
@@ -50,6 +60,17 @@ void RootProcess()
 	
     // position vector - load with initial guess, will be overwritten by the final estimate
     VectorXd x = VectorXd::Zero(nParameters);
+    
+    //initialisation of hyperhyperparameters
+    std::vector<double> hyperhyper = {5,-1,0,-1,0};
+    for (int i = 0; i < Nh; ++i)
+    {
+		x[i] = hyperhyper[i];
+	}
+
+	//initialisation of boring old hyperparameters
+	x.segment(Nh,Ng	).array() += 2.0;
+	std::cout << x << std::endl;
     double fx;
     
     //initialise the minimization procedure
@@ -59,8 +80,7 @@ void RootProcess()
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
-	std::cout << "\n\nResult: \n" << std::endl;
-	std::cout << x << std::endl;
+	FinalResult(x);
 }
 
 //this is the main action loop of all core with rank > 0 
@@ -136,9 +156,6 @@ void GetAssignments(int id)
 
 void LoadData(int id)
 {
-	//read in the data assigned to this worker - for the full code will need to work out the assignment protocols
-	
-	
 	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
 	
 	auto start = std::chrono::system_clock::now();
@@ -149,7 +166,7 @@ void LoadData(int id)
 	int lastCheckPoint = 0;
 	
 	
-	int RandFrac = 1e5;
+	int RandFrac = 1e6;
 	long int linesChecked = 0;
 	for (int i = 0; i < Files.size(); ++i)
 	{
