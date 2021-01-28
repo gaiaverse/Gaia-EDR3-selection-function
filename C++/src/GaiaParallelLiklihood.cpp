@@ -10,10 +10,10 @@
 
 #include "libs/LBFG/LBFGS.h"
 
-#include "customClasses.h"
+#include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
-#include "Liklihood.h"
+#include "Likelihood.h"
 #include "timeCodes.h"
 using Eigen::VectorXd;
 using namespace LBFGSpp;
@@ -27,16 +27,26 @@ int RootID = 0; //<- declare that process 0 is always Root.
 
 
 std::vector<Star> Data;
-
-
-//RootProcess is the main action loop of the 0-ranked core. 
+std::vector<int> Bins;
+std::vector<std::string> Files;
+	//RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
+
+void FinalResult(Eigen::VectorXd finalpos)
+{
+	//what to do here?
+}
 
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
 	//tell the workers to resize their parameter vectors
-	int nParameters = 4;
+	
+	int Nh = 5;
+	int Ng = 35;
+	int Nt = 9e6;
+	
+	int nParameters = Nh+Ng*(Nt + 1);
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
@@ -46,10 +56,21 @@ void RootProcess()
     param.max_iterations = 100;
     
     LBFGSSolver<double> solver(param);
-    DescentFunctor fun(ProcessRank,Data,nParameters);
+    DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
     // position vector - load with initial guess, will be overwritten by the final estimate
     VectorXd x = VectorXd::Zero(nParameters);
+    
+    //initialisation of hyperhyperparameters
+    std::vector<double> hyperhyper = {5,-1,0,-1,0};
+    for (int i = 0; i < Nh; ++i)
+    {
+		x[i] = hyperhyper[i];
+	}
+
+	//initialisation of boring old hyperparameters
+	x.segment(Nh,Ng	).array() += 2.0;
+	std::cout << x << std::endl;
     double fx;
     
     //initialise the minimization procedure
@@ -59,8 +80,7 @@ void RootProcess()
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
-	std::cout << "\n\nResult: \n" << std::endl;
-	std::cout << x << std::endl;
+	FinalResult(x);
 }
 
 //this is the main action loop of all core with rank > 0 
@@ -69,18 +89,18 @@ void RootProcess()
 void WorkerProcess()
 {
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
-	int vecSize;
-	MPI_Bcast(&vecSize, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	int dimensionality;
+	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	Liklihood L = Liklihood(Data,vecSize,ProcessRank);
-	VectorXd pos = VectorXd::Zero(vecSize);
+	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
-	std::vector<double> emptyVec(vecSize,0.0);
+	std::vector<double> emptyVec(dimensionality,0.0);
 	double emptyS=0;
 	
 
@@ -96,54 +116,77 @@ void WorkerProcess()
 		{
 			
 			//recive new position data, copy it into position vector
-			MPI_Bcast(&pos[0], vecSize, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
-			//key bit! Liklihood updat
+			//key bit! Likelihood updat
 			L.Calculate(pos);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			
 			//broadcast results back to root - they're summed up pointwise across all workers, giving the total L and gradient contributions
 			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&L.Gradient[0], &emptyVec[0], vecSize,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 		}
 		else
 		{
 			hasFinished = true;
+			std::cout << "Worker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
 	}
 }
 
 
+void GetAssignments(int id)
+{
+	std::string fileRoot = "../../MainData/";
+	std::string assignmentFile = "coreAssignments.dat";
+	
+	forLineVectorInFile(assignmentFile,',',
+		
+		int core = stoi(FILE_LINE_VECTOR[0]);
+		if (core == id)
+		{
+			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
+			{
+				Files.push_back(fileRoot + FILE_LINE_VECTOR[i]);
+				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
+			}
+		}
+	);
+}
+
 void LoadData(int id)
 {
-	//read in the data assigned to this worker - for the full code will need to work out the assignment protocols
-	std::string fileName = "Data/MockData_" + std::to_string(id) + ".dat";	
-	
-	std::cout << "\tProcess " << ProcessRank << " beginning data readin from " << fileName<< std::endl;
+	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
 	
 	auto start = std::chrono::system_clock::now();
-
+	GetAssignments(id);
 	bool isReporter = (ProcessRank == JobSize - 1);
 	int meaningfullyLargeNumber = 1e8;
 	int readIn = 0;
 	int lastCheckPoint = 0;
-	//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
-	forLineVectorInFile(fileName,',',
-		Star s = Star(FILE_LINE_VECTOR);
-		Data.push_back(s);
+	
+	
+	int RandFrac = 1e6;
+	long int linesChecked = 0;
+	for (int i = 0; i < Files.size(); ++i)
+	{
+		std::string file = Files[i];
+		int gBin = Bins[i];
+		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
-		if (isReporter)
-		{
-			++readIn;
-			if (readIn >= lastCheckPoint + meaningfullyLargeNumber)
+		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
+		forLineVectorInFile(file,',',
+		
+			int r = rand() % RandFrac;
+			if (r == 0)
 			{
-				lastCheckPoint = readIn;
-				auto checkpoint = std::chrono::system_clock::now();
-				std::string duration = formatDuration(start,checkpoint);
-				std::cout << "\t\tProcess " << ProcessRank << " has found " << readIn << " datapoints after " << duration << std::endl; 
-			}
-		}
-	);
+				Star s = Star(FILE_LINE_VECTOR,gBin);
+				std::cout << ProcessRank << " got star " << linesChecked << std::endl;
+				//~ Data.push_back(s);
+			}	
+			++linesChecked;
+		);
+	}
 	
 	auto end = std::chrono::system_clock::now();
 	std::string duration = formatDuration(start,end);
@@ -157,42 +200,35 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
-	
-	
+	srand(ProcessRank);
 	
 	auto start = std::chrono::system_clock::now();
-	std::vector<double> v;
-	for (int i = 0; i < 1e8; ++i)
+	
+	if (ProcessRank == RootID)
 	{
-		v.push_back(exp(-i*0.54));
+		std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
+		printTime();
+		std::cout << std::endl;
 	}
-	std::cout << v.size() << std::endl;
+
 	
-	//~ if (ProcessRank == RootID)
-	//~ {
-		//~ std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
-		//~ printTime();
-		//~ std::cout << std::endl;
-	//~ }
-	//~ MPI_Barrier(MPI_COMM_WORLD);
-	
-	//~ //enter workers into their main action loops
-	//~ LoadData(ProcessRank);
+	//enter workers into their main action loops
+	LoadData(ProcessRank);
 	//~ if (ProcessRank == RootID) 
 	//~ {
 		//~ RootProcess();
 	//~ }
 	//~ else
 	//~ {
-		//~ WorkerProcess();
+		//~ WorkerProcess();	
 	//~ }
-	
 	auto end = std::chrono::system_clock::now();
+	
+	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
+	
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Root process reports job has finished. \n";
 		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
-		std::cout << "Closing MPI and exiting gracefully" << std::endl;
 	}
 	//exit gracefully
 	MPI_Finalize();
