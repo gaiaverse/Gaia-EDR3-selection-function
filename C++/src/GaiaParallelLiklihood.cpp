@@ -148,6 +148,9 @@ void LoadData(int id)
 	int readIn = 0;
 	int lastCheckPoint = 0;
 	
+	
+	int RandFrac = 1e5;
+	long int linesChecked = 0;
 	for (int i = 0; i < Files.size(); ++i)
 	{
 		std::string file = Files[i];
@@ -156,9 +159,15 @@ void LoadData(int id)
 		
 		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
 		forLineVectorInFile(file,',',
-			Star s = Star(FILE_LINE_VECTOR,gBin);
-			Data.push_back(s);
-			
+		
+			int r = rand() % RandFrac;
+			if (r == 0)
+			{
+				Star s = Star(FILE_LINE_VECTOR,gBin);
+				std::cout << ProcessRank << " got star " << linesChecked << std::endl;
+				//~ Data.push_back(s);
+			}	
+			++linesChecked;
 		);
 	}
 	
@@ -174,7 +183,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
-	
+	srand(ProcessRank);
 	
 	auto start = std::chrono::system_clock::now();
 	
@@ -188,14 +197,14 @@ int main(int argc, char *argv[])
 	
 	//enter workers into their main action loops
 	LoadData(ProcessRank);
-	if (ProcessRank == RootID) 
-	{
-		RootProcess();
-	}
-	else
-	{
-		WorkerProcess();	
-	}
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ WorkerProcess();	
+	//~ }
 	auto end = std::chrono::system_clock::now();
 	
 	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
