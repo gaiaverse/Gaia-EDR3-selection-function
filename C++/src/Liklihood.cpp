@@ -52,6 +52,12 @@ void Liklihood::Prior(Eigen::VectorXd& params)
     PriorLengthscale(m,   3);
     PriorVariance(tau2,   4);
     
+    // Apply the prior on the hyper-parameters
+    PriorMu(mu, m, tau2);
+    
+    // Apply the prior on the parameters
+    //PriorX(mu, m, tau2);
+    
 	//Value += whatever
 	//Gradient[i] += etc
 }
@@ -86,24 +92,32 @@ void Liklihood::PriorMu(Eigen::VectorXd& mu, double& m, double& tau2)
     // Implements a Gamma(1,1) prior for the variances
     
     Matrix<double, Ng, Ng> J;
+    Matrix<double, Ng, Ng> dJdm;
+    double magnitude_distance;
     
     // Build covariance matrix
     for (int i = 0; i < Ng; i++) {
         for (int j = 0; j < Ng; j++) {
-            J(i,j) = exp(-pow(magnitude(i)-magnitude(j),2)/(2.0*m*m));
+            magnitude_distance = pow(magnitude(i)-magnitude(j),2);
+            J(i,j) = J(j,i) = exp(-magnitude_distance/(2.0*m*m));
+            dJdm(i,j) = dJdm(j,i) = J(i,j)*magnitude_distance/(m*m*m);
         }
     }
     
-    // LU decomposition (with pivoting!)
+    // Householder decomposition (with pivoting!)
     // It's possible that this is all broken.
-    Eigen::FullPivLU< Matrix<double, Ng, Ng> > lu(J);
-    Vector<double, Ng> invJmu = lu.solve(mu);
+    Eigen::fullPivHouseholderQr()< Matrix<double, Ng, Ng> > decomp(J);
+    
+    // Compute quantities we will need later
+    Vector<double, Ng> invJmu = decomp.solve(mu);
+    Matrix<double, Ng, Ng> invJdJdm = decomp.solve(dJdm);
     double muinvJmu = invJmu.dot(mu);
     
     // lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
-    Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*lu.logAbsDeterminant() -0.5*muinvJmu/tau2;
+    Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*decomp.logAbsDeterminant() -0.5*muinvJmu/tau2;
     
-    Gradient[3] += 0.0;
+    // dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
+    Gradient[3] += m*(-0.5*invJdJdm.trace() + 0.5*invJmu.adjoint()*dJdm*invJmu/tau2);
     
     // dlnQ_dlntau2, correcting for log factor
     Gradient[4] += -0.5*Ng + 0.5*muinvJmu/tau2;

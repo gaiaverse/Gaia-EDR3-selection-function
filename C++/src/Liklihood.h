@@ -30,6 +30,7 @@ class Liklihood
 		void Prior();
         void PriorLengthscale(double& lengthscale, int& param_index);
         void PriorVariance(double& variance, int& param_index);
+        void PriorMu(Eigen::VectorXd& mu, double& m, double& tau2);
 		//new member functions go here:
 };
 
