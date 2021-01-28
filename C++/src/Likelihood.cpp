@@ -44,13 +44,11 @@ Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins
 {
 	ID = id;
 	Value = 0.0;
-	Gradient = std::vector<double>(dimension,0.0);
+	Gradient = Eigen::VectorXd::Zero(dimension);
 	MagBins = magBins;
 	
 	MinVisits = 5; //hard-coded parameter, the number of times a star has to be detected for it to enter gaia pipeline
-	Nt = 9e6;
-	Ng = 35;
-	Nh = 5;
+
 	
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
@@ -73,7 +71,7 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 	std::vector<double> probs;
 	if (ID == 0)
 	{
-		Prior();
+		Prior(x);
 	}
 
 	for (int i = 0; i < Data.size(); ++i)
@@ -152,11 +150,7 @@ void Likelihood::PerStarContribution(int star)
 	}
 }
 
-void Likelihood::Prior()
-{
-	//Value += whatever
-	//Gradient[i] += etc
-}
+
 
 void Likelihood::Reset()
 {
@@ -167,7 +161,7 @@ void Likelihood::Reset()
 	}
 }
 
-void Liklihood::Prior(Eigen::VectorXd& params)
+void Likelihood::Prior(Eigen::VectorXd& params)
 {
     
     // Unpack parameters
@@ -191,13 +185,13 @@ void Liklihood::Prior(Eigen::VectorXd& params)
     PriorMu(mu, m, tau2);
     
     // Apply the prior on the parameters
-    PriorX(x, mu, lt, lm, sigma2);
+    PriorX(x, mu, lt, lg, sigma2);
     
 	//Value += whatever
 	//Gradient[i] += etc
 }
 
-void Liklihood::PriorLengthscale(double& lengthscale, int& param_index)
+void Likelihood::PriorLengthscale(double lengthscale, int param_index)
 {
     // Implements an InverseGamma(1,2) prior for the lengthscales
     
@@ -211,7 +205,7 @@ void Liklihood::PriorLengthscale(double& lengthscale, int& param_index)
     Gradient[param_index] += two_over_lengthscale*(1.0-lengthscale);
 }
 
-void Liklihood::PriorVariance(double& variance, int& param_index)
+void Likelihood::PriorVariance(double variance, int param_index)
 {
     // Implements a Gamma(1,1) prior for the variances
     
@@ -222,18 +216,20 @@ void Liklihood::PriorVariance(double& variance, int& param_index)
     Gradient[param_index] -= variance;
 }
 
-void Liklihood::PriorMu(Eigen::VectorXd& mu, double& m, double& tau2)
+void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
 {
     // Implements the Gaussian Process prior on mu
     
-    Matrix<double, Ng, Ng> K;
-    Matrix<double, Ng, Ng> dK_dm;
+    Eigen::Matrix<double, Ng, Ng> K;
+    Eigen::Matrix<double, Ng, Ng> dK_dm;
     double magnitude_distance;
     
     // Build covariance matrix
-    for (int i = 0; i < Ng; i++) {
-        for (int j = 0; j < Ng; j++) {
-            magnitude_distance = pow(magnitude(i)-magnitude(j),2);
+    for (int i = 0; i < Ng; i++) 
+    {
+        for (int j = 0; j < Ng; j++) 
+        {
+            magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
             K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
             dK_dm(i,j) = dK_dm(j,i) = K(i,j)*magnitude_distance/(m*m*m);
         }
@@ -241,26 +237,31 @@ void Liklihood::PriorMu(Eigen::VectorXd& mu, double& m, double& tau2)
     
     // Householder decomposition (with pivoting!)
     // It's possible that this is all broken.
-    Eigen::fullPivHouseholderQr()< Matrix<double, Ng, Ng> > decomp(K);
+    Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = K.fullPivHouseholderQr();
+     
     
     // Compute quantities we will need later
-    Vector<double, Ng> invKmu = decomp.solve(mu);
-    Matrix<double, Ng, Ng> J = decomp.solve(dK_dm);
-    double muinvJmu = invKmu.dot(mu);
+    Eigen::VectorXd invKmu = decomp.solve(mu);
+    Eigen::Matrix<double, Ng, Ng> J = decomp.solve(dK_dm);
+    double muinvKmu = invKmu.dot(mu);
     
     // lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
     Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*decomp.logAbsDeterminant() -0.5*muinvKmu/tau2;
     
     // dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
-    Gradient[3] += m*(-0.5*J.trace() + 0.5*invKmu.adjoint()*dJdm*invKmu/tau2);
+    Gradient[3] += m*(-0.5*J.trace() + 0.5*invKmu.dot(dK_dm*invKmu)/tau2);
     
     // dlnQ_dlntau2, correcting for log factor
     Gradient[4] += -0.5*Ng + 0.5*muinvKmu/tau2;
     
-    Gradient.segment(Nh,Ng).array() -= invKmu/tau2;
+    //Gradient.segment(Nh,Ng).array() -= invKmu/tau2;
+    for (int i =Nh; i < Nh + Ng; ++i)
+    {
+		Gradient[i] -= invKmu[i-Nh]/tau2;
+	}
 }
 
-void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, double& lm, double& sigma2)
+void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double lg, double sigma2)
 {
     // Implements the Gauss-Markov prior on x
     
@@ -272,20 +273,23 @@ void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, doub
     
     // Reshape to form Y
     // Y = x.reshape((Ng,Nt)) - mu.reshape((Ng,1))
-    Matrix<double, Ng, Nt> Y;
-    for (int i = 0; i < Ng; i++) {
-        Y.row(i) = x.segment(i*Nt,Nt) - mu[i];
+    Eigen::Matrix<double, Ng, Nt> Y;
+    for (int i = 0; i < Ng; i++) 
+    {
+        Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
     }
     
     // Create quantities relating to Kg
-    Matrix<double, Ng, Ng> Kg;
-    Matrix<double, Ng, Ng> dKg_dlg;
+    Eigen::Matrix<double, Ng, Ng> Kg;
+    Eigen::Matrix<double, Ng, Ng> dKg_dlg;
     double magnitude_distance;
     
     // Build covariance matrix
-    for (int i = 0; i < Ng; i++) {
-        for (int j = 0; j < Ng; j++) {
-            magnitude_distance = pow(magnitude(i)-magnitude(j),2);
+    for (int i = 0; i < Ng; i++) 
+    {
+        for (int j = 0; j < Ng; j++) 
+        {
+            magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
             Kg(i,j) = Kg(j,i) = exp(-magnitude_distance/(2.0*lg*lg));
             dKg_dlg(i,j) = dKg_dlg(j,i) = Kg(i,j)*magnitude_distance/(lg*lg*lg);
         }
@@ -293,11 +297,11 @@ void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, doub
     
     // Householder decomposition (with pivoting!)
     // It's possible that this is all broken.
-    Eigen::fullPivHouseholderQr()< Matrix<double, Ng, Ng> > decomp(Kg);
+   Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = Kg.fullPivHouseholderQr();
     
     // Compute quantities we will need later
-    Matrix<double, Ng, Ng> Jg = decomp.solve(dKgdlg);
-    Matrix<double, Ng, Ng> invKgY = decomp.solve(Y);
+    MatrixXd Jg = decomp.solve(dKg_dlg);
+    MatrixXd invKgY = decomp.solve(Y);
     double logdetKg = decomp.logAbsDeterminant();
     double TrJg =  Jg.trace();
     
@@ -308,10 +312,12 @@ void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, doub
         
     // Compute invKgYinvKt
     Matrix<double, Ng, Nt> invKgYinvKt;
-    for (int ig = 0; ig < Ng; ig++) {
-        invKgYinvKt[ig,0] = ( invKgY(ig,0) - u * invKgY(ig,1) )*oneoveroneminusu2;
-        invKgYinvKt[ig,-1] = ( invKgY(ig,Nt-1) - u * invKgY(ig,Nt-2) )*oneoveroneminusu2;
-        for (int it = 1; it < Nt-1; it++) {
+    for (int ig = 0; ig < Ng; ig++) 
+    {
+        invKgYinvKt(ig,0) = ( invKgY(ig,0) - u * invKgY(ig,1) )*oneoveroneminusu2;
+        invKgYinvKt(ig,Nt-1) = ( invKgY(ig,Nt-1) - u * invKgY(ig,Nt-2) )*oneoveroneminusu2;
+        for (int it = 1; it < Nt-1; it++) 
+        {
             invKgYinvKt(ig,it) = ( oneplusu2 * invKgY(ig,it) - u * ( invKgY(ig,it-1) + invKgY(ig,it+1) ) )*oneoveroneminusu2;
         }
     }
@@ -324,32 +330,38 @@ void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, doub
     // Compute YJt
     Matrix<double, Ng, Nt> YJt;
     int M = 10+ceil(-lt*log(1e-16));
-    Vector<double, M> power_u;
+    std::vector<double> power_u = std::vector<double>(M);
     power_u[0] = u;
-    for (int i = 1; i < M; i++) {
+    for (int i = 1; i < M; i++) 
+    {
         power_u[i] = u*power_u[i-1];
     }
     
     double res;
-    for (int i = 0; i < Ng; i++) {
-        for (int l = 0; l < Nt; l++) {
+    for (int i = 0; i < Ng; i++) 
+    {
+        for (int l = 0; l < Nt; l++) 
+        {
             
-            res =  - oneplusu2*Y[i,l]*oneoveroneminusu2;
+            res =  - oneplusu2*Y(i,l)*oneoveroneminusu2;
             
-            if l < M:
-                res += u2*Y[i,0]*power_u[l]*oneoveroneminusu2;
-                
-            if Nt-l-1 < M:
-                res += u2*Y[i,-1]*power_u[Nt-l-1]*oneoveroneminusu2;
-            
-            for (int j = max(0,l-M); j < min(Nt,l+M); j++) {
+            if (l < M)
+            {
+                res += u2*Y(i,0)*power_u[l]*oneoveroneminusu2;
+            }   
+            if (Nt-l-1 < M)
+            {
+                res += u2*Y(i,Nt-1)*power_u[Nt-l-1]*oneoveroneminusu2;
+            }
+            for (int j = std::max(0,l-M); j < std::min(Nt,l+M); j++) 
+            {
                 res += Y(i,j)*power_u[abs(l-j)];
             }
-            YJt[i,l] = res/(lt*lt);
+            YJt(i,l) = res/(lt*lt);
         }
     }
                 
-    Matrix<double, Ng, Nt> YJt;        
+       
     double YJt_invKgYinvKt = (YJt.array()*invKgYinvKt.array()).sum();
                 
     // lnP = -Ng*Nt*np.log(2.0*np.pi*sigma2)/2.0 + Ng*logdetinvKt/2.0 - Nt*logdetKg/2.0 - Y_invKgYinvKt/2.0/sigma2
@@ -358,8 +370,13 @@ void Liklihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double& lt, doub
     //Matrix<double, Ng, Nt> dlnP_dX = -invKgYinvKt/sigma2;
     //dlnP_dx = dlnP_dX.ravel()
     // dlnP_dmu = -dlnP_dX.sum(axis=1)
-    for (int ig = 0; ig < Ng; ig++) {
-        Gradient.segment(Nh+Ng+ig*Nt,Nt).array() += -invKgYinvKt.row(ig)/sigma2;
+    for (int ig = 0; ig < Ng; ig++) 
+    {
+		for (int t =0; t < Nt; ++t)
+		{
+			//Gradient.segment(Nh+Ng+ig*Nt,Nt).array() += -invKgYinvKt.row(ig)/sigma2;
+			Gradient[Nh + Ng + ig*Nt + t] -= invKgYinvKt(ig,t)/sigma2;
+        }
         Gradient[Nh+ig] += -Gradient.segment(Nh+Ng+ig*Nt,Nt).sum();
     }
     

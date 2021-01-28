@@ -15,6 +15,7 @@
 #include "FileHandler.h"
 #include "Likelihood.h"
 #include "timeCodes.h"
+#include "GlobalVariables.h"
 using Eigen::VectorXd;
 using namespace LBFGSpp;
 
@@ -42,10 +43,7 @@ void RootProcess()
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
 	//tell the workers to resize their parameter vectors
 	
-	int Nh = 5;
-	int Ng = 35;
-	int Nt = 9e6;
-	
+
 	int nParameters = Nh+Ng*(Nt + 1);
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
