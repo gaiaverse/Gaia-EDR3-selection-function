@@ -13,7 +13,7 @@
 #include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
-#include "Liklihood.h"
+#include "Likelihood.h"
 #include "timeCodes.h"
 using Eigen::VectorXd;
 using namespace LBFGSpp;
@@ -29,7 +29,7 @@ int RootID = 0; //<- declare that process 0 is always Root.
 std::vector<Star> Data;
 std::vector<int> Bins;
 std::vector<std::string> Files;
-//RootProcess is the main action loop of the 0-ranked core. 
+	//RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
 void RootProcess()
@@ -75,7 +75,7 @@ void WorkerProcess()
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	Liklihood L = Liklihood(Data,Bins,dimensionality,ProcessRank);
+	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	
@@ -98,7 +98,7 @@ void WorkerProcess()
 			//recive new position data, copy it into position vector
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
-			//key bit! Liklihood updat
+			//key bit! Likelihood updat
 			L.Calculate(pos);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			

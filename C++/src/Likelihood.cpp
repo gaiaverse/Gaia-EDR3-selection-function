@@ -1,6 +1,6 @@
-#include "Liklihood.h"
+#include "Likelihood.h"
 
-void direct_convolution_local(std::vector<double> probs, int probslen, std::vector<double> & result)
+void direct_convolution_local(std::vector<double> & probsFull,std::vector<unsigned int> &probsIndex, int probslen, std::vector<double> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
 
@@ -9,17 +9,18 @@ void direct_convolution_local(std::vector<double> probs, int probslen, std::vect
 	double t,tmp;
 	
 	
+	int index0 = probsIndex[0];
 	// initialize (old kernel)
-	result[0] = 1-probs[0];
-	result[1] = probs[0];
+	result[0] = 1-probsFull[index0];
+	result[1] = probsFull[index0];
 	
 	// loop through all other probs
 	for(int i=1; i < probslen; ++i)
 	{
-
+		int index = probsIndex[i];
 		//~ // set signal
-		signal[0] = probs[i];
-		signal[1] = 1-probs[i];
+		signal[0] = probsFull[index];
+		signal[1] = 1-probsFull[index];
 		
 		// initialize result and calculate the two edge cases
 		result[oldlen] = signal[0] * result[oldlen-1];
@@ -39,7 +40,7 @@ void direct_convolution_local(std::vector<double> probs, int probslen, std::vect
 	}
 }
 
-Liklihood::Liklihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
+Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
 {
 	ID = id;
 	Value = 0.0;
@@ -54,12 +55,19 @@ Liklihood::Liklihood(const std::vector<Star> &data, std::vector<int> & magBins, 
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
 	subpmf = std::vector<double>(suitablyLargeNumber,0.0);
+	
+	//initialise an array of nbins per nt to store the modified values of the position vector each time step
+	
+	perBinP = std::vector<std::vector<double>>(magBins.size(),std::vector<double>(Nt,0.0));
 }
 
-void Liklihood::Calculate(Eigen::VectorXd& x)
+void Likelihood::Calculate(Eigen::VectorXd& x)
 {
 
 	Reset();	
+	
+	
+	GeneratePs(x);
 	
 	
 	std::vector<double> probs;
@@ -70,13 +78,26 @@ void Liklihood::Calculate(Eigen::VectorXd& x)
 
 	for (int i = 0; i < Data.size(); ++i)
 	{
-		PerStarContribution(i,probs);
+		PerStarContribution(i);
 	}
 
 
 }
 
-void Liklihood::PerStarContribution(int star, std::vector<double> & probs)
+void Likelihood::GeneratePs(Eigen::VectorXd&x)
+{
+	for (int i = 0; i < MagBins.size(); ++i)
+	{
+		int bin = MagBins[i];
+		int offset = Nh + Ng + bin* Nt;
+		
+		for (int j = 0; j < Nt; ++j)
+		{
+			perBinP[i][j] = 1.0/(1.0 - exp(-x[offset + j]));
+		}
+	}
+}
+void Likelihood::PerStarContribution(int star)
 {
 	Star candidate = Data[star];
 
@@ -84,7 +105,7 @@ void Liklihood::PerStarContribution(int star, std::vector<double> & probs)
 	int n = candidate.nVisit;
 	
 	//copies in-place into pmf
-	direct_convolution_local(probs,n,pmf);
+	direct_convolution_local(perBinP[candidate.gBin],candidate.TimeSeries,n,pmf);
 
 	double likelihood = pmf[k];
 	
@@ -110,10 +131,10 @@ void Liklihood::PerStarContribution(int star, std::vector<double> & probs)
 		}
 	}
 	
-	int offset = 0;//Nh + Ng + candidate.gBin * Nt;
+	int offset = Nh + Ng + candidate.gBin * Nt;
 	for (int i = 0; i < n; ++i)
 	{
-		double p = probs[i];
+		double p = perBinP[candidate.gBin][candidate.TimeSeries[i]];
 		double inv_p = 1.0/(1 - p);
 		
 		subpmf[0] = pmf[0] * inv_p;
@@ -130,13 +151,13 @@ void Liklihood::PerStarContribution(int star, std::vector<double> & probs)
 	}
 }
 
-void Liklihood::Prior()
+void Likelihood::Prior()
 {
 	//Value += whatever
 	//Gradient[i] += etc
 }
 
-void Liklihood::Reset()
+void Likelihood::Reset()
 {
 	Value = 0;
 	for (int i = 0; i < Gradient.size(); ++i)

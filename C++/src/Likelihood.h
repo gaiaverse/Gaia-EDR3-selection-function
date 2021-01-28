@@ -6,9 +6,9 @@
 
 #include "Star.h"
 using Eigen::VectorXd;
-//Liklihood class acts as a container for the values of the log liklihood and its gradient
+//Likelihood class acts as a container for the values of the log liklihood and its gradient
 //Also contains the data necessary to update these values when Calculate(newPosition) is called
-class Liklihood
+class Likelihood
 {
 	public:
 		
@@ -17,7 +17,7 @@ class Liklihood
 		
 		
 		
-		Liklihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
+		Likelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 	private:
@@ -26,7 +26,7 @@ class Liklihood
 		
 		void Prior();
 		void Reset();
-		void PerStarContribution(int id,std::vector<double> & probs);
+		void PerStarContribution(int id);
 		//new member functions go here:
 		
 		//hardcoded parameters
@@ -38,5 +38,7 @@ class Liklihood
 		int ID;
 		const std::vector<Star> &Data;
 		std::vector<int> MagBins;
+		std::vector<std::vector<double>> perBinP;
+		void GeneratePs(Eigen::VectorXd & position);
 };
 

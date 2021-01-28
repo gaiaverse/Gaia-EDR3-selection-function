@@ -4,7 +4,7 @@
 #include "libs/Eigen/Core"
 #define EIGEN_MPL2_ONLY
 #include "Star.h"
-#include "Liklihood.h"
+#include "Likelihood.h"
 #include "timeCodes.h"
 using Eigen::VectorXd;
 
@@ -21,7 +21,7 @@ class DescentFunctor
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
 		const std::vector<Star> &Data; 
-		Liklihood L;
+		Likelihood L;
 		int LoopID;
 		std::chrono::time_point<std::chrono::system_clock> Start;
 		void ExamineInterestVectors(Eigen::VectorXd &position);
