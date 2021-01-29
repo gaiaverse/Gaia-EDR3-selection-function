@@ -54,5 +54,6 @@ class Likelihood
         void PriorVariance(double variance, int param_index);
         void PriorMu(Eigen::VectorXd& mu, double m, double tau2);
         void PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double lm, double sigma2);
+        
 };
 

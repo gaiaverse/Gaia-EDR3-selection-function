@@ -175,13 +175,13 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
     
-    std::vector<double> v = {lt,lg,sigma2, m ,tau2};
-    std::vector<std::string> names = {"lt", "lg", "sigma2", "m","tau2"};
-    for (int i = 0; i < v.size(); ++i)
-    {
-		std::cout << names[i] << " = " << v[i] << "   ";
-	}
-	std::cout << std::endl;
+    //~ std::vector<double> v = {lt,lg,sigma2, m ,tau2};
+    //~ std::vector<std::string> names = {"lt", "lg", "sigma2", "m","tau2"};
+    //~ for (int i = 0; i < v.size(); ++i)
+    //~ {
+		//~ std::cout << names[i] << " = " << v[i] << "   ";
+	//~ }
+	//~ std::cout << std::endl;
     // Apply the priors on the hyper-hyper-parameters
     //~ PriorLengthscale(lt,  0);
     //~ PriorLengthscale(lg,  1);
@@ -190,10 +190,10 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     //~ PriorVariance(tau2,   4);
     
     // Apply the prior on the hyper-parameters
-    //PriorMu(mu, m, tau2);
+    PriorMu(mu, m, tau2);
     
     // Apply the prior on the parameters
-    PriorX(x, mu, lt, lg, sigma2);
+  //  PriorX(x, mu, lt, lg, sigma2);
     
 	//Value += whatever
 	//Gradient[i] += etc
@@ -232,6 +232,7 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
     Eigen::Matrix<double, Ng, Ng> dK_dm;
     double magnitude_distance;
     
+   
     // Build covariance matrix
     for (int i = 0; i < Ng; i++) 
     {
@@ -239,6 +240,11 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
         {
             magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
             K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
+            
+            if (i == j)
+            {
+				K(i,i) += SingularityPreventer;
+			}
             dK_dm(i,j) = dK_dm(j,i) = K(i,j)*magnitude_distance/(m*m*m);
         }
     }
@@ -299,6 +305,10 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         {
             magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
             Kg(i,j) = Kg(j,i) = exp(-magnitude_distance/(2.0*lg*lg));
+            if (i == j)
+            {
+				Kg(i,i) += SingularityPreventer;
+			}
             dKg_dlg(i,j) = dKg_dlg(j,i) = Kg(i,j)*magnitude_distance/(lg*lg*lg);
         }
     }

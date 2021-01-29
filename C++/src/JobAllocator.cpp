@@ -193,6 +193,78 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 }
 
+void gradientCheck(double dx, std::fstream & output)
+{
+	int dimensionality = Nh + Ng*(Nt + 1);
+	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	
+	Eigen::VectorXd position = VectorXd::Random(dimensionality);
+	
+	position[0] = 0;
+	position[1] = 0;
+	position[2] = 0;
+	position[3] = 0;
+	position[4] = 0;
+	
+	std::vector<double> assign = {-1.75, -1.65, -1.55, -1.45, -1.35, -1.25, -1.15, -1.05, -0.95,
+       -0.85, -0.75, -0.65, -0.55, -0.45, -0.35, -0.25, -0.15, -0.05,
+        0.05,  0.15,  0.25,  0.35,  0.45,  0.55,  0.65,  0.75,  0.85,
+        0.95,  1.05,  1.15,  1.25,  1.35,  1.45,  1.55,  1.65};
+	for (int i = 0; i < Ng; ++i)
+	{
+		position[Nh + i] = assign[i];
+	}
+	
+	//true value
+	//~ std::ofstream output;
+	//~ output.open("gradientTest.txt",std::ios::app);
+	L.Calculate(position);
+	double trueVal = L.Value;
+	Eigen::VectorXd trueGrad = L.Gradient;
+	Eigen::VectorXd gradApprox1 = VectorXd::Zero(dimensionality);
+	Eigen::VectorXd gradApprox2 = VectorXd::Zero(dimensionality);
+	int w = 20;
+	//output << std::left << std::setw(w) << "ParameterValue" << std::setw(w) << "Prior" << std::setw(w)  << "TrueGrad"<< std::setw(w) << "1WayApprox"<<std::setw(w) << "delta1"<< std::setw(w) << "2WayApprox" << std::setw(w) << "delta2" << std::endl;
+	for (int i = 0; i < dimensionality; ++i)
+	{
+		Eigen::VectorXd posUp = position;
+		Eigen::VectorXd posDown = position;
+
+		posUp[i] += dx;
+		posDown[i] -= dx;
+		
+		L.Calculate(posUp);
+		long double Lup = L.Value;
+		L.Calculate(posDown);
+		long double Ldown = L.Value;
+		
+		gradApprox1[i] = (Lup - trueVal)/dx;
+		gradApprox2[i] = (Lup - Ldown)/(2*dx);
+		
+
+		//output << std::left <<std::scientific<< std::setw(w) << position[i] << std::setw(w) << trueVal << std::setw(w) <<  trueGrad[i]<< std::setw(w) << gradApprox1[i] << std::setw(w) << std::setw(w) << gradApprox2[i] /trueGrad[i] - 1 << std::setw(w) << gradApprox2[i] << std::setw(w) << gradApprox2[i] /trueGrad[i] - 1 << std::endl;
+	}
+	
+	long double diff1 = (gradApprox1 - trueGrad).norm();
+	long double diff2 = (gradApprox2 - trueGrad).norm();
+	
+	long double OneWayDifference = diff1 / (gradApprox1.norm() + trueGrad.norm());
+	long double TwoWayDifference = diff2/ (gradApprox2.norm() + trueGrad.norm());
+	
+	//~ std::vector<long double> vals = {gradApprox1.norm(), gradApprox2.norm(), trueGrad.norm(), diff1, diff2, OneWayDifference, TwoWayDifference};
+	//~ std::vector<std::string> names = {"OneWayGrad (norm)","TwoWayGrad (norm)","TrueGrad(norm)", "diff1", "diff2", "One-Way Difference", "Two-Way Difference"};
+	
+	//~ for (int i = 0; i < vals.size(); ++i)
+	//~ {
+		//~ output << names[i] << " is:\t" << vals[i] <<std::endl;
+	//~ }
+	
+	output << std::left << std::setw(w) << log10(SingularityPreventer) << std::setw(w) << log10(dx) << std::setw(w) << trueVal  << std::setw(w) << TwoWayDifference <<std::endl;
+	//~ output.close();
+}
+
+double SingularityPreventer = 1;
+
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -210,69 +282,24 @@ int main(int argc, char *argv[])
 		printTime();
 		std::cout << std::endl;
 	}
-
-	
+	std::fstream output;
+	int w = 20;
+	output.open("gradientTest.txt",std::ios::out);
+	output << std::left << std::setw(w) << "Perturber" << std::setw(w) << "dx" << std::setw(w) << "PriorMu"  << std::setw(w) << "GradScore" <<std::endl;
+	for (double l = - 17; l < -8; l+=1)
+	{
+		std::cout << l << std::endl;
+		SingularityPreventer = pow(10,l);
+		for (double p = -10; p < -1; p+=1)
+		{
+			gradientCheck(pow(10,p),output);
+		}
+	}
+	output.close();
 	//enter workers into their main action loops
 	//LoadData(ProcessRank);
 	
-	int dimensionality = Nh + Ng*(Nt + 1);
-	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
 	
-	Eigen::VectorXd position = VectorXd::Random(dimensionality);
-	
-	position[0] = 0;
-	position[1] = 0;
-	position[2] = 0;
-	position[3] = 0;
-	position[4] = 0;
-	//true value
-	std::ofstream output;
-	output.open("gradientTest.txt",std::ios::out);
-	L.Calculate(position);
-	double trueVal = L.Value;
-	Eigen::VectorXd trueGrad = L.Gradient;
-	Eigen::VectorXd gradApprox1 = VectorXd::Zero(dimensionality);
-	Eigen::VectorXd gradApprox2 = VectorXd::Zero(dimensionality);
-	double dx = 1e-6;
-	int w = 30;
-	output << std::left << std::setw(w) << "ParameterValue" << std::setw(w) << "Prior(real)" << std::setw(w) << "Prior(nudged up)"<< std::setw(w) << "Prior(nudged down)" <<std::setw(w) << "TrueGrad"<< std::setw(w) << "1WayApprox"<< std::setw(w) << "2WayApprox" << std::endl;
-	for (int i = 0; i < dimensionality; ++i)
-	{
-		Eigen::VectorXd posUp = position;
-		Eigen::VectorXd posDown = position;
-
-		posUp[i] += dx;
-		posDown[i] -= dx;
-		
-		L.Calculate(posUp);
-		long double Lup = L.Value;
-		L.Calculate(posDown);
-		long double Ldown = L.Value;
-		
-		gradApprox1[i] = (Lup - trueVal)/dx;
-		gradApprox2[i] = (Lup - Ldown)/(2*dx);
-		
-		std::string e1 = std::to_string(trueGrad[i]);
-		std::string e2 = std::to_string(gradApprox1[i]) + " (" + std::to_string(gradApprox1[i] /trueGrad[i] - 1)+ ")";
-		std::string e3 = std::to_string(gradApprox2[i]) + " (" + std::to_string(gradApprox2[i] /trueGrad[i] - 1)+ ")";
-		
-		output << std::left <<std::scientific<< std::setw(w) << position[i] << std::setw(w) << trueVal << std::setw(w) << Lup<< std::setw(w) << Ldown<< std::setw(w) <<  trueGrad[i]<< std::setw(w) << e2 << std::setw(w) << e3 << std::endl;
-	}
-	
-	long double diff1 = (gradApprox1 - trueGrad).norm();
-	long double diff2 = (gradApprox2 - trueGrad).norm();
-	
-	long double OneWayDifference = diff1 / (gradApprox1.norm() + trueGrad.norm());
-	long double TwoWayDifference = diff2/ (gradApprox2.norm() + trueGrad.norm());
-	
-	std::vector<long double> vals = {gradApprox1.norm(), gradApprox2.norm(), trueGrad.norm(), diff1, diff2, OneWayDifference, TwoWayDifference};
-	std::vector<std::string> names = {"OneWayGrad (norm)","TwoWayGrad (norm)","TrueGrad(norm)", "diff1", "diff2", "One-Way Difference", "Two-Way Difference"};
-	
-	for (int i = 0; i < vals.size(); ++i)
-	{
-		output << names[i] << " is:\t" << vals[i] <<std::endl;
-	}
-	output.close();
 	//~ if (ProcessRank == RootID) 
 	//~ {
 		//~ RootProcess();
