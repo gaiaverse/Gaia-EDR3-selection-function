@@ -5,7 +5,9 @@
 #include <string.h>
 #include <chrono>
 #include <ctime>
+#include <iomanip>
 #include "libs/Eigen/Core"
+#include <fstream>
 #define EIGEN_MPL2_ONLY
 
 #include "libs/LBFG/LBFGS.h"
@@ -60,7 +62,7 @@ void RootProcess()
     VectorXd x = VectorXd::Zero(nParameters);
     
     //initialisation of hyperhyperparameters
-    std::vector<double> hyperhyper = {5,-1,0,-1,0};
+    std::vector<double> hyperhyper = {-1,-1,0,-1,0};
     for (int i = 0; i < Nh; ++i)
     {
 		x[i] = hyperhyper[i];
@@ -68,7 +70,7 @@ void RootProcess()
 
 	//initialisation of boring old hyperparameters
 	x.segment(Nh,Ng	).array() += 2.0;
-	std::cout << x << std::endl;
+
     double fx;
     
     //initialise the minimization procedure
@@ -212,6 +214,65 @@ int main(int argc, char *argv[])
 	
 	//enter workers into their main action loops
 	//LoadData(ProcessRank);
+	
+	int dimensionality = Nh + Ng*(Nt + 1);
+	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	
+	Eigen::VectorXd position = VectorXd::Random(dimensionality);
+	
+	position[0] = 0;
+	position[1] = 0;
+	position[2] = 0;
+	position[3] = 0;
+	position[4] = 0;
+	//true value
+	std::ofstream output;
+	output.open("gradientTest.txt",std::ios::out);
+	L.Calculate(position);
+	double trueVal = L.Value;
+	Eigen::VectorXd trueGrad = L.Gradient;
+	Eigen::VectorXd gradApprox1 = VectorXd::Zero(dimensionality);
+	Eigen::VectorXd gradApprox2 = VectorXd::Zero(dimensionality);
+	double dx = 1e-6;
+	int w = 30;
+	output << std::left << std::setw(w) << "ParameterValue" << std::setw(w) << "Prior(real)" << std::setw(w) << "Prior(nudged up)"<< std::setw(w) << "Prior(nudged down)" <<std::setw(w) << "TrueGrad"<< std::setw(w) << "1WayApprox"<< std::setw(w) << "2WayApprox" << std::endl;
+	for (int i = 0; i < dimensionality; ++i)
+	{
+		Eigen::VectorXd posUp = position;
+		Eigen::VectorXd posDown = position;
+
+		posUp[i] += dx;
+		posDown[i] -= dx;
+		
+		L.Calculate(posUp);
+		long double Lup = L.Value;
+		L.Calculate(posDown);
+		long double Ldown = L.Value;
+		
+		gradApprox1[i] = (Lup - trueVal)/dx;
+		gradApprox2[i] = (Lup - Ldown)/(2*dx);
+		
+		std::string e1 = std::to_string(trueGrad[i]);
+		std::string e2 = std::to_string(gradApprox1[i]) + " (" + std::to_string(gradApprox1[i] /trueGrad[i] - 1)+ ")";
+		std::string e3 = std::to_string(gradApprox2[i]) + " (" + std::to_string(gradApprox2[i] /trueGrad[i] - 1)+ ")";
+		
+		output << std::left <<std::scientific<< std::setw(w) << position[i] << std::setw(w) << trueVal << std::setw(w) << Lup<< std::setw(w) << Ldown<< std::setw(w) <<  trueGrad[i]<< std::setw(w) << e2 << std::setw(w) << e3 << std::endl;
+	}
+	
+	long double diff1 = (gradApprox1 - trueGrad).norm();
+	long double diff2 = (gradApprox2 - trueGrad).norm();
+	
+	long double OneWayDifference = diff1 / (gradApprox1.norm() + trueGrad.norm());
+	long double TwoWayDifference = diff2/ (gradApprox2.norm() + trueGrad.norm());
+	
+	std::vector<long double> vals = {gradApprox1.norm(), gradApprox2.norm(), trueGrad.norm(), diff1, diff2, OneWayDifference, TwoWayDifference};
+	std::vector<std::string> names = {"OneWayGrad (norm)","TwoWayGrad (norm)","TrueGrad(norm)", "diff1", "diff2", "One-Way Difference", "Two-Way Difference"};
+	
+	for (int i = 0; i < vals.size(); ++i)
+	{
+		output << names[i] << " is:\t" << vals[i] <<std::endl;
+	}
+	output.close();
 	//~ if (ProcessRank == RootID) 
 	//~ {
 		//~ RootProcess();
@@ -220,13 +281,6 @@ int main(int argc, char *argv[])
 	//~ {
 		//~ WorkerProcess();	
 	//~ }
-	int dimensionality = Nh + Ng*(Nt + 1);
-	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
-	
-	Eigen::VectorXd position = VectorXd::Random(dimensionality);
-	
-	//true value
-	L.Calculate(position);
 	
 	
 	auto end = std::chrono::system_clock::now();

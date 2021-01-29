@@ -174,15 +174,23 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     VectorXd mu = params.segment(Nh, Ng);
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
+    
+    std::vector<double> v = {lt,lg,sigma2, m ,tau2};
+    std::vector<std::string> names = {"lt", "lg", "sigma2", "m","tau2"};
+    for (int i = 0; i < v.size(); ++i)
+    {
+		std::cout << names[i] << " = " << v[i] << "   ";
+	}
+	std::cout << std::endl;
     // Apply the priors on the hyper-hyper-parameters
-    PriorLengthscale(lt,  0);
-    PriorLengthscale(lg,  1);
-    PriorVariance(sigma2, 2);
-    PriorLengthscale(m,   3);
-    PriorVariance(tau2,   4);
+    //~ PriorLengthscale(lt,  0);
+    //~ PriorLengthscale(lg,  1);
+    //~ PriorVariance(sigma2, 2);
+    //~ PriorLengthscale(m,   3);
+    //~ PriorVariance(tau2,   4);
     
     // Apply the prior on the hyper-parameters
-    PriorMu(mu, m, tau2);
+    //PriorMu(mu, m, tau2);
     
     // Apply the prior on the parameters
     PriorX(x, mu, lt, lg, sigma2);

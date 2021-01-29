@@ -33,15 +33,23 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 	MPI_Reduce(&L.Gradient[0], &grad[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	++LoopID;
+	
+	//invert everything as this is actully a maximisation problem
+	Lsum = -Lsum;
+	for (int i = 0; i < n; ++i)
+	{
+		grad[i] = -grad[i];
+	}
+	
 	return Lsum;
 }
 
 void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
 {
 	//use this vector to pluck variables of interest into the comparison vector
-	std::vector<int> interestIDs = {0,1,2,3};
+	std::vector<int> interestIDs = {0,1,2,3,4};
 	
-	std::vector<std::string> interestNames = {"a", "b", "c", "d"};
+	std::vector<std::string> interestNames = {"log_lt", "log_lg", "log_sigma2", "log_m","log_tau2"};
 	if (LoopID == 0)
 	{
 		std::cout << "\nInitial guess parameters: \n\t";
