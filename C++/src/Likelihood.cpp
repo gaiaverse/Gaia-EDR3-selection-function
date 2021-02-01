@@ -72,12 +72,14 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 	if (ID == 0)
 	{
 		Prior(x);
+
 	}
 
 	for (int i = 0; i < Data.size(); ++i)
 	{
 		PerStarContribution(i);
 	}
+
 
 
 }
@@ -174,15 +176,7 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     VectorXd mu = params.segment(Nh, Ng);
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
-    
-    //~ std::vector<double> v = {lt,lg,sigma2, m ,tau2};
-    //~ std::vector<std::string> names = {"lt", "lg", "sigma2", "m","tau2"};
-    //~ for (int i = 0; i < v.size(); ++i)
-    //~ {
-		//~ std::cout << names[i] << " = " << v[i] << "   ";
-	//~ }
-	//~ std::cout << std::endl;
-    // Apply the priors on the hyper-hyper-parameters
+    //~ // Apply the priors on the hyper-hyper-parameters
     //~ PriorLengthscale(lt,  0);
     //~ PriorLengthscale(lg,  1);
     //~ PriorVariance(sigma2, 2);
@@ -191,12 +185,11 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     
     // Apply the prior on the hyper-parameters
     PriorMu(mu, m, tau2);
-    
+ 
     // Apply the prior on the parameters
-  //  PriorX(x, mu, lt, lg, sigma2);
-    
-	//Value += whatever
-	//Gradient[i] += etc
+	//PriorX(x, mu, lt, lg, sigma2);
+	
+	
 }
 
 void Likelihood::PriorLengthscale(double lengthscale, int param_index)
@@ -238,7 +231,10 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
     {
         for (int j = 0; j < Ng; j++) 
         {
-            magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
+			//~ double magi = (float)i/10 + 1.7;
+			//~ double magj = (float)j/10 + 1.7;
+
+            magnitude_distance = pow((double)(i - j),2);
             K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
             
             if (i == j)
@@ -248,7 +244,7 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
             dK_dm(i,j) = dK_dm(j,i) = K(i,j)*magnitude_distance/(m*m*m);
         }
     }
-    
+
     // Householder decomposition (with pivoting!)
     // It's possible that this is all broken.
     Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = K.fullPivHouseholderQr();
@@ -256,12 +252,12 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
     
     // Compute quantities we will need later
     Eigen::VectorXd invKmu = decomp.solve(mu);
-    Eigen::Matrix<double, Ng, Ng> J = decomp.solve(dK_dm);
+	Eigen::Matrix<double, Ng, Ng> J = decomp.solve(dK_dm);
     double muinvKmu = invKmu.dot(mu);
     
     // lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
     Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*decomp.logAbsDeterminant() -0.5*muinvKmu/tau2;
-    
+
     // dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
     Gradient[3] += m*(-0.5*J.trace() + 0.5*invKmu.dot(dK_dm*invKmu)/tau2);
     
@@ -303,7 +299,9 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     {
         for (int j = 0; j < Ng; j++) 
         {
-            magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
+
+            magnitude_distance = pow(i - j,2);
+           // magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
             Kg(i,j) = Kg(j,i) = exp(-magnitude_distance/(2.0*lg*lg));
             if (i == j)
             {

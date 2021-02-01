@@ -34,13 +34,14 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 
 	++LoopID;
 	
+	
 	//invert everything as this is actully a maximisation problem
 	Lsum = -Lsum;
 	for (int i = 0; i < n; ++i)
 	{
 		grad[i] = -grad[i];
 	}
-	
+	std::cout << "Value Calculated :" << Lsum << std::endl;
 	return Lsum;
 }
 
@@ -90,7 +91,8 @@ void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
 			{
 				val = "NaN";
 			}
-			std::cout << interestNames[i] << " = " << InterestVectors[i] << "(" << val << ")   ";
+			std::cout << interestNames[i] << " = " << InterestVectors[i] << "(" << val << ")";
 		}
+		std::cout << "\n";
 	}
 }

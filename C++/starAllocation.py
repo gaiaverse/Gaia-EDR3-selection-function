@@ -55,6 +55,7 @@ def wc(filename):
 
 def size(filename):
 	return os.path.getsize(filename)
+
 def getUniqueFiles(rootToFiles):
 	list = os.listdir(rootToFiles)
 
