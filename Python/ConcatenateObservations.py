@@ -5,7 +5,7 @@ N_sources = 1811709771
 N_chunk = 3*17*6791
 N_block = 5231
 N_maxobs = 256
-N_mag = 35+1 # The +1 is to give a bin for the stars without G magnitudes to sit
+N_mag = 213+1 # The +1 is to give a bin for the stars without G magnitudes to sit
 star_count = {str(mag_idx):0 for mag_idx in range(N_mag)}
 
 with ExitStack() as stack:
