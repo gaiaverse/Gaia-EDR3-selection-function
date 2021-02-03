@@ -171,32 +171,40 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     ///HACKED! FIX THIS!!!
     
     double mSave = params[3];
-     params = initialisedVector(params.size());
+    params = initialisedVector(params.size());
     params[3] = mSave;
     
+    // Fixed values
+    double mu_mean = -3.0;
+    double mu_variance = 1.0;
+
     // Unpack parameters
+    //double lt = exp(params(0));
+    //double lg = exp(params(1));
+    //double sigma2 = exp(params(2));
+    //double m = exp(params(3));
+    //double tau2 = exp(params(4));
     double lt = exp(params(0));
-    double lg = exp(params(1));
-    double sigma2 = exp(params(2));
-    double m = exp(params(3));
-    double tau2 = exp(params(4));
+    double sigma2 = exp(params(1));
 
     
     VectorXd mu = params.segment(Nh, Ng);
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
-    //~ // Apply the priors on the hyper-hyper-parameters
+    // Apply the priors on the hyper-hyper-parameters
     //~ PriorLengthscale(lt,  0);
     //~ PriorLengthscale(lg,  1);
     //~ PriorVariance(sigma2, 2);
-    PriorLengthscale(m,   3);
+    //~ PriorLengthscale(m,   3);
     //~ PriorVariance(tau2,   4);
+    PriorLengthscale(lt,  0);
+    PriorVariance(sigma2, 1);
     
     // Apply the prior on the hyper-parameters
-    PriorMu(mu, m, tau2);
+    PriorMu(mu);
 
     // Apply the prior on the parameters
-	//PriorX(x, mu, lt, lg, sigma2);
+	PriorX(x, mu, lt, sigma2);
 	
 
 }
@@ -226,66 +234,16 @@ void Likelihood::PriorVariance(double variance, int param_index)
     Gradient[param_index] -= variance;
 }
 
-void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
+void Likelihood::PriorMu(Eigen::VectorXd& mu)
 {
-    // Implements the Gaussian Process prior on mu
-    Eigen::Matrix<double, Ng, Ng> K;
-    Eigen::Matrix<double, Ng, Ng> dK_dm;
-    double magnitude_distance;
+    // Implements the Gaussian Process prior on mu ~ N(mu_mean,mu_variance)
     
-   
-    // Build covariance matrix
-    for (int i = 0; i < Ng; i++) 
+    Value += - 0.5 * Ng * log( 2.0 * M_PI * mu_variance ) - 0.5 * (mu - mu_mean).squaredNorm() / mu_variance;
+
+    for (int ig = 0; ig < Ng; ig++) 
     {
-        for (int j = 0; j < Ng; j++) 
-        {
-			//~ double magi = (float)i/10 + 1.7;
-			//~ double magj = (float)j/10 + 1.7;
-			magnitude_distance = pow(i-j,2);
-			  K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
-			 //hack in alpha for now
-			//~ double alpha = 1;
-            //~ magnitude_distance = abs(i - j);
-           
-            //~ double arg = magnitude_distance / m;
-            //~ K(i,j) = K(j,i) = (1.0 + arg) * exp(-arg);
-            
-            if (i == j)
-            {
-				K(i,i) += SingularityPreventer;
-			}
-            //dK_dm(i,j) = dK_dm(j,i) = arg*arg / m * exp(-arg);
-            
-            dK_dm(i,j) = dK_dm(j,i) = K(i,j) * magnitude_distance / (m*m*m);
-        }
+        Gradient[Nh+ig] -= (mu[ig]-mu_mean) / mu_variance;
     }
-
-    // Householder decomposition (with pivoting!)
-    // It's possible that this is all broken.
-    Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = K.fullPivHouseholderQr();
-     
-    
-    // Compute quantities we will need later
-    Eigen::VectorXd invKmu = decomp.solve(mu);
-	Eigen::Matrix<double, Ng, Ng> J = decomp.solve(dK_dm);
-    double muinvKmu = invKmu.dot(mu);
-    
-    // lnQ = +0.5*np.linalg.slogdet(J_inv)[1]-0.5*np.dot(mu.T,J_inv_mu) - (M/2)*np.log(2.0*np.pi)
-    Value += -0.5*Ng*log(2.0*M_PI*tau2) -0.5*decomp.logAbsDeterminant() -0.5*muinvKmu/tau2;
-
-    // dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
-    Gradient[3] += m*(-0.5*J.trace() + 0.5*invKmu.dot(dK_dm*invKmu)/tau2);
-    
-   
-    //std::cout << "Internal Gradient says: " << Gradient[3] << std::endl;
-    // dlnQ_dlntau2, correcting for log factor
-    //~ Gradient[4] += -0.5*Ng + 0.5*muinvKmu/tau2;
-    
-    //~ //Gradient.segment(Nh,Ng).array() -= invKmu/tau2;
-    //~ for (int i =Nh; i < Nh + Ng; ++i)
-    //~ {
-		//~ Gradient[i] -= invKmu[i-Nh]/tau2;
-	//~ }
 }
 
 void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double lg, double sigma2)
@@ -333,10 +291,10 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
    Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = Kg.fullPivHouseholderQr();
     
     // Compute quantities we will need later
-    MatrixXd Jg = decomp.solve(dKg_dlg);
+    //MatrixXd Jg = decomp.solve(dKg_dlg);
     MatrixXd invKgY = decomp.solve(Y);
     double logdetKg = decomp.logAbsDeterminant();
-    double TrJg =  Jg.trace();
+    //double TrJg =  Jg.trace();
     
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
@@ -357,7 +315,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     
     double Y_invKgYinvKt = (Y.array()*invKgYinvKt.array()).sum();
     
-    double JgTY_invKgYinvKt = ((Jg.transpose()*Y).array()*invKgYinvKt.array()).sum();
+    //double JgTY_invKgYinvKt = ((Jg.transpose()*Y).array()*invKgYinvKt.array()).sum();
     
     
     // Compute YJt
@@ -417,10 +375,10 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     Gradient[0] += lt*(-Ng*TrJt/2.0 + YJt_invKgYinvKt/(2.0*sigma2));
     
     //dlnP_dlg = -Nt*TrJg/2.0 + JgTY_invKgYinvKt/2.0/sigma2
-    Gradient[1] += lg*(-Nt*TrJg/2.0 + JgTY_invKgYinvKt/(2.0*sigma2));
+    //Gradient[1] += lg*(-Nt*TrJg/2.0 + JgTY_invKgYinvKt/(2.0*sigma2));
             
     //dlnP_dsigma2 = -Ng*Nt/2.0/sigma2 + Y_invKgYinvKt/2.0/sigma2/sigma2
-    Gradient[2] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
+    Gradient[1] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
 
 }
 
