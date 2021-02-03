@@ -295,7 +295,9 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     MatrixXd invKgY = decomp.solve(Y);
     double logdetKg = decomp.logAbsDeterminant();
     //double TrJg =  Jg.trace();
-    
+
+
+    MatrixXd invKgY = invKg*Y;
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
     
