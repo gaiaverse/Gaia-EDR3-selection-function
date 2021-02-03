@@ -246,7 +246,7 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu)
     }
 }
 
-void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double lg, double sigma2)
+void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double sigma2)
 {
     // Implements the Gauss-Markov prior on x
     
