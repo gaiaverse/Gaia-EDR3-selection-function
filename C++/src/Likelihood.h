@@ -32,6 +32,14 @@ class Likelihood
 		std::vector<double> pmf;
 		std::vector<double> subpmf;
 		
+		double mu_variance;
+		double mu_mean;
+		double lg;
+		
+		bool Kg_decomposed;
+	    Eigen::Matrix<double, Ng, Ng> Kg;
+	    Eigen::Matrix<double, Ng, Ng> invKg;
+	    double logdetKg;
 	
 		void Reset();
 		void PerStarContribution(int id);

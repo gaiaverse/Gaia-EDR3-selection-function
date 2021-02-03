@@ -51,14 +51,12 @@ Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins
 	MagBins = magBins;
 	
 	MinVisits = 5; //hard-coded parameter, the number of times a star has to be detected for it to enter gaia pipeline
-    double mu_mean = -3.0;
-    double mu_variance = 1.0;
-    double lg = 3.0;
+    
+    mu_mean = -3.0;
+    mu_variance = 1.0;
+    lg = 3.0;
 
-    bool Kg_decomposed = false;
-    Eigen::Matrix<double, Ng, Ng> Kg;
-    Eigen::Matrix<double, Ng, Ng> invKg;
-    double logdetKg;
+    Kg_decomposed = false;
 	
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
@@ -241,7 +239,8 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu)
 {
     // Implements the Gaussian Process prior on mu ~ N(mu_mean,mu_variance)
     
-    Value += - 0.5 * Ng * log( 2.0 * M_PI * mu_variance ) - 0.5 * (mu - mu_mean).squaredNorm() / mu_variance;
+    VectorXd diff = mu.array() - mu_mean;
+    Value += - 0.5 * Ng * log( 2.0 * M_PI * mu_variance ) - 0.5 * diff.squaredNorm() / mu_variance;
 
     for (int ig = 0; ig < Ng; ig++) 
     {
