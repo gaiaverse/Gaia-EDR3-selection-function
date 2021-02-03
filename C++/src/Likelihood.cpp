@@ -51,7 +51,14 @@ Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins
 	MagBins = magBins;
 	
 	MinVisits = 5; //hard-coded parameter, the number of times a star has to be detected for it to enter gaia pipeline
+    double mu_mean = -3.0;
+    double mu_variance = 1.0;
+    double lg = 3.0;
 
+    bool Kg_decomposed = false;
+    Eigen::Matrix<double, Ng, Ng> Kg;
+    Eigen::Matrix<double, Ng, Ng> invKg;
+    double logdetKg;
 	
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
@@ -173,10 +180,6 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     double mSave = params[3];
     params = initialisedVector(params.size());
     params[3] = mSave;
-    
-    // Fixed values
-    double mu_mean = -3.0;
-    double mu_variance = 1.0;
 
     // Unpack parameters
     //double lt = exp(params(0));
@@ -264,37 +267,28 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
     }
     
-    // Create quantities relating to Kg
-    Eigen::Matrix<double, Ng, Ng> Kg;
-    Eigen::Matrix<double, Ng, Ng> dKg_dlg;
-    double magnitude_distance;
-    
-    // Build covariance matrix
-    for (int i = 0; i < Ng; i++) 
-    {
-        for (int j = 0; j < Ng; j++) 
+    if (Kg_decomposed == false){
+        
+        // Build covariance matrix
+        for (int i = 0; i < Ng; i++) 
         {
-
-            magnitude_distance = pow(i - j,2);
-           // magnitude_distance = pow(magnitudes[i]-magnitudes[j],2);
-            Kg(i,j) = Kg(j,i) = exp(-magnitude_distance/(2.0*lg*lg));
-            if (i == j)
+            for (int j = 0; j < i; j++) 
             {
-				Kg(i,i) += SingularityPreventer;
-			}
-            dKg_dlg(i,j) = dKg_dlg(j,i) = Kg(i,j)*magnitude_distance/(lg*lg*lg);
+                Kg(i,j) = Kg(j,i) = exp(-pow(i - j,2)/(2.0*lg*lg));
+            }
+            Kg(i,i) = 1.0 + SingularityPreventer;
         }
+        
+        // Householder decomposition (with pivoting!)
+        Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = Kg.fullPivHouseholderQr();
+        
+        // Compute quantities we will need later
+        invKg = decomp.inverse();
+        logdetKg = decomp.logAbsDeterminant();
+
+        // Set flag so we don't do this again
+        Kg_decomposed = true;
     }
-    
-    // Householder decomposition (with pivoting!)
-    // It's possible that this is all broken.
-   Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = Kg.fullPivHouseholderQr();
-    
-    // Compute quantities we will need later
-    //MatrixXd Jg = decomp.solve(dKg_dlg);
-    MatrixXd invKgY = decomp.solve(Y);
-    double logdetKg = decomp.logAbsDeterminant();
-    //double TrJg =  Jg.trace();
 
 
     MatrixXd invKgY = invKg*Y;
@@ -316,8 +310,6 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     }
     
     double Y_invKgYinvKt = (Y.array()*invKgYinvKt.array()).sum();
-    
-    //double JgTY_invKgYinvKt = ((Jg.transpose()*Y).array()*invKgYinvKt.array()).sum();
     
     
     // Compute YJt
