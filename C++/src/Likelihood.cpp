@@ -40,6 +40,9 @@ void direct_convolution_local(std::vector<double> & probsFull,std::vector<unsign
 	}
 }
 
+
+
+
 Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
 {
 	ID = id;
@@ -65,20 +68,20 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 	Reset();	
 	
 	
-	GeneratePs(x);
+	//~ GeneratePs(x);
 	
 	
-	std::vector<double> probs;
+	//~ std::vector<double> probs;
 	if (ID == 0)
 	{
 		Prior(x);
 
 	}
 
-	for (int i = 0; i < Data.size(); ++i)
-	{
-		PerStarContribution(i);
-	}
+	//~ for (int i = 0; i < Data.size(); ++i)
+	//~ {
+		//~ PerStarContribution(i);
+	//~ }
 
 
 
@@ -165,6 +168,11 @@ void Likelihood::Reset()
 
 void Likelihood::Prior(Eigen::VectorXd& params)
 {
+    ///HACKED! FIX THIS!!!
+    
+    double mSave = params[3];
+     params = initialisedVector(params.size());
+    params[3] = mSave;
     
     // Unpack parameters
     double lt = exp(params(0));
@@ -172,6 +180,7 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     double sigma2 = exp(params(2));
     double m = exp(params(3));
     double tau2 = exp(params(4));
+
     
     VectorXd mu = params.segment(Nh, Ng);
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
@@ -180,16 +189,16 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     //~ PriorLengthscale(lt,  0);
     //~ PriorLengthscale(lg,  1);
     //~ PriorVariance(sigma2, 2);
-    //~ PriorLengthscale(m,   3);
+    PriorLengthscale(m,   3);
     //~ PriorVariance(tau2,   4);
     
     // Apply the prior on the hyper-parameters
     PriorMu(mu, m, tau2);
- 
+
     // Apply the prior on the parameters
 	//PriorX(x, mu, lt, lg, sigma2);
 	
-	
+
 }
 
 void Likelihood::PriorLengthscale(double lengthscale, int param_index)
@@ -220,7 +229,6 @@ void Likelihood::PriorVariance(double variance, int param_index)
 void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
 {
     // Implements the Gaussian Process prior on mu
-    
     Eigen::Matrix<double, Ng, Ng> K;
     Eigen::Matrix<double, Ng, Ng> dK_dm;
     double magnitude_distance;
@@ -233,15 +241,22 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
         {
 			//~ double magi = (float)i/10 + 1.7;
 			//~ double magj = (float)j/10 + 1.7;
-
-            magnitude_distance = pow((double)(i - j),2);
-            K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
+			magnitude_distance = pow(i-j,2);
+			  K(i,j) = K(j,i) = exp(-magnitude_distance/(2.0*m*m));
+			 //hack in alpha for now
+			//~ double alpha = 1;
+            //~ magnitude_distance = abs(i - j);
+           
+            //~ double arg = magnitude_distance / m;
+            //~ K(i,j) = K(j,i) = (1.0 + arg) * exp(-arg);
             
             if (i == j)
             {
 				K(i,i) += SingularityPreventer;
 			}
-            dK_dm(i,j) = dK_dm(j,i) = K(i,j)*magnitude_distance/(m*m*m);
+            //dK_dm(i,j) = dK_dm(j,i) = arg*arg / m * exp(-arg);
+            
+            dK_dm(i,j) = dK_dm(j,i) = K(i,j) * magnitude_distance / (m*m*m);
         }
     }
 
@@ -261,14 +276,16 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu, double m, double tau2)
     // dlnQdm = -0.5*np.trace(np.dot(J_inv,dJdm))+0.5*np.dot(J_inv_mu.T,np.dot(dJdm,J_inv_mu))
     Gradient[3] += m*(-0.5*J.trace() + 0.5*invKmu.dot(dK_dm*invKmu)/tau2);
     
+   
+    //std::cout << "Internal Gradient says: " << Gradient[3] << std::endl;
     // dlnQ_dlntau2, correcting for log factor
-    Gradient[4] += -0.5*Ng + 0.5*muinvKmu/tau2;
+    //~ Gradient[4] += -0.5*Ng + 0.5*muinvKmu/tau2;
     
-    //Gradient.segment(Nh,Ng).array() -= invKmu/tau2;
-    for (int i =Nh; i < Nh + Ng; ++i)
-    {
-		Gradient[i] -= invKmu[i-Nh]/tau2;
-	}
+    //~ //Gradient.segment(Nh,Ng).array() -= invKmu/tau2;
+    //~ for (int i =Nh; i < Nh + Ng; ++i)
+    //~ {
+		//~ Gradient[i] -= invKmu[i-Nh]/tau2;
+	//~ }
 }
 
 void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double lg, double sigma2)

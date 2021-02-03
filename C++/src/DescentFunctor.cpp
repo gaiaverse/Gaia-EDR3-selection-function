@@ -3,11 +3,13 @@
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
-double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
+
+void DescentFunctor::DistributeCalculations(const TVector &y)
 {
-	ExamineInterestVectors(x);
+
+	VectorXd x = y;
+	//ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
-	
 	int n = x.size();
 	int circuitBreaker = 1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
@@ -28,22 +30,19 @@ double DescentFunctor::operator()(Eigen::VectorXd& x, Eigen::VectorXd& grad)
 	double l = L.Value; // + prior //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	
 	//collect values
+	CurrentGradient = VectorXd::Zero(n);
 	double Lsum = 0;
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	MPI_Reduce(&L.Gradient[0], &grad[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	MPI_Reduce(&L.Gradient[0], &CurrentGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	++LoopID;
 	
 	
-	//invert everything as this is actully a maximisation problem
-	Lsum = -Lsum;
-	for (int i = 0; i < n; ++i)
-	{
-		grad[i] = -grad[i];
-	}
-	std::cout << "Value Calculated :" << Lsum << std::endl;
-	return Lsum;
+
+	CurrentValue = Lsum;
+	std::cout << LoopID << "  m = " << exp(y[3]) << "    " << CurrentValue << "    " << CurrentGradient[3] << "  tau = " << exp(y[4]) << "      " << CurrentGradient[4] << std::endl;
 }
+
 
 void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
 {
@@ -95,4 +94,48 @@ void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
 		}
 		std::cout << "\n";
 	}
+}
+
+
+
+double DescentFunctor::value(const TVector &y)
+{
+
+	double m = y[3];
+	VectorXd diff = (y - PrevLock);
+	double key = diff.norm();
+
+	std::cout.precision(10);
+	if (key > lockLim)
+	{
+		//std::cout << "Should recalculate value at " << m << "    --->  ";
+		DistributeCalculations(y);
+		PrevLock = y;
+	}
+
+	return -CurrentValue;
+}
+void DescentFunctor::gradient(const TVector &y, TVector &grad)
+{
+
+	//negative sign for maximisation problem
+	double m = y[3];
+	
+	VectorXd diff = (y - PrevLock);
+	double key = diff.norm();
+
+	std::cout.precision(10);
+	if (key > lockLim)
+	{
+		//std::cout << "Should recalculate gradient at " << m << "    --->  ";
+		DistributeCalculations(y);
+		PrevLock = y;
+	}
+
+	
+	for (int i = 0; i < y.size(); ++i)
+	{
+		grad[i] = -CurrentGradient[i];
+	}
+
 }

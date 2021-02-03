@@ -10,16 +10,26 @@
 #include <fstream>
 #define EIGEN_MPL2_ONLY
 
-#include "libs/LBFG/LBFGS.h"
+//~ #include "libs/LBFG/LBFGS.h"
 
+#include "libs/cppoptlib/meta.h"
+#include "libs/cppoptlib/problem.h"
+#include "libs/cppoptlib/solver/gradientdescentsolver.h"
+#include "libs/cppoptlib/solver/conjugatedgradientdescentsolver.h"
+#include "libs/cppoptlib/solver/lbfgssolver.h"
+#include "libs/cppoptlib/solver/neldermeadsolver.h"
+
+#include "libs/cppoptlib/solver/newtondescentsolver.h"
+#include "libs/cppoptlib/solver/cmaessolver.h"
 #include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
 #include "Likelihood.h"
 #include "timeCodes.h"
 #include "GlobalVariables.h"
+
 using Eigen::VectorXd;
-using namespace LBFGSpp;
+//using namespace LBFGSpp;
 
 
 //store MPI data as global variables
@@ -37,8 +47,27 @@ std::vector<std::string> Files;
 
 void FinalResult(Eigen::VectorXd finalpos)
 {
-	//what to do here?
+	std::cout << "Maximised value of m: " << exp(finalpos[3]) << std::endl;
 }
+
+
+VectorXd RootMinimiser(VectorXd x, int steps, double lim)
+{
+	int nParameters = Nh+Ng*(Nt + 1);
+	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
+	
+	std::cout << "NEW SOLVER" << std::endl;
+	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
+    cppoptlib::LbfgsSolver<DescentFunctor> solver;
+	realCriteria.iterations = steps;
+	realCriteria.xDelta = lim;
+	realCriteria.gradNorm = 0;
+	solver.setStopCriteria(realCriteria);
+	solver.minimize(fun,x);
+	
+	return x;
+}
+
 
 void RootProcess()
 {
@@ -50,37 +79,33 @@ void RootProcess()
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	//initialise the LBFGS parameters, then create and initialise the solver /functor pair
-	LBFGSParam<double> param;
-    param.epsilon = 1e-9;
-    param.max_iterations = 100;
-    
-    LBFGSSolver<double> solver(param);
-    DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
+	int nLoops = 10;
+	VectorXd x = initialisedVector(nParameters);
 	
-    // position vector - load with initial guess, will be overwritten by the final estimate
-    VectorXd x = VectorXd::Zero(nParameters);
-    
-    //initialisation of hyperhyperparameters
-    std::vector<double> hyperhyper = {-1,-1,0,-1,0};
-    for (int i = 0; i < Nh; ++i)
-    {
-		x[i] = hyperhyper[i];
+	int logStopper = -5;
+	double condition = pow(10,logStopper);
+	for (int i = 0; i < nLoops;++i)
+	{
+		
+		x = RootMinimiser(x,10,condition);
+		logStopper -=2;
+		if (i < nLoops - 1)
+		{
+			condition = pow(10,logStopper);
+		}
+		else
+		{
+			condition = 0;
+		}
+		
 	}
-
-	//initialisation of boring old hyperparameters
-	x.segment(Nh,Ng	).array() += 2.0;
-
-    double fx;
-    
-    //initialise the minimization procedure
-    int niter = solver.minimize(fun, x, fx);
-
+    // position vector - load with initial guess, will be overwritten by the final estimate
+  
+	FinalResult(x);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
-	FinalResult(x);
 }
 
 //this is the main action loop of all core with rank > 0 
@@ -193,7 +218,46 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 }
 
+void gradientCheck()
+{
+	std::fstream file;
+	file.open("gradientTest.txt",std::ios::out);
+	int dim = Nh + Ng*(Nt + 1);
+	VectorXd y = initialisedVector(dim);
 
+	Likelihood L = Likelihood(Data,Bins,dim,ProcessRank);
+	int w = 35;
+	file <<std::left << std::setw(w) << "log_m" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
+	double dm = 0.001;
+	double ddm = 1e-3;
+	for (double log_m = 0; log_m < 2; log_m+=dm)
+	{
+		VectorXd x = y;
+		x[3] = log_m;
+		
+		L.Calculate(x);
+		double lTrue = L.Value;
+		
+		double dLdlm = L.Gradient[3];
+		VectorXd xUp = x;
+		VectorXd xDown = x;
+		xUp[3] += ddm;
+		xDown[3] -= ddm;
+		
+		L.Calculate(xUp);
+		double lUp = L.Value;
+		
+		L.Calculate(xDown);
+		double lDown = L.Value;
+		
+		double numGrad = (lUp- lTrue)/(ddm);
+		
+		file <<std::left << std::setw(w) << log_m FILEGAP lTrue FILEGAP dLdlm FILEGAP numGrad << "\n";
+	}
+	
+	file.close();
+	
+}
 
 
 int main(int argc, char *argv[])
@@ -217,7 +281,7 @@ int main(int argc, char *argv[])
 	//enter workers into their main action loops
 	//LoadData(ProcessRank);
 	
-	
+	gradientCheck();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
