@@ -45,10 +45,17 @@ std::vector<std::string> Files;
 	//RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
-void FinalResult(Eigen::VectorXd finalpos)
+void FinalResult(Eigen::VectorXd & finalpos)
 {
-	//~ std::cout << "Maximised value of m: " << exp(finalpos[3]) << std::endl;
-	std::cout << finalpos.transpose() << std::endl;
+	std::fstream outfile;
+	outfile.open("testoutput.dat",std::ios::out);
+	
+	for (int i = 0; i < finalpos.size(); ++i)
+	{
+		outfile << finalpos[i] << "\n";
+	}
+	outfile.close();
+	
 }
 
 
@@ -66,7 +73,7 @@ VectorXd RootMinimiser(VectorXd x, int steps, double lim)
 	solver.setStopCriteria(realCriteria);
 	solver.minimize(fun,x);
 
-	std::cout << "intermediary: " << x.transpose() << std::endl;
+	
 	return x;
 }
 
@@ -83,7 +90,7 @@ void RootProcess()
 	
 	int nLoops = 1;
 	VectorXd x = initialisedVector(nParameters);
-	std::cout << "Initial position: \n" << x.transpose() << std::endl;
+
 	int logStopper = -5;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)

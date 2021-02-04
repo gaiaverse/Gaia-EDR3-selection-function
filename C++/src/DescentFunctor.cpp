@@ -6,7 +6,7 @@
 
 void DescentFunctor::DistributeCalculations(const TVector &y)
 {
-
+	std::cout << "Calculation distribution " << LoopID << " begun" << std::endl;
 	VectorXd x = y;
 	//ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
