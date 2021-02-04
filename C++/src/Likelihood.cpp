@@ -276,7 +276,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     
     std::cout << "\t Attempting to initialise a stupendously big matrix" << std::endl;
     
-    Eigen::Matrix<double, Ng, Nt> Y;
+    Eigen::Matrix<float, Ng, Nt> Y;
     int signpost = 0;
      std::cout << "\t Did it!" << std::endl;
     
