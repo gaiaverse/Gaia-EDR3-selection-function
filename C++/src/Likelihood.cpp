@@ -270,12 +270,17 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     
     // Reshape to form Y
     // Y = x.reshape((Ng,Nt)) - mu.reshape((Ng,1))
+    
+    std::cout << "\t Attempting to initialise a stupendously big matrix" << std::endl;
+    
     Eigen::Matrix<double, Ng, Nt> Y;
+    int signpost = 0;
+     std::cout << "\t Did it!" << std::endl;
     for (int i = 0; i < Ng; i++) 
     {
         Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
     }
-    
+    std::cout << "Signpost " << signpost << std::endl; ++signpost;
     if (Kg_decomposed == false){
         
         std::cout << "Building Kg" << std::endl;
@@ -288,19 +293,19 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
             }
             Kg(i,i) = 1.0 + SingularityPreventer;
         }
-        
+         std::cout << "Signpost " << signpost << std::endl; ++signpost;
         // Householder decomposition (with pivoting!)
         Eigen::FullPivHouseholderQR<Matrix<double, Ng,Ng>> decomp  = Kg.fullPivHouseholderQr();
         
         // Compute quantities we will need later
         invKg = decomp.inverse();
         logdetKg = decomp.logAbsDeterminant();
-
+		std::cout << "Signpost " << signpost << std::endl; ++signpost;
         // Set flag so we don't do this again
         Kg_decomposed = true;
     }
 
-
+	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
     MatrixXd invKgY = invKg*Y;
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
@@ -317,14 +322,14 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
             invKgYinvKt(ig,it) = ( oneplusu2 * invKgY(ig,it) - u * ( invKgY(ig,it-1) + invKgY(ig,it+1) ) )*oneoveroneminusu2;
         }
     }
-    
+     std::cout << "Signpost " << signpost << std::endl; ++signpost;
     double Y_invKgYinvKt = (Y.array()*invKgYinvKt.array()).sum();
     
     
     // Compute YJt
     Matrix<double, Ng, Nt> YJt;
     int M = std::min(10+ceil(-lt*log(1e-16)),(double)Nt);
-
+	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
     std::vector<double> power_u = std::vector<double>(M);
     power_u[0] = u;
     for (int i = 1; i < M; i++) 
@@ -332,7 +337,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         power_u[i] = u*power_u[i-1];
     }
     
-  
+	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
     double res;
     for (int i = 0; i < Ng; i++) 
     {
@@ -357,7 +362,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         }
     }
                 
-
+	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
     double YJt_invKgYinvKt = (YJt.array()*invKgYinvKt.array()).sum();
                 
     // lnP = -Ng*Nt*np.log(2.0*np.pi*sigma2)/2.0 + Ng*logdetinvKt/2.0 - Nt*logdetKg/2.0 - Y_invKgYinvKt/2.0/sigma2
@@ -384,7 +389,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
             
     //dlnP_dsigma2 = -Ng*Nt/2.0/sigma2 + Y_invKgYinvKt/2.0/sigma2/sigma2
     Gradient[1] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
-
+	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
 }
 
 
