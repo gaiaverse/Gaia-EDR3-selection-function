@@ -51,8 +51,7 @@ public:
 
 public:
   enum {
-    Cost = Derived::SizeAtCompileTime == Dynamic ? HugeCost
-         : Derived::SizeAtCompileTime * Derived::CoeffReadCost + (Derived::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+    Cost = HugeCost, //this is a hack from Jack to make it work with a 9*10^6*214 size matrix
     UnrollingLimit = EIGEN_UNROLLING_LIMIT * (int(Traversal) == int(DefaultTraversal) ? 1 : int(PacketSize))
   };
 
