@@ -280,12 +280,14 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     int signpost = 0;
      std::cout << "\t Did it!" << std::endl;
     
-    /*
+    
     for (int i = 0; i < Ng; i++) 
     {
         Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
     }
     std::cout << "Signpost " << signpost << std::endl; ++signpost;
+    
+    /*
     if (Kg_decomposed == false){
         
         std::cout << "Building Kg" << std::endl;
