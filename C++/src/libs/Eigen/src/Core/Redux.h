@@ -50,11 +50,11 @@ public:
   };
 
 public:
-  enum {
-    Cost = Derived::SizeAtCompileTime == Dynamic ? HugeCost
-         : Derived::SizeAtCompileTime * Derived::CoeffReadCost + (Derived::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
-    UnrollingLimit = EIGEN_UNROLLING_LIMIT * (int(Traversal) == int(DefaultTraversal) ? 1 : int(PacketSize))
-  };
+  //~ enum {
+    //~ Cost = Derived::SizeAtCompileTime == Dynamic ? HugeCost
+         //~ : Derived::SizeAtCompileTime * Derived::CoeffReadCost + (Derived::SizeAtCompileTime-1) * functor_traits<Func>::Cost,
+    //~ UnrollingLimit = EIGEN_UNROLLING_LIMIT * (int(Traversal) == int(DefaultTraversal) ? 1 : int(PacketSize))
+  //~ };
 
 public:
   enum {
