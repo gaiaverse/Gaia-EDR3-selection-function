@@ -285,9 +285,9 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     {
         Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
     }
-    std::cout << "Signpost " << signpost << std::endl; ++signpost;
+    std::cout << "Signpost " << signpost << "   " << Y(0,0) << std::endl; ++signpost;
     
-    /*
+    
     if (Kg_decomposed == false){
         
         std::cout << "Building Kg" << std::endl;
@@ -311,7 +311,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         // Set flag so we don't do this again
         Kg_decomposed = true;
     }
-
+	/*
 	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
     MatrixXd invKgY = invKg*Y;
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
