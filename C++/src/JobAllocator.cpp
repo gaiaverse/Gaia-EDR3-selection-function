@@ -193,7 +193,7 @@ void LoadData(int id)
 	int lastCheckPoint = 0;
 	
 	
-	int RandFrac = 1e6;
+	//int RandFrac = 1e6;
 	long int linesChecked = 0;
 	for (int i = 0; i < Files.size(); ++i)
 	{
@@ -204,13 +204,13 @@ void LoadData(int id)
 		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
 		forLineVectorInFile(file,',',
 		
-			int r = rand() % RandFrac;
-			if (r == 0)
-			{
-				Star s = Star(FILE_LINE_VECTOR,gBin);
-				std::cout << ProcessRank << " got star " << linesChecked << std::endl;
-				//~ Data.push_back(s);
-			}	
+			//~ int r = rand() % RandFrac;
+			//~ if (r == 0)
+			//~ {
+			Star s = Star(FILE_LINE_VECTOR,gBin);
+
+			Data.push_back(s);
+			//}	
 			++linesChecked;
 		);
 	}
