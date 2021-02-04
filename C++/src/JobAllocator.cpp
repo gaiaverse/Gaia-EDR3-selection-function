@@ -47,7 +47,8 @@ std::vector<std::string> Files;
 
 void FinalResult(Eigen::VectorXd finalpos)
 {
-	std::cout << "Maximised value of m: " << exp(finalpos[3]) << std::endl;
+	//~ std::cout << "Maximised value of m: " << exp(finalpos[3]) << std::endl;
+	std::cout << finalpos.transpose() << std::endl;
 }
 
 
@@ -56,15 +57,16 @@ VectorXd RootMinimiser(VectorXd x, int steps, double lim)
 	int nParameters = Nh+Ng*(Nt + 1);
 	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
-	std::cout << "NEW SOLVER" << std::endl;
+	std::cout << "\t New solver loop initialised" << std::endl;
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
-	realCriteria.xDelta = lim;
+//	realCriteria.xDelta = 0;
 	realCriteria.gradNorm = 0;
 	solver.setStopCriteria(realCriteria);
 	solver.minimize(fun,x);
-	
+
+	std::cout << "intermediary: " << x.transpose() << std::endl;
 	return x;
 }
 
@@ -79,15 +81,15 @@ void RootProcess()
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	int nLoops = 10;
+	int nLoops = 1;
 	VectorXd x = initialisedVector(nParameters);
-	
+	std::cout << "Initial position: \n" << x.transpose() << std::endl;
 	int logStopper = -5;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,10,condition);
+		x = RootMinimiser(x,1000000,condition);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -224,25 +226,27 @@ void gradientCheck()
 	file.open("gradientTest.txt",std::ios::out);
 	int dim = Nh + Ng*(Nt + 1);
 	VectorXd y = initialisedVector(dim);
-
+	std::cout << y.transpose() << std::endl;
 	Likelihood L = Likelihood(Data,Bins,dim,ProcessRank);
 	int w = 35;
-	file <<std::left << std::setw(w) << "log_m" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
+	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
+	
 	double dm = 0.001;
 	double ddm = 1e-3;
-	for (double log_m = 0; log_m < 2; log_m+=dm)
+	int xsId = Nh + Ng;
+	for (double xs = -1; xs < 1; xs+=dm)
 	{
 		VectorXd x = y;
-		x[3] = log_m;
+		x[xsId] = xs;
 		
 		L.Calculate(x);
 		double lTrue = L.Value;
 		
-		double dLdlm = L.Gradient[3];
+		double dLdlm = L.Gradient[xsId];
 		VectorXd xUp = x;
 		VectorXd xDown = x;
-		xUp[3] += ddm;
-		xDown[3] -= ddm;
+		xUp[xsId] += ddm;
+		xDown[xsId] -= ddm;
 		
 		L.Calculate(xUp);
 		double lUp = L.Value;
@@ -252,7 +256,7 @@ void gradientCheck()
 		
 		double numGrad = (lUp- lTrue)/(ddm);
 		
-		file <<std::left << std::setw(w) << log_m FILEGAP lTrue FILEGAP dLdlm FILEGAP numGrad << "\n";
+		file <<std::left << std::setw(w) << xs FILEGAP lTrue FILEGAP dLdlm FILEGAP numGrad << "\n";
 	}
 	
 	file.close();
@@ -267,7 +271,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
-	srand(ProcessRank);
+	srand(3);
 	
 	auto start = std::chrono::system_clock::now();
 	
@@ -279,9 +283,9 @@ int main(int argc, char *argv[])
 	}
 	
 	//enter workers into their main action loops
-	//LoadData(ProcessRank);
+	LoadData(ProcessRank);
 	
-	gradientCheck();
+	//gradientCheck();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();

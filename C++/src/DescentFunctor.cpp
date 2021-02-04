@@ -32,6 +32,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	//collect values
 	CurrentGradient = VectorXd::Zero(n);
 	double Lsum = 0;
+	
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &CurrentGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
@@ -40,7 +41,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	
 
 	CurrentValue = Lsum;
-	std::cout << LoopID << "  m = " << exp(y[3]) << "    " << CurrentValue << "    " << CurrentGradient[3] << "  tau = " << exp(y[4]) << "      " << CurrentGradient[4] << std::endl;
+
 }
 
 
@@ -100,15 +101,13 @@ void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
 
 double DescentFunctor::value(const TVector &y)
 {
-
-	double m = y[3];
 	VectorXd diff = (y - PrevLock);
 	double key = diff.norm();
 
 	std::cout.precision(10);
 	if (key > lockLim)
 	{
-		//std::cout << "Should recalculate value at " << m << "    --->  ";
+
 		DistributeCalculations(y);
 		PrevLock = y;
 	}
@@ -118,21 +117,17 @@ double DescentFunctor::value(const TVector &y)
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
 
-	//negative sign for maximisation problem
-	double m = y[3];
-	
 	VectorXd diff = (y - PrevLock);
 	double key = diff.norm();
 
-	std::cout.precision(10);
 	if (key > lockLim)
 	{
-		//std::cout << "Should recalculate gradient at " << m << "    --->  ";
+
 		DistributeCalculations(y);
 		PrevLock = y;
 	}
 
-	
+	//negative sign for maximisation problem
 	for (int i = 0; i < y.size(); ++i)
 	{
 		grad[i] = -CurrentGradient[i];

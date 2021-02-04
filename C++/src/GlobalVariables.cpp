@@ -5,7 +5,7 @@ Eigen::VectorXd initialisedVector(int n)
     
     
     //~ //initialisation of hyperhyperparameters
-    std::vector<double> hyperhyper = {0,0,0,2,0};
+    std::vector<double> hyperhyper = {0,-1};
     for (int i = 0; i < Nh; ++i)
     {
 		x[i] = hyperhyper[i];
@@ -14,8 +14,9 @@ Eigen::VectorXd initialisedVector(int n)
 	//initialisation of boring old hyperparameters
 	for (int i = 0; i < Ng; ++i)
 	{
-		x[Nh + i] = sin(2 * M_PI * (double)i/5) * exp(-(double)i/30);
+		x[Nh + i] = -1;//sin(2 * M_PI * (double)i/5) * exp(-(double)i/30);
 	}
+	
 	
 	return x;
 }

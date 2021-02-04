@@ -54,7 +54,7 @@ Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins
     
     mu_mean = -3.0;
     mu_variance = 1.0;
-    lg = 3.0;
+    lg = 0.1;
 
     Kg_decomposed = false;
 	
@@ -72,8 +72,15 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 	Reset();	
 	
+	VectorXd newInitial = initialisedVector(x.size());
+
+	for (int i = 0; i < Nh+Ng; ++i)
+	{
+		x[i] = newInitial[i];
+	}
 	
-	//~ GeneratePs(x);
+	
+	GeneratePs(x);
 	
 	
 	//~ std::vector<double> probs;
@@ -83,12 +90,15 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 	}
 
-	//~ for (int i = 0; i < Data.size(); ++i)
-	//~ {
-		//~ PerStarContribution(i);
-	//~ }
-
-
+	for (int i = 0; i < Data.size(); ++i)
+	{
+		PerStarContribution(i);
+	}
+	for (int i = 0; i < Nh+Ng; ++i)
+	{
+		Gradient[i] = 0;
+	}
+	
 
 }
 
@@ -173,11 +183,6 @@ void Likelihood::Reset()
 
 void Likelihood::Prior(Eigen::VectorXd& params)
 {
-    ///HACKED! FIX THIS!!!
-    
-    double mSave = params[3];
-    params = initialisedVector(params.size());
-    params[3] = mSave;
 
     // Unpack parameters
     //double lt = exp(params(0));
@@ -193,16 +198,20 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     VectorXd x = params.segment(Nh+Ng, Ng*Nt);
     
     // Apply the priors on the hyper-hyper-parameters
+    
+    //old priors
     //~ PriorLengthscale(lt,  0);
     //~ PriorLengthscale(lg,  1);
     //~ PriorVariance(sigma2, 2);
     //~ PriorLengthscale(m,   3);
     //~ PriorVariance(tau2,   4);
+    
+    //new priors
     PriorLengthscale(lt,  0);
     PriorVariance(sigma2, 1);
     
     // Apply the prior on the hyper-parameters
-    PriorMu(mu);
+    //PriorMu(mu);
 
     // Apply the prior on the parameters
 	PriorX(x, mu, lt, sigma2);
@@ -244,8 +253,11 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu)
 
     for (int ig = 0; ig < Ng; ig++) 
     {
-        Gradient[Nh+ig] -= (mu[ig]-mu_mean) / mu_variance;
+		
+        Gradient[Nh+ig] -= diff[ig] / mu_variance;
     }
+ 
+    
 }
 
 void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double sigma2)
@@ -268,6 +280,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     
     if (Kg_decomposed == false){
         
+        std::cout << "Building Kg" << std::endl;
         // Build covariance matrix
         for (int i = 0; i < Ng; i++) 
         {
@@ -295,7 +308,6 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
     
 
-        
     // Compute invKgYinvKt
     Matrix<double, Ng, Nt> invKgYinvKt;
     for (int ig = 0; ig < Ng; ig++) 
@@ -313,7 +325,8 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     
     // Compute YJt
     Matrix<double, Ng, Nt> YJt;
-    int M = 10+ceil(-lt*log(1e-16));
+    int M = std::min(10+ceil(-lt*log(1e-16)),(double)Nt);
+
     std::vector<double> power_u = std::vector<double>(M);
     power_u[0] = u;
     for (int i = 1; i < M; i++) 
@@ -321,6 +334,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         power_u[i] = u*power_u[i-1];
     }
     
+  
     double res;
     for (int i = 0; i < Ng; i++) 
     {
@@ -345,7 +359,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         }
     }
                 
-       
+
     double YJt_invKgYinvKt = (YJt.array()*invKgYinvKt.array()).sum();
                 
     // lnP = -Ng*Nt*np.log(2.0*np.pi*sigma2)/2.0 + Ng*logdetinvKt/2.0 - Nt*logdetKg/2.0 - Y_invKgYinvKt/2.0/sigma2
@@ -363,7 +377,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
         }
         Gradient[Nh+ig] += -Gradient.segment(Nh+Ng+ig*Nt,Nt).sum();
     }
-    
+
     //dlnP_dlt = -Ng*TrJt/2.0 + YJt_invKgYinvKt/2.0/sigma2
     Gradient[0] += lt*(-Ng*TrJt/2.0 + YJt_invKgYinvKt/(2.0*sigma2));
     

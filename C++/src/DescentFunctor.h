@@ -51,7 +51,7 @@ class DescentFunctor: public Problem<double>
 				CurrentValue = 0;
 				CurrentGradient = VectorXd::Zero(nParams);
 				
-				PrevLock = VectorXd::Zero(nParams);
+				PrevLock = VectorXd::Random(nParams);
 		}
 	    void DistributeCalculations(const TVector &y);
  
