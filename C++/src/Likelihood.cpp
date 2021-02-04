@@ -317,7 +317,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
     
-
+	/*
     // Compute invKgYinvKt
     Matrix<double, Ng, Nt> invKgYinvKt;
     for (int ig = 0; ig < Ng; ig++) 
@@ -332,7 +332,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
      std::cout << "Signpost " << signpost << std::endl; ++signpost;
     double Y_invKgYinvKt = (Y.array()*invKgYinvKt.array()).sum();
     
-    /*
+    
     // Compute YJt
     Matrix<double, Ng, Nt> YJt;
     int M = std::min(10+ceil(-lt*log(1e-16)),(double)Nt);
