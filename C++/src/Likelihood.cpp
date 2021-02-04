@@ -273,12 +273,14 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     // Reshape to form Y
     // Y = x.reshape((Ng,Nt)) - mu.reshape((Ng,1))
     
-    /*
+    
     std::cout << "\t Attempting to initialise a stupendously big matrix" << std::endl;
     
     Eigen::Matrix<double, Ng, Nt> Y;
     int signpost = 0;
      std::cout << "\t Did it!" << std::endl;
+    
+    /*
     for (int i = 0; i < Ng; i++) 
     {
         Y.row(i) = x.segment(i*Nt,Nt).array() - mu[i];
