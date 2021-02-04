@@ -72,13 +72,7 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 	Reset();	
 	
-	VectorXd newInitial = initialisedVector(x.size());
 
-	for (int i = 0; i < Nh+Ng; ++i)
-	{
-		x[i] = newInitial[i];
-	}
-	
 	
 	GeneratePs(x);
 	
@@ -92,12 +86,13 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 	for (int i = 0; i < Data.size(); ++i)
 	{
+		if (RunningID == 0)
+		{
+			std::cout << "\t\tCalculating contribution from star " << i << std::endl;
+		}
 		PerStarContribution(i);
 	}
-	for (int i = 0; i < Nh+Ng; ++i)
-	{
-		Gradient[i] = 0;
-	}
+
 	
 
 }
@@ -114,6 +109,7 @@ void Likelihood::GeneratePs(Eigen::VectorXd&x)
 			perBinP[i][j] = 1.0/(1.0 - exp(-x[offset + j]));
 		}
 	}
+	std::cout << "\tProbs generated" << std::endl;
 }
 void Likelihood::PerStarContribution(int star)
 {
@@ -179,6 +175,7 @@ void Likelihood::Reset()
 	{
 		Gradient[i] = 0;
 	}
+	std::cout << "\t Rest values + ready to go!" << std::endl;
 }
 
 void Likelihood::Prior(Eigen::VectorXd& params)
@@ -210,12 +207,13 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     PriorLengthscale(lt,  0);
     PriorVariance(sigma2, 1);
     
+    std::cout << "\t Hyper-Priors Calculated" << std::endl;
     // Apply the prior on the hyper-parameters
-    //PriorMu(mu);
-
+    PriorMu(mu);
+	std::cout << "\t Prior Mu Calculated" << std::endl;
     // Apply the prior on the parameters
 	PriorX(x, mu, lt, sigma2);
-	
+	std::cout << "\t Prior X Calculated" << std::endl;
 
 }
 
