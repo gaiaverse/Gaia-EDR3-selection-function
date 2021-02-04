@@ -317,9 +317,11 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     double logdetinvKt = (Nt-1.0)*log( oneoveroneminusu2 );
     double TrJt = -2.0*(Nt-1.0)*u2*oneoveroneminusu2/(lt*lt);
     
-	/*
+	
     // Compute invKgYinvKt
     Matrix<double, Ng, Nt> invKgYinvKt;
+    
+    /*
     for (int ig = 0; ig < Ng; ig++) 
     {
         invKgYinvKt(ig,0) = ( invKgY(ig,0) - u * invKgY(ig,1) )*oneoveroneminusu2;
