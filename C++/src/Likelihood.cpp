@@ -86,7 +86,7 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 	for (int i = 0; i < Data.size(); ++i)
 	{
-		if (RunningID == 0)
+		if (ID == 0)
 		{
 			std::cout << "\t\tCalculating contribution from star " << i << std::endl;
 		}
