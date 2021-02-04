@@ -273,6 +273,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     // Reshape to form Y
     // Y = x.reshape((Ng,Nt)) - mu.reshape((Ng,1))
     
+    /*
     std::cout << "\t Attempting to initialise a stupendously big matrix" << std::endl;
     
     Eigen::Matrix<double, Ng, Nt> Y;
@@ -392,6 +393,8 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     //dlnP_dsigma2 = -Ng*Nt/2.0/sigma2 + Y_invKgYinvKt/2.0/sigma2/sigma2
     Gradient[1] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
 	 std::cout << "Signpost " << signpost << std::endl; ++signpost;
+	 
+	 */
 }
 
 
