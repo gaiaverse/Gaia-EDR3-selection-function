@@ -211,6 +211,8 @@ void Likelihood::Prior(Eigen::VectorXd& params)
     // Apply the prior on the hyper-parameters
     PriorMu(mu);
 	std::cout << "\t Prior Mu Calculated" << std::endl;
+	
+		std::cout << "\t Beginning PriorX" << std::endl;
     // Apply the prior on the parameters
 	PriorX(x, mu, lt, sigma2);
 	std::cout << "\t Prior X Calculated" << std::endl;
@@ -267,7 +269,7 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     double u2 = u*u;
     double oneplusu2 = 1.0 + u2;
     double oneoveroneminusu2 = 1.0 / ( 1.0 - u2 );
-    
+    std::cout << u2 << oneplusu2 << std::endl;
     // Reshape to form Y
     // Y = x.reshape((Ng,Nt)) - mu.reshape((Ng,1))
     
