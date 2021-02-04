@@ -59,7 +59,7 @@ void FinalResult(Eigen::VectorXd & finalpos)
 }
 
 
-VectorXd RootMinimiser(VectorXd x, int steps, double lim)
+VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 {
 	int nParameters = Nh+Ng*(Nt + 1);
 	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
@@ -90,6 +90,8 @@ void RootProcess()
 	
 	int nLoops = 1;
 	VectorXd x = initialisedVector(nParameters);
+
+	std::cout << "The size of the position vector is " << sizeof(x) << std::endl;
 
 	int logStopper = -5;
 	double condition = pow(10,logStopper);
