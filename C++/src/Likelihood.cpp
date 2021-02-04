@@ -261,7 +261,7 @@ void Likelihood::PriorMu(Eigen::VectorXd& mu)
 void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, double sigma2)
 {
     // Implements the Gauss-Markov prior on x
-    
+    std::cout << "\t Beginning priorX" << std::endl;
     // Useful shorthands
     double u = exp(-1.0/lt);
     double u2 = u*u;
