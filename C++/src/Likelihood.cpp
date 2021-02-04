@@ -321,6 +321,8 @@ void Likelihood::PriorX(Eigen::VectorXd& x, Eigen::VectorXd& mu, double lt, doub
     // Compute invKgYinvKt
     Matrix<double, Ng, Nt> invKgYinvKt;
     
+    
+    
     /*
     for (int ig = 0; ig < Ng; ig++) 
     {
