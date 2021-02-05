@@ -1,0 +1,14 @@
+
+QMC:
+https://betatim.github.io/posts/quasi-random-numbers/
+https://pypi.org/project/qmcpy/
+https://github.com/QMCSoftware/QMCSoftware
+
+https://en.wikipedia.org/wiki/Low-discrepancy_sequence
+
+Sobol:
+https://en.wikipedia.org/wiki/Sobol_sequence
+http://www.deltaquants.com/sobol-sequence-simplified
+
+ND Quad:
+https://arxiv.org/pdf/1804.06501.pdf

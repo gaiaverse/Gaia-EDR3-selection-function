@@ -1,0 +1,717 @@
+% mnras_template.tex 
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[fleqn,usenatbib]{mnras}
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+%\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+%\usepackage{amssymb}	% Extra maths symbols
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{xspace}	
+\usepackage{xcolor}	
+\usepackage{euscript}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{placeins}
+\usepackage{bm}
+\usepackage{ dsfont }
+\usepackage{listings}
+\usepackage{soul}
+\usepackage[OMLmathsfit,sfdefault=cmssm]{isomath} % needed to get bold, san serif greek characters for matrices.
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+%\DeclareMathOperator*{\sup}{sup}
+\renewcommand{\t}{\mathrm{T}}
+\DeclareMathOperator*{\var}{Var}
+\newcommand{\E}{\mathrm{E}}
+\newcommand\mathtensor[1]{\mathsfbfit{#1}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{python}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    upquote=true
+}
+
+\lstset{style=python}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+% Please keep new commands to a minimum, and use \newcommand not \def to avoid
+% overwriting existing commands. Example:
+%\newcommand{\pcm}{\,cm$^{-2}$}	% per cm-squared
+\newcommand{\todo}[1]{{\bf \textcolor{red}{#1}}}
+\newcommand{\edits}[1]{{\bf \textcolor{red}{#1}}}
+\newcommand{\gaia}{{\it Gaia}\xspace}
+\defcitealias{PaperI}{Paper~I}
+\defcitealias{PaperII}{Paper~II}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[Using hidden states to gaps and the scanning law]{Completeness of the \textit{Gaia}-verse VI: poisson binomial}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+%\author[D. Boubert and A. Everall]{
+\author[D. Boubert and A. Everall]{ % alternative: D. Boubert et al.
+	Douglas Boubert$^{1,2}$\thanks{E-mail: douglas.boubert@magd.ox.ac.uk}
+	and Andrew Everall$^{3}$
+	\\
+	% List of institutions
+	$^{1}$Magdalen College, University of Oxford, High Street, Oxford OX1 4AU, UK\\
+	$^{2}$Rudolf Peierls Centre for Theoretical Physics, Clarendon Laboratory, Parks Road, Oxford OX1 3PU, UK\\
+	$^{3}$Institute of Astronomy, University of Cambridge, Madingley Road, Cambridge CB3 0HA, UK\\
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+	This paper will be quick and easy! (lol)
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+	stars: statistics, Galaxy: kinematics and dynamics, Galaxy: stellar content, methods: data analysis, methods: statistical
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER %%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+
+\section{Maths}
+
+\subsection{Poisson Binomial}
+
+A possible improvement of our method would be to assume that the detection probability of a source is different on each observation, and thus that the number of detections is a Poisson-Binomial random variable. Suppose there were $n$ observations with detection probabilities $\{p_1,\dots p_n\}$. The probability of $k$ detections ($0\leq k \leq n$) is given by
+\begin{equation}
+\operatorname{P}(K=k|\{p_a\}) = \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j), \label{eq:poissonbinomialpmf}
+\end{equation}
+where $F_k^n$ is the set of all subsets of $k$ integers that can be picked from $\{1,\dots,n\}$. The Poisson-Binomial probability mass function is computationally-challenging to evaluate for even moderately large $n\gtrsim20$, because the size of the set $F_k^n$ -- and thus the number of terms to be summed -- is $|F_k^n|=\binom{n}{k}$. \citet{Biscarri2018} pointed out that the general formula for the distribution of a sum of random variables by the convolution of their densities allows for the efficient computation of the Poisson Binomial, with a time complexity of $O(n^2)$, and made available an implementation of this algorithm in the \textsc{C} and \textsc{R} programming languages\footnote{\textsc{convpoibin}, available at \url{https://github.com/biscarri1/convpoibin}, last accessed on 05/01/2021.}.
+
+If our data is truncated such that we only have data for sources with at least $k \geq c$ detections, then the likelihood of our data can be written
+\begin{equation}
+    P(k=k|\{p_a\},K \geq c) = \begin{cases} \frac{P(K=k|\{p_a\})}{P(K\geq c|\{p_a\})} &\mbox{if } c \leq k \leq n, \\
+0 & \mbox{otherwise},\end{cases}
+\end{equation}
+where the function in the denominator is the complementary cumulative mass function
+\begin{equation}
+    P(K\geq c|\{p_a\}) = \sum_{k=c}^{n} \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j).\label{eq:poissonbinomialccmf}
+\end{equation}
+
+We will be carrying out maximum (log-)likelihood estimation and so we require the gradients of Eqs. \ref{eq:poissonbinomialpmf} and \ref{eq:poissonbinomialccmf}. For any $p_b$ in $\{p_a\}$, we can expand Eq. \ref{eq:poissonbinomialpmf} as
+\begin{align}
+    P&(K=k|\{p_a\}) = \nonumber \\
+    &p_b P(K=k-1|\{p_a\}_{a \neq b}) + (1-p_b)P(K=k|\{p_a\}_{a \neq b}), \label{eq:expansion}
+\end{align}
+where $\{p_a\}_{a \neq b}$ is the set of probabilities excluding $p_b$, and the first and second terms vanish for $k=0$ and $k=n$ respectively. We can then differentiate to find
+\begin{equation}
+    \frac{\partial P(K=k|\{p_a\})}{\partial p_b} = P(K=k-1|\{p_a\}_{a \neq b})-P(K=k|\{p_a\}_{a \neq b}),
+\end{equation}
+ The gradient of Eq. \ref{eq:poissonbinomialccmf} is the sum of these terms for $c\leq k \leq n$ which, due to the cancellation of successive terms, leads to the simple expression 
+\begin{equation}
+    \frac{\partial P(K \geq c|\{p_a\})}{\partial p_b} = P(K=c-1|\{p_a\}_{a \neq b}).
+\end{equation}
+Assuming that we already know the value of $P(K=k|\{p_a\})$ for all values of $k$ in $0\leq k \leq n$, we can solve the system of linear equations defined by Eq. \ref{eq:expansion} to calculate $P(K=k|\{p_a\})$ for all values of $k$ in $0\leq k \leq n-1$. Solving this simple system of linear equations has a time complexity of $O(n)$. Thus, if we already know the value of $P(K=k|\{p_a\})$ for all values of $k$ in $0\leq k \leq n$, the calculation of the gradient of Eq. \ref{eq:poissonbinomialpmf} with respect to each $p_b$ has a time complexity of $O(n^2)$, and so the calculation of the likelihood and its gradient has an overall time complexity of $O(n^2)$.
+
+\section{Model}
+There are $N_\text{g}$ magnitude bins and $N_\text{t}=8,967,691$ time bins.
+We assume that the measurement probability of a star in magnitude bin $g$ visited at time $t$ is given by $p_{g,t}$, which we parameterise as
+\begin{equation}
+    p_{g,t} = \frac{1}{1+e^{-x_{g,t}}}
+\end{equation}
+where the $x_{g,t}$ govern the measurement probability in each magnitude bin $g$ at time $t$. Each star was visited at a subset of the times.
+
+\subsection{Priors}
+
+We assume independent Gaussian Process priors in each magnitude bin on the vectors $\bm{x}_g=(x_{g,1},\dots,x_{g,N})^\intercal$ with constant mean $\mu_g$ and an Ornstein-Uhlenbeck covariance kernel 
+\begin{equation}
+    m(t_i,t_j) = \sigma^2 \exp\left({-\frac{|t_i-t_j|}{l}}\right),
+\end{equation}
+where $l$ and $\sigma^2$ are hyper-parameters governing the lengthscale and variance of the process. The log-prior on $\bm{x}_g$ is
+\begin{align}
+    \ln&{P(\bm{x}_g|l,\sigma^2)}= \nonumber \\ &\frac{1}{2}\ln|\mathbfss{K}^{-1}|-\frac{1}{2}(\bm{x}_g-\boldsymbol{\mu}_g)^{^\intercal}\mathbfss{K}^{-1}(\bm{x}_g-\boldsymbol{\mu}_g) -\frac{N}{2}\ln2\upi, \label{eq:priorx}
+\end{align}
+where $\boldsymbol{\mu}_G=(\mu_g,\dots,\mu_g)^\intercal$ and $\mathbfss{K}$ is the covariance matrix given by $K_{i,j}=m(t_i,t_j)$. Our choice of the Ornstein-Uhlenbeck covariance kernel is motivated by the property that -- despite the covariance matrix being dense --- the inverse of the covariance matrix is tridiagonal. In particular, if the $t_i$ are regularly unit spaced (such that $t_{i+1}-t_i = 1$ for all $i$), then the inverse covariance matrix reduces to the form
+\begin{equation}
+    \mathbfss{K}^{-1} = \frac{1}{\sigma^2\left(1-e^{-2/l}\right)}
+    \begin{bmatrix} 
+    a & c &   &        &   &   &   \\
+    c & b & c &        &   &   &   \\
+      & c & b &        &   &   &   \\
+      &   &   & \ddots &   &   &   \\
+      &   &   &        & b & c &   \\
+      &   &   &        & c & b & c \\
+      &   &   &        &   & c & a 
+    \end{bmatrix}, \label{eq:tridiagonal}
+\end{equation}
+where
+\begin{equation}
+    a = 1,\quad b=1+e^{-2/l},\quad c =-e^{-1/l}.
+\end{equation}
+The results of Appendix \ref{sec:tridiagonal} allow us to derive a compact expression for the determinant of this matrix,
+\begin{equation}
+    |\mathbfss{K}^{-1}| = \frac{1}{\sigma^{2N}\left(1-e^{-2/l}\right)^{N-1}},
+\end{equation}
+noting that $|a\mathbfss{A}|=a^N|\mathbfss{A}|$ for a scalar $a$ multiplying an $N \times N$ matrix $\mathbfss{A}$.
+The log-prior can be expanded 
+\begin{align}
+    &\ln{P(\bm{x}_g|l,\sigma^2)}= -\frac{N}{2}\ln{\sigma^2} - \frac{N-1}{2}\ln\left(1-e^{-2/l}\right) -\frac{N}{2}\ln2\upi \nonumber \\ 
+    &-\frac{1}{2\sigma^2\left(1-e^{-2/l}\right)}\bigg( A + (1+e^{-2/l})B -2e^{-1/l}C \bigg),
+\end{align}
+where 
+\begin{align}
+    A &= (x_{g,1}-\mu_g)^2+ (x_{g,N}-\mu_g)^2 \nonumber \\
+    B &= \sum_{i=2}^{N-1}(x_{g,i}-\mu_g)^2 \nonumber \\
+    C &= \sum_{i=1}^{N-1}(x_{g,i}-\mu_g)(x_{g,i+1}-\mu_g)
+\end{align}
+
+\begin{align}
+    &\ln{P(\bm{x}_g|l,\sigma^2)}= -\frac{N}{2}\ln{\sigma^2} - \frac{N-1}{2}\ln\left(1-e^{-2/l}\right) -\frac{N}{2}\ln2\upi \nonumber \\ 
+    &-\frac{1}{2\sigma^2\left(1-e^{-2/l}\right)}\bigg( -2e^{-1/l} \sum_{i=1}^{N-1}(x_{g,i}-\mu_g)(x_{g,i+1}-\mu_g)   \nonumber \\
+    & +(x_{g,1}-\mu_g)^2+ (x_{g,N}-\mu_g)^2+(1+e^{-2/l})\sum_{i=2}^{N-1}(x_{g,i}-\mu_g)^2   \bigg).
+\end{align}
+While this expression appears more complicated than Eq. \ref{eq:priorx}, it is linear in the number of time points $N$ and permits straightforward calculation of the derivatives of the log-prior with respect to $l$, $\sigma^2$ and $x_{g,t}$.
+
+We assume a Gaussian Process prior on $\boldsymbol{\mu}$ with zero mean and a Squared-Exponential covariance kernel
+\begin{equation}
+    m(\mu_i,\mu_j) = \sigma^2 \exp\left({-\frac{(\mu_i-\mu_j)^2}{2l^2}}\right),
+\end{equation}
+where $l$ and $\sigma^2$ are hyper-parameters governing the lengthscale and variance of the process. The log-prior on $\boldsymbol{\mu}$ is
+\begin{equation}
+    \ln{P(\boldsymbol{\mu}|l,\sigma^2)} = -\frac{1}{2}\ln|\mathbfss{K}|-\frac{1}{2}\boldsymbol{\mu}^{^\intercal}\mathbfss{K}^{-1}\boldsymbol{\mu} -\frac{N}{2}\ln2\upi,
+\end{equation}
+where $\mathbfss{K}$ is the covariance matrix given by $K_{i,j}=m(\mu_i,\mu_j)$. The gradient of this log-prior with respect to a parameter $\theta$ of the kernel is given by
+\begin{equation}
+    \frac{\partial\ln P}{\partial \theta} = -\frac{1}{2}\operatorname{Tr}\left(\mathbfss{K}^{-1}\frac{\partial\mathbfss{K}}{\partial \theta}\right) + \frac{1}{2}\boldsymbol{\mu}^\intercal\mathbfss{K}^{-1}\frac{\partial\mathbfss{K}}{\partial \theta}\mathbfss{K}^{-1}\boldsymbol{\mu},
+\end{equation}
+where the partial derivative matrices have elements
+\begin{equation}
+    \frac{\partial K_{i,j}}{\partial l} = \sigma^2\frac{(\mu_i-\mu_j)^2}{l^3}\exp\left({-\frac{(\mu_i-\mu_j)^2}{2l^2}}\right)
+\end{equation}
+and
+\begin{equation}
+    \frac{\partial K_{i,j}}{\partial \sigma^2} = \exp\left({-\frac{(\mu_i-\mu_j)^2}{2l^2}}\right).
+\end{equation}
+The gradient of this log-prior with respect to $\boldsymbol{\mu}$ is given by
+\begin{equation}
+    \frac{\partial \ln P}{\partial \boldsymbol{\mu}} = -\mathbfss{K}^{-1}\boldsymbol{\mu}.
+\end{equation}
+
+We assume an $\operatorname{InverseGamma}(1,2)$ prior on the lengthscales $l$ and $m$,
+\begin{equation}
+    P(l) = \frac{2}{l^2}e^{-2/l},\quad \ln{P(l)} = \ln{2}-2\ln{l}-\frac{2}{l},
+\end{equation}
+which strongly disfavours values close to zero, peaks at one, and has a long tail to large positive values\footnote{The $\operatorname{InverseGamma}(1,2)$ distribution has such heavy tails that its expected value is undefined, i.e. it does not have a mean.}. We assume a $\operatorname{Gamma}(1,1)$ prior on the variances $\sigma^2$ and $\tau^2$,
+\begin{equation}
+    P(\sigma^2) = e^{-\sigma^2},\quad \ln{P(\sigma^2)} = -\sigma^2,
+\end{equation}
+which peaks at zero, has a mean of one, and has a long tail to large positive values.
+
+\subsection{2D prior}
+We assume a two-dimensional Gaussian Process prior over the $x_{g,t}$ in both magnitude and time. The constant mean of this process is given by $\mu_g$ in each magnitude bin, with the column vector $\boldsymbol{\mu}=(\mu_1,\dots,\mu_{N_\text{g}})$ having a separate Gaussian Process prior as described previously. The covariance kernel is assumed to be the product of a Squared-Exponential kernel along the magnitude-dimension and an Ornstein-Uhlenbeck kernel in the time-dimension,
+\begin{equation}
+    k\left(\begin{bmatrix} t_i \\ g_i \end{bmatrix}, \begin{bmatrix} t_j \\ g_j \end{bmatrix}\right)= \sigma^2 \exp\left(-\frac{|t_i-t_j|}{l_{\mathrm{t}}}\right) \exp\left(-\frac{(g_i-g_j)^2}{2l_{\mathrm{g}}^2}\right) 
+\end{equation}
+where the parameters $l_\text{t}$ and $l_\text{g}$ are the lengthscale in each dimension and $\sigma^2$ is the variance of the process. Note that the quantities $l_\text{t}$ and $l_\text{g}$ have roman subscripts because they are scalars which do not differ across the magnitude and time dimensions.
+
+Gaussian Processes describe the relationship between elements of a column vector and so we must convert our two-dimensional problem into a one-dimensional one. Define the matrix $\mathbfss{X}=(\bm{x}_1,\dots,\bm{x}_{N_\text{g}})$, where each column is the column vector $\bm{x}_g = (x_{g,1},\dots,x_{g,N_\text{t}})^\intercal$. If we define the operator $\operatorname{vec}(\cdot)$ such that it stacks the columns of a matrix into a column vector, then we can define the column vector $\bm{x}=\operatorname{vec}(\mathbfss{X})$ to be the vector over which our Gaussian Process applies. Defining the column vector $\boldsymbol{\mu}_g$ to be the element $\mu_g$ repeated $N_\text{t}$ times, we can assemble quantities analogous to $\mathbfss{X}$ and $\bm{x}$: $\mathbfss{M}=(\bm{\mu}_1,\dots,\bm{\mu}_{N_\text{g}})$ and $\bm{\mu}=\operatorname{vec}(\mathbfss{M})$. For convenience, we will define $\mathbfss{Y} = \mathbfss{X}-\mathbfss{M}$ and $\bm{y}=\operatorname{vec}(Y)=\bm{x}-\boldsymbol{\mu}$. 
+
+The log-prior on $\bm{x}$ is
+\begin{equation}
+    \ln{P(\bm{x}|\boldsymbol{\mu},l_\text{g},l_\text{t},\sigma^2)} = \frac{1}{2}\ln|\mathbfss{K}^{-1}|-\frac{1}{2}\bm{y}^{^\intercal}\mathbfss{K}^{-1}\bm{y} -\frac{N_\text{g}N_\text{t}}{2}\ln2\upi,
+\end{equation}
+and the derivative with respect to a hyper-parameter of $\mathbfss{K}$ is
+\begin{align}
+    \frac{\partial\ln P}{\partial \theta} &= -\frac{1}{2}\operatorname{Tr}\left(\mathbfss{K}^{-1}\frac{\partial\mathbfss{K}}{\partial \theta}\right) + \frac{1}{2}\bm{y}^\intercal\mathbfss{K}^{-1}\frac{\partial\mathbfss{K}}{\partial \theta}\mathbfss{K}^{-1}\bm{y}.\label{eq:derlg} \\
+    &=  \frac{1}{2}\operatorname{Tr}\left(\frac{\partial\mathbfss{K}^{-1}}{\partial \theta}\mathbfss{K}\right) + \frac{1}{2}\bm{y}^\intercal\frac{\partial\mathbfss{K}^{-1}}{\partial \theta}\bm{y} \label{eq:derlt}
+\end{align}
+The gradient with respect to $\bm{y}$ is given by 
+\begin{equation}
+    \nabla_{\bm{y}}\ln P = -\left(\mathbfss{K}^{-1}\bm{y}\right)^\intercal,
+\end{equation}
+and thus the derivatives with respect to $\bm{x}$ and $\boldsymbol{\mu}$ can be derived by noting $\bm{y}=\bm{x}-\boldsymbol{\mu}$.
+
+
+The expressions above cannot be directly used in our case, because the $N_\text{t}N_\text{g} \times N_\text{t}N_\text{g}$ covariance matrix $\mathbfss{K}$ is too large to be directly inverted. We can side-step this computation by using Kronecker products, defined further down this paragraph, which allow the covariance matrix $\mathbfss{K}$ to be compactly written as
+\begin{equation}
+    \mathbfss{K} = \sigma^2\mathbfss{K}_\text{t}\otimes\mathbfss{K}_\text{g},
+\end{equation}
+where $\mathbfss{K}_\text{t}$ is the $N_\text{t} \times N_\text{t}$ matrix with elements
+\begin{equation}
+    K_{\text{t},ij} = \exp\left(-\frac{|t_i-t_j|}{l_{\mathrm{t}}}\right),
+\end{equation} and $\mathbfss{K}_\text{g}$ is the $N_\text{g} \times N_\text{g}$ matrix with elements
+\begin{equation}
+    K_{\text{g},ij} = \exp\left(-\frac{(g_i-g_j)^2}{2l_{\mathrm{g}}^2}\right) .
+\end{equation} The notation $\mathbfss{A}\otimes\mathbfss{B}$ refers to the Kronecker product, where if $\mathbfss{A}$ is an $N \times N$ matrix and $\mathbfss{B}$ is an $M \times M$ matrix, then the Kronecker product is defined by the block matrix
+\begin{equation}
+    \mathbfss{A}\otimes\mathbfss{B} = \begin{bmatrix}
+    A_{11}\mathbfss{B} & \hdots & A_{1M}\mathbfss{B} \\
+    \vdots             & \ddots & \vdots             \\
+    A_{N1}\mathbfss{B} & \hdots & A_{NM}\mathbfss{B}
+    \end{bmatrix}.
+\end{equation}
+The Kronecker product has a number of useful properties:
+\begin{align}
+    \left(\mathbfss{A} \otimes \mathbfss{B}\right)^{-1} &= \mathbfss{A}^{-1} \otimes \mathbfss{B}^{-1}, \\
+    \left(\mathbfss{A} \otimes \mathbfss{B}\right)^{\intercal} &= \mathbfss{A}^{\intercal} \otimes \mathbfss{B}^{\intercal}, \\
+    \left|\mathbfss{A} \otimes \mathbfss{B}\right| &= |\mathbfss{A}|^M|\mathbfss{B}|^N, \\
+    \operatorname{Tr}\left(\mathbfss{A} \otimes \mathbfss{B}\right) &= \operatorname{Tr}(\mathbfss{A})\operatorname{Tr}(\mathbfss{B}), \\
+    \left(\mathbfss{A}\otimes\mathbfss{B}\right) \left(\mathbfss{C}\otimes\mathbfss{D}\right)&= \left(\mathbfss{AC}\right)\otimes\left(\mathbfss{BD}\right).
+\end{align}
+The Kronecker product also interacts in useful ways with the vectorisation operator defined earlier. For $\mathbfss{A}$ and $\mathbfss{B}$ defined as earlier and $\mathbfss{Z}$ defined to be an $M \times N$ matrix,
+\begin{equation}
+    \left(\mathbfss{A} \otimes \mathbfss{B} \right)\operatorname{vec}(\mathbfss{Z}) = \operatorname{vec}\left(\mathbfss{B}^\intercal\mathbfss{Z}\mathbfss{A}\right).
+\end{equation}
+This property allows us to evaluate quadratic forms involving  the $NM \times NM$ matrix $\mathbfss{A}\otimes\mathbfss{B}$ without ever explicitly constructing it,
+\begin{equation}
+    \operatorname{vec}(\mathbfss{Z})^\intercal\left(\mathbfss{A} \otimes \mathbfss{B} \right)\operatorname{vec}(\mathbfss{Z}) = \operatorname{vec}(\mathbfss{Z})^\intercal \operatorname{vec}\left(\mathbfss{B}^\intercal\mathbfss{Z}\mathbfss{A}\right).
+\end{equation}
+%Furthermore, using the property $\operatorname{vec}(\mathbfss{A})^\intercal\operatorname{vec}(\mathbfss{B}) = \operatorname{Tr}(\mathbfss{A}^\intercal\mathbfss{B})$,
+%\begin{align}
+%    \operatorname{vec}(\mathbfss{Z})^\intercal\left(\mathbfss{A} \otimes \mathbfss{B} \right)\operatorname{vec}(\mathbfss{Z}) &= \operatorname{Tr}\left(\mathbfss{Z}^\intercal\mathbfss{B}^\intercal\mathbfss{Z}\mathbfss{A}\right)\nonumber \\
+%    &=\operatorname{vec}\left(\mathbfss{B}\mathbfss{Z}\right)^\intercal\operatorname{vec}\left(\mathbfss{Z}\mathbfss{A}\right).
+%\end{align}
+
+
+While the properties detailed above allow us to avoid inverting the $N_\text{t}N_\text{g} \times N_\text{t}N_\text{g}$ covariance matrix $\mathbfss{K}$, we must still invert the $N_\text{t} \times N_\text{t}$ covariance matrix $\mathbfss{K}_\text{t}$, which for $N_\text{t} = 8,967,691$ is still intractable. Our choice of the Ornstein–Uhlenbeck covariance kernel was motivated by the property that -- despite the covariance matrix being dense --- the inverse of the covariance matrix is tridiagonal. In particular, if the $t_i$ are regularly unit-spaced (such that $t_{i+1}-t_i = 1$ for all $i$), then the inverse covariance matrix reduces to the form
+\begin{equation}
+    \setlength{\arraycolsep}{2.5pt}
+    \medmuskip = 1mu
+    \mathbfss{K}_\text{t}^{-1} = \frac{1}{1-u^2}
+    \begin{bmatrix} 
+    1 & -u &   &        &   &   &   \\
+    -u & 1+u^2 & -u &        &   &   &   \\
+      & -u & 1+u^2 &        &   &   &   \\
+      &   &   & \ddots &   &   &   \\
+      &   &   &        & 1+u^2 & -u &   \\
+      &   &   &        & -u & 1+u^2 & -u \\
+      &   &   &        &   & -u & 1 
+    \end{bmatrix}, \label{eq:tridiagonal}
+\end{equation}
+where we have defined $u=\exp(-1/l_\text{t})$. This result allows us to compute matrix multiplications of the form $\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}$ in $O(N_\text{g}N_\text{t})$ time, rather than $O(N_\text{g}N_\text{t}^2)$ time. The results of Appendix \ref{sec:tridiagonal} allow us to derive a compact expression for the determinant of this matrix,
+\begin{equation}
+    |\mathbfss{K}_\text{t}^{-1}| = \frac{1}{\left(1-e^{-2/l_\text{t}}\right)^{N_\text{t}-1}}.
+\end{equation}
+With $N_\text{g}=35$, the covariance matrix $\mathbfss{K}_\text{g}$ is small enough for us to compute properties like $\mathbfss{Z}=\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}$ by solving the linear equation $\mathbfss{K}_\text{g}\mathbfss{Z}=\mathbfss{Y}$ for $\mathbfss{Z}$ and to directly compute $\log|\mathbfss{K}_\text{g}^{-1}|=-\log|\mathbfss{K}_\text{g}|$.
+
+Bringing the previous paragraphs of exposition together, we can expand the log-prior into the tractable form
+\begin{align}
+    \ln{P} = -\frac{N_\text{g}N_\text{t}}{2}\ln{(2\upi\sigma^2)} &+ \frac{N_\text{g}}{2}\ln|\mathbfss{K}_\text{t}^{-1}|- \frac{N_\text{t}}{2}\ln|\mathbfss{K}_\text{g}| \nonumber \\
+    &- \frac{1}{2\sigma^2}\operatorname{vec}\left(\mathbfss{Y}\right)^\intercal\operatorname{vec}\left(\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}\right). \label{eq:log-prior}
+\end{align}
+The gradient with respect to $\bm{y}$ becomes
+\begin{equation}
+    \nabla_{\bm{y}}\ln P = -\frac{1}{\sigma^2}\operatorname{vec}\left(\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}\right)^\intercal,
+\end{equation}
+which we can save on computing by re-using the final term of Eq. \ref{eq:log-prior}. The derivative with respect to $\sigma^2$ is
+\begin{equation}
+    \frac{\partial\ln P}{\partial\sigma^2} = -\frac{N_\text{g}N_\text{t}}{2\sigma^2}+\frac{1}{2\sigma^4}\operatorname{vec}\left(\mathbfss{Y}\right)^\intercal\operatorname{vec}\left(\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}\right),
+\end{equation}
+where can again save on evaluating the computationally expensive second term by re-using the final term of Eq. \ref{eq:log-prior}. The derivative with respect to $l_\text{g}$ can be computed using Eq. \ref{eq:derlg},
+\begin{align}
+    &\frac{\partial\ln P}{\partial l_\text{g}} = -\frac{1}{2}\operatorname{Tr}\left(\left(\mathbfss{K}_\text{t}^{-1}\otimes\mathbfss{K}_\text{g}^{-1} \right)\left(\mathbfss{K}_\text{t}\otimes\frac{\text{d}\mathbfss{K}_\text{g}}{\text{d}l_\text{g}} \right)\right) \nonumber \\
+    &+ \frac{1}{2\sigma^2}\bm{y}^\intercal\left(\mathbfss{K}_\text{t}^{-1}\otimes\mathbfss{K}_\text{g}^{-1} \right) \left(\mathbfss{K}_\text{t}\otimes\frac{\text{d}\mathbfss{K}_\text{g}}{\text{d}l_\text{g}} \right) \left(\mathbfss{K}_\text{t}^{-1}\otimes\mathbfss{K}_\text{g}^{-1} \right) \bm{y} \nonumber \\
+    &= -\frac{1}{2}\operatorname{Tr}\left(\mathbfss{I}_{N_\text{t}}\otimes\mathbfss{K}_\text{g}^{-1}\frac{\text{d}\mathbfss{K}_\text{g}}{\text{d}l_\text{g}} \right) + \frac{1}{2\sigma^2}\bm{y}^\intercal\left(\mathbfss{K}_\text{t}^{-1}\otimes \mathbfss{K}_\text{g}^{-1} \frac{\text{d}\mathbfss{K}_\text{g}}{\text{d}l_\text{g}} \mathbfss{K}_\text{g}^{-1}\right) \bm{y} \nonumber \\
+    &= -\frac{N_\text{t}}{2}\operatorname{Tr}\left(\mathbfss{J}_\text{g}\right) + \frac{1}{2\sigma^2}\operatorname{vec}\left(\mathbfss{J}_\text{g}^\intercal\mathbfss{Y}\right)^\intercal \operatorname{vec}\left(\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}\right),
+\end{align}
+where we defined the shorthand $\mathbfss{J}_\text{g} = \mathbfss{K}_\text{g}^{-1} \frac{\text{d}\mathbfss{K}_\text{g}}{\text{d}l_\text{g}}$. Using Eq. \ref{eq:derlt} and defining $\mathbfss{J}_\text{t} = \mathbfss{K}_\text{t}^{-1} \frac{\text{d}\mathbfss{K}_\text{t}}{\text{d}l_\text{t}}$, we can similarly arrive at
+\begin{equation}
+    \frac{\partial\ln P}{\partial l_\text{t}}= -\frac{N_\text{g}}{2}\operatorname{Tr}\left(\mathbfss{J}_\text{t}\right) + \frac{1}{2\sigma^2}\operatorname{vec}\left(\mathbfss{Y}\mathbfss{J}_\text{t}\right)^\intercal \operatorname{vec}\left(\mathbfss{K}_\text{g}^{-1}\mathbfss{Y}\mathbfss{K}_\text{t}^{-1}\right).
+\end{equation}
+Given that $\mathbfss{J}_\text{t}$ is an $N_\text{t} \times N_\text{t}$ matrix we compute the quantities in this expression by exploiting the tridiagonal nature of $\mathbfss{J}_\text{t}^{-1}$. We note that
+\begin{equation}
+    \operatorname{Tr}(\mathbfss{J}_\text{t}) = -\frac{2e^{-2/l_\text{t}}(N_\text{t}-1)}{1-e^{-2/l_\text{t}}},
+\end{equation}
+while each elem
+\begin{equation}
+    \left[\mathbfss{Y}\mathbfss{J}_\text{t}\right]_{ij} = \frac{1}{l_\text{t}^2}\left(\sum_{k=1}^{N_\text{t}}Y_{ij}u^{|j-k|} +\frac{1}{1+u^2}\left(Y_{i1}u^{j+1}+Y_{iN_\text{t}}u^{N-j+2} - Y_{ij}(1+u^2)\right)\right)
+\end{equation}
+
+The quantity $\mathbfss{J}_\text{t}$ can be computed in $O(N_\text{t}^2)$ time due to the tridiagonal nature of $\mathbfss{K}_\text{t}^{-1}$.
+
+
+\section{Conclusions}
+\label{sec:conclusion}
+
+
+\section*{Acknowledgements}
+DB thanks Magdalen College for his fellowship and the Rudolf Peierls Centre for Theoretical Physics for providing office space and travel funds. AE thanks the Science and Technology Facilities Council of
+the United Kingdom for financial support. This work has made use of data from the European Space Agency (ESA) mission \gaia (\url{https://www.cosmos.esa.int/gaia}), processed by the \gaia
+Data Processing and Analysis Consortium (DPAC,
+\url{https://www.cosmos.esa.int/web/gaia/dpac/consortium}). Funding for the DPAC
+has been provided by national institutions, in particular the institutions
+participating in the \gaia Multilateral Agreement.
+
+\section*{Data availability}
+The data underlying this article are publicly available from the European Space Agency's \gaia archive (\url{https://gea.esac.esa.int/archive/}). 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+\bibliographystyle{mnras}
+\bibliography{references} % if your bibtex file is called example.bib
+
+
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\appendix
+
+\section{Determinant of a tridiagonal matrix}
+\label{sec:tridiagonal}
+
+A convenient property of $n \times n$ tridiagonal matrices is that their determinant can be computed in $O(n)$ time through a recursion relation. If we take the general form of a tridiagonal matrix,
+\begin{equation}
+    f_n = 
+    \begin{bmatrix}
+    a_1 & b_1 &\\
+    c_1 & a_2 & b_2 & \\
+    & c_2 & a_3 & & \\
+    & & & \ddots &\\
+    & &  &  & a_{n-1} & b_{n-1} \\
+    & &  &  & c_{n-1} & a_n
+    \end{bmatrix},
+\end{equation}
+then, taking $f_i$ to be the $i \times i$ matrix composed of the first $i$ rows and columns of $f_n$, the determinant of $f_i$ can be calculated as
+\begin{equation}
+    f_i = a_if_{i-1}-b_{i-1}c_{i-1}f_{i-2},
+\end{equation}
+with the initial conditions $f_0=1$ and $f_{-1}=0$.
+
+For the particular case considered in Eq. \ref{eq:tridiagonal}, writing $u=\exp(-1/l)$, we have $b_i=c_i=-u$ for all i, $a_1 = a_n = 1$, and $a_i=1+u^2$ for $1<i<n$. For $i$ in the range $1<i<n$, the recursion relation simplifies to
+\begin{equation}
+    f_i = (1+u^2)f_{i-1}-u^2f_{i-2}.
+\end{equation}
+We can solve this recursion relation using the characteristic polynomial method, finding that
+\begin{equation}
+    f_i = A+Bu^{2i},
+\end{equation}
+and we can solve for the constants $A$ and $B$ by using $f_0=1$ and $f_1=1$ to find that $A=1$ and $B=0$, and thus $f_i=1$ for all $i<n$. We must manually take the final step to calculate $f_n$ ($a_n=1$ violates the recurrence relation) finding that,
+\begin{align}
+    f_n &= f_{n-1} - u^2f_{n-2} \nonumber \\
+        &= 1 - u^2.
+\end{align}
+
+\section{Rough work}
+
+\subsection{Bayes rule}
+
+\begin{align}
+    \operatorname{P}(k,p_1) &= \idotsint \operatorname{P}(k|\{p_i\}) \operatorname{P}(\{p_i\})\mathrm{d}p_2 \dots \mathrm{d}p_n  \\
+    &= \idotsint \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j) \mathrm{d}p_2 \dots \mathrm{d}p_n \\
+    &= \frac{1}{2^{n-1}} \sum_{A\in F_k^n} \prod_{1\in A} p_1 \prod_{1\in A^{\mathrm{c}}} (1-p_j) \\
+    &= \frac{1}{2^{n-1}} \left( p_1 \binom{n-1}{k-1} + (1-p_1)\binom{n-1}{k} \right) \label{eq:marginal}\\ 
+\end{align}
+and 
+\begin{align}
+    \operatorname{P}(k) &= \int_0^1 \operatorname{P}(k,p_1) \mathrm{d}p_1 \\
+    &= \frac{1}{2^{n}}\left( \binom{n-1}{k-1} + \binom{n-1}{k} \right) = \frac{1}{2^{n}}\binom{n}{k},
+\end{align}
+thus by Bayes rule
+\begin{align}
+    \operatorname{P}(p_1|k) &= 2\frac{p_1 \binom{n-1}{k-1} + (1-p_1)\binom{n-1}{k}}{\binom{n}{k}} \\
+    &= \frac{2}{n}\left(p_1k+(1-p_1)(n-k)\right).
+\end{align}
+
+Alternatively we can derive the joint PDF over $k$, $p_1$ and $p_2$
+\begin{align}
+    \operatorname{P}&(k,p_1,p_2) = \idotsint \operatorname{P}(k|\{p_i\}) \operatorname{P}(\{p_i\})\mathrm{d}p_3 \dots \mathrm{d}p_n  \\
+    &= \idotsint \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j) \mathrm{d}p_3 \dots \mathrm{d}p_n \\
+    &= \frac{1}{2^{n-2}} \left( p_1p_2 \binom{n-2}{k-2} + p_1(1-p_2)\binom{n-2}{k-1}\right. \\
+    &\left.+ (1-p_1)p_2\binom{n-2}{k-1}+(1-p_1)(1-p_2)\binom{n-2}{k} \right) \\
+\end{align}
+thus by Bayes rule
+\begin{align}
+    \operatorname{P}&(p_1,p_2|k) = 4\frac{p_1p_2 \binom{n-2}{k-2} + (p_1(1-p_2)+ (1-p_1)p_2)\binom{n-2}{k-1}+(1-p_1)(1-p_2)\binom{n-2}{k}}{\binom{n}{k}} \\
+    &= \frac{4}{n(n-1)}\left(p_1p_2k(k-1)+(p_1(1-p_2)+ (1-p_1)p_2)k(n-k) +(1-p_1)(1-p_2)(n-k)(n-k-1) \right).
+\end{align}
+
+Note that this is all without less of generality, we can replace the indices in the above equations with any $i,j\in (1,\dots,N)$. The expectation of $p_1$ is 
+\begin{align}
+    \operatorname{E}(p_1) &= \int_0^1 p_1 \frac{2}{n}\left(p_1k+(1-p_1)(n-k)\right) \mathrm{d}p_1 \\
+    &= \frac{1}{3}(1+\frac{k}{n}).
+\end{align}
+The covariance of $p_1$ and $p_2$ is 
+\begin{align}
+    \operatorname{Cov}&(p_1,p_2) = \iint_0^1 (p_1-\operatorname{E}(p_1))(p_2-\operatorname{E}(p_2)) \operatorname{P}(p_1,p_2|k) \mathrm{d}p_1\mathrm{d}p_2 \\
+    &= -\frac{k(n-k)}{9n^2(n-1)} = -\frac{1}{9\binom{n}{k}n(n-1)}.
+\end{align}
+Note that these covariances are typically much smaller than unity. For $n\geq5$, the maximum value they can take occurs for $(n,k)=(5,2)$ or $(5,3)$ and is only $-0.00\overline{6}$.
+
+\section{Incompleteness Renormalisation}
+
+Given that only sources with $k\geq 5$ are published in \gaia, the likelihood of an observed $k$ is
+\begin{equation}
+    \operatorname{P}(k|\{p_i\}, k\geq 5) = \begin{cases}
+    \frac{\operatorname{P}(k|\{p_i\})}
+    {1-\sum_{k'=0}^4\operatorname{P}(k'|\{p_i\})} & k\geq 5 \\
+    0 & \mathrm{otherwise}.
+    \end{cases}
+\end{equation}
+Assuming $p_i$ are independent for all $i$
+\begin{align}
+    \operatorname{P}(k|\{p_i\}) &= 
+    \frac{\operatorname{P}(\{p_i\}|k)\operatorname{P}(k)}{\operatorname{P}(\{p_i\})} \\
+    &= \frac{ \operatorname{P}(k)\prod_i\operatorname{P}(p_i|k)}{\prod_i\operatorname{P}(p_i)} \\
+    &= \frac{\operatorname{P}(k)\prod_i \frac{\operatorname{P}(k|p_i)\operatorname{P}(p_i)}{\operatorname{P}(k)}}{\prod_i\operatorname{P}(p_i)} \\
+     &= \frac{\prod_{i=1}^n\operatorname{P}(k|p_i)}{\operatorname{P}(k)^{n-1}}.
+\end{align}
+where $\operatorname{P}(k)$ is the evidence, \edits{I am only 30\% that what I've done above is correct. What do you think?}
+\begin{equation}
+    \operatorname{P}(k|\{p_i\}, k\geq 5) =
+    \frac{\operatorname{P}(k)^{1-n}\prod_{i=1}^n \operatorname{P}(k|p_i)}
+    {1-\sum_{k'=1}^4 \operatorname{P}(k')^{1-n}\prod_{i=1}^n\operatorname{P}(k'|p_i)} \quad k\geq 5
+\end{equation}
+
+From Eq.~\ref{eq:marginal}
+\begin{align}
+    \operatorname{P}(k|p_i) &= \frac{1}{2^{n-1}} \left( p_i \binom{n-1}{k-1} + (1-p_i)\binom{n-1}{k}\right).\\
+    &= \operatorname{P}(k) (\alpha(k) + \beta(k) p_i)
+\end{align}
+where
+\begin{align}
+    &\alpha = \frac{1}{\operatorname{P}(k)}\frac{1}{2^{n-1}} \binom{n-1}{k} \\
+    &\beta = \frac{1}{\operatorname{P}(k)}\frac{1}{2^{n-1}} \left(\binom{n-1}{k-1} - \binom{n-1}{k}\right).
+\end{align}
+
+With this, the likelihood becomes
+\begin{equation}
+    \operatorname{P}(k|\{p_i\}, k\geq 5) = 
+    \frac{\operatorname{P}(k)\prod_{i=1}^n \alpha(k) + \beta(k)p_i}
+    {1-\sum_{k'=1}^4 \operatorname{P}(k')\prod_{i=1}^n\alpha(k') + \beta(k')p_i} \quad k\geq 5
+\end{equation}
+
+Now we want to marginalise this over all $p_i$ for $i\neq 1$ to get $$\operatorname{P}(k|p_i, k\geq 5)$$. We'll start by just marginalising over $p_2$
+\begin{align}
+    \operatorname{P}(&k|\{p_{i\neq 2}\}, k\geq 5) \\= &
+    \operatorname{P}(k)\prod_{i\neq 2}^n (\alpha(k) + \beta(k)p_i) \nonumber \\&\int_0^1 \frac{\alpha(k) + \beta(k)p_2}
+    {1-\sum_{k'=1}^4 \operatorname{P}(k')\prod_{i=1}^n\alpha(k') + \beta(k')p_i} \mathrm{d}p_2\quad k\geq 5 \\= &
+    \operatorname{P}(k)\prod_{i\neq 2}^n (\alpha(k) + \beta(k)p_i) \int_0^1 \frac{\alpha(k) + \beta(k)p_2}
+    {A_2 + B_2 p_2} \mathrm{d}p_2\quad k\geq 5 
+\end{align}
+where 
+\begin{align}
+    &A_2 = 1-\sum_{k'=0}^4 \prod_{i\neq2}^n (\alpha(k') + \beta(k')p_i) \alpha(k')\\ 
+    &B_2 = \sum_{k'=0}^4 \prod_{i\neq2}^n (\alpha(k') + \beta(k')p_i) \beta(k'). 
+\end{align}
+Performing the integration
+\begin{align}
+    \operatorname{P}(&k|\{p_{i\neq 2}\}, k\geq 5) \\= &
+    \operatorname{P}(k)\prod_{i\neq 2}^n(\alpha(k) + \beta(k)p_i) \\ &\hspace{0.5cm} \left[ \frac{(\alpha(k)B_2-\beta(k)A_2)\log(1+B_2/A_2) + \beta(k)B_2}{B_2^2}\right].
+\end{align}
+The last term would be OK to integrate again as it's in the same form as the previous integral. The first term is horrific. In terms of $p_3$ we have the ratio of two quadratics times the log of a linear equation. It seems unlikely that this will be tractable to integrate...
+
+In conclusion, either we might find that the first term is small and ignore it in every dimension of the integral, or it's significant and this becomes intractable.
+
+It looks like we might need to resort to numerical integration methods.
+
+\section{Adam look here!}
+
+Suppose we flip $n$ coins with each coin $i\in\{1,\dots,n\}$ having a bias $p_i$. Given the $\{p_i\}$, the probability mass function over the number of heads $k$ is the Poisson Binomial distribution:
+\begin{equation}
+\operatorname{P}(k|\{p_i\}) = \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j),
+\end{equation}
+where $F_k^n$ is the set of all subsets of $k$ integers that can be picked from $\{1,\dots,n\}$. $A$ denotes a set in $F_k^n$ and $A^{\mathrm{c}}$ is the complement of $A$.
+
+Suppose we don't know what the $\{p_i\}$ are but we have one observation $k$. We want to calculate the posterior over $p_1$. If we assume uniform priors over each of the $\{p_i\}$, then we can derive the joint probability distribution,
+\begin{align}
+    \operatorname{P}(k,p_1) &= \idotsint \operatorname{P}(k|\{p_i\}) \operatorname{P}(\{p_i\})\mathrm{d}p_2 \dots \mathrm{d}p_n  \\
+    &= \idotsint \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j) \mathrm{d}p_2 \dots \mathrm{d}p_n \\
+    &= \frac{1}{2^{n-1}} \sum_{A\in F_k^n} \prod_{1\in A} p_1 \prod_{1\in A^{\mathrm{c}}} (1-p_j) \\
+    &= \frac{1}{2^{n-1}} \left( p_1 \binom{n-1}{k-1} + (1-p_1)\binom{n-1}{k} \right) \\
+\end{align}
+and the marginal probability
+\begin{align}
+    \operatorname{P}(k) &= \int_0^1 \operatorname{P}(k,p_1) \mathrm{d}p_1 \\
+    &= \frac{1}{2^{n}}\left( \binom{n-1}{k-1} + \binom{n-1}{k} \right) = \frac{1}{2^{n}}\binom{n}{k},
+\end{align}
+thus we can obtain the posterior on $p_1$ via Bayes' theorem
+\begin{align}
+    \operatorname{P}(p_1|k) &= 2\frac{p_1 \binom{n-1}{k-1} + (1-p_1)\binom{n-1}{k}}{\binom{n}{k}} \\
+    &= \frac{2}{n}\left(p_1k+(1-p_1)(n-k)\right).
+\end{align}
+
+That was all lovely and analytic, right? The problem arises when we truncate the data. Suppose we only see values of $k> c$. Then we must re-normalize the Poisson Binomial PMF to get
+\begin{equation}
+\operatorname{P}(k|k>c,\{p_i\}) = \begin{cases}
+\frac{\sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j)}{1-\sum_{r=0}^{c}\sum_{A\in F_r^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j)}, & c<k\leq n \\
+0, & \mathrm{otherwise}.
+\end{cases}
+\end{equation}
+The term in the denominator is just the probability that $k>c$. Clearly, we can't just follow the same procedure as before. The integrals would be nasty! I know -- empirically -- that the difference between $P(p_1|k,k>c)$ and $P(p_1|k)$ is small and that it tends to zero as $n$ grows large. One idea that I had was to do a simple expansion of the denominator (e.g. the standard $1/(1-x)$ expansion ) and only keep the zeroth and first order terms. I should then be able to do the integrals w.r.t. $p_2,\dots p_n$ and, after counting up the terms, get a result that is of the form
+\begin{equation}
+    \operatorname{P}(k,p_1|k>c) \approx \operatorname{P}(k,p_1) + \alpha p_1^2 + \beta p_1(1-p_1) + \gamma (1-p_1)^2.
+\end{equation}
+Unfortunately, I get stuck evaluating what $\alpha$, $\beta$ and $\gamma$ are.
+
+If we require that the correction terms above have an integral of zero, i.e. they don't affect the normalisation of the PMF, then $\beta = -2(\alpha+\gamma)$.
+
+\section{Implementation}
+
+\begin{table}
+\centering
+\caption{The magnitude bins used on-board by \gaia to determine priority for deletion if the downlink bandwidth is exhausted and which we used to bin the epoch measurements in this work. %This table is a reproduction of  
+The first three columns of this table are a reproduction of  \citealp[Table 1.10 Sec. 1.3.3 of][]{2018gdr2.reptE...1D}. }
+\begin{tabular}{lcccc}
+\hline Packet & Magnitude range & Deletion (\%) & $l\;(\mathrm{day})$ & $\varepsilon\;(\mathrm{day}^{-1})$ \\
+\hline SP1-1 & (5.00,13.00) & 0 & 150.49 & 1.53  \\
+SP1-2 & (13.00,16.00) & 0 & 1.57 & 1.58  \\
+SP1-3 & (16.00,16.30) & 1 & 9.65 & 1.48  \\
+SP1-4 & (16.30,17.00) & 1 & 1.78 & 1.52  \\
+SP1-5 & (17.00,17.20) & 2 & 7.01 & 1.52  \\
+SP1-6 & (17.20,18.00) & 2 & 2.15 & 1.52  \\
+SP1-7 & (18.00,18.10) & 2 & 11.11 & 1.51  \\
+SP1-8 & (18.10,19.00) & 2 & 2.01 & 1.44  \\
+SP1-9 & (19.00,19.05) & 2 & 7.02 & 1.30  \\
+SP1-10 & (19.05,19.95) & 7 & 0.28 & 1.21  \\
+SP1-11 & (19.95,20.00) & 2 & 7.87 & 1.00  \\
+SP1-12 & (20.00,20.30) & 13 & 1.39 & 0.99  \\
+SP1-13 & (20.30,20.40) & 12 & 2.32 & 1.08  \\
+SP1-14 & (20.40,20.50) & 13 & 2.21 & 1.07  \\
+SP1-15 & (20.50,20.60) & 28 & 2.51 & 1.02  \\
+SP1-16 & (20.60,20.70) & 28 & 3.01 & 0.97  \\
+SP1-17 & (20.70,20.80) & 28 & 8.64 & 0.84  \\
+SP1-18 & (20.80,20.90) & 28 & 19.67 & 0.73  \\
+SP1-19 & (20.90,21.00) & 24 & 15.10 & 0.63  \\     \hline
+\end{tabular}
+\label{tab:spbins}
+\end{table}
+
+\section{Discrete}
+Define $K=\Sigma p_i$, then
+\begin{equation}
+\operatorname{P}(K=k|\{p_i\}) = \sum_{A\in F_k^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j),
+\end{equation}
+and 
+\begin{equation}
+\operatorname{P}(K\geq c|\{p_i\}) = \sum_{j=c}^{n}\sum_{A\in F_j^n} \prod_{i\in A} p_i \prod_{j\in A^{\mathrm{c}}} (1-p_j).
+\end{equation}
+Then
+\begin{equation}
+    \operatorname{P}(\{p_i\}|K\geq c) = \frac{\operatorname{P}(K\geq c | \{p_i\}) \operatorname{P}(\{p_i\}) }{\operatorname{P}(K\geq c) },
+\end{equation}
+and 
+\begin{align}
+    \operatorname{P}(\{p_i\}&|K=k,K\geq c) = \frac{\operatorname{P}(K=k | K\geq c,\{p_i\}) \operatorname{P}(\{p_i\}|K\geq c) }{\operatorname{P}(K=k|K\geq c) }, \\
+    &= \frac{\operatorname{P}(K=k | K\geq c,\{p_i\}) \operatorname{P}(K\geq c | \{p_i\}) \operatorname{P}(\{p_i\}) }{\operatorname{P}(K=k|K\geq c)\operatorname{P}(K\geq c) }.
+\end{align}
+Note that
+\begin{equation}
+    \operatorname{P}(K=k | K\geq c,\{p_i\}) = \begin{cases}
+\frac{\operatorname{P}(K=k | \{p_i\})}{\operatorname{P}(K\geq c|\{p_i\})}, & k\geq c,\\
+0, & k<c.
+\end{cases}
+\end{equation}
+Substituting this in, assuming $k\geq c$, we find
+\begin{equation}
+    \operatorname{P}(\{p_i\}|K=k,K\geq c) = \frac{\operatorname{P}(K=k | \{p_i\}) \operatorname{P}(\{p_i\}) }{\operatorname{P}(K=k|K\geq c)\operatorname{P}(K\geq c) }.
+\end{equation}
+This implies that the posterior on $p_1$ is completely independent of the selection???
+
+
+Introducing the variable $x_i \sim \mathrm{Bernoulli}(p_i)$ where $p_i$ is now continuous and $K=\sum x_i$
+\begin{equation}
+    \operatorname{P}(x_i \,|\,K=k, K\geq c)  = \int_0^1 \mathrm{d}p_i \operatorname{P}(x_i\,|\,K=k, K\geq c, p_i) \operatorname{P}(p_i \,|\,K=k, K\geq c).
+\end{equation}
+$x_i$ is conditionally dependent on $p_i$ only, so $\operatorname{P}(x_i\,|\,K=k, K\geq c, p_i) = p_i$. 
+\begin{equation}
+    \operatorname{P}(x_i \,|\,K=k, K\geq c)  = \int_0^1 \mathrm{d}p_i p_i \operatorname{P}(p_i \,|\,K=k, K\geq c).
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
