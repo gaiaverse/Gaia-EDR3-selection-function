@@ -1,0 +1,3 @@
+[submodule "Paper"]
+	path = Paper
+	url = ./Paper
