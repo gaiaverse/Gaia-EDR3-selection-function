@@ -168,14 +168,26 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
     double YJt_invKgYinvKt = 0.0;
 
 	std::cout << "\t\tInitialisig stonking big vector" << std::endl;
-	Eigen::Map<Eigen::Matrix<double, Ng,Nt, Eigen::RowMajor>> X(x.data());
+	//Eigen::Map<Eigen::Matrix<double, Ng,Nt, Eigen::RowMajor>> X(x.data());
     
     std::cout << "\t\tBeginning big loop" << std::endl;
     for (int ig = 0; ig < Ng; ig++) 
     {
 		std::cout << "\t\t\t" << ig << std::endl;
-        vec_Y = X.row(ig).array() - vec_invKgmu[ig];
-        vec_invKgY = (invKg.row(ig)*X).array() - vec_invKgmu[ig];
+        //~ vec_Y = X.row(ig).array() - vec_invKgmu[ig];
+        //~ vec_invKgY = (invKg.row(ig)*X).array() - vec_invKgmu[ig];
+
+		int offset = Nh + Ng + ig*Nt;
+		for (int id = 0; id < Nt; ++id)
+		{
+			vec_Y[id] = x[offset + id] - vec_invKgmu[ig];
+			vec_invKgY[id] = -vec_invKgmu[ig];
+			
+			for (int k = 0; k < Ng; ++k)
+			{
+				vec_invKgY[id] += invKg(ig,k) * x[Nh + Ng + k*Nt + id];
+			}
+		}
 
         for (int it = 0; it < Nt; it++)
         {
