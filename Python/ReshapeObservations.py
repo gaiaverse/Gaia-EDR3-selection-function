@@ -4,7 +4,7 @@ import multiprocessing
 import numpy as np
 import h5py
 
-N_core = 4
+N_core = 1
 N_maxobs = 256
 N_mag = 213+1 # The +1 is to give a bin for the stars without G magnitudes to sit
 
@@ -48,5 +48,5 @@ def mp_worker(args):
     return mag_idx
 
 pool = multiprocessing.Pool(N_core)
-for result in tqdm.tqdm(pool.imap(mp_worker, np.random.permutation(range(N_mag))),total=N_mag):
+for result in tqdm.tqdm(pool.imap(mp_worker, range(N_mag)),total=N_mag):
     continue
