@@ -145,7 +145,7 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
         // Compute quantities we will need later
         invKg = decomp.inverse();
         logdetKg = decomp.logAbsDeterminant();
-		std::cout << invKg << std::endl;
+	
         // Set flag so we don't do this again
         Kg_decomposed = true;
     }
