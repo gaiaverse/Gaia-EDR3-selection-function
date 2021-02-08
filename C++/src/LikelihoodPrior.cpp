@@ -177,7 +177,7 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
         //~ vec_Y = X.row(ig).array() - vec_invKgmu[ig];
         //~ vec_invKgY = (invKg.row(ig)*X).array() - vec_invKgmu[ig];
 
-		int offset = Nh + Ng + ig*Nt;
+		int offset = ig*Nt;
 		for (int id = 0; id < Nt; ++id)
 		{
 			vec_Y[id] = x[offset + id] - vec_invKgmu[ig];
@@ -185,7 +185,9 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
 			
 			for (int k = 0; k < Ng; ++k)
 			{
-				vec_invKgY[id] += invKg(ig,k) * x[Nh + Ng + k*Nt + id];
+				int xId = k*(Nt) + id;
+
+				vec_invKgY[id] += invKg(ig,k) * x[xId];
 			}
 		}
 
