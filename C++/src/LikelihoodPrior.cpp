@@ -179,7 +179,7 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
 
         for (int it = 0; it < Nt; it++)
         {
-
+			std::cout << "\t\t\t\t" << i << std::endl;
             // Compute invKgYinvKt(ig,it)
             switch (it)
             {
