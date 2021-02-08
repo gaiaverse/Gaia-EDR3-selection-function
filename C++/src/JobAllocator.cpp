@@ -25,6 +25,7 @@
 #include "DescentFunctor.h"
 #include "FileHandler.h"
 #include "Likelihood.h"
+#include "LikelihoodPrior.h"
 #include "timeCodes.h"
 #include "GlobalVariables.h"
 
@@ -236,7 +237,7 @@ void gradientCheck()
 	int dim = Nh + Ng*(Nt + 1);
 	VectorXd y = initialisedVector(dim);
 	std::cout << y.transpose() << std::endl;
-	Likelihood L = Likelihood(Data,Bins,dim,ProcessRank);
+	LikelihoodPrior L = LikelihoodPrior(Data,Bins,dim,ProcessRank);
 	int w = 35;
 	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
 	
@@ -291,7 +292,7 @@ int main(int argc, char *argv[])
 		std::cout << std::endl;
 	}
 	
-	//enter workers into their main action loops
+	//~ //enter workers into their main action loops
 	LoadData(ProcessRank);
 	
 	//gradientCheck();

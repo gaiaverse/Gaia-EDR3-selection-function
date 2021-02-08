@@ -5,7 +5,7 @@ Eigen::VectorXd initialisedVector(int n)
     
     
     //~ //initialisation of hyperhyperparameters
-    std::vector<double> hyperhyper = {0,-1};
+    std::vector<double> hyperhyper = {1,1};
     for (int i = 0; i < Nh; ++i)
     {
 		x[i] = hyperhyper[i];
