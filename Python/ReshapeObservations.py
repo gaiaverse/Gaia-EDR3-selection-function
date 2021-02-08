@@ -12,7 +12,7 @@ def mp_worker(args):
     
     mag_idx = args
 
-    with open(f'/mnt/extraspace/GaiaSelectionFunction/Code/Python/NewData/gaiaedr3_selection_function_files/{mag_idx}.csv', 'r') as f:
+    with open(f'/mnt/extraspace/GaiaSelectionFunction/NewData/gaiaedr3_selection_function_files/{mag_idx}.csv', 'r') as f:
         
         # Empty lists for storage
         F = []
@@ -38,7 +38,7 @@ def mp_worker(args):
         N_times = T.size
     
     # Write data
-    with h5py.File(f'/mnt/extraspace/GaiaSelectionFunction/Code/Python/NewData/gaiaedr3_selection_function_files_h5/{mag_idx}.h5', 'w') as h: 
+    with h5py.File(f'/mnt/extraspace/GaiaSelectionFunction/NewData/gaiaedr3_selection_function_files_h5/{mag_idx}.h5', 'w') as h: 
         
         h.create_dataset('f', data = F, compression = "lzf", chunks = True, shape = (N_sources,), dtype = np.float64, fletcher32 = False, shuffle = True)
         h.create_dataset('k', data = K, compression = "lzf", chunks = True, shape = (N_sources,), dtype = np.uint16, fletcher32 = False, shuffle = True, scaleoffset=0)
