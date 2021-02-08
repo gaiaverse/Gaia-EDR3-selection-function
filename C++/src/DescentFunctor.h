@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
 #include <mpi.h>
-#include "libs/Eigen/Core"
+#define EIGEN_STACK_ALLOCATION_LIMIT 0
 #define EIGEN_MPL2_ONLY
+#include "libs/Eigen/Core"
+
 #include "Star.h"
 #include "LikelihoodPrior.h"
 

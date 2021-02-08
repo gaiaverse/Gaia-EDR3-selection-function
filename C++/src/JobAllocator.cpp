@@ -6,6 +6,8 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
+
+#define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "libs/Eigen/Core"
 #include <fstream>
 #define EIGEN_MPL2_ONLY
