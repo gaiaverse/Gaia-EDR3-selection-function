@@ -18,7 +18,7 @@ void LikelihoodPrior::Calculate(Eigen::VectorXd& x)
 
 void LikelihoodPrior::Prior(Eigen::VectorXd& params)
 {
-
+	std::cout << "Prior Called" << std::endl;
     // Unpack parameters
     //double lt = exp(params(0));
     //double lg = exp(params(1));
@@ -58,6 +58,7 @@ void LikelihoodPrior::Prior(Eigen::VectorXd& params)
 	//~ std::cout << "\t Prior X Calculated" << std::endl;
 	
 	//~ std::cout << Value << std::endl;
+	std::cout << "Prior Finished" << std::endl;
 }
 
 void LikelihoodPrior::PriorLengthscale(double lengthscale, int param_index)
@@ -88,7 +89,7 @@ void LikelihoodPrior::PriorVariance(double variance, int param_index)
 void LikelihoodPrior::PriorMu( Map<VectorXd> & mu)
 {
     // Implements the Gaussian Process prior on mu ~ N(mu_mean,mu_variance)
-    
+    std::cout << "\tPrior Mu Called" << std::endl;
     VectorXd diff = mu.array() - mu_mean;
   
     Value += - 0.5 * Ng * log( 2.0 * M_PI * mu_variance ) - 0.5 * diff.squaredNorm() / mu_variance;
@@ -104,6 +105,7 @@ void LikelihoodPrior::PriorMu( Map<VectorXd> & mu)
 
 void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt, double sigma2)
 {
+	std::cout << "Prior X Called" << std::endl;
     // Implements the Gauss-Markov prior on x
    
     // Useful shorthands
@@ -165,10 +167,13 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
     double Y_invKgYinvKt = 0.0;
     double YJt_invKgYinvKt = 0.0;
 
+	std::cout << "\t\tInitialisig stonking big vector" << std::endl;
 	Eigen::Map<Eigen::Matrix<double, Ng,Nt, Eigen::RowMajor>> X(x.data());
     
+    std::cout << "\t\tBeginning big loop" << std::endl;
     for (int ig = 0; ig < Ng; ig++) 
     {
+		std::cout << "\t\t\t" << ig << std::endl;
         vec_Y = X.row(ig).array() - vec_invKgmu[ig];
         vec_invKgY = (invKg.row(ig)*X).array() - vec_invKgmu[ig];
 
@@ -232,5 +237,5 @@ void LikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double lt,
             
     //dlnP_dsigma2 = -Ng*Nt/2.0/sigma2 + Y_invKgYinvKt/2.0/sigma2/sigma2
     Gradient[1] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
-
+	std::cout << "Prior X Completed" << std::endl;
 }
