@@ -17,7 +17,7 @@ using namespace Eigen;
 //Likelihood class acts as a container for the values of the log liklihood and its gradient
 //Also contains the data necessary to update these values when Calculate(newPosition) is called
 
-class Likelihood
+class LogLikelihood
 {
 	public:
 		
@@ -26,7 +26,7 @@ class Likelihood
 		
 		
 		
-		Likelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
+		LogLikelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 	protected:

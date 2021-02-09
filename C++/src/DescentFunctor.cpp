@@ -6,7 +6,7 @@
 
 void DescentFunctor::DistributeCalculations(const TVector &y)
 {
-	std::cout << "Calculation distribution " << LoopID << " begun" << std::endl;
+	std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
 	VectorXd x = y;
 	//ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
@@ -27,7 +27,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	// IMPORTANT!
 	// The Root also executes their own calculations of L on their provided data 
 	L.Calculate(x);
-	double l = L.Value; // + prior //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
+	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	
 	//collect values
 	CurrentGradient = VectorXd::Zero(n);

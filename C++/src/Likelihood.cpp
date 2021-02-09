@@ -1,6 +1,6 @@
-#include "Likelihood.h"
+#include "LogLikelihood.h"
 
-Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
+LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
 {
 	ID = id;
 	Value = 0.0;
@@ -18,7 +18,7 @@ Likelihood::Likelihood(const std::vector<Star> &data, std::vector<int> & magBins
 	perBinP = std::vector<std::vector<double>>(magBins.size(),std::vector<double>(Nt,0.0));
 }
 
-void Likelihood::Calculate(Eigen::VectorXd& x)
+void LogLikelihood::Calculate(Eigen::VectorXd& x)
 {
 
 	Reset();	
@@ -43,7 +43,7 @@ void Likelihood::Calculate(Eigen::VectorXd& x)
 
 }
 
-void Likelihood::Reset()
+void LogLikelihood::Reset()
 {
 	Value = 0;
 	for (int i = 0; i < Gradient.size(); ++i)
@@ -52,7 +52,7 @@ void Likelihood::Reset()
 	}
 }
 
-void Likelihood::GeneratePs(Eigen::VectorXd&x)
+void LogLikelihood::GeneratePs(Eigen::VectorXd&x)
 {
 	for (int i = 0; i < MagBins.size(); ++i)
 	{
@@ -66,7 +66,7 @@ void Likelihood::GeneratePs(Eigen::VectorXd&x)
 	}
 }
 
-void Likelihood::PerStarContribution(int star)
+void LogLikelihood::PerStarContribution(int star)
 {
 	Star candidate = Data[star];
 

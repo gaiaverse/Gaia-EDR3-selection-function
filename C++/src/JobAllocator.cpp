@@ -67,7 +67,7 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 	int nParameters = Nh+Ng*(Nt + 1);
 	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
-	std::cout << "\t New solver loop initialised" << std::endl;
+	std::cout << "\nA new solving routine has been initialised..." << std::endl;
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
@@ -94,14 +94,12 @@ void RootProcess()
 	int nLoops = 1;
 	VectorXd x = initialisedVector(nParameters);
 
-	std::cout << "The size of the position vector is " << sizeof(x) << std::endl;
-
 	int logStopper = -5;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,1000000,condition);
+		x = RootMinimiser(x,1000,condition);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -113,8 +111,7 @@ void RootProcess()
 		}
 		
 	}
-    // position vector - load with initial guess, will be overwritten by the final estimate
-  
+
 	FinalResult(x);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
@@ -168,7 +165,7 @@ void WorkerProcess()
 		else
 		{
 			hasFinished = true;
-			std::cout << "Worker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
+			std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
 	}
 }
