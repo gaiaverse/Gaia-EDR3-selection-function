@@ -26,8 +26,8 @@
 #include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
-#include "Likelihood.h"
-#include "LikelihoodPrior.h"
+#include "LogLikelihood.h"
+#include "LogLikelihoodPrior.h"
 #include "timeCodes.h"
 #include "GlobalVariables.h"
 
@@ -131,7 +131,7 @@ void WorkerProcess()
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data,Bins,dimensionality,ProcessRank);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	
@@ -236,7 +236,7 @@ void gradientCheck()
 	int dim = Nh + Ng*(Nt + 1);
 	VectorXd y = initialisedVector(dim);
 	std::cout << y.transpose() << std::endl;
-	LikelihoodPrior L = LikelihoodPrior(Data,Bins,dim,ProcessRank);
+	LogLikelihoodPrior L = LogLikelihoodPrior(Data,Bins,dim,ProcessRank);
 	int w = 35;
 	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
 	

@@ -6,7 +6,7 @@
 #include "libs/Eigen/Core"
 
 #include "Star.h"
-#include "LikelihoodPrior.h"
+#include "LogLikelihoodPrior.h"
 
 #include "timeCodes.h"
 
@@ -32,7 +32,7 @@ class DescentFunctor: public Problem<double>
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
 		const std::vector<Star> &Data; 
-		LikelihoodPrior L;
+		LogLikelihoodPrior L;
 		int LoopID;
 		std::chrono::time_point<std::chrono::system_clock> Start;
 		void ExamineInterestVectors(Eigen::VectorXd &position);
