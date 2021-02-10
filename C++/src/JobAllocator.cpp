@@ -6,6 +6,8 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
+
+#define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "libs/Eigen/Core"
 #include <fstream>
 #define EIGEN_MPL2_ONLY
@@ -24,7 +26,8 @@
 #include "Star.h"
 #include "DescentFunctor.h"
 #include "FileHandler.h"
-#include "Likelihood.h"
+#include "LogLikelihood.h"
+#include "LogLikelihoodPrior.h"
 #include "timeCodes.h"
 #include "GlobalVariables.h"
 
@@ -64,7 +67,7 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 	int nParameters = Nh+Ng*(Nt + 1);
 	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
-	std::cout << "\t New solver loop initialised" << std::endl;
+	std::cout << "\nA new solving routine has been initialised..." << std::endl;
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
@@ -91,14 +94,12 @@ void RootProcess()
 	int nLoops = 1;
 	VectorXd x = initialisedVector(nParameters);
 
-	std::cout << "The size of the position vector is " << sizeof(x) << std::endl;
-
 	int logStopper = -5;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,1000000,condition);
+		x = RootMinimiser(x,1000,condition);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -110,8 +111,7 @@ void RootProcess()
 		}
 		
 	}
-    // position vector - load with initial guess, will be overwritten by the final estimate
-  
+
 	FinalResult(x);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
@@ -131,7 +131,7 @@ void WorkerProcess()
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	Likelihood L = Likelihood(Data,Bins,dimensionality,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data,Bins,dimensionality,ProcessRank);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	
@@ -165,7 +165,7 @@ void WorkerProcess()
 		else
 		{
 			hasFinished = true;
-			std::cout << "Worker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
+			std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
 	}
 }
@@ -236,7 +236,7 @@ void gradientCheck()
 	int dim = Nh + Ng*(Nt + 1);
 	VectorXd y = initialisedVector(dim);
 	std::cout << y.transpose() << std::endl;
-	Likelihood L = Likelihood(Data,Bins,dim,ProcessRank);
+	LogLikelihoodPrior L = LogLikelihoodPrior(Data,Bins,dim,ProcessRank);
 	int w = 35;
 	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
 	
@@ -291,8 +291,8 @@ int main(int argc, char *argv[])
 		std::cout << std::endl;
 	}
 	
-	//enter workers into their main action loops
-	LoadData(ProcessRank);
+	//~ //enter workers into their main action loops
+	//LoadData(ProcessRank);
 	
 	//gradientCheck();
 	if (ProcessRank == RootID) 
