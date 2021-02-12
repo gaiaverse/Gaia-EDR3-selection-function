@@ -4,41 +4,6 @@ import sys
 import numpy as np, healpy as hp, scipy.stats
 import h5py, tqdm
 
-
-def gen_lambda(lmax, l, m, nside, hpx_ring_0):
-
-    alm_hp = np.zeros(int((lmax+1)*(lmax+2)/2))
-    _lambda = np.zeros((int((lmax+1)**2),nside))
-
-    for i,(_l,_m) in enumerate(zip(tqdm.tqdm(l),m)):
-        if _m > 0.0:
-            hp_idx = np.where((l_hp==_l) & (m_hp == _m))[0]
-            alm_hp[hp_idx] = 1.0
-            _lambda[i] = hp.sphtfunc.alm2map(alm_hp+0.j*alm_hp,nside=nside,verbose=False)[hpx_ring_0]
-            alm_hp[hp_idx] = 0.0
-        elif _m < 0.0:
-            hp_idx = np.where((l_hp==_l) & (m_hp == -_m))[0]
-            alm_hp[hp_idx] = 1.0
-            _lambda[i] = hp.sphtfunc.alm2map(0.*alm_hp+1.j*alm_hp,nside=nside,verbose=False)[hpx_ring_0]
-            alm_hp[hp_idx] = 0.0
-        else:
-            hp_idx = np.where((l_hp==_l) & (m_hp == 0))[0]
-            alm_hp[hp_idx] = 1.0
-            _lambda[i] = hp.sphtfunc.alm2map(alm_hp+0.j*alm_hp,nside=nside,verbose=False)[hpx_ring_0]
-            alm_hp[hp_idx] = 0.0
-
-    return _lambda
-
-def gen_exponential(lmax, npix, phi):
-
-    _exponential = np.zeros((2*lmax+1,npix)) + 0.j
-
-    for m in range(-lmax, lmax+1):
-        _exponential[m+lmax] = np.exp(1.j*m*phi)
-
-    return _exponential
-
-
 nside = int(sys.argv[1])
 lmax = int(sys.argv[2])
 Npix = hp.nside2npix(nside)
@@ -52,15 +17,28 @@ Nmodes_healpy = int((lmax+1)*(lmax+2)/2)
 
 # Ring idxs of pixels with phi=0
 theta, phi = hp.pix2ang(nside, np.arange(hp.nside2npix(nside)))
-hpx_ring_0 = np.argwhere(phi==0)[:,0]
+theta_ring = np.unique(theta)
 
-_lambda = gen_lambda(lmax, l, m, nside, hpx_ring_0)
-_exponential = gen_exponential(lmax, Npix, phi)
+# Generate Lambda
+alm_hp = np.zeros(Nmodes_healpy)
+_lambda = np.zeros((Nmodes, 4*nside-1))
+for i,(_l,_m) in enumerate(zip(tqdm.tqdm(l),m)):
+    hp_idx = np.where((l_hp==_l) & (m_hp == _m))[0]
+    alm_hp[hp_idx] = 1.0
+    _lambda[i] = np.real( scipy.special.sph_harm(np.abs(_m), _l, theta_ring*0., theta_ring) )
+    alm_hp[hp_idx] = 0.0
 
+# Generate Exponential
+azimuth = np.ones((2*lmax+1,Npix))
+for _m in range(-lmax, lmax+1):
+    if _m<0:   azimuth[_m+lmax] = np.sin(-_m*phi)
+    elif _m>0: azimuth[_m+lmax] = np.cos(_m*phi)
+    else: pass
 
+save_kwargs = {'compression':"lzf", 'chunks':True, 'fletcher32':False, 'shuffle':True}
 with h5py.File('/data/asfe2/Projects/gaia_edr3/sphericalharmonics_decomposed_nside{0}_lmax{1}.h5'.format(nside,lmax), 'w') as f:
     # Create datasets
-    f.create_dataset('lambda', data = _lambda, compression = "lzf", chunks = True, shape = (lmax, Npix,), dtype = np.float64, fletcher32 = False, shuffle = True)
-    f.create_dataset('exponential', data = _exponential, compression = "lzf", chunks = True, shape = (Nmodes, nside, ), dtype = np.complex128, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('l', data = l, compression = "lzf", chunks = True, shape = (Nmodes, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
-    f.create_dataset('m', data = m, compression = "lzf", chunks = True, shape = (Nmodes,), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
+    f.create_dataset('lambda', data = _lambda, shape = (Nmodes, 4*nside-1,), dtype = np.float64, **save_kwargs)
+    f.create_dataset('azimuth',data = azimuth, shape = (2*lmax+1, Npix, ),   dtype = np.float64, **save_kwargs)
+    f.create_dataset('l',      data = l,       shape = (Nmodes,), dtype = np.uint32, scaleoffset=0, **save_kwargs)
+    f.create_dataset('m',      data = m,       shape = (Nmodes,), dtype = np.uint32, scaleoffset=0, **save_kwargs)
