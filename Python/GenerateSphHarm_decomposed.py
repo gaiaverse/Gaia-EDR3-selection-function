@@ -29,12 +29,12 @@ def gen_lambda(lmax, l, m, nside, hpx_ring_0):
 
     return _lambda
 
-def gen_exponential(lmax, npix, ring_id, ring_x, ring_phi0, N_ring):
+def gen_exponential(lmax, npix, phi):
 
     _exponential = np.zeros((2*lmax+1,npix)) + 0.j
 
     for m in range(-lmax, lmax+1):
-        _exponential[m+lmax] = np.exp(1.j*m* (ring_phi0[ring_id] + 2*np.pi*ring_x/N_ring[ring_id]))
+        _exponential[m+lmax] = np.exp(1.j*m*phi)
 
     return _exponential
 
@@ -54,21 +54,8 @@ Nmodes_healpy = int((lmax+1)*(lmax+2)/2)
 theta, phi = hp.pix2ang(nside, np.arange(hp.nside2npix(nside)))
 hpx_ring_0 = np.argwhere(phi==0)[:,0]
 
-# Number of pixels in the ring of the given pixel
-Npix_ring = np.hstack((np.arange(4,nside*4+1,4),
-                       np.zeros(nside*2-1).astype(int)+nside*4,
-                       np.arange(4,nside*4+1,4)[::-1]))
-# Ring ID
-ring_id = np.array([], dtype=int)
-for i in range(4*nside-1): ring_id=np.hstack((ring_id, np.zeros(Npix_ring[i], dtype=int)+i))
-# Minimum phi in the ring of the given pixel
-ring_phi0 = scipy.stats.binned_statistic(ring_id, phi, statistic='min', bins=np.arange(nside*4)-0.5).statistic
-# Index x of pixel in ring
-ring_x = np.array([], dtype=int)
-for i in range(4*nside-1): ring_x=np.hstack((ring_x, np.arange(Npix_ring[i])))
-
 _lambda = gen_lambda(lmax, l, m, nside, hpx_ring_0)
-_exponential = gen_exponential(lmax, Npix, ring_id, ring_x, ring_phi0, Npix_ring)
+_exponential = gen_exponential(lmax, Npix, phi)
 
 
 with h5py.File('/data/asfe2/Projects/gaia_edr3/sphericalharmonics_decomposed_nside{0}_lmax{1}.h5'.format(nside,lmax), 'w') as f:
