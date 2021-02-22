@@ -55,6 +55,23 @@ def sphharm_sum_truth(alm, nside, lmax):
 
     return np.sum(result)
 
+@njit
+def real_harmonics(_lambda, azimuth, m, lmax, jpix):
+    """
+    Get real harmonic coefficients from _lambda, azimuth
+    -----
+    _lambda - ndarray - (Nmode, Nring)
+    azimuth - ndarray - (2*lmax+1, Npix)
+    m - ndarray - (Nmode)
+    lmax - int
+    jpix - ndarray - (Npix)
+    """
+    Y = np.zeros((m.shape[0], jpix.shape[0]))
+    for i,j in enumerate(jpix):
+        for nu, _m in enumerate(m):
+            Y[nu,i] = _lambda[nu,j]*azimuth[_m+lmax,i]
+    return Y
+
 if __name__=='__main__':
 
     nside = int(sys.argv[1])
@@ -70,13 +87,30 @@ if __name__=='__main__':
 
     # Ring idxs of pixels with phi=0
     theta, phi = hp.pix2ang(nside, np.arange(hp.nside2npix(nside)))
-    theta_ring, jpix = np.unique(theta, return_inverse=True)
+    theta_ring, unique_idx, jpix = np.unique(theta, return_index=True, return_inverse=True)
 
-    # Generate Lambda
-    alm_hp = np.zeros(Nmodes_healpy)
+    # Generate lambda
     _lambda = np.zeros((Nmodes, 4*nside-1))
-    for i,(_l,_m) in enumerate(zip(tqdm.tqdm(l),m)):
-        _lambda[i] = (-1)**np.abs(_m) * np.real( scipy.special.sph_harm(np.abs(_m), _l, theta_ring*0., theta_ring) )
+    if False: # From scipy
+        # For |m|>0 this comes out a factor of 2 smaller than the healpy version
+        # For m<0 there's also a factor of (-1)^m difference
+        for i,(_l,_m) in enumerate(zip(tqdm.tqdm(l),m)):
+            _lambda[i] = (-1)**np.abs(_m) * np.real( scipy.special.sph_harm(np.abs(_m), _l, theta_ring*0., theta_ring) )
+    if True: # From healpy
+        alm_hp = np.zeros(Nmodes_healpy)
+        for i,(_l,_m) in enumerate(zip(tqdm.tqdm(l),m)):
+            i_hp = hp.sphtfunc.Alm.getidx(lmax, _l, np.abs(_m))
+            alm_hp = np.zeros(Nmodes_healpy)*(0.+0.j)
+            # Get real component
+            alm_hp[i_hp] = 1.+0.j
+            map_hp = (1.+0.j)*hp.sphtfunc.alm2map(alm_hp,nside=nside, verbose=False)
+            # Add imaginary component
+            alm_hp[i_hp] = 0.+1.j
+            map_hp += (0.-1.j)*hp.sphtfunc.alm2map(alm_hp,nside=nside, verbose=False)
+            alm_hp[i_hp] = 0.+0.j
+            map_hp /= np.exp(1.j*np.abs(_m)*phi)
+            # Select unique latitude indices
+            _lambda[i] = (-1)**np.abs(_m) * np.real(map_hp)[unique_idx]
 
     # Generate Exponential
     azimuth = np.ones((2*lmax+1,Npix))
