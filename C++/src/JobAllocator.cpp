@@ -292,7 +292,7 @@ int main(int argc, char *argv[])
 	}
 	
 	//~ //enter workers into their main action loops
-	//LoadData(ProcessRank);
+	LoadData(ProcessRank);
 	
 	//gradientCheck();
 	if (ProcessRank == RootID) 

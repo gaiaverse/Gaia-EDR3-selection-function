@@ -6,6 +6,8 @@
 
 void DescentFunctor::DistributeCalculations(const TVector &y)
 {
+	std::cout << "\t\tDescent functor has been activated" << std::endl;
+	
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
 	VectorXd x = y;
 	//std::cout << "Position:\n" << x.transpose() << std::endl;

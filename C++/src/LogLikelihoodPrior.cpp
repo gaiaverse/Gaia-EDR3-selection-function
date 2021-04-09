@@ -2,6 +2,7 @@
 
 void LogLikelihoodPrior::Calculate(Eigen::VectorXd& x)
 {
+	std::cout << "\t\t\tThe prior-log-likelihood function hass been called" << std::endl;
 	Reset();		
 	GeneratePs(x);
 
