@@ -1,7 +1,7 @@
 #include "GlobalVariables.h"
 Eigen::VectorXd initialisedVector(int n)
 {
-	 VectorXd x = VectorXd::Zero(n);
+	 VectorXd x = VectorXd::Random(n);
     
     
     //~ //initialisation of hyperhyperparameters
@@ -14,7 +14,7 @@ Eigen::VectorXd initialisedVector(int n)
 	//initialisation of boring old hyperparameters
 	for (int i = 0; i < Ng; ++i)
 	{
-		x[Nh + i] = -1;//sin(2 * M_PI * (double)i/5) * exp(-(double)i/30);
+		x[Nh + i] = -3;//sin(2 * M_PI * (double)i/5) * exp(-(double)i/30);
 	}
 	
 	

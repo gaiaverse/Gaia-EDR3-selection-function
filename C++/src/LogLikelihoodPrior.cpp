@@ -18,7 +18,6 @@ void LogLikelihoodPrior::Calculate(Eigen::VectorXd& x)
 
 void LogLikelihoodPrior::Prior(Eigen::VectorXd& params)
 {
-	std::cout << "Prior Called" << std::endl;
     // Unpack parameters
     double lt = exp(params(0));
     double sigma2 = exp(params(1));
@@ -37,7 +36,6 @@ void LogLikelihoodPrior::Prior(Eigen::VectorXd& params)
 	PriorMu(mu);
 	PriorX(x, mu, lt, sigma2);
 
-	std::cout << "Prior Finished" << std::endl;
 }
 
 void LogLikelihoodPrior::PriorLengthscale(double lengthscale, int param_index)
@@ -181,7 +179,7 @@ void LogLikelihoodPrior::PriorX( Map<VectorXd> & x,  Map<VectorXd> & mu, double 
 
     Gradient[0] += lt*(-Ng*TrJt/2.0 + YJt_invKgYinvKt/(2.0*sigma2));
     Gradient[1] += -Ng*Nt/2.0 + Y_invKgYinvKt/2.0/sigma2;
-	std::cout << "Prior X Completed" << std::endl;
+
 }
 
 void LogLikelihoodPrior::MakeCovarianceMatrix()

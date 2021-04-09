@@ -72,7 +72,7 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
 //	realCriteria.xDelta = 0;
-	realCriteria.gradNorm = 0;
+	//realCriteria.gradNorm = 0;
 	solver.setStopCriteria(realCriteria);
 	solver.minimize(fun,x);
 
@@ -91,15 +91,15 @@ void RootProcess()
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	int nLoops = 1;
+	int nLoops = 10;
 	VectorXd x = initialisedVector(nParameters);
 
-	int logStopper = -5;
+	int logStopper = -3;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,1000,condition);
+		x = RootMinimiser(x,170,condition);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
