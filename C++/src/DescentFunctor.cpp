@@ -8,7 +8,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 {
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
 	VectorXd x = y;
-	std::cout << "Position:\n" << x.transpose() << std::endl;
+	//std::cout << "Position:\n" << x.transpose() << std::endl;
 	//ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int n = x.size();
@@ -42,7 +42,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	
 
 	CurrentValue = Lsum;
-	std::cout << "Gradient:\n" << CurrentGradient.transpose() << std::endl;
+	//std::cout << "Gradient:\n" << CurrentGradient.transpose() << std::endl;
 }
 
 

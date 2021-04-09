@@ -99,7 +99,7 @@ void RootProcess()
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,170,condition);
+		x = RootMinimiser(x,200,condition);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
