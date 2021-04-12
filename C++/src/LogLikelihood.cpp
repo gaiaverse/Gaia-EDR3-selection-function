@@ -28,6 +28,18 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
         ++i;
     
     );
+
+    int j = 0;
+    forLineVectorInFile(needlet_file,",",
+    
+        int t = stoi(FILE_LINE_VECTOR[0]);
+        
+        needlet_u[j] = stoi(FILE_LINE_VECTOR[0]);
+        needlet_v[j] = stoi(FILE_LINE_VECTOR[1]);
+        needlet_w[j] = stoi(FILE_LINE_VECTOR[2]);
+        ++j;
+    
+    );
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)

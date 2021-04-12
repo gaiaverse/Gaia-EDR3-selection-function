@@ -49,8 +49,13 @@ class LogLikelihood
 		std::vector<double> subpmf  = std::vector<double>(suitablyLargeNumber,0.0);
 
 		std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
-		std::vector<double> healpix_fov_1 = std::vector(0.0,Nt);
-    	std::vector<double> healpix_fov_2 = std::vector(0.0,Nt);
+		std::vector<int> healpix_fov_1 = std::vector(0.0,Nt);
+    	std::vector<int> healpix_fov_2 = std::vector(0.0,Nt);
+
+    	std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
+		std::vector<int> needlet_u = std::vector(0.0,number_of_rows);
+    	std::vector<int> needlet_v = std::vector(0.0,number_of_rows);
+    	std::vector<double> needlet_w = std::vector(0.0,number_of_rows);
         
 };
 
