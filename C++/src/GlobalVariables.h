@@ -3,9 +3,18 @@
 #include "libs/Eigen/Core"
 using Eigen::VectorXd;
 
-const int Nh = 2; // number of hyper-hyper-parameters
-const int Ng = 81;//35; // number of magnitude bins
+const int Nm = 81;//35; // number of magnitude bins
 const int Nt = 8967691; // number of time bins
+const int healpix_order = 0; // order of healpix map, can be any integer >= 0
+const int needlet_order = -1; // maximum order of needlets used, can be any integer >= -1
+
+int healpix_nside = 2^healpix_order;
+int Nl = 12*healpix_nside^2;
+int Ns = 1;
+for (int i = 0; i <= needlet_order; i++) {
+    Ns += 12*2^(2*i);
+}
+
 const double SingularityPreventer = 10e-13;
 
 const double mu_mean = -3.0;

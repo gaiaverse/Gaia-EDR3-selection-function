@@ -16,6 +16,18 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	//initialise an array of nbins per nt to store the modified values of the position vector each time step
 	
 	perBinP = std::vector<std::vector<double>>(magBins.size(),std::vector<double>(Nt,0.0));
+
+
+    int i = 0;
+    forLineVectorInFile(healpix_fov_file,",",
+    
+        int t = stoi(FILE_LINE_VECTOR[0]);
+        
+        healpix_fov_1[i] = stoi(FILE_LINE_VECTOR[1]);
+        healpix_fov_2[i] = stoi(FILE_LINE_VECTOR[2]);
+        ++i;
+    
+    );
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)

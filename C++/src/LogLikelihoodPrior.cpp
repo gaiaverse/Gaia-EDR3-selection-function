@@ -20,41 +20,17 @@ void LogLikelihoodPrior::Calculate(Eigen::VectorXd& x)
 void LogLikelihoodPrior::Prior(Eigen::VectorXd& params)
 {
     // Unpack parameters
-    double lt = exp(params(0));
-    double sigma2 = exp(params(1));
 
-    
-	
-    Map<VectorXd> mu(params.segment(Nh, Ng).data(), Ng);
+    Map<VectorXd> mu(params.segment(0, Nm).data(), Nm);
 
-    Map<VectorXd> x(params.segment(Nh + Ng, Ng * Nt).data(), Ng * Nt);
+    Map<VectorXd> zml(params.segment(Nm, Nm*Nl).data(), Nm*Nl);
+
+    Map<VectorXd> zt(params.segment(Nm + Nm*Nl, Nt).data(), Nt);
     
 
-    //new priors
-    PriorLengthscale(lt,  0);
-    PriorVariance(sigma2, 1);
+    PriorMu(mu);
+	Prior(x, mu, lt, sigma2);
 
-	PriorMu(mu);
-	PriorX(x, mu, lt, sigma2);
-
-}
-
-void LogLikelihoodPrior::PriorLengthscale(double lengthscale, int param_index)
-{
-    // Implements an InverseGamma(1,2) prior for the lengthscales
-    
-    double two_over_lengthscale = 2.0/lengthscale;
-    
-    Value += log(two_over_lengthscale/lengthscale) - two_over_lengthscale;
-    Gradient[param_index] += two_over_lengthscale*(1.0-lengthscale);
-}
-
-void LogLikelihoodPrior::PriorVariance(double variance, int param_index)
-{
-    // Implements a Gamma(1,1) prior for the variances
-    
-    Value -= variance;
-    Gradient[param_index] -= variance;
 }
 
 void LogLikelihoodPrior::PriorMu( Map<VectorXd> & mu)

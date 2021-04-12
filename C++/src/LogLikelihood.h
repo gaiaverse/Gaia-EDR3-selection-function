@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <string>
 
 #define EIGEN_STACK_ALLOCATION_LIMIT 0 
 #include "libs/Eigen/Core"
@@ -46,6 +47,10 @@ class LogLikelihood
 		int suitablyLargeNumber = 1024;
 		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
 		std::vector<double> subpmf  = std::vector<double>(suitablyLargeNumber,0.0);
+
+		std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
+		std::vector<double> healpix_fov_1 = std::vector(0.0,Nt);
+    	std::vector<double> healpix_fov_2 = std::vector(0.0,Nt);
         
 };
 
