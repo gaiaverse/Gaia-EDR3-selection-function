@@ -11,6 +11,7 @@
 
 #define EIGEN_MPL2_ONLY
 
+#include "FileHandler.h"
 #include "Star.h"
 #include "GlobalVariables.h"
 using Eigen::VectorXd;
@@ -25,40 +26,44 @@ class LogLikelihood
 		long double Value;
 		Eigen::VectorXd Gradient;
 		
-		
+		int needletN;
 		
 		LogLikelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
+		
+		std::vector<int> needlet_u;
+    	std::vector<int> needlet_v;
+    	std::vector<double> needlet_w;
 	protected:
 			
 		//member data 
 		int ID;
 		const std::vector<Star> &Data;
 		std::vector<int> MagBins;
-		std::vector<std::vector<double>> perBinP;
-				
+		
 		//internal functions
 		void Reset();
-		void GeneratePs(Eigen::VectorXd & position);
-		void PerStarContribution(int id);
+
+		void PerStarContribution(int id,Eigen::VectorXd & position);
 	
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
+		
 		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
 		std::vector<double> subpmf  = std::vector<double>(suitablyLargeNumber,0.0);
 
 		std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
-		std::vector<int> healpix_fov_1 = std::vector(0.0,Nt);
-    	std::vector<int> healpix_fov_2 = std::vector(0.0,Nt);
+		std::vector<int> healpix_fov_1 = std::vector<int>(0,Nt);
+    	std::vector<int> healpix_fov_2 = std::vector<int>(0,Nt);
 
     	std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-		std::vector<int> needlet_u = std::vector(0.0,number_of_rows);
-    	std::vector<int> needlet_v = std::vector(0.0,number_of_rows);
-    	std::vector<double> needlet_w = std::vector(0.0,number_of_rows);
+		
+		
+		
         
 };
 
 
 //function stolen from a git repo somewhere, see the implementation for more details
-void direct_convolution_local(std::vector<double> & probsFull,std::vector<unsigned int> &probsIndex, int probslen, std::vector<double> & result);
+void direct_convolution_local(std::vector<double> & probs, int probslen, std::vector<double> & result);

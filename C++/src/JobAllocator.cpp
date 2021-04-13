@@ -64,7 +64,7 @@ void FinalResult(Eigen::VectorXd & finalpos)
 
 VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 {
-	int nParameters = Nh+Ng*(Nt + 1);
+	int nParameters = totalRawParams;
 	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
 	
 	std::cout << "\nA new solving routine has been initialised..." << std::endl;
@@ -87,7 +87,7 @@ void RootProcess()
 	//tell the workers to resize their parameter vectors
 	
 
-	int nParameters = Nh+Ng*(Nt + 1);
+	int nParameters = totalRawParams;
 	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
@@ -233,7 +233,7 @@ void gradientCheck()
 {
 	std::fstream file;
 	file.open("gradientTest.txt",std::ios::out);
-	int dim = Nh + Ng*(Nt + 1);
+	int dim = Nt + Ns * Nm;
 	VectorXd y = initialisedVector(dim);
 	std::cout << y.transpose() << std::endl;
 	LogLikelihoodPrior L = LogLikelihoodPrior(Data,Bins,dim,ProcessRank);
@@ -242,7 +242,7 @@ void gradientCheck()
 	
 	double dm = 0.001;
 	double ddm = 1e-3;
-	int xsId = Nh + Ng;
+	int xsId = Nm;
 	for (double xs = -1; xs < 1; xs+=dm)
 	{
 		VectorXd x = y;

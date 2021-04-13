@@ -41,6 +41,14 @@ class DescentFunctor: public Problem<double>
 		VectorXd CurrentGradient;
 		
 		VectorXd PrevLock;
+		
+		void Reset();
+		void ForwardTransform(VectorXd &z);
+		void BackwardTransform();
+		
+		VectorXd TransformedPosition;
+		VectorXd TransformedGradient;
+		void ResetPosition();
 		const double lockLim = 1e-15;
 	public:
 		 using typename cppoptlib::Problem<double>::Scalar;
@@ -55,6 +63,10 @@ class DescentFunctor: public Problem<double>
 				CurrentGradient = VectorXd::Zero(nParams);
 				
 				PrevLock = VectorXd::Random(nParams);
+				
+				int transformedSize = totalTransformedParams; 
+				TransformedPosition = VectorXd::Zero(transformedSize);
+				TransformedGradient = VectorXd::Zero(transformedSize);
 		}
 	    void DistributeCalculations(const TVector &y);
  

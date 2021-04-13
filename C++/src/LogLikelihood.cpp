@@ -13,33 +13,25 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
 	subpmf = std::vector<double>(suitablyLargeNumber,0.0);
 	
-	//initialise an array of nbins per nt to store the modified values of the position vector each time step
 	
-	perBinP = std::vector<std::vector<double>>(magBins.size(),std::vector<double>(Nt,0.0));
-
-
     int i = 0;
-    forLineVectorInFile(healpix_fov_file,",",
+    forLineVectorInFile(healpix_fov_file,',',
     
-        int t = stoi(FILE_LINE_VECTOR[0]);
-        
-        healpix_fov_1[i] = stoi(FILE_LINE_VECTOR[1]);
-        healpix_fov_2[i] = stoi(FILE_LINE_VECTOR[2]);
+        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
+        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);
         ++i;
     
     );
 
-    int j = 0;
-    forLineVectorInFile(needlet_file,",",
     
-        int t = stoi(FILE_LINE_VECTOR[0]);
-        
-        needlet_u[j] = stoi(FILE_LINE_VECTOR[0]);
-        needlet_v[j] = stoi(FILE_LINE_VECTOR[1]);
-        needlet_w[j] = stoi(FILE_LINE_VECTOR[2]);
-        ++j;
-    
+    forLineVectorInFile(needlet_file,',',
+ 
+        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
+        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
+        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
     );
+    
+    needletN = needlet_u.size();
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)
@@ -48,19 +40,13 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 	Reset();	
 	
 
-	
-	GeneratePs(x);
-	
-	
-	
-
 	for (int i = 0; i < Data.size(); ++i)
 	{
 		if (ID == 0)
 		{
 			std::cout << "\t\tCalculating contribution from star " << i << std::endl;
 		}
-		PerStarContribution(i);
+		PerStarContribution(i,x);
 	}
 
 	
@@ -76,21 +62,8 @@ void LogLikelihood::Reset()
 	}
 }
 
-void LogLikelihood::GeneratePs(Eigen::VectorXd&x)
-{
-	for (int i = 0; i < MagBins.size(); ++i)
-	{
-		int bin = MagBins[i];
-		int offset = Nh + Ng + bin* Nt;
-		
-		for (int j = 0; j < Nt; ++j)
-		{
-			perBinP[i][j] = 1.0/(1.0 - exp(-x[offset + j]));
-		}
-	}
-}
 
-void LogLikelihood::PerStarContribution(int star)
+void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 {
 	Star candidate = Data[star];
 
@@ -98,7 +71,26 @@ void LogLikelihood::PerStarContribution(int star)
 	int n = candidate.nVisit;
 	
 	//copies in-place into pmf
-	direct_convolution_local(perBinP[candidate.gBin],candidate.TimeSeries,n,pmf);
+	
+	std::vector<double> pt = std::vector<double>(0,n); ///what is p?
+	std::vector<double> pml = std::vector<double>(0,n);
+	std::vector<double> p = std::vector<double>(0,n);
+	
+	for (int i = 0; i < n; ++i)
+	{
+		int t= candidate.TimeSeries[i];
+		double xt = x[t];
+		double xml1 = x[Nt + healpix_fov_1[t] * Nm + candidate.gBin];
+		double xml2 = x[Nt + healpix_fov_2[t] * Nm + candidate.gBin];
+		
+		pt[i] = 1.0 / (1.0 + exp( -xt));
+		pml[i] = 1.0 / (1.0 + exp( - (xml1 + xml2)  ) );
+		
+		p[i] = pt[i] *pml[i];
+	}
+	
+	//FIX THIS TO STOP SILLY INDEXING
+	direct_convolution_local(p,n,pmf);
 
 	double likelihood = pmf[k];
 	
@@ -124,24 +116,33 @@ void LogLikelihood::PerStarContribution(int star)
 		}
 	}
 	
-	int offset = Nh + Ng + candidate.gBin * Nt;
+	
 	for (int i = 0; i < n; ++i)
 	{
-		double p = perBinP[candidate.gBin][candidate.TimeSeries[i]];
-		double inv_p = 1.0/(1 - p);
+		
+		double inv_p = 1.0/(1 - p[i]);
 		
 		subpmf[0] = pmf[0] * inv_p;
 		for (int j = 1; j < n; ++j)
 		{
-			subpmf[j] = (pmf[j] - subpmf[j-1]*p)*inv_p;
+			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_p;
 		}
-		subpmf[n-1] = pmf[n]/p;
+		subpmf[n-1] = pmf[n]/p[i];
 		
 		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-		double dPdX = p * (1 - p);
+		
+		
+		
+				
+		
 		int t= candidate.TimeSeries[i];
 
-		Gradient[offset + t] = dFdP * dPdX;
+		Gradient[t] += dFdP * p[i] * (1.0 - pt[i]);
+		
+		int offset = Nt + candidate.gBin;
+		double mlGrad = dFdP * p[i] * (1.0 - pml[i]);
+		Gradient[offset +  healpix_fov_1[t] * Nm] += mlGrad;
+		Gradient[offset +  healpix_fov_2[t] * Nm] += mlGrad;
 	}
 }
 
@@ -149,7 +150,7 @@ void LogLikelihood::PerStarContribution(int star)
 
             
             
-void direct_convolution_local(std::vector<double> & probsFull,std::vector<unsigned int> &probsIndex, int probslen, std::vector<double> & result)
+void direct_convolution_local(std::vector<double> &  probs, int probslen, std::vector<double> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
 
@@ -157,19 +158,18 @@ void direct_convolution_local(std::vector<double> & probsFull,std::vector<unsign
 	double signal[2];
 	double t,tmp;
 	
-	
-	int index0 = probsIndex[0];
+
 	// initialize (old kernel)
-	result[0] = 1-probsFull[index0];
-	result[1] = probsFull[index0];
+	result[0] = 1-probs[0];
+	result[1] = probs[0];
 	
 	// loop through all other probs
 	for(int i=1; i < probslen; ++i)
 	{
-		int index = probsIndex[i];
+
 		//~ // set signal
-		signal[0] = probsFull[index];
-		signal[1] = 1-probsFull[index];
+		signal[0] = probs[i];
+		signal[1] = 1-probs[i];
 		
 		// initialize result and calculate the two edge cases
 		result[oldlen] = signal[0] * result[oldlen-1];
