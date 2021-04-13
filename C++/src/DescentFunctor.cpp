@@ -6,21 +6,21 @@
 
 void DescentFunctor::ResetPosition()
 {
-	int n = Nt+Nm*Nl;
-	
-	for (int i =0; i < n; ++i)
+
+	for (int i =0; i < totalTransformedParams; ++i)
 	{
-		TransformedPosition[n] = 0;
-		TransformedGradient[n] = 0;
+		TransformedPosition[i] = 0;
+		TransformedGradient[i] = 0;
 	}
 	
-	for (int i = 0; i < CurrentGradient.size(); ++i)
+	for (int i = 0; i < totalRawParams; ++i)
 	{
 		CurrentGradient[i] = 0;
 	}
 	
 	
 }
+
 void DescentFunctor::ForwardTransform(VectorXd &z)
 {
 	//check that cholesky decomposition has occurred, if not execute it now
@@ -38,7 +38,8 @@ void DescentFunctor::ForwardTransform(VectorXd &z)
 	double ub = -u*ua;
 	double previous = z[Nt-1]; // First case is trivial
 	TransformedPosition[Nt-1] = mut + sigmat * previous;
-	for (int i = Nt - 2; i >= 0; i--) {
+	for (int i = Nt - 2; i >= 0; i--) 
+	{
     	previous = (z[i] - ub * previous) / ua;
     	TransformedPosition[i] = mut + sigmat * previous;
 	}
@@ -50,7 +51,7 @@ void DescentFunctor::ForwardTransform(VectorXd &z)
 		{
 			for (int n = 0; n < Nm; ++n)
 			{
-				//b[s*Nm+m] += L.CholeskyKg[m,n] * z[Nt+s*Nm+n];
+				b[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
 			}
 		}
 	}
@@ -94,7 +95,8 @@ void DescentFunctor::BackwardTransform()
 		{
 			for (int n = 0; n < Nm; ++n)
 			{
-				//CurrentGradient[Nt+s*Nm+n] += L.CholeskyKg[m,n]*bGradient[s*Nm+m];
+				
+				CurrentGradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bGradient[s*Nm+m];
 			}
 		}
 	}
@@ -141,61 +143,6 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	
 	L.Prior(RawPosition,&CurrentValue,&CurrentGradient);
 }
-
-
-void DescentFunctor::ExamineInterestVectors(Eigen::VectorXd& position)
-{
-	//use this vector to pluck variables of interest into the comparison vector
-	std::vector<int> interestIDs = {0,1,2,3,4};
-	
-	std::vector<std::string> interestNames = {"log_lt", "log_lg", "log_sigma2", "log_m","log_tau2"};
-	if (LoopID == 0)
-	{
-		std::cout << "\nInitial guess parameters: \n\t";
-		InterestVectors.resize(interestIDs.size());
-		for (int i = 0; i < interestIDs.size(); ++i)
-		{
-			InterestVectors[i] = position[i];
-			std::cout << interestNames[i] << " = " << position[i] << "   ";
-		}
-		std::cout << std::endl;
-	}
-	else
-	{
-		auto checkpoint = std::chrono::system_clock::now();
-		std::string duration = formatDuration(Start,checkpoint);
-		std::cout << "\n\n Loop " << LoopID << ": updating parameters. Current runtime: " + duration;
-		std::cout << " \n\t";
-		for (int i = 0; i < interestIDs.size(); ++i)
-		{
-			double delta = (position[i] - InterestVectors[i])/InterestVectors[i]*100;
-			InterestVectors[i] = position[i];
-			std::string val;
-			if (!std::isnan(delta) && !std::isinf(delta))
-			{
-				val = std::to_string(delta);
-				if (delta <  0.0)
-				{
-					val = val;
-				}
-				else
-				{
-					val = "+" + val;
-				}
-				
-				val += "%";
-			}
-			else
-			{
-				val = "NaN";
-			}
-			std::cout << interestNames[i] << " = " << InterestVectors[i] << "(" << val << ")";
-		}
-		std::cout << "\n";
-	}
-}
-
-
 
 double DescentFunctor::value(const TVector &y)
 {

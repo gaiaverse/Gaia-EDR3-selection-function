@@ -12,8 +12,6 @@ class Star
 		unsigned int gBin;
 		std::vector<unsigned int> TimeSeries;
 		
-
 		Star();
 		Star(std::vector<std::string> data, int bin);
 };
-

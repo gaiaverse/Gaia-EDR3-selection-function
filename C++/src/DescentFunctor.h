@@ -29,32 +29,43 @@ class DescentFunctor: public Problem<double>
 	private:
 		int RunningID;
 		std::vector<double> InterestVectors;
+
+
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
 		const std::vector<Star> &Data; 
 		LogLikelihoodPrior L;
+
 		int LoopID;
 		std::chrono::time_point<std::chrono::system_clock> Start;
-		void ExamineInterestVectors(Eigen::VectorXd &position);
+
 		
+		
+		
+		//running values for the loglikelihood and gradient 
 		double CurrentValue;
 		VectorXd CurrentGradient;
 		
+		
+		//to prevent double evaluations at the same point, prevlock saves current position against a threshold
 		VectorXd PrevLock;
+		const double lockLim = 1e-15;
 		
-		void Reset();
-		void ForwardTransform(VectorXd &z);
-		void BackwardTransform();
 		
+		//holder for transformed values
 		VectorXd TransformedPosition;
 		VectorXd TransformedGradient;
+		
+
+		void ForwardTransform(VectorXd &z);
+		void BackwardTransform();		
 		void ResetPosition();
-		const double lockLim = 1e-15;
+		
 	public:
-		 using typename cppoptlib::Problem<double>::Scalar;
+		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams): Data(data), L(data,bins, nParams,n) //initializer list (complicated, not really sure what it is, but it needs to be here)
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams): Data(data), L(data,bins, nParams,n)
 	    {
 				RunningID = n;
 				LoopID = 0;
@@ -64,9 +75,8 @@ class DescentFunctor: public Problem<double>
 				
 				PrevLock = VectorXd::Random(nParams);
 				
-				int transformedSize = totalTransformedParams; 
-				TransformedPosition = VectorXd::Zero(transformedSize);
-				TransformedGradient = VectorXd::Zero(transformedSize);
+				TransformedPosition = VectorXd::Zero(totalTransformedParams);
+				TransformedGradient = VectorXd::Zero(totalTransformedParams);
 		}
 	    void DistributeCalculations(const TVector &y);
  

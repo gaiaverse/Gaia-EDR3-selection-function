@@ -26,12 +26,13 @@ class LogLikelihood
 		long double Value;
 		Eigen::VectorXd Gradient;
 		
-		int needletN;
+		
 		
 		LogLikelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
 		
 		void Calculate(Eigen::VectorXd& position);
 		
+		int needletN;
 		std::vector<int> needlet_u;
     	std::vector<int> needlet_v;
     	std::vector<double> needlet_w;
@@ -40,11 +41,9 @@ class LogLikelihood
 		//member data 
 		int ID;
 		const std::vector<Star> &Data;
-		std::vector<int> MagBins;
-		
+
 		//internal functions
 		void Reset();
-
 		void PerStarContribution(int id,Eigen::VectorXd & position);
 	
 		//compile-time structures for holding data
@@ -53,15 +52,11 @@ class LogLikelihood
 		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
 		std::vector<double> subpmf  = std::vector<double>(suitablyLargeNumber,0.0);
 
-		std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
-		std::vector<int> healpix_fov_1 = std::vector<int>(0,Nt);
-    	std::vector<int> healpix_fov_2 = std::vector<int>(0,Nt);
-
-    	std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-		
-		
-		
-        
+		std::string healpix_fov_file;
+		std::string needlet_file;
+		std::vector<int> healpix_fov_1;
+    	std::vector<int> healpix_fov_2;
+    
 };
 
 

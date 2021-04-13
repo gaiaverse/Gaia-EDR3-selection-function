@@ -32,7 +32,7 @@
 #include "GlobalVariables.h"
 
 using Eigen::VectorXd;
-//using namespace LBFGSpp;
+
 
 
 //store MPI data as global variables
@@ -45,8 +45,7 @@ int RootID = 0; //<- declare that process 0 is always Root.
 std::vector<Star> Data;
 std::vector<int> Bins;
 std::vector<std::string> Files;
-	//RootProcess is the main action loop of the 0-ranked core. 
-//It initiates the LBFGS algorithm, and controls the workflow of the other cores
+	
 
 void FinalResult(Eigen::VectorXd & finalpos)
 {
@@ -80,7 +79,8 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 	return x;
 }
 
-
+//RootProcess is the main action loop of the 0-ranked core. 
+//It initiates the LBFGS algorithm, and controls the workflow of the other cores
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
@@ -229,50 +229,6 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 }
 
-void gradientCheck()
-{
-	std::fstream file;
-	file.open("gradientTest.txt",std::ios::out);
-	int dim = Nt + Ns * Nm;
-	VectorXd y = initialisedVector(dim);
-	std::cout << y.transpose() << std::endl;
-	LogLikelihoodPrior L = LogLikelihoodPrior(Data,Bins,dim,ProcessRank);
-	int w = 35;
-	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
-	
-	double dm = 0.001;
-	double ddm = 1e-3;
-	int xsId = Nm;
-	for (double xs = -1; xs < 1; xs+=dm)
-	{
-		VectorXd x = y;
-		x[xsId] = xs;
-		
-		L.Calculate(x);
-		double lTrue = L.Value;
-		
-		double dLdlm = L.Gradient[xsId];
-		VectorXd xUp = x;
-		VectorXd xDown = x;
-		xUp[xsId] += ddm;
-		xDown[xsId] -= ddm;
-		
-		L.Calculate(xUp);
-		double lUp = L.Value;
-		
-		L.Calculate(xDown);
-		double lDown = L.Value;
-		
-		double numGrad = (lUp- lTrue)/(ddm);
-		
-		file <<std::left << std::setw(w) << xs FILEGAP lTrue FILEGAP dLdlm FILEGAP numGrad << "\n";
-	}
-	
-	file.close();
-	
-}
-
-
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -291,10 +247,8 @@ int main(int argc, char *argv[])
 		std::cout << std::endl;
 	}
 	
-	//~ //enter workers into their main action loops
+
 	LoadData(ProcessRank);
-	
-	//gradientCheck();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
@@ -305,15 +259,16 @@ int main(int argc, char *argv[])
 	}
 	
 	
-	auto end = std::chrono::system_clock::now();
 	
+	//exit gracefully
+	auto end = std::chrono::system_clock::now();
 	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
 	
 	if (ProcessRank == RootID)
 	{
 		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
 	}
-	//exit gracefully
+
 	MPI_Finalize();
 	return 0;
 }

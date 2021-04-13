@@ -2,18 +2,24 @@
 
 LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
 {
+	//is magbins still needed?
 	ID = id;
 	Value = 0.0;
 	Gradient = Eigen::VectorXd::Zero(dimension);
-	MagBins = magBins;
-	
-	
+
 	
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
 	subpmf = std::vector<double>(suitablyLargeNumber,0.0);
 	
 	
+    
+    
+    std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
+    std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
+	std::vector<int> healpix_fov_1 = std::vector<int>(0,Nt);
+	std::vector<int> healpix_fov_2 = std::vector<int>(0,Nt);
+
     int i = 0;
     forLineVectorInFile(healpix_fov_file,',',
     
@@ -22,15 +28,13 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
         ++i;
     
     );
-
     
     forLineVectorInFile(needlet_file,',',
  
         needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
         needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
         needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
-    );
-    
+    );    
     needletN = needlet_u.size();
 }
 
@@ -89,7 +93,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		p[i] = pt[i] *pml[i];
 	}
 	
-	//FIX THIS TO STOP SILLY INDEXING
+
+	//modifies pmf and subpmf in place to set them to nice values
 	direct_convolution_local(p,n,pmf);
 
 	double likelihood = pmf[k];
