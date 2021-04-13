@@ -9,13 +9,51 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	std::cout << "\t\tDescent functor has been activated" << std::endl;
 	
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
-	VectorXd x = y;
+	VectorXd z = y;
+	x = VectorXd::Zero(Nt+Nm*Nl);
+	b = VectorXd::Zero(Nm*Ns);
+	// Somehow need a Cholesky matrix here
+
 	//std::cout << "Position:\n" << x.transpose() << std::endl;
 	//ExamineInterestVectors(x);
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int n = x.size();
 	int circuitBreaker = 1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
+
+	// Forward transformation
+	double u = exp(-1.0/lt);
+	double ua = 1.0/sqrt(1.0-u*u);
+	double ub = -u*ua;
+	double previous = z[Nt-1]; // First case is trivial
+	x[Nt-1] = mut + sigmat * previous;
+	for (int i = Nt - 2; i >= 0; i--) {
+    	previous = (z[i] - ub * previous) / ua;
+    	x[i] = mut + sigmat * previous;
+	}
+
+	// bms = Lmnzns
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			for (int n = 0; n < Nm; ++n)
+			{
+				b[s*Nm+m] += L[m,n] * z[Nt+s*Nm+n];
+			}
+		}
+	}
+
+	// yml
+	for (int i = 0; i < needlet_n; ++i)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			x[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*b[needlet_v[i]*Nm+m];
+		}
+	}
+
+	// x[0:Nm] = mu, x[Nm:Nm+Nt] = zt, x[Nm+Nt:] = zml
 	
 	
 	//send position vector to workers
@@ -33,17 +71,51 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	
 	//collect values
-	CurrentGradient = VectorXd::Zero(n);
+	RawGradient = VectorXd::Zero(n);
 	double Lsum = 0;
 	
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	MPI_Reduce(&L.Gradient[0], &CurrentGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	MPI_Reduce(&L.Gradient[0], &RawGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	++LoopID;
 	
 	
 
 	CurrentValue = Lsum;
+	CurrentGradient = VectorXd::Zero(Nt+Ns*Nm);
+	bGradient = VectorXd::Zero(Ns*Nm);
+
+
+	// Backward transformation
+
+	CurrentGradient[Nt-1] = RawGradient[Nt-1]/sigmat;
+	for (int i = Nt - 2; i >= 0; i--) {
+		CurrentGradient[i] = (a * RawGradient[i] + b * RawGradient[i+1]) / sigmat;
+	}
+
+	// yml
+	for (int i = 0; i < needlet_n; ++i)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			bGradient[needlet_v[i]*Nm+m] += needlet_w[i]*RawGradient[Nt+needlet_u[i]*Nm+m];
+		}
+	}
+
+	// bms = Lmnzns
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			for (int n = 0; n < Nm; ++n)
+			{
+				CurrentGradient[Nt+s*Nm+n] += L[m,n]*bGradient[s*Nm+m];
+			}
+		}
+	}
+
+
+
 	//std::cout << "Gradient:\n" << CurrentGradient.transpose() << std::endl;
 }
 

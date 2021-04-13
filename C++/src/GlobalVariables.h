@@ -19,7 +19,10 @@ const double SingularityPreventer = 10e-13;
 
 const double mu_mean = -3.0;
 const double mu_variance = 1.0;
+const double mut = 3.0;
+const double sigmat = 3.0;
 const double lg = 0.3;
+const double lt = 100.0;
 
 const int PipelineMinVisits = 5; 
 
