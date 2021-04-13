@@ -90,7 +90,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 
 	CurrentGradient[Nt-1] = RawGradient[Nt-1]/sigmat;
 	for (int i = Nt - 2; i >= 0; i--) {
-		CurrentGradient[i] = (a * RawGradient[i] + b * RawGradient[i+1]) / sigmat;
+		CurrentGradient[i] = (ua * RawGradient[i] + ub * RawGradient[i+1]) / sigmat;
 	}
 
 	// yml

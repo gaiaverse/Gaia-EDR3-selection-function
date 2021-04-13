@@ -44,7 +44,7 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)
 {
-	std::cout << "\t\t\tThe log-likelihood function hass been called" << std::endl;
+	std::cout << "\t\t\tThe log-likelihood function has been called" << std::endl;
 	Reset();	
 	
 

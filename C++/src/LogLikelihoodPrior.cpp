@@ -23,9 +23,11 @@ void LogLikelihoodPrior::Prior(Eigen::VectorXd& params)
 
     Map<VectorXd> mu(params.segment(0, Nm).data(), Nm);
 
-    Map<VectorXd> zml(params.segment(Nm, Nm*Nl).data(), Nm*Nl);
+    Map<VectorXd> zt(params.segment(Nm, Nt).data(), Nt);
 
-    Map<VectorXd> zt(params.segment(Nm + Nm*Nl, Nt).data(), Nt);
+    Map<VectorXd> zml(params.segment(Nm + Nt, Nm*Nl).data(), Nm*Nl);
+
+    
     
 
     PriorMu(mu);
