@@ -17,8 +17,8 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
     
     std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
     std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-	std::vector<int> healpix_fov_1 = std::vector<int>(0,Nt);
-	std::vector<int> healpix_fov_2 = std::vector<int>(0,Nt);
+	std::vector<int> healpix_fov_1 = std::vector<int>(0,NT);
+	std::vector<int> healpix_fov_2 = std::vector<int>(0,NT);
 
     int i = 0;
     forLineVectorInFile(healpix_fov_file,',',
@@ -36,6 +36,22 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
         needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
     );    
     needletN = needlet_u.size();
+
+    std::vector<int> time_mapping = std::vector<int>(0,NT);
+    double time_ratio = (double)Nt / (double)NT;
+    if (Nt == NT){
+        for (int i = 0; i < NT; ++i)
+        {
+            time_mapping[i] = i;
+        }
+    }
+    else{
+        for (int i = 0; i < NT; ++i)
+        {
+            time_mapping[i] = time_ratio*i;
+        }
+    }
+    
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)
@@ -83,7 +99,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
-		double xt = x[t];
+		double xt = x[time_mapping[t]];
 		double xml1 = x[Nt + healpix_fov_1[t] * Nm + candidate.gBin];
 		double xml2 = x[Nt + healpix_fov_2[t] * Nm + candidate.gBin];
 		
@@ -142,7 +158,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		int t= candidate.TimeSeries[i];
 
-		Gradient[t] += dFdP * p[i] * (1.0 - pt[i]);
+		Gradient[time_mapping[t]] += dFdP * p[i] * (1.0 - pt[i]);
 		
 		int offset = Nt + candidate.gBin;
 		double mlGrad = dFdP * p[i] * (1.0 - pml[i]);

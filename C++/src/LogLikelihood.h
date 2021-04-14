@@ -56,6 +56,8 @@ class LogLikelihood
 		std::string needlet_file;
 		std::vector<int> healpix_fov_1;
     	std::vector<int> healpix_fov_2;
+
+    	std::vector<int> time_mapping;
     
 };
 
