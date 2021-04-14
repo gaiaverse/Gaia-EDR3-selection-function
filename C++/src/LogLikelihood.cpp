@@ -82,6 +82,10 @@ void LogLikelihood::Reset()
 	}
 }
 
+double sigmoid(double x)
+{
+    return 0.5*(1.0+tanh(0.5*x));
+}
 
 void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 {
@@ -103,8 +107,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		double xml1 = x[Nt + healpix_fov_1[t] * Nm + candidate.gBin];
 		double xml2 = x[Nt + healpix_fov_2[t] * Nm + candidate.gBin];
 		
-		pt[i] = 1.0 / (1.0 + exp( -xt));
-		pml[i] = 1.0 / (1.0 + exp( - (xml1 + xml2)  ) );
+		pt[i] = sigmoid(xt);
+		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
 	}

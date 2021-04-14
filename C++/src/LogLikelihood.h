@@ -64,3 +64,6 @@ class LogLikelihood
 
 //function stolen from a git repo somewhere, see the implementation for more details
 void direct_convolution_local(std::vector<double> & probs, int probslen, std::vector<double> & result);
+
+// Implements an expit sigmoid via the tanh method
+double sigmoid(double x);
