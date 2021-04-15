@@ -277,7 +277,7 @@ int main(int argc, char *argv[])
 	}
 	
 
-	//LoadData(ProcessRank);
+	LoadData(ProcessRank);
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
