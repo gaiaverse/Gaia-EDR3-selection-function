@@ -7,9 +7,10 @@ void LogLikelihoodPrior::Prior(Eigen::VectorXd& RawParams, double * currentValue
 	int n = Nt + Nm*Ns;
 	for (int i = 0; i < n ; ++i)
 	{
-		currentValue[0] -= 0.5 * RawParams[i] * RawParams[i];
+		double d = RawParams[i];
+		currentValue[0] -= 0.5 * d * d;
 		
-		currentGradient[0][i] -= RawParams[i];
+		currentGradient[0][i] -= d;
 	}
 }
 
@@ -27,8 +28,6 @@ void LogLikelihoodPrior::MakeCovarianceMatrix()
 	}
 
 	//decompose to make CholeskyKg
-
 	CholeskyKg = Kg.llt().matrixL();
 	Kg_decomposed = true;
-
 }

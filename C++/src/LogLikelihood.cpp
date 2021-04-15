@@ -22,7 +22,7 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 
 
 	time_mapping = std::vector<int>(TotalScanningTime,0);
-	std::cout << time_mapping.size() << std::endl;
+	
     double time_ratio = 1;
     if (Nt < TotalScanningTime)
     {
@@ -37,29 +37,32 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
     int i = 0;
     forLineVectorInFile(healpix_fov_file,',',
     
-        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
-        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);
-        ++i;
-    
+		if (i > 0)
+		{
+	        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
+	        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);
+	        ++i;
+	    }
     );
     
+    i = 0;
     forLineVectorInFile(needlet_file,',',
  
-        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
-        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
+		if (i > 0)
+		{
+	        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
+	        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
+	        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
+		}
+        ++i;
     );    
     needletN = needlet_u.size();
 
-    
-  
-  
-    
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)
 {
-	std::cout << "\t\t\tThe log-likelihood function has been called" << std::endl;
+	//std::cout << "\t\t\tThe log-likelihood function has been called" << std::endl;
 	Reset();	
 	
 

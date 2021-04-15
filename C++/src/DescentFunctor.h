@@ -46,7 +46,7 @@ class DescentFunctor: public Problem<double>
 		double CurrentValue;
 		VectorXd CurrentGradient;
 		
-		
+		std::string OutputDir;
 		//to prevent double evaluations at the same point, prevlock saves current position against a threshold
 		VectorXd PrevLock;
 		const double lockLim = 1e-15;
@@ -65,23 +65,26 @@ class DescentFunctor: public Problem<double>
 		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams): Data(data), L(data,bins, nParams,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir): Data(data), L(data,bins, nParams,n)
 	    {
 				RunningID = n;
 				LoopID = 0;
 				Start = std::chrono::system_clock::now();
 				CurrentValue = 0;
-				CurrentGradient = VectorXd::Zero(nParams);
+				CurrentGradient = VectorXd::Zero(totalRawParams);
 				
-				PrevLock = VectorXd::Random(nParams);
+				PrevLock = VectorXd::Random(totalRawParams);
 				
 				TransformedPosition = VectorXd::Zero(totalTransformedParams);
 				TransformedGradient = VectorXd::Zero(totalTransformedParams);
+				OutputDir = outdir;
 		}
 	    void DistributeCalculations(const TVector &y);
  
 		double value(const TVector &x);
 		void gradient(const TVector &x, TVector &grad);
+		
+		void SavePosition(bool finalSave);
 };
 
 

@@ -3,6 +3,23 @@
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
+void checkNan(const VectorXd & y,int type)
+{
+	
+	
+		if(y.hasNaN())
+		{
+			
+			std::string sType = "position";
+			if (type == 1)
+			{
+				sType = "gradient";
+			} 
+			std::cout << "\n\n\nERROR \n One or more values in the " << sType << " vector was a NaN. Cannot handle. Goodbye";
+			exit(1); 
+		}
+	
+}
 
 void DescentFunctor::ResetPosition()
 {
@@ -21,8 +38,46 @@ void DescentFunctor::ResetPosition()
 	
 }
 
+void DescentFunctor::SavePosition(bool finalSave)
+{
+	std::string fileBase = OutputDir + "/";
+	if (finalSave)
+	{
+		fileBase += "FinalPosition_";
+		ForwardTransform(PrevLock);
+	}
+	else
+	{
+		fileBase += TempDirName + "/TempPosition";
+		if (SaveAllTemps)
+		{
+			fileBase += std::to_string(LoopID);
+		}
+		fileBase += "_";
+	}
+	
+	
+	std::fstream rawfile;
+	rawfile.open(fileBase + "InternalParameters.dat",std::ios::out);
+	
+	for (int i = 0; i < totalRawParams; ++i)
+	{
+		rawfile << PrevLock[i] << "\n";
+	}
+	std::fstream transfile;
+	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
+	for (int i = 0; i < totalTransformedParams; ++i)
+	{
+		transfile << TransformedPosition[i] << "\n";
+	}
+	
+	rawfile.close();
+	transfile.close();
+}
+
 void DescentFunctor::ForwardTransform(VectorXd &z)
 {
+	
 	//check that cholesky decomposition has occurred, if not execute it now
 	if (L.Kg_decomposed == false)
 	{
@@ -69,6 +124,7 @@ void DescentFunctor::ForwardTransform(VectorXd &z)
 
 void DescentFunctor::BackwardTransform()
 {
+
 	// Backward transformation
 	double u = exp(-1.0/lt);
 	double ua = 1.0/sqrt(1.0-u*u);
@@ -101,12 +157,14 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 
+
 	
 }
 
 void DescentFunctor::DistributeCalculations(const TVector &y)
 {
-	std::cout << "\t\tDescent functor has been activated" << std::endl;
+	
+	std::cout << "\t\t\tA new calculation iteration has started. "; printTime();
 	const int n =  Nt+Nm*Nl;
 	ResetPosition();
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
@@ -121,6 +179,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 
 	ForwardTransform(RawPosition);
 		
+
 	//send position vector to workers
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 
@@ -137,37 +196,44 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	++LoopID;
-	
+	if (LoopID % SaveSteps == 0)
+	{
+		SavePosition(false);
+	}
 	
 	BackwardTransform();
 	
-	L.Prior(RawPosition,&CurrentValue,&CurrentGradient);
+	
+	L.Prior(RawPosition,&Lsum,&CurrentGradient);
+	
+	CurrentValue = Lsum;
+
 }
 
 double DescentFunctor::value(const TVector &y)
 {
 	VectorXd diff = (y - PrevLock);
+	checkNan(y,0);
 	double key = diff.norm();
 
 	std::cout.precision(10);
 	if (key > lockLim)
 	{
-
 		DistributeCalculations(y);
 		PrevLock = y;
 	}
+
 
 	return -CurrentValue;
 }
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
-
+	checkNan(y,1);
 	VectorXd diff = (y - PrevLock);
 	double key = diff.norm();
 
 	if (key > lockLim)
 	{
-
 		DistributeCalculations(y);
 		PrevLock = y;
 	}
@@ -179,3 +245,4 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 	}
 
 }
+

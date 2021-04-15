@@ -41,41 +41,28 @@ int ProcessRank;
 int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 
-
+std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
 std::vector<std::string> Files;
 	
 
-void FinalResult(Eigen::VectorXd & finalpos)
-{
-	std::fstream outfile;
-	outfile.open("testoutput.dat",std::ios::out);
-	
-	for (int i = 0; i < finalpos.size(); ++i)
-	{
-		outfile << finalpos[i] << "\n";
-	}
-	outfile.close();
-	
-}
 
 
-VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
+
+VectorXd RootMinimiser(VectorXd &x, int steps, double lim,DescentFunctor &fun)
 {
-	int nParameters = totalRawParams;
-	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
-	
-	std::cout << "\nA new solving routine has been initialised..." << std::endl;
+
+
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
-//	realCriteria.xDelta = 0;
-	//realCriteria.gradNorm = 0;
+//~ //	realCriteria.xDelta = 0;
+	realCriteria.gradNorm = lim;
 	solver.setStopCriteria(realCriteria);
+	
 	solver.minimize(fun,x);
 
-	
 	return x;
 }
 
@@ -84,22 +71,27 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
+	std::cout << "\tAttempting to minimise " << totalRawParams << " (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
 	//tell the workers to resize their parameter vectors
 	
-
 	int nParameters = totalRawParams;
-	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	int nParametersForWorkers = totalTransformedParams; 
+	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	int nLoops = 10;
-	VectorXd x = initialisedVector(nParameters);
+	
+	int nLoops = 1;
+	
 
+	VectorXd x = initialisedVector(nParameters);
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	
 	int logStopper = -3;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,200,condition);
+		x = RootMinimiser(x,200,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -112,7 +104,7 @@ void RootProcess()
 		
 	}
 
-	FinalResult(x);
+	fun.SavePosition(true);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
@@ -210,7 +202,6 @@ void LoadData(int id)
 		int gBin = Bins[i];
 		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
-		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
 		forLineVectorInFile(file,',',
 		
 			//~ int r = rand() % RandFrac;
@@ -229,6 +220,43 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 }
 
+
+
+void processArgs(int argc, char *argv[])
+{
+	bool outDirFlag = false;
+	
+	for (int i = 1; i < argc; ++i)
+	{
+		
+		std::string arg = argv[i];
+		
+		if (outDirFlag == true)
+		{
+			OutputDirectory = arg;
+			outDirFlag = false;
+		
+		}
+		
+		
+		if (arg == "-f")
+		{
+			outDirFlag = true;
+		}
+		
+		
+	}
+	
+	mkdirReturn dirReport = mkdirSafely(OutputDirectory);
+	mkdirReturn dirReport2= mkdirSafely(OutputDirectory + "/" + TempDirName);
+	if ((dirReport.Successful || dirReport2.Successful) == false)
+	{
+		std::cout << "\n ERROR: Could not locate or create the output directory " << OutputDirectory << " catastrophic error.\n";
+		exit(1);
+	}
+}
+
+
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -236,6 +264,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
+	processArgs(argc,argv);
 	srand(3);
 	
 	auto start = std::chrono::system_clock::now();
