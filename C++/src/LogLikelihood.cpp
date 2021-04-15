@@ -17,8 +17,22 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
     
     std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
     std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-	std::vector<int> healpix_fov_1 = std::vector<int>(0,NT);
-	std::vector<int> healpix_fov_2 = std::vector<int>(0,NT);
+	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);
+	healpix_fov_2 = std::vector<int>(TotalScanningTime,0);
+
+
+	time_mapping = std::vector<int>(TotalScanningTime,0);
+	std::cout << time_mapping.size() << std::endl;
+    double time_ratio = 1;
+    if (Nt < TotalScanningTime)
+    {
+		time_ratio = (double)Nt/TotalScanningTime;
+	}
+
+	for (int i = 0; i < TotalScanningTime; ++i)
+	{
+		time_mapping[i] = floor(time_ratio*i);
+	}
 
     int i = 0;
     forLineVectorInFile(healpix_fov_file,',',
@@ -37,20 +51,9 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
     );    
     needletN = needlet_u.size();
 
-    std::vector<int> time_mapping = std::vector<int>(0,NT);
-    double time_ratio = (double)Nt / (double)NT;
-    if (Nt == NT){
-        for (int i = 0; i < NT; ++i)
-        {
-            time_mapping[i] = i;
-        }
-    }
-    else{
-        for (int i = 0; i < NT; ++i)
-        {
-            time_mapping[i] = time_ratio*i;
-        }
-    }
+    
+  
+  
     
 }
 
@@ -82,7 +85,7 @@ void LogLikelihood::Reset()
 	}
 }
 
-double sigmoid(double x)
+double inline sigmoid(double x)
 {
     return 0.5*(1.0+tanh(0.5*x));
 }
