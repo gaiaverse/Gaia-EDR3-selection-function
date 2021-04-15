@@ -205,7 +205,7 @@ generateBinDict(rootToFiles)
 print(binDict)
 
 	
-M = 20
+M = 1
 lBar = sum(binDict.values())/M
 
 
