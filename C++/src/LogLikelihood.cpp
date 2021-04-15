@@ -15,8 +15,8 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	
     
     
-    std::string healpix_fov_file = "../../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
-    std::string needlet_file = "../../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
+    std::string healpix_fov_file = "../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
+    std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
 	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);
 	healpix_fov_2 = std::vector<int>(TotalScanningTime,0);
 
