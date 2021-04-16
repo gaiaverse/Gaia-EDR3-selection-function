@@ -207,7 +207,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	
 	CurrentValue = Lsum;
-
+	checkNan(y,1);
 }
 
 double DescentFunctor::value(const TVector &y)
@@ -228,7 +228,7 @@ double DescentFunctor::value(const TVector &y)
 }
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
-	checkNan(y,1);
+	checkNan(y,0);
 	VectorXd diff = (y - PrevLock);
 	double key = diff.norm();
 

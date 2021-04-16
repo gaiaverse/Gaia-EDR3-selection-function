@@ -12,8 +12,8 @@ Star::Star(std::vector<std::string> data, int bin)
 	//Column 1: Number of visits predicted 
 	//Column 2->?, the predicted times at which the star was visited (variable number of columns) 
 	
-	nMeasure = stoi(data[0]);
-	nVisit = stoi(data[1]);
+	nMeasure = stoi(data[1]);
+	nVisit = stoi(data[2]);
 	
 	//predictions not perfect so perform an adjustment to prevent BAD memory access issues
 	if (nMeasure > nVisit)
@@ -22,9 +22,9 @@ Star::Star(std::vector<std::string> data, int bin)
 	}
 	
 	TimeSeries = std::vector<unsigned int>(data.size() - 2,0);
-	for (int i = 2; i < data.size(); ++i)
+	for (int i = 3; i < data.size(); ++i)
 	{
-		TimeSeries[i -2] = stoi(data[i]);
+		TimeSeries[i -3] = stoi(data[i]);
 	}
 	
 	//the bin # is derived from the file name, so has to be inserted manually

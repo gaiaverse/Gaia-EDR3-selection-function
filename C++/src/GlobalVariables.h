@@ -5,7 +5,7 @@
 using Eigen::VectorXd;
 
 const int Nm = 1;//35; // number of magnitude bins
-const int Nt = 8967691; // number of time bins, coarse, feel free to change
+const int Nt = 8967; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
 const int healpix_order = 0; // order of healpix map, can be any integer >= 0
 const int needlet_order = -1; // maximum order of needlets used, can be any integ*needler >= -1
@@ -19,7 +19,7 @@ const int totalTransformedParams = Nt + Nm*Nl;
 
 const double SingularityPreventer = 10e-13;
 
-const double mut = 3.0;
+const double mut = 0;
 const double sigmat = 3.0;
 const double lm = 0.3;
 const double lt = 100.0;
@@ -27,7 +27,7 @@ const double lt = 100.0;
 const int SaveSteps = 1;
 const int PipelineMinVisits = 5; 
 
-const bool SaveAllTemps = false;
+const bool SaveAllTemps = true;
 const std::string TempDirName = "TempPositions";
 #define FILEGAP << ", " << 
 

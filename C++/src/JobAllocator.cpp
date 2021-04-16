@@ -71,7 +71,7 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim,DescentFunctor &fun)
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
-	std::cout << "\tAttempting to minimise " << totalRawParams << " (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
+	std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
 	//tell the workers to resize their parameter vectors
 	
 	int nParameters = totalRawParams;
@@ -265,7 +265,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(3);
+	srand(0);
 	
 	auto start = std::chrono::system_clock::now();
 	

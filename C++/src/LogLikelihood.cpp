@@ -68,10 +68,6 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 
 	for (int i = 0; i < Data.size(); ++i)
 	{
-		if (ID == 0)
-		{
-			std::cout << "\t\tCalculating contribution from star " << i << std::endl;
-		}
 		PerStarContribution(i,x);
 	}
 
@@ -102,13 +98,14 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 	//copies in-place into pmf
 	
-	std::vector<double> pt = std::vector<double>(0,n); ///what is p?
-	std::vector<double> pml = std::vector<double>(0,n);
-	std::vector<double> p = std::vector<double>(0,n);
-	
+	std::vector<double> pt = std::vector<double>(n,0); ///what is p?
+	std::vector<double> pml = std::vector<double>(n,0);
+	std::vector<double> p = std::vector<double>(n,0);
+
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
+
 		double xt = x[time_mapping[t]];
 		double xml1 = x[Nt + healpix_fov_1[t] * Nm + candidate.gBin];
 		double xml2 = x[Nt + healpix_fov_2[t] * Nm + candidate.gBin];
