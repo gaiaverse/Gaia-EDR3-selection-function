@@ -90,7 +90,16 @@ void LogLikelihood::Reset()
 
 double inline sigmoid(double x)
 {
-    return 0.5*(1.0+tanh(0.5*x));
+    //return 0.5*(1.0+tanh(0.5*x));
+    if (x < 0.0)
+    {
+        double a = exp(x) 
+        return a / (1.0 + a) 
+    }
+    else
+    {
+        return 1.0 / (1.0 + exp(-x))
+    }
 }
 
 void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
