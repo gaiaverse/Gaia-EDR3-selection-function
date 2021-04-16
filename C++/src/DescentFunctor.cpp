@@ -5,16 +5,11 @@
 
 void checkNan(const VectorXd & y, std::string origin)
 {
-	
-	
 		if(y.hasNaN())
 		{
-			
-
 			std::cout << "\n\n\nERROR \n One or more values sourced from " << origin << "  was a NaN. Cannot handle. Goodbye";
 			exit(1); 
-		}
-	
+		}	
 }
 
 void DescentFunctor::ResetPosition()
@@ -73,11 +68,12 @@ void DescentFunctor::SavePosition(bool finalSave)
 
 void DescentFunctor::ForwardTransform(VectorXd &z)
 {
-	
+	ResetPosition();
 	//check that cholesky decomposition has occurred, if not execute it now
 	if (L.Kg_decomposed == false)
 	{
 		L.MakeCovarianceMatrix();
+
 	}
 	
 	
@@ -160,9 +156,9 @@ void DescentFunctor::BackwardTransform()
 void DescentFunctor::DistributeCalculations(const TVector &y)
 {
 	
-	std::cout << "\t\t\tA new calculation iteration has started. "; printTime();
+	std::cout << "\t\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
 	const int n =  Nt+Nm*Nl;
-	ResetPosition();
+	
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
 	VectorXd RawPosition = y;
 
@@ -197,6 +193,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 		SavePosition(false);
 	}
 	
+	
 	BackwardTransform();
 	
 	
@@ -204,6 +201,8 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	
 	CurrentValue = Lsum;
 	checkNan(CurrentGradient,"Gradient Calculation");
+	std::cout << y.transpose() << "\n" << CurrentGradient.transpose() << std::endl;
+	std::cout << "\t\t\t L = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
 }
 
 double DescentFunctor::value(const TVector &y)

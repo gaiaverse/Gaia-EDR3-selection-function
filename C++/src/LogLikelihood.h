@@ -32,6 +32,7 @@ class LogLikelihood
 		
 		void Calculate(Eigen::VectorXd& position);
 		
+		std::vector<double> LikelihoodGivenP(std::vector<double> p, int n, int k);
 		int needletN;
 		std::vector<int> needlet_u;
     	std::vector<int> needlet_v;

@@ -57,7 +57,7 @@ VectorXd RootMinimiser(VectorXd &x, int steps, double lim,DescentFunctor &fun)
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
-//~ //	realCriteria.xDelta = 0;
+	//realCriteria.xDelta = 1e-15;
 	realCriteria.gradNorm = lim;
 	solver.setStopCriteria(realCriteria);
 	
@@ -91,7 +91,7 @@ void RootProcess()
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,200,condition,fun);
+		x = RootMinimiser(x,1000,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -165,7 +165,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/zeros/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -257,6 +257,34 @@ void processArgs(int argc, char *argv[])
 }
 
 
+void pTestSuite()
+{
+	LogLikelihood L = LogLikelihood(Data,Bins,totalTransformedParams,ProcessRank);
+	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0};
+	int size = pSave.size();
+	
+	
+	for (int inv = 0; inv < size; ++inv)
+	{
+		std::vector<double> p = pSave;
+			L.Value = 0;
+		std::vector<double> g1 = L.LikelihoodGivenP(p,size,5);
+		L.Value = 0;
+		double delta = 1e-7;
+		
+
+		p[inv] += delta;
+		
+		std::vector<double> g2 = L.LikelihoodGivenP(p,size,5);
+		
+		
+		double manualGrad = ( (g2[size] - g1[size])/delta);
+		
+		std::cout << inv << "  " << manualGrad << "   " << g1[inv] << std::endl;
+}
+}
+
+
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -265,7 +293,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(0);
+	srand(10);
 	
 	auto start = std::chrono::system_clock::now();
 	
@@ -287,7 +315,7 @@ int main(int argc, char *argv[])
 		WorkerProcess();	
 	}
 	
-	
+	//pTestSuite();
 	
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();

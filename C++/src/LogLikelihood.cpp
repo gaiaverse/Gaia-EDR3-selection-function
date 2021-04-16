@@ -71,7 +71,6 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 		PerStarContribution(i,x);
 	}
 
-	
 
 }
 
@@ -123,6 +122,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
+		
 	}
 	
 
@@ -167,11 +167,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		subpmf[n-1] = pmf[n]/p[i];
 		
 		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-		
-		
-		
-				
-		
+
 		int t= candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP * p[i] * (1.0 - pt[i]);
@@ -184,6 +180,59 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 }
 
 
+std::vector<double> LogLikelihood::LikelihoodGivenP(std::vector<double> p, int n, int k)
+{
+	
+	//modifies pmf and subpmf in place to set them to nice values
+	direct_convolution_local(p,n,pmf);
+
+	double likelihood = pmf[k];
+	
+	double correction = 1.0;
+	for (int i = 0; i < PipelineMinVisits; ++i)
+	{
+		correction -= pmf[i];
+	}
+	
+	Value += log(likelihood / correction);
+	
+	double gradient_first_term = 1.0;
+	double gradient_second_term = 1.0;
+	if (k == 0)
+	{
+		gradient_first_term = 0.0;
+	}
+	else
+	{
+		if (k == n)
+		{
+			gradient_second_term = 0.0;
+		}
+	}
+	
+
+	
+	std::vector<double> grad;
+	for (int i = 0; i < n; ++i)
+	{
+		
+		double inv_p = 1.0/(1 - p[i]);
+		
+		subpmf[0] = pmf[0] * inv_p;
+		for (int j = 1; j < n; ++j)
+		{
+			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_p;
+		}
+		subpmf[n-1] = pmf[n]/p[i];
+		
+		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
+		
+		grad.push_back(dFdP);
+	}
+
+	grad.push_back(Value);
+	return grad;
+}
 
             
             
