@@ -3,19 +3,15 @@
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
-void checkNan(const VectorXd & y,int type)
+void checkNan(const VectorXd & y, std::string origin)
 {
 	
 	
 		if(y.hasNaN())
 		{
 			
-			std::string sType = "position";
-			if (type == 1)
-			{
-				sType = "gradient";
-			} 
-			std::cout << "\n\n\nERROR \n One or more values in the " << sType << " vector was a NaN. Cannot handle. Goodbye";
+
+			std::cout << "\n\n\nERROR \n One or more values sourced from " << origin << "  was a NaN. Cannot handle. Goodbye";
 			exit(1); 
 		}
 	
@@ -207,13 +203,13 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	
 	CurrentValue = Lsum;
-	checkNan(y,1);
+	checkNan(CurrentGradient,"Gradient Calculation");
 }
 
 double DescentFunctor::value(const TVector &y)
 {
 	VectorXd diff = (y - PrevLock);
-	checkNan(y,0);
+	checkNan(y," Position (value call) ");
 	double key = diff.norm();
 
 	std::cout.precision(10);
@@ -228,7 +224,7 @@ double DescentFunctor::value(const TVector &y)
 }
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
-	checkNan(y,0);
+	checkNan(y," Position (grad call) ");
 	VectorXd diff = (y - PrevLock);
 	double key = diff.norm();
 
