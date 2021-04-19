@@ -91,7 +91,7 @@ void RootProcess()
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,1000,condition,fun);
+		x = RootMinimiser(x,200,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -165,7 +165,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/ones/";
+	std::string fileRoot = "../../TestSets/zeros/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -260,7 +260,7 @@ void processArgs(int argc, char *argv[])
 void pTestSuite()
 {
 	LogLikelihood L = LogLikelihood(Data,Bins,totalTransformedParams,ProcessRank);
-	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0};
+	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0.5};
 	int size = pSave.size();
 	
 	
@@ -285,6 +285,38 @@ void pTestSuite()
 }
 
 
+void mapper()
+{
+	VectorXd x = initialisedVector(totalRawParams);
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	
+	int nx = 300;
+	int ny = 300;
+	std::vector<double> xBound = {-1,1};
+	std::vector<double> yBound = {-1,1};
+	
+	
+	std::fstream rawfile;
+	rawfile.open(OutputDirectory + "/surfaceMap.dat",std::ios::out);
+	VectorXd pos = VectorXd::Zero(totalRawParams);
+	for (int i = 0; i < nx; ++i)
+	{
+		double x = xBound[0] + (float)i/(nx -1 ) * (xBound[1] - xBound[0]);
+		pos[0] = x;
+		for (int j = 0; j < ny; ++j)
+		{
+			double y = yBound[0] + (float)j/(ny -1 ) * (yBound[1] - yBound[0]);
+			pos[1] = y;
+			
+			fun.value(pos);
+			
+			rawfile << x << "," << y << "," << fun.CurrentValue  << "," << fun.CurrentGradient[0]  << "," << fun.CurrentGradient[1]  << "\n";
+		}
+	}
+	
+	rawfile.close();
+}
+
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -305,17 +337,19 @@ int main(int argc, char *argv[])
 	}
 	
 
-	LoadData(ProcessRank);
-	if (ProcessRank == RootID) 
-	{
-		RootProcess();
-	}
-	else
-	{
-		WorkerProcess();	
-	}
-	
 	//pTestSuite();
+	LoadData(ProcessRank);
+	
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ WorkerProcess();	
+	//~ }
+	mapper();
+	
 	
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();

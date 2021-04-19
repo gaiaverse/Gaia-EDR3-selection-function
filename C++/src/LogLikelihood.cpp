@@ -35,14 +35,15 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	}
 
     int i = 0;
+    std::cout << "HEALPIX READIN" << std::endl;
     forLineVectorInFile(healpix_fov_file,',',
     
 		if (i > 0)
 		{
 	        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
-	        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);
-	        ++i;
+	        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);  
 	    }
+	     ++i;
     );
     
     i = 0;
@@ -65,13 +66,34 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 	//std::cout << "\t\t\tThe log-likelihood function has been called" << std::endl;
 	Reset();	
 	
-
+	
 	for (int i = 0; i < Data.size(); ++i)
 	{
 		PerStarContribution(i,x);
 	}
 
-
+	//~ VectorXd xNudge;
+	//~ double OldVal = Value;
+	//~ VectorXd OldGrad = Gradient;
+	//~ double delta = 1e-8;
+	//~ for (int j = 0; j < x.size(); ++j)
+	//~ {
+		//~ Reset();
+		
+		//~ xNudge = x;
+		//~ xNudge[j] += delta;
+		
+		//~ for (int i = 0; i < Data.size(); ++i)
+		//~ {
+			//~ PerStarContribution(i,xNudge);
+		//~ }
+		
+		//~ double testGrad = (Value - OldVal)/delta;
+		
+		//~ std::cout << "\t\t\t\tInternal test: " << testGrad << " (direct calc = " << OldGrad[j] << ") \n"; 
+	//~ }
+	//~ Value = OldVal;
+	//~ Gradient = OldGrad;
 }
 
 void LogLikelihood::Reset()
@@ -110,21 +132,24 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	std::vector<double> pml = std::vector<double>(n,0);
 	std::vector<double> p = std::vector<double>(n,0);
 
+	//std::cout << "p = (";
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
 
 		double xt = x[time_mapping[t]];
-		double xml1 = x[Nt + healpix_fov_1[t] * Nm + candidate.gBin];
-		double xml2 = x[Nt + healpix_fov_2[t] * Nm + candidate.gBin];
+		int idx1 = Nt + healpix_fov_1[t] * Nm + candidate.gBin;
+		int idx2 = Nt + healpix_fov_2[t] * Nm + candidate.gBin;
+		double xml1 = x[idx1];
+		double xml2 = x[idx2];
 		
 		pt[i] = sigmoid(xt);
 		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
-		
+		//std::cout << p[i] << ",\t";
 	}
-	
+	//~ std::cout << ")\n";
 
 	//modifies pmf and subpmf in place to set them to nice values
 	direct_convolution_local(p,n,pmf);
@@ -136,7 +161,12 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	{
 		correction -= pmf[i];
 	}
-	
+	//~ std::cout << "pmf = ";
+	//~ for (int i = 0; i < k+1; ++i)
+	//~ {
+		//~ std::cout << pmf[i] << ",\t";
+	//~ }
+	//~ std::cout << " likelihood -> correction  = " << likelihood << "->" << correction <<std::endl;
 	Value += log(likelihood / correction);
 	
 	double gradient_first_term = 1.0;
@@ -174,9 +204,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		int offset = Nt + candidate.gBin;
 		double mlGrad = dFdP * p[i] * (1.0 - pml[i]);
-		Gradient[offset +  healpix_fov_1[t] * Nm] += mlGrad;
-		Gradient[offset +  healpix_fov_2[t] * Nm] += mlGrad;
+		
+		int index1 = offset +  healpix_fov_1[t] * Nm;
+		int index2 = offset +  healpix_fov_2[t] * Nm;
+		
+		Gradient[index1] += mlGrad;
+		Gradient[index2] += mlGrad;
+		//~ std::cout << "\t\t\t\t\t\t\tCONTRIBUTION: " << t << "   (mapped to healpix) (" << healpix_fov_1[t] << ", " << healpix_fov_2[t] << ")  +=" << mlGrad << "   Index " << index1 << " = " << Gradient[index1] << "   Index " << index2 << " = " << Gradient[index2] << std::endl;
 	}
+
 }
 
 

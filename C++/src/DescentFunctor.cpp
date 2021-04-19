@@ -66,7 +66,7 @@ void DescentFunctor::SavePosition(bool finalSave)
 	transfile.close();
 }
 
-void DescentFunctor::ForwardTransform(VectorXd &z)
+void DescentFunctor::ForwardTransform(const VectorXd &z)
 {
 	ResetPosition();
 	//check that cholesky decomposition has occurred, if not execute it now
@@ -111,10 +111,9 @@ void DescentFunctor::ForwardTransform(VectorXd &z)
 			TransformedPosition[Nt+L.needlet_u[i]*Nm+m] += L.needlet_w[i]*b[L.needlet_v[i]*Nm+m];
 		}
 	}
-
 }
 
-void DescentFunctor::BackwardTransform()
+void DescentFunctor::BackwardTransform(bool print)
 {
 
 	// Backward transformation
@@ -153,14 +152,58 @@ void DescentFunctor::BackwardTransform()
 	
 }
 
-void DescentFunctor::DistributeCalculations(const TVector &y)
+
+void DescentFunctor::TestGradient(const VectorXd y)
+{
+	VectorXd ySave = y;
+	VectorXd oldGrad = CurrentGradient;
+	double oldVal = CurrentValue;
+	
+
+	double delta = 1e-5;
+	double trueL = CurrentValue;
+	
+	VectorXd gradOverride = CurrentGradient;
+	VectorXd yNudge;
+	for (int i = 0; i < y.size(); ++i)
+	{
+		yNudge = y;
+		double shove = std::max(delta*delta,delta*y[i]);
+		yNudge[i] += shove;
+
+		
+		DistributeCalculations(yNudge,false);
+		
+		double testGrad = (CurrentValue - trueL)/(shove);
+		//std::cout << "\t\t\t\tManual Gradient: " << i << ":  " << testGrad << ", \t Exact Gradient: " << oldGrad[i] <<  "\n";
+		gradOverride[i] = testGrad;
+	}
+	
+	CurrentValue = oldVal;
+	CurrentGradient = oldGrad;
+	bool overrideOn = true;
+	bool unsafe = std::isnan(CurrentValue);
+	if (overrideOn & !(unsafe))
+	{
+		CurrentGradient = gradOverride;
+		std::cout << "\t\t\t\t\tGradient by manual, new value: " << CurrentGradient.transpose() << std::endl;
+	}
+}
+
+
+void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 {
 	
-	std::cout << "\t\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+	if (printOn)
+	{
+		
+		std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		++LoopID;
+	}
 	const int n =  Nt+Nm*Nl;
 	
 	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
-	VectorXd RawPosition = y;
+	const VectorXd RawPosition = y;
 
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
@@ -187,23 +230,30 @@ void DescentFunctor::DistributeCalculations(const TVector &y)
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
-	++LoopID;
+	
 	if (LoopID % SaveSteps == 0)
 	{
 		SavePosition(false);
 	}
 	
 	
-	BackwardTransform();
+	BackwardTransform(printOn);
 	
 	
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	
 	CurrentValue = Lsum;
-	checkNan(CurrentGradient,"Gradient Calculation");
-	std::cout << y.transpose() << "\n" << CurrentGradient.transpose() << std::endl;
-	std::cout << "\t\t\t L = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+	
+	//~ if (printOn)
+	//~ {
+		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		//~ std::cout << "\n\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+		//~ checkNan(CurrentGradient,"Gradient Calculation");
+	//~ }
 }
+
 
 double DescentFunctor::value(const TVector &y)
 {
@@ -211,11 +261,13 @@ double DescentFunctor::value(const TVector &y)
 	checkNan(y," Position (value call) ");
 	double key = diff.norm();
 
-	std::cout.precision(10);
+	
 	if (key > lockLim)
 	{
-		DistributeCalculations(y);
+		DistributeCalculations(y,true);
 		PrevLock = y;
+		
+		//TestGradient(y);
 	}
 
 
@@ -229,8 +281,11 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 
 	if (key > lockLim)
 	{
-		DistributeCalculations(y);
+		DistributeCalculations(y,true);
 		PrevLock = y;
+		
+		
+		//TestGradient(y);
 	}
 
 	//negative sign for maximisation problem
