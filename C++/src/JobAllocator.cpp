@@ -80,7 +80,7 @@ void RootProcess()
 	
 	
 	
-	int nLoops = 1;
+	int nLoops = 3;
 	
 
 	VectorXd x = initialisedVector(nParameters);
@@ -165,7 +165,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/zeros/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -290,13 +290,14 @@ void mapper()
 	VectorXd x = initialisedVector(totalRawParams);
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
-	int nx = 100;
-	int ny = 100;
+	int nx = 50;
+	int ny = 50;
 	double bound = 60;
-	std::vector<double> xBound = {-1,1};
-	std::vector<double> yBound = {-1,1};
+	std::vector<double> xBound = {0,2};
+	std::vector<double> yBound = {0,2};
 	
-	double delta = 1e-3;
+	double delta = 1e-6;
+	
 	std::fstream rawfile;
 	rawfile.open(OutputDirectory + "/surfaceMap.dat",std::ios::out);
 	VectorXd pos = VectorXd::Zero(totalRawParams);
@@ -345,7 +346,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(10);
+	srand(1);
 	
 	auto start = std::chrono::system_clock::now();
 	
@@ -359,7 +360,7 @@ int main(int argc, char *argv[])
 
 	//pTestSuite();
 	LoadData(ProcessRank);
-	mapper();
+	//mapper();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();

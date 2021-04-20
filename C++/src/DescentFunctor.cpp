@@ -197,7 +197,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	if (printOn)
 	{
 		
-		//std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
 		++LoopID;
 	}
 	const int n =  Nt+Nm*Nl;
@@ -240,18 +240,18 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	BackwardTransform(printOn);
 	
 	
-	//L.Prior(RawPosition,&Lsum,&CurrentGradient);
+	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	
 	CurrentValue = Lsum;
 	
-	//~ if (printOn)
-	//~ {
-		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		//~ std::cout << "\n\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
-		//~ checkNan(CurrentGradient,"Gradient Calculation");
-	//~ }
+	if (printOn)
+	{
+		std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		std::cout << "\n\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+		checkNan(CurrentGradient,"Gradient Calculation");
+	}
 }
 
 
