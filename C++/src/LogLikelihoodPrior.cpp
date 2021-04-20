@@ -1,7 +1,7 @@
 #include "LogLikelihoodPrior.h"
 
 
-void LogLikelihoodPrior::Prior(Eigen::VectorXd& RawParams, double * currentValue, Eigen::VectorXd * currentGradient)
+void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, Eigen::VectorXd * currentGradient)
 {
 	
 	int n = Nt + Nm*Ns;

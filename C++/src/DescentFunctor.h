@@ -43,8 +43,7 @@ class DescentFunctor: public Problem<double>
 		
 		
 		//running values for the loglikelihood and gradient 
-		double CurrentValue;
-		VectorXd CurrentGradient;
+
 		
 		std::string OutputDir;
 		//to prevent double evaluations at the same point, prevlock saves current position against a threshold
@@ -57,13 +56,17 @@ class DescentFunctor: public Problem<double>
 		VectorXd TransformedGradient;
 		
 
-		void ForwardTransform(VectorXd &z);
-		void BackwardTransform();		
+		void ForwardTransform(const VectorXd &z);
+		void BackwardTransform(bool print);		
 		void ResetPosition();
 		
+		void TestGradient(const VectorXd position);
 	public:
 		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
+	
+		double CurrentValue;
+		VectorXd CurrentGradient;
 	
 	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir): Data(data), L(data,bins, nParams,n)
 	    {
@@ -79,7 +82,7 @@ class DescentFunctor: public Problem<double>
 				TransformedGradient = VectorXd::Zero(totalTransformedParams);
 				OutputDir = outdir;
 		}
-	    void DistributeCalculations(const TVector &y);
+	    void DistributeCalculations(const TVector &y, bool printOn);
  
 		double value(const TVector &x);
 		void gradient(const TVector &x, TVector &grad);

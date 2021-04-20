@@ -80,7 +80,7 @@ void RootProcess()
 	
 	
 	
-	int nLoops = 1;
+	int nLoops = 3;
 	
 
 	VectorXd x = initialisedVector(nParameters);
@@ -91,7 +91,7 @@ void RootProcess()
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,1000,condition,fun);
+		x = RootMinimiser(x,200,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -260,7 +260,7 @@ void processArgs(int argc, char *argv[])
 void pTestSuite()
 {
 	LogLikelihood L = LogLikelihood(Data,Bins,totalTransformedParams,ProcessRank);
-	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0};
+	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0.5};
 	int size = pSave.size();
 	
 	
@@ -285,6 +285,59 @@ void pTestSuite()
 }
 
 
+void mapper()
+{
+	VectorXd x = initialisedVector(totalRawParams);
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	
+	int nx = 50;
+	int ny = 50;
+	double bound = 60;
+	std::vector<double> xBound = {0,2};
+	std::vector<double> yBound = {0,2};
+	
+	double delta = 1e-6;
+	
+	std::fstream rawfile;
+	rawfile.open(OutputDirectory + "/surfaceMap.dat",std::ios::out);
+	VectorXd pos = VectorXd::Zero(totalRawParams);
+	VectorXd posx = VectorXd::Zero(totalRawParams);
+	VectorXd posy = VectorXd::Zero(totalRawParams);
+	for (int i = 0; i < nx; ++i)
+	{
+		double x = xBound[0] + (float)i/(nx -1 ) * (xBound[1] - xBound[0]);
+		pos[0] = x;
+		double dx =delta;
+		for (int j = 0; j < ny; ++j)
+		{
+			double y = yBound[0] + (float)j/(ny -1 ) * (yBound[1] - yBound[0]);
+			double dy = delta;
+			pos[1] = y;
+			
+			
+			fun.value(pos);
+			
+			rawfile << x << ",\t" << y << ",\t" << fun.CurrentValue  << ",\t" << fun.CurrentGradient[0]  << ",\t" << fun.CurrentGradient[1];
+			double oldVal = fun.CurrentValue;
+			
+			posx = pos;
+			
+			posx[0] += dx;
+			
+			double newX = fun.value(posx);
+			double testGradx = (-newX - oldVal )/dx;
+			
+			posy = pos;
+			posy[1] += dy;
+			double newY = fun.value(posy);
+			double testGrady = (-newY - oldVal)/dy;
+			rawfile << ",\t" << testGradx  << ",\t" << testGrady  << "\n";
+		}
+	}
+	
+	rawfile.close();
+}
+
 int main(int argc, char *argv[])
 {
 	//MPI initialization commands
@@ -293,7 +346,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(10);
+	srand(1);
 	
 	auto start = std::chrono::system_clock::now();
 	
@@ -305,7 +358,9 @@ int main(int argc, char *argv[])
 	}
 	
 
+	//pTestSuite();
 	LoadData(ProcessRank);
+	//mapper();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
@@ -314,8 +369,8 @@ int main(int argc, char *argv[])
 	{
 		WorkerProcess();	
 	}
+
 	
-	//pTestSuite();
 	
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();
