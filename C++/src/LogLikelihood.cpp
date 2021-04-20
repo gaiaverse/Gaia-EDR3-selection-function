@@ -70,15 +70,15 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 	
 	for (int i = 0; i < Data.size(); ++i)
 	{
-		//PerStarContribution(i,x);
+		PerStarContribution(i,x);
 		
 		
-		for (int j = 0; j <x.size(); ++j)
-		{
-			double d = x[j] - 5;
-			Value += -0.5*d*d;
-			Gradient[j] -= d;
-		}
+		//~ for (int j = 0; j <x.size(); ++j)
+		//~ {
+			//~ double d = x[j] - 5;
+			//~ Value += -0.5*d*d;
+			//~ Gradient[j] -= d;
+		//~ }
 	}
 	
 	//~ VectorXd xNudge;
