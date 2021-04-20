@@ -197,7 +197,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	if (printOn)
 	{
 		
-		std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		//std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
 		++LoopID;
 	}
 	const int n =  Nt+Nm*Nl;
@@ -240,7 +240,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	BackwardTransform(printOn);
 	
 	
-	L.Prior(RawPosition,&Lsum,&CurrentGradient);
+	//L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	
 	CurrentValue = Lsum;
 	

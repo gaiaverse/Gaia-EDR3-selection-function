@@ -42,6 +42,7 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 		{
 	        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
 	        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);  
+	        
 	    }
 	     ++i;
     );
@@ -69,9 +70,17 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 	
 	for (int i = 0; i < Data.size(); ++i)
 	{
-		PerStarContribution(i,x);
+		//PerStarContribution(i,x);
+		
+		
+		for (int j = 0; j <x.size(); ++j)
+		{
+			double d = x[j] - 5;
+			Value += -0.5*d*d;
+			Gradient[j] -= d;
+		}
 	}
-
+	
 	//~ VectorXd xNudge;
 	//~ double OldVal = Value;
 	//~ VectorXd OldGrad = Gradient;
@@ -143,14 +152,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		double xml1 = x[idx1];
 		double xml2 = x[idx2];
 		
+	
 		pt[i] = sigmoid(xt);
 		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
 		//std::cout << p[i] << ",\t";
 	}
-	//~ std::cout << ")\n";
-
+	//std::cout << ")\n";
+	//std::cout << "END" << std::endl;
 	//modifies pmf and subpmf in place to set them to nice values
 	direct_convolution_local(p,n,pmf);
 

@@ -290,27 +290,47 @@ void mapper()
 	VectorXd x = initialisedVector(totalRawParams);
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
-	int nx = 300;
-	int ny = 300;
+	int nx = 100;
+	int ny = 100;
+	double bound = 60;
 	std::vector<double> xBound = {-1,1};
 	std::vector<double> yBound = {-1,1};
 	
-	
+	double delta = 1e-3;
 	std::fstream rawfile;
 	rawfile.open(OutputDirectory + "/surfaceMap.dat",std::ios::out);
 	VectorXd pos = VectorXd::Zero(totalRawParams);
+	VectorXd posx = VectorXd::Zero(totalRawParams);
+	VectorXd posy = VectorXd::Zero(totalRawParams);
 	for (int i = 0; i < nx; ++i)
 	{
 		double x = xBound[0] + (float)i/(nx -1 ) * (xBound[1] - xBound[0]);
 		pos[0] = x;
+		double dx =delta;
 		for (int j = 0; j < ny; ++j)
 		{
 			double y = yBound[0] + (float)j/(ny -1 ) * (yBound[1] - yBound[0]);
+			double dy = delta;
 			pos[1] = y;
+			
 			
 			fun.value(pos);
 			
-			rawfile << x << "," << y << "," << fun.CurrentValue  << "," << fun.CurrentGradient[0]  << "," << fun.CurrentGradient[1]  << "\n";
+			rawfile << x << ",\t" << y << ",\t" << fun.CurrentValue  << ",\t" << fun.CurrentGradient[0]  << ",\t" << fun.CurrentGradient[1];
+			double oldVal = fun.CurrentValue;
+			
+			posx = pos;
+			
+			posx[0] += dx;
+			
+			double newX = fun.value(posx);
+			double testGradx = (-newX - oldVal )/dx;
+			
+			posy = pos;
+			posy[1] += dy;
+			double newY = fun.value(posy);
+			double testGrady = (-newY - oldVal)/dy;
+			rawfile << ",\t" << testGradx  << ",\t" << testGrady  << "\n";
 		}
 	}
 	
@@ -339,16 +359,16 @@ int main(int argc, char *argv[])
 
 	//pTestSuite();
 	LoadData(ProcessRank);
-	
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ WorkerProcess();	
-	//~ }
 	mapper();
+	if (ProcessRank == RootID) 
+	{
+		RootProcess();
+	}
+	else
+	{
+		WorkerProcess();	
+	}
+
 	
 	
 	//exit gracefully
