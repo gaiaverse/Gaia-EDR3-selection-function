@@ -253,9 +253,9 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	
 	if (printOn)
 	{
-		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
 		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
 		checkNan(CurrentGradient,"Gradient Calculation");
 	}

@@ -17,12 +17,12 @@ const int Ns = pow(4,needlet_order+2) - 3;
 const int totalRawParams = Nt + Nm*Ns;
 const int totalTransformedParams = Nt + Nm*Nl;
 
-const double SingularityPreventer = 10e-13;
+const double SingularityPreventer = 1e-18;
 
 const double mut = 0;
-const double sigmat = 1;
+const double sigmat = 3;
 const double lm = 3;
-const double lt = 3.0;
+const double lt = 0.01;
 
 const int SaveSteps = 10000;
 const int PipelineMinVisits = 5; 

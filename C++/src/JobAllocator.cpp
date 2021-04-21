@@ -91,7 +91,7 @@ void RootProcess()
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,200,condition,fun);
+		x = RootMinimiser(x,1000,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -165,7 +165,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/ones/";
+	std::string fileRoot = "../../TestSets/zeros/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -346,7 +346,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(2);
+	srand(0);
 	
 	auto start = std::chrono::system_clock::now();
 	

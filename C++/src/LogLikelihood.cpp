@@ -35,7 +35,7 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	}
 
     int i = 0;
-    std::cout << "HEALPIX READIN" << std::endl;
+    
     forLineVectorInFile(healpix_fov_file,',',
     
 		if (i > 0)
@@ -141,7 +141,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	std::vector<double> pml = std::vector<double>(n,0);
 	std::vector<double> p = std::vector<double>(n,0);
 
-	//std::cout << "p = (";
+	std::cout << "p_" << star << " = (";
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
@@ -157,11 +157,10 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
-		//std::cout << p[i] << ",\t";
+		std::cout << p[i] << ", ";
 	}
-	//std::cout << ")\n";
-	//std::cout << "END" << std::endl;
-	//modifies pmf and subpmf in place to set them to nice values
+	std::cout << ")\n";
+	// probability black magic stuff
 	direct_convolution_local(p,n,pmf);
 
 	double likelihood = pmf[k];
@@ -170,6 +169,20 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	for (int i = 0; i < PipelineMinVisits; ++i)
 	{
 		correction -= pmf[i];
+	}
+	std::cout << "\n\npmf = ";
+	for (int j = 0; j <= k; ++j)
+	{
+		std::cout << pmf[j] << ", ";
+	}
+	std::cout << "\n";
+	
+	std::cout << "Likelihood: " << likelihood << "   Correction: " << correction << std::endl;
+	if (correction < 0)
+	{
+		std::cout << "CORRECTION ERROR in STAR " << star << " ( " << correction << ") " << std::endl;
+		std::cout << time_mapping[8888542] << std::endl;
+		
 	}
 	//~ std::cout << "pmf = ";
 	//~ for (int i = 0; i < k+1; ++i)
@@ -193,6 +206,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		}
 	}
 	
+	VectorXd perStarGrad = VectorXd::Zero(Gradient.size());
 	
 	for (int i = 0; i < n; ++i)
 	{
@@ -208,6 +222,27 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
 
+		std::cout << i << "  " << dFdP << "   " << subpmf[k-1] << "   " << subpmf[k] << "   " << likelihood << "   " << correction << "\n";
+		
+		if (i == 0)
+		{
+			std::cout << "subpmf = ";
+			for (int j = 0; j < n; ++j)
+			{
+				if (j == k)
+				{
+					std::cout << "_____" << subpmf[j] << "______, ";
+				}
+				else
+				{
+					std::cout << subpmf[j] << ", ";
+				}
+			}
+		}
+		
+		
+		
+		std::cout <<"\n";
 		int t= candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP * p[i] * (1.0 - pt[i]);
@@ -220,7 +255,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		Gradient[index1] += mlGrad;
 		Gradient[index2] += mlGrad;
-		//~ std::cout << "\t\t\t\t\t\t\tCONTRIBUTION: " << t << "   (mapped to healpix) (" << healpix_fov_1[t] << ", " << healpix_fov_2[t] << ")  +=" << mlGrad << "   Index " << index1 << " = " << Gradient[index1] << "   Index " << index2 << " = " << Gradient[index2] << std::endl;
+		
+		perStarGrad[time_mapping[t]] = dFdP * p[i] * (1.0 - pt[i]);
+		perStarGrad[index1] = mlGrad;
+		perStarGrad[index2] = mlGrad;
+	}
+	
+	if (perStarGrad.norm() > 1e10)
+	{
+		std::cout << "Star " << star << " has a gradient: " << perStarGrad.transpose() << std::endl;
 	}
 
 }
