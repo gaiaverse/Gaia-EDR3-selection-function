@@ -80,7 +80,7 @@ void RootProcess()
 	
 	
 	
-	int nLoops = 3;
+	int nLoops = 1;
 	
 
 	VectorXd x = initialisedVector(nParameters);

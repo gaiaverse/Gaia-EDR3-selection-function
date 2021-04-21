@@ -5,11 +5,11 @@
 
 void checkNan(const VectorXd & y, std::string origin)
 {
-		if(y.hasNaN())
-		{
-			std::cout << "\n\n\nERROR \n One or more values sourced from " << origin << "  was a NaN. Cannot handle. Goodbye";
-			exit(1); 
-		}	
+	if(y.hasNaN())
+	{
+		std::cout << "\n\n\nERROR \n One or more values sourced from " << origin << "  was a NaN. Cannot handle. Goodbye";
+		exit(1); 
+	}	
 }
 
 void DescentFunctor::ResetPosition()
