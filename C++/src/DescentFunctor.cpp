@@ -118,13 +118,16 @@ void DescentFunctor::BackwardTransform(bool print)
 
 	// Backward transformation
 	double u = exp(-1.0/lt);
+    double sigmata = sigmat/a;
 	double ua = 1.0/sqrt(1.0-u*u);
 	double ub = -u*ua;
 	VectorXd bGradient = VectorXd::Zero(Ns*Nm);
-	CurrentGradient[Nt-1] = TransformedGradient[Nt-1]/sigmat;
-	for (int i = Nt - 2; i >= 0; i--) {
-		CurrentGradient[i] = (ua * TransformedGradient[i] + ub * TransformedGradient[i+1]) / sigmat;
-	}
+
+    CurrentGradient[0] = sigmata * TransformedGradient[0];
+    for (int i = 1; i < Nt-1; i++) {
+        CurrentGradient[i] = u * CurrentGradient[i-1] + sigmata * TransformedGradient[i];
+    }
+    CurrentGradient[Nt-1] = -ub * CurrentGradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
 
 	// yml
 	for (int i = 0; i < L.needletN; ++i)
