@@ -1,4 +1,4 @@
-rooter = "Test2";
+rooter = "Test";
 figure(2);
 clf;
 f = readtable(rooter + "/surfaceMap.dat");
@@ -26,7 +26,7 @@ gy_manual = gy_manual(~cutNans);
 
 maxPos = [xt(I),xs(I)]
 
-bounds = [0,2,0,2];
+bounds = [-1,1,0,1];
 
 tri = delaunay(xt,xs);
 t = tiledlayout(2,2);
@@ -61,7 +61,8 @@ xlabel("Nt term"); ylabel("Ns term");
 axis(bounds);
 
 global root
-root = [1.02758, 0.973634];
+r = readmatrix(rooter + "/FinalPosition_InternalParameters.dat");
+root = [r(1), r(2)];
 
 figure(1);
 clf;
@@ -82,23 +83,27 @@ function convPlot(tri,x,y,z1,z2,type)
 	
 	triPlot(tri,x,y,z1,type + " dL/dNt");
 	r = sqrt(2);
-	maxer = ones(length(x1),1) * (1 + max(max(z1,z2)));
+    mV1 = max(max(z1));
+    mV2 = max(max(z2));
+	maxer = ones(length(x1),1) * (1 + mV1);
+    maxer2 = ones(length(x2),1) * (1 + mV2);
 	hold on;
 	plot3(x1,y1,maxer,'r');
-	plot3(x2,y2,maxer,'k');
+	%plot3(x2,y2,maxer2,'k');
 	theta = linspace(0,pi/2,length(x1));
 	plot3(r*cos(theta),r*sin(theta),maxer,'y');
 	
-	scatter3(root(1),root(2),maxer(1),'p','MarkerEdgeColor','m','MarkerFaceColor','m');
-	hold off;
+     scatter3(root(1),root(2),mV1,'p','MarkerEdgeColor','m','MarkerFaceColor','m');
+    hold off;
 	
 	triPlot(tri,x,y,z2, type + " dL/dNs");
 
 	hold on;
-	plot3(x1,y1,maxer,'r');
-	plot3(x2,y2,maxer,'k');
-	plot3(r*cos(theta),r*sin(theta),maxer,'y');
-	scatter3(root(1),root(2),maxer(1),'p','MarkerEdgeColor','m','MarkerFaceColor','m');
+	%plot3(x1,y1,maxer,'r');
+	plot3(x2,y2,maxer2,'k');
+	plot3(r*cos(theta),r*sin(theta),maxer/mV1*mV2,'y');
+    	scatter3(root(1),root(2),mV2,'p','MarkerEdgeColor','m','MarkerFaceColor','m');
+
 	hold off;
 end
 

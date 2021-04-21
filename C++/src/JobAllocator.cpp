@@ -290,11 +290,11 @@ void mapper()
 	VectorXd x = initialisedVector(totalRawParams);
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
-	int nx = 50;
-	int ny = 50;
+	int nx = 20;
+	int ny = 20;
 	double bound = 60;
-	std::vector<double> xBound = {0,2};
-	std::vector<double> yBound = {0,2};
+	std::vector<double> xBound = {-1,1};
+	std::vector<double> yBound = {0,1};
 	
 	double delta = 1e-6;
 	
@@ -346,7 +346,7 @@ int main(int argc, char *argv[])
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
 	processArgs(argc,argv);
-	srand(1);
+	srand(2);
 	
 	auto start = std::chrono::system_clock::now();
 	

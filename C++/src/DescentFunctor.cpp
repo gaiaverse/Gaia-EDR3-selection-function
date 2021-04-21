@@ -115,20 +115,26 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 
 void DescentFunctor::BackwardTransform(bool print)
 {
-
 	// Backward transformation
 	double u = exp(-1.0/lt);
-    double sigmata = sigmat/a;
+    
 	double ua = 1.0/sqrt(1.0-u*u);
 	double ub = -u*ua;
+	double sigmata = sigmat/ua;
 	VectorXd bGradient = VectorXd::Zero(Ns*Nm);
 
-    CurrentGradient[0] = sigmata * TransformedGradient[0];
-    for (int i = 1; i < Nt-1; i++) {
-        CurrentGradient[i] = u * CurrentGradient[i-1] + sigmata * TransformedGradient[i];
-    }
-    CurrentGradient[Nt-1] = -ub * CurrentGradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
-
+	if (Nt > 1)
+	{
+	    CurrentGradient[0] = sigmata * TransformedGradient[0];
+	    for (int i = 1; i < Nt-1; i++) {
+	        CurrentGradient[i] = u * CurrentGradient[i-1] + sigmata * TransformedGradient[i];
+	    }
+	    CurrentGradient[Nt-1] = -ub * CurrentGradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
+	}
+	else
+	{
+		CurrentGradient[0] = TransformedGradient[0]*sigmat;
+	}
 	// yml
 	for (int i = 0; i < L.needletN; ++i)
 	{
@@ -151,8 +157,6 @@ void DescentFunctor::BackwardTransform(bool print)
 		}
 	}
 
-
-	
 }
 
 
@@ -249,10 +253,10 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	
 	if (printOn)
 	{
-		std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		std::cout << "\n\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
 		checkNan(CurrentGradient,"Gradient Calculation");
 	}
 }
