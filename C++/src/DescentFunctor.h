@@ -36,7 +36,7 @@ class DescentFunctor: public Problem<double>
 		const std::vector<Star> &Data; 
 		LogLikelihoodPrior L;
 
-		int LoopID;
+		
 		std::chrono::time_point<std::chrono::system_clock> Start;
 
 		
@@ -62,6 +62,7 @@ class DescentFunctor: public Problem<double>
 		
 		void TestGradient(const VectorXd position);
 	public:
+	int LoopID;
 		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	

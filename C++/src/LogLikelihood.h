@@ -46,7 +46,7 @@ class LogLikelihood
 		//internal functions
 		void Reset();
 		void PerStarContribution(int id,Eigen::VectorXd & position);
-	
+		void inline CalculatePMF(int i, int n, int k,std::vector<double> & ps,bool directCalculationActive);
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
 		

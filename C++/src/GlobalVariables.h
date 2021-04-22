@@ -2,6 +2,7 @@
 #include <vector>
 #include "libs/Eigen/Core"
 #include <string.h>
+#include <iostream>
 using Eigen::VectorXd;
 
 const int Nm = 1;//35; // number of magnitude bins
@@ -29,7 +30,9 @@ const int PipelineMinVisits = 5;
 
 const bool SaveAllTemps = false;
 const std::string TempDirName = "TempPositions";
+
+const bool QuitOnLargeGrad = true;
 #define FILEGAP << ", " << 
 
 
-Eigen::VectorXd initialisedVector(int n);
+Eigen::VectorXd initialisedVector(int n,bool print);

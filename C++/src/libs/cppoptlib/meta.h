@@ -108,25 +108,25 @@ public:
 
 template<typename T>
 Status checkConvergence(const Criteria<T> &stop, const Criteria<T> &current) {
-	std::cout.precision(17);
+
     if ((stop.iterations > 0) && (current.iterations > stop.iterations)) {
-		std::cout << "hit iteration limit " << current.iterations << std::endl;
+		std::cout << "\nSOLVER ENDED: Solver hit iteration limit." << std::endl;
         return Status::IterationLimit;
     }
     if ((stop.xDelta > 0) && (current.xDelta < stop.xDelta)) {
-		std::cout << "Quit due to: vec Delta " << current.xDelta << std::endl;
+		std::cout << "\nSOLVER ENDED: Negligible Change in position vector " << std::endl;
         return Status::XDeltaTolerance;
     }
     if ((stop.fDelta > 0) && (current.fDelta < stop.fDelta)) {
-		std::cout << "Quit due to: function delta " << current.fDelta<< std::endl;
+		std::cout << "\nSOLVER ENDED: Negligible change in function value" << std::endl;
         return Status::FDeltaTolerance;
     }
     if ((stop.gradNorm > 0) && (current.gradNorm < stop.gradNorm)) {
-		std::cout << "Quit due to: gradnorm " << current.gradNorm << std::endl;
+		std::cout << "\nSOLVER ENDED: Gradient below accepted threshold" << std::endl;
         return Status::GradNormTolerance;
     }
     if ((stop.condition > 0) && (current.condition > stop.condition)) {
-		std::cout << "Quit due to: condition number " << current.condition << std::endl;
+		std::cout << "\nSOLVER ENDED: Reached condition number " << current.condition << std::endl;
         return Status::Condition;
     }
     return Status::Continue;

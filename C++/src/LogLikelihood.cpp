@@ -11,7 +11,7 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
 	pmf = std::vector<double>(suitablyLargeNumber,0.0);
 	subpmf = std::vector<double>(suitablyLargeNumber,0.0);
-	
+
 	
     
     
@@ -142,7 +142,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	std::vector<double> p = std::vector<double>(n,0);
 	double p_sum = 0;
 
-	std::cout << "p_" << star << " = (";
+	
+	//~ std::cout << "\t\t\t p = (";
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
@@ -159,9 +160,9 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		p[i] = pt[i] *pml[i];
 		p_sum += p[i];
-		std::cout << p[i] << ", ";
+		//~ std::cout << p[i] << ", ";
 	}
-	std::cout << ")\n";
+	//~ std::cout << "), sum = " << p_sum << std::endl;
 	// probability black magic stuff
 	direct_convolution_local(p,n,pmf);
 
@@ -172,26 +173,20 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	{
 		correction -= pmf[i];
 	}
-	std::cout << "\n\npmf = ";
-	for (int j = 0; j <= k; ++j)
-	{
-		std::cout << pmf[j] << ", ";
-	}
-	std::cout << "\n";
 	
-	std::cout << "Likelihood: " << likelihood << "   Correction: " << correction << std::endl;
+	//~ std::cout << "pmf = (";
+	//~ for (int i = 0; i < n; ++i)
+	//~ {
+		//~ std::cout << pmf[i] << ", ";
+	//~ }
+	//~ std::cout << ")\n\n";
+
 	if (correction < 0)
 	{
 		std::cout << "CORRECTION ERROR in STAR " << star << " ( " << correction << ") " << std::endl;
-		std::cout << time_mapping[8888542] << std::endl;
 		
 	}
-	//~ std::cout << "pmf = ";
-	//~ for (int i = 0; i < k+1; ++i)
-	//~ {
-		//~ std::cout << pmf[i] << ",\t";
-	//~ }
-	//~ std::cout << " likelihood -> correction  = " << likelihood << "->" << correction <<std::endl;
+	
 	Value += log(likelihood / correction);
 	
 	double gradient_first_term = 1.0;
@@ -209,49 +204,27 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	}
 	
 	VectorXd perStarGrad = VectorXd::Zero(Gradient.size());
-	int peak = p_sum;
+	int peak = n/2;
 	
+	double prevP = -99999999999;
+	double prevdFdP = 0;
 	for (int i = 0; i < n; ++i)
 	{
-		double inv_p = 1.0/p[i];
-		double inv_1mp = 1.0/(1.0 - p[i]);
+		double dFdP;
 		
-		subpmf[0] = pmf[0] * inv_1mp;
-		for (int j = 1; j <= peak; ++j)
-		{
-			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_1mp;
-		}
 
-		subpmf[n-1] = pmf[n]*inv_p;
-		for (int j = n-1; j > peak + 1; --j)
-		{
-			subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p[i]))*inv_p;
-		}
-
-		
-		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-
-		std::cout << i << "  " << dFdP << "   " << subpmf[k-1] << "   " << subpmf[k] << "   " << likelihood << "   " << correction << "\n";
-		
-		if (i == 0)
-		{
-			std::cout << "subpmf = ";
-			for (int j = 0; j < n; ++j)
-			{
-				if (j == k)
-				{
-					std::cout << "_____" << subpmf[j] << "______, ";
-				}
-				else
-				{
-					std::cout << subpmf[j] << ", ";
-				}
-			}
-		}
-		
-		
-		
-		std::cout <<"\n";
+		//~ if ( abs(p[i] - prevP) < 1e-10)
+		//~ {
+			//~ dFdP = prevdFdP;
+		//~ }
+		//~ else
+		//~ {
+			CalculatePMF(i,n,k,p,false);
+			dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
+			//~ prevP = p[i];
+			//~ prevdFdP = dFdP;
+		//~ }
+	
 		int t= candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP * p[i] * (1.0 - pt[i]);
@@ -272,64 +245,87 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 	if (perStarGrad.norm() > 1e10)
 	{
-		std::cout << "Star " << star << " has a gradient: " << perStarGrad.transpose() << std::endl;
+		std::cout << "\n\nERROR: Star " << star << " has a gradient: " << perStarGrad.transpose() << std::endl;
+		std::cout << "This is usually indicative of an error. ";
+		
+		if (QuitOnLargeGrad)
+		{
+			std::cout << "User options request termination on this condition.\n";
+			exit(1);
+		}
+		std::cout << "Please proceed with caution " << std::endl;
 	}
 
 }
 
 
-std::vector<double> LogLikelihood::LikelihoodGivenP(std::vector<double> p, int n, int k)
-{
-	
-	//modifies pmf and subpmf in place to set them to nice values
-	direct_convolution_local(p,n,pmf);
 
-	double likelihood = pmf[k];
+void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> & ps,bool directCalculationActive)
+{
+	double p = ps[i];
 	
-	double correction = 1.0;
-	for (int i = 0; i < PipelineMinVisits; ++i)
+	if (directCalculationActive == false)
 	{
-		correction -= pmf[i];
-	}
-	
-	Value += log(likelihood / correction);
-	
-	double gradient_first_term = 1.0;
-	double gradient_second_term = 1.0;
-	if (k == 0)
-	{
-		gradient_first_term = 0.0;
+		double inv_p = 1.0/p;
+		double inv_1mp = 1.0/(1.0 - p);
+		
+		
+		bool needsExplicitCalculation = false;
+		int peak = n/2;
+		
+		subpmf[0] = pmf[0] * inv_1mp;
+		for (int j = 1; j <= peak+1; ++j)
+		{
+			double v = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
+			
+			//~ if (v > 1 || v < 0)
+			//~ {
+				
+				//~ CalculatePMF(i,n,k,ps,true);
+				//~ return;
+			//~ }
+			subpmf[j] = v;
+		}
+		
+		//~ if (k > peak)
+		//~ {
+			subpmf[n-1] = pmf[n]*inv_p;
+			for (int j = n-1; j > peak+2; --j)
+			{
+				double v = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
+				//~ if (v > 1 || v < 0)
+				//~ {
+					
+					//~ CalculatePMF(i,n,k,ps,true);
+					//~ return;
+				//~ }
+				subpmf[j-1] = v;
+			}
+		//~ }
 	}
 	else
 	{
-		if (k == n)
+		std::vector<double> subP = std::vector<double>(n-1,0);
+		int k =0;
+		for (int j = 0; j < n; ++j)
 		{
-			gradient_second_term = 0.0;
-		}
-	}
-	
-
-	
-	std::vector<double> grad;
-	for (int i = 0; i < n; ++i)
-	{
+			subpmf[j] = 0;
+			if (j != i)
+			{
+				subP[k] = ps[j];
+				++k;
+			}
+		} 
+		direct_convolution_local(subP,n-1,subpmf);
 		
-		double inv_p = 1.0/(1 - p[i]);
-		
-		subpmf[0] = pmf[0] * inv_p;
-		for (int j = 1; j < n; ++j)
-		{
-			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_p;
-		}
-		subpmf[n-1] = pmf[n]/p[i];
-		
-		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-		
-		grad.push_back(dFdP);
 	}
 
-	grad.push_back(Value);
-	return grad;
+	
+}
+
+std::vector<double> LogLikelihood::LikelihoodGivenP(std::vector<double> p, int n, int k)
+{
+	
 }
 
             

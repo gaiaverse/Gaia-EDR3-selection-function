@@ -40,7 +40,7 @@ using Eigen::VectorXd;
 int ProcessRank;
 int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
-
+int RandomSeed = time(NULL);
 std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
@@ -83,7 +83,7 @@ void RootProcess()
 	int nLoops = 1;
 	
 
-	VectorXd x = initialisedVector(nParameters);
+	VectorXd x = initialisedVector(nParameters,true);
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
 	int logStopper = -3;
@@ -104,6 +104,8 @@ void RootProcess()
 		
 	}
 
+	std::cout << "\tMinimization successfully converged after " << fun.LoopID << " calculations " << std::endl;
+	
 	fun.SavePosition(true);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
@@ -165,7 +167,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/zeros/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -184,8 +186,10 @@ void GetAssignments(int id)
 
 void LoadData(int id)
 {
-	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
-	
+	if (ProcessRank == RootID)
+	{
+		std::cout << "Data Readin begun" <<std::endl;
+	}
 	auto start = std::chrono::system_clock::now();
 	GetAssignments(id);
 	bool isReporter = (ProcessRank == JobSize - 1);
@@ -225,7 +229,7 @@ void LoadData(int id)
 void processArgs(int argc, char *argv[])
 {
 	bool outDirFlag = false;
-	
+	bool seedFlag = false;
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -237,11 +241,24 @@ void processArgs(int argc, char *argv[])
 			outDirFlag = false;
 		
 		}
+		if (seedFlag == true)
+		{
+			RandomSeed = std::stoi(arg);
+			if (ProcessRank == RootID)
+			{
+				std::cout << "Root reports random seed set to " << RandomSeed << "\n";
+			}
+			seedFlag = false;
+		}
 		
 		
 		if (arg == "-f")
 		{
 			outDirFlag = true;
+		}
+		if (arg == "-s")
+		{
+			seedFlag = true;
 		}
 		
 		
@@ -287,7 +304,7 @@ void pTestSuite()
 
 void mapper()
 {
-	VectorXd x = initialisedVector(totalRawParams);
+	
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
 	int nx = 20;
@@ -340,22 +357,32 @@ void mapper()
 
 int main(int argc, char *argv[])
 {
+	
+	
+	
 	//MPI initialization commands
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
-	processArgs(argc,argv);
-	srand(0);
 	
-	auto start = std::chrono::system_clock::now();
 	
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
+		std::cout << "\n\n----------------------------------------------\n";
+		std::cout << "\n~~ Gaia Selection Function Optimization ~~\n\n";
+		std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
 		printTime();
+		std::cout << "\n----------------------------------------------\n\n";
+		
 		std::cout << std::endl;
 	}
+	MPI_Barrier(MPI_COMM_WORLD);
+	
+	processArgs(argc,argv);
+	srand(RandomSeed);
+	
+	auto start = std::chrono::system_clock::now();
 	
 
 	//pTestSuite();
@@ -374,11 +401,12 @@ int main(int argc, char *argv[])
 	
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();
-	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
+	std::cout << "Process " << ProcessRank << " reports job has finished. Waiting for rest. \n";
 	
+	MPI_Barrier(MPI_COMM_WORLD);
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
+		std::cout << "\n\nAll workers reached end of line. Duration was: " << formatDuration(start,end) << "\n";
 	}
 
 	MPI_Finalize();

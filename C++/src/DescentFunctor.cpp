@@ -57,10 +57,19 @@ void DescentFunctor::SavePosition(bool finalSave)
 	}
 	std::fstream transfile;
 	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
+	if (finalSave)
+	{
+		std::cout << "\tConverged roots : ";
+	}
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
 		transfile << TransformedPosition[i] << "\n";
+		if (finalSave)
+		{
+			std::cout << TransformedPosition[i] << ",\t";
+		}
 	}
+	std::cout << "\n";
 	
 	rawfile.close();
 	transfile.close();
@@ -204,7 +213,7 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	if (printOn)
 	{
 		
-		std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		//std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
 		++LoopID;
 	}
 	const int n =  Nt+Nm*Nl;
@@ -251,14 +260,15 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	
 	CurrentValue = Lsum;
 	
-	if (printOn)
-	{
-		std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
-		checkNan(CurrentGradient,"Gradient Calculation");
-	}
+	//~ if (printOn)
+	//~ {
+		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		//~ std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+		
+	//~ }
+	checkNan(CurrentGradient,"Gradient Calculation");
 }
 
 
