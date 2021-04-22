@@ -271,26 +271,25 @@ void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> &
 		
 		
 		bool needsExplicitCalculation = false;
-		int peak = n/2;
 		
-		subpmf[0] = pmf[0] * inv_1mp;
-		for (int j = 1; j <= peak+1; ++j)
-		{
-			double v = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
-			
-			//~ if (v > 1 || v < 0)
-			//~ {
+		if (p*inv_1mp < 1){
+			subpmf[0] = pmf[0] * inv_1mp;
+			for (int j = 1; j < n; ++j)
+			{
+				double v = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
 				
-				//~ CalculatePMF(i,n,k,ps,true);
-				//~ return;
-			//~ }
-			subpmf[j] = v;
+				//~ if (v > 1 || v < 0)
+				//~ {
+					
+					//~ CalculatePMF(i,n,k,ps,true);
+					//~ return;
+				//~ }
+				subpmf[j] = v;
+			}
 		}
-		
-		//~ if (k > peak)
-		//~ {
+		else {
 			subpmf[n-1] = pmf[n]*inv_p;
-			for (int j = n-1; j > peak+2; --j)
+			for (int j = n-1; j > 0; --j)
 			{
 				double v = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
 				//~ if (v > 1 || v < 0)
@@ -301,7 +300,7 @@ void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> &
 				//~ }
 				subpmf[j-1] = v;
 			}
-		//~ }
+		}
 	}
 	else
 	{
