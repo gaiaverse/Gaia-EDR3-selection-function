@@ -140,6 +140,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	std::vector<double> pt = std::vector<double>(n,0); ///what is p?
 	std::vector<double> pml = std::vector<double>(n,0);
 	std::vector<double> p = std::vector<double>(n,0);
+	double p_sum = 0;
 
 	std::cout << "p_" << star << " = (";
 	for (int i = 0; i < n; ++i)
@@ -157,6 +158,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		pml[i] = sigmoid(xml1 + xml2);
 		
 		p[i] = pt[i] *pml[i];
+		p_sum += p[i];
 		std::cout << p[i] << ", ";
 	}
 	std::cout << ")\n";
@@ -207,18 +209,25 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	}
 	
 	VectorXd perStarGrad = VectorXd::Zero(Gradient.size());
+	int peak = p_sum;
 	
 	for (int i = 0; i < n; ++i)
 	{
+		double inv_p = 1.0/p[i];
+		double inv_1mp = 1.0/(1.0 - p[i]);
 		
-		double inv_p = 1.0/(1 - p[i]);
-		
-		subpmf[0] = pmf[0] * inv_p;
-		for (int j = 1; j < n; ++j)
+		subpmf[0] = pmf[0] * inv_1mp;
+		for (int j = 1; j <= peak; ++j)
 		{
-			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_p;
+			subpmf[j] = (pmf[j] - subpmf[j-1]*p[i])*inv_1mp;
 		}
-		subpmf[n-1] = pmf[n]/p[i];
+
+		subpmf[n-1] = pmf[n]*inv_p;
+		for (int j = n-1; j > peak + 1; --j)
+		{
+			subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p[i]))*inv_p;
+		}
+
 		
 		double dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
 
