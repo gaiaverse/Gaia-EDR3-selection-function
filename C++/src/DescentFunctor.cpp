@@ -213,7 +213,9 @@ void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
 	if (printOn)
 	{
 		
-		//std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		
+		std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		std::cout << "Current position: " << y.transpose() << std::endl;
 		++LoopID;
 	}
 	const int n =  Nt+Nm*Nl;
