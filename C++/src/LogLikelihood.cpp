@@ -275,7 +275,7 @@ void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> &
 	{
 		
 		subpmf[0] = pmf[0] * inv_1mp;
-		for (int j = 1; j < k+1; ++j)
+		for (int j = 1; j < n; ++j)
 		{
 			subpmf[j] = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
 		}
