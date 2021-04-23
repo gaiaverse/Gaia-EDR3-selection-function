@@ -283,7 +283,7 @@ void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> &
 	else 
 	{
 		subpmf[n-1] = pmf[n]*inv_p;
-		for (int j = n-1; j > PipelineMinVisits-2; --j)
+		for (int j = n-1; j > 0; --j)
 		{
 			subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
 		}
