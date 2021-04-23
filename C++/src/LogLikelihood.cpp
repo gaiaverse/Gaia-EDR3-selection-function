@@ -310,11 +310,9 @@ void inline LogLikelihood::CalculateSubPMF(int i,int n, int k,std::vector<double
 	//calculate the correction terms: always safe to calculate forward (we hope)
 	SubPMF_Forward(p,0,PipelineMinVisits);
 
-
 	
 	
-	
-	bool convergenceCondition = (p > 0.5);
+	bool convergenceCondition = (p < 0.5);
 	bool leftDistanceCondition = (float)k/n < 0.35;
 	bool rightDistanceCondition = (float)k/n > 0.65;
 	
