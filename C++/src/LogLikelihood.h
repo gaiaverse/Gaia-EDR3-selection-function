@@ -47,6 +47,8 @@ class LogLikelihood
 		void Reset();
 		void PerStarContribution(int id,Eigen::VectorXd & position);
 		void inline CalculateSubPMF(int i, int n, int k,std::vector<double> & ps);
+		void inline SubPMF_Forward(double p, int start, int end);
+		void inline SubPMF_Backward(double p, int start, int end, int n);
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
 		

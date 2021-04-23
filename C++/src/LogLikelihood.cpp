@@ -143,7 +143,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	double p_sum = 0;
 
 	
-	std::cout << "\t\t\t p = (";
+	//~ std::cout << "\t\t\t p = (";
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
@@ -160,9 +160,9 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		p[i] = pt[i] *pml[i];
 		p_sum += p[i];
-		std::cout << p[i] << ", ";
+		//~ std::cout << p[i] << ", ";
 	}
-	std::cout << "), sum = " << p_sum << std::endl;
+	//~ std::cout << "), sum = " << p_sum << std::endl;
 	// probability black magic stuff
 	direct_convolution_local(p,n,pmf);
 
@@ -174,12 +174,12 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		correction -= pmf[i];
 	}
 	
-	std::cout << "pmf = (";
-	for (int i = 0; i < n; ++i)
-	{
-		std::cout << pmf[i] << ", ";
-	}
-	std::cout << ")\n\n";
+	//~ std::cout << "pmf = (";
+	//~ for (int i = 0; i < n; ++i)
+	//~ {
+		//~ std::cout << pmf[i] << ", ";
+	//~ }
+	//~ std::cout << ")\n\n";
 
 	if (correction < 0)
 	{
@@ -219,10 +219,11 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		}
 		else
 		{
-			std::cout << "Calculating new subpmf for p = " << p[i] << std::endl;
+			//~ std::cout << "Calculating new subpmf for p = " << p[i] << std::endl;
 			CalculateSubPMF(i,n,k,p);
+			
 			dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-			std::cout << "dFdP = " << dFdP << std::endl;
+			//~ std::cout << "dFdP = " << dFdP << std::endl;
 			prevP = p[i];
 			prevdFdP = dFdP;
 		}
@@ -261,6 +262,40 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 }
 
 
+void inline LogLikelihood::SubPMF_Forward(double p, int start, int end)
+{
+	//~ std::cout << "Forward step" << std::endl;
+	double inv_p = 1.0/p;
+	double inv_1mp = 1.0/(1.0 - p);
+	if (start == 0)
+	{
+		subpmf[0] = pmf[0] *inv_1mp;
+		++start;
+	}
+	
+	for (int j = start; j < end; ++j)
+	{
+		subpmf[j] = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
+	}
+}
+
+
+void inline LogLikelihood::SubPMF_Backward(double p, int start, int end, int n)
+{
+	//~ std::cout << "Backward step" << std::endl;
+	double inv_p = 1.0/p;
+	double inv_1mp = 1.0/(1.0 - p);
+	if (start == n-1)
+	{
+		subpmf[n-1] = pmf[n]*inv_p;
+
+	}
+	
+	for (int j = start; j > end; --j)
+	{
+		subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
+	}
+}
 
 void inline LogLikelihood::CalculateSubPMF(int i,int n, int k,std::vector<double> & ps)
 {
@@ -272,49 +307,47 @@ void inline LogLikelihood::CalculateSubPMF(int i,int n, int k,std::vector<double
 	double inv_1mp = 1.0/(1.0 - p);
 	
 	
-	bool needsExplicitCalculation = false;
-	
-	if (p*inv_1mp < 1)
-	{
-			std::cout << "Forward" << std::endl;
-			subpmf[0] = pmf[0] * inv_1mp;
-			for (int j = 1; j < n; ++j)
-			{
-				double v = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
+	//calculate the correction terms: always safe to calculate forward (we hope)
+	SubPMF_Forward(p,0,PipelineMinVisits);
 
-				subpmf[j] = v;
-			}
-		}
-		else 
-		{
-			std::cout << "Backward" << std::endl;
-			subpmf[n-1] = pmf[n]*inv_p;
-			for (int j = n-1; j > 0; --j)
-			{
-				double v = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
-				//~ if (v > 1 || v < 0)
-				//~ {
-					
-					//~ CalculatePMF(i,n,k,ps,true);
-					//~ return;
-				//~ }
-				subpmf[j-1] = v;
-			}
-		}
+
 	
-	std::cout << "\n subpmf = (";
-	for (int iq = 0; iq < n; ++iq)
+	
+	
+	bool convergenceCondition = (p > 0.5);
+	bool leftDistanceCondition = (float)k/n < 0.35;
+	bool rightDistanceCondition = (float)k/n > 0.65;
+	
+	bool goForward = false;
+	if ( convergenceCondition && !rightDistanceCondition) 
 	{
-		if (iq!= k)
-		{
-			std::cout << subpmf[iq] << ", ";
-		}
-		else
-		{
-				std::cout << "____" << subpmf[iq] << "____, ";
-		}
+		goForward = true;
 	}
-	std::cout << ")\n\n";
+	
+	if (goForward)
+	{
+		SubPMF_Forward(p,PipelineMinVisits,k+2);
+	}
+	else
+	{
+		SubPMF_Backward(p,n-1,k-2,n);
+	}
+
+
+	
+	//~ std::cout << "\n subpmf = (";
+	//~ for (int iq = 0; iq < n; ++iq)
+	//~ {
+		//~ if (iq!= k)
+		//~ {
+			//~ std::cout << subpmf[iq] << ", ";
+		//~ }
+		//~ else
+		//~ {
+				//~ std::cout << "____" << subpmf[iq] << "____, ";
+		//~ }
+	//~ }
+	//~ std::cout << ")\n\n";
 }
 
 std::vector<double> LogLikelihood::LikelihoodGivenP(std::vector<double> p, int n, int k)
