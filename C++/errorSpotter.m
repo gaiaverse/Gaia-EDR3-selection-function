@@ -1,6 +1,9 @@
-fid = fopen("RandomSearcher_noExact.txt");
+
+
+files = "overnightSearcher" + ["1","2","3"]+ ".txt";
+
 size = 20;
-tline = fgetl(fid);
+
 global x y z t success nRuns cx cy cz;
 x = [];
 y = [];
@@ -14,16 +17,20 @@ nRuns = 0;
 
 
 clf;
-while ischar(tline)
-    
-	
-	r = string(tline);
-	checkPos(r);
-	checkDuration(r);
-	checkConverge(r);
+for file = files
+    file
+    fid = fopen(file);
     tline = fgetl(fid);
-end
+    while ischar(tline)
 
+
+        r = string(tline);
+        checkPos(r);
+        checkDuration(r);
+        checkConverge(r);
+        tline = fgetl(fid);
+    end
+end
 
 if length(success) < length(x)
 	success(end+1) = 0;
@@ -44,7 +51,7 @@ xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
 
 nexttile(T);
 edges = [0:10:120];
-histogram(t,edges);
+histogram(t);
 title("Calculation duration (mean = " + num2str(mean(t(~isnan(t)))) + ")");
 xlabel("Seconds");
 ylabel("Counts");
@@ -105,9 +112,9 @@ function checkDuration(r)
 			t(nRuns) = str2double(extractBetween(r,j(1),k(1)));
 		end
 
-		if t(nRuns) > 120
-			t(nRuns) = 120;
-		end
+% 		if t(nRuns) > 120
+% 			t(nRuns) = 120;
+% 		end
 		success(nRuns) = true;
 	end	
 end
