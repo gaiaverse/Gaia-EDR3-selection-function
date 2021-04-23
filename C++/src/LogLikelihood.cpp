@@ -213,17 +213,17 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		double dFdP;
 		
 
-		//~ if ( abs(p[i] - prevP) < 1e-10)
-		//~ {
-			//~ dFdP = prevdFdP;
-		//~ }
-		//~ else
-		//~ {
-			CalculatePMF(i,n,k,p,false);
+		if ( abs(p[i] - prevP) < 1e-10)
+		{
+			dFdP = prevdFdP;
+		}
+		else
+		{
+			CalculatePMF(i,n,k,p);
 			dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-			//~ prevP = p[i];
-			//~ prevdFdP = dFdP;
-		//~ }
+			prevP = p[i];
+			prevdFdP = dFdP;
+		}
 	
 		int t= candidate.TimeSeries[i];
 
@@ -260,65 +260,34 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 
 
-void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> & ps,bool directCalculationActive)
+void inline LogLikelihood::CalculatePMF(int i,int n, int k,std::vector<double> & ps)
 {
 	double p = ps[i];
 	
-	if (directCalculationActive == false)
+	
+	double inv_p = 1.0/p;
+	double inv_1mp = 1.0/(1.0 - p);
+	
+	
+	bool needsExplicitCalculation = false;
+	
+	if (p < 0.5)
 	{
-		double inv_p = 1.0/p;
-		double inv_1mp = 1.0/(1.0 - p);
 		
-		
-		bool needsExplicitCalculation = false;
-		
-		if (p*inv_1mp < 1){
-			subpmf[0] = pmf[0] * inv_1mp;
-			for (int j = 1; j < n; ++j)
-			{
-				double v = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
-				
-				//~ if (v > 1 || v < 0)
-				//~ {
-					
-					//~ CalculatePMF(i,n,k,ps,true);
-					//~ return;
-				//~ }
-				subpmf[j] = v;
-			}
-		}
-		else {
-			subpmf[n-1] = pmf[n]*inv_p;
-			for (int j = n-1; j > 0; --j)
-			{
-				double v = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
-				//~ if (v > 1 || v < 0)
-				//~ {
-					
-					//~ CalculatePMF(i,n,k,ps,true);
-					//~ return;
-				//~ }
-				subpmf[j-1] = v;
-			}
-		}
-	}
-	else
-	{
-		std::vector<double> subP = std::vector<double>(n-1,0);
-		int k =0;
-		for (int j = 0; j < n; ++j)
+		subpmf[0] = pmf[0] * inv_1mp;
+		for (int j = 1; j < k+1; ++j)
 		{
-			subpmf[j] = 0;
-			if (j != i)
-			{
-				subP[k] = ps[j];
-				++k;
-			}
-		} 
-		direct_convolution_local(subP,n-1,subpmf);
-		
+			subpmf[j] = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
+		}
 	}
-
+	else 
+	{
+		subpmf[n-1] = pmf[n]*inv_p;
+		for (int j = n-1; j > PipelineMinVisits-2; --j)
+		{
+			subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
+		}
+	}
 	
 }
 
