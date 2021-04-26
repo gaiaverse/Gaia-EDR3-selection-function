@@ -53,9 +53,11 @@ class LogLikelihood
 		int suitablyLargeNumber = 1024;
 		
 		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
-		std::vector<std::vector<double>> pmf_forward(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber));
-		std::vector<std::vector<double>> pmf_backward(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber));
-		std::vector<std::vector<double>> subpmf(3,std::vector<double>(suitablyLargeNumber));
+		std::vector<std::vector<double>> pmf_forward = std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
+		std::vector<std::vector<double>> pmf_backward =  std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
+		std::vector<std::vector<double>> subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(suitablyLargeNumber,0));
+
+
 
 		std::string healpix_fov_file;
 		std::string needlet_file;
