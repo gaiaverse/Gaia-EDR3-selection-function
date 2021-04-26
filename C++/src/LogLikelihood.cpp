@@ -173,15 +173,18 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	{
 		for (int j = 0; j < n; ++j)
 		{
-			std::cout << pmf[i][j] << ", ";
+			std::cout << pmf_backward[i][j] << ", ";
 		}
 	}
 	std::cout << ")\n\n";
 	
-	std::cout << "pmf_backward = (";
+		std::cout << "pmf_back= (";
 	for (int i = 0; i < n; ++i)
 	{
-		std::cout << pmf[i] << ", ";
+		for (int j = 0; j < n; ++j)
+		{
+			std::cout << pmf_backward[i][j] << ", ";
+		}
 	}
 	std::cout << ")\n\n";
 
