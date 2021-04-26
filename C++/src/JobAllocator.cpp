@@ -86,7 +86,7 @@ void RootProcess()
 	VectorXd x = initialisedVector(nParameters,true);
 	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
 	
-	int logStopper = -3;
+	int logStopper = -2;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
@@ -99,7 +99,7 @@ void RootProcess()
 		}
 		else
 		{
-			condition = 0;
+			condition = 1e-4;
 		}
 		
 	}
@@ -167,7 +167,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/zeros/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -274,32 +274,6 @@ void processArgs(int argc, char *argv[])
 }
 
 
-void pTestSuite()
-{
-	LogLikelihood L = LogLikelihood(Data,Bins,totalTransformedParams,ProcessRank);
-	std::vector<double> pSave = {0.5101,0.2,0.1,0.6,0.3,0.5};
-	int size = pSave.size();
-	
-	
-	for (int inv = 0; inv < size; ++inv)
-	{
-		std::vector<double> p = pSave;
-			L.Value = 0;
-		std::vector<double> g1 = L.LikelihoodGivenP(p,size,5);
-		L.Value = 0;
-		double delta = 1e-7;
-		
-
-		p[inv] += delta;
-		
-		std::vector<double> g2 = L.LikelihoodGivenP(p,size,5);
-		
-		
-		double manualGrad = ( (g2[size] - g1[size])/delta);
-		
-		std::cout << inv << "  " << manualGrad << "   " << g1[inv] << std::endl;
-}
-}
 
 
 void mapper()

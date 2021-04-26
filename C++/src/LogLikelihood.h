@@ -52,10 +52,10 @@ class LogLikelihood
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
 		
-		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
-		std::vector<std::vector<double>> pmf_forward = std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
-		std::vector<std::vector<double>> pmf_backward =  std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
-		std::vector<std::vector<double>> subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(suitablyLargeNumber,0));
+		
+		std::vector<std::vector<double>> pmf_forward;
+		std::vector<std::vector<double>> pmf_backward;
+		std::vector<std::vector<double>> subpmf;
 
 
 
@@ -66,14 +66,16 @@ class LogLikelihood
 
     	std::vector<int> time_mapping;
     
+		std::vector<double> pt;
+	std::vector<double> pml;
+	std::vector<double> p;
 };
 
 
 //function stolen from a git repo somewhere, see the implementation for more details
-void direct_convolution_local(std::vector<double> & probs, int probslen, std::vector<double> & result);
-void poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void poisson_binomial_subpmf(int m, std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
+void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
 
 // Implements an expit sigmoid via the tanh method
-double sigmoid(double x);
+double inline sigmoid(double x);
