@@ -53,7 +53,9 @@ class LogLikelihood
 		int suitablyLargeNumber = 1024;
 		
 		std::vector<double> pmf = std::vector<double>(suitablyLargeNumber,0.0);
-		std::vector<double> subpmf  = std::vector<double>(suitablyLargeNumber,0.0);
+		std::vector<std::vector<double>> pmf_forward(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber));
+		std::vector<std::vector<double>> pmf_backward(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber));
+		std::vector<std::vector<double>> subpmf(3,std::vector<double>(suitablyLargeNumber));
 
 		std::string healpix_fov_file;
 		std::string needlet_file;
@@ -67,6 +69,9 @@ class LogLikelihood
 
 //function stolen from a git repo somewhere, see the implementation for more details
 void direct_convolution_local(std::vector<double> & probs, int probslen, std::vector<double> & result);
+void poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void poisson_binomial_subpmf(int m, std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
 
 // Implements an expit sigmoid via the tanh method
 double sigmoid(double x);

@@ -164,14 +164,38 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	}
 	//~ std::cout << "), sum = " << p_sum << std::endl;
 	// probability black magic stuff
-	direct_convolution_local(p,n,pmf);
+	//direct_convolution_local(p,n,pmf);
+	poisson_binomial_pmf_forward(p,n,pmf_forward);
+	poisson_binomial_pmf_backward(p,n,pmf_backward);
+	poisson_binomial_subpmf(PipelineMinVisits-1,p,n,pmf_forward,pmf_backward,subpmf[0]);
 
-	double likelihood = pmf[k];
+	if (k > 0)
+	{
+		poisson_binomial_subpmf(k-1,p,n,pmf_forward,pmf_backward,subpmf[1]);
+	}
+	else
+	{
+		subpmf[1] = std::vector<double>(n,0);
+	}
+
+	if (k < n)
+	{
+		poisson_binomial_subpmf(k,p,n,pmf_forward,pmf_backward,subpmf[2]);
+	}
+	else
+	{
+		subpmf[2] = std::vector<double>(n,0);
+	}
+	
+	
+
+	// Might as well use both
+	double likelihood = 0.5*(pmf_forward[n,k]+pmf_backward[0,k]);
 	
 	double correction = 1.0;
 	for (int i = 0; i < PipelineMinVisits; ++i)
 	{
-		correction -= pmf[i];
+		correction -= 0.5*(pmf_forward[n,i] + pmf_backward[0,i]);
 	}
 	
 	//~ std::cout << "pmf = (";
@@ -189,46 +213,13 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 	Value += log(likelihood / correction);
 	
-	double gradient_first_term = 1.0;
-	double gradient_second_term = 1.0;
-	if (k == 0)
-	{
-		gradient_first_term = 0.0;
-	}
-	else
-	{
-		if (k == n)
-		{
-			gradient_second_term = 0.0;
-		}
-	}
-	
 	VectorXd perStarGrad = VectorXd::Zero(Gradient.size());
-	int peak = n/2;
 	
-	double prevP = -99999999999;
-	double prevdFdP = 0;
 	for (int i = 0; i < n; ++i)
 	{
-		double dFdP;
-		
-
-		if ( abs(p[i] - prevP) < 1e-10)
-		{
-			dFdP = prevdFdP;
-		}
-		else
-		{
-			//~ std::cout << "Calculating new subpmf for p = " << p[i] << std::endl;
-			CalculateSubPMF(i,n,k,p);
-			
-			dFdP = (gradient_first_term*subpmf[k-1]-gradient_second_term*subpmf[k])/likelihood - subpmf[PipelineMinVisits-1]/correction;
-			//~ std::cout << "dFdP = " << dFdP << std::endl;
-			prevP = p[i];
-			prevdFdP = dFdP;
-		}
+		double dFdP = (subpmf[1,i]-subpmf[2,i])/likelihood - subpmf[0,i]/correction;
 	
-		int t= candidate.TimeSeries[i];
+		int t = candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP * p[i] * (1.0 - pt[i]);
 		
@@ -261,92 +252,6 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 }
 
-
-void inline LogLikelihood::SubPMF_Forward(double p, int start, int end)
-{
-	//~ std::cout << "Forward step" << std::endl;
-	double inv_p = 1.0/p;
-	double inv_1mp = 1.0/(1.0 - p);
-	if (start == 0)
-	{
-		subpmf[0] = pmf[0] *inv_1mp;
-		++start;
-	}
-	
-	for (int j = start; j < end; ++j)
-	{
-		subpmf[j] = (pmf[j] - subpmf[j-1]*p)*inv_1mp;
-	}
-}
-
-
-void inline LogLikelihood::SubPMF_Backward(double p, int start, int end, int n)
-{
-	//~ std::cout << "Backward step" << std::endl;
-	double inv_p = 1.0/p;
-	double inv_1mp = 1.0/(1.0 - p);
-	if (start == n-1)
-	{
-		subpmf[n-1] = pmf[n]*inv_p;
-
-	}
-	
-	for (int j = start; j > end; --j)
-	{
-		subpmf[j-1] = (pmf[j] - subpmf[j]*(1.0-p))*inv_p;
-	}
-}
-
-void inline LogLikelihood::CalculateSubPMF(int i,int n, int k,std::vector<double> & ps)
-{
-	
-	double p = ps[i];
-	
-	
-	double inv_p = 1.0/p;
-	double inv_1mp = 1.0/(1.0 - p);
-	
-	
-	//calculate the correction terms: always safe to calculate forward (we hope)
-	SubPMF_Forward(p,0,PipelineMinVisits);
-
-	
-	
-	bool convergenceCondition = (p < 0.5);
-	bool leftDistanceCondition = (float)k/n < 0.35;
-	bool rightDistanceCondition = (float)k/n > 0.65;
-	
-	bool goForward = false;
-	if ( convergenceCondition && !rightDistanceCondition) 
-	{
-		goForward = true;
-	}
-	
-	if (goForward)
-	{
-		SubPMF_Forward(p,PipelineMinVisits,k+2);
-	}
-	else
-	{
-		SubPMF_Backward(p,n-1,k-2,n);
-	}
-
-
-	
-	//~ std::cout << "\n subpmf = (";
-	//~ for (int iq = 0; iq < n; ++iq)
-	//~ {
-		//~ if (iq!= k)
-		//~ {
-			//~ std::cout << subpmf[iq] << ", ";
-		//~ }
-		//~ else
-		//~ {
-				//~ std::cout << "____" << subpmf[iq] << "____, ";
-		//~ }
-	//~ }
-	//~ std::cout << ")\n\n";
-}
 
 std::vector<double> LogLikelihood::LikelihoodGivenP(std::vector<double> p, int n, int k)
 {
@@ -394,3 +299,97 @@ void direct_convolution_local(std::vector<double> &  probs, int probslen, std::v
 	}
 }
 
+void poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
+{
+	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
+
+	int oldlen = 2; // length of old kernel
+	double p,q;
+	
+	// initialize (old kernel)
+	result[0,0] = 1.0-probs[0];
+	result[0,1] = probs[0];
+	
+	// loop through all other probs
+	for(int i=1; i < probslen; ++i)
+	{
+
+		// set signal
+		p = probs[i];
+		q = 1.0 - p;
+		
+		// initialize result and calculate the two edge cases
+		result[i,0] = q * result[i-1,0];
+		result[i,oldlen] = p * result[i-1,oldlen-1];
+		
+		//calculate the interior cases
+		for(int j=1; j < oldlen; ++j)
+		{
+			result[i,j] = p * result[i-1,j-1] + q * result[i-1,j];
+		}
+		  
+		oldlen++;
+	}
+}
+
+void poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
+{
+	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
+
+	int oldlen = 2; // length of old kernel
+	double p,q;
+	
+	// initialize (old kernel)
+	result[probslen-1,0] = 1.0-probs[probslen-1];
+	result[probslen-1,1] = probs[probslen-1];
+	
+	// loop through all other probs
+	for(int i=probslen-2; i >= 0; --i)
+	{
+
+		// set signal
+		p = probs[i];
+		q = 1.0 - p;
+		
+		// initialize result and calculate the two edge cases
+		result[i,0] = q * result[i+1,0];
+		result[i,oldlen] = p * result[i+1,oldlen-1];
+		
+		//calculate the interior cases
+		for(int j=1; j < oldlen; ++j)
+		{
+			result[i,j] = p * result[i+1,j-1] + q * result[i+1,j];
+		}
+		  
+		oldlen++;
+	}
+}
+
+void poisson_binomial_subpmf(int m, std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result)
+{
+	double conv = 0;
+
+	// Case 1, i <= m
+	result[0] = pmf_backward[1,m];
+	for(int i = 1; i <= m; ++i)
+	{
+		conv = pmf_forward[i-1,0]*pmf_backward[i+1,m];
+		for(int j = 1; j <= i; ++j)
+		{
+			conv += pmf_forward[i-1,j]*pmf_backward[i+1,m-j];
+		}
+		result[i] = conv;
+	}
+
+	// Case 2, i > m
+	result[probslen-1] = pmf_forward[probslen-2,m];
+	for(int i = m+1; i <= probslen-2; ++i)
+	{
+		conv = pmf_forward[i-1,0]*pmf_backward[i+1,m];
+		for(int j = 1; j <= m; ++j)
+		{
+			conv += pmf_forward[i-1,j]*pmf_backward[i+1,m-j];
+		}
+		result[i] = conv;
+	}
+}
