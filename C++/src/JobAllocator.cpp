@@ -32,7 +32,7 @@
 #include "GlobalVariables.h"
 
 using Eigen::VectorXd;
-//using namespace LBFGSpp;
+
 
 
 //store MPI data as global variables
@@ -40,66 +40,58 @@ using Eigen::VectorXd;
 int ProcessRank;
 int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
-
-
+int RandomSeed = time(NULL);
+std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
 std::vector<std::string> Files;
-	//RootProcess is the main action loop of the 0-ranked core. 
-//It initiates the LBFGS algorithm, and controls the workflow of the other cores
+	
 
-void FinalResult(Eigen::VectorXd & finalpos)
+
+
+
+VectorXd RootMinimiser(VectorXd &x, int steps, double lim,DescentFunctor &fun)
 {
-	std::fstream outfile;
-	outfile.open("testoutput.dat",std::ios::out);
-	
-	for (int i = 0; i < finalpos.size(); ++i)
-	{
-		outfile << finalpos[i] << "\n";
-	}
-	outfile.close();
-	
-}
 
 
-VectorXd RootMinimiser(VectorXd &x, int steps, double lim)
-{
-	int nParameters = Nh+Ng*(Nt + 1);
-	DescentFunctor fun(ProcessRank,Data,Bins,nParameters);
-	
-	std::cout << "\nA new solving routine has been initialised..." << std::endl;
 	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
     cppoptlib::LbfgsSolver<DescentFunctor> solver;
 	realCriteria.iterations = steps;
-//	realCriteria.xDelta = 0;
-	//realCriteria.gradNorm = 0;
+	//realCriteria.xDelta = 1e-15;
+	realCriteria.gradNorm = lim;
 	solver.setStopCriteria(realCriteria);
+	
 	solver.minimize(fun,x);
 
-	
 	return x;
 }
 
-
+//RootProcess is the main action loop of the 0-ranked core. 
+//It initiates the LBFGS algorithm, and controls the workflow of the other cores
 void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
+	std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
 	//tell the workers to resize their parameter vectors
 	
-
-	int nParameters = Nh+Ng*(Nt + 1);
-	MPI_Bcast(&nParameters, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	int nParameters = totalRawParams;
+	int nParametersForWorkers = totalTransformedParams; 
+	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	int nLoops = 10;
-	VectorXd x = initialisedVector(nParameters);
+	
+	int nLoops = 1;
+	
 
-	int logStopper = -3;
+	VectorXd x = initialisedVector(nParameters,true);
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	
+	int logStopper = -2;
 	double condition = pow(10,logStopper);
 	for (int i = 0; i < nLoops;++i)
 	{
 		
-		x = RootMinimiser(x,200,condition);
+		x = RootMinimiser(x,1000,condition,fun);
 		logStopper -=2;
 		if (i < nLoops - 1)
 		{
@@ -107,12 +99,14 @@ void RootProcess()
 		}
 		else
 		{
-			condition = 0;
+			condition = 1e-4;
 		}
 		
 	}
 
-	FinalResult(x);
+	std::cout << "\tMinimization successfully converged after " << fun.LoopID << " calculations " << std::endl;
+	
+	fun.SavePosition(true);
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
@@ -173,7 +167,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../MainData/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -192,8 +186,10 @@ void GetAssignments(int id)
 
 void LoadData(int id)
 {
-	std::cout << "\tProcess " << ProcessRank << " beginning data readin" << std::endl;
-	
+	if (ProcessRank == RootID)
+	{
+		std::cout << "Data Readin begun" <<std::endl;
+	}
 	auto start = std::chrono::system_clock::now();
 	GetAssignments(id);
 	bool isReporter = (ProcessRank == JobSize - 1);
@@ -210,7 +206,6 @@ void LoadData(int id)
 		int gBin = Bins[i];
 		//use a fancy macro (FileHandler.h) to read in data line by line, and split it into a std::vector<std::string> for the data container to process
 		
-		std::cout << "\t\t" << ProcessRank << " is opening " << file << std::endl;
 		forLineVectorInFile(file,',',
 		
 			//~ int r = rand() % RandFrac;
@@ -229,72 +224,144 @@ void LoadData(int id)
 	std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 }
 
-void gradientCheck()
+
+
+void processArgs(int argc, char *argv[])
 {
-	std::fstream file;
-	file.open("gradientTest.txt",std::ios::out);
-	int dim = Nh + Ng*(Nt + 1);
-	VectorXd y = initialisedVector(dim);
-	std::cout << y.transpose() << std::endl;
-	LogLikelihoodPrior L = LogLikelihoodPrior(Data,Bins,dim,ProcessRank);
-	int w = 35;
-	file <<std::left << std::setw(w) << "x0" FILEGAP "PriorMu" FILEGAP "AnalyticalGrad" FILEGAP "NumericalGrad" << "\n";
-	
-	double dm = 0.001;
-	double ddm = 1e-3;
-	int xsId = Nh + Ng;
-	for (double xs = -1; xs < 1; xs+=dm)
+	bool outDirFlag = false;
+	bool seedFlag = false;
+	for (int i = 1; i < argc; ++i)
 	{
-		VectorXd x = y;
-		x[xsId] = xs;
 		
-		L.Calculate(x);
-		double lTrue = L.Value;
+		std::string arg = argv[i];
 		
-		double dLdlm = L.Gradient[xsId];
-		VectorXd xUp = x;
-		VectorXd xDown = x;
-		xUp[xsId] += ddm;
-		xDown[xsId] -= ddm;
+		if (outDirFlag == true)
+		{
+			OutputDirectory = arg;
+			outDirFlag = false;
 		
-		L.Calculate(xUp);
-		double lUp = L.Value;
+		}
+		if (seedFlag == true)
+		{
+			RandomSeed = std::stoi(arg);
+			if (ProcessRank == RootID)
+			{
+				std::cout << "Root reports random seed set to " << RandomSeed << "\n";
+			}
+			seedFlag = false;
+		}
 		
-		L.Calculate(xDown);
-		double lDown = L.Value;
 		
-		double numGrad = (lUp- lTrue)/(ddm);
+		if (arg == "-f")
+		{
+			outDirFlag = true;
+		}
+		if (arg == "-s")
+		{
+			seedFlag = true;
+		}
 		
-		file <<std::left << std::setw(w) << xs FILEGAP lTrue FILEGAP dLdlm FILEGAP numGrad << "\n";
+		
 	}
 	
-	file.close();
-	
+	mkdirReturn dirReport = mkdirSafely(OutputDirectory);
+	mkdirReturn dirReport2= mkdirSafely(OutputDirectory + "/" + TempDirName);
+	if ((dirReport.Successful || dirReport2.Successful) == false)
+	{
+		std::cout << "\n ERROR: Could not locate or create the output directory " << OutputDirectory << " catastrophic error.\n";
+		exit(1);
+	}
 }
 
 
+
+
+void mapper()
+{
+	
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	
+	int nx = 20;
+	int ny = 20;
+	double bound = 60;
+	std::vector<double> xBound = {-1,1};
+	std::vector<double> yBound = {0,1};
+	
+	double delta = 1e-6;
+	
+	std::fstream rawfile;
+	rawfile.open(OutputDirectory + "/surfaceMap.dat",std::ios::out);
+	VectorXd pos = VectorXd::Zero(totalRawParams);
+	VectorXd posx = VectorXd::Zero(totalRawParams);
+	VectorXd posy = VectorXd::Zero(totalRawParams);
+	for (int i = 0; i < nx; ++i)
+	{
+		double x = xBound[0] + (float)i/(nx -1 ) * (xBound[1] - xBound[0]);
+		pos[0] = x;
+		double dx =delta;
+		for (int j = 0; j < ny; ++j)
+		{
+			double y = yBound[0] + (float)j/(ny -1 ) * (yBound[1] - yBound[0]);
+			double dy = delta;
+			pos[1] = y;
+			
+			
+			fun.value(pos);
+			
+			rawfile << x << ",\t" << y << ",\t" << fun.CurrentValue  << ",\t" << fun.CurrentGradient[0]  << ",\t" << fun.CurrentGradient[1];
+			double oldVal = fun.CurrentValue;
+			
+			posx = pos;
+			
+			posx[0] += dx;
+			
+			double newX = fun.value(posx);
+			double testGradx = (-newX - oldVal )/dx;
+			
+			posy = pos;
+			posy[1] += dy;
+			double newY = fun.value(posy);
+			double testGrady = (-newY - oldVal)/dy;
+			rawfile << ",\t" << testGradx  << ",\t" << testGrady  << "\n";
+		}
+	}
+	
+	rawfile.close();
+}
+
 int main(int argc, char *argv[])
 {
+	
+	
+	
 	//MPI initialization commands
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 	
-	srand(3);
 	
-	auto start = std::chrono::system_clock::now();
 	
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Root process online. " << JobSize - 1 << " workers connected. ";
+		std::cout << "\n\n----------------------------------------------\n";
+		std::cout << "\n~~ Gaia Selection Function Optimization ~~\n\n";
+		std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
 		printTime();
+		std::cout << "\n----------------------------------------------\n\n";
+		
 		std::cout << std::endl;
 	}
+	MPI_Barrier(MPI_COMM_WORLD);
 	
-	//~ //enter workers into their main action loops
+	processArgs(argc,argv);
+	srand(RandomSeed);
+	
+	auto start = std::chrono::system_clock::now();
+	
+
+	//pTestSuite();
 	LoadData(ProcessRank);
-	
-	//gradientCheck();
+	//mapper();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
@@ -303,17 +370,19 @@ int main(int argc, char *argv[])
 	{
 		WorkerProcess();	
 	}
+
 	
 	
+	//exit gracefully
 	auto end = std::chrono::system_clock::now();
+	std::cout << "Process " << ProcessRank << " reports job has finished. Waiting for rest. \n";
 	
-	std::cout << "Process " << ProcessRank << " reports job has finished. Closing MPI and exiting gracefully \n";
-	
+	MPI_Barrier(MPI_COMM_WORLD);
 	if (ProcessRank == RootID)
 	{
-		std::cout << "Duration was: " << formatDuration(start,end) << "\n";
+		std::cout << "\n\nAll workers reached end of line. Duration was: " << formatDuration(start,end) << "\n";
 	}
-	//exit gracefully
+
 	MPI_Finalize();
 	return 0;
 }

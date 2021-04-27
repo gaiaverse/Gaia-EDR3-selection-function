@@ -1,22 +1,23 @@
 #include "GlobalVariables.h"
-Eigen::VectorXd initialisedVector(int n)
+
+
+Eigen::VectorXd initialisedVector(int n,bool print)
 {
 	 VectorXd x = VectorXd::Random(n);
     
-    
-    //~ //initialisation of hyperhyperparameters
-    std::vector<double> hyperhyper = {1,1};
-    for (int i = 0; i < Nh; ++i)
-    {
-		x[i] = hyperhyper[i];
-	}
-
-	//initialisation of boring old hyperparameters
-	for (int i = 0; i < Ng; ++i)
-	{
-		x[Nh + i] = -3;//sin(2 * M_PI * (double)i/5) * exp(-(double)i/30);
-	}
-	
-	
+   if (print)
+   {
+	   std::cout << "\tInitial position set to: (";
+	   for (int i = 0; i < n; ++i)
+	   {
+		   std::cout << x[i];
+		   if (i < n-1)
+		   {
+			   std::cout << ", ";
+		   } 
+	   }
+	   std::cout << ")\n";
+   }
+   
 	return x;
 }

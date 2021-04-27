@@ -29,37 +29,66 @@ class DescentFunctor: public Problem<double>
 	private:
 		int RunningID;
 		std::vector<double> InterestVectors;
+
+
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
 		const std::vector<Star> &Data; 
 		LogLikelihoodPrior L;
-		int LoopID;
+
+		
 		std::chrono::time_point<std::chrono::system_clock> Start;
-		void ExamineInterestVectors(Eigen::VectorXd &position);
+
 		
-		double CurrentValue;
-		VectorXd CurrentGradient;
 		
+		
+		//running values for the loglikelihood and gradient 
+
+		
+		std::string OutputDir;
+		//to prevent double evaluations at the same point, prevlock saves current position against a threshold
 		VectorXd PrevLock;
 		const double lockLim = 1e-15;
+		
+		
+		//holder for transformed values
+		VectorXd TransformedPosition;
+		VectorXd TransformedGradient;
+		
+
+		void ForwardTransform(const VectorXd &z);
+		void BackwardTransform(bool print);		
+		void ResetPosition();
+		
+		void TestGradient(const VectorXd position);
 	public:
-		 using typename cppoptlib::Problem<double>::Scalar;
+	int LoopID;
+		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams): Data(data), L(data,bins, nParams,n) //initializer list (complicated, not really sure what it is, but it needs to be here)
+		double CurrentValue;
+		VectorXd CurrentGradient;
+	
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir): Data(data), L(data,bins, nParams,n)
 	    {
 				RunningID = n;
 				LoopID = 0;
 				Start = std::chrono::system_clock::now();
 				CurrentValue = 0;
-				CurrentGradient = VectorXd::Zero(nParams);
+				CurrentGradient = VectorXd::Zero(totalRawParams);
 				
-				PrevLock = VectorXd::Random(nParams);
+				PrevLock = VectorXd::Random(totalRawParams);
+				
+				TransformedPosition = VectorXd::Zero(totalTransformedParams);
+				TransformedGradient = VectorXd::Zero(totalTransformedParams);
+				OutputDir = outdir;
 		}
-	    void DistributeCalculations(const TVector &y);
+	    void DistributeCalculations(const TVector &y, bool printOn);
  
 		double value(const TVector &x);
 		void gradient(const TVector &x, TVector &grad);
+		
+		void SavePosition(bool finalSave);
 };
 
 
