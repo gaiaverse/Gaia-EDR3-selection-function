@@ -136,7 +136,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 		//~ std::cout << p[i] << ", ";
 	}
-	//~ std::cout << "), sum = " << p_sum << std::endl;
+	//~ std::cout << ")"  << std::endl;
 	
 	// probability black magic stuff
 	//direct_convolution_local(p,n,pmf);
@@ -179,10 +179,24 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		correction -= pmf_forward[n-1][i];
 	}
 	
+	if (correction < 0)
+	{
+		std::cout << "ERROR! Correction went negative" << std::endl;
+		exit(1);
+	}
+	
 	
 	
 	Value += log(likelihood / correction);
+	//~ int w = 20;
+	//~ std::cout << std::setw(w) << star <<  std::setw(w) << Value << std::setw(w) << likelihood << std::setw(w)<< correction << std::endl;
 	
+	//~ std::cout << "\n i \t pmf	\t subpmf0 \t subpmf1 \t subpmf2 \n";
+	//~ for (int i = 0; i < n; ++i)
+	//~ {
+		//~ std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << "\n"; 
+	//~ }
+	//~ std::cout << "table ends\n\n";
 	for (int i = 0; i < n; ++i)
 	{
 		double dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );

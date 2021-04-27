@@ -1,6 +1,6 @@
 
 
-files = "overnightSearcher" + ["1","2","3"]+ ".txt";
+files = "fixedSearcher_long" + ["1","2","3"]+ ".txt";
 
 size = 20;
 
