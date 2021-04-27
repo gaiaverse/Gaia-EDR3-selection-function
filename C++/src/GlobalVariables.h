@@ -46,7 +46,7 @@ Eigen::VectorXd initialisedVector(int n);
 //#define GLOBAL_DEBUGGING
 
 const int GlobalLoggingLevel = 0;
-const int GlobalDebuggingLevel = 0;
+const int GlobalDebuggingLevel = 8;
 
 
 #define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}

@@ -119,20 +119,20 @@ void inline LogLikelihood::Debug(int n, int k, int star,double likelihood, doubl
 		
 		
 		int w = 60;
-		std::cout << std::setw(w) << "Likelihood: " + std::to_string(likelihood) << std::setw(w)<<  "Correction: " + std::to_string(correction) << std::setw(w) << " Running Value: " + std::to_string(Value) << std::endl;
+		std::cout << std::setw(w) << "Likelihood: " << likelihood << std::setw(w)<<  "Correction: " + std::to_string(correction) << std::setw(w) << " Running Value: " + std::to_string(Value) << std::endl;
 	
 		w = 20;
-		std::cout << std::setw(w) << "i" << std::setw(w) << "pmf" << std::setw(w) << "subpmf0" << std::setw(w) << "subpmf1" << std::setw(w) << "subpmf2\n";
+		std::cout << std::setw(w) << "i" << std::setw(w) << "pmf" << std::setw(w) << "subpmf0" << std::setw(w) << "subpmf1" << std::setw(w) << "subpmf2" << std::setw(w) << "pmd_2\n";
 		for (int i = 0; i < n; ++i)
 		{
-			std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << "\n"; 
+			std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << std::setw(w) << pmf_backward[0][i] << "\n"; 
 		}
 		std::cout << "\n";
 		
-		if (correction < 0)
-		{
-			ERROR(3,"Correction went negative");
-		}
+		//~ if (correction < 0)
+		//~ {
+			//~ ERROR(3,"Correction went negative");
+		//~ }
 		
 	);
 	
@@ -191,15 +191,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 			nMeasureKiller = 1;
 		}
 		
-
-		log_likelihood = log(pmf_forward[n-1][k]);
+		likelihood = pmf_forward[n-1][k];
+		log_likelihood = log(likelihood);
 		for (int i = 0; i < PipelineMinVisits; ++i)
 		{
 			correction -= pmf_forward[n-1][i];
 		}
 		log_correction = log(correction);
 		Value += log_likelihood - log_correction;
-
+		
 	}
 	else
 	{
@@ -229,13 +229,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 			log_correction += log1p(-exp(pmf_forward[n-1][i]-log_correction));
 		}
 		Value += log_likelihood - log_correction;
-
+		likelihood = log_likelihood;
+		correction = log_correction;
 	}
 	
 			
 	
 	for (int i = 0; i < n; ++i)
 	{
+		
 		double dFdP_p;
 		if (poissonOverride)
 		{
@@ -245,7 +247,9 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		{
 			dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );
 		}
-
+		GlobalDebug(1,
+			std::cout << subpmf[1][i]-log_likelihood << "  " << subpmf[2][i] - log_likelihood << "   " << subpmf[0][i] - log_correction << "   " << dFdP_p << "\n";
+		);
 		int t = candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP_p * (1.0 - pt[i]);
@@ -379,8 +383,8 @@ void inline poisson_binomial_lpmf_forward(std::vector<double> & probs, int probs
 	for(int i=1; i < probslen; ++i)
 	{
 		// set signal
-		p = log1p(-probs[i]);
-		q = log(probs[i]);
+		log_p = log(probs[i]);
+		log_q = log1p(-probs[i]);
 		
 		// initialize result and calculate the two edge cases
 		result[i][0] = log_q + result[i-1][0];
@@ -411,8 +415,8 @@ void inline poisson_binomial_lpmf_backward(std::vector<double> & probs, int prob
 	for(int i=probslen-2; i >= 0; --i)
 	{
 		// set signal
-		p = log1p(-probs[i]);
-		q = log(probs[i]);
+		log_p = log(probs[i]);
+		log_q = log1p(-probs[i]);
 		
 		// initialize result and calculate the two edge cases
 		result[i][0] = log_q + result[i+1][0];
@@ -438,8 +442,8 @@ void inline poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vecto
 	{
 		int lowerBound = std::max(0,m-probslen+i+1);
 		int upperBound = std::min(m,i)+1;
-		conv = lpmf_forward[i-1][lowerBound] + lpmf_backward[i+1][m-lowerBound];
-		for(int j =lowerBound+1; j < upperBound; ++j)
+		conv = -99999999;
+		for(int j =lowerBound; j < upperBound; ++j)
 		{
 			conv = log_add_exp(conv,lpmf_forward[i-1][j]+lpmf_backward[i+1][m-j]);
 		}

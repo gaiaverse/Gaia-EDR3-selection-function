@@ -87,7 +87,7 @@ void RootProcess()
 	
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << solver.status() << std::endl;
-		std::cout << "\nnSolver condition:\n" << solver.criteria() << std::endl;
+		std::cout << "\nSolver condition:\n" << solver.criteria() << std::endl;
 
 	);
 	
