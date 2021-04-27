@@ -3,17 +3,17 @@
 #include <mpi.h>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #define EIGEN_MPL2_ONLY
-#include "libs/Eigen/Core"
+#include "../libs/Eigen/Core"
 
 #include "Star.h"
-#include "LogLikelihoodPrior.h"
+#include "../LikelihoodClasses/LogLikelihoodPrior.h"
 
-#include "timeCodes.h"
+#include "../GenericFunctions/timeCodes.h"
 
 
-#include "libs/cppoptlib/meta.h"
-#include "libs/cppoptlib/problem.h"
-#include "libs/cppoptlib/solver/bfgssolver.h"
+#include "../libs/cppoptlib/meta.h"
+#include "../libs/cppoptlib/problem.h"
+#include "../libs/cppoptlib/solver/bfgssolver.h"
 using Eigen::VectorXd;
 
 using namespace cppoptlib;

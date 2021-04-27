@@ -4,16 +4,16 @@
 #include <string>
 #include <iomanip>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0 
-#include "libs/Eigen/Core"
-#include "libs/Eigen/Householder"
-#include "libs/Eigen/QR"
+#include "../libs/Eigen/Core"
+#include "../libs/Eigen/Householder"
+#include "../libs/Eigen/QR"
 #include <algorithm>
 
 #define EIGEN_MPL2_ONLY
 
-#include "FileHandler.h"
-#include "Star.h"
-#include "GlobalVariables.h"
+#include "../GenericFunctions/FileHandler.h"
+#include "../DescentClasses/Star.h"
+#include "../GlobalVariables.h"
 using Eigen::VectorXd;
 using namespace Eigen;
 //Likelihood class acts as a container for the values of the log liklihood and its gradient

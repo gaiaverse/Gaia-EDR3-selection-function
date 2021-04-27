@@ -23,12 +23,12 @@
 
 #include "libs/cppoptlib/solver/newtondescentsolver.h"
 #include "libs/cppoptlib/solver/cmaessolver.h"
-#include "Star.h"
-#include "DescentFunctor.h"
-#include "FileHandler.h"
-#include "LogLikelihood.h"
-#include "LogLikelihoodPrior.h"
-#include "timeCodes.h"
+#include "DescentClasses/Star.h"
+#include "DescentClasses/DescentFunctor.h"
+#include "GenericFunctions/FileHandler.h"
+#include "LikelihoodClasses/LogLikelihood.h"
+#include "LikelihoodClasses/LogLikelihoodPrior.h"
+#include "GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
 
 using Eigen::VectorXd;
