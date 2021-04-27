@@ -12,7 +12,7 @@ from scipy import sparse
 import copy
             
 ##### Load in sources and assign to bins
-B = 3.0
+B = 2.0
 p = 1.0
 needle_sparse_tol = 1e-4
 directory = './ModelInputs/'
@@ -72,7 +72,7 @@ for healpix_order in range(8):
     colat, lon = np.array(hp.pix2ang(nside=nside,ipix=np.arange(npix),lonlat=False))
     cos_colat, sin_colat = np.cos(colat), np.sin(colat)
     cos_lon, sin_lon = np.cos(lon), np.sin(lon)
-    J = [-1] + [j for j in range(healpix_order + 1)]
+    J = [-1] + [j for j in range(healpix_order+1)]
 
     # Initialise variables
     running_index = 0
@@ -130,7 +130,7 @@ for healpix_order in range(8):
         
         # Save the needlets
         df = pd.DataFrame({"u" : wavelet_u, "v" :wavelet_v, "w": wavelet_w})
-        df.to_csv(directory+f'neelets_{healpix_order}_{needlet_order}.csv', index=False)
+        df.to_csv(directory+f'needlets_{healpix_order}_{needlet_order}.csv', index=False)
         
         # Remove the ending index
         needlet_u.pop()        
