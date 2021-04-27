@@ -42,10 +42,10 @@ Eigen::VectorXd initialisedVector(int n);
 
 /// OUTPUT STUFF
 
-//#define GLOBAL_LOGGING
+#define GLOBAL_LOGGING
 //#define GLOBAL_DEBUGGING
 
-const int GlobalLoggingLevel = 1;
+const int GlobalLoggingLevel = 0;
 const int GlobalDebuggingLevel = 0;
 
 

@@ -128,6 +128,12 @@ void inline LogLikelihood::Debug(int n, int k, int star,double likelihood, doubl
 			std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << "\n"; 
 		}
 		std::cout << "\n";
+		
+		if (correction < 0)
+		{
+			ERROR(3,"Correction went negative");
+		}
+		
 	);
 	
 }
@@ -135,16 +141,9 @@ void inline LogLikelihood::Debug(int n, int k, int star,double likelihood, doubl
 void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 {
 
-	//~ pmf_forward = std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,999));
-	//~ pmf_backward =  std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,999));
-	//~ subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(suitablyLargeNumber,999));
 	Star candidate = Data[star];
-
 	int k = candidate.nMeasure;
 	int n = candidate.nVisit;
-	
-	//copies in-place into pmf
-	
 	
 	
 	for (int i = 0; i < n; ++i)
@@ -157,66 +156,40 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		double xml1 = x[idx1];
 		double xml2 = x[idx2];
 		
-	
 		pt[i] = sigmoid(xt);
 		pml[i] = sigmoid(xml1 + xml2);
-		
 		p[i] = pt[i] *pml[i];
 	}
 	
-	
 	// probability black magic stuff
-	//direct_convolution_local(p,n,pmf);
 	poisson_binomial_pmf_forward(p,n,pmf_forward);
 	poisson_binomial_pmf_backward(p,n,pmf_backward);
 	poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
 
 	
-	double zeroMeasureKiller = 1;
+	double zeroMeasureKiller = 0;
 	if (k > 0)
 	{
 		poisson_binomial_subpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
+		zeroMeasureKiller = 1;
 	}
-	else
-	{
-		zeroMeasureKiller = 0;
-	}
-
-	double nMeasureKiller = 1;
+	double nMeasureKiller = 0;
 	if (k < n)
 	{
 		//~ std::cout << "trigger2" << std::endl;
 		poisson_binomial_subpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
+		nMeasureKiller = 1;
 	}
-	else
-	{
-		nMeasureKiller = 0;
-	}
-	
-	
-	
 	
 
-	// Might as well use both
 	double likelihood = pmf_forward[n-1][k];
 	double correction = 1.0;
-	
 	for (int i = 0; i < PipelineMinVisits; ++i)
 	{
 		correction -= pmf_forward[n-1][i];
 	}
-	
-	
-	
-	GlobalDebug(0,Debug(n,k,star,likelihood,correction););
-	
 	Value += log(likelihood / correction);
-	
-	if (correction < 0)
-	{
-		ERROR(3,"Correction went negative");
-	}
-	
+			
 	
 	for (int i = 0; i < n; ++i)
 	{
@@ -235,6 +208,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		Gradient[index1] += mlGrad;
 		Gradient[index2] += mlGrad;
 	}
+	
+	GlobalDebug(0,Debug(n,k,star,likelihood,correction););
 }
 
 
@@ -253,7 +228,6 @@ void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probs
 	// loop through all other probs
 	for(int i=1; i < probslen; ++i)
 	{
-
 		// set signal
 		p = probs[i];
 		q = 1.0 - p;
