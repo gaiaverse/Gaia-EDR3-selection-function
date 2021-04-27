@@ -13,9 +13,9 @@ LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & m
 	//~ subpmf = std::vector<double>(suitablyLargeNumber,0.0);
 
 	
-	pmf_forward = std::vector<std::vector<long double>>(suitablyLargeNumber,std::vector<long double>(suitablyLargeNumber,0));
-	pmf_backward =  std::vector<std::vector<long double>>(suitablyLargeNumber,std::vector<long double>(suitablyLargeNumber,0));
-	subpmf =  std::vector<std::vector<long double>>(3,std::vector<long double>(suitablyLargeNumber,0));
+	pmf_forward = std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
+	pmf_backward =  std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
+	subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(suitablyLargeNumber,0));
 	
     
     
@@ -117,7 +117,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	//copies in-place into pmf
 	
 	
-	std::cout << "\t\t\t p = (";
+	//~ std::cout << "\t\t\t p = (";
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate.TimeSeries[i];
@@ -134,9 +134,9 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		p[i] = pt[i] *pml[i];
 
-		std::cout << p[i] << ", ";
+		//~ std::cout << p[i] << ", ";
 	}
-	std::cout << ")"  << std::endl;
+	//~ std::cout << ")"  << std::endl;
 	
 	// probability black magic stuff
 	//direct_convolution_local(p,n,pmf);
@@ -171,8 +171,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 
 	// Might as well use both
-	long double likelihood = pmf_forward[n-1][k];
-	long double correction = 1.0;
+	double likelihood = pmf_forward[n-1][k];
+	double correction = 1.0;
 	
 	for (int i = 0; i < PipelineMinVisits; ++i)
 	{
@@ -188,15 +188,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 	
 	Value += log(likelihood / correction);
-	int w = 20;
-	std::cout << std::setw(w) << star <<  std::setw(w) << Value << std::setw(w) << likelihood << std::setw(w)<< correction << std::endl;
+	//~ int w = 20;
+	//~ std::cout << std::setw(w) << star <<  std::setw(w) << Value << std::setw(w) << likelihood << std::setw(w)<< correction << std::endl;
 	
-	std::cout << "\n i \t pmf	\t subpmf0 \t subpmf1 \t subpmf2 \n";
-	for (int i = 0; i < n; ++i)
-	{
-		std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << "\n"; 
-	}
-	std::cout << "table ends\n\n";
+	//~ std::cout << "\n i \t pmf	\t subpmf0 \t subpmf1 \t subpmf2 \n";
+	//~ for (int i = 0; i < n; ++i)
+	//~ {
+		//~ std::cout << std::setw(w) << i << std::setw(w) << pmf_forward[n-1][i] << std::setw(w)<< subpmf[0][i] << std::setw(w)<< subpmf[1][i]<< std::setw(w) << subpmf[2][i] << "\n"; 
+	//~ }
+	//~ std::cout << "table ends\n\n";
 	for (int i = 0; i < n; ++i)
 	{
 		double dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );
@@ -219,7 +219,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 
           
-void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<long double>> & result)
+void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
 
@@ -252,7 +252,7 @@ void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probs
 	}
 }
 
-void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<long double>> & result)
+void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
 
@@ -285,7 +285,7 @@ void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int prob
 	}
 }
 
-void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<long double>> & pmf_forward, std::vector<std::vector<long double>> & pmf_backward, std::vector<long double> & result)
+void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result)
 {
 	double conv = 0;
 

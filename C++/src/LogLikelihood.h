@@ -23,7 +23,7 @@ class LogLikelihood
 {
 	public:
 		
-		long double Value;
+		double Value;
 		Eigen::VectorXd Gradient;
 		
 		
@@ -53,9 +53,9 @@ class LogLikelihood
 		int suitablyLargeNumber = 1024;
 		
 		
-		std::vector<std::vector<long double>> pmf_forward;
-		std::vector<std::vector<long double>> pmf_backward;
-		std::vector<std::vector<long double>> subpmf;
+		std::vector<std::vector<double>> pmf_forward;
+		std::vector<std::vector<double>> pmf_backward;
+		std::vector<std::vector<double>> subpmf;
 
 
 
@@ -73,9 +73,9 @@ class LogLikelihood
 
 
 //function stolen from a git repo somewhere, see the implementation for more details
-void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<long double>> & result);
-void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<long double>> & result);
-void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<long double>> & pmf_forward, std::vector<std::vector<long double>> & pmf_backward, std::vector<long double> & result);
+void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
+void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
 
 // Implements an expit sigmoid via the tanh method
 double inline sigmoid(double x);
