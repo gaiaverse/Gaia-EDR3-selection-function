@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
+#include <iomanip>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0 
 #include "libs/Eigen/Core"
 #include "libs/Eigen/Householder"
@@ -23,7 +23,7 @@ class LogLikelihood
 {
 	public:
 		
-		long double Value;
+		double Value;
 		Eigen::VectorXd Gradient;
 		
 		
@@ -32,7 +32,7 @@ class LogLikelihood
 		
 		void Calculate(Eigen::VectorXd& position);
 		
-		std::vector<double> LikelihoodGivenP(std::vector<double> p, int n, int k);
+		
 		int needletN;
 		std::vector<int> needlet_u;
     	std::vector<int> needlet_v;
