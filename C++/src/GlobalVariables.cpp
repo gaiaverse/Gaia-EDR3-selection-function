@@ -1,13 +1,13 @@
 #include "GlobalVariables.h"
 
 
-Eigen::VectorXd initialisedVector(int n,bool print)
+Eigen::VectorXd initialisedVector(int n)
 {
 	 VectorXd x = VectorXd::Random(n);
     
-   if (print)
-   {
-	   std::cout << "\tInitial position set to: (";
+   
+	GlobalLog(1,
+	   std::cout << "\tPosition Vetcor initialised to: (";
 	   for (int i = 0; i < n; ++i)
 	   {
 		   std::cout << x[i];
@@ -17,7 +17,7 @@ Eigen::VectorXd initialisedVector(int n,bool print)
 		   } 
 	   }
 	   std::cout << ")\n";
-   }
+	);
    
 	return x;
 }

@@ -7,14 +7,12 @@ void checkNan(const VectorXd & y, std::string origin)
 {
 	if(y.hasNaN())
 	{
-		std::cout << "\n\n\nERROR \n One or more values sourced from " << origin << "  was a NaN. Cannot handle. Goodbye";
-		exit(1); 
+		ERROR(2,"One or more values sourced from " + origin +  "  was a NaN.");
 	}	
 }
 
 void DescentFunctor::ResetPosition()
 {
-
 	for (int i =0; i < totalTransformedParams; ++i)
 	{
 		TransformedPosition[i] = 0;
@@ -25,8 +23,6 @@ void DescentFunctor::ResetPosition()
 	{
 		CurrentGradient[i] = 0;
 	}
-	
-	
 }
 
 void DescentFunctor::SavePosition(bool finalSave)
@@ -57,20 +53,31 @@ void DescentFunctor::SavePosition(bool finalSave)
 	}
 	std::fstream transfile;
 	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
-	if (finalSave)
-	{
-		std::cout << "\tConverged roots : ";
-	}
+	
+	GlobalLog(0,
+		if (finalSave)
+		{
+			std::cout << "\tConverged roots : ";
+		}
+	);
+	
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
 		transfile << TransformedPosition[i] << "\n";
+		
+		GlobalLog(0,
+			if (finalSave)
+			{
+				std::cout << TransformedPosition[i] << ",\t";
+			}
+		);
+	}
+	GlobalLog(0,
 		if (finalSave)
 		{
-			std::cout << TransformedPosition[i] << ",\t";
+			std::cout << "\n";
 		}
-	}
-	std::cout << "\n";
-	
+	);
 	rawfile.close();
 	transfile.close();
 }
@@ -122,7 +129,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	}
 }
 
-void DescentFunctor::BackwardTransform(bool print)
+void DescentFunctor::BackwardTransform()
 {
 	// Backward transformation
 	double u = exp(-1.0/lt);
@@ -169,106 +176,51 @@ void DescentFunctor::BackwardTransform(bool print)
 }
 
 
-void DescentFunctor::TestGradient(const VectorXd y)
+void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 {
-	VectorXd ySave = y;
-	VectorXd oldGrad = CurrentGradient;
-	double oldVal = CurrentValue;
-	
 
-	double delta = 1e-5;
-	double trueL = CurrentValue;
+	GlobalLog(1,
+		std::cout << "\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+	);
 	
-	VectorXd gradOverride = CurrentGradient;
-	VectorXd yNudge;
-	for (int i = 0; i < y.size(); ++i)
-	{
-		yNudge = y;
-		double shove = std::max(delta*delta,delta*y[i]);
-		yNudge[i] += shove;
-
-		
-		DistributeCalculations(yNudge,false);
-		
-		double testGrad = (CurrentValue - trueL)/(shove);
-		//std::cout << "\t\t\t\tManual Gradient: " << i << ":  " << testGrad << ", \t Exact Gradient: " << oldGrad[i] <<  "\n";
-		gradOverride[i] = testGrad;
-	}
-	
-	CurrentValue = oldVal;
-	CurrentGradient = oldGrad;
-	bool overrideOn = true;
-	bool unsafe = std::isnan(CurrentValue);
-	if (overrideOn & !(unsafe))
-	{
-		CurrentGradient = gradOverride;
-		std::cout << "\t\t\t\t\tGradient by manual, new value: " << CurrentGradient.transpose() << std::endl;
-	}
-}
-
-
-void DescentFunctor::DistributeCalculations(const TVector &y, bool printOn)
-{
-	
-	if (printOn)
-	{
-		//~ std::cout << "\n\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
-		//~ std::cout << "Current position: " << y.transpose() << std::endl;
-		++LoopID;
-	}
 	const int n =  Nt+Nm*Nl;
-	
-	//std::cout << "\tCalculation distribution " << LoopID << " begun" << std::endl;
-	const VectorXd RawPosition = y;
+	//const VectorXd RawPosition = y; //have to manually cast into a VectorXd
 
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = 1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 
-
-
+	//Transform then broadcast the vector to workers
 	ForwardTransform(RawPosition);
-		
-
-	//send position vector to workers
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
-
-	
-	// IMPORTANT!
-	// The Root also executes their own calculations of L on their provided data 
 	L.Calculate(TransformedPosition);
-	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	
 	//collect values
+	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	double Lsum = 0;
-	
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	
-	if (LoopID % SaveSteps == 0)
-	{
-		SavePosition(false);
-	}
-	
-	
-	BackwardTransform(printOn);
-	
-	
+	BackwardTransform();
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
-	
 	CurrentValue = Lsum;
 	
-	//~ if (printOn)
-	//~ {
-		//~ std::cout << "\t\t\tCurrent position: " << y.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		//~ std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
-		
-	//~ }
+	GlobalLog(2,
+		std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+	);
+	
 	checkNan(CurrentGradient,"Gradient Calculation");
+	if (LoopID % SaveSteps == 0)
+	{
+		GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
+		SavePosition(false);
+	}
+	++LoopID;
 }
 
 
@@ -281,12 +233,9 @@ double DescentFunctor::value(const TVector &y)
 	
 	if (key > lockLim)
 	{
-		DistributeCalculations(y,true);
+		DistributeCalculations(y);
 		PrevLock = y;
-		
-		//TestGradient(y);
 	}
-
 
 	return -CurrentValue;
 }
@@ -298,11 +247,8 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 
 	if (key > lockLim)
 	{
-		DistributeCalculations(y,true);
+		DistributeCalculations(y);
 		PrevLock = y;
-		
-		
-		//TestGradient(y);
 	}
 
 	//negative sign for maximisation problem
@@ -310,6 +256,5 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 	{
 		grad[i] = -CurrentGradient[i];
 	}
-
 }
 

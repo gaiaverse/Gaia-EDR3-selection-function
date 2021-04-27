@@ -110,23 +110,23 @@ template<typename T>
 Status checkConvergence(const Criteria<T> &stop, const Criteria<T> &current) {
 
     if ((stop.iterations > 0) && (current.iterations > stop.iterations)) {
-		std::cout << "\nSOLVER ENDED: Solver hit iteration limit." << std::endl;
+		//~ std::cout << "\nSOLVER ENDED: Solver hit iteration limit." << std::endl;
         return Status::IterationLimit;
     }
     if ((stop.xDelta > 0) && (current.xDelta < stop.xDelta)) {
-		std::cout << "\nSOLVER ENDED: Negligible Change in position vector " << std::endl;
+		//~ std::cout << "\nSOLVER ENDED: Negligible Change in position vector " << std::endl;
         return Status::XDeltaTolerance;
     }
     if ((stop.fDelta > 0) && (current.fDelta < stop.fDelta)) {
-		std::cout << "\nSOLVER ENDED: Negligible change in function value" << std::endl;
+		//~ std::cout << "\nSOLVER ENDED: Negligible change in function value" << std::endl;
         return Status::FDeltaTolerance;
     }
     if ((stop.gradNorm > 0) && (current.gradNorm < stop.gradNorm)) {
-		std::cout << "\nSOLVER ENDED: Gradient below accepted threshold" << std::endl;
+		//~ std::cout << "\nSOLVER ENDED: Gradient below accepted threshold" << std::endl;
         return Status::GradNormTolerance;
     }
     if ((stop.condition > 0) && (current.condition > stop.condition)) {
-		std::cout << "\nSOLVER ENDED: Reached condition number " << current.condition << std::endl;
+		//~ std::cout << "\nSOLVER ENDED: Reached condition number " << current.condition << std::endl;
         return Status::Condition;
     }
     return Status::Continue;
@@ -137,9 +137,9 @@ inline std::ostream &operator<<(std::ostream &os, const Status &s) {
         case Status::NotStarted: os << "Solver not started."; break;
         case Status::Continue:   os << "Convergence criteria not reached."; break;
         case Status::IterationLimit: os << "Iteration limit reached."; break;
-        case Status::XDeltaTolerance: os << "Change in parameter vector too small."; break;
-        case Status::FDeltaTolerance: os << "Change in cost function value too small."; break;
-        case Status::GradNormTolerance: os << "Gradient vector norm too small."; break;
+        case Status::XDeltaTolerance: os << "Change in parameter vector below threshold."; break;
+        case Status::FDeltaTolerance: os << "Change in cost function value below threshold."; break;
+        case Status::GradNormTolerance: os << "Gradient vector norm below threshold."; break;
         case Status::Condition: os << "Condition of Hessian/Covariance matrix too large."; break;
         case Status::UserDefined: os << "Stop condition defined in the callback."; break;
     }

@@ -57,17 +57,17 @@ class DescentFunctor: public Problem<double>
 		
 
 		void ForwardTransform(const VectorXd &z);
-		void BackwardTransform(bool print);		
+		void BackwardTransform();		
 		void ResetPosition();
 		
-		void TestGradient(const VectorXd position);
+		double CurrentValue;
+		VectorXd CurrentGradient;
 	public:
-	int LoopID;
+		int LoopID;
 		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	
-		double CurrentValue;
-		VectorXd CurrentGradient;
+		
 	
 	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir): Data(data), L(data,bins, nParams,n)
 	    {
@@ -83,7 +83,7 @@ class DescentFunctor: public Problem<double>
 				TransformedGradient = VectorXd::Zero(totalTransformedParams);
 				OutputDir = outdir;
 		}
-	    void DistributeCalculations(const TVector &y, bool printOn);
+	    void DistributeCalculations(const TVector &y);
  
 		double value(const TVector &x);
 		void gradient(const TVector &x, TVector &grad);

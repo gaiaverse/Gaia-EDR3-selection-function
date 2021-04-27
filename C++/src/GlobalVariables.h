@@ -31,8 +31,35 @@ const int PipelineMinVisits = 5;
 const bool SaveAllTemps = false;
 const std::string TempDirName = "TempPositions";
 
+
+
 const bool QuitOnLargeGrad = true;
 #define FILEGAP << ", " << 
 
 
-Eigen::VectorXd initialisedVector(int n,bool print);
+Eigen::VectorXd initialisedVector(int n);
+
+
+/// OUTPUT STUFF
+
+//#define GLOBAL_LOGGING
+//#define GLOBAL_DEBUGGING
+
+const int GlobalLoggingLevel = 1;
+const int GlobalDebuggingLevel = 0;
+
+
+#define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}
+ 
+#ifdef GLOBAL_LOGGING
+	#define GlobalLog(level, ...){	if (level <= GlobalLoggingLevel){__VA_ARGS__}}
+#else
+	#define GlobalLog(level, ...){}
+#endif	
+
+#ifdef GLOBAL_DEBUGGING
+	#define GlobalDebug(level, ...){	if (level <= GlobalDebuggingLevel){__VA_ARGS__}}
+#else
+	#define GlobalDebug(level, ...)
+#endif	
+	

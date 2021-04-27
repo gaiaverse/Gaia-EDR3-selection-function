@@ -56,7 +56,7 @@ class LogLikelihood
 		std::vector<std::vector<double>> pmf_forward;
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
-
+		void Debug(int n, int k, int star,double likelihood, double correction);
 
 
 		std::string healpix_fov_file;

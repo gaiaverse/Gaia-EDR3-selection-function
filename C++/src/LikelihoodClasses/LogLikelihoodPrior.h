@@ -17,6 +17,5 @@ class LogLikelihoodPrior : public LogLikelihood
 		
 		//saved values 
 		bool Kg_decomposed = false;
-	    Eigen::Matrix<double, Nm, Nm> CholeskyKg;
-	     
+	    Eigen::Matrix<double, Nm, Nm> CholeskyKg;     
 };
