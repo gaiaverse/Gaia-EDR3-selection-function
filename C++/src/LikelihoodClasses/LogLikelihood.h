@@ -51,7 +51,7 @@ class LogLikelihood
 		void inline SubPMF_Backward(double p, int start, int end, int n);
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
-		double verySmallNumber = 1e-300;
+		double verySmallNumber = 1e-310;
 		double verySmallLog = -9999999999;
 		
 		
