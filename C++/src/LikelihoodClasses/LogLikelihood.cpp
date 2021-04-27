@@ -163,38 +163,89 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 	// probability black magic stuff
 	poisson_binomial_pmf_forward(p,n,pmf_forward);
-	poisson_binomial_pmf_backward(p,n,pmf_backward);
-	poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
-
 	
+	bool poissonOverride = false;
 	double zeroMeasureKiller = 0;
-	if (k > 0)
-	{
-		poisson_binomial_subpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
-		zeroMeasureKiller = 1;
-	}
 	double nMeasureKiller = 0;
-	if (k < n)
+	double likelihood = 0;
+	double correction = 1.0;
+	double log_likelihood = 0;
+	double log_correction = 0.0;
+
+	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber) )
 	{
-		//~ std::cout << "trigger2" << std::endl;
-		poisson_binomial_subpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
-		nMeasureKiller = 1;
+		poisson_binomial_pmf_backward(p,n,pmf_backward);
+		poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
+
+		
+		if (k > 0)
+		{
+			poisson_binomial_subpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
+			zeroMeasureKiller = 1;
+		}
+		
+		if (k < n)
+		{
+			//~ std::cout << "trigger2" << std::endl;
+			poisson_binomial_subpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
+			nMeasureKiller = 1;
+		}
+		
+
+		log_likelihood = log(pmf_forward[n-1][k]);
+		for (int i = 0; i < PipelineMinVisits; ++i)
+		{
+			correction -= pmf_forward[n-1][i];
+		}
+		log_correction = log(correction);
+		Value += log_likelihood - log_correction;
+
+	}
+	else
+	{
+		poissonOverride = true;
+		poisson_binomial_lpmf_forward(p,n,pmf_forward);
+		poisson_binomial_lpmf_backward(p,n,pmf_backward);
+		poisson_binomial_sublpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
+
+		if (k > 0)
+		{
+			poisson_binomial_sublpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
+			zeroMeasureKiller = 1;
+		}
+		
+		if (k < n)
+		{
+			//~ std::cout << "trigger2" << std::endl;
+			poisson_binomial_sublpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
+			nMeasureKiller = 1;
+		}
+		
+
+		log_likelihood = pmf_forward[n-1][k];
+
+		for (int i = 0; i < PipelineMinVisits; ++i)
+		{
+			log_correction += log1p(-exp(pmf_forward[n-1][i]-log_correction));
+		}
+		Value += log_likelihood - log_correction;
+
 	}
 	
-
-	double likelihood = pmf_forward[n-1][k];
-	double correction = 1.0;
-	for (int i = 0; i < PipelineMinVisits; ++i)
-	{
-		correction -= pmf_forward[n-1][i];
-	}
-	Value += log(likelihood / correction);
 			
 	
 	for (int i = 0; i < n; ++i)
 	{
-		double dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );
-	
+		double dFdP_p;
+		if (poissonOverride)
+		{
+			dFdP_p = p[i] * ( exp(subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(subpmf[0][i] - log_correction));
+		}
+		else
+		{
+			dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );
+		}
+
 		int t = candidate.TimeSeries[i];
 
 		Gradient[time_mapping[t]] += dFdP_p * (1.0 - pt[i]);
