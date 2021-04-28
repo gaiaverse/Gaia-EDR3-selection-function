@@ -6,7 +6,7 @@
 #include <chrono>
 #include <ctime>
 #include <iomanip>
-
+#include <sstream>      // std::ostringstream
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "libs/Eigen/Core"
 #include <fstream>
@@ -41,6 +41,7 @@ int ProcessRank;
 int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 int RandomSeed = time(NULL);
+int burnInSteps = 5;
 std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
@@ -49,6 +50,41 @@ std::vector<std::string> Files;
 
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
+
+
+struct optimizerReturn
+{
+	VectorXd X;
+	std::string Status;
+	std::string Condition;
+};
+
+optimizerReturn launchMinimizer(DescentFunctor & fun, int maxSteps, double gradLim,VectorXd x)
+{
+	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
+    cppoptlib::LbfgsSolver<DescentFunctor> solver;
+	realCriteria.iterations = maxSteps;
+	//~ realCriteria.xDelta = stepLim;
+	realCriteria.gradNorm = gradLim;
+	solver.setStopCriteria(realCriteria);
+	
+	
+	
+	//let it loose!
+	solver.minimize(fun,x);
+	
+	optimizerReturn r;
+	r.X = x;
+	std::ostringstream q,p;
+	
+	q << solver.status();
+	p << solver.criteria();
+	
+	r.Status = q.str();
+	r.Condition = p.str();
+	return r;
+}
+
 void RootProcess()
 {
 	GlobalLog(1,
@@ -72,24 +108,25 @@ void RootProcess()
 	double gradLim = 1e-3;
 	double stepLim = 1e-200;
 	
-	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
-    cppoptlib::LbfgsSolver<DescentFunctor> solver;
-	realCriteria.iterations = maxSteps;
-	//~ realCriteria.xDelta = stepLim;
-	realCriteria.gradNorm = gradLim;
-	solver.setStopCriteria(realCriteria);
 	
+	optimizerReturn r = launchMinimizer(fun,burnInSteps,gradLim,x);
+	x = r.X;
 	
-	
-	//let it loose!
-	solver.minimize(fun,x);
+	GlobalLog(0,
+		std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
+		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
+		std::cout << "\nBurnin directed to: " << x.transpose() << std::endl;
+	);
+	x = r.X;
+	r = launchMinimizer(fun,maxSteps,gradLim,x);
 	
 	
 	GlobalLog(0,
-		std::cout << "\nSOLVER ENDED: " << solver.status() << std::endl;
-		std::cout << "\nSolver condition:\n" << solver.criteria() << std::endl;
+		std::cout << "\nSOLVER ENDED: " << r.Status << std::endl;
+		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
 
 	);
+	
 	
 	fun.SavePosition(true);
 	
@@ -213,6 +250,7 @@ void processArgs(int argc, char *argv[])
 {
 	bool outDirFlag = false;
 	bool seedFlag = false;
+	bool burnFlag = false;
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -235,6 +273,17 @@ void processArgs(int argc, char *argv[])
 			}
 			seedFlag = false;
 		}
+		if (burnFlag == true)
+		{
+			burnInSteps = std::stoi(arg);
+			if (ProcessRank == RootID)
+			{
+				GlobalLog(2,
+					std::cout << "Root reports burnin tme set to " << burnInSteps << "\n";
+				);
+			}
+			burnFlag == false;
+		}
 		
 		
 		if (arg == "-f")
@@ -244,6 +293,10 @@ void processArgs(int argc, char *argv[])
 		if (arg == "-s")
 		{
 			seedFlag = true;
+		}
+		if (arg == "-b")
+		{
+			burnFlag = true;
 		}
 		
 		

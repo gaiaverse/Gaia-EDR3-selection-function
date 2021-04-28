@@ -1,6 +1,6 @@
 
 
-files = "fixedSearcher_long" + ["1","2","3"]+ ".txt";
+files = "loggedSearcher_long" + ["1","2","3","4"]+ ".txt";
 
 size = 20;
 
@@ -35,16 +35,16 @@ end
 if length(success) < length(x)
 	success(end+1) = 0;
 end
-T = tiledlayout(2,2);
+T = tiledlayout(1,2);
 title(T,"Base Model","FontSize",25);
 
-nexttile(T);
-
-colors = [1,0,0;,0,0,0];
-cs = colors(success+1,:);
-scatter3(x,y,z,size,cs,'filled');
-title("Starting positions");
-xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
+% nexttile(T);
+% 
+% colors = [1,0,0;0,0,0];
+% cs = colors(success+1,:);
+% scatter3(x,y,z,size,cs,'filled');
+% title("Starting positions");
+% xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
 
 
 
@@ -56,20 +56,20 @@ title("Calculation duration (mean = " + num2str(mean(t(~isnan(t)))) + ")");
 xlabel("Seconds");
 ylabel("Counts");
 
+% 
+% nexttile(T);
+% 
+% 
+% scatter3(x(success),y(success),z(success),size,t(success));
+% xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
+% title("Duration by starting position");
+% colorbar;
+
+
+
 
 nexttile(T);
-
-
-scatter3(x(success),y(success),z(success),size,t(success));
-xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
-title("Duration by starting position");
-colorbar;
-
-
-
-
-nexttile(T);
-s = (cz > 0.1);
+s = (cz > 0.1 & ~isnan(t));
 q = t(success);
 scatter3(cx(s),cy(s),cz(s),size,q(s));
 xlabel("Nt_1"); ylabel("Nt_2"); zlabel("Ns");
@@ -80,17 +80,19 @@ colorbar;
 
 function checkPos(r)
 global x y z success nRuns t;
-	if contains(r, "Initial position")
+	if contains(r, "BEGINNING")
 		nRuns = nRuns + 1;
-		[j,k] = regexp(r,"-?\d*\.{0,1}\d+");
+% 		[j,k] = regexp(r,"-?\d*\.{0,1}\d+");
+% 		
+% 		pos = [0,0,0];
+% 		for i = 1:length(j)
+% 			w = extractBetween(r,j(i),k(i));
+% 			pos(i) = str2double(w);
+% 		end
+% 		x(end+1) = pos(1);y(end+1)=pos(2);z(end+1) = pos(3);
 		
-		pos = [0,0,0];
-		for i = 1:length(j)
-			w = extractBetween(r,j(i),k(i));
-			pos(i) = str2double(w);
-		end
-		x(end+1) = pos(1);y(end+1)=pos(2);z(end+1) = pos(3);
-		
+        x(nRuns) = 0; y(nRuns) = 0; z(nRuns)=0;
+
 		success(nRuns) = false;
 		t(nRuns) = NaN;
 	end
@@ -101,19 +103,20 @@ function checkDuration(r)
 
 	if contains(r,"Duration")
 		[j,k] = regexp(r,"\d+");
-		
-		if contains(r,"Minute")
-			
-			t(nRuns) = str2double(extractBetween(r,j(1),k(1)))*60+str2double(extractBetween(r,j(2),k(2)));
-			
-		else
-			
-		
-			t(nRuns) = str2double(extractBetween(r,j(1),k(1)));
-		end
 
-% 		if t(nRuns) > 120
-% 			t(nRuns) = 120;
+        mins = 0;
+        secs= 0;
+        selector = 1;
+		if contains(lower(r),"minute")
+			mins = str2double(extractBetween(r,j(selector),k(selector)));
+            selector = 2;
+        end
+		if contains(lower(r),"second")
+            secs =  str2double(extractBetween(r,j(selector),k(selector)));
+        end
+        t(nRuns) = mins*60 + secs;
+% 		if t(nRuns) > 60
+% 			t(nRuns) = NaN;
 % 		end
 		success(nRuns) = true;
 	end	
