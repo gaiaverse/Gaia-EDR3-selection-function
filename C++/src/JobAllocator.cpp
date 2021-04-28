@@ -108,19 +108,22 @@ void RootProcess()
 	double gradLim = 1e-3;
 	double stepLim = 1e-200;
 	
+	optimizerReturn r;
+	for (int i = 0; i < burnInSteps;++i)
+	{
+		r = launchMinimizer(fun,1,gradLim,x);
+		x = r.X;
+		
+		GlobalLog(0,
+			std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
+			std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
+			std::cout << "\nBurnin directed to: " << x.transpose() << std::endl;
+		);
+	}
 	
-	optimizerReturn r = launchMinimizer(fun,burnInSteps,gradLim,x);
-	x = r.X;
-	
-	GlobalLog(0,
-		std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
-		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
-		std::cout << "\nBurnin directed to: " << x.transpose() << std::endl;
-	);
-	x = r.X;
 	r = launchMinimizer(fun,maxSteps,gradLim,x);
 	
-	
+	x = r.X;
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << r.Status << std::endl;
 		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
