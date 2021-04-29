@@ -105,7 +105,7 @@ void RootProcess()
 
 	int nLoops = 1;
 	int maxSteps = 1000; 
-	double gradLim = sqrt(totalTransformedParams)*0.01;
+	double gradLim = std::min(0.2,sqrt(totalTransformedParams)*0.001);
 	double stepLim = 1e-200;
 	
 	optimizerReturn r;
@@ -117,7 +117,6 @@ void RootProcess()
 		GlobalLog(0,
 			std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
 			std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
-			std::cout << "\nBurnin directed to: " << x.transpose() << std::endl;
 		);
 	}
 	
@@ -195,7 +194,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/gaps/";
+	std::string fileRoot = "../../TestSets/gaps_parallel/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -320,8 +319,6 @@ int main(int argc, char *argv[])
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
-
-	std::cout << "hello!" << std::endl;
 
 	GlobalLog(0,
 		if (ProcessRank == RootID)

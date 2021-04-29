@@ -54,30 +54,30 @@ void DescentFunctor::SavePosition(bool finalSave)
 	std::fstream transfile;
 	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
 	
-	GlobalLog(0,
-		if (finalSave)
-		{
-			std::cout << "\tConverged roots : ";
-		}
-	);
+	//~ GlobalLog(0,
+		//~ if (finalSave)
+		//~ {
+			//~ std::cout << "\tConverged roots : ";
+		//~ }
+	//~ );
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
 		transfile << TransformedPosition[i] << "\n";
 		
-		GlobalLog(0,
-			if (finalSave)
-			{
-				std::cout << TransformedPosition[i] << ",\t";
-			}
-		);
+		//~ GlobalLog(0,
+			//~ if (finalSave)
+			//~ {
+				//~ std::cout << TransformedPosition[i] << ",\t";
+			//~ }
+		//~ );
 	}
-	GlobalLog(0,
-		if (finalSave)
-		{
-			std::cout << "\n";
-		}
-	);
+	//~ GlobalLog(0,
+		//~ if (finalSave)
+		//~ {
+			//~ std::cout << "\n";
+		//~ }
+	//~ );
 	rawfile.close();
 	transfile.close();
 }
