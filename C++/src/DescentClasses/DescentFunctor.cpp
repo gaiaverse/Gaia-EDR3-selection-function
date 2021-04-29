@@ -208,9 +208,9 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	CurrentValue = Lsum;
 	
 	GlobalLog(2,
-		std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
+		//~ std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
+		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
+		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
 		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
 	);
 	
