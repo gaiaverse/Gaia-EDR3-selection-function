@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import special
-import healpy
+import healpy as hp
 
 # Load in parameters
 params = pd.read_csv('/mnt/extraspace/GaiaSelectionFunction/Code/C++/Test/gaps/Optimiser_Properties.dat',skipinitialspace=True)
