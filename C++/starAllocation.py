@@ -170,6 +170,9 @@ def nameSubstruct(name):
 	else:
 		bin = int(stripped)
 	
+	#OVERRIDE BIN ALLOCATION
+	
+	bin = 0;
 	return [name,bin]
 
 def printAllocation(fileAssign):
@@ -205,7 +208,7 @@ generateBinDict(rootToFiles)
 print(binDict)
 
 	
-M = 1
+M = 10
 lBar = sum(binDict.values())/M
 
 
