@@ -117,7 +117,6 @@ void RootProcess()
 		GlobalLog(0,
 			std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
 			std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
-			std::cout << "\nBurnin directed to: " << x.transpose() << std::endl;
 		);
 	}
 	
