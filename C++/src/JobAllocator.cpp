@@ -105,7 +105,7 @@ void RootProcess()
 
 	int nLoops = 1;
 	int maxSteps = 1000; 
-	double gradLim = sqrt(totalTransformedParams)*0.01;
+	double gradLim = sqrt(totalTransformedParams)*0.005;
 	double stepLim = 1e-200;
 	
 	optimizerReturn r;
@@ -195,7 +195,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/gaps/";
+	std::string fileRoot = "../../TestSets/gaps_parallel/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
