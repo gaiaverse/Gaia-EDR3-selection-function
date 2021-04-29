@@ -13,6 +13,7 @@ xt = pd.read_csv('/mnt/extraspace/GaiaSelectionFunction/Code/C++/Test/gaps/Final
 gaps = pd.read_csv('/mnt/extraspace/GaiaSelectionFunction/TestSets/gaps/edr3_gaps.csv')
 
 # Plot
+plt.figure(figsize=(10,5))
 tbeg, tend = 1717.6256+(np.linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4
 bins = np.linspace(tbeg,tend,Nt+1)
 plt.hist(0.5*(bins[1:]+bins[:-1]),bins = bins,weights=xt,lw=0.3,color='k',histtype='step')
