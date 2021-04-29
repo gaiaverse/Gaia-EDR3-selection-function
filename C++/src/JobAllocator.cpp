@@ -105,7 +105,7 @@ void RootProcess()
 
 	int nLoops = 1;
 	int maxSteps = 1000; 
-	double gradLim = std::min(0.2,sqrt(totalTransformedParams)*0.001);
+	double gradLim = 1e-2;
 	double stepLim = 1e-200;
 	
 	optimizerReturn r;
