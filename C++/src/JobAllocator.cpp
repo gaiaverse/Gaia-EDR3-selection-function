@@ -41,7 +41,7 @@ int ProcessRank;
 int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 int RandomSeed = time(NULL);
-int burnInSteps = 5;
+int burnInSteps = 1;
 std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
@@ -195,7 +195,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/binary/";
+	std::string fileRoot = "../../TestSets/ones/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -321,6 +321,8 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 
+	std::cout << "hello!" << std::endl;
+
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{
@@ -335,8 +337,9 @@ int main(int argc, char *argv[])
 	);
 	
 	MPI_Barrier(MPI_COMM_WORLD);
-	
+
 	processArgs(argc,argv);
+	PrintStatus(OutputDirectory);
 	srand(RandomSeed);
 	
 	auto start = std::chrono::system_clock::now();
