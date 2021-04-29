@@ -59,7 +59,7 @@ void DescentFunctor::SavePosition(bool finalSave)
 		//~ {
 			//~ std::cout << "\tConverged roots : ";
 		//~ }
-	);
+	//~ );
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
@@ -70,7 +70,7 @@ void DescentFunctor::SavePosition(bool finalSave)
 			//~ {
 				//~ std::cout << TransformedPosition[i] << ",\t";
 			//~ }
-		);
+		//~ );
 	}
 	//~ GlobalLog(0,
 		//~ if (finalSave)

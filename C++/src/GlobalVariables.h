@@ -22,7 +22,7 @@ const int totalTransformedParams = Nt + Nm*Nl;
 
 const double SingularityPreventer = 1e-18;
 
-const double mut = 0;
+const double mut = 3;
 const double sigmat = 3;
 const double lm = 3;
 const double lt = 10;
