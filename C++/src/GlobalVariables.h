@@ -25,9 +25,9 @@ const double SingularityPreventer = 1e-18;
 const double mut = 0;
 const double sigmat = 3;
 const double lm = 3;
-const double lt = 0.1;
+const double lt = 1;
 
-const int SaveSteps = 10000;
+const int SaveSteps = 5;
 const int PipelineMinVisits = 5; 
 
 const bool SaveAllTemps = false;

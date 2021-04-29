@@ -105,7 +105,7 @@ void RootProcess()
 
 	int nLoops = 1;
 	int maxSteps = 1000; 
-	double gradLim = 1e-3;
+	double gradLim = 1e-1;
 	double stepLim = 1e-200;
 	
 	optimizerReturn r;
