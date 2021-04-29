@@ -320,8 +320,6 @@ int main(int argc, char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
 
-	std::cout << "hello!" << std::endl;
-
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{
