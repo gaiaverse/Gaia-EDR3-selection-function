@@ -1,7 +1,7 @@
-system('scp "tplxdt071.nat.physics.ox.ac.uk:Documents/Work/GaiaSelectionFunction/Code/C++/burnSearcher*" ../C++/');
+% system('scp "tplxdt071.nat.physics.ox.ac.uk:Documents/Work/GaiaSelectionFunction/Code/C++/burnSearcher*" ../C++/');
 
-files = "burnSearcher_long" + ["1","2","3","4"]+ ".txt";
-
+% files = "burnSearcher_long" + ["1","2","3","4"]+ ".txt";
+files = "smallInit.txt";
 dotSize = 20;
 
 global x y z t success nRuns cx cy cz;

@@ -3,7 +3,7 @@
 
 Eigen::VectorXd initialisedVector(int n)
 {
-	 VectorXd x = VectorXd::Random(n);
+	 VectorXd x = 0.5*VectorXd::Random(n);
     
    
 	GlobalLog(0,
