@@ -104,7 +104,7 @@ void RootProcess()
 	//set up the criteria for termination
 
 	int nLoops = 1;
-	int maxSteps = 1000; 
+	int maxSteps = 5000; 
 	double gradLim = 1e-2;
 	double stepLim = 1e-200;
 	
