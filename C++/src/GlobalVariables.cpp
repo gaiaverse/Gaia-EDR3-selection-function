@@ -28,13 +28,13 @@ void PrintStatus(std::string location)
 	
 	std::fstream file;
 	file.open(location + "/Optimiser_Properties.dat",std::ios::out);
-	int w = 10;
+	int w = 15;
 	
 	for (int i = 0; i < 2; ++i)
 	{
 		for (int j = 0; j < properties.size(); ++j)
 		{
-			file << std::setw(w);
+			//~ file << std::setw(w) << std::left;
 			if (i ==0)
 			{
 				file << properties[j];
@@ -45,7 +45,7 @@ void PrintStatus(std::string location)
 			}
 			if (j < properties.size() - 1)
 			{
-				file << ",";
+				file << ", ";
 			}
 		}
 		file << "\n";
