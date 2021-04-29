@@ -3,6 +3,8 @@
 #include "libs/Eigen/Core"
 #include <string.h>
 #include <iostream>
+#include <fstream>
+#include <iomanip>
 using Eigen::VectorXd;
 
 const int Nm = 1;//35; // number of magnitude bins
@@ -23,7 +25,7 @@ const double SingularityPreventer = 1e-18;
 const double mut = 0;
 const double sigmat = 3;
 const double lm = 3;
-const double lt = 0.01;
+const double lt = 0.1;
 
 const int SaveSteps = 10000;
 const int PipelineMinVisits = 5; 
@@ -36,7 +38,7 @@ const std::string TempDirName = "TempPositions";
 const bool QuitOnLargeGrad = true;
 #define FILEGAP << ", " << 
 
-
+const double initialisationBounds = 0.1;
 Eigen::VectorXd initialisedVector(int n);
 
 
@@ -45,8 +47,11 @@ Eigen::VectorXd initialisedVector(int n);
 #define GLOBAL_LOGGING
 //#define GLOBAL_DEBUGGING
 
-const int GlobalLoggingLevel = 0;
+const int GlobalLoggingLevel = 2;
 const int GlobalDebuggingLevel = 8;
+
+
+void PrintStatus(std::string location);
 
 
 #define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}
