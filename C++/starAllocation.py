@@ -111,6 +111,7 @@ def dumbAllocation():
 	
 def sortShiftAllocation():
 	sortedDict = dict(sorted(binDict.items(), key=lambda item: item[1], reverse=True))
+	print(sortedDict)
 	keys = list(sortedDict.keys())
 	values = list(sortedDict.values() )
 	assign = {}
