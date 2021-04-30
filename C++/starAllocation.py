@@ -7,7 +7,7 @@ global binDict
 global M
 global lBar
 
-rootToFiles = "../../TestSets/magnitudes/"
+rootToFiles = "../../TestSets/SlimmedData/"
 
 
 binDict = {};
@@ -215,7 +215,7 @@ generateBinDict(rootToFiles)
 print(binDict)
 
 	
-M = 10
+M = 20
 lBar = sum(binDict.values())/M
 
 
