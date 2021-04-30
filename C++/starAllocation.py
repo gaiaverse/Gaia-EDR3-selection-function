@@ -47,9 +47,7 @@ def generateBinDict(rootToFiles):
 	files = getUniqueFiles(rootToFiles)
 	
 	for file in files:
-		print("Opening " + file)
 		v = size(rootToFiles + file)
-		print(file + " has " + str(v))
 		binDict[file] = v
 
 def Load(assignment):
@@ -72,42 +70,6 @@ def Score(assignment):
 
 	return np.linalg.norm(diff)
 	
-def dumbAllocation():
-	assignment= {}
-	dictSize = len(binDict)
-	assignSave = {}
-	nTries = 100000
-	minScore = Score(assignment)
-	for n in range(0,nTries):
-		
-		
-		
-		for key in binDict.keys():
-
-			assignment[key] = random.randint(0,M-1)
-		
-		score = Score(assignment)
-		
-	
-		if score  < minScore:
-	
-			print("New best at %d%% = %.3f" % (int(float(n)/nTries*100),float(score)))
-			minScore = score
-			assignSave = copy.deepcopy(assignment)
-	
-	print("Optimal Random Assignment:")
-	print(assignSave)
-	
-	b = Load(assignSave)
-	mu = sum(b)/len(b)
-	print("\nCore load:")
-	for i in range(0,len(b)):
-		print("Core%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
-	
-	print("\nDifference from perfect load = %.4f" % (Score(assignSave)))
-	minLoad = min(b)
-	rootIDX = np.argmin(b)
-	print("\nRoot should be assigned as core %d" % rootIDX)
 	
 def sortShiftAllocation():
 	print("Beginning smart allocation")
@@ -118,8 +80,7 @@ def sortShiftAllocation():
 	keys = [x for _, x in sorted(zip(values,keys),reverse = True)]
 	values = sorted(values, reverse = True)
 	
-	print(keys)
-	print(values)
+	
 	assign = {}
 	coreLoad = np.zeros(M)
 	
@@ -212,7 +173,6 @@ def printAllocation(fileAssign):
 	f.close()
 	
 generateBinDict(rootToFiles)
-print(binDict)
 
 	
 M = 20
