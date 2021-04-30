@@ -359,7 +359,7 @@ int main(int argc, char *argv[])
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();
 	
-	GlobalLog(1,
+	GlobalLog(2,
 		std::cout << "Process " << ProcessRank << " reports job has finished. Waiting for rest. \n";
 	);
 	
