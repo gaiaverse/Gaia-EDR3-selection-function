@@ -199,12 +199,14 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	);
 	
 	checkNan(CurrentGradient,"Gradient Calculation");
+	
+	++LoopID;
 	if (LoopID % SaveSteps == 0)
 	{
 		GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
 		SavePosition(false);
 	}
-	++LoopID;
+	
 }
 
 

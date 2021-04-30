@@ -32,7 +32,7 @@ const int totalTransformedParams = Nt + Nm*Nl;
 
 const double SingularityPreventer = 1e-18;
 
-const int SaveSteps = 5;
+const int SaveSteps = 150;
 const int PipelineMinVisits = 5; 
 
 const bool SaveAllTemps = false;
