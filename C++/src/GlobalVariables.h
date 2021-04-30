@@ -7,11 +7,11 @@
 #include <iomanip>
 using Eigen::VectorXd;
 
-const int Nm = 1;//35; // number of magnitude bins
-const int Nt = 15000; // number of time bins, coarse, feel free to change
+const int Nm = 10;//35; // number of magnitude bins
+const int Nt = 1; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 4; // order of healpix map, can be any integer >= 0
-const int needlet_order = 2; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 0; // order of healpix map, can be any integer >= 0
+const int needlet_order = 0; // maximum order of needlets used, can be any integ*needler >= -1
 
 
 const double mut = 3;
