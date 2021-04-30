@@ -194,7 +194,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/gaps_parallel/";
+	std::string fileRoot = "../../TestSets/magnitudes/";
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',

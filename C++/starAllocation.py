@@ -7,7 +7,7 @@ global binDict
 global M
 global lBar
 
-rootToFiles = "../../TestSets/gaps_parallel/"
+rootToFiles = "../../TestSets/magnitudes/"
 
 
 binDict = {};
