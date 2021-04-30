@@ -14,8 +14,8 @@ const int healpix_order = 0; // order of healpix map, can be any integer >= 0
 const int needlet_order = 0; // maximum order of needlets used, can be any integ*needler >= -1
 
 
-const double mut = 3;
-const double sigmat = 0.1;
+const double mut = 5;
+const double sigmat = 1;
 const double lm = 1;
 const double lt = 1;
 
