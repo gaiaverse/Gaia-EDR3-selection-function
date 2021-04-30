@@ -289,6 +289,7 @@ void processArgs(int argc, char *argv[])
 		}
 		if (gradFlag == true)
 		{
+			std::cout << arg << std::endl;
 			gradLim = std::stod(arg);
 			if (ProcessRank == RootID)
 			{
