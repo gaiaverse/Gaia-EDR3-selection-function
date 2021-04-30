@@ -104,8 +104,6 @@ def sortShiftAllocation():
 		coreList = [x for _,x in sorted(zip(coreLoad,baseList))]	
 
 	
-	print("Optimal Smart Assignment:")
-	print(assign)
 	
 	b = Load(assign)
 	
@@ -127,7 +125,7 @@ def sortShiftAllocation():
 	for i in range(0,len(b)):
 		print("Core%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
 	
-	print("\nDifference from perfect load = %.4f" % (Score(assign)))
+	print("\nDifference from perfect load = %.4f\n\n" % (Score(assign)))
 	return assign
 
 def nameSubstruct(name):
