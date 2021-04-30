@@ -113,16 +113,12 @@ void RootProcess()
 	{
 		r = launchMinimizer(fun,1,gradLim,x);
 		x = r.X;
-		
-		GlobalLog(0,
-			std::cout << "\nBurnin ended ENDED: " << r.Status << std::endl;
-			std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
-		);
 	}
 	
 	r = launchMinimizer(fun,maxSteps,gradLim,x);
 	
 	x = r.X;
+	
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << r.Status << std::endl;
 		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
