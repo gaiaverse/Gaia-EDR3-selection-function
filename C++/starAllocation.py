@@ -110,7 +110,8 @@ def dumbAllocation():
 	print("\nRoot should be assigned as core %d" % rootIDX)
 	
 def sortShiftAllocation():
-
+	print("Beginning smart allocation")
+	print(binDict)
 	sortedDict = dict(sorted(binDict.items(), key=lambda item: item[0], reverse=True))
 	sortedDict = dict(sorted(sortedDict.items(), key=lambda item: item[1], reverse=True))
 	print(sortedDict)
