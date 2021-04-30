@@ -111,12 +111,15 @@ def dumbAllocation():
 	
 def sortShiftAllocation():
 	print("Beginning smart allocation")
-	print(binDict)
-	sortedDict = dict(sorted(binDict.items(), key=lambda item: item[0], reverse=True))
-	sortedDict = dict(sorted(sortedDict.items(), key=lambda item: item[1], reverse=True))
-	print(sortedDict)
-	keys = list(sortedDict.keys())
-	values = list(sortedDict.values() )
+
+	keys = list(binDict.keys())
+	values = list(binDict.values() )
+	
+	keys = [x for _, x in sorted(zip(values,keys))]
+	values = sorted(values)
+	
+	print(keys)
+	
 	assign = {}
 	coreLoad = np.zeros(M)
 	
