@@ -1,0 +1,17 @@
+
+Command-Line Options
+------------------------
+
+CODE|TYPE|FUNCTION
+	
+-f|String|The directory into which the output is saved 
+	
+-t|String|The directory in which the source data is located 
+	
+-g|Double|The gradient threshold for optimisation algorithm
+	
+-s|Integer|The random seed used to generate the initial position vector
+	
+-b|Integer|The number of burn-in steps taken  
+	
+-h|-|Opens the help menu

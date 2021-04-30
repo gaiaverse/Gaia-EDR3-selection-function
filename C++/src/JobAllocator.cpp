@@ -42,6 +42,8 @@ int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 int RandomSeed = time(NULL);
 int burnInSteps = 1;
+double gradLim = 1e-2;;
+std::string dataSource = "../../TestSets/magnitudes/";
 std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
@@ -105,7 +107,7 @@ void RootProcess()
 
 	int nLoops = 1;
 	int maxSteps = 5000; 
-	double gradLim = 1e-2;
+
 	double stepLim = 1e-200;
 	
 	optimizerReturn r;
@@ -190,7 +192,7 @@ void WorkerProcess()
 
 void GetAssignments(int id)
 {
-	std::string fileRoot = "../../TestSets/magnitudes/";
+	
 	std::string assignmentFile = "coreAssignments.dat";
 	
 	forLineVectorInFile(assignmentFile,',',
@@ -200,7 +202,7 @@ void GetAssignments(int id)
 		{
 			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
 			{
-				Files.push_back(fileRoot + FILE_LINE_VECTOR[i]);
+				Files.push_back(dataSource + FILE_LINE_VECTOR[i]);
 				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
 			}
 		}
@@ -249,6 +251,9 @@ void processArgs(int argc, char *argv[])
 	bool outDirFlag = false;
 	bool seedFlag = false;
 	bool burnFlag = false;
+	bool gradFlag = false;
+	bool targetFlag = false;
+	
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -277,12 +282,33 @@ void processArgs(int argc, char *argv[])
 			if (ProcessRank == RootID)
 			{
 				GlobalLog(2,
-					std::cout << "Root reports burnin tme set to " << burnInSteps << "\n";
+					std::cout << "Root reports burnin steps set to " << burnInSteps << "\n";
 				);
 			}
 			burnFlag == false;
 		}
-		
+		if (gradFlag == true)
+		{
+			gradLim = std::stod(arg);
+			if (ProcessRank == RootID)
+			{
+				GlobalLog(2,
+					std::cout << "Root reports gradient convergence limit set to " << burnInSteps << "\n";
+				);
+			}
+			gradFlag == false;
+		}
+		if (targetFlag == true)
+		{
+			dataSource = arg;
+			if (ProcessRank == RootID)
+			{
+				GlobalLog(2,
+					std::cout << "Root reports data source set to " << burnInSteps << "\n";
+				);
+			}
+			targetFlag = false;
+		}
 		
 		if (arg == "-f")
 		{
@@ -296,7 +322,27 @@ void processArgs(int argc, char *argv[])
 		{
 			burnFlag = true;
 		}
+		if (arg == "-t")
+		{
+			targetFlag = true;
+		}
+		if (arg == "-g")
+		{
+			gradFlag = true;
+		}
 		
+		if (arg == "-h" || arg == "--help")
+		{
+			forLineVectorInFile("src/GenericFunctions/commandHelpFile.txt",'|',
+				for (int i = 0; i < FILE_LINE_VECTOR.size(); ++i)
+				{
+					std::cout << std::setw(10) << std::left << FILE_LINE_VECTOR[i];
+				}
+				std::cout << "\n";
+			);
+			exit(-1);
+			
+		}
 		
 	}
 	
