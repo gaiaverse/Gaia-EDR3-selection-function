@@ -53,31 +53,15 @@ void DescentFunctor::SavePosition(bool finalSave)
 	}
 	std::fstream transfile;
 	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
-	
-	//~ GlobalLog(0,
-		//~ if (finalSave)
-		//~ {
-			//~ std::cout << "\tConverged roots : ";
-		//~ }
-	//~ );
+
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
 		transfile << TransformedPosition[i] << "\n";
 		
-		//~ GlobalLog(0,
-			//~ if (finalSave)
-			//~ {
-				//~ std::cout << TransformedPosition[i] << ",\t";
-			//~ }
-		//~ );
+
 	}
-	//~ GlobalLog(0,
-		//~ if (finalSave)
-		//~ {
-			//~ std::cout << "\n";
-		//~ }
-	//~ );
+
 	rawfile.close();
 	transfile.close();
 }
@@ -180,7 +164,7 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 {
 
 	GlobalLog(1,
-		std::cout << "\t\tEntering calculation iteration " << LoopID<< ". "; printTime();
+		std::cout << "\t\tCalculation iteration " << LoopID<< "...."; 
 	);
 	
 	const int n =  Nt+Nm*Nl;
@@ -207,11 +191,11 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	CurrentValue = Lsum;
 	
-	GlobalLog(2,
+	GlobalLog(1,
 		//~ std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
 		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
 		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		std::cout << "\t\t\tL = " << CurrentValue << "   Gradnorm = " <<  CurrentGradient.norm() << std::endl;
+		std::cout << "Completed. (L,Gradnorm) = (" << CurrentValue << ", " <<  CurrentGradient.norm() << ") "; printTime();
 	);
 	
 	checkNan(CurrentGradient,"Gradient Calculation");
