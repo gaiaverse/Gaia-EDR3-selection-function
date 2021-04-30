@@ -297,7 +297,7 @@ void processArgs(int argc, char *argv[])
 					std::cout << "Root reports gradient convergence limit set to " << burnInSteps << "\n";
 				);
 			}
-			gradFlag == false;
+			gradFlag = false;
 		}
 		if (targetFlag == true)
 		{
