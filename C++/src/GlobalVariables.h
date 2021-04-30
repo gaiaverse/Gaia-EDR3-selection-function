@@ -16,7 +16,7 @@ const int needlet_order = -1; // maximum order of needlets used, can be any inte
 
 const double mut = 5;
 const double sigmat = 1;
-const double lm = 1;
+const double lm = 3;
 const double lt = 1;
 
 const int healpix_nside = pow(2,healpix_order);

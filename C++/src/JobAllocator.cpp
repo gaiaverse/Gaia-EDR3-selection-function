@@ -239,7 +239,7 @@ void LoadData(int id)
 	
 	
 	
-	GlobalLog(2,
+	GlobalLog(1,
 		auto end = std::chrono::system_clock::now();
 		std::string duration = formatDuration(start,end);
 		std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
