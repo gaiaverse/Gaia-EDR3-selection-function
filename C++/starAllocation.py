@@ -7,7 +7,7 @@ global binDict
 global M
 global lBar
 
-rootToFiles = "../../TestSets/SlimmedData/"
+rootToFiles = "../../SlimmedData/"
 
 
 binDict = {};
