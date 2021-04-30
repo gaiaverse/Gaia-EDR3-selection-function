@@ -119,7 +119,7 @@ def sortShiftAllocation():
 	values = sorted(values)
 	
 	print(keys)
-	
+	print(values)
 	assign = {}
 	coreLoad = np.zeros(M)
 	
