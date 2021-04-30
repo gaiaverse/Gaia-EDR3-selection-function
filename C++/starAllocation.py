@@ -108,25 +108,26 @@ def sortShiftAllocation():
 	print(assign)
 	
 	b = Load(assign)
-	print(b)
-	mu = sum(b)/len(b)
-	print("\nCore load:")
-	for i in range(0,len(b)):
-		print("Core%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
 	
-	print("\nDifference from perfect load = %.4f" % (Score(assign)))
+	mu = sum(b)/len(b)
+	
 	minLoad = min(b)
 	rootIDX = np.argmin(b)
-	print("\nRoot should be assigned as core %d" % rootIDX)
+
 	if rootIDX != 0:
-		print(assign)
-		print("\nReassigning root to 0....")
+
 		for fileName, core in assign.items():
 			if core == 0:
 				assign[fileName] = rootIDX
 			if core == rootIDX:
 				assign[fileName] = 0
-		print(assign)
+
+	b = Load(assign)
+	print("\nCore load:")
+	for i in range(0,len(b)):
+		print("Core%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
+	
+	print("\nDifference from perfect load = %.4f" % (Score(assign)))
 	return assign
 
 def nameSubstruct(name):
