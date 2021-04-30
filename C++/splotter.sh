@@ -1,5 +1,8 @@
 #!/bin/bash
-FILE=$1
-SUFFIX=$2
-DIVISION=$3
-split -l$((`wc -l < $FILE$SUFFIX`/$DIVISION)) $FILE$SUFFIX $FILE"_" --additional-suffix="$SUFFIX" -a 1
+
+OUTDIR = $1
+
+for i in *.csv;
+do
+	cat $i | awk 'BEGIN {srand()} !/^$/ { if (rand() <= .01) print $0}' > $1$i
+done
