@@ -244,6 +244,11 @@ void LoadData(int id)
 		std::string duration = formatDuration(start,end);
 		std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 	);
+	
+	//~ int totalStars;
+	//~ int maxStars;
+	//~ MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
+	//~ MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 }
 
 void processArgs(int argc, char *argv[])
