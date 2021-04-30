@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUTDIR = $1
+OUTDIR=$1
 
 for i in *.csv;
 do
