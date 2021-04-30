@@ -115,8 +115,8 @@ def sortShiftAllocation():
 	keys = list(binDict.keys())
 	values = list(binDict.values() )
 	
-	keys = [x for _, x in sorted(zip(values,keys))]
-	values = sorted(values)
+	keys = [x for _, x in sorted(zip(values,keys),reverse = True)]
+	values = sorted(values, reverse = True)
 	
 	print(keys)
 	print(values)
