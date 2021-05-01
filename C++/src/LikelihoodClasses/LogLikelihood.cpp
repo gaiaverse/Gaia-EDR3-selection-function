@@ -202,7 +202,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		log_likelihood = log(likelihood);
 		log_correction = log(correction);
 		
-		if (isnan(log_likelihood) || isnan(log_correction))
+		if (std::isnan(log_likelihood) || std::isnan(log_correction))
 		{
 			longFlag = true;
 		}
@@ -214,6 +214,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 
 	
 	if (longFlag)
+	{
 		poissonOverride = true;
 		poisson_binomial_lpmf_forward(p,n,pmf_forward);
 		poisson_binomial_lpmf_backward(p,n,pmf_backward);
