@@ -198,13 +198,19 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	CurrentValue = Lsum;
 	
+	//normalise to the number of stars
+	CurrentValue /= NStars;
+	for (int i =0 ; i < CurrentGradient.size(); ++i)
+	{
+		CurrentGradient[i] /= NStars;
+	}
+	
 	GlobalLog(1,
 		//~ std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
 		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
 		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
 		std::cout << "Completed. \n\t\t\t(L,Gradnorm) = (" << CurrentValue << ", " <<  CurrentGradient.norm() << ")\n\t\t\t"; printTime();
 	);
-	
 	checkNan(CurrentGradient,"Gradient Calculation");
 	
 	++LoopID;
@@ -213,6 +219,8 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 		GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
 		SavePosition(false);
 	}
+	
+	
 	
 }
 
@@ -230,7 +238,7 @@ double DescentFunctor::value(const TVector &y)
 		PrevLock = y;
 	}
 
-	return -CurrentValue/NStars;
+	return -CurrentValue;
 }
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
@@ -247,7 +255,7 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 	//negative sign for maximisation problem
 	for (int i = 0; i < y.size(); ++i)
 	{
-		grad[i] = -CurrentGradient[i]/NStars;
+		grad[i] = -CurrentGradient[i];
 	}
 }
 
