@@ -175,10 +175,21 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	{
 		correction -= pmf_forward[n-1][i];
 	}
+	
+	if (correction < verySmallNumber)
+	{
+		correction = 0;
+		for (int i = PipelineMinVisits; i < n; ++i)
+		{
+			correction += pmf_forward[n-1][i];
+		}
+	}
 
 	bool longFlag = true;
 	
-	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber) && (correction > verySmallNumber))
+
+
+	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber))
 	{
 		longFlag = false;
 		poisson_binomial_pmf_backward(p,n,pmf_backward);
@@ -238,6 +249,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		for (int i = 0; i < PipelineMinVisits; ++i)
 		{
 			log_correction += log1p(-exp(pmf_forward[n-1][i]-log_correction));
+		}
+
+		if (std::isnan(log_correction))
+		{
+			log_correction = -9999999;
+			for (int i=PipelineMinVisits; i < n; ++i)
+			{
+				log_correction += log1p(exp(pmf_forward[n-1][i] - log_correction));
+			}
 		}
 		Value += log_likelihood - log_correction;
 		likelihood = exp(log_likelihood);
