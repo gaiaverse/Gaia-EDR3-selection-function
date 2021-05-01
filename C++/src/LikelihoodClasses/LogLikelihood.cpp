@@ -193,7 +193,6 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		if (k < n)
 		{
-			//~ std::cout << "trigger2" << std::endl;
 			poisson_binomial_subpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
 			nMeasureKiller = 1;
 		}

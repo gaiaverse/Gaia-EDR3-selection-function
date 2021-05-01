@@ -230,7 +230,7 @@ double DescentFunctor::value(const TVector &y)
 		PrevLock = y;
 	}
 
-	return -CurrentValue;
+	return -CurrentValue/NStars;
 }
 void DescentFunctor::gradient(const TVector &y, TVector &grad)
 {
@@ -247,7 +247,7 @@ void DescentFunctor::gradient(const TVector &y, TVector &grad)
 	//negative sign for maximisation problem
 	for (int i = 0; i < y.size(); ++i)
 	{
-		grad[i] = -CurrentGradient[i];
+		grad[i] = -CurrentGradient[i]/NStars;
 	}
 }
 

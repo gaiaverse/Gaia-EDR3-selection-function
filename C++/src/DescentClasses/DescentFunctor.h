@@ -50,7 +50,7 @@ class DescentFunctor: public Problem<double>
 		VectorXd PrevLock;
 		const double lockLim = 1e-15;
 		
-		
+		int NStars;
 		//holder for transformed values
 		VectorXd TransformedPosition;
 		VectorXd TransformedGradient;
@@ -69,8 +69,9 @@ class DescentFunctor: public Problem<double>
 	
 		
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir): Data(data), L(data,bins, nParams,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir, int nStars): Data(data), L(data,bins, nParams,n)
 	    {
+				NStars = nStars;
 				RunningID = n;
 				LoopID = 0;
 				Start = std::chrono::system_clock::now();

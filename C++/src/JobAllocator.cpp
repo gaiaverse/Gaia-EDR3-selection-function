@@ -48,7 +48,8 @@ std::string OutputDirectory = "Output";
 std::vector<Star> Data;
 std::vector<int> Bins;
 std::vector<std::string> Files;
-	
+int TotalStars;
+int MaxStarsInCore;
 
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
@@ -101,7 +102,7 @@ void RootProcess()
 	
 	
 	VectorXd x = initialisedVector(nParameters);
-	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory);
+	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory,TotalStars);
 	
 	//set up the criteria for termination
 
@@ -245,10 +246,19 @@ void LoadData(int id)
 		std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
 	);
 	
-	//~ int totalStars;
-	//~ int maxStars;
-	//~ MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-	//~ MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+	double n = Data.size();
+	MPI_Reduce(&n,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
+	MPI_Reduce(&n, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
+	
+	MPI_Barrier(MPI_COMM_WORLD);
+	
+	if (ProcessRank==RootID)
+	{
+		GlobalLog(0,
+			std::cout << TotalStars << " have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
+		);
+	}
+	MPI_Barrier(MPI_COMM_WORLD);
 }
 
 void processArgs(int argc, char *argv[])
