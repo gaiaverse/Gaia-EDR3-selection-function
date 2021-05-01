@@ -161,9 +161,6 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		p[i] = pt[i] *pml[i];
 	}
 	
-	// probability black magic stuff
-	poisson_binomial_pmf_forward(p,n,pmf_forward);
-	
 	bool poissonOverride = false;
 	double zeroMeasureKiller = 0;
 	double nMeasureKiller = 0;
@@ -172,7 +169,14 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	double log_likelihood = 0;
 	double log_correction = 0.0;
 
-	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber) )
+	// probability black magic stuff
+	poisson_binomial_pmf_forward(p,n,pmf_forward);
+	for (int i = 0; i < PipelineMinVisits; ++i)
+	{
+		correction -= pmf_forward[n-1][i];
+	}
+
+	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber) && (correction > verySmallNumber))
 	{
 		poisson_binomial_pmf_backward(p,n,pmf_backward);
 		poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
@@ -193,10 +197,6 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		
 		likelihood = pmf_forward[n-1][k];
 		log_likelihood = log(likelihood);
-		for (int i = 0; i < PipelineMinVisits; ++i)
-		{
-			correction -= pmf_forward[n-1][i];
-		}
 		log_correction = log(correction);
 		Value += log_likelihood - log_correction;
 		
