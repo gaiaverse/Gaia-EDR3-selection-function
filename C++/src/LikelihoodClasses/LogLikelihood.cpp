@@ -176,8 +176,11 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		correction -= pmf_forward[n-1][i];
 	}
 
+	bool longFlag = true;
+	
 	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber) && (correction > verySmallNumber))
 	{
+		longFlag = false;
 		poisson_binomial_pmf_backward(p,n,pmf_backward);
 		poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
 
@@ -198,11 +201,19 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		likelihood = pmf_forward[n-1][k];
 		log_likelihood = log(likelihood);
 		log_correction = log(correction);
-		Value += log_likelihood - log_correction;
 		
+		if (isnan(log_likelihood) || isnan(log_correction))
+		{
+			longFlag = true;
+		}
+		else
+		{
+			Value += log_likelihood - log_correction;
+		}
 	}
-	else
-	{
+
+	
+	if (longFlag)
 		poissonOverride = true;
 		poisson_binomial_lpmf_forward(p,n,pmf_forward);
 		poisson_binomial_lpmf_backward(p,n,pmf_backward);
@@ -229,8 +240,8 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 			log_correction += log1p(-exp(pmf_forward[n-1][i]-log_correction));
 		}
 		Value += log_likelihood - log_correction;
-		likelihood = log_likelihood;
-		correction = log_correction;
+		likelihood = exp(log_likelihood);
+		correction = exp(log_correction);
 	}
 	
 			
