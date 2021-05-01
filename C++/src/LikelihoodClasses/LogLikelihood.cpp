@@ -245,6 +245,31 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	}
 	
 			
+	if (std::isnan(Value))
+	{
+		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << ID << " whilst calculating star " << star <<"\n";
+		std::cout << "n = " << n << "k = " << k << std::endl;
+		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
+		std::cout << "Longform calculation flag = " << longFlag << "\n";
+		std::cout << "p = (";
+		for (int i = 0; i < n; ++i)
+		{
+			std::cout << p[i] << ", ";
+		}
+		std::cout << ")\n\npmf = (";
+		for (int i = 0; i < n; ++i)
+		{
+			double v = pmf_forward[n-1][i];
+			if (longFlag)
+			{
+				v= exp(v);
+			}
+			std::cout << v << ",";
+		}
+		std::cout << ") \n\n\n";
+		ERROR(100, "See above output");
+	}
+	
 	
 	for (int i = 0; i < n; ++i)
 	{
