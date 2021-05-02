@@ -183,7 +183,29 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 
 			std::cout << v << ",";
 		}
-		std::cout << ") \n\n\n";
+		std::cout << ") \n\n\n I will now repeatt he calculation which triggered this error....\n\nForward loop:";
+		log_correction = 0;
+		for (int i = 0; i < PipelineMinVisits; ++i)
+		{
+			double c = log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
+			std::cout << i << "  dc = " << c;
+			log_correction += c;
+			std::cout << "   l_c=" << log_correction << "\n";
+		}
+		
+		if (std::isnan(log_correction) || std::isinf(log_correction) )
+		{
+				std::cout << "\nBackwards loop: \n";
+				log_correction = VerySmallLog;
+				for (int i = n; i >= PipelineMinVisits; --i)
+				{
+					double c = log1p(exp(Data.pmf_forward[n-1][i] - log_correction));
+					std::cout << i << "  dc = " << c;
+					log_correction += c;
+					std::cout << "   l_c=" << log_correction << "\n";
+				}
+			
+		}
 		ERROR(100, "See above output");
 	}
 	
