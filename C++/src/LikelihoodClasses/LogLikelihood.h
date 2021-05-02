@@ -14,6 +14,7 @@
 #include "../GenericFunctions/FileHandler.h"
 #include "../DescentClasses/Star.h"
 #include "../GlobalVariables.h"
+#include "ProbabilityFunctions.h"
 using Eigen::VectorXd;
 using namespace Eigen;
 //Likelihood class acts as a container for the values of the log liklihood and its gradient
@@ -49,6 +50,10 @@ class LogLikelihood
 		void inline CalculateSubPMF(int i, int n, int k,std::vector<double> & ps);
 		void inline SubPMF_Forward(double p, int start, int end);
 		void inline SubPMF_Backward(double p, int start, int end, int n);
+		
+		void GenerateDerivatives_Normal();
+		void GenerateDerivatives_Long();
+		
 		//compile-time structures for holding data
 		int suitablyLargeNumber = 1024;
 		double verySmallNumber = 1e-310;
@@ -58,6 +63,7 @@ class LogLikelihood
 		std::vector<std::vector<double>> pmf_forward;
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
+		std::vector<double> dfdp;
 		void Debug(int n, int k, int star,double likelihood, double correction);
 
 
@@ -72,18 +78,3 @@ class LogLikelihood
 	std::vector<double> pml;
 	std::vector<double> p;
 };
-
-
-//function stolen from a git repo somewhere, see the implementation for more details
-void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
-
-// Log-versions
-double inline log_add_exp(double a, double b);
-void inline poisson_binomial_lpmf_forward(std::vector<double> & probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_lpmf_backward(std::vector<double> & probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<double>> & lpmf_forward, std::vector<std::vector<double>> & lpmf_backward, std::vector<double> & result);
-
-// Implements an expit sigmoid via the tanh method
-double inline sigmoid(double x);
