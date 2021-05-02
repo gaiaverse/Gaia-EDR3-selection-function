@@ -79,7 +79,7 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	if (correction < VerySmallNumber)
 	{
 		correction = 0;
-		for (int i = PipelineMinVisits; i < n; ++i)
+		for (int i = n; i >= PipelineMinVisits; --i)
 		{
 			correction += Data.pmf_forward[n-1][i];
 		}
@@ -149,10 +149,12 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 	{
 		log_correction += log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
 	}
+	bool triggeredLoopInvert = false;
 	if (std::isinf(log_correction) || std::isnan(log_correction))
 	{
+		triggeredLoopInvert = true;
 		log_correction = VerySmallLog;
-		for (int i = PipelineMinVisits; i <= n; ++i)
+		for (int i = n; i >= PipelineMinVisits; --i)
 		{
 			log_correction += log1p(exp(Data.pmf_forward[n-1][i] - log_correction));
 		}
@@ -167,7 +169,8 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
 		std::cout << "n = " << n << "k = " << k << std::endl;
 		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
-		std::cout << "log_likelihood = " << log_likelihood << "  correction = " << correction << "\n";
+		std::cout << "triggered loop inversion: " << triggeredLoopInvert << "\n";
+		std::cout << "log_likelihood = " << log_likelihood << "  log_correction = " << log_correction << "\n";
 		std::cout << "p = (";
 		for (int i = 0; i < n; ++i)
 		{
