@@ -188,7 +188,7 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 		for (int i = 0; i < PipelineMinVisits; ++i)
 		{
 			double c = log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
-			std::cout << i << "  dc = " << c;
+			std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
 			log_correction += c;
 			std::cout << "   l_c=" << log_correction << "\n";
 		}
@@ -200,7 +200,7 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 				for (int i = n; i >= PipelineMinVisits; --i)
 				{
 					double c = log1p(exp(Data.pmf_forward[n-1][i] - log_correction));
-					std::cout << i << "  dc = " << c;
+					std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
 					log_correction += c;
 					std::cout << "   l_c=" << log_correction << "\n";
 				}
