@@ -12,6 +12,7 @@ LikelihoodData::LikelihoodData(const std::vector<Star> &data, int id) : Stars(da
 	pt = std::vector<double>(nBig,0);
 	pml = std::vector<double>(nBig,0);
 	p = std::vector<double>(nBig,0);
+	dfdp = std::vector<double>(nBig,0);
 	
 	NStars = Stars.size();
 	

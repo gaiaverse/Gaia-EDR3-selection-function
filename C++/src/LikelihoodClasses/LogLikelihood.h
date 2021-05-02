@@ -38,12 +38,9 @@ class LogLikelihood
 		//internal functions
 		void Reset();
 		void PerStarContribution(int id,Eigen::VectorXd & position);
-		void inline CalculateSubPMF(int i, int n, int k,std::vector<double> & ps);
-		void inline SubPMF_Forward(double p, int start, int end);
-		void inline SubPMF_Backward(double p, int start, int end, int n);
 		
-		void GenerateDerivatives_Normal();
-		void GenerateDerivatives_Long();
-		
-		
+		void GeneratePs(const Star * candidate,Eigen::VectorXd & position);
+		void GenerateContribution(const Star * candidate);
+		void GenerateExactContribution(const Star * candidate);
+		void AssignGradients(const Star * candidate);
 };

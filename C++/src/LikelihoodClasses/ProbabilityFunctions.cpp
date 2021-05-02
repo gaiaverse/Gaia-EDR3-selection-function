@@ -1,6 +1,39 @@
 #include "ProbabilityFunctions.h"
 
 
+          
+void poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
+{
+	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
+
+	int oldlen = 2; // length of old kernel
+	double p,q;
+	
+	// initialize (old kernel)
+	result[0][0] = 1.0-probs[0];
+	result[0][1] = probs[0];
+	
+	// loop through all other probs
+	for(int i=1; i < probslen; ++i)
+	{
+		// set signal
+		p = probs[i];
+		q = 1.0 - p;
+		
+		// initialize result and calculate the two edge cases
+		result[i][0] = q * result[i-1][0];
+		result[i][oldlen] = p * result[i-1][oldlen-1];
+		
+		//calculate the interior cases
+		for(int j=1; j < oldlen; ++j)
+		{
+			result[i][j] = p * result[i-1][j-1] + q * result[i-1][j];
+		}
+		  
+		oldlen++;
+	}
+}
+
 void  poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
