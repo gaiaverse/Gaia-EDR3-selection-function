@@ -28,8 +28,6 @@ class DescentFunctor: public Problem<double>
 {
 	private:
 		int RunningID;
-		std::vector<double> InterestVectors;
-
 
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
@@ -39,9 +37,6 @@ class DescentFunctor: public Problem<double>
 		
 		std::chrono::time_point<std::chrono::system_clock> Start;
 
-		
-		
-		
 		//running values for the loglikelihood and gradient 
 
 		
@@ -50,6 +45,12 @@ class DescentFunctor: public Problem<double>
 		VectorXd PrevLock;
 		const double lockLim = 1e-15;
 		
+		
+		//Needlet stuff - has to be public
+		int needletN;
+		std::vector<int> needlet_u;
+    	std::vector<int> needlet_v;
+    	std::vector<double> needlet_w;
 		int NStars;
 		//holder for transformed values
 		VectorXd TransformedPosition;
@@ -69,7 +70,7 @@ class DescentFunctor: public Problem<double>
 	
 		
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir, int nStars): Data(data), L(data,bins, nParams,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
 	    {
 				NStars = nStars;
 				RunningID = n;
@@ -83,6 +84,21 @@ class DescentFunctor: public Problem<double>
 				TransformedPosition = VectorXd::Zero(totalTransformedParams);
 				TransformedGradient = VectorXd::Zero(totalTransformedParams);
 				OutputDir = outdir;
+				
+				std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
+				int i = 0;
+			    forLineVectorInFile(needlet_file,',',
+			 
+					if (i > 0)
+					{
+				        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
+				        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
+				        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
+					}
+			        ++i;
+			    );    
+			    needletN = needlet_u.size();
+				
 		}
 	    void DistributeCalculations(const TVector &y);
  

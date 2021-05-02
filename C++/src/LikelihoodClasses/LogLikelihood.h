@@ -14,6 +14,7 @@
 #include "../GenericFunctions/FileHandler.h"
 #include "../DescentClasses/Star.h"
 #include "../GlobalVariables.h"
+#include "DataStorage.h"
 #include "ProbabilityFunctions.h"
 using Eigen::VectorXd;
 using namespace Eigen;
@@ -23,26 +24,16 @@ using namespace Eigen;
 class LogLikelihood
 {
 	public:
-		
 		double Value;
 		Eigen::VectorXd Gradient;
 		
-		
-		
-		LogLikelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
-		
+		LogLikelihood(const std::vector<Star> & data, int id);
 		void Calculate(Eigen::VectorXd& position);
 		
-		
-		int needletN;
-		std::vector<int> needlet_u;
-    	std::vector<int> needlet_v;
-    	std::vector<double> needlet_w;
 	protected:
-			
+		
 		//member data 
-		int ID;
-		const std::vector<Star> &Data;
+		LikelihoodData Data;
 
 		//internal functions
 		void Reset();
@@ -54,27 +45,5 @@ class LogLikelihood
 		void GenerateDerivatives_Normal();
 		void GenerateDerivatives_Long();
 		
-		//compile-time structures for holding data
-		int suitablyLargeNumber = 1024;
-		double verySmallNumber = 1e-310;
-		double verySmallLog = -9999999999;
 		
-		
-		std::vector<std::vector<double>> pmf_forward;
-		std::vector<std::vector<double>> pmf_backward;
-		std::vector<std::vector<double>> subpmf;
-		std::vector<double> dfdp;
-		void Debug(int n, int k, int star,double likelihood, double correction);
-
-
-		std::string healpix_fov_file;
-		std::string needlet_file;
-		std::vector<int> healpix_fov_1;
-    	std::vector<int> healpix_fov_2;
-
-    	std::vector<int> time_mapping;
-    
-		std::vector<double> pt;
-	std::vector<double> pml;
-	std::vector<double> p;
 };

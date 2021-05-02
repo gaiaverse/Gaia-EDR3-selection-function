@@ -149,7 +149,7 @@ void WorkerProcess()
 	
 	
 	//initialise the liklihood object and position vector which will be reused 
-	LogLikelihood L = LogLikelihood(Data,Bins,dimensionality,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data,ProcessRank);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
 	

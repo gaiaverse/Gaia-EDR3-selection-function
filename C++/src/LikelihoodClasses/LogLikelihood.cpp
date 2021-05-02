@@ -1,71 +1,10 @@
 #include "LogLikelihood.h"
 
-LogLikelihood::LogLikelihood(const std::vector<Star> &data, std::vector<int> & magBins, int dimension, int id): Data(data)
+LogLikelihood::LogLikelihood(const std::vector<Star> &data, int id): Data(data,id)
 {
-	//is magbins still needed?
-	ID = id;
+
 	Value = 0.0;
-	Gradient = Eigen::VectorXd::Zero(dimension);
-
-	
-	//~ int suitablyLargeNumber = 1024; // a number at least as large as the maximum number of entries in a single star's time series
-	//~ pmf = std::vector<double>(suitablyLargeNumber,0.0);
-	//~ subpmf = std::vector<double>(suitablyLargeNumber,0.0);
-
-	
-	pmf_forward = std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
-	pmf_backward =  std::vector<std::vector<double>>(suitablyLargeNumber,std::vector<double>(suitablyLargeNumber,0));
-	subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(suitablyLargeNumber,0));
-	
-    
-    
-    std::string healpix_fov_file = "../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
-    std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);
-	healpix_fov_2 = std::vector<int>(TotalScanningTime,0);
-
-
-	time_mapping = std::vector<int>(TotalScanningTime,0);
-	
-    double time_ratio = 1;
-    if (Nt < TotalScanningTime)
-    {
-		time_ratio = (double)Nt/TotalScanningTime;
-	}
-
-	for (int i = 0; i < TotalScanningTime; ++i)
-	{
-		time_mapping[i] = floor(time_ratio*i);
-	}
-
-    int i = 0;
-    
-    forLineVectorInFile(healpix_fov_file,',',
-    
-		if (i > 0)
-		{
-	        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);
-	        healpix_fov_2[i] = std::stoi(FILE_LINE_VECTOR[2]);  
-	        
-	    }
-	     ++i;
-    );
-    
-    i = 0;
-    forLineVectorInFile(needlet_file,',',
- 
-		if (i > 0)
-		{
-	        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
-	        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-	        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
-		}
-        ++i;
-    );    
-    needletN = needlet_u.size();
-	pt = std::vector<double>(suitablyLargeNumber,0);
-	pml = std::vector<double>(suitablyLargeNumber,0);
-	p = std::vector<double>(suitablyLargeNumber,0);
+	Gradient = Eigen::VectorXd::Zero(totalTransformedParams);
 }
 
 void LogLikelihood::Calculate(Eigen::VectorXd& x)
@@ -73,7 +12,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x)
 
 	Reset();	
 
-	for (int i = 0; i < Data.size(); ++i)
+	for (int i = 0; i < Data.NStars; ++i)
 	{
 		PerStarContribution(i,x);
 	}
@@ -92,7 +31,7 @@ void LogLikelihood::Reset()
 void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 {
 
-	Star candidate = Data[star];
+	Star candidate = Data.Stars[star];
 	int k = candidate.nMeasure;
 	int n = candidate.nVisit;
 	
@@ -102,15 +41,15 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	{
 		int t= candidate.TimeSeries[i];
 
-		double xt = x[time_mapping[t]];
-		int idx1 = Nt + healpix_fov_1[t] * Nm + candidate.gBin;
-		int idx2 = Nt + healpix_fov_2[t] * Nm + candidate.gBin;
+		double xt = x[Data.time_mapping[t]];
+		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate.gBin;
+		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate.gBin;
 		double xml1 = x[idx1];
 		double xml2 = x[idx2];
 		
-		pt[i] = sigmoid(xt);
-		pml[i] = sigmoid(xml1 + xml2);
-		p[i] = pt[i] *pml[i];
+		Data.pt[i] = sigmoid(xt);
+		Data.pml[i] = sigmoid(xml1 + xml2);
+		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}
 	
 	bool poissonOverride = false;
@@ -122,18 +61,18 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	double log_correction = 0.0;
 
 	// probability black magic stuff
-	poisson_binomial_pmf_forward(p,n,pmf_forward);
+	poisson_binomial_pmf_forward(Data.p,n,Data.pmf_forward);
 	for (int i = 0; i < PipelineMinVisits; ++i)
 	{
-		correction -= pmf_forward[n-1][i];
+		correction -= Data.pmf_forward[n-1][i];
 	}
 	
-	if (correction < verySmallNumber)
+	if (correction < VerySmallNumber)
 	{
 		correction = 0;
 		for (int i = PipelineMinVisits; i < n; ++i)
 		{
-			correction += pmf_forward[n-1][i];
+			correction += Data.pmf_forward[n-1][i];
 		}
 	}
 
@@ -141,26 +80,26 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	
 
 
-	if ( (pmf_forward[n-1][0] > verySmallNumber) && (pmf_forward[n-1][n] > verySmallNumber))
+	if ( (Data.pmf_forward[n-1][0] > VerySmallNumber) && (Data.pmf_forward[n-1][n] > VerySmallNumber))
 	{
 		longFlag = false;
-		poisson_binomial_pmf_backward(p,n,pmf_backward);
-		poisson_binomial_subpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
+		poisson_binomial_pmf_backward(Data.p,n,Data.pmf_backward);
+		poisson_binomial_subpmf(PipelineMinVisits-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[0]);
 
 		
 		if (k > 0)
 		{
-			poisson_binomial_subpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
+			poisson_binomial_subpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
 			zeroMeasureKiller = 1;
 		}
 		
 		if (k < n)
 		{
-			poisson_binomial_subpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
+			poisson_binomial_subpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
 			nMeasureKiller = 1;
 		}
 		
-		likelihood = pmf_forward[n-1][k];
+		likelihood = Data.pmf_forward[n-1][k];
 		log_likelihood = log(likelihood);
 		log_correction = log(correction);
 		
@@ -178,29 +117,29 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 	if (longFlag)
 	{
 		poissonOverride = true;
-		poisson_binomial_lpmf_forward(p,n,pmf_forward);
-		poisson_binomial_lpmf_backward(p,n,pmf_backward);
-		poisson_binomial_sublpmf(PipelineMinVisits-1,n,pmf_forward,pmf_backward,subpmf[0]);
+		poisson_binomial_lpmf_forward(Data.p,n,Data.pmf_forward);
+		poisson_binomial_lpmf_backward(Data.p,n,Data.pmf_backward);
+		poisson_binomial_sublpmf(PipelineMinVisits-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[0]);
 
 		if (k > 0)
 		{
-			poisson_binomial_sublpmf(k-1,n,pmf_forward,pmf_backward,subpmf[1]);
+			poisson_binomial_sublpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
 			zeroMeasureKiller = 1;
 		}
 		
 		if (k < n)
 		{
 			//~ std::cout << "trigger2" << std::endl;
-			poisson_binomial_sublpmf(k,n,pmf_forward,pmf_backward,subpmf[2]);
+			poisson_binomial_sublpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
 			nMeasureKiller = 1;
 		}
 		
 
-		log_likelihood = pmf_forward[n-1][k];
+		log_likelihood = Data.pmf_forward[n-1][k];
 
 		for (int i = 0; i < PipelineMinVisits; ++i)
 		{
-			log_correction += log1p(-exp(pmf_forward[n-1][i]-log_correction));
+			log_correction += log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
 		}
 
 		if (std::isnan(log_correction))
@@ -208,7 +147,7 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 			log_correction = -9999999;
 			for (int i=PipelineMinVisits; i < n; ++i)
 			{
-				log_correction += log1p(exp(pmf_forward[n-1][i] - log_correction));
+				log_correction += log1p(exp(Data.pmf_forward[n-1][i] - log_correction));
 			}
 		}
 		Value += log_likelihood - log_correction;
@@ -219,19 +158,19 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 			
 	if (std::isnan(Value))
 	{
-		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << ID << " whilst calculating star " << star <<"\n";
+		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << " whilst calculating star " << star <<"\n";
 		std::cout << "n = " << n << "k = " << k << std::endl;
 		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
 		std::cout << "Longform calculation flag = " << longFlag << "\n";
 		std::cout << "p = (";
 		for (int i = 0; i < n; ++i)
 		{
-			std::cout << p[i] << ", ";
+			std::cout << Data.p[i] << ", ";
 		}
 		std::cout << ")\n\npmf = (";
 		for (int i = 0; i < n; ++i)
 		{
-			double v = pmf_forward[n-1][i];
+			double v = Data.pmf_forward[n-1][i];
 			if (longFlag)
 			{
 				v= exp(v);
@@ -249,24 +188,22 @@ void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
 		double dFdP_p;
 		if (poissonOverride)
 		{
-			dFdP_p = p[i] * ( exp(subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(subpmf[0][i] - log_correction));
+			dFdP_p = Data.p[i] * ( exp(Data.subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(Data.subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(Data.subpmf[0][i] - log_correction));
 		}
 		else
 		{
-			dFdP_p = p[i] * (   (subpmf[1][i]*zeroMeasureKiller-subpmf[2][i]*nMeasureKiller)/likelihood - subpmf[0][i]/correction );
+			dFdP_p = Data.p[i] * (   (Data.subpmf[1][i]*zeroMeasureKiller-Data.subpmf[2][i]*nMeasureKiller)/likelihood - Data.subpmf[0][i]/correction );
 		}
-		GlobalDebug(1,
-			std::cout << subpmf[1][i]-log_likelihood << "  " << subpmf[2][i] - log_likelihood << "   " << subpmf[0][i] - log_correction << "   " << dFdP_p << "\n";
-		);
+
 		int t = candidate.TimeSeries[i];
 
-		Gradient[time_mapping[t]] += dFdP_p * (1.0 - pt[i]);
+		Gradient[Data.time_mapping[t]] += dFdP_p * (1.0 - Data.pt[i]);
 		
 		int offset = Nt + candidate.gBin;
-		double mlGrad = dFdP_p * (1.0 - pml[i]);
+		double mlGrad = dFdP_p * (1.0 - Data.pml[i]);
 		
-		int index1 = offset +  healpix_fov_1[t] * Nm;
-		int index2 = offset +  healpix_fov_2[t] * Nm;
+		int index1 = offset +  Data.healpix_fov_1[t] * Nm;
+		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
 		Gradient[index1] += mlGrad;
 		Gradient[index2] += mlGrad;

@@ -28,6 +28,9 @@ const int totalTransformedParams = Nt + Nm*Nl;
 
 
 
+const int NumberLargerThanMaxObservations = 1024;
+const double VerySmallNumber = 1e-310;
+const double VerySmallLog = -9999999999;
 
 
 const double SingularityPreventer = 1e-18;
