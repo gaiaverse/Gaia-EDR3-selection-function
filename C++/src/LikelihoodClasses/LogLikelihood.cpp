@@ -92,7 +92,8 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	double contribution = log_likelihood - log_correction;
 
 
-	bool floatingPointTruncated = (Data.pmf_forward[n-1][0] < VerySmallNumber)  || ( Data.pmf_backward[n-1][n] < VerySmallNumber);
+
+	bool floatingPointTruncated = (Data.pmf_forward[n-1][0] < VerySmallNumber)  || ( Data.pmf_forward[n-1][n] < VerySmallNumber);
 	bool somethingVeryBad = std::isnan(contribution) || std::isinf(contribution);
 
 	if (floatingPointTruncated || somethingVeryBad)
