@@ -14,6 +14,8 @@
 #include "../GenericFunctions/FileHandler.h"
 #include "../DescentClasses/Star.h"
 #include "../GlobalVariables.h"
+#include "DataStorage.h"
+#include "ProbabilityFunctions.h"
 using Eigen::VectorXd;
 using namespace Eigen;
 //Likelihood class acts as a container for the values of the log liklihood and its gradient
@@ -22,68 +24,23 @@ using namespace Eigen;
 class LogLikelihood
 {
 	public:
-		
 		double Value;
 		Eigen::VectorXd Gradient;
 		
-		
-		
-		LogLikelihood(const std::vector<Star> & data, std::vector<int> & magBins, int dimensionality, int id);
-		
+		LogLikelihood(const std::vector<Star> & data, int id);
 		void Calculate(Eigen::VectorXd& position);
 		
-		
-		int needletN;
-		std::vector<int> needlet_u;
-    	std::vector<int> needlet_v;
-    	std::vector<double> needlet_w;
 	protected:
-			
+		
 		//member data 
-		int ID;
-		const std::vector<Star> &Data;
+		LikelihoodData Data;
 
 		//internal functions
 		void Reset();
 		void PerStarContribution(int id,Eigen::VectorXd & position);
-		void inline CalculateSubPMF(int i, int n, int k,std::vector<double> & ps);
-		void inline SubPMF_Forward(double p, int start, int end);
-		void inline SubPMF_Backward(double p, int start, int end, int n);
-		//compile-time structures for holding data
-		int suitablyLargeNumber = 1024;
-		double verySmallNumber = 1e-310;
-		double verySmallLog = -9999999999;
 		
-		
-		std::vector<std::vector<double>> pmf_forward;
-		std::vector<std::vector<double>> pmf_backward;
-		std::vector<std::vector<double>> subpmf;
-		void Debug(int n, int k, int star,double likelihood, double correction);
-
-
-		std::string healpix_fov_file;
-		std::string needlet_file;
-		std::vector<int> healpix_fov_1;
-    	std::vector<int> healpix_fov_2;
-
-    	std::vector<int> time_mapping;
-    
-		std::vector<double> pt;
-	std::vector<double> pml;
-	std::vector<double> p;
+		void GeneratePs(const Star * candidate,Eigen::VectorXd & position);
+		void GenerateContribution(const Star * candidate);
+		void GenerateExactContribution(const Star * candidate);
+		void AssignGradients(const Star * candidate);
 };
-
-
-//function stolen from a git repo somewhere, see the implementation for more details
-void inline poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_pmf_backward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<double>> & pmf_forward, std::vector<std::vector<double>> & pmf_backward, std::vector<double> & result);
-
-// Log-versions
-double inline log_add_exp(double a, double b);
-void inline poisson_binomial_lpmf_forward(std::vector<double> & probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_lpmf_backward(std::vector<double> & probs, int probslen, std::vector<std::vector<double>> & result);
-void inline poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<double>> & lpmf_forward, std::vector<std::vector<double>> & lpmf_backward, std::vector<double> & result);
-
-// Implements an expit sigmoid via the tanh method
-double inline sigmoid(double x);

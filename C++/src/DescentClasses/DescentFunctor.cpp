@@ -104,11 +104,11 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	}
 
 	// yml
-	for (int i = 0; i < L.needletN; ++i)
+	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			TransformedPosition[Nt+L.needlet_u[i]*Nm+m] += L.needlet_w[i]*b[L.needlet_v[i]*Nm+m];
+			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*b[needlet_v[i]*Nm+m];
 		}
 	}
 }
@@ -136,11 +136,11 @@ void DescentFunctor::BackwardTransform()
 		CurrentGradient[0] = TransformedGradient[0]*sigmat;
 	}
 	// yml
-	for (int i = 0; i < L.needletN; ++i)
+	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			bGradient[L.needlet_v[i]*Nm+m] += L.needlet_w[i]*TransformedGradient[Nt+L.needlet_u[i]*Nm+m];
+			bGradient[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
 		}
 	}
 
