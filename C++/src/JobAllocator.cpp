@@ -30,6 +30,7 @@
 #include "LikelihoodClasses/LogLikelihoodPrior.h"
 #include "GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
+#include "DescentClasses/ManualOptimizer.h"
 
 using Eigen::VectorXd;
 
@@ -399,19 +400,22 @@ int main(int argc, char *argv[])
 	
 	auto start = std::chrono::system_clock::now();
 	
+	//~ LoadData(ProcessRank);
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ WorkerProcess();	
+	//~ }
 
-	//pTestSuite();
-	LoadData(ProcessRank);
-	//mapper();
-	if (ProcessRank == RootID) 
-	{
-		RootProcess();
-	}
-	else
-	{
-		WorkerProcess();	
-	}
-
+	int n = 1;
+	TestFunctor f(n);
+	Optimizer<TestFunctor> op = Optimizer<TestFunctor>(&f);
+	
+	op.Minimize();
+	
 	
 	
 	//exit gracefully
