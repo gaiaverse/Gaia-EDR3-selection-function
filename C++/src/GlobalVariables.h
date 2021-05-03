@@ -8,16 +8,16 @@
 using Eigen::VectorXd;
 
 const int Nm = 213;//35; // number of magnitude bins
-const int Nt = 1e6; // number of time bins, coarse, feel free to change
+const int Nt = 1e5; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
 const int healpix_order = 0; // order of healpix map, can be any integer >= 0
 const int needlet_order = -1; // maximum order of needlets used, can be any integ*needler >= -1
 
 
-const double mut = 5;
+const double mut = 0;
 const double sigmat = 5;
 const double lm = 3;
-const double lt = 10;
+const double lt = 3;
 
 const int healpix_nside = pow(2,healpix_order);
 const int Nl = 12*pow(healpix_nside,2);
