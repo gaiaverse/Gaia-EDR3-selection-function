@@ -410,21 +410,25 @@ int main(int argc, char *argv[])
 		//~ WorkerProcess();	
 	//~ }
 
-	int n = 3;
+	int n = 10;
 	
 	Optimizer<TestFunctor> op = Optimizer<TestFunctor>(n);
 	VectorXd x = VectorXd::Random(n);
+	for (int i = 0; i < n; ++i)
+	{
+		x[i] += 1;
+	}
 	
-	std::cout << "Beginning optimization at: " << x.transpose() << std::endl;
+	
 	op.Minimize(x);
 	
 	if (op.Converged)
 	{
-		std::cout << "Converged to:\n\t" << x.transpose()<< "\n";
+		std::cout << "Converged in " << op.Status.CurrentSteps << " steps!" << std::endl;
 	}
 	else
 	{
-		std::cout << "Did not converge within the required steps!" << std::endl;
+		std::cout << "Did not converge within the required steps!\n\n" << std::endl;
 	}
 	
 	
