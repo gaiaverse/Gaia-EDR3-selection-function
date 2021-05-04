@@ -109,7 +109,7 @@ class Optimizer
 			double alphaInit = 1;
 			
 			double c1_orig = 1e-3;
-			double c2_orig = 0.9;
+			double c2_orig = 0.999;
 			
 
 			Functor.Calculate(x);
