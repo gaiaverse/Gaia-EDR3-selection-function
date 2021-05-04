@@ -187,23 +187,26 @@ class Optimizer
 			if (Status.CurrentSteps > Condition.MaxSteps)
 			{
 				//~ std::cout << "STEPS" << std::endl;
+				Condition.TooManySteps = true;
 				return false;
 			}
 			if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
 			{
 				//~ std::cout << "X" << std::endl;
+				Condition.ReachedStepConvergence = true;
 				Converged = true;
 				return false;
 			}
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
 				//~ std::cout << "G" << std::endl;
+				Condition.ReachedGradConvergence = true;
 				Converged = true;
 				return false;
 			}
 			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
 			{
-				//~ std::cout << "F" << std::endl;
+				Condition.ReachedFunctionConvergence = true;
 				Converged = true;
 				return false;
 			}
