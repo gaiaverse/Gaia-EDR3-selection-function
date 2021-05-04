@@ -150,7 +150,7 @@ class Optimizer
 					{
 						//~ std::cout << Grad.transpose() << std::endl;
 						++alphaSteps;
-						alpha = alpha*0.5;
+						alpha = alpha*0.8;
 					}
 					
 					if (alphaSteps > 10)
@@ -163,7 +163,7 @@ class Optimizer
 				}
 				if (alpha == alphaInit)
 				{
-					alphaInit *= 2;
+					alphaInit *= 1.3;
 				}
 				else
 				{
