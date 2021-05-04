@@ -277,10 +277,13 @@ void processArgs(int argc, char *argv[])
 	bool gradFlag = false;
 	bool targetFlag = false;
 	
+	
+	
 	for (int i = 1; i < argc; ++i)
 	{
 		
 		std::string arg = argv[i];
+		
 		
 		if (outDirFlag == true)
 		{
@@ -308,7 +311,7 @@ void processArgs(int argc, char *argv[])
 					std::cout << "Root reports burnin steps set to " << burnInSteps << "\n";
 				);
 			}
-			burnFlag == false;
+			burnFlag = false;
 		}
 		if (gradFlag == true)
 		{
