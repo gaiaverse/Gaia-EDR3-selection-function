@@ -228,7 +228,7 @@ void DescentFunctor::Calculate(const VectorXd &x)
 {
 	
 	DistributeCalculations(x);
-	
+	PrevLock = x;
 	//negative sign for maximisation problem
 	for (int i = 0; i < x.size(); ++i)
 	{
