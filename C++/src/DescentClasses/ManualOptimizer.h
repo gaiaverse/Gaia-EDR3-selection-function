@@ -152,7 +152,7 @@ class Optimizer
 						alpha = alpha*0.5;
 					}
 					
-					if (alphaSteps > 100)
+					if (alphaSteps > 10)
 					{
 						alphaSteps = 0;
 						std::cout << "Reducing convergence conditions" << std::endl;
