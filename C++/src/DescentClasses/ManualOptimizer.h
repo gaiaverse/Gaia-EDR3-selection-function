@@ -108,8 +108,8 @@ class Optimizer
 			double alpha;
 			double alphaInit = 1;
 			
-			double c1_orig = 1e-3;
-			double c2_orig = 0.999;
+			double c1_orig = 1e-2;
+			double c2_orig = 0.9;
 			
 
 			Functor.Calculate(x);
@@ -135,13 +135,13 @@ class Optimizer
 					VectorXd xHyp = x + dx;
 					Functor.Calculate(xHyp);
 					bool armijoSuccess = (Functor.Value <= OriginalValue + alpha*c1*armijoValue);
-					bool curvatureSuccess = ( - pk.dot(Functor.Gradient) <= - c2* armijoValue);
+					//~ bool curvatureSuccess = ( - pk.dot(Functor.Gradient) <= - c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
 					
 					std::cout << "\t\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
 					std::cout << "\n\t\t\t\tGrad: " <<   Grad.dot(Functor.Gradient) << "<=! " << c2*armijoValue << "\n";
 					
-					if (armijoSuccess && curvatureSuccess && nanSuccess)
+					if (armijoSuccess && nanSuccess)
 					{
 						alphaFound = true;
 						x = xHyp;
