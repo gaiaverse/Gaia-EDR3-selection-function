@@ -134,7 +134,7 @@ class Optimizer
 					dx = alpha * pk;
 					VectorXd xHyp = x + dx;
 					Functor.Calculate(xHyp);
-					bool armijoSuccess = (Functor.Value <= OriginalValue + alpha*c1*armijoValue);
+					bool armijoSuccess = (Functor.Value <= OriginalValue);
 					//~ bool curvatureSuccess = ( - pk.dot(Functor.Gradient) <= - c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
 					
