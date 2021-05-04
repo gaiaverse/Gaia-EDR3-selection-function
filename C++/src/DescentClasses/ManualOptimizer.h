@@ -108,7 +108,7 @@ class Optimizer
 			double alpha;
 			double alphaInit = 1;
 			double c1 = 1e-3;
-			double c2 = 0.9;
+			double c2 = 0.99;
 
 			Functor.Calculate(x);
 			while (minimiseContinues)
@@ -133,6 +133,9 @@ class Optimizer
 					bool curvatureSuccess = ( Grad.dot(Functor.Gradient) <= c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
 					
+					std::cout << "\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
+					std::cout << "\n\t\t\tGrad: " <<   Grad.dot(Functor.Gradient) << "<=! " << c2*armijoValue << "\n";
+					
 					if (armijoSuccess && curvatureSuccess && nanSuccess)
 					{
 						alphaFound = true;
@@ -150,7 +153,7 @@ class Optimizer
 						alphaSteps = 0;
 						std::cout << "Reducing convergence conditions" << std::endl;
 						c1 = c1*0.5;
-						c2 = c2*0.9;
+						c2 = std::max(c2*1.1,1.0);
 					}
 				}
 				if (alpha == alphaInit)
