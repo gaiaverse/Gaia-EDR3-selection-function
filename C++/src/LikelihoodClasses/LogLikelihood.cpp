@@ -108,24 +108,41 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	poisson_binomial_pmf_backward(Data.p,n,Data.pmf_backward);
 	poisson_binomial_subpmf(PipelineMinVisits-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[0]);
 	
-	double zeroMeasureKiller = 0;
-	double nMeasureKiller = 0;
+	bool measuredAtLeastOnce = false;
+	bool missedAtLeastOnce = false;
 	if (k > 0)
 	{
 		poisson_binomial_subpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
-		zeroMeasureKiller = 1;
+		measuredAtLeastOnce = true;
 	}
 	if (k < n)
 	{
 		poisson_binomial_subpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
-		nMeasureKiller = 1;
+		missedAtLeastOnce = true;
 	}
 	
 	//plonk the gradients into the vector to be used in the assignment functions
 	for (int i = 0; i < n; ++i)
 	{
-		Data.dfdp[i] =  (Data.subpmf[1][i]*zeroMeasureKiller-Data.subpmf[2][i]*nMeasureKiller)/likelihood - Data.subpmf[0][i]/correction;
+		double dfdp_i =  - Data.subpmf[0][i]/correction;
+		
+		if (measuredAtLeastOnce)
+		{
+			dfdp_i += Data.subpmf[1][i]/likelihood;
+		}
+		if (missedAtLeastOnce)
+		{
+			dfdp_i -= Data.subpmf[2][i]/likelihood;
+		}
+		
+		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
+		{
+			GenerateExactContribution(candidate);
+			return;
+		}
+		Data.dfdp[i] =  dfdp_i;
 	}
+	
 	
 }
 
@@ -163,8 +180,45 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 	
 	double contribution = log_likelihood - log_correction;
 	
+
+	Value += contribution;
 	
-	if (std::isnan(contribution) || std::isinf(contribution))
+
+	bool measuredAtLeastOnce = false;
+	bool missedAtLeastOnce = false;
+	if (k > 0)
+	{
+		poisson_binomial_sublpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
+		measuredAtLeastOnce = true;
+	}
+	if (k < n)
+	{
+		poisson_binomial_sublpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
+		missedAtLeastOnce = true;
+	}
+	
+	bool dfdpEmergency = false;
+	for (int i = 0; i < n; ++i)
+	{
+		double dfdp_i =   - exp(Data.subpmf[0][i] - log_correction);
+		if (measuredAtLeastOnce)
+		{
+				dfdp_i += exp(Data.subpmf[1][i]-log_likelihood);
+		}
+		if (missedAtLeastOnce)
+		{
+			dfdp_i -= exp(Data.subpmf[2][i]-log_likelihood);
+		}
+		
+		
+		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
+		{
+			dfdpEmergency = true;
+		}
+		Data.dfdp[i] = dfdp_i;
+	}
+	
+	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
 	{
 		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
 		std::cout << "n = " << n << "k = " << k << std::endl;
@@ -177,59 +231,26 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 			std::cout << Data.p[i] << ", ";
 		}
 		std::cout << ")\n\nl_pmf = (";
-		for (int i = 0; i < n; ++i)
+		for (int i = 0; i <= n; ++i)
 		{
 			double v = Data.pmf_forward[n-1][i];
 
 			std::cout << v << ",";
 		}
-		std::cout << ") \n\n\n I will now repeat the calculation which triggered this error....\n\nForward loop:";
-		log_correction = 0;
-		for (int i = 0; i < PipelineMinVisits; ++i)
+		
+		std::cout << "\nsub_pmf_0 \t\tsub_pmf_1\t\tsub_pmf_2";
+		for (int i = 0; i < n; ++i)
 		{
-			double c = log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
-			std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
-			log_correction += c;
-			std::cout << "   l_c=" << log_correction << "\n";
+			std::cout << Data.subpmf[0][i] << "\t\t" << Data.subpmf[1][i] << "\t\t" << Data.subpmf[2][i] << "\n";
 		}
 		
-		if (std::isnan(log_correction) || std::isinf(log_correction) )
+		std::cout << "\n\ndfdp = (";
+		for (int i = 0; i < n; ++i)
 		{
-				std::cout << "\nBackwards loop: \n";
-				log_correction = VerySmallLog;
-				for (int i = n; i >= PipelineMinVisits; --i)
-				{
-					double c = log_add_exp(log_correction,Data.pmf_forward[n-1][i]);
-					std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
-					log_correction = c;
-					std::cout << "   l_c=" << log_correction << "\n";
-				}
-			
+			std::cout << Data.dfdp[i] << ", ";
 		}
+		std::cout << ")\n\n";
 		ERROR(100, "See above output");
-	}
-	
-	
-
-	Value += contribution;
-	
-
-	double zeroMeasureKiller = 0;
-	double nMeasureKiller = 0;
-	if (k > 0)
-	{
-		poisson_binomial_sublpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
-		zeroMeasureKiller = 1;
-	}
-	if (k < n)
-	{
-		poisson_binomial_sublpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
-		nMeasureKiller = 1;
-	}
-	
-	for (int i = 0; i < n; ++i)
-	{
-		Data.dfdp[i] =  exp(Data.subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(Data.subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(Data.subpmf[0][i] - log_correction);
 	}
 }
 

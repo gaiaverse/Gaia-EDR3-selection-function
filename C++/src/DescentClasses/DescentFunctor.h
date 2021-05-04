@@ -68,9 +68,10 @@ class DescentFunctor: public Problem<double>
 		using typename cppoptlib::Problem<double>::Scalar;
 		using typename cppoptlib::Problem<double>::TVector;
 	
-		
+		double Value;
+		VectorXd Gradient;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
 	    {
 				NStars = nStars;
 				RunningID = n;
@@ -98,13 +99,14 @@ class DescentFunctor: public Problem<double>
 			        ++i;
 			    );    
 			    needletN = needlet_u.size();
-				
+				Value = 0;
+				Gradient = VectorXd::Zero(totalRawParams);
 		}
 	    void DistributeCalculations(const TVector &y);
  
 		double value(const TVector &x);
 		void gradient(const TVector &x, TVector &grad);
-		
+		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave);
 };
 

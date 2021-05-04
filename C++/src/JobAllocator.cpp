@@ -103,34 +103,52 @@ void RootProcess()
 	
 	
 	VectorXd x = initialisedVector(nParameters);
-	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory,TotalStars);
+	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
 	
 	//set up the criteria for termination
 
 	int nLoops = 1;
 	int maxSteps = 5000; 
 
-	double stepLim = 1e-200;
+
+	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(ProcessRank,Data,totalTransformedParams,totalRawParams,OutputDirectory,TotalStars);
 	
-	optimizerReturn r;
-	for (int i = 0; i < burnInSteps;++i)
-	{
-		r = launchMinimizer(fun,1,gradLim,x);
-		x = r.X;
-	}
+	op.Condition.gConvergence = gradLim;
+	op.Minimize(x);
 	
-	r = launchMinimizer(fun,maxSteps,gradLim,x);
+	//~ std::cout << op.GetStatus();
+	//~ VectorXd x = initialisedVector(nParameters);
+	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
 	
-	x = r.X;
+	//set up the criteria for termination
+
+	//~ int nLoops = 1;
+	//~ int maxSteps = 5000; 
+
+	//~ double stepLim = 1e-200;
+	
+	//~ optimizerReturn r;
+	//~ for (int i = 0; i < burnInSteps;++i)
+	//~ {
+		//~ r = launchMinimizer(fun,1,gradLim,x);
+		//~ x = r.X;
+	//~ }
+	
+	//~ r = launchMinimizer(fun,maxSteps,gradLim,x);
+	
+	//~ x = r.X;
 	
 	GlobalLog(0,
-		std::cout << "\nSOLVER ENDED: " << r.Status << std::endl;
-		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
+		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
+		std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
 
 	);
 	
 	
-	fun.SavePosition(true);
+	//~ fun.SavePosition(true);
+	
+	
+	
 	
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
@@ -310,7 +328,7 @@ void processArgs(int argc, char *argv[])
 					std::cout << "Root reports burnin steps set to " << burnInSteps << "\n";
 				);
 			}
-			burnFlag == false;
+			burnFlag = false;
 		}
 		if (gradFlag == true)
 		{
@@ -409,36 +427,16 @@ int main(int argc, char *argv[])
 	
 	auto start = std::chrono::system_clock::now();
 	
-	//~ LoadData(ProcessRank);
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ WorkerProcess();	
-	//~ }
-
-	int n = 10;
-	
-	Optimizer<TestFunctor> op = Optimizer<TestFunctor>(n);
-	VectorXd x = VectorXd::Random(n);
-	for (int i = 0; i < n; ++i)
+	LoadData(ProcessRank);
+	if (ProcessRank == RootID) 
 	{
-		x[i] += 1;
-	}
-	
-	
-	op.Minimize(x);
-	
-	if (op.Converged)
-	{
-		std::cout << "Converged in " << op.Status.CurrentSteps << " steps!" << std::endl;
+		RootProcess();
 	}
 	else
 	{
-		std::cout << "Did not converge within the required steps!\n\n" << std::endl;
+		WorkerProcess();	
 	}
+
 	
 	
 	//exit gracefully

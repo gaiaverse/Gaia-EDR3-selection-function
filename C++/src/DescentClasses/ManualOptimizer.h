@@ -1,7 +1,8 @@
 #pragma once
 #include <vector>
 #include <math.h>
-
+#include "../GenericFunctions/timeCodes.h"
+#include "Star.h"
 #include <iostream>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #define EIGEN_MPL2_ONLY
@@ -16,6 +17,7 @@ struct Conditions
 	double xConvergence;
 	double gConvergence;
 	double fConvergence;
+	int SaveSteps;
 };
 struct Statuses
 {
@@ -37,9 +39,9 @@ class Optimizer
 		Conditions Condition;
 		Statuses Status;
 		
-		Optimizer<T>(int n) : Functor(n)
+		Optimizer<T>(int n,const std::vector<Star> & data, int nTransformParams, int nRawParams,std::string outdir, int nStars) : Functor(n,data, nTransformParams,outdir,nStars)
 		{	
-			Dimensions = n;
+			Dimensions = nRawParams;
 			SetDefaults();	
 		}
 		
@@ -52,7 +54,8 @@ class Optimizer
 			Condition.xConvergence = 0;
 			Condition.gConvergence = 1e-7;
 			Condition.fConvergence = 0;
-			Condition.StepSize = 1;
+			Condition.StepSize = 0.01;
+			Condition.SaveSteps = 5;
 			Status.CurrentSteps = 0;
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
@@ -104,13 +107,13 @@ class Optimizer
 			bool minimiseContinues = true;
 			double alpha;
 			double alphaInit = 1;
-			double c1 = 1e-4;
+			double c1 = 1e-3;
 			double c2 = 0.9;
 
-			Functor(x);
+			Functor.Calculate(x);
 			while (minimiseContinues)
 			{
-				
+			
 				double OriginalValue = Functor.Value;
 				VectorXd Grad = Functor.Gradient;
 				double alpha = alphaInit;
@@ -125,7 +128,7 @@ class Optimizer
 				{
 					dx = alpha * Grad;
 					VectorXd xHyp = x - dx;
-					Functor(xHyp);
+					Functor.Calculate(xHyp);
 					bool armijoSuccess = (Functor.Value <= OriginalValue - alpha*c1*armijoValue);
 					bool curvatureSuccess = ( Grad.dot(Functor.Gradient) <= c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
@@ -144,8 +147,10 @@ class Optimizer
 					
 					if (alphaSteps > 100)
 					{
-						std::cout << "To many alpha steps. Dead in the water" << std::endl;
-						exit(2);
+						alphaSteps = 0;
+						std::cout << "Reducing convergence conditions" << std::endl;
+						c1 = c1*0.5;
+						c2 = c2*0.9;
 					}
 				}
 				if (alpha == alphaInit)
@@ -160,8 +165,15 @@ class Optimizer
 				double df = Functor.Value - prevF;
 				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
 				prevF = Functor.Value;
+				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				{
+					Functor.SavePosition(false);
+					
+				}
+				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t"; printTime();
 			}
 			
+			Functor.SavePosition(true);
 		}
 		
 		
@@ -171,20 +183,24 @@ class Optimizer
 		
 			if (Status.CurrentSteps > Condition.MaxSteps)
 			{
+				//~ std::cout << "STEPS" << std::endl;
 				return false;
 			}
 			if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
 			{
+				//~ std::cout << "X" << std::endl;
 				Converged = true;
 				return false;
 			}
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
+				//~ std::cout << "G" << std::endl;
 				Converged = true;
 				return false;
 			}
 			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
 			{
+				//~ std::cout << "F" << std::endl;
 				Converged = true;
 				return false;
 			}
@@ -193,6 +209,26 @@ class Optimizer
 			return true;
 		} 
 
+		std::string GetStatus()
+		{
+			std::string s = "";
+			s += "Steps Taken: " + std::to_string(Status.CurrentSteps) + " / " + std::to_string(Condition.MaxSteps);
+			s += "\nHalt conditions: ";
+			std::vector<std::string> titles = {"Too many steps", "Reached Gradient Convergence", "Reached Step Convergence", "Reached Functional Convergence"};
+			std::vector<bool> values = {Status.TooManySteps, Status.ReachedGradConvergence, Status.ReachedStepConvergence, Status.ReachedFunctionConvergence};
+			for (int i = 0; i < titles.size(); ++i)
+			{
+				s +=  "\n\t" + titles[i] + ": ";
+				std::string answer = "no";
+				if (values[i])
+				{
+					answer = "yes";
+				} 
+				s += answer;
+			}
+			s+= "\n";
+			return s;
+		}
 };
 
 

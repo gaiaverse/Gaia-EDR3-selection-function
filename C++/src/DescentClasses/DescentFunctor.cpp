@@ -163,9 +163,9 @@ void DescentFunctor::BackwardTransform()
 void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 {
 
-	GlobalLog(1,
-		std::cout << "\t\tCalculation iteration " << LoopID<< "...."; 
-	);
+	//~ GlobalLog(1,
+		//~ std::cout << "\t\t\tCalculation iteration " << LoopID<< "...." << std::endl; 
+	//~ );
 	
 	const int n =  Nt+Nm*Nl;
 	//const VectorXd RawPosition = y; //have to manually cast into a VectorXd
@@ -209,22 +209,34 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 		//~ std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
 		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
 		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		std::cout << "Completed. \n\t\t\t(L,Gradnorm) = (" << CurrentValue << ", " <<  CurrentGradient.norm() << ")\n\t\t\t"; printTime();
+		//~ std::cout << "Completed. \n\t\t\t(L,Gradnorm) = (" << CurrentValue << ", " <<  CurrentGradient.norm() << ")\n\t\t\t"; printTime();
 	);
 	checkNan(CurrentGradient,"Gradient Calculation");
 	
 	++LoopID;
-	if (LoopID % SaveSteps == 0)
-	{
-		GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
-		SavePosition(false);
-	}
+	//~ if (LoopID % SaveSteps == 0)
+	//~ {
+		//~ GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
+		//~ SavePosition(false);
+	//~ }
 	
 	
 	
 }
 
-
+void DescentFunctor::Calculate(const VectorXd &x)
+{
+	
+	DistributeCalculations(x);
+	
+	//negative sign for maximisation problem
+	for (int i = 0; i < x.size(); ++i)
+	{
+		Gradient[i] = -CurrentGradient[i];
+	}
+	Value = -CurrentValue;
+	
+}
 double DescentFunctor::value(const TVector &y)
 {
 	VectorXd diff = (y - PrevLock);
