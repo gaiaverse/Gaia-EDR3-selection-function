@@ -122,19 +122,20 @@ class Optimizer
 				VectorXd Grad = Functor.Gradient;
 				double alpha = alphaInit;
 				bool alphaFound = false;
-				double armijoValue = Grad.norm();
-				armijoValue *= armijoValue;
+				double gNorm = Grad.norm();
+				VectorXd pk = -1*Grad/gNorm; 
+				double armijoValue = pk.dot(Grad);
 				VectorXd dx;
 				int alphaSteps = 0;
 				
 				
 				while (!alphaFound)
 				{
-					dx = alpha * Grad;
-					VectorXd xHyp = x - dx;
+					dx = alpha * pk;
+					VectorXd xHyp = x + dx;
 					Functor.Calculate(xHyp);
-					bool armijoSuccess = (Functor.Value <= OriginalValue - alpha*c1*armijoValue);
-					bool curvatureSuccess = ( Grad.dot(Functor.Gradient) <= c2* armijoValue);
+					bool armijoSuccess = (Functor.Value <= OriginalValue + alpha*c1*armijoValue);
+					bool curvatureSuccess = ( pk.dot(Functor.Gradient) <= c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
 					
 					std::cout << "\t\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
