@@ -218,7 +218,7 @@ void LoadData(int id)
 		std::string command = "python starAllocation.py " + dataSource + " " + std::to_string(JobSize);
 		system(command.c_str() );
 	}
-	MPI_BARRIER(MPI_COMM_WORLD);
+	MPI_Barrier(MPI_COMM_WORLD);
 	GlobalLog(1,
 		if (ProcessRank == RootID)
 		{
