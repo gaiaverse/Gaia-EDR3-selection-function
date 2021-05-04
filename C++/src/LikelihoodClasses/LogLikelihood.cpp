@@ -122,11 +122,21 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	}
 	
 	//plonk the gradients into the vector to be used in the assignment functions
+	bool dfdpEmergency = false;
 	for (int i = 0; i < n; ++i)
 	{
 		Data.dfdp[i] =  (Data.subpmf[1][i]*zeroMeasureKiller-Data.subpmf[2][i]*nMeasureKiller)/likelihood - Data.subpmf[0][i]/correction;
+		if (std::isnan(Data.dfdp[i]) || std::isinf(Data.dfdp[i]))
+		{
+			dfdpEmergency = true;
+		}
 	}
 	
+	if(dfdpEmergency)
+	{
+		GenerateExactContribution(candidate);
+		return;
+	}
 }
 
 void LogLikelihood::GenerateExactContribution(const Star * candidate)
@@ -162,54 +172,7 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 	double correction = exp(log_correction);
 	
 	double contribution = log_likelihood - log_correction;
-	
-	
-	if (std::isnan(contribution) || std::isinf(contribution))
-	{
-		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
-		std::cout << "n = " << n << "k = " << k << std::endl;
-		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
-		std::cout << "triggered loop inversion: " << triggeredLoopInvert << "\n";
-		std::cout << "log_likelihood = " << log_likelihood << "  log_correction = " << log_correction << "\n";
-		std::cout << "p = (";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.p[i] << ", ";
-		}
-		std::cout << ")\n\nl_pmf = (";
-		for (int i = 0; i < n; ++i)
-		{
-			double v = Data.pmf_forward[n-1][i];
-
-			std::cout << v << ",";
-		}
-		std::cout << ") \n\n\n I will now repeat the calculation which triggered this error....\n\nForward loop:";
-		log_correction = 0;
-		for (int i = 0; i < PipelineMinVisits; ++i)
-		{
-			double c = log1p(-exp(Data.pmf_forward[n-1][i]-log_correction));
-			std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
-			log_correction += c;
-			std::cout << "   l_c=" << log_correction << "\n";
-		}
 		
-		if (std::isnan(log_correction) || std::isinf(log_correction) )
-		{
-				std::cout << "\nBackwards loop: \n";
-				log_correction = VerySmallLog;
-				for (int i = n; i >= PipelineMinVisits; --i)
-				{
-					double c = log_add_exp(log_correction,Data.pmf_forward[n-1][i]);
-					std::cout << i << "   pmf = " << Data.pmf_forward[n-1][i] << "  dc = " << c;
-					log_correction = c;
-					std::cout << "   l_c=" << log_correction << "\n";
-				}
-			
-		}
-		ERROR(100, "See above output");
-	}
-	
-	
 
 	Value += contribution;
 	
@@ -227,9 +190,49 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 		nMeasureKiller = 1;
 	}
 	
+	bool dfdpEmergency = false;
 	for (int i = 0; i < n; ++i)
 	{
 		Data.dfdp[i] =  exp(Data.subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(Data.subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(Data.subpmf[0][i] - log_correction);
+		if (std::isnan(Data.dfdp[i]) || std::isinf(Data.dfdp[i]))
+		{
+			dfdpEmergency = true;
+		}
+	}
+	
+	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
+	{
+		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
+		std::cout << "n = " << n << "k = " << k << std::endl;
+		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
+		std::cout << "triggered loop inversion: " << triggeredLoopInvert << "\n";
+		std::cout << "log_likelihood = " << log_likelihood << "  log_correction = " << log_correction << "\n";
+		std::cout << "p = (";
+		for (int i = 0; i < n; ++i)
+		{
+			std::cout << Data.p[i] << ", ";
+		}
+		std::cout << ")\n\nl_pmf = (";
+		for (int i = 0; i <= n; ++i)
+		{
+			double v = Data.pmf_forward[n-1][i];
+
+			std::cout << v << ",";
+		}
+		
+		std::cout << "\nsub_pmf_0 \t\tsub_pmf_1\t\tsub_pmf_2";
+		for (int i = 0; i < n; ++i)
+		{
+			std::cout << Data.subpmf[0][i] << "\t\t" << Data.subpmf[1][i] << "\t\t" << Data.subpmf[2][i] << "\n";
+		}
+		
+		std::cout << "\n\ndfdp = (";
+		for (int i = 0; i < n; ++i)
+		{
+			std::cout << Data.dfdp[i] << ", ";
+		}
+		std::cout << ")\n\n";
+		ERROR(100, "See above output");
 	}
 }
 
