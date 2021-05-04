@@ -6,9 +6,14 @@ from subprocess import check_output
 global binDict
 global M
 global lBar
+import sys
 
 rootToFiles = "../../SlimmedData/"
+M = 20
 
+if len(sys.argv) > 1:
+	rootToFiles = str(sys.argv[1])
+	M = int(sys.argv[2])
 
 binDict = {};
 
@@ -72,7 +77,6 @@ def Score(assignment):
 	
 	
 def sortShiftAllocation():
-	print("Beginning smart allocation")
 
 	keys = list(binDict.keys())
 	values = list(binDict.values() )
@@ -121,11 +125,11 @@ def sortShiftAllocation():
 				assign[fileName] = 0
 
 	b = Load(assign)
-	print("\nCore load:")
+	print("\n\tCore load:")
 	for i in range(0,len(b)):
-		print("Core%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
+		print("\t\tCore%d -> %d  (%.3f)" % (i,b[i],(b[i]-lBar)/lBar))
 	
-	print("\nDifference from perfect load = %.4f\n\n" % (Score(assign)))
+	print("\n\tDifference from perfect load = %.4f\n\n" % (Score(assign)))
 	return assign
 
 def nameSubstruct(name):
@@ -166,7 +170,6 @@ def printAllocation(fileAssign):
 				if i < len(coreAssigns[j]):
 					s= s + delim
 		output = output + s+ "\n"
-	print(output)
 	f = open("coreAssignments.dat","w")
 	f.write(output)
 	f.close()
@@ -174,7 +177,7 @@ def printAllocation(fileAssign):
 generateBinDict(rootToFiles)
 
 	
-M = 20
+
 lBar = sum(binDict.values())/M
 
 

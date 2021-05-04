@@ -213,6 +213,15 @@ void GetAssignments(int id)
 
 void LoadData(int id)
 {
+	if (ProcessRank == RootID)
+	{
+		std::cout << "Initialising starAllocation script...\n";
+		std::string command = "python starAllocation.py " + dataSource + " " + std::to_string(JobSize);
+		system(command.c_str() );
+	}
+	MPI_Barrier(MPI_COMM_WORLD);
+	
+	
 	GlobalLog(1,
 		if (ProcessRank == RootID)
 		{
@@ -260,7 +269,6 @@ void LoadData(int id)
 			std::cout << TotalStars << " have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
 		);
 	}
-	MPI_Barrier(MPI_COMM_WORLD);
 }
 
 void processArgs(int argc, char *argv[])
@@ -396,6 +404,7 @@ int main(int argc, char *argv[])
 
 	processArgs(argc,argv);
 	PrintStatus(OutputDirectory);
+	
 	srand(RandomSeed);
 	
 	auto start = std::chrono::system_clock::now();
