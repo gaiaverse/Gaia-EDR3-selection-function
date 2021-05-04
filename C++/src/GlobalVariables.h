@@ -35,7 +35,7 @@ const double VerySmallLog = -9999999999;
 
 const double SingularityPreventer = 1e-18;
 
-const int SaveSteps = 5;
+const int SaveSteps = 100;
 const int PipelineMinVisits = 5; 
 
 const bool SaveAllTemps = false;

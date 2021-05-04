@@ -107,12 +107,16 @@ class Optimizer
 			bool minimiseContinues = true;
 			double alpha;
 			double alphaInit = 1;
-			double c1 = 1e-3;
-			double c2 = 0.99;
+			
+			double c1_orig = 1e-3;
+			double c2_orig = 0.9;
+			
 
 			Functor.Calculate(x);
 			while (minimiseContinues)
 			{
+				double c1 = c1_orig;
+				double c2 = c2_orig;
 			
 				double OriginalValue = Functor.Value;
 				VectorXd Grad = Functor.Gradient;
@@ -133,8 +137,8 @@ class Optimizer
 					bool curvatureSuccess = ( Grad.dot(Functor.Gradient) <= c2* armijoValue);
 					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
 					
-					std::cout << "\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
-					std::cout << "\n\t\t\tGrad: " <<   Grad.dot(Functor.Gradient) << "<=! " << c2*armijoValue << "\n";
+					std::cout << "\t\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
+					std::cout << "\n\t\t\t\tGrad: " <<   Grad.dot(Functor.Gradient) << "<=! " << c2*armijoValue << "\n";
 					
 					if (armijoSuccess && curvatureSuccess && nanSuccess)
 					{
@@ -153,7 +157,7 @@ class Optimizer
 						alphaSteps = 0;
 						std::cout << "Reducing convergence conditions" << std::endl;
 						c1 = c1*0.5;
-						c2 = std::max(c2*1.1,1.0);
+						c2 = c2 * 1.1;
 					}
 				}
 				if (alpha == alphaInit)
