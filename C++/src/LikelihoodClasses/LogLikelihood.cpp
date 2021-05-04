@@ -177,27 +177,38 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 	Value += contribution;
 	
 
-	double zeroMeasureKiller = 0;
-	double nMeasureKiller = 0;
+	bool measuredAtLeastOnce = false;
+	bool missedAtLeastOnce = false;
 	if (k > 0)
 	{
 		poisson_binomial_sublpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
-		zeroMeasureKiller = 1;
+		measuredAtLeastOnce = true;
 	}
 	if (k < n)
 	{
 		poisson_binomial_sublpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
-		nMeasureKiller = 1;
+		missedAtLeastOnce = true;
 	}
 	
 	bool dfdpEmergency = false;
 	for (int i = 0; i < n; ++i)
 	{
-		Data.dfdp[i] =  exp(Data.subpmf[1][i]-log_likelihood)*zeroMeasureKiller - exp(Data.subpmf[2][i]-log_likelihood)*nMeasureKiller - exp(Data.subpmf[0][i] - log_correction);
-		if (std::isnan(Data.dfdp[i]) || std::isinf(Data.dfdp[i]))
+		double dfdp_i =   - exp(Data.subpmf[0][i] - log_correction);
+		if (measuredAtLeastOnce)
+		{
+				dfdp_i += exp(Data.subpmf[1][i]-log_likelihood);
+		}
+		if (missedAtLeastOnce)
+		{
+			dfdp_i -= exp(Data.subpmf[2][i]-log_likelihood);
+		}
+		
+		
+		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
 		{
 			dfdpEmergency = true;
 		}
+		Data.dfdp[i] = dfdp_i;
 	}
 	
 	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)

@@ -410,9 +410,7 @@ int main(int argc, char *argv[])
 	auto start = std::chrono::system_clock::now();
 	
 
-	//pTestSuite();
 	LoadData(ProcessRank);
-	//mapper();
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
