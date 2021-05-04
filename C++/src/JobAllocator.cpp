@@ -395,6 +395,11 @@ int main(int argc, char *argv[])
 
 	processArgs(argc,argv);
 	PrintStatus(OutputDirectory);
+	
+	std::cout << "Initialising starAllocation script...\n";
+	std::string command = "python starAllocation.py " + dataSource + " " + std::to_string(JobSize);
+	system(command.c_str() );
+	
 	srand(RandomSeed);
 	
 	auto start = std::chrono::system_clock::now();
