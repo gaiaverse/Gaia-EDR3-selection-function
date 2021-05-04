@@ -123,7 +123,7 @@ class Optimizer
 				double alpha = alphaInit;
 				bool alphaFound = false;
 				double gNorm = Grad.norm();
-				VectorXd pk = -1*Grad/gNorm; 
+				VectorXd pk = -1*Grad; 
 				double armijoValue = pk.dot(Grad);
 				VectorXd dx;
 				int alphaSteps = 0;
