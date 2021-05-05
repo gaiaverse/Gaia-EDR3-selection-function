@@ -56,39 +56,6 @@ int MaxStarsInCore;
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
 
-struct optimizerReturn
-{
-	VectorXd X;
-	std::string Status;
-	std::string Condition;
-};
-
-optimizerReturn launchMinimizer(DescentFunctor & fun, int maxSteps, double gradLim,VectorXd x)
-{
-	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
-    cppoptlib::LbfgsSolver<DescentFunctor> solver;
-	realCriteria.iterations = maxSteps;
-	//~ realCriteria.xDelta = stepLim;
-	realCriteria.gradNorm = gradLim;
-	solver.setStopCriteria(realCriteria);
-	
-	
-	
-	//let it loose!
-	solver.minimize(fun,x);
-	
-	optimizerReturn r;
-	r.X = x;
-	std::ostringstream q,p;
-	
-	q << solver.status();
-	p << solver.criteria();
-	
-	r.Status = q.str();
-	r.Condition = p.str();
-	return r;
-}
-
 void RootProcess()
 {
 	GlobalLog(1,
@@ -111,12 +78,22 @@ void RootProcess()
 	int maxSteps = 5000; 
 
 
-	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(ProcessRank,Data,totalTransformedParams,totalRawParams,OutputDirectory,TotalStars);
+	//~ Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>();
 	
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
+	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
+	
+	//~ TestFunctor fun = TestFunctor(nParameters);
+	//~ Optimizer<TestFunctor> op = Optimizer<TestFunctor>(nParameters,fun);
 	op.Condition.gConvergence = gradLim;
+	op.Condition.MaxSteps = maxSteps;
 	op.Minimize(x);
 	
-	//~ std::cout << op.GetStatus();
+	
+	
+	//~ std::cout << x.transpose() << std::endl;
+	
+	std::cout << op.GetStatus();
 	//~ VectorXd x = initialisedVector(nParameters);
 	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
 	

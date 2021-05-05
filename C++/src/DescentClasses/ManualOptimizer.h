@@ -32,15 +32,16 @@ template<class T>
 class Optimizer
 {
 	private:
-		T Functor;
+		T & Functor;
 		int Dimensions;
 	public:
 		bool Converged;
 		Conditions Condition;
 		Statuses Status;
 		
-		Optimizer<T>(int n,const std::vector<Star> & data, int nTransformParams, int nRawParams,std::string outdir, int nStars) : Functor(n,data, nTransformParams,outdir,nStars)
-		{	
+		Optimizer<T>(int nRawParams, T& functor) : Functor(functor)
+		
+		{
 			Dimensions = nRawParams;
 			SetDefaults();	
 		}
@@ -54,7 +55,7 @@ class Optimizer
 			Condition.xConvergence = 0;
 			Condition.gConvergence = 1e-7;
 			Condition.fConvergence = 0;
-			Condition.StepSize = 0.01;
+			Condition.StepSize = 0.02;
 			Condition.SaveSteps = 5;
 			Status.CurrentSteps = 0;
 			Status.TooManySteps = false;
@@ -70,40 +71,14 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			BinaryWolfeDescent(x);
+			ADAM(x);
 		}
 		
-		void DumbDescent(VectorXd & x)
-		{
-			double prevF = 0;
-			Functor(x);
-			bool minimiseContinues = true;
-			double alpha = Condition.StepSize;
-			while (minimiseContinues)
-			{
-				Functor(x);
-				
-				VectorXd dx = alpha * Functor.Gradient;
-				if(dx.hasNaN())
-				{
-					alpha *= 0.1;
-				}
-				else
-				{
-					x -= dx;
-				}
-	
-				++Status.CurrentSteps;				
-				double df = Functor.Value - prevF;
-				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
-				prevF = Functor.Value;
-			}
-		}
-		
+			
 		void BinaryWolfeDescent(VectorXd & x)
 		{
 			double prevF = 0;
-			Functor(x);
+			Functor.Calculate(x);
 			bool minimiseContinues = true;
 			double alpha;
 			double alphaInit = 1;
@@ -112,7 +87,6 @@ class Optimizer
 			double c2_orig = 0.9;
 			
 
-			Functor.Calculate(x);
 			while (minimiseContinues)
 			{
 				double c1 = c1_orig;
@@ -176,7 +150,6 @@ class Optimizer
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
 					Functor.SavePosition(false);
-					
 				}
 				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t"; printTime();
 			}
@@ -184,6 +157,58 @@ class Optimizer
 			Functor.SavePosition(true);
 		}
 		
+		void ADAM(VectorXd &x)
+		{
+			
+			
+			//initialise ADAM vectors
+			VectorXd m = VectorXd::Zero(Dimensions);
+			VectorXd v = VectorXd::Zero(Dimensions);
+			
+			double beta1 = 0.9;
+			double beta2 = 0.99;
+			double eps = 1e-10;
+			bool minimiseContinues = true;
+			double prevF = 0;
+			VectorXd ones = VectorXd::Constant(Dimensions,1.0);
+			while (minimiseContinues)
+			{
+				//~ std::cout << x.transpose() << std::endl;
+				int t = Status.CurrentSteps + 1;
+				Functor.Calculate(x);
+				double b1Mod = 1.0/(1.0 - pow(beta1,t));
+				double b2Mod = 1.0/(1.0 - pow(beta2,t));
+				m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
+				
+				
+				VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
+				v = ( beta2 * v + (1.0-beta2)* ( gSq) );
+			
+				VectorXd dx = b1Mod * m * Condition.StepSize;
+
+				for (int i = 0; i < Dimensions; ++i)
+				{
+					dx[i] /= (sqrt(v[i]*b2Mod) + eps);
+				}
+
+				x -= dx;
+				
+				double df = Functor.Value - prevF;
+				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
+				prevF = Functor.Value;
+				++Status.CurrentSteps;
+				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				{
+					Functor.SavePosition(false);
+				}
+				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " \t(L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\t\t\t"; printTime();
+				
+				if (std::isnan(Functor.Value))
+				{
+					exit(10);
+				}
+			}
+		}
 		
 				
 		bool CheckContinues(const VectorXd & dx,const VectorXd & dg, double df)
@@ -250,11 +275,12 @@ class TestFunctor
 		double Value;
 		VectorXd Gradient;
 		
-		
+		TestFunctor();
 		TestFunctor(int n);
-		
+		int LoopID;
 		void Calculate(const VectorXd & x);
 		void operator () (const VectorXd & x);
+		void SavePosition(bool finalSave);
 	private:
 		int Dimensions; 
 };

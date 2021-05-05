@@ -24,7 +24,7 @@ using namespace cppoptlib;
 //access data without needing to continually reload it into the function
 
 
-class DescentFunctor: public Problem<double> 
+class DescentFunctor
 {
 	private:
 		int RunningID;
@@ -65,9 +65,7 @@ class DescentFunctor: public Problem<double>
 		VectorXd CurrentGradient;
 	public:
 		int LoopID;
-		using typename cppoptlib::Problem<double>::Scalar;
-		using typename cppoptlib::Problem<double>::TVector;
-	
+
 		double Value;
 		VectorXd Gradient;
 	
@@ -102,10 +100,10 @@ class DescentFunctor: public Problem<double>
 				Value = 0;
 				Gradient = VectorXd::Zero(totalRawParams);
 		}
-	    void DistributeCalculations(const TVector &y);
+	    void DistributeCalculations(const VectorXd &y);
  
-		double value(const TVector &x);
-		void gradient(const TVector &x, TVector &grad);
+		double value(const VectorXd &x);
+		void gradient(const VectorXd &x, VectorXd &grad);
 		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave);
 };
