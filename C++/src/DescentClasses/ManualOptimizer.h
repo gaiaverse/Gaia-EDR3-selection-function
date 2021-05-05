@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <math.h>
+#include <iomanip>
 #include "../GenericFunctions/timeCodes.h"
 #include "Star.h"
 #include <iostream>
@@ -201,7 +202,9 @@ class Optimizer
 				{
 					Functor.SavePosition(false);
 				}
-				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " \t(L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\t\t\t"; printTime();
+				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << "\n";
+				std::cout << "\t\t\t(L,Gradnorm,df) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) <<Functor.Gradient.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
+				std::cout << "\t\t\t" << printTime();
 				
 				if (std::isnan(Functor.Value))
 				{
