@@ -220,14 +220,14 @@ class Optimizer
 			
 			
 			std::cout << "Performing a gradient test at the following location: \n\t x = " << x.transpose() << std::endl;
-			Functor(x);
+			Functor.Calculate(x);
 			double F = Functor.Value;
 			VectorXd Grad = Functor.Gradient;
 			for (int i = 0; i < Dimensions;++i)
 			{
 				VectorXd xH = x;
 				xH[i] += dx;
-				Functor(x);
+				Functor.Calculate(x);
 				
 				double measureGrad = (Functor.Value - F)/dx;
 				double err = (measureGrad - Grad[i])/Grad[i];
