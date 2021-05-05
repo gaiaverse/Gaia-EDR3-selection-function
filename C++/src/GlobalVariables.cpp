@@ -20,9 +20,10 @@ Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
 			}
 		);
 		
-		if (i < n);
+		bool wentUnder = (i < n);
+		if (wentUnder)
 		{
-			std::cout << "End quit, i = " << i << std::endl;
+			std::cout << "End quit, i = " << i << "  n = " << n << "  " << wentUnder<< std::endl;
 			ERROR(100,"Asked to load in start position from file, but it was the wrong length");
 		}
 		

@@ -227,11 +227,11 @@ class Optimizer
 			{
 				VectorXd xH = x;
 				xH[i] += dx;
-				Functor.Calculate(x);
+				Functor.Calculate(xH);
 				
 				double measureGrad = (Functor.Value - F)/dx;
 				double err = (measureGrad - Grad[i])/Grad[i];
-				std::cout << "dF/dx_" << i << " = " << measureGrad << "   (theory value = " << Grad[i] << ", err = " << err << ")\n";
+				std::cout << "dF/dx_" <<  std::setprecision(10) << i << " = " << measureGrad << "   (theory value = " <<  std::setprecision(10) << Grad[i] << ", err = " << err << ")\n";
 				
 			}
 			
