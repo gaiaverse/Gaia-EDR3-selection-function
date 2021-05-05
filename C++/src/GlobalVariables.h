@@ -4,6 +4,7 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
+#include "GenericFunctions/FileHandler.h"
 #include <iomanip>
 using Eigen::VectorXd;
 
@@ -47,7 +48,7 @@ const bool QuitOnLargeGrad = true;
 #define FILEGAP << ", " << 
 
 const double initialisationBounds = 0.1;
-Eigen::VectorXd initialisedVector(int n);
+Eigen::VectorXd initialisedVector(int n,bool loadIn,std::string loadLocation);
 
 
 /// OUTPUT STUFF
