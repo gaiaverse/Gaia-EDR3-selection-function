@@ -223,7 +223,7 @@ class Optimizer
 			Functor.Calculate(x);
 			double F = Functor.Value;
 			VectorXd Grad = Functor.Gradient;
-			for (int i = 0; i < Dimensions;++i)
+			for (int i = Dimensions - 1; i >= 0;--i)
 			{
 				VectorXd xH = x;
 				xH[i] += dx;
