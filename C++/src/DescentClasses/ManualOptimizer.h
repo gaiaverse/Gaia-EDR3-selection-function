@@ -167,7 +167,7 @@ class Optimizer
 			VectorXd v = VectorXd::Zero(Dimensions);
 			
 			double beta1 = 0.9;
-			double beta2 = 0.99;
+			double beta2 = 0.999;
 			double eps = 1e-10;
 			bool minimiseContinues = true;
 			double prevF = 0;

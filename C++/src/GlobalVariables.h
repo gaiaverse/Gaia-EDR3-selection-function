@@ -7,7 +7,7 @@
 #include <iomanip>
 using Eigen::VectorXd;
 
-const int Nm = 213;//35; // number of magnitude bins
+const int Nm = 1;//35; // number of magnitude bins
 const int Nt = 4152; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
 const int healpix_order = 0; // order of healpix map, can be any integer >= 0
