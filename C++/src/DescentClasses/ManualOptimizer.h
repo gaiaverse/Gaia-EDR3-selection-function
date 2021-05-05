@@ -72,7 +72,7 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			ADAM(x);
+			GradientTester(x);
 		}
 		
 			
@@ -213,7 +213,30 @@ class Optimizer
 			}
 		}
 		
+		
+		void GradientTester(VectorXd &x)
+		{
+			double dx = 1e-6;
+			
+			
+			std::cout << "Performing a gradient test at the following location: \n\t x = " << x.transpose() << std::endl;
+			Functor(x);
+			double F = Functor.Value;
+			VectorXd Grad = Functor.Gradient;
+			for (int i = 0; i < Dimensions;++i)
+			{
+				VectorXd xH = x;
+				xH[i] += dx;
+				Functor(x);
 				
+				double measureGrad = (Functor.Value - F)/dx;
+				double err = (measureGrad - Grad[i])/Grad[i];
+				std::cout << "dF/dx_" << i << " = " << measureGrad << "   (theory value = " << Grad[i] << ", err = " << err << ")\n";
+				
+			}
+			
+		}
+			
 		bool CheckContinues(const VectorXd & dx,const VectorXd & dg, double df)
 		{
 		

@@ -43,6 +43,8 @@ int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 int RandomSeed = time(NULL);
 int burnInSteps = 1;
+bool loadInStartVector = false;
+std::string startVectorLocation = "";
 double gradLim = 1e-2;;
 std::string dataSource = "../../TestSets/magnitudes/";
 std::string OutputDirectory = "Output";
@@ -69,7 +71,7 @@ void RootProcess()
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	VectorXd x = initialisedVector(nParameters);
+	VectorXd x = initialisedVector(nParameters,loadInStartVector,startVectorLocation);
 	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
 	
 	//set up the criteria for termination
@@ -273,7 +275,7 @@ void processArgs(int argc, char *argv[])
 	bool burnFlag = false;
 	bool gradFlag = false;
 	bool targetFlag = false;
-	
+	bool startFlag = false;
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -329,6 +331,12 @@ void processArgs(int argc, char *argv[])
 			}
 			targetFlag = false;
 		}
+		if (startFlag == true)
+		{
+			loadInStartVector = true;
+			startVectorLocation = arg;
+			startFlag = false;
+		}
 		
 		if (arg == "-f")
 		{
@@ -349,6 +357,10 @@ void processArgs(int argc, char *argv[])
 		if (arg == "-g")
 		{
 			gradFlag = true;
+		}
+		if (arg == "-r")
+		{
+			startFlag = true;
 		}
 		
 		if (arg == "-h" || arg == "--help")
