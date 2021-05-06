@@ -72,7 +72,7 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			GradientTester(x);
+			ADAM(x);
 		}
 		
 			
