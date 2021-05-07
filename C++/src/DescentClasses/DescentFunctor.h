@@ -24,7 +24,7 @@ using namespace cppoptlib;
 //access data without needing to continually reload it into the function
 
 
-class DescentFunctor: public Problem<double> 
+class DescentFunctor
 {
 	private:
 		int RunningID;
@@ -65,12 +65,11 @@ class DescentFunctor: public Problem<double>
 		VectorXd CurrentGradient;
 	public:
 		int LoopID;
-		using typename cppoptlib::Problem<double>::Scalar;
-		using typename cppoptlib::Problem<double>::TVector;
+
+		double Value;
+		VectorXd Gradient;
 	
-		
-	
-	    DescentFunctor(int n,const std::vector<Star> & data, std::vector<int> & bins, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
 	    {
 				NStars = nStars;
 				RunningID = n;
@@ -93,18 +92,19 @@ class DescentFunctor: public Problem<double>
 					{
 				        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
 				        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-				        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
+				        needlet_w.push_back(std::stod(FILE_LINE_VECTOR[2]));
 					}
 			        ++i;
 			    );    
 			    needletN = needlet_u.size();
-				
+				Value = 0;
+				Gradient = VectorXd::Zero(totalRawParams);
 		}
-	    void DistributeCalculations(const TVector &y);
+	    void DistributeCalculations(const VectorXd &y);
  
-		double value(const TVector &x);
-		void gradient(const TVector &x, TVector &grad);
-		
+		double value(const VectorXd &x);
+		void gradient(const VectorXd &x, VectorXd &grad);
+		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave);
 };
 

@@ -30,6 +30,7 @@
 #include "LikelihoodClasses/LogLikelihoodPrior.h"
 #include "GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
+#include "DescentClasses/ManualOptimizer.h"
 
 using Eigen::VectorXd;
 
@@ -42,6 +43,8 @@ int JobSize;
 int RootID = 0; //<- declare that process 0 is always Root.
 int RandomSeed = time(NULL);
 int burnInSteps = 1;
+bool loadInStartVector = false;
+std::string startVectorLocation = "";
 double gradLim = 1e-2;;
 std::string dataSource = "../../TestSets/magnitudes/";
 std::string OutputDirectory = "Output";
@@ -54,39 +57,6 @@ int MaxStarsInCore;
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 
-
-struct optimizerReturn
-{
-	VectorXd X;
-	std::string Status;
-	std::string Condition;
-};
-
-optimizerReturn launchMinimizer(DescentFunctor & fun, int maxSteps, double gradLim,VectorXd x)
-{
-	DescentFunctor::TCriteria realCriteria = DescentFunctor::TCriteria::defaults();
-    cppoptlib::LbfgsSolver<DescentFunctor> solver;
-	realCriteria.iterations = maxSteps;
-	//~ realCriteria.xDelta = stepLim;
-	realCriteria.gradNorm = gradLim;
-	solver.setStopCriteria(realCriteria);
-	
-	
-	
-	//let it loose!
-	solver.minimize(fun,x);
-	
-	optimizerReturn r;
-	r.X = x;
-	std::ostringstream q,p;
-	
-	q << solver.status();
-	p << solver.criteria();
-	
-	r.Status = q.str();
-	r.Condition = p.str();
-	return r;
-}
 
 void RootProcess()
 {
@@ -101,35 +71,63 @@ void RootProcess()
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	
-	VectorXd x = initialisedVector(nParameters);
-	DescentFunctor fun(ProcessRank,Data,Bins,totalTransformedParams,OutputDirectory,TotalStars);
+	VectorXd x = initialisedVector(nParameters,loadInStartVector,startVectorLocation);
+	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
 	
 	//set up the criteria for termination
 
 	int nLoops = 1;
 	int maxSteps = 5000; 
 
-	double stepLim = 1e-200;
+
+	//~ Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>();
 	
-	optimizerReturn r;
-	for (int i = 0; i < burnInSteps;++i)
-	{
-		r = launchMinimizer(fun,1,gradLim,x);
-		x = r.X;
-	}
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
+	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
 	
-	r = launchMinimizer(fun,maxSteps,gradLim,x);
+	//~ TestFunctor fun = TestFunctor(nParameters);
+	//~ Optimizer<TestFunctor> op = Optimizer<TestFunctor>(nParameters,fun);
+	op.Condition.gConvergence = gradLim;
+	op.Condition.MaxSteps = maxSteps;
+	op.Minimize(x);
 	
-	x = r.X;
+	
+	
+	//~ std::cout << x.transpose() << std::endl;
+	
+	std::cout << op.GetStatus();
+	//~ VectorXd x = initialisedVector(nParameters);
+	//~ DescentFunctor fun(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
+	
+	//set up the criteria for termination
+
+	//~ int nLoops = 1;
+	//~ int maxSteps = 5000; 
+
+	//~ double stepLim = 1e-200;
+	
+	//~ optimizerReturn r;
+	//~ for (int i = 0; i < burnInSteps;++i)
+	//~ {
+		//~ r = launchMinimizer(fun,1,gradLim,x);
+		//~ x = r.X;
+	//~ }
+	
+	//~ r = launchMinimizer(fun,maxSteps,gradLim,x);
+	
+	//~ x = r.X;
 	
 	GlobalLog(0,
-		std::cout << "\nSOLVER ENDED: " << r.Status << std::endl;
-		std::cout << "\nSolver condition:\n" << r.Condition << std::endl;
+		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
+		std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
 
 	);
 	
 	
-	fun.SavePosition(true);
+	//~ fun.SavePosition(true);
+	
+	
+	
 	
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
@@ -219,6 +217,7 @@ void LoadData(int id)
 		system(command.c_str() );
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
+
 	GlobalLog(1,
 		if (ProcessRank == RootID)
 		{
@@ -276,9 +275,9 @@ void processArgs(int argc, char *argv[])
 	bool burnFlag = false;
 	bool gradFlag = false;
 	bool targetFlag = false;
-	
-	
-	
+
+	bool startFlag = false;
+
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -335,6 +334,12 @@ void processArgs(int argc, char *argv[])
 			}
 			targetFlag = false;
 		}
+		if (startFlag == true)
+		{
+			loadInStartVector = true;
+			startVectorLocation = arg;
+			startFlag = false;
+		}
 		
 		if (arg == "-f")
 		{
@@ -355,6 +360,10 @@ void processArgs(int argc, char *argv[])
 		if (arg == "-g")
 		{
 			gradFlag = true;
+		}
+		if (arg == "-r")
+		{
+			startFlag = true;
 		}
 		
 		if (arg == "-h" || arg == "--help")
@@ -406,13 +415,10 @@ int main(int argc, char *argv[])
 	processArgs(argc,argv);
 	PrintStatus(OutputDirectory);
 	
-	
-	
 	srand(RandomSeed);
 	
 	auto start = std::chrono::system_clock::now();
 	
-
 	LoadData(ProcessRank);
 	if (ProcessRank == RootID) 
 	{

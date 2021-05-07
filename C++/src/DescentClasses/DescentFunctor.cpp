@@ -160,16 +160,9 @@ void DescentFunctor::BackwardTransform()
 }
 
 
-void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
+void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition)
 {
-
-	GlobalLog(1,
-		std::cout << "\t\tCalculation iteration " << LoopID<< "...."; 
-	);
-	
 	const int n =  Nt+Nm*Nl;
-	//const VectorXd RawPosition = y; //have to manually cast into a VectorXd
-
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = 1;
@@ -181,9 +174,6 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	L.Calculate(TransformedPosition);
 	
 	
-	
-	
-	
 	//collect values
 	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	double Lsum = 0;			
@@ -191,41 +181,30 @@ void DescentFunctor::DistributeCalculations(const TVector &RawPosition)
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 
 	
-	
-	
-	
 	BackwardTransform();
 	L.Prior(RawPosition,&Lsum,&CurrentGradient);
 	CurrentValue = Lsum;
+
 	
-	//normalise to the number of stars
-	CurrentValue /= NStars;
-	for (int i =0 ; i < CurrentGradient.size(); ++i)
-	{
-		CurrentGradient[i] /= NStars;
-	}
-	
-	GlobalLog(1,
-		//~ std::cout << "\t\t\tCurrent position: " << RawPosition.transpose() << "\n \t\t\tCurrent Gradient: " << CurrentGradient.transpose() << std::endl;
-		//~ std::cout << "\n\t\t\tTransformed position: " << TransformedPosition.transpose() << "\n";
-		//~ std::cout << "\t\t\tTransformed Gradient: " << TransformedGradient.transpose() << std::endl;
-		std::cout << "Completed. \n\t\t\t(L,Gradnorm) = (" << CurrentValue << ", " <<  CurrentGradient.norm() << ")\n\t\t\t"; printTime();
-	);
 	checkNan(CurrentGradient,"Gradient Calculation");
-	
 	++LoopID;
-	if (LoopID % SaveSteps == 0)
-	{
-		GlobalLog(1,"\tSaved Position at step: " + std::to_string(LoopID) + "\n";);
-		SavePosition(false);
-	}
-	
-	
-	
 }
 
-
-double DescentFunctor::value(const TVector &y)
+void DescentFunctor::Calculate(const VectorXd &x)
+{
+	
+	DistributeCalculations(x);
+	PrevLock = x;
+	
+	//negative sign for maximisation problem + normalise to number of stars
+	for (int i = 0; i < x.size(); ++i)
+	{
+		Gradient[i] = -CurrentGradient[i]/NStars;
+	}
+	Value = -CurrentValue/NStars;
+	
+}
+double DescentFunctor::value(const VectorXd &y)
 {
 	VectorXd diff = (y - PrevLock);
 	checkNan(y," Position (value call) ");
@@ -240,7 +219,7 @@ double DescentFunctor::value(const TVector &y)
 
 	return -CurrentValue;
 }
-void DescentFunctor::gradient(const TVector &y, TVector &grad)
+void DescentFunctor::gradient(const VectorXd &y, VectorXd &grad)
 {
 	checkNan(y," Position (grad call) ");
 	VectorXd diff = (y - PrevLock);

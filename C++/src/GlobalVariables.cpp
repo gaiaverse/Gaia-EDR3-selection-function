@@ -1,23 +1,38 @@
 #include "GlobalVariables.h"
 
 
-Eigen::VectorXd initialisedVector(int n)
+Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
 {
-	 VectorXd x = initialisationBounds*VectorXd::Random(n);
-    
-   
-	//~ GlobalLog(0,
-	   //~ std::cout << "\tPosition Vector initialised to: (";
-	   //~ for (int i = 0; i < n; ++i)
-	   //~ {
-		   //~ std::cout << x[i];
-		   //~ if (i < n-1)
-		   //~ {
-			   //~ std::cout << ", ";
-		   //~ } 
-	   //~ }
-	   //~ std::cout << ")\n";
-	//~ );
+	VectorXd x;
+	if (loadIn)
+	{
+		
+		VectorXd possibleX = VectorXd::Zero(n);
+		
+		int i = 0;
+		forLineInFile(loadLocation,
+			possibleX[i] = (std::stod(FILE_LINE));
+			++i;
+			if (i > n)
+			{
+				std::cout << "Internal quit " << std::endl;
+				ERROR(100,"Asked to load in start position from file, but it was the wrong length");
+			}
+		);
+		
+		bool wentUnder = (i < n);
+		if (wentUnder)
+		{
+			std::cout << "End quit, i = " << i << "  n = " << n << "  " << wentUnder<< std::endl;
+			ERROR(100,"Asked to load in start position from file, but it was the wrong length");
+		}
+		
+		x = possibleX;
+	}
+	else
+	{
+		x = initialisationBounds*VectorXd::Random(n);
+    }
    
 	return x;
 }

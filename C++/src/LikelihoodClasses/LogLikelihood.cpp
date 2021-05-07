@@ -108,35 +108,44 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	poisson_binomial_pmf_backward(Data.p,n,Data.pmf_backward);
 	poisson_binomial_subpmf(PipelineMinVisits-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[0]);
 	
-	double zeroMeasureKiller = 0;
-	double nMeasureKiller = 0;
+	bool measuredAtLeastOnce = false;
+	bool missedAtLeastOnce = false;
 	if (k > 0)
 	{
 		poisson_binomial_subpmf(k-1,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[1]);
-		zeroMeasureKiller = 1;
+		measuredAtLeastOnce = true;
 	}
 	if (k < n)
 	{
 		poisson_binomial_subpmf(k,n,Data.pmf_forward,Data.pmf_backward,Data.subpmf[2]);
-		nMeasureKiller = 1;
+		missedAtLeastOnce = true;
 	}
 	
 	//plonk the gradients into the vector to be used in the assignment functions
 	bool dfdpEmergency = false;
 	for (int i = 0; i < n; ++i)
 	{
-		Data.dfdp[i] =  (Data.subpmf[1][i]*zeroMeasureKiller-Data.subpmf[2][i]*nMeasureKiller)/likelihood - Data.subpmf[0][i]/correction;
-		if (std::isnan(Data.dfdp[i]) || std::isinf(Data.dfdp[i]))
+
+		double dfdp_i =  - Data.subpmf[0][i]/correction;
+		
+		if (measuredAtLeastOnce)
 		{
-			dfdpEmergency = true;
+			dfdp_i += Data.subpmf[1][i]/likelihood;
 		}
+		if (missedAtLeastOnce)
+		{
+			dfdp_i -= Data.subpmf[2][i]/likelihood;
+		}
+		
+		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
+		{
+			GenerateExactContribution(candidate);
+			return;
+		}
+		Data.dfdp[i] =  dfdp_i;
 	}
 	
-	if(dfdpEmergency)
-	{
-		GenerateExactContribution(candidate);
-		return;
-	}
+	
 }
 
 void LogLikelihood::GenerateExactContribution(const Star * candidate)
@@ -175,6 +184,8 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 		
 
 	Value += contribution;
+	
+
 	
 
 	bool measuredAtLeastOnce = false;

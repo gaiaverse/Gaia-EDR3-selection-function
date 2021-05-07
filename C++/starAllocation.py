@@ -143,7 +143,7 @@ def nameSubstruct(name):
 	
 	# ~ #OVERRIDE BIN ALLOCATION
 	
-	# ~ bin = 0;
+	#bin = 0;
 	return [name,bin]
 
 def printAllocation(fileAssign):
