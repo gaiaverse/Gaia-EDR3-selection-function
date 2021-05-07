@@ -23,7 +23,8 @@
 
 #include "libs/cppoptlib/solver/newtondescentsolver.h"
 #include "libs/cppoptlib/solver/cmaessolver.h"
-#include "DescentClasses/Star.h"
+#include "DataOperators/Star.h"
+#include "DataOperators/DataLoading.h"
 #include "DescentClasses/DescentFunctor.h"
 #include "GenericFunctions/FileHandler.h"
 #include "LikelihoodClasses/LogLikelihood.h"
@@ -31,34 +32,25 @@
 #include "GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
 #include "DescentClasses/ManualOptimizer.h"
-
+#include "DataOperators/CommandArguments.h"
 using Eigen::VectorXd;
-
 
 
 //store MPI data as global variables
 //bad practice in general, but given MPI structure, seems reasonable to break that rule
 int ProcessRank;
 int JobSize;
-int RootID = 0; //<- declare that process 0 is always Root.
-int RandomSeed = time(NULL);
-int burnInSteps = 1;
-bool loadInStartVector = false;
-std::string startVectorLocation = "";
-double gradLim = 1e-2;;
-std::string dataSource = "../../TestSets/magnitudes/";
-std::string OutputDirectory = "Output";
+
+
+//DATA STORAGE + Command Line Options
 std::vector<Star> Data;
-std::vector<int> Bins;
-std::vector<int> NumberOfStarsInFile;
-std::vector<std::string> Files;
+CommandArgs Args;
 int TotalStars;
 int MaxStarsInCore;
 
+
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
-
-
 void RootProcess()
 {
 	GlobalLog(1,
@@ -70,18 +62,18 @@ void RootProcess()
 	int nParameters = totalRawParams;
 	int nParametersForWorkers = totalTransformedParams; 
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-	VectorXd x = initialisedVector(nParameters,loadInStartVector,startVectorLocation);
+	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
 
 	//set up the criteria for termination
 	int nLoops = 1;
-	int maxSteps = 5000; 
+
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,OutputDirectory,TotalStars);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
 	
-	op.Condition.gConvergence = gradLim;
-	op.Condition.MaxSteps = maxSteps;
+	op.Condition.gConvergence = Args.GradLim;
+	op.Condition.MaxSteps = Args.MaxSteps;
 
 	// GO GO GO GO!
 	op.Minimize(x);
@@ -140,231 +132,11 @@ void WorkerProcess()
 	}
 }
 
-struct FileStarPairs
-{
-	std::string FileName;
-	int NStars;
-};
 
-void GetAssignments(int id)
-{
-	//collect number of stars per file
-	std::string starDirectoryFile = dataSource + "/directory.dat";
-	std::vector<FileStarPairs> files;
-	forLineVectorInFile(starDirectoryFile,' ',
-			FileStarPairs f;
-			f.FileName = FILE_LINE_VECTOR[1];
-			f.NStars = std::stoi(FILE_LINE_VECTOR[0]);
-			files.push_back(f);
-	);
-	
-	
-	std::string assignmentFile = "coreAssignments.dat";
-	
-	forLineVectorInFile(assignmentFile,',',
-		
-		int core = stoi(FILE_LINE_VECTOR[0]);
-		if (core == id)
-		{
-			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
-			{
-				std::string filename = FILE_LINE_VECTOR[i];
-				Files.push_back(dataSource + filename);
-				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
-				
-				bool fileInDirectory = false;
-				for (int j = 0; j < files.size(); ++j)
-				{
-					if (filename == files[j].FileName)
-					{
-							NumberOfStarsInFile[j] = files[j].NStars;
-							fileInDirectory = true;
-							break;
-					}
-				}
-				if (!fileInDirectory)
-				{
-					ERROR(2,"A file was in the core allocation file, but was not included in the datasource directory");
-				}
-				
-			}
-		}
-	);
-}
-
-void LoadData(int id)
-{
-	if (ProcessRank == RootID)
-	{
-		GlobalLog(1,
-			std::cout << "Initialising starAllocation script...\n";
-			std::string command = "python starAllocation.py " + dataSource + " " + std::to_string(JobSize);
-			system(command.c_str() );
-			std::cout << "Data allocation complete, beginning readin...." <<std::endl;
-		);
-	}
-	MPI_Barrier(MPI_COMM_WORLD);
-	
-	auto start = std::chrono::system_clock::now();
-	GetAssignments(id);
-	bool isReporter = (ProcessRank == JobSize - 1);
-	int meaningfullyLargeNumber = 1e8;
-	int readIn = 0;
-	int lastCheckPoint = 0;
-	
-	for (int i = 0; i < Files.size(); ++i)
-	{
-		std::string file = Files[i];
-		int gBin = Bins[i];
-		//use a fancy macro (FileHandler.h)
-		forLineVectorInFile(file,',',
-			Star s = Star(FILE_LINE_VECTOR,gBin);
-			Data.push_back(s);
-		);
-	}
-	
-	
-	
-	GlobalLog(1,
-		auto end = std::chrono::system_clock::now();
-		std::string duration = formatDuration(start,end);
-		std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
-	);
-	
-	int n = Data.size();
-	
-	MPI_Reduce(&n,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
-	MPI_Reduce(&n, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
-	
-	if (ProcessRank==RootID)
-	{
-		GlobalLog(0,
-			std::cout << TotalStars << " stars have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
-		);
-	}
-	MPI_Barrier(MPI_COMM_WORLD);
-}
-
-void processArgs(int argc, char *argv[])
-{
-	bool outDirFlag = false;
-	bool seedFlag = false;
-	bool burnFlag = false;
-	bool gradFlag = false;
-	bool targetFlag = false;
-	bool startFlag = false;
-	for (int i = 1; i < argc; ++i)
-	{
-		
-		std::string arg = argv[i];
-		
-		if (outDirFlag == true)
-		{
-			OutputDirectory = arg;
-			outDirFlag = false;
-		
-		}
-		if (seedFlag == true)
-		{
-			RandomSeed = std::stoi(arg);
-			if (ProcessRank == RootID)
-			{
-				GlobalLog(2,
-					std::cout << "Root reports random seed set to " << RandomSeed << "\n";
-				);
-			}
-			seedFlag = false;
-		}
-		if (burnFlag == true)
-		{
-			burnInSteps = std::stoi(arg);
-			if (ProcessRank == RootID)
-			{
-				GlobalLog(2,
-					std::cout << "Root reports burnin steps set to " << burnInSteps << "\n";
-				);
-			}
-			burnFlag = false;
-		}
-		if (gradFlag == true)
-		{
-			gradLim = std::stod(arg);
-			if (ProcessRank == RootID)
-			{
-				GlobalLog(2,
-					std::cout << "Root reports gradient convergence limit set to " << burnInSteps << "\n";
-				);
-			}
-			gradFlag = false;
-		}
-		if (targetFlag == true)
-		{
-			dataSource = arg;
-			if (ProcessRank == RootID)
-			{
-				GlobalLog(2,
-					std::cout << "Root reports data source set to " << burnInSteps << "\n";
-				);
-			}
-			targetFlag = false;
-		}
-		if (startFlag == true)
-		{
-			loadInStartVector = true;
-			startVectorLocation = arg;
-			startFlag = false;
-		}
-		
-		if (arg == "-f")
-		{
-			outDirFlag = true;
-		}
-		if (arg == "-s")
-		{
-			seedFlag = true;
-		}
-		if (arg == "-b")
-		{
-			burnFlag = true;
-		}
-		if (arg == "-t")
-		{
-			targetFlag = true;
-		}
-		if (arg == "-g")
-		{
-			gradFlag = true;
-		}
-		if (arg == "-r")
-		{
-			startFlag = true;
-		}
-		
-		if (arg == "-h" || arg == "--help")
-		{
-			forLineVectorInFile("src/GenericFunctions/commandHelpFile.txt",'|',
-				for (int i = 0; i < FILE_LINE_VECTOR.size(); ++i)
-				{
-					std::cout << std::setw(10) << std::left << FILE_LINE_VECTOR[i];
-				}
-				std::cout << "\n";
-			);
-			exit(-1);
-			
-		}
-		
-	}
-	
-	mkdirReturn dirReport = mkdirSafely(OutputDirectory);
-	mkdirReturn dirReport2= mkdirSafely(OutputDirectory + "/" + TempDirName);
-	if ((dirReport.Successful || dirReport2.Successful) == false)
-	{
-		ERROR(1,"Could not locate or create the output directory " + OutputDirectory + " or subdirectories therein.");
-	}
-}
 
 int main(int argc, char *argv[])
 {
+	auto start = std::chrono::system_clock::now();
 	
 	//MPI initialization commands
 	MPI_Init(&argc, &argv);
@@ -386,14 +158,12 @@ int main(int argc, char *argv[])
 	
 	MPI_Barrier(MPI_COMM_WORLD);
 
-	processArgs(argc,argv);
-	PrintStatus(OutputDirectory);
+	Args.ReadArguments(argc,argv,ProcessRank);
+	PrintStatus(Args.OutputDirectory);
+	srand(Args.RandomSeed);
 	
-	srand(RandomSeed);
 	
-	auto start = std::chrono::system_clock::now();
-	
-	LoadData(ProcessRank);
+	LoadData(ProcessRank,ProcessRank,&Data,TotalStars,Args.DataSource);
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
@@ -403,8 +173,6 @@ int main(int argc, char *argv[])
 		WorkerProcess();	
 	}
 
-	
-	
 	//exit gracefully
 	auto end = std::chrono::system_clock::now();
 	
@@ -424,10 +192,4 @@ int main(int argc, char *argv[])
 	MPI_Finalize();
 	return 0;
 }
-
-
-
-
-
-
 

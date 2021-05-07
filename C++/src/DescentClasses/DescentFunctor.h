@@ -5,7 +5,7 @@
 #define EIGEN_MPL2_ONLY
 #include "../libs/Eigen/Core"
 
-#include "Star.h"
+//~ #include "Star.h"
 #include "../LikelihoodClasses/LogLikelihoodPrior.h"
 
 #include "../GenericFunctions/timeCodes.h"

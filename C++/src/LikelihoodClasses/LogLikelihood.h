@@ -12,7 +12,7 @@
 #define EIGEN_MPL2_ONLY
 
 #include "../GenericFunctions/FileHandler.h"
-#include "../DescentClasses/Star.h"
+#include "../DataOperators/Star.h"
 #include "../GlobalVariables.h"
 #include "DataStorage.h"
 #include "ProbabilityFunctions.h"

@@ -3,7 +3,6 @@
 #include <math.h>
 #include <iomanip>
 #include "../GenericFunctions/timeCodes.h"
-#include "Star.h"
 #include <iostream>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #define EIGEN_MPL2_ONLY

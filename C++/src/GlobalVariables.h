@@ -8,6 +8,8 @@
 #include <iomanip>
 using Eigen::VectorXd;
 
+const int RootID = 0; //<- declare that process 0 is always Root.
+
 const int Nm = 213;//35; // number of magnitude bins
 const int Nt = 4152; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
