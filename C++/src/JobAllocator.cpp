@@ -64,14 +64,11 @@ void RootProcess()
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
 
-	//set up the criteria for termination
-	int nLoops = 1;
-
-
 	//initialise the functor & the solver
 	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
 	
+	//set up the criteria for termination
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
 
@@ -132,17 +129,8 @@ void WorkerProcess()
 	}
 }
 
-
-
-int main(int argc, char *argv[])
+void Welcome()
 {
-	auto start = std::chrono::system_clock::now();
-	
-	//MPI initialization commands
-	MPI_Init(&argc, &argv);
-	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
-	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);
-
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{
@@ -151,17 +139,26 @@ int main(int argc, char *argv[])
 			std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
 			printTime();
 			std::cout << "\n----------------------------------------------\n\n";
-			
 			std::cout << std::endl;
 		}
 	);
-	
 	MPI_Barrier(MPI_COMM_WORLD);
-
-	Args.ReadArguments(argc,argv,ProcessRank);
+	
 	PrintStatus(Args.OutputDirectory);
 	srand(Args.RandomSeed);
+}
+
+int main(int argc, char *argv[])
+{
+	auto start = std::chrono::system_clock::now();
 	
+	//MPI initialization commands
+	MPI_Init(&argc, &argv);
+	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
+	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);	
+	Args.ReadArguments(argc,argv,ProcessRank);
+	
+	Welcome();
 	
 	LoadData(ProcessRank,ProcessRank,&Data,TotalStars,Args.DataSource);
 	if (ProcessRank == RootID) 
@@ -174,14 +171,8 @@ int main(int argc, char *argv[])
 	}
 
 	//exit gracefully
-	auto end = std::chrono::system_clock::now();
-	
-	GlobalLog(2,
-		std::cout << "Process " << ProcessRank << " reports job has finished. Waiting for rest. \n";
-	);
-	
 	MPI_Barrier(MPI_COMM_WORLD);
-	
+	auto end = std::chrono::system_clock::now()	
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{
@@ -192,4 +183,3 @@ int main(int argc, char *argv[])
 	MPI_Finalize();
 	return 0;
 }
-
