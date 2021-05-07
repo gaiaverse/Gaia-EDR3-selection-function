@@ -92,7 +92,7 @@ class DescentFunctor
 					{
 				        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
 				        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-				        needlet_w.push_back(std::stoi(FILE_LINE_VECTOR[2]));
+				        needlet_w.push_back(std::stod(FILE_LINE_VECTOR[2]));
 					}
 			        ++i;
 			    );    
