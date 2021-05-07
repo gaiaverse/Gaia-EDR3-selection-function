@@ -172,14 +172,20 @@ void GetAssignments(int id)
 				Files.push_back(dataSource + filename);
 				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
 				
+				bool fileInDirectory = false;
 				for (int j = 0; j < files.size(); ++j)
 				{
 					if (filename == files[j].FileName)
 					{
 							NumberOfStarsInFile[j] = files[j].NStars;
+							fileInDirectory = true;
+							break;
 					}
 				}
-				
+				if (!fileInDirectory)
+				{
+					ERROR(2,"A file was in the core allocation file, but was not included in the datasource directory");
+				}
 				
 			}
 		}
