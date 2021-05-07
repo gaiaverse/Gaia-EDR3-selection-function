@@ -122,10 +122,8 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 	}
 	
 	//plonk the gradients into the vector to be used in the assignment functions
-	bool dfdpEmergency = false;
 	for (int i = 0; i < n; ++i)
 	{
-
 		double dfdp_i =  - Data.subpmf[0][i]/correction;
 		
 		if (measuredAtLeastOnce)
@@ -181,11 +179,9 @@ void LogLikelihood::GenerateExactContribution(const Star * candidate)
 	double correction = exp(log_correction);
 	
 	double contribution = log_likelihood - log_correction;
-		
-
-	Value += contribution;
 	
 
+	Value += contribution;
 	
 
 	bool measuredAtLeastOnce = false;
