@@ -14,6 +14,8 @@ const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, 
 const int healpix_order = 2; // order of healpix map, can be any integer >= 0
 const int needlet_order = 1; // maximum order of needlets used, can be any integ*needler >= -1
 
+const int N_SGD_Batches = 10;
+
 
 const double mut = 5;
 const double sigmat = 5;
