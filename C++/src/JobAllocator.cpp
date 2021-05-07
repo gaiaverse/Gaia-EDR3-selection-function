@@ -217,7 +217,8 @@ void LoadData(int id)
 		system(command.c_str() );
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
-
+	
+	
 	GlobalLog(1,
 		if (ProcessRank == RootID)
 		{
@@ -265,7 +266,6 @@ void LoadData(int id)
 			std::cout << TotalStars << " have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
 		);
 	}
-
 }
 
 void processArgs(int argc, char *argv[])
@@ -275,14 +275,11 @@ void processArgs(int argc, char *argv[])
 	bool burnFlag = false;
 	bool gradFlag = false;
 	bool targetFlag = false;
-
 	bool startFlag = false;
-
 	for (int i = 1; i < argc; ++i)
 	{
 		
 		std::string arg = argv[i];
-		
 		
 		if (outDirFlag == true)
 		{
