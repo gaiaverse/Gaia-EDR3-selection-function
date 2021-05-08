@@ -191,7 +191,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	CurrentValue = Lsum;
 
 	StarsInLastBatch = totalStarsUsed;
-	
+	std::cout << "\t\t\tMinibatch " << batchID << " completed, using " << totalStarsUsed << " stars " << std::endl;
 	checkNan(CurrentGradient,"Gradient Calculation");
 	++LoopID;
 }
