@@ -163,11 +163,12 @@ std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector
 		}
 		int batchOffset = batchStarts[0][i];
 		int starsLoaded = 0;
+		std::cout << "FILE = " << file << std::endl;
 		forLineVectorInFile(file,',',
 			
 			int loc = batchStarts[batch][i] + idx;
 			Data[loc] = Star(FILE_LINE_VECTOR,gBin);
-			std::cout << "Loaded a star with " << Data[loc].nMeasure << "  " << Data[loc].nVisit << "  " << Data[loc].TimeSeries.size() << "  into batch  " << batch << std::endl;
+			std::cout << "\tLoaded a star with n=" << Data[loc].nMeasure << "  k=" << Data[loc].nVisit << "  data length=" << Data[loc].TimeSeries.size() << "  into batch  " << batch << std::endl;
 			 
 			++starsLoaded;
 			++idx;
