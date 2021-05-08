@@ -62,7 +62,7 @@ void GetAssignments(int id,std::string dataSource)
 }
 
 
-void CalculateBatches()
+void CalculateBatches(int id)
 {
 	int bRemaining = N_SGD_Batches;
 	int NFiles = Files.size();
@@ -101,8 +101,22 @@ void CalculateBatches()
 		batchCounts[N_SGD_Batches - 1][i] = StarsLeftInFile[i];
 		
 	}
-	
 	batchOffsets[N_SGD_Batches - 1] = batchOffset;
+	
+	if (id == RootID)
+	{
+		std::cout << "BATCH ALLOCATIONS!" << std::endl;
+		for (int i = 0; i < NFiles; ++i)
+		{
+			for (int j = 0; j < N_SGD_Batches; ++j)
+			{
+				std::cout <<std::setw(7) <<batchCounts[j][i]; 
+			}
+			std::cout << "\n";
+		}
+	}
+	
+	
 	
 
 }
@@ -123,7 +137,7 @@ std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector
 	
 	auto start = std::chrono::system_clock::now();
 	GetAssignments(ProcessRank,dataSource);
-	CalculateBatches();
+	CalculateBatches(ProcessRank);
 	int nStarsAssigned = std::accumulate(NumberOfStarsInFile.begin(),NumberOfStarsInFile.end(),0);
 	
 	Data.resize(nStarsAssigned);

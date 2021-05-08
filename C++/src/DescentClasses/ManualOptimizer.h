@@ -325,13 +325,15 @@ class Optimizer
 			int t = 1;
 			while (minimiseContinues)
 			{
+				epochs = Status.CurrentSteps + 1;
+				std::cout << "Beginning calculation with epoch = " << epochs << std::endl; 
 				double epochL = 0;
 				gradAccumulator  = VectorXd::Zero(Dimensions);
 				std::vector<int> batchOrder;
 				for (int i=0; i<EffectiveBatches; ++i) batchOrder.push_back(i);
 				std::random_shuffle ( batchOrder.begin(), batchOrder.end() );
 				
-				epochs = Status.CurrentSteps + 1;
+				
 				
 				
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
