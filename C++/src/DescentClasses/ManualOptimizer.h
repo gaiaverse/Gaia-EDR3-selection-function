@@ -9,7 +9,9 @@
 #include "../libs/Eigen/Core"
 using Eigen::VectorXd;
 
-
+template <typename T> int sgn(T val) {
+    return (T(0) < val) - (val < T(0));
+}
 struct Conditions
 {
 	int MaxSteps;
@@ -18,9 +20,12 @@ struct Conditions
 	double gConvergence;
 	double fConvergence;
 	int SaveSteps;
+	int StepMemory;
 };
 struct Statuses
 {
+	int CurrentMemoryID;
+	std::vector<double> PreviousSteps;
 	int CurrentSteps;
 	bool TooManySteps;
 	bool ReachedGradConvergence;
@@ -34,6 +39,7 @@ class Optimizer
 	private:
 		T & Functor;
 		int Dimensions;
+		
 	public:
 		bool Converged;
 		Conditions Condition;
@@ -57,7 +63,9 @@ class Optimizer
 			Condition.fConvergence = 0;
 			Condition.StepSize = 0.02;
 			Condition.SaveSteps = 5;
+			Condition.StepMemory= 10;
 			Status.CurrentSteps = 0;
+			Status.CurrentMemoryID = 0;
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
@@ -71,7 +79,20 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
+			Status.PreviousSteps = std::vector<double>(Condition.StepMemory,0.0);
 			ADAM(x);
+		}
+		
+		void Minimize(VectorXd & x, int nBatches)
+		{
+			if (x.size() != Dimensions)
+			{
+				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
+				exit(2);
+			}
+			Status.PreviousSteps = std::vector<double>(Condition.StepMemory,0.0);
+			ADABADAM(x,nBatches);
+			//~ BADAM(x,nBatches);
 		}
 		
 			
@@ -160,7 +181,6 @@ class Optimizer
 		void ADAM(VectorXd &x)
 		{
 			
-			
 			//initialise ADAM vectors
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
@@ -173,7 +193,6 @@ class Optimizer
 			VectorXd ones = VectorXd::Constant(Dimensions,1.0);
 			while (minimiseContinues)
 			{
-				//~ std::cout << x.transpose() << std::endl;
 				int t = Status.CurrentSteps + 1;
 				Functor.Calculate(x);
 				double b1Mod = 1.0/(1.0 - pow(beta1,t));
@@ -211,6 +230,184 @@ class Optimizer
 				}
 			}
 		}
+		
+		void BADAM(VectorXd &x,int nBatches)
+		{
+			
+			//initialise ADAM vectors
+			VectorXd m = VectorXd::Zero(Dimensions);
+			VectorXd v = VectorXd::Zero(Dimensions);
+			
+			double beta1 = 0.9;
+			double beta2 = 0.999;
+			double eps = 1e-10;
+			bool minimiseContinues = true;
+			double prevF = 0;
+
+			VectorXd dx;
+			std::vector<int> batchOrder;
+			for (int i=0; i<nBatches; ++i) batchOrder.push_back(i);
+			
+			
+			int epochs; 
+			int t = 1;
+			while (minimiseContinues)
+			{
+				double epochL = 0;
+				epochs = Status.CurrentSteps + 1;
+				std::random_shuffle ( batchOrder.begin(), batchOrder.end() );
+				
+				for (int batches = 0; batches < nBatches; ++batches)
+				{
+					//~ std::cout << batches << std::endl;
+					int currentBatch = batchOrder[batches];
+					//~ std::cout << "On batch: " << currentBatch << std::endl;
+					Functor.Calculate(x,currentBatch,nBatches);
+					double b1Mod = 1.0/(1.0 - pow(beta1,t));
+					double b2Mod = 1.0/(1.0 - pow(beta2,t));
+					m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
+					
+					
+					VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
+					v = ( beta2 * v + (1.0-beta2)* ( gSq) );
+				
+					dx = b1Mod * m * Condition.StepSize;
+	
+					for (int i = 0; i < Dimensions; ++i)
+					{
+						dx[i] /= (sqrt(v[i]*b2Mod) + eps);
+					}
+	
+					x -= dx;
+					
+					++t;
+					epochL += Functor.Value;
+				}
+				epochL/=nBatches;
+				double df = epochL - prevF;
+				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
+				prevF = Functor.Value;
+
+				++Status.CurrentSteps;
+				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				{
+					Functor.SavePosition(false);
+				}
+				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
+				std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) <<Functor.Gradient.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
+				std::cout << "\t\t\t"; printTime();
+				
+				if (std::isnan(Functor.Value))
+				{
+					exit(10);
+				}
+			}
+		}
+		
+		void ADABADAM(VectorXd &x,int nBatches)
+		{
+			int EffectiveBatches = nBatches;
+			
+			//initialise ADAM vectors
+			VectorXd m = VectorXd::Zero(Dimensions);
+			VectorXd v = VectorXd::Zero(Dimensions);
+			VectorXd gradAccumulator;
+			double beta1 = 0.9;
+			double beta2 = 0.999;
+			double eps = 1e-10;
+			bool minimiseContinues = true;
+			double prevF = 99999999;
+
+			VectorXd dx;
+			
+			int stepsSinceReset = 0;
+			int epochs; 
+			int t = 1;
+			while (minimiseContinues)
+			{
+				double epochL = 0;
+				gradAccumulator  = VectorXd::Zero(Dimensions);
+				std::vector<int> batchOrder;
+				for (int i=0; i<EffectiveBatches; ++i) batchOrder.push_back(i);
+				std::random_shuffle ( batchOrder.begin(), batchOrder.end() );
+				
+				epochs = Status.CurrentSteps + 1;
+				
+				
+				for (int batches = 0; batches < EffectiveBatches; ++batches)
+				{
+					int currentBatch = batchOrder[batches];
+					Functor.Calculate(x,currentBatch,EffectiveBatches);
+					double b1Mod = 1.0/(1.0 - pow(beta1,t));
+					double b2Mod = 1.0/(1.0 - pow(beta2,t));
+					m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
+					
+					
+					VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
+					v = ( beta2 * v + (1.0-beta2)* ( gSq) );
+				
+					dx = b1Mod * m * Condition.StepSize;
+	
+					for (int i = 0; i < Dimensions; ++i)
+					{
+						dx[i] /= (sqrt(v[i]*b2Mod) + eps);
+					}
+	
+					x -= dx;
+					
+					++t;
+					epochL += Functor.Value;
+					gradAccumulator += Functor.Gradient;
+				}
+				
+				epochL/=EffectiveBatches;
+				gradAccumulator *= 1.0/EffectiveBatches;
+				double df = epochL - prevF;
+				
+				Status.PreviousSteps[Status.CurrentMemoryID] = df;
+				++Status.CurrentMemoryID;
+				if (Status.CurrentMemoryID >= Condition.StepMemory)
+				{
+					Status.CurrentMemoryID = 0;
+				}
+
+				minimiseContinues = CheckContinues(dx,gradAccumulator,df);
+				
+				++stepsSinceReset;
+				if (stepsSinceReset > Condition.StepMemory)
+				{
+					bool reducedBatchSize = FindOscillations();
+					if (reducedBatchSize)
+					{
+						stepsSinceReset = 0;
+						
+						EffectiveBatches/=2;
+						if (EffectiveBatches < 1)
+						{
+							EffectiveBatches = 1;
+						}
+						
+						std::cout << "\n\n\n\nBATCH SIZE = " << EffectiveBatches << "\n\n\n\n";
+					}
+				}
+				
+				prevF = Functor.Value;
+
+				++Status.CurrentSteps;
+				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				{
+					Functor.SavePosition(false);
+				}
+				
+				//~ GlobalLog(1,
+					std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
+					std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) << gradAccumulator.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
+					std::cout << "\t\t\t"; printTime();
+				//~ );
+				
+			}
+		}
+		
 		
 		
 		void GradientTester(VectorXd &x)
@@ -269,6 +466,37 @@ class Optimizer
 			
 			return true;
 		} 
+
+		bool FindOscillations()
+		{
+			
+			int N = Condition.StepMemory;
+			
+			double sum = 0;
+			int signChanges = 0;
+	
+			for (int i = 0; i <N; ++i)
+			{
+				double x = Status.PreviousSteps[i];
+
+				sum += x;
+				if (i > 0 && (sgn(x) != sgn(Status.PreviousSteps[i-1])) &&  abs(x) > 0)
+				{
+					++signChanges;
+				} 
+			}
+
+			double mean = sum / N;
+			
+			bool batchesAreAProblem = false;
+			int problematicSignChanges = std::max(2,N/3);
+			if ((mean > 0) || signChanges >= problematicSignChanges)
+			{
+				batchesAreAProblem = true;
+			}
+
+			return batchesAreAProblem;
+		}
 
 		std::string GetStatus()
 		{

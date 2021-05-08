@@ -8,11 +8,12 @@ class LikelihoodData
 {
 	public:
 	
-		LikelihoodData(const std::vector<Star> &data, int id);
+		LikelihoodData(const std::vector<Star> &data, const std::vector<int> &offsets, int id);
 		
 		int ID;
 		
 		const std::vector<Star> &Stars;
+		const std::vector<int> & BatchOffsets;
 		int NStars;
 		
 		//Indexing data, allows us to index properly into the 

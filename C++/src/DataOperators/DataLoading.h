@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
+#include <numeric>
 #include <iostream>
+#include <iomanip>
 #include <mpi.h>
 #include <vector>
 #include "../GenericFunctions/FileHandler.h"
@@ -19,4 +21,4 @@ struct FileStarPairs
 
 void GetAssignments(int id,std::string dataSource);
 
-void LoadData(const int ProcessRank, const int JobSize, std::vector<Star> * Data, int & TotalStars,std::string dataSource);
+std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector<Star> & Data, int & TotalStars,const std::string dataSource);

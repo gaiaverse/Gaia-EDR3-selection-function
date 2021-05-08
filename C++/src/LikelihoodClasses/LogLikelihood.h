@@ -25,10 +25,11 @@ class LogLikelihood
 {
 	public:
 		double Value;
+		int StarsUsed;
 		Eigen::VectorXd Gradient;
 		
-		LogLikelihood(const std::vector<Star> & data, int id);
-		void Calculate(Eigen::VectorXd& position);
+		LogLikelihood(const std::vector<Star> & data, const std::vector<int> & offsets, int id);
+		void Calculate(Eigen::VectorXd& position, int batchID, int effectiveBatches);
 		
 	protected:
 		

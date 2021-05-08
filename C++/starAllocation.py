@@ -28,15 +28,16 @@ def getUniqueFiles(rootToFiles):
 
 	baseBranch= {}
 	for file in list:
-		root = file.split(".")[0]
-		if "_" in root:
-			root = file.split("_")[0]
+		if ".csv" in file:
+			root = file.split(".")[0]
+			if "_" in root:
+				root = file.split("_")[0]
+			
+			if root in baseBranch.keys():
+				baseBranch[root].append(file)
+			else:
+				baseBranch[root] = [file]
 		
-		if root in baseBranch.keys():
-			baseBranch[root].append(file)
-		else:
-			baseBranch[root] = [file]
-	
 	uniqueFiles = [];
 	for files in baseBranch.values():
 		if len(files) == 1:
@@ -143,7 +144,7 @@ def nameSubstruct(name):
 	
 	# ~ #OVERRIDE BIN ALLOCATION
 	
-	#bin = 0;
+	bin = 0;
 	return [name,bin]
 
 def printAllocation(fileAssign):

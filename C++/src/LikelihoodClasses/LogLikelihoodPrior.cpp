@@ -8,9 +8,9 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 	for (int i = 0; i < n ; ++i)
 	{
 		double d = RawParams[i];
-		currentValue[0] -= 0.5 * d * d;
+		currentValue[0] -= 0.5 * d * d / N_SGD_Batches;
 		
-		currentGradient[0][i] -= d;
+		currentGradient[0][i] -= d / N_SGD_Batches;
 	}
 }
 

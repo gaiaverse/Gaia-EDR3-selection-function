@@ -2,7 +2,7 @@
 Star::Star()
 {
 	//designed to throw an error when it uses an unitialized star to access memory
-	gBin = -1;
+	gBin = -1e99;
 }
 Star::Star(const std::vector<std::string> & data, int bin)
 {

@@ -1,18 +1,29 @@
 #include "LogLikelihood.h"
 
-LogLikelihood::LogLikelihood(const std::vector<Star> &data, int id): Data(data,id)
+LogLikelihood::LogLikelihood(const std::vector<Star> &data, const std::vector<int> & offsets, int id): Data(data,offsets,id)
 {
-
+	std::cout << "Likelihood initialised with id = " << id << std::endl;
 	Value = 0.0;
+	StarsUsed = 0;
 	Gradient = Eigen::VectorXd::Zero(totalTransformedParams);
 }
 
-void LogLikelihood::Calculate(Eigen::VectorXd& x)
+void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effectiveBatches)
 {
 
 	Reset();	
 
-	for (int i = 0; i < Data.NStars; ++i)
+	int realBatchesPerEffective = N_SGD_Batches / effectiveBatches;
+	
+	int start = Data.BatchOffsets[ effectiveBatchID * realBatchesPerEffective];
+	int end = Data.NStars;
+	if (effectiveBatchID < effectiveBatches-1)
+	{
+		end = Data.BatchOffsets[(effectiveBatchID+1) * realBatchesPerEffective];
+	}
+	StarsUsed = end - start;
+	
+	for (int i = start; i < end; ++i)
 	{
 		PerStarContribution(i,x);
 	}

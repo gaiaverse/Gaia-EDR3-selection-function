@@ -44,6 +44,7 @@ int JobSize;
 
 //DATA STORAGE + Command Line Options
 std::vector<Star> Data;
+std::vector<int> BatchOffsets;
 CommandArgs Args;
 int TotalStars;
 int MaxStarsInCore;
@@ -65,7 +66,7 @@ void RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,BatchOffsets,totalTransformedParams,Args.OutputDirectory,TotalStars);
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
 	
 	//set up the criteria for termination
@@ -73,7 +74,7 @@ void RootProcess()
 	op.Condition.MaxSteps = Args.MaxSteps;
 
 	// GO GO GO GO!
-	op.Minimize(x);
+	op.Minimize(x,N_SGD_Batches);
 		
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
@@ -95,29 +96,35 @@ void WorkerProcess()
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
-	LogLikelihood L = LogLikelihood(Data,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data,BatchOffsets,ProcessRank);
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
 	std::vector<double> emptyVec(dimensionality,0.0);
 	double emptyS=0;
-	
-	int loopChecker;
+	int emptyS2=0;
+	int targetBatch;
+	int effectiveBatches;
 	bool hasFinished = false;
 	while (hasFinished == false)
 	{
 		//check for circuit breaker signal (= -1 when circuit is broken) if no signal, calculate next iteration of L
-		MPI_Bcast(&loopChecker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+		MPI_Bcast(&targetBatch, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 
-		if (loopChecker >= 0)
-		{
+		if (targetBatch >= 0)
+		{	
+			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
-			L.Calculate(pos);
+			L.Calculate(pos,targetBatch,effectiveBatches);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
+			int nS = L.StarsUsed;
 			
 			//broadcast results back to root 
+			MPI_Reduce(&nS, &emptyS2, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			
 		}
 		else
 		{
@@ -160,7 +167,9 @@ int main(int argc, char *argv[])
 	
 	Welcome();
 	
-	LoadData(ProcessRank,ProcessRank,&Data,TotalStars,Args.DataSource);
+	
+	
+	BatchOffsets = LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();
@@ -172,7 +181,7 @@ int main(int argc, char *argv[])
 
 	//exit gracefully
 	MPI_Barrier(MPI_COMM_WORLD);
-	auto end = std::chrono::system_clock::now()	
+	auto end = std::chrono::system_clock::now();
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{

@@ -52,6 +52,7 @@ class DescentFunctor
     	std::vector<int> needlet_v;
     	std::vector<double> needlet_w;
 		int NStars;
+		int StarsInLastBatch;
 		//holder for transformed values
 		VectorXd TransformedPosition;
 		VectorXd TransformedGradient;
@@ -69,7 +70,7 @@ class DescentFunctor
 		double Value;
 		VectorXd Gradient;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, int nParams,std::string outdir, int nStars): Data(data), L(data,n)
+	    DescentFunctor(int n,const std::vector<Star> & data, const std::vector<int> & offsets, int nParams,std::string outdir, int nStars): Data(data), L(data,offsets, n)
 	    {
 				NStars = nStars;
 				RunningID = n;
@@ -100,10 +101,11 @@ class DescentFunctor
 				Value = 0;
 				Gradient = VectorXd::Zero(totalRawParams);
 		}
-	    void DistributeCalculations(const VectorXd &y);
+	    void DistributeCalculations(const VectorXd &y, int batchID, int effectiveBatches);
  
 		double value(const VectorXd &x);
 		void gradient(const VectorXd &x, VectorXd &grad);
+		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave);
 };
