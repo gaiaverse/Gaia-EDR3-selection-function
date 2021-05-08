@@ -13,11 +13,11 @@ const int RootID = 0; //<- declare that process 0 is always Root.
 const int Nm = 213;//35; // number of magnitude bins
 const int Nt = 8304; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 4; // order of healpix map, can be any integer >= 0
-const int needlet_order = 2; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 2; // order of healpix map, can be any integer >= 0
+const int needlet_order = 1; // maximum order of needlets used, can be any integ*needler >= -1
 
-const int N_SGD_Batches = 128;
-const int DataLoadCount = 10000;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int N_SGD_Batches = 256;
+const int DataLoadCount = 80000;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const double mut = 5;
 const double sigmat = 5;
