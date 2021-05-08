@@ -21,7 +21,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 	{
 		end = Data.BatchOffsets[(effectiveBatchID+1) * realBatchesPerEffective];
 	}
-	std::cout << "Attempting to perform likelihood on stars between " << start << ", " << end << "   I have " << Data.NStars << " in my brain " <<std::endl;
+	std::cout << "Attempting to perform likelihood on batch " << effectiveBatchID << " of " << effectiveBatches << ", giving stars between " << start << ", " << end << "   I have " << Data.NStars << " in my brain " <<std::endl;
 	StarsUsed = end - start;
 	
 	for (int i = start; i < end; ++i)
