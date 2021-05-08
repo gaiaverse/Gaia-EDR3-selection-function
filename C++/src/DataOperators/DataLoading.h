@@ -21,4 +21,4 @@ struct FileStarPairs
 
 void GetAssignments(int id,std::string dataSource);
 
-std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector<Star> & Data, int & TotalStars,const std::string dataSource);
+void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource);

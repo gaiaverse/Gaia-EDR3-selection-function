@@ -2,11 +2,9 @@
 std::vector<int> Bins;
 std::vector<std::string> Files;
 std::vector<int> NumberOfStarsInFile;
-
 std::vector<int> StarsLeftInFile;
 std::vector<std::vector<int>> batchCounts;
-std::vector<std::vector<int>> batchStarts;
-std::vector<int> batchOffsets;
+
 
 void GetAssignments(int id,std::string dataSource)
 {
@@ -67,8 +65,6 @@ void CalculateBatches(int id)
 	int bRemaining = N_SGD_Batches;
 	int NFiles = Files.size();
 	batchCounts = std::vector<std::vector<int>>(N_SGD_Batches,std::vector<int>(NFiles,0));
-	batchStarts = std::vector<std::vector<int>>(N_SGD_Batches,std::vector<int>(NFiles,0));
-	batchOffsets = std::vector<int>(N_SGD_Batches,0);
 	int batchOffset = 0;
 	
 	while (bRemaining > 1)
@@ -84,44 +80,21 @@ void CalculateBatches(int id)
 			int contribution = starsPerBatch*(float)StarsLeftInFile[i]/starsRemaining;
 			batchCounts[index][i] = contribution;
 			StarsLeftInFile[i] -= contribution;
-			batchStarts[index][i] = sum + batchOffset;
 			sum += contribution;
 		}
 
-		batchOffsets[index] = batchOffset;
-		batchOffset += sum;
 		--bRemaining; 
 	}
 	
 	int finalBatchSize = 0;
 	for (int i = 0; i < NFiles; ++i)
 	{
-		batchStarts[N_SGD_Batches - 1][i] = batchOffset + finalBatchSize;
 		finalBatchSize += StarsLeftInFile[i];
-		batchCounts[N_SGD_Batches - 1][i] = StarsLeftInFile[i];
-		
+		batchCounts[N_SGD_Batches - 1][i] = StarsLeftInFile[i];	
 	}
-	batchOffsets[N_SGD_Batches - 1] = batchOffset;
-	
-	if (id == RootID)
-	{
-		std::cout << "BATCH ALLOCATIONS!" << std::endl;
-		for (int i = 0; i < NFiles; ++i)
-		{
-			for (int j = 0; j < N_SGD_Batches; ++j)
-			{
-				std::cout <<std::setw(7) <<batchCounts[j][i]; 
-			}
-			std::cout << "\n";
-		}
-	}
-	
-	
-	
-
 }
 
-std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector<Star> & Data, int & TotalStars,const std::string dataSource)
+void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource)
 {
 	if (ProcessRank == RootID)
 	{
@@ -138,38 +111,30 @@ std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector
 	auto start = std::chrono::system_clock::now();
 	GetAssignments(ProcessRank,dataSource);
 	CalculateBatches(ProcessRank);
-	int nStarsAssigned = std::accumulate(NumberOfStarsInFile.begin(),NumberOfStarsInFile.end(),0);
-	
-	Data.resize(nStarsAssigned);
-	
-	
-	bool isReporter = (ProcessRank == JobSize - 1);
-	int meaningfullyLargeNumber = 1e8;
-	int readIn = 0;
-	int lastCheckPoint = 0;
-	
-	int fileBatchShift = 0;
+
+	//resize datafile
+	Data.resize(N_SGD_Batches);
+
 	for (int i = 0; i < Files.size(); ++i)
 	{
 		std::string file = Files[i];
 		int gBin = Bins[i];
 
 		//use a fancy macro (FileHandler.h)
-		int idx = 0;
+		
 		int batch = 0;
-		while (batchCounts[batch][i] == 0)
-		{
-			++batch;
-		}
-		int batchOffset = batchStarts[0][i];
+		int idx =0;
+		
 		int starsLoaded = 0;
-		std::cout << "FILE = " << file << std::endl;
 		forLineVectorInFile(file,',',
-			
-			int loc = batchStarts[batch][i] + idx;
-			Data[loc] = Star(FILE_LINE_VECTOR,gBin);
-			std::cout << "\tLoaded a star with n=" << Data[loc].nMeasure << "  k=" << Data[loc].nVisit << "  data length=" << Data[loc].TimeSeries.size() << "  into batch  " << batch << std::endl;
-			 
+
+			while (batchCounts[batch][i] == 0)
+			{
+				++batch;
+			}
+
+			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin));
+
 			++starsLoaded;
 			++idx;
 			
@@ -206,7 +171,6 @@ std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector
 		);
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
-	
-	return batchOffsets;
+
 }
 

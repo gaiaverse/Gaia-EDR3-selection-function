@@ -7,7 +7,7 @@ using namespace Eigen;
 class LogLikelihoodPrior : public LogLikelihood
 {
 	public:
-		LogLikelihoodPrior(const std::vector<Star> & data, const std::vector<int> &offsets, int id): LogLikelihood(data, offsets, id){};
+		LogLikelihoodPrior(const std::vector<std::vector<Star>> & data,int id): LogLikelihood(data, id){};
 	
 		
 	     

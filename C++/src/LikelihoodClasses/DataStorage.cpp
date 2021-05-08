@@ -1,6 +1,6 @@
 #include "DataStorage.h"
 
-LikelihoodData::LikelihoodData(const std::vector<Star> &data, const std::vector<int> &offsets, int id) : Stars(data), BatchOffsets(offsets)
+LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int id) : Stars(data)
 {
 	//initialise the frequently overwritten vectors
 	ID = id;

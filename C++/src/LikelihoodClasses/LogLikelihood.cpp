@@ -1,8 +1,7 @@
 #include "LogLikelihood.h"
 
-LogLikelihood::LogLikelihood(const std::vector<Star> &data, const std::vector<int> & offsets, int id): Data(data,offsets,id)
+LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id): Data(data,id)
 {
-	std::cout << "Likelihood initialised with id = " << id << std::endl;
 	Value = 0.0;
 	StarsUsed = 0;
 	Gradient = Eigen::VectorXd::Zero(totalTransformedParams);
@@ -15,19 +14,24 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 
 	int realBatchesPerEffective = N_SGD_Batches / effectiveBatches;
 	
-	int start = Data.BatchOffsets[ effectiveBatchID * realBatchesPerEffective];
-	int end = Data.NStars;
+	int start = effectiveBatchID * realBatchesPerEffective;
+	int end = N_SGD_Batches;
 	if (effectiveBatchID < effectiveBatches-1)
 	{
-		end = Data.BatchOffsets[(effectiveBatchID+1) * realBatchesPerEffective];
+		end = (effectiveBatchID+1) * realBatchesPerEffective;
 	}
-	std::cout << "Attempting to perform likelihood on batch " << effectiveBatchID << " of " << effectiveBatches << ", giving stars between " << start << ", " << end << "   I have " << Data.NStars << " in my brain " <<std::endl;
-	StarsUsed = end - start;
+	
+	StarsUsed = 0;
+	
 	
 	for (int i = start; i < end; ++i)
 	{
-		std::cout << "\t\tContribution from star " << i << ", magbin " << Data.Stars[i].gBin << "   " << Data.Stars[i].TimeSeries.size() << "n = " << Data.Stars[i].nMeasure << "k = " << Data.Stars[i].nVisit << std::endl;
-		PerStarContribution(i,x);
+		int n = Data.Stars[i].size();
+		for (int j = 0; j < n; ++j)
+		{
+			PerStarContribution(i,j,x);
+		}
+		StarsUsed += n;
 	}
 }
 
@@ -41,10 +45,10 @@ void LogLikelihood::Reset()
 }
 
 
-void LogLikelihood::PerStarContribution(int star, Eigen::VectorXd& x)
+void LogLikelihood::PerStarContribution(int batchId, int starID, Eigen::VectorXd& x)
 {
 
-	const Star * candidate = &Data.Stars[star];
+	const Star * candidate = &Data.Stars[batchId][starID];
 
 	GeneratePs(candidate,x);
 	

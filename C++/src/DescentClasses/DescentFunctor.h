@@ -31,7 +31,7 @@ class DescentFunctor
 
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
-		const std::vector<Star> &Data; 
+		const std::vector<std::vector<Star>> &Data; 
 		LogLikelihoodPrior L;
 
 		
@@ -70,7 +70,7 @@ class DescentFunctor
 		double Value;
 		VectorXd Gradient;
 	
-	    DescentFunctor(int n,const std::vector<Star> & data, const std::vector<int> & offsets, int nParams,std::string outdir, int nStars): Data(data), L(data,offsets, n)
+	    DescentFunctor(int n,const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars): Data(data), L(data, n)
 	    {
 				NStars = nStars;
 				RunningID = n;

@@ -43,8 +43,7 @@ int JobSize;
 
 
 //DATA STORAGE + Command Line Options
-std::vector<Star> Data;
-std::vector<int> BatchOffsets;
+std::vector<std::vector<Star>> Data;
 CommandArgs Args;
 int TotalStars;
 int MaxStarsInCore;
@@ -66,7 +65,7 @@ void RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,BatchOffsets,totalTransformedParams,Args.OutputDirectory,TotalStars);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
 	
 	//set up the criteria for termination
@@ -96,7 +95,7 @@ void WorkerProcess()
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	VectorXd pos = VectorXd::Zero(dimensionality);
 	
-	LogLikelihood L = LogLikelihood(Data,BatchOffsets,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data,ProcessRank);
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
 	std::vector<double> emptyVec(dimensionality,0.0);
@@ -167,9 +166,7 @@ int main(int argc, char *argv[])
 	
 	Welcome();
 	
-	
-	
-	BatchOffsets = LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
+	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	if (ProcessRank == RootID) 
 	{
 		RootProcess();

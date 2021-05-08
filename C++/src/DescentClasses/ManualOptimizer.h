@@ -326,7 +326,6 @@ class Optimizer
 			while (minimiseContinues)
 			{
 				epochs = Status.CurrentSteps + 1;
-				std::cout << "Beginning calculation with epoch = " << epochs << std::endl; 
 				double epochL = 0;
 				gradAccumulator  = VectorXd::Zero(Dimensions);
 				std::vector<int> batchOrder;
@@ -341,7 +340,6 @@ class Optimizer
 					
 					
 					int currentBatch = batchOrder[batches];
-					std::cout << "BEGINNING MINIBATCH " << currentBatch << std::endl;
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));
