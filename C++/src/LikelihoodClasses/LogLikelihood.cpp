@@ -33,6 +33,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 		}
 		StarsUsed += n;
 	}
+	std::cout << "Report " << StarsUsed << " contributions calculated " << std::endl;
 }
 
 void LogLikelihood::Reset()
