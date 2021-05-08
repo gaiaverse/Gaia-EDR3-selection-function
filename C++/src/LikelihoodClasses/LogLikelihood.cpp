@@ -22,7 +22,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 	}
 	
 	StarsUsed = 0;
-	
+	std::cout << Data.ID << " is Reading in from " << start << " -> " << end << std::endl;
 	
 	for (int i = start; i < end; ++i)
 	{
@@ -33,7 +33,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 		}
 		StarsUsed += n;
 	}
-	std::cout << "Report " << StarsUsed << " contributions calculated " << std::endl;
+	std::cout << Data.ID << "Reports " << StarsUsed << " contributions calculated " << std::endl;
 }
 
 void LogLikelihood::Reset()

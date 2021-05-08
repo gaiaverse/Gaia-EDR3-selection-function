@@ -337,9 +337,10 @@ class Optimizer
 				
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
-					
-					
 					int currentBatch = batchOrder[batches];
+					std::cout << "\t\tMinibatch " << currentBatch << " opened " << std::endl;
+					
+					
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));
