@@ -157,6 +157,10 @@ std::vector<int>  LoadData(const int ProcessRank, const int JobSize, std::vector
 		//use a fancy macro (FileHandler.h)
 		int idx = 0;
 		int batch = 0;
+		while (batchCounts[batch][i] == 0)
+		{
+			++batch;
+		}
 		int batchOffset = batchStarts[0][i];
 		int starsLoaded = 0;
 		forLineVectorInFile(file,',',
