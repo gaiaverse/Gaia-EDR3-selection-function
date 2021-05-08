@@ -26,7 +26,7 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 	
 	for (int i = start; i < end; ++i)
 	{
-		std::cout << "\t\tContribution from star " << i << ", magbin " << Data.Stars[i].gBin << "   " << Data.Stars[i].TimeSeries.size() << std::endl;
+		std::cout << "\t\tContribution from star " << i << ", magbin " << Data.Stars[i].gBin << "   " << Data.Stars[i].TimeSeries.size() << "n = " << Data.Stars[i].nMeasure << "k = " << Data.Stars[i].nVisit << std::endl;
 		PerStarContribution(i,x);
 	}
 }
