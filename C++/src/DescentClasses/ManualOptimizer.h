@@ -63,8 +63,9 @@ class Optimizer
 			Condition.fConvergence = 0;
 			Condition.StepSize = 0.02;
 			Condition.SaveSteps = 5;
-			Condition.StepMemory= 10;
+			Condition.InitialStepMemory= 10;
 			Status.CurrentSteps = 0;
+			Status.StepMemory = Condition.InitialStepMemory;
 			Status.CurrentMemoryID = 0;
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
@@ -90,7 +91,7 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			Status.PreviousSteps = std::vector<double>(Condition.StepMemory,0.0);
+			
 			ADABADAM(x,nBatches);
 			//~ BADAM(x,nBatches);
 		}
@@ -311,6 +312,7 @@ class Optimizer
 			//initialise ADAM vectors
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
+			Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
 			VectorXd gradAccumulator;
 			double beta1 = 0.9;
 			double beta2 = 0.999;
@@ -338,7 +340,6 @@ class Optimizer
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
 					int currentBatch = batchOrder[batches];
-					//~ std::cout << "\t\tMinibatch " << currentBatch << " opened,  " << batches << " / " << EffectiveBatches << std::endl;
 					
 					
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
@@ -370,7 +371,7 @@ class Optimizer
 				
 				Status.PreviousSteps[Status.CurrentMemoryID] = df;
 				++Status.CurrentMemoryID;
-				if (Status.CurrentMemoryID >= Condition.StepMemory)
+				if (Status.CurrentMemoryID >= Status.StepMemory)
 				{
 					Status.CurrentMemoryID = 0;
 				}
@@ -384,14 +385,18 @@ class Optimizer
 					if (reducedBatchSize)
 					{
 						stepsSinceReset = 0;
-						
+						Status.StepMemory += 5;
+						Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
+						Status.CurrentMemoryID = 0;
 						EffectiveBatches/=2;
 						if (EffectiveBatches < 1)
 						{
 							EffectiveBatches = 1;
 						}
-						
-						std::cout << "\n\n\n\nBATCH SIZE = " << EffectiveBatches << "\n\n\n\n";
+						else
+						{
+							std::cout << "\n\n\n\nBATCH SIZE = " << EffectiveBatches << "\n\n\n\n";
+						}
 					}
 				}
 				

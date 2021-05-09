@@ -1,16 +1,16 @@
 #include "LogLikelihoodPrior.h"
 
 
-void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, Eigen::VectorXd * currentGradient)
+void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, Eigen::VectorXd * currentGradient, int effectiveBatches)
 {
 	
 	int n = Nt + Nm*Ns;
 	for (int i = 0; i < n ; ++i)
 	{
 		double d = RawParams[i];
-		currentValue[0] -= 0.5 * d * d / N_SGD_Batches;
+		currentValue[0] -= 0.5 * d * d / effectiveBatches;
 		
-		currentGradient[0][i] -= d / N_SGD_Batches;
+		currentGradient[0][i] -= d / effectiveBatches;
 	}
 }
 
