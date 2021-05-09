@@ -20,13 +20,14 @@ struct Conditions
 	double gConvergence;
 	double fConvergence;
 	int SaveSteps;
-	int StepMemory;
+	int InitialStepMemory;
 };
 struct Statuses
 {
 	int CurrentMemoryID;
 	std::vector<double> PreviousSteps;
 	int CurrentSteps;
+	int StepMemory;
 	bool TooManySteps;
 	bool ReachedGradConvergence;
 	bool ReachedStepConvergence;
@@ -80,7 +81,7 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			Status.PreviousSteps = std::vector<double>(Condition.StepMemory,0.0);
+			Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
 			ADAM(x);
 		}
 		
@@ -379,7 +380,7 @@ class Optimizer
 				minimiseContinues = CheckContinues(dx,gradAccumulator,df);
 				
 				++stepsSinceReset;
-				if (stepsSinceReset > Condition.StepMemory)
+				if (stepsSinceReset > Status.StepMemory)
 				{
 					bool reducedBatchSize = FindOscillations();
 					if (reducedBatchSize)
@@ -479,7 +480,7 @@ class Optimizer
 		bool FindOscillations()
 		{
 			
-			int N = Condition.StepMemory;
+			int N = Status.StepMemory;
 			
 			double sum = 0;
 			int signChanges = 0;
