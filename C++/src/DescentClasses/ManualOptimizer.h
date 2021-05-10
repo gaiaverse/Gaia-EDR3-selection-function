@@ -540,15 +540,15 @@ class Optimizer
 			
 			for (int i = 0; i < Progress.BufferSize; ++i)
 			{
-				int prec = 8l
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastTimes[i] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastEpochi] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastMiniBatch[i] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastBatchCount[i] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastFs[i] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastDFs[i] + ",";
-				file << std::setw(width) << std::setprecision(prec) << Progress.PastGradNorms[i] + ",";
-				}
+				int prec = 8l;
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastTimes[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastEpoch[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastMiniBatch[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastBatchCount[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastFs[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastDFs[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastGradNorms[i] << ",";
+				
 				file << "\n";
 			}
 			
