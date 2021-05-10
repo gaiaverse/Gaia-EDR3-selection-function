@@ -48,6 +48,7 @@ struct Progresser
 	std::vector<double> PastDFs;
 	std::vector<double> PastTimes;
 	std::vector<int> PastMiniBatch;
+	std::vector<int> PastEpoch;
 	std::vector<int> PastBatchCount;
 	
 	int AnalysisSteps;
@@ -112,7 +113,7 @@ class Optimizer
 			Progress.PastDFs = std::vector<double>(n,0);
 			Progress.PastGradNorms = std::vector<double>(n,0);
 			Progress.PastTimes = std::vector<double>(n,0);
-			
+			Progress.PastEpoch = std::vector<int>(n,0);
 			Progress.AnalysisSteps = 0;
 			Progress.AnalysisMemory = std::vector<double>(Progress.AnalysisMemorySize,0);
 		}
@@ -487,7 +488,7 @@ class Optimizer
 			Progress.PastFs[i] = F;
 			Progress.PastGradNorms[i] = G;
 			Progress.PastDFs[i] = dF;
-			
+			Progress.PastEpoch[i] = Status.CurrentSteps + 1;
 			auto time = std::chrono::system_clock::now();
 			std::chrono::duration<double> diff = time - Progress.StartTime;
 			
@@ -518,7 +519,7 @@ class Optimizer
 
 		void SaveProgress()
 		{
-			std::string saveFile = Progress.ProgressDir + "OptimizerProgress.txt";
+			std::string saveFile = Progress.ProgressDir + "OptimiserProgress.txt";
 			std::fstream file;
 			int width = 20;
 			if (Progress.HasSaved == false)
@@ -539,7 +540,7 @@ class Optimizer
 			
 			for (int i = 0; i < Progress.BufferSize; ++i)
 			{
-				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Status.CurrentSteps+1),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
+				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Progress.PastEpoch[i]),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
 				for (int j = 0; j < values.size(); ++j)
 				{
 					file << std::setw(width) << std::setprecision(8) << values[j] + ",";
