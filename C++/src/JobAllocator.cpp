@@ -99,7 +99,6 @@ void WorkerProcess()
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
 	std::vector<double> emptyVec(dimensionality,0.0);
-	std::vector<int> info = {-1,-1};
 	double emptyS=0;
 	int emptyS2=0;
 	int targetBatch;
@@ -108,11 +107,12 @@ void WorkerProcess()
 	while (hasFinished == false)
 	{
 		//check for circuit breaker signal (= -1 when circuit is broken) if no signal, calculate next iteration of L
-		MPI_Bcast(&info[0], 2, MPI_INT, RootID, MPI_COMM_WORLD);
-		targetBatch = info[0];
+		MPI_Bcast(&targetBatch, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+
 		if (targetBatch >= 0)
 		{	
-			effectiveBatches = info[1];
+			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			L.Calculate(pos,targetBatch,effectiveBatches);
