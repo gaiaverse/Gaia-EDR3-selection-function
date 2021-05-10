@@ -163,12 +163,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	//Transform then broadcast the vector to workers
 	ForwardTransform(RawPosition);
-	
-	for (int i = 0; i < totalTransformedParams; ++i)
-	{
-		MPI_Bcast(&TransformedPosition[i], 1, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
-	}
-	//MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
+	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	L.Calculate(TransformedPosition,batchID,effectiveBatches);
 	
 	
