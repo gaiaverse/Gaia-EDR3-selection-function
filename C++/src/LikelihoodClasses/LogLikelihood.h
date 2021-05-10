@@ -26,10 +26,10 @@ class LogLikelihood
 	public:
 		double Value;
 		int StarsUsed;
-		Eigen::VectorXd Gradient;
+		std::vector<double> Gradient;
 		
 		LogLikelihood(const std::vector<std::vector<Star>> & data, int id);
-		void Calculate(Eigen::VectorXd& position, int batchID, int effectiveBatches);
+		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches);
 		
 	protected:
 		
@@ -38,9 +38,9 @@ class LogLikelihood
 
 		//internal functions
 		void Reset();
-		void PerStarContribution(int batchId, int starID,Eigen::VectorXd & position);
+		void PerStarContribution(int batchId, int starID,const std::vector<double> & position);
 		
-		void GeneratePs(const Star * candidate,Eigen::VectorXd & position);
+		void GeneratePs(const Star * candidate,const std::vector<double> & position);
 		void GenerateContribution(const Star * candidate);
 		void GenerateExactContribution(const Star * candidate);
 		void AssignGradients(const Star * candidate);

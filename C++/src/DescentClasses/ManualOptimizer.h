@@ -319,8 +319,10 @@ class Optimizer
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));
 					
-					m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
-					v = ( beta2 * v + (1.0-beta2)* (VectorXd)( Functor.Gradient.array() * Functor.Gradient.array()) );
+					
+					VectorXd grad = Eigen::Map<Eigen::VectorXd>(Functor.Gradient.data(),Functor.Gradient.size());
+					m = (  beta1 *m + (1.0-beta1)*grad);
+					v = ( beta2 * v + (1.0-beta2)* (VectorXd)( grad.array() * grad.array()) );
 				
 					dx = b1Mod * m * Condition.StepSize;
 	
@@ -333,12 +335,12 @@ class Optimizer
 					++t;
 					
 					epochL += Functor.Value;
-					epochGradient += Functor.Gradient;
+					epochGradient += grad;
 					if (EffectiveBatches > 1)
 					{
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,Functor.Gradient.norm(),df_mini);
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,grad.norm(),df_mini);
 					}
 				}
 				

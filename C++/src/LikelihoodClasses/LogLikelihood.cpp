@@ -4,10 +4,10 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id)
 {
 	Value = 0.0;
 	StarsUsed = 0;
-	Gradient = Eigen::VectorXd::Zero(totalTransformedParams);
+	Gradient = std::vector<double>(totalTransformedParams,0.0);
 }
 
-void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effectiveBatches)
+void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches)
 {
 
 	Reset();	
@@ -35,14 +35,11 @@ void LogLikelihood::Calculate(Eigen::VectorXd& x, int effectiveBatchID, int effe
 void LogLikelihood::Reset()
 {
 	Value = 0;
-	for (int i = 0; i < Gradient.size(); ++i)
-	{
-		Gradient[i] = 0;
-	}
+	std::fill(Gradient.begin(),Gradient.end(),0.0);
 }
 
 
-void LogLikelihood::PerStarContribution(int batchId, int starID, Eigen::VectorXd& x)
+void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
 {
 
 	const Star * candidate = &Data.Stars[batchId][starID];
@@ -54,7 +51,7 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, Eigen::VectorXd
 	AssignGradients(candidate);
 }
 
-void LogLikelihood::GeneratePs(const Star * candidate, Eigen::VectorXd & x)
+void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double> & x)
 {
 	int n = candidate->nVisit;
 	//generate p vectors

@@ -51,24 +51,24 @@ class DescentFunctor
 		std::vector<int> needlet_u;
     	std::vector<int> needlet_v;
     	std::vector<double> needlet_w;
+    	std::vector<double> forwardBVector;
 		int NStars;
 		int StarsInLastBatch;
 		//holder for transformed values
-		VectorXd TransformedPosition;
-		VectorXd TransformedGradient;
-		
+		std::vector<double> TransformedPosition;
+		std::vector<double> TransformedGradient;
+		std::vector<double> bVector;
 
 		void ForwardTransform(const VectorXd &z);
 		void BackwardTransform();		
 		void ResetPosition();
 		
-		double CurrentValue;
-		VectorXd CurrentGradient;
+
 	public:
 		int LoopID;
 
 		double Value;
-		VectorXd Gradient;
+		std::vector<double> Gradient;
 	
 	    DescentFunctor(int n,const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars): Data(data), L(data, n)
 	    {
@@ -76,13 +76,11 @@ class DescentFunctor
 				RunningID = n;
 				LoopID = 0;
 				Start = std::chrono::system_clock::now();
-				CurrentValue = 0;
-				CurrentGradient = VectorXd::Zero(totalRawParams);
-				
+								
 				PrevLock = VectorXd::Random(totalRawParams);
 				
-				TransformedPosition = VectorXd::Zero(totalTransformedParams);
-				TransformedGradient = VectorXd::Zero(totalTransformedParams);
+				TransformedPosition = std::vector<double>(totalTransformedParams,0);
+				TransformedGradient = std::vector<double>(totalTransformedParams,0);
 				OutputDir = outdir;
 				
 				std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
@@ -98,13 +96,14 @@ class DescentFunctor
 			        ++i;
 			    );    
 			    needletN = needlet_u.size();
+			    bVector = std::vector<double>(Nm*Ns,0);
+			    
 				Value = 0;
-				Gradient = VectorXd::Zero(totalRawParams);
+				Gradient = std::vector<double>(totalRawParams,0);
 		}
 	    void DistributeCalculations(const VectorXd &y, int batchID, int effectiveBatches);
  
-		double value(const VectorXd &x);
-		void gradient(const VectorXd &x, VectorXd &grad);
+		
 		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave);

@@ -3,26 +3,20 @@
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
-void checkNan(const VectorXd & y, std::string origin)
-{
-	if(y.hasNaN())
-	{
-		ERROR(2,"One or more values sourced from " + origin +  "  was a NaN.");
-	}	
-}
+//~ void checkNan(const std::vector<double> & y, std::string origin)
+//~ {
+	//~ if(y.hasNaN())
+	//~ {
+		//~ ERROR(2,"One or more values sourced from " + origin +  "  was a NaN.");
+	//~ }	
+//~ }
 
 void DescentFunctor::ResetPosition()
 {
-	for (int i =0; i < totalTransformedParams; ++i)
-	{
-		TransformedPosition[i] = 0;
-		TransformedGradient[i] = 0;
-	}
-	
-	for (int i = 0; i < totalRawParams; ++i)
-	{
-		CurrentGradient[i] = 0;
-	}
+	Value = 0;
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
+	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
+	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
 void DescentFunctor::SavePosition(bool finalSave)
@@ -73,11 +67,9 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	if (L.Kg_decomposed == false)
 	{
 		L.MakeCovarianceMatrix();
-
 	}
 	
-	
-	VectorXd b = VectorXd::Zero(Nm*Ns);
+
 	
 	// Forward transformation
 	double u = exp(-1.0/lt);
@@ -96,9 +88,10 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			for (int n = 0; n < Nm; ++n)
+			bVector[s*Nm+m] = 0;
+			for (int n = 0; n <= m; ++n)
 			{
-				b[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
+				bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
 			}
 		}
 	}
@@ -108,7 +101,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*b[needlet_v[i]*Nm+m];
+			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
 		}
 	}
 }
@@ -121,26 +114,27 @@ void DescentFunctor::BackwardTransform()
 	double ua = 1.0/sqrt(1.0-u*u);
 	double ub = -u*ua;
 	double sigmata = sigmat/ua;
-	VectorXd bGradient = VectorXd::Zero(Ns*Nm);
 
 	if (Nt > 1)
 	{
-	    CurrentGradient[0] = sigmata * TransformedGradient[0];
+	    Gradient[0] = sigmata * TransformedGradient[0];
 	    for (int i = 1; i < Nt-1; i++) {
-	        CurrentGradient[i] = u * CurrentGradient[i-1] + sigmata * TransformedGradient[i];
+	        Gradient[i] = u * Gradient[i-1] + sigmata * TransformedGradient[i];
 	    }
-	    CurrentGradient[Nt-1] = -ub * CurrentGradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
+	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
 	}
 	else
 	{
-		CurrentGradient[0] = TransformedGradient[0]*sigmat;
+		Gradient[0] = TransformedGradient[0]*sigmat;
 	}
 	// yml
+	
+	std::fill(bVector.begin(), bVector.end(),0);
 	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			bGradient[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
+			bVector[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
 		}
 	}
 
@@ -149,16 +143,14 @@ void DescentFunctor::BackwardTransform()
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			for (int n = 0; n < Nm; ++n)
+			for (int n = 0; n <=m; ++n)
 			{
-				
-				CurrentGradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bGradient[s*Nm+m];
+				Gradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bVector[s*Nm+m];
 			}
 		}
 	}
 
 }
-
 
 void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int batchID, int effectiveBatches)
 {
@@ -187,15 +179,21 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	
 	BackwardTransform();
-	L.Prior(RawPosition,&Lsum,&CurrentGradient,effectiveBatches);
-	CurrentValue = Lsum;
+	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
+	Value = Lsum;
 
 	StarsInLastBatch = totalStarsUsed;
-	//~ std::cout << "\t\t\tMinibatch " << batchID << " completed, using " << totalStarsUsed << " stars " << std::endl;
-	checkNan(CurrentGradient,"Gradient Calculation");
-	++LoopID;
-}
 
+	//~ checkNan(Gradient,"Gradient Calculation");
+	++LoopID;
+	
+	//negative sign for maximisation problem + normalise to number of stars
+	for (int i = 0; i < Gradient.size(); ++i)
+	{
+		Gradient[i] = -Gradient[i]/StarsInLastBatch;
+	}
+	Value = -Value/StarsInLastBatch;
+}
 
 void DescentFunctor::Calculate(const VectorXd & x)
 {
@@ -206,51 +204,10 @@ void DescentFunctor::Calculate(const VectorXd & x)
 	
 	Calculate(x,0,1);
 }
+
 void DescentFunctor::Calculate(const VectorXd &x, int batchID, int effectiveBatches)
 {
 	
 	DistributeCalculations(x,batchID,effectiveBatches);
-	PrevLock = x;
-	
-	//negative sign for maximisation problem + normalise to number of stars
-	for (int i = 0; i < x.size(); ++i)
-	{
-		Gradient[i] = -CurrentGradient[i]/StarsInLastBatch;
-	}
-	Value = -CurrentValue/StarsInLastBatch;
-	
+	PrevLock = x;	
 }
-double DescentFunctor::value(const VectorXd &y)
-{
-	VectorXd diff = (y - PrevLock);
-	checkNan(y," Position (value call) ");
-	double key = diff.norm();
-
-	
-	if (key > lockLim)
-	{
-		DistributeCalculations(y,0,1);
-		PrevLock = y;
-	}
-
-	return -CurrentValue;
-}
-void DescentFunctor::gradient(const VectorXd &y, VectorXd &grad)
-{
-	checkNan(y," Position (grad call) ");
-	VectorXd diff = (y - PrevLock);
-	double key = diff.norm();
-
-	if (key > lockLim)
-	{
-		DistributeCalculations(y,0,1);
-		PrevLock = y;
-	}
-
-	//negative sign for maximisation problem
-	for (int i = 0; i < y.size(); ++i)
-	{
-		grad[i] = -CurrentGradient[i];
-	}
-}
-

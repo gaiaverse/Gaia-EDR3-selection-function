@@ -93,7 +93,7 @@ void WorkerProcess()
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
 	int dimensionality;
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-	VectorXd pos = VectorXd::Zero(dimensionality);
+	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
 	LogLikelihood L = LogLikelihood(Data,ProcessRank);
 	
