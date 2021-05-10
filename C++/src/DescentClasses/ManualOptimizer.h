@@ -311,6 +311,7 @@ class Optimizer
 				
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
+					std::cout << "\t\t\t\t" << batches << std::endl;
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
@@ -422,12 +423,12 @@ class Optimizer
 
 		int UpdateBatchSize(double df,int currentSize)
 		{
-			std::cout << "Looking at memory reduction! with current size = " << newSize << std::endl;
+			std::cout << "Looking at memory reduction! with current size = " << currentSize << std::endl;
 			int analysisPos = Progress.AnalysisSteps % Progress.AnalysisMemorySize; 
 			
 			Progress.AnalysisMemory[analysisPos] = df;
 			++Progress.AnalysisSteps;
-			std::cout << "Currently made " << Progress.AnalysisSteps << " steps " << std::end;
+			std::cout << "Currently made " << Progress.AnalysisSteps << " steps " << std::endl;
 			
 			bool newSize = currentSize;
 			
@@ -446,6 +447,7 @@ class Optimizer
 				}
 				std::cout << "\n" << newSize << std::endl;
 			}		
+			std::cout << "Returning size " << newSize << std::endl;
 			return newSize;
 		}
 
