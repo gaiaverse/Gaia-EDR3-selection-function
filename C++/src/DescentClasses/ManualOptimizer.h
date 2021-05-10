@@ -429,9 +429,10 @@ class Optimizer
 			
 			
 			bool newSize = currentSize;
+			
 			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
 			{
-
+				std::cout << "Looking at memory reduction! " << std::endl;
 				if (NeedsBatchReduction())
 				{
 					Progress.AnalysisSteps = 0;
@@ -441,6 +442,7 @@ class Optimizer
 						newSize = 1;
 					}
 				}
+				std::cout << "\n" << newSize << std::endl;
 			}		
 			return newSize;
 		}
