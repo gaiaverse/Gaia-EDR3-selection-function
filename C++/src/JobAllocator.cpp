@@ -71,7 +71,7 @@ void RootProcess()
 	//set up the criteria for termination
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
-
+	op.Progress.ProgressDir = Args.OutputDirectory + "/";
 	// GO GO GO GO!
 	op.Minimize(x,N_SGD_Batches);
 		

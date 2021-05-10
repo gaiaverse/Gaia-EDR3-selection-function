@@ -1,7 +1,9 @@
 #pragma once
 #include <vector>
 #include <math.h>
+#include <ctime>
 #include <iomanip>
+#include <fstream>
 #include "../GenericFunctions/timeCodes.h"
 #include <iostream>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
@@ -24,14 +26,33 @@ struct Conditions
 };
 struct Statuses
 {
-	int CurrentMemoryID;
-	std::vector<double> PreviousSteps;
+	
+
 	int CurrentSteps;
-	int StepMemory;
+	
 	bool TooManySteps;
 	bool ReachedGradConvergence;
 	bool ReachedStepConvergence;
 	bool ReachedFunctionConvergence;
+};
+struct Progresser
+{
+	std::string ProgressDir;
+	int BufferSize;
+	bool HasSaved;
+	int BufferPosition;
+	std::chrono::time_point<std::chrono::system_clock> StartTime;
+
+	std::vector<double> PastFs;
+	std::vector<double> PastGradNorms;
+	std::vector<double> PastDFs;
+	std::vector<double> PastTimes;
+	std::vector<int> PastMiniBatch;
+	std::vector<int> PastBatchCount;
+	
+	int AnalysisSteps;
+	int AnalysisMemorySize;
+	std::vector<double> AnalysisMemory;
 };
 
 template<class T>
@@ -45,6 +66,7 @@ class Optimizer
 		bool Converged;
 		Conditions Condition;
 		Statuses Status;
+		Progresser Progress;
 		
 		Optimizer<T>(int nRawParams, T& functor) : Functor(functor)
 		
@@ -66,12 +88,33 @@ class Optimizer
 			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
 			Status.CurrentSteps = 0;
-			Status.StepMemory = Condition.InitialStepMemory;
-			Status.CurrentMemoryID = 0;
+		
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
 			Status.ReachedFunctionConvergence = false;
+			
+			Progress.BufferSize = 100;
+			Progress.ProgressDir = "";
+			Progress.AnalysisMemorySize = 5;
+			
+		}
+		
+		void InitialiseProgress()
+		{
+			Progress.HasSaved = false;
+			Progress.BufferPosition = 0;
+			Progress.StartTime = std::chrono::system_clock::now();
+			int n = Progress.BufferSize;
+			Progress.PastBatchCount = std::vector<int>(n,0);
+			Progress.PastMiniBatch = std::vector<int>(n,0);
+			Progress.PastFs = std::vector<double>(n,0);
+			Progress.PastDFs = std::vector<double>(n,0);
+			Progress.PastGradNorms = std::vector<double>(n,0);
+			Progress.PastTimes = std::vector<double>(n,0);
+			
+			Progress.AnalysisSteps = 0;
+			Progress.AnalysisMemory = std::vector<double>(Progress.AnalysisMemorySize,0);
 		}
 		
 		void Minimize(VectorXd & x)
@@ -81,7 +124,7 @@ class Optimizer
 				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
 				exit(2);
 			}
-			Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
+			
 			ADAM(x);
 		}
 		
@@ -93,8 +136,8 @@ class Optimizer
 				exit(2);
 			}
 			
+			InitialiseProgress();
 			ADABADAM(x,nBatches);
-			//~ BADAM(x,nBatches);
 		}
 		
 			
@@ -232,80 +275,7 @@ class Optimizer
 				}
 			}
 		}
-		
-		void BADAM(VectorXd &x,int nBatches)
-		{
-			
-			//initialise ADAM vectors
-			VectorXd m = VectorXd::Zero(Dimensions);
-			VectorXd v = VectorXd::Zero(Dimensions);
-			
-			double beta1 = 0.9;
-			double beta2 = 0.999;
-			double eps = 1e-10;
-			bool minimiseContinues = true;
-			double prevF = 0;
 
-			VectorXd dx;
-			std::vector<int> batchOrder;
-			for (int i=0; i<nBatches; ++i) batchOrder.push_back(i);
-			
-			
-			int epochs; 
-			int t = 1;
-			while (minimiseContinues)
-			{
-				double epochL = 0;
-				epochs = Status.CurrentSteps + 1;
-				std::random_shuffle ( batchOrder.begin(), batchOrder.end() );
-				
-				for (int batches = 0; batches < nBatches; ++batches)
-				{
-					//~ std::cout << batches << std::endl;
-					int currentBatch = batchOrder[batches];
-					//~ std::cout << "On batch: " << currentBatch << std::endl;
-					Functor.Calculate(x,currentBatch,nBatches);
-					double b1Mod = 1.0/(1.0 - pow(beta1,t));
-					double b2Mod = 1.0/(1.0 - pow(beta2,t));
-					m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
-					
-					
-					VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
-					v = ( beta2 * v + (1.0-beta2)* ( gSq) );
-				
-					dx = b1Mod * m * Condition.StepSize;
-	
-					for (int i = 0; i < Dimensions; ++i)
-					{
-						dx[i] /= (sqrt(v[i]*b2Mod) + eps);
-					}
-	
-					x -= dx;
-					
-					++t;
-					epochL += Functor.Value;
-				}
-				epochL/=nBatches;
-				double df = epochL - prevF;
-				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
-				prevF = Functor.Value;
-
-				++Status.CurrentSteps;
-				if (Status.CurrentSteps % Condition.SaveSteps == 0)
-				{
-					Functor.SavePosition(false);
-				}
-				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
-				std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) <<Functor.Gradient.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
-				std::cout << "\t\t\t"; printTime();
-				
-				if (std::isnan(Functor.Value))
-				{
-					exit(10);
-				}
-			}
-		}
-		
 		void ADABADAM(VectorXd &x,int nBatches)
 		{
 			int EffectiveBatches = nBatches;
@@ -313,112 +283,84 @@ class Optimizer
 			//initialise ADAM vectors
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
-			Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
-			VectorXd gradAccumulator;
+			VectorXd epochGradient = VectorXd::Zero(Dimensions);
+			VectorXd dx = VectorXd::Zero(Dimensions);
+			
+			//ADAM Variables
 			double beta1 = 0.9;
 			double beta2 = 0.999;
 			double eps = 1e-10;
-			bool minimiseContinues = true;
-			double prevF = 99999999;
-
-			VectorXd dx;
+		
+			double previousEpoch = 99999999;
+			double previousMinibatch = 9999999;
 			
-			int stepsSinceReset = 0;
 			int epochs; 
 			int t = 1;
+			bool minimiseContinues = true;
 			while (minimiseContinues)
 			{
 				epochs = Status.CurrentSteps + 1;
 				double epochL = 0;
-				gradAccumulator  = VectorXd::Zero(Dimensions);
+				epochGradient -= epochGradient;
+				
+				//prepare the pseudo-random batches
 				std::vector<int> batchOrder;
 				for (int i=0; i<EffectiveBatches; ++i) batchOrder.push_back(i);
 				std::random_shuffle ( batchOrder.begin(), batchOrder.end() );
 				
 				
-				
-				
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
 					int currentBatch = batchOrder[batches];
-					
-					
+							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
+					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));
+					
 					m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
-					
-					
-					VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
-					v = ( beta2 * v + (1.0-beta2)* ( gSq) );
+					v = ( beta2 * v + (1.0-beta2)* (VectorXd)( Functor.Gradient.array() * Functor.Gradient.array()) );
 				
 					dx = b1Mod * m * Condition.StepSize;
 	
 					for (int i = 0; i < Dimensions; ++i)
 					{
 						dx[i] /= (sqrt(v[i]*b2Mod) + eps);
-					}
-	
+					}	
 					x -= dx;
 					
 					++t;
+					
 					epochL += Functor.Value;
-					gradAccumulator += Functor.Gradient;
-				}
-				
-				epochL/=EffectiveBatches;
-				gradAccumulator *= 1.0/EffectiveBatches;
-				double df = epochL - prevF;
-				
-				Status.PreviousSteps[Status.CurrentMemoryID] = df;
-				++Status.CurrentMemoryID;
-				if (Status.CurrentMemoryID >= Status.StepMemory)
-				{
-					Status.CurrentMemoryID = 0;
-				}
-
-				minimiseContinues = CheckContinues(dx,gradAccumulator,df);
-				
-				++stepsSinceReset;
-				if (stepsSinceReset > Status.StepMemory)
-				{
-					bool reducedBatchSize = FindOscillations();
-					if (reducedBatchSize)
+					epochGradient += Functor.Gradient;
+					if (EffectiveBatches > 1)
 					{
-						stepsSinceReset = 0;
-						Status.StepMemory += 5;
-						Status.PreviousSteps = std::vector<double>(Status.StepMemory,0.0);
-						Status.CurrentMemoryID = 0;
-						EffectiveBatches/=2;
-						if (EffectiveBatches < 1)
-						{
-							EffectiveBatches = 1;
-						}
-						else
-						{
-							std::cout << "\n\n\n\nBATCH SIZE = " << EffectiveBatches << "\n\n\n\n";
-						}
+						double df_mini = Functor.Value - previousMinibatch;
+						previousMinibatch = Functor.Value;
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,Functor.Gradient.norm(),df_mini);
 					}
 				}
 				
-				prevF = Functor.Value;
-
-				++Status.CurrentSteps;
-				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				epochL/=EffectiveBatches;
+				epochGradient *= 1.0/EffectiveBatches;
+				double df = epochL - previousEpoch;
+				previousEpoch = epochL;
+				
+				
+				UpdateProgress(-1,EffectiveBatches,epochL,epochGradient.norm(),df);
+				
+				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches);
+				minimiseContinues = CheckContinues(dx,epochGradient,df);
+				
+				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
-					Functor.SavePosition(false);
+					minimiseContinues = true;
+					EffectiveBatches = 1;
 				}
 				
-				//~ GlobalLog(1,
-					std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
-					std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) << gradAccumulator.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
-					std::cout << "\t\t\t"; printTime();
-				//~ );
-				
+				++Status.CurrentSteps;
 			}
 		}
-		
-		
 		
 		void GradientTester(VectorXd &x)
 		{
@@ -477,20 +419,45 @@ class Optimizer
 			return true;
 		} 
 
-		bool FindOscillations()
+		int UpdateBatchSize(double df,int currentSize)
+		{
+			int analysisPos = Progress.AnalysisSteps % Progress.AnalysisMemorySize; 
+			
+			Progress.AnalysisMemory[analysisPos] = df;
+			++Progress.AnalysisSteps;
+			
+			
+			bool newSize = currentSize;
+			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
+			{
+
+				if (NeedsBatchReduction())
+				{
+					Progress.AnalysisSteps = 0;
+					newSize = currentSize / 2;
+					if (newSize < 1)
+					{
+						newSize = 1;
+					}
+				}
+			}		
+			return newSize;
+		}
+
+		bool NeedsBatchReduction()
 		{
 			
-			int N = Status.StepMemory;
+			int N = Progress.AnalysisMemorySize;
 			
 			double sum = 0;
 			int signChanges = 0;
 	
 			for (int i = 0; i <N; ++i)
 			{
-				double x = Status.PreviousSteps[i];
+				double x = Progress.AnalysisMemory[i];
 
 				sum += x;
-				if (i > 0 && (sgn(x) != sgn(Status.PreviousSteps[i-1])) &&  abs(x) > 0)
+				if (i > 0 && (sgn(x) != sgn(Progress.AnalysisMemory[i-1])) &&  abs(x) > 0)
 				{
 					++signChanges;
 				} 
@@ -506,6 +473,77 @@ class Optimizer
 			}
 
 			return batchesAreAProblem;
+		}
+
+		void UpdateProgress(int batch, int nBatches,double F, double G, double dF)
+		{
+			int i = Progress.BufferPosition;
+			Progress.PastMiniBatch[i] = batch;
+			Progress.PastBatchCount[i] = nBatches;
+			Progress.PastFs[i] = F;
+			Progress.PastGradNorms[i] = G;
+			Progress.PastDFs[i] = dF;
+			
+			auto time = std::chrono::system_clock::now();
+			std::chrono::duration<double> diff = time - Progress.StartTime;
+			
+			Progress.PastTimes[i] = diff.count();
+			
+			++Progress.BufferPosition;
+			
+			if (Progress.BufferPosition >= Progress.BufferSize)
+			{
+				SaveProgress();
+				Progress.BufferPosition = 0;
+			}
+			
+			if (batch == -1)
+			{
+				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
+				std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ")\n"; 
+				std::cout << "\t\t\t"; printTime();
+				
+				
+				if (Status.CurrentSteps % Condition.SaveSteps == 0)
+				{
+					Functor.SavePosition(false);
+				}
+			}
+			
+		}
+
+		void SaveProgress()
+		{
+			std::string saveFile = Progress.ProgressDir + "OptimizerProgress.txt";
+			std::fstream file;
+			int width = 10;
+			if (Progress.HasSaved == false)
+			{
+				file.open(saveFile,std::ios::out);
+				std::vector<std::string> headers = {"Elapsed","Batch", "nBatches","F","dF","GradNorm"};
+				for (int i = 0; i < headers.size(); ++i)
+				{
+					file << std::setw(width) << headers[i] + ",";
+				}
+				file << "\n";
+				Progress.HasSaved = true;
+			}
+			else
+			{
+				file.open(saveFile,std::ios::app);
+			}
+			
+			for (int i = 0; i < Progress.BufferSize; ++i)
+			{
+				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
+				for (int j = 0; j < values.size(); ++j)
+				{
+					file << std::setw(width) << values[j] + ",";
+				}
+				file << "\n";
+			}
+			
+			file.close();
 		}
 
 		std::string GetStatus()
@@ -531,19 +569,3 @@ class Optimizer
 };
 
 
-
-class TestFunctor
-{
-	public:
-		double Value;
-		VectorXd Gradient;
-		
-		TestFunctor();
-		TestFunctor(int n);
-		int LoopID;
-		void Calculate(const VectorXd & x);
-		void operator () (const VectorXd & x);
-		void SavePosition(bool finalSave);
-	private:
-		int Dimensions; 
-};
