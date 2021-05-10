@@ -355,7 +355,7 @@ class Optimizer
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
 					minimiseContinues = true;
-					EffectiveBatches = 1;
+					EffectiveBatches /= 2;
 				}
 				
 				++Status.CurrentSteps;
@@ -390,26 +390,27 @@ class Optimizer
 		
 			if (Status.CurrentSteps > Condition.MaxSteps)
 			{
-				//~ std::cout << "STEPS" << std::endl;
+				std::cout << "STEPS" << std::endl;
 				Status.TooManySteps = true;
 				return false;
 			}
 			if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
 			{
-				//~ std::cout << "X" << std::endl;
+				std::cout << "X " << dx.norm() << std::endl;
 				Status.ReachedStepConvergence = true;
 				Converged = true;
 				return false;
 			}
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
-				//~ std::cout << "G" << std::endl;
+				std::cout << "G " << dg.norm() << std::endl;
 				Status.ReachedGradConvergence = true;
 				Converged = true;
 				return false;
 			}
 			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
 			{
+				std::cout << "DF " << abs(df) << std::endl;
 				Status.ReachedFunctionConvergence = true;
 				Converged = true;
 				return false;
@@ -516,11 +517,11 @@ class Optimizer
 		{
 			std::string saveFile = Progress.ProgressDir + "OptimizerProgress.txt";
 			std::fstream file;
-			int width = 10;
+			int width = 20;
 			if (Progress.HasSaved == false)
 			{
 				file.open(saveFile,std::ios::out);
-				std::vector<std::string> headers = {"Elapsed","Batch", "nBatches","F","dF","GradNorm"};
+				std::vector<std::string> headers = {"Elapsed","Epoch","Batch", "nBatches","F","dF","GradNorm"};
 				for (int i = 0; i < headers.size(); ++i)
 				{
 					file << std::setw(width) << headers[i] + ",";
@@ -535,10 +536,10 @@ class Optimizer
 			
 			for (int i = 0; i < Progress.BufferSize; ++i)
 			{
-				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
+				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Status.CurrentSteps+1),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
 				for (int j = 0; j < values.size(); ++j)
 				{
-					file << std::setw(width) << values[j] + ",";
+					file << std::setw(width) << std::setprecision(8) << values[j] + ",";
 				}
 				file << "\n";
 			}
