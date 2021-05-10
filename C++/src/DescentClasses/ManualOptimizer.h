@@ -430,7 +430,7 @@ class Optimizer
 			++Progress.AnalysisSteps;
 			std::cout << "Currently made " << Progress.AnalysisSteps << " steps " << std::endl;
 			
-			bool newSize = currentSize;
+			double newSize = currentSize;
 			
 			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
 			{
