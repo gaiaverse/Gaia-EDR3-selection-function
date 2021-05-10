@@ -95,7 +95,7 @@ class Optimizer
 			Status.ReachedStepConvergence = false;
 			Status.ReachedFunctionConvergence = false;
 			
-			Progress.BufferSize = 100;
+			Progress.BufferSize = 10;
 			Progress.ProgressDir = "";
 			Progress.AnalysisMemorySize = 5;
 			
@@ -540,10 +540,14 @@ class Optimizer
 			
 			for (int i = 0; i < Progress.BufferSize; ++i)
 			{
-				std::vector<std::string> values = {std::to_string(Progress.PastTimes[i]),std::to_string(Progress.PastEpoch[i]),std::to_string(Progress.PastMiniBatch[i]),std::to_string(Progress.PastBatchCount[i]),std::to_string(Progress.PastFs[i]),std::to_string(Progress.PastDFs[i]),std::to_string(Progress.PastGradNorms[i])};
-				for (int j = 0; j < values.size(); ++j)
-				{
-					file << std::setw(width) << std::setprecision(8) << values[j] + ",";
+				int prec = 8l
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastTimes[i] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastEpochi] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastMiniBatch[i] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastBatchCount[i] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastFs[i] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastDFs[i] + ",";
+				file << std::setw(width) << std::setprecision(prec) << Progress.PastGradNorms[i] + ",";
 				}
 				file << "\n";
 			}
