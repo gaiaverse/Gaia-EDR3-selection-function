@@ -157,9 +157,9 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	const int n =  Nt+Nm*Nl;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
-	int circuitBreaker = batchID;
-	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
-	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
+	std::vector<int> info = {batchID,effectiveBatches};
+	MPI_Bcast(&info, 2, MPI_INT, RunningID, MPI_COMM_WORLD);
+	//~ MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
 	ForwardTransform(RawPosition);
