@@ -108,7 +108,7 @@ void WorkerProcess()
 	while (hasFinished == false)
 	{
 		//check for circuit breaker signal (= -1 when circuit is broken) if no signal, calculate next iteration of L
-		MPI_Bcast(&info, 2, MPI_INT, RootID, MPI_COMM_WORLD);
+		MPI_Bcast(&info[0], 2, MPI_INT, RootID, MPI_COMM_WORLD);
 		targetBatch = info[0];
 		if (targetBatch >= 0)
 		{	
