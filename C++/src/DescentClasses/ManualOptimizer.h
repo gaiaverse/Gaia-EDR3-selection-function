@@ -422,19 +422,21 @@ class Optimizer
 
 		int UpdateBatchSize(double df,int currentSize)
 		{
+			std::cout << "Looking at memory reduction! with current size = " << newSize << std::endl;
 			int analysisPos = Progress.AnalysisSteps % Progress.AnalysisMemorySize; 
 			
 			Progress.AnalysisMemory[analysisPos] = df;
 			++Progress.AnalysisSteps;
-			
+			std::cout << "Currently made " << Progress.AnalysisSteps << " steps " << std::end;
 			
 			bool newSize = currentSize;
 			
 			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
 			{
-				std::cout << "Looking at memory reduction! " << std::endl;
+				std::cout << "Looking for oscillations ";
 				if (NeedsBatchReduction())
 				{
+					std::cout << "Found them! " <<std::endl;
 					Progress.AnalysisSteps = 0;
 					newSize = currentSize / 2;
 					if (newSize < 1)
