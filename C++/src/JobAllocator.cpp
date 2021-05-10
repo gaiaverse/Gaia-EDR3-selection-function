@@ -114,7 +114,14 @@ void WorkerProcess()
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
-			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+			
+			for (int i = 0; i < totalTransformedParams; ++i)
+			{
+				double v;
+				MPI_Bcast(&v, 1, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+				pos[i] = v;
+			}
+			
 			L.Calculate(pos,targetBatch,effectiveBatches);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
