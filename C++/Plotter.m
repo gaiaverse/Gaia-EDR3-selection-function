@@ -1,9 +1,9 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestBase","TestVectors","TestBroadcast","TestDumb"];
+files = ["TestBase","TestVectors"];
 folder = "TestBase";
-getData(30)
+getData(10)
 
 
 temporalPlot(folder);
@@ -15,7 +15,7 @@ function getData(timeGap)
     timeSince = seconds(SyncCurrentTime - f.SyncCurrentTime);
 
     if timeSince > timeGap
-        system(' rsync -ar "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/" Output/');
+        system(' rsync -avr "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/" Output/');
         save("SyncTime.mat","SyncCurrentTime");
     end
 end

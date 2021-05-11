@@ -317,30 +317,35 @@ class Optimizer
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
 					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
-					double b2Mod = 1.0/(1.0 - pow(beta2,t));
+					double b2Mod = 1.0/(1.0 - pow(beta2,t));			
 					
-					
-					VectorXd grad = Eigen::Map<Eigen::VectorXd>(Functor.Gradient.data(),Functor.Gradient.size());
-					m = (  beta1 *m + (1.0-beta1)*grad);
-					v = ( beta2 * v + (1.0-beta2)* (VectorXd)( grad.array() * grad.array()) );
+					//~ VectorXd grad = Eigen::Map<Eigen::VectorXd>(Functor.Gradient.data(),Functor.Gradient.size());
+					//~ m = (  beta1 *m + (1.0-beta1)*grad);
+					//~ v = ( beta2 * v + (1.0-beta2)* (VectorXd)( grad.array() * grad.array()) );
 				
-					dx = b1Mod * m * Condition.StepSize;
+					//~ dx = b1Mod * m * Condition.StepSize;
 	
+					double gNorm = 0;
 					for (int i = 0; i < Dimensions; ++i)
 					{
-						dx[i] /= (sqrt(v[i]*b2Mod) + eps);
+						double g = Functor.Gradient[i];
+						gNorm += g*g;
+						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
+						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
+						
+						dx[i] = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
+						x[i] -= dx[i];
+						epochGradient[i] += g;
 					}	
-					x -= dx;
-					
 					++t;
 					
 					epochL += Functor.Value;
-					epochGradient += grad;
+					//~ epochGradient += grad;
 					if (EffectiveBatches > 1)
 					{
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,grad.norm(),df_mini);
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrt(gNorm),df_mini);
 					}
 				}
 				
