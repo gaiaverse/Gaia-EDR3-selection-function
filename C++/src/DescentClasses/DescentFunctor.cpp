@@ -3,13 +3,6 @@
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
-//~ void checkNan(const std::vector<double> & y, std::string origin)
-//~ {
-	//~ if(y.hasNaN())
-	//~ {
-		//~ ERROR(2,"One or more values sourced from " + origin +  "  was a NaN.");
-	//~ }	
-//~ }
 
 void DescentFunctor::ResetPosition()
 {
