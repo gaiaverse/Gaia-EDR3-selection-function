@@ -362,6 +362,7 @@ class Optimizer
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
+					std::cout << "I WANT TO QUIT!" << std::endl;
 					minimiseContinues = true;
 					EffectiveBatches = 1;
 				}
