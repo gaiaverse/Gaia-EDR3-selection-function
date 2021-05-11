@@ -1,9 +1,9 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestBase","TestVectors","Testing"];
-folder = "TestBase";
-getData(10)
+files = ["TestBaseNew","TestInversion"];
+folder = "TestBaseNew";
+% getData(10)
 
 
 temporalPlot(folder);
@@ -139,7 +139,7 @@ function progressPlot(files)
 
     end
     subplot(2,1,1);
-    legend('Baseline Model','Vectorised Improvements',"Jonathan's Test");
+    legend('Baseline Model',"Inverted Transform Order");
     % figure(3);
     % cla;
     % M = 213;
