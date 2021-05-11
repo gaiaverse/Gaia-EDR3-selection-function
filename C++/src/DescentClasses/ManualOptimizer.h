@@ -290,8 +290,8 @@ class Optimizer
 			//ADAM Variables
 			double beta1 = 0.9;
 			double beta2 = 0.999;
-			double eps = 1e-10;
-		
+			double eps = 1e-8;
+	
 			double previousEpoch = 99999999;
 			double previousMinibatch = 9999999;
 			

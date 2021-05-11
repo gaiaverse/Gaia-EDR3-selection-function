@@ -13,7 +13,7 @@ function getData(timeGap)
     f = load("SyncTime.mat");
     SyncCurrentTime = datetime('now');
     timeSince = seconds(SyncCurrentTime - f.SyncCurrentTime);
-% timeSince = 1000;
+
     if timeSince > timeGap
         system(' rsync -ar "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/" Output/');
         save("SyncTime.mat","SyncCurrentTime");
