@@ -363,7 +363,7 @@ class Optimizer
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
 					minimiseContinues = true;
-					EffectiveBatches /= 2;
+					EffectiveBatches = 1;
 				}
 				
 				++Status.CurrentSteps;
