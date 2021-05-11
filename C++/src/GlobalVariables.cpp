@@ -39,7 +39,7 @@ Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
 void PrintStatus(std::string location)
 {
 	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","initialisationBounds"};
-	std::vector<double> vals = {Nt,Nm,healpix_order, needlet_order, Nl,Ns,totalRawParams,totalTransformedParams,mut,sigmat,lm,lt,initialisationBounds};
+	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)totalRawParams,(double)totalTransformedParams,(double)mut,(double)sigmat,(double)lm,(double)lt,(double)initialisationBounds};
 	
 	std::fstream file;
 	file.open(location + "/Optimiser_Properties.dat",std::ios::out);

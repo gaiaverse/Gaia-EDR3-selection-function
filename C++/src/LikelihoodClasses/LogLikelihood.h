@@ -31,10 +31,23 @@ class LogLikelihood
 		LogLikelihood(const std::vector<std::vector<Star>> & data, int id);
 		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches);
 		
+		
 	protected:
 		
 		//member data 
 		LikelihoodData Data;
+
+		std::vector<double> TransformedPosition;
+		std::vector<double> TransformedGradient;
+		Eigen::Matrix<double, Nm, Nm> CholeskyKg;     
+
+		void MakeCovarianceMatrix();
+		int needletN;
+		std::vector<int> needlet_u;
+    	std::vector<int> needlet_v;
+    	std::vector<double> needlet_w;
+    	std::vector<double> bVector;
+
 
 		//internal functions
 		void Reset();
@@ -44,4 +57,7 @@ class LogLikelihood
 		void GenerateContribution(const Star * candidate);
 		void GenerateExactContribution(const Star * candidate);
 		void AssignGradients(const Star * candidate);
+		
+		void ForwardTransform(const std::vector<double> &z);
+		void BackwardTransform();
 };

@@ -11,18 +11,6 @@
 #include "libs/Eigen/Core"
 #include <fstream>
 #define EIGEN_MPL2_ONLY
-
-//~ #include "libs/LBFG/LBFGS.h"
-
-#include "libs/cppoptlib/meta.h"
-#include "libs/cppoptlib/problem.h"
-#include "libs/cppoptlib/solver/gradientdescentsolver.h"
-#include "libs/cppoptlib/solver/conjugatedgradientdescentsolver.h"
-#include "libs/cppoptlib/solver/lbfgssolver.h"
-#include "libs/cppoptlib/solver/neldermeadsolver.h"
-
-#include "libs/cppoptlib/solver/newtondescentsolver.h"
-#include "libs/cppoptlib/solver/cmaessolver.h"
 #include "DataOperators/Star.h"
 #include "DataOperators/DataLoading.h"
 #include "DescentClasses/DescentFunctor.h"
@@ -97,11 +85,8 @@ void WorkerProcess()
 	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
 	LogLikelihood L = LogLikelihood(Data,ProcessRank);
-	
-	//empty vectors for broadcasting reasons (do I really need these?!)
-	std::vector<double> emptyVec(dimensionality,0.0);
-	double emptyS=0;
-	int emptyS2=0;
+
+
 	int targetBatch;
 	int effectiveBatches;
 	bool hasFinished = false;
@@ -116,14 +101,17 @@ void WorkerProcess()
 			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+			
+			
 			L.Calculate(pos,targetBatch,effectiveBatches);
+			
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
 			//broadcast results back to root 
-			MPI_Reduce(&nS, &emptyS2, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&nS, NULL, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&l,NULL,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&L.Gradient[0], NULL, dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 			
 		}
 		else

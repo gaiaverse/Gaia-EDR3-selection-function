@@ -9,13 +9,9 @@ class LogLikelihoodPrior : public LogLikelihood
 	public:
 		LogLikelihoodPrior(const std::vector<std::vector<Star>> & data,int id): LogLikelihood(data, id){};
 	
-		
-	     
+			     
 	    //additional functions
-	    void Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches);
-		void MakeCovarianceMatrix();
+	    void PriorCalculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches);
 		
-		//saved values 
-		bool Kg_decomposed = false;
-	    Eigen::Matrix<double, Nm, Nm> CholeskyKg;     
+
 };

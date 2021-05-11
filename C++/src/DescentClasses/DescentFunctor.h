@@ -47,20 +47,14 @@ class DescentFunctor
 		
 		
 		//Needlet stuff - has to be public
-		int needletN;
-		std::vector<int> needlet_u;
-    	std::vector<int> needlet_v;
-    	std::vector<double> needlet_w;
-    	std::vector<double> forwardBVector;
+		
+    	
 		int NStars;
 		int StarsInLastBatch;
 		//holder for transformed values
 		std::vector<double> TransformedPosition;
 		std::vector<double> TransformedGradient;
-		std::vector<double> bVector;
-
-		void ForwardTransform(const VectorXd &z);
-		void BackwardTransform();		
+		
 		void ResetPosition();
 		
 
@@ -83,20 +77,7 @@ class DescentFunctor
 				TransformedGradient = std::vector<double>(totalTransformedParams,0);
 				OutputDir = outdir;
 				
-				std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-				int i = 0;
-			    forLineVectorInFile(needlet_file,',',
-			 
-					if (i > 0)
-					{
-				        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
-				        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-				        needlet_w.push_back(std::stod(FILE_LINE_VECTOR[2]));
-					}
-			        ++i;
-			    );    
-			    needletN = needlet_u.size();
-			    bVector = std::vector<double>(Nm*Ns,0);
+				
 			    
 				Value = 0;
 				Gradient = std::vector<double>(totalRawParams,0);
