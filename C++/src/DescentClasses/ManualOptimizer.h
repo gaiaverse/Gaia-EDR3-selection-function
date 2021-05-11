@@ -369,7 +369,7 @@ class Optimizer
 				
 				++Status.CurrentSteps;
 			}
-			SaveProgress(Progress.BufferPosition+1);
+			SaveProgress(Progress.BufferPosition);
 		}
 		
 		void GradientTester(VectorXd &x)
