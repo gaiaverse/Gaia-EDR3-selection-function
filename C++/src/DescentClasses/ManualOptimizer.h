@@ -369,6 +369,7 @@ class Optimizer
 				
 				++Status.CurrentSteps;
 			}
+			SaveProgress(Progress.BufferPosition+1);
 		}
 		
 		void GradientTester(VectorXd &x)
@@ -506,7 +507,7 @@ class Optimizer
 			
 			if (Progress.BufferPosition >= Progress.BufferSize)
 			{
-				SaveProgress();
+				SaveProgress(Progress.BufferSize);
 				Progress.BufferPosition = 0;
 			}
 			
@@ -525,7 +526,7 @@ class Optimizer
 			
 		}
 
-		void SaveProgress()
+		void SaveProgress(int n)
 		{
 			std::string saveFile = Progress.ProgressDir + "OptimiserProgress.txt";
 			std::fstream file;
@@ -546,7 +547,7 @@ class Optimizer
 				file.open(saveFile,std::ios::app);
 			}
 			
-			for (int i = 0; i < Progress.BufferSize; ++i)
+			for (int i = 0; i < n; ++i)
 			{
 				int prec = 8l;
 				file << std::setw(width) << std::setprecision(prec) << Progress.PastTimes[i] << ",";
