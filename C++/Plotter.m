@@ -1,9 +1,9 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestBase","TestVectors","TestEfficiency"];
+files = ["TestInversion"];
 folder = "TestBase";
-getData(10)
+% getData(10)
 
 
 temporalPlot(folder);

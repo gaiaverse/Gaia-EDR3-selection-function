@@ -48,7 +48,7 @@ void RootProcess()
 	
 	//tell the workers to resize their parameter vectors + prepare for start
 	int nParameters = totalRawParams;
-	int nParametersForWorkers = totalTransformedParams; 
+	int nParametersForWorkers = totalRawParams; 
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
 
@@ -82,6 +82,11 @@ void WorkerProcess()
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
 	int dimensionality;
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	
+	if (dimensionality != totalRawParams)
+	{
+		ERROR(-9, "Something horrible happened in the MPI setup");
+	}
 	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
 	LogLikelihood L = LogLikelihood(Data,ProcessRank);

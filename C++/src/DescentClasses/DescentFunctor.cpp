@@ -66,7 +66,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &inputPosition, int b
 	
 	std::vector<double> RawPosition(inputPosition.data(), inputPosition.data() + inputPosition.size() );
 	
-	const int n =  Nt+Nm*Nl;
+	const int n =  totalRawParams;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = batchID;
@@ -87,7 +87,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &inputPosition, int b
 	
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+	MPI_Reduce(&L.Gradient[0], &Gradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
 
 	Value = Lsum;

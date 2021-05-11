@@ -51,9 +51,7 @@ class DescentFunctor
     	
 		int NStars;
 		int StarsInLastBatch;
-		//holder for transformed values
-		std::vector<double> TransformedPosition;
-		std::vector<double> TransformedGradient;
+
 		
 		void ResetPosition();
 		
@@ -72,9 +70,7 @@ class DescentFunctor
 				Start = std::chrono::system_clock::now();
 								
 				PrevLock = VectorXd::Random(totalRawParams);
-				
-				TransformedPosition = std::vector<double>(totalTransformedParams,0);
-				TransformedGradient = std::vector<double>(totalTransformedParams,0);
+			
 				OutputDir = outdir;
 				
 				

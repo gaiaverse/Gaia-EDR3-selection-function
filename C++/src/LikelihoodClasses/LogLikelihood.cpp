@@ -126,7 +126,6 @@ void LogLikelihood::BackwardTransform()
 			}
 		}
 	}
-
 }
 
 
@@ -151,7 +150,7 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 		int n = Data.Stars[i].size();
 		for (int j = 0; j < n; ++j)
 		{
-			PerStarContribution(i,j,x);
+			PerStarContribution(i,j);
 		}
 		StarsUsed += n;
 	}
@@ -168,19 +167,19 @@ void LogLikelihood::Reset()
 }
 
 
-void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
+void LogLikelihood::PerStarContribution(int batchId, int starID)
 {
 
 	const Star * candidate = &Data.Stars[batchId][starID];
 
-	GeneratePs(candidate,x);
+	GeneratePs(candidate);
 	
 	GenerateContribution(candidate);
 		
 	AssignGradients(candidate);
 }
 
-void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double> & x)
+void LogLikelihood::GeneratePs(const Star * candidate)
 {
 	int n = candidate->nVisit;
 	//generate p vectors
@@ -188,11 +187,11 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 	{
 		int t= candidate->TimeSeries[i];
 
-		double xt = x[Data.time_mapping[t]];
+		double xt = TransformedPosition[Data.time_mapping[t]];
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
-		double xml1 = x[idx1];
-		double xml2 = x[idx2];
+		double xml1 = TransformedPosition[idx1];
+		double xml2 = TransformedPosition[idx2];
 		
 		Data.pt[i] = sigmoid(xt);
 		Data.pml[i] = sigmoid(xml1 + xml2);

@@ -51,9 +51,9 @@ class LogLikelihood
 
 		//internal functions
 		void Reset();
-		void PerStarContribution(int batchId, int starID,const std::vector<double> & position);
+		void PerStarContribution(int batchId, int starID);
 		
-		void GeneratePs(const Star * candidate,const std::vector<double> & position);
+		void GeneratePs(const Star * candidate);
 		void GenerateContribution(const Star * candidate);
 		void GenerateExactContribution(const Star * candidate);
 		void AssignGradients(const Star * candidate);
