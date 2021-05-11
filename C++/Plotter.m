@@ -1,7 +1,7 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestBase","TestVectors"];
+files = ["TestBase","TestVectors","TestEfficiency"];
 folder = "TestBase";
 getData(10)
 

@@ -19,6 +19,7 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 	bool gradFlag = false;
 	bool targetFlag = false;
 	bool startFlag = false;
+	bool stepFlag = false;
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -70,6 +71,11 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 			StartVectorLocation = arg;
 			startFlag = false;
 		}
+		if (stepFlag == true)
+		{
+			MaxSteps = stoi(arg);
+			stepFlag = false;
+		}
 		
 		if (arg == "-f")
 		{
@@ -91,7 +97,10 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 		{
 			startFlag = true;
 		}
-		
+		if (arg == "-l")
+		{
+			stepFlag = true;
+		}
 		if (arg == "-h" || arg == "--help")
 		{
 			forLineVectorInFile("src/GenericFunctions/commandHelpFile.txt",'|',
