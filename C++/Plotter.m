@@ -1,8 +1,8 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestInversion"];
-folder = "TestBase";
+files = ["TestBaseNew","TestInversion"];
+folder = "TestBaseNew";
 % getData(10)
 
 
@@ -62,6 +62,17 @@ function progressPlot(files)
     
         fullEpoch = f(f.Batch == -1,:);
         miniBatches = f(f.Batch > -1,:);
+		
+		cutx = false(1,height(fullEpoch));
+		for j = 2:height(fullEpoch)
+			up = fullEpoch.nBatches(j);
+			down = fullEpoch.nBatches(j-1);
+			if up ~= down
+				cutx(j-1) = true;
+			end
+		end
+		shrinkLines = fullEpoch(cutx,:);
+		
         subplot(2,1,1);
         hold on;
 
@@ -71,10 +82,18 @@ function progressPlot(files)
         xF = fullEpoch.Epoch; %fullEpoch.Elapsed;
 
 %         plot(fullEpoch.Elapsed,xF);
-        plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+        plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);   
+        plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:),'HandleVisibility','Off');
         
-        plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:));
-        
+		cx = [];
+		cy = [];
+		cz = [];
+		for j = 1:height(shrinkLines)
+			cx(end+1) = shrinkLines.Elapsed(j);
+			cy(end+1) = shrinkLines.Epoch(j);
+			cz(end+1) = shrinkLines.F(j)/L0;
+		end
+		scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
 %         xlim([400,max(xF)])
 
         ylabel("Complete Epochs");
@@ -89,6 +108,7 @@ function progressPlot(files)
         plot(miniBatches.Elapsed,miniBatches.F/L0,'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
         
         plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
+		scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
         set(gca,'yscale','log')
         set(gca,'xscale','log')
           xlabel("Elapsed Time (s)");
@@ -119,7 +139,7 @@ function progressPlot(files)
 
     end
     subplot(2,1,1);
-    legend('Baseline Model','Vectorised Improvements','Slightly reduced broadcasting',"Broadcast position individually");
+    legend('Baseline Model',"Inverted Transform Order");
     % figure(3);
     % cla;
     % M = 213;
