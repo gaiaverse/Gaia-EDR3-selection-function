@@ -115,6 +115,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	//resize datafile
 	Data.resize(N_SGD_Batches);
 
+	int allStarsLoaded = 0;
 	for (int i = 0; i < Files.size(); ++i)
 	{
 		std::string file = Files[i];
@@ -136,6 +137,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin));
 
 			++starsLoaded;
+			++allStarsLoaded;
 			++idx;
 			
 			if (idx == batchCounts[batch][i])
@@ -143,6 +145,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 				++batch;
 				idx = 0;
 			}
+			
 			
 			if (DataLoadCount > 0 && starsLoaded >= DataLoadCount)
 			{
@@ -154,14 +157,14 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	GlobalLog(1,
 		auto end = std::chrono::system_clock::now();
 		std::string duration = formatDuration(start,end);
-		std::cout << "\tProcess " << ProcessRank << " has loaded in " << Data.size() << " datapoints in " << duration << std::endl; 
+		std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
 	);
 	
-	int n = Data.size();
+	
 
 	int MaxStarsInCore = 0;
-	MPI_Reduce(&n,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
-	MPI_Reduce(&n, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
+	MPI_Reduce(&allStarsLoaded,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
+	MPI_Reduce(&allStarsLoaded, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
 	
 	MPI_Barrier(MPI_COMM_WORLD);
 	if (ProcessRank==RootID)
