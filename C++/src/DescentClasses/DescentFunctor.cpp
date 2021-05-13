@@ -88,18 +88,18 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	}
 
 	// bms = Lmnzns
-	//~ for (int s = 0; s < Ns; ++s)
-	//~ {
-		//~ for (int m = 0; m < Nm; ++m)
-		//~ {
-			//~ bVector[s*Nm+m] = 0;
-			//~ for (int n = 0; n <= m; ++n)
-			//~ {
-				//~ bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
-			//~ }
-		//~ }
-	//~ }
-	std::fill(bVector.begin(),bVector.end(),0.0);
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			bVector[s*Nm+m] = 0;
+			for (int n = 0; n <= m; ++n)
+			{
+				bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
+			}
+		}
+	}
+
 	// yml
 	for (int i = 0; i < needletN; ++i)
 	{
