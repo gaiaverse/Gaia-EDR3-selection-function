@@ -97,6 +97,10 @@ class DescentFunctor
 			    );    
 			    needletN = needlet_u.size();
 			    bVector = std::vector<double>(Nm*Ns,0);
+			    for (int i = 0; i < Nm*Ns; ++i)
+			    {
+					bVector[i] = 0.01*i;
+				}
 			    
 				Value = 0;
 				Gradient = std::vector<double>(totalRawParams,0);
