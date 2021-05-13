@@ -212,7 +212,7 @@ class Optimizer
 				}
 				++Status.CurrentSteps;				
 				double df = Functor.Value - prevF;
-				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
+				minimiseContinues = CheckContinues(Functor.Gradient,df);
 				prevF = Functor.Value;
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
@@ -259,7 +259,7 @@ class Optimizer
 				x -= dx;
 				
 				double df = Functor.Value - prevF;
-				minimiseContinues = CheckContinues(dx,Functor.Gradient,df);
+				minimiseContinues = CheckContinues(Functor.Gradient,df);
 				prevF = Functor.Value;
 				++Status.CurrentSteps;
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
@@ -285,7 +285,7 @@ class Optimizer
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
 			VectorXd epochGradient = VectorXd::Zero(Dimensions);
-			VectorXd dx = VectorXd::Zero(Dimensions);
+			//~ VectorXd dx = VectorXd::Zero(Dimensions);
 			
 			//ADAM Variables
 			double beta1 = 0.9;
@@ -326,17 +326,17 @@ class Optimizer
 					//~ dx = b1Mod * m * Condition.StepSize;
 	
 					double gNorm = 0;
-					for (int i = 0; i < Dimensions; ++i)
-					{
-						double g = Functor.Gradient[i];
-						gNorm += g*g;
-						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
-						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
+					//~ for (int i = 0; i < Dimensions; ++i)
+					//~ {
+						//~ double g = Functor.Gradient[i];
+						//~ gNorm += g*g;
+						//~ m[i] = beta1 * m[i] + (1.0 - beta1)*g;
+						//~ v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						dx[i] = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
-						x[i] -= dx[i];
-						epochGradient[i] += g;
-					}	
+						//~ dx_i = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
+						//~ x[i] -= dx_i;
+						//~ epochGradient[i] += g;
+					//~ }	
 					++t;
 					
 					epochL += Functor.Value;
@@ -358,7 +358,7 @@ class Optimizer
 				UpdateProgress(-1,EffectiveBatches,epochL,epochGradient.norm(),df);
 				
 				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches);
-				minimiseContinues = CheckContinues(dx,epochGradient,df);
+				minimiseContinues = CheckContinues(epochGradient,df);
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
@@ -395,7 +395,7 @@ class Optimizer
 			
 		}
 			
-		bool CheckContinues(const VectorXd & dx,const VectorXd & dg, double df)
+		bool CheckContinues(const VectorXd & dg, double df)
 		{
 		
 			if (Status.CurrentSteps > Condition.MaxSteps)
@@ -404,13 +404,13 @@ class Optimizer
 				Status.TooManySteps = true;
 				return false;
 			}
-			if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
-			{
-				std::cout << "X " << dx.norm() << std::endl;
-				Status.ReachedStepConvergence = true;
-				Converged = true;
-				return false;
-			}
+			//~ if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
+			//~ {
+				//~ std::cout << "X " << dx.norm() << std::endl;
+				//~ Status.ReachedStepConvergence = true;
+				//~ Converged = true;
+				//~ return false;
+			//~ }
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
 				std::cout << "G " << dg.norm() << std::endl;
