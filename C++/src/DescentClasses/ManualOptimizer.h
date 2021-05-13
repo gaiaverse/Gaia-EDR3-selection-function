@@ -86,7 +86,7 @@ class Optimizer
 			Condition.gConvergence = 1e-7;
 			Condition.fConvergence = 0;
 			Condition.StepSize = 0.02;
-			Condition.SaveSteps = 5;
+			Condition.SaveSteps = SaveSteps;
 			Condition.InitialStepMemory= 10;
 			Status.CurrentSteps = 0;
 		
@@ -515,13 +515,15 @@ class Optimizer
 			{
 				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
 				std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ")\n"; 
-				std::cout << "\t\t\t"; printTime();
+				
 				
 				
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
+					std::cout << "\t\t\tI have saved my position" << std::endl;
 					Functor.SavePosition(false);
 				}
+				std::cout << "\t\t\t"; printTime();
 			}
 			
 		}

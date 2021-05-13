@@ -1,9 +1,9 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["TestBaseNew","TestInversion"];
-folder = "TestBaseNew";
-% getData(10)
+files = ["DataSubsetRun"];
+folder = "DataSubsetRun";
+getData(60)
 
 
 temporalPlot(folder);
