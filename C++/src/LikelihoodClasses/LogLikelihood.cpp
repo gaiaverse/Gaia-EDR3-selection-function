@@ -35,7 +35,7 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 void LogLikelihood::Reset()
 {
 	Value = 0;
-	std::fill(Gradient.begin(),Gradient.end(),0.0);
+	//~ std::fill(Gradient.begin(),Gradient.end(),0.0);
 }
 
 
