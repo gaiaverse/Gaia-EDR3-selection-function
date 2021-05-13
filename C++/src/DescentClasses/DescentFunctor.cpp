@@ -100,16 +100,13 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		}
 	}*/
 	// bms = Lmnzns
+	
+	std::fill(bVector.begin(), bVector.end(),0);
 	for (int s = 0; s < Ns; ++s)
 	{
-		for (int m = 0; m < Nm; ++m)
+		for (int i = 0; i < L.choleskyN; ++i)
 		{
-			bVector[s*Nm+m] = 0;
-		}
-
-		for (int i = 0; i < choleskyN; ++i)
-		{
-			bVector[s*Nm+cholesky_u[i]] += cholesky_w[i] * z[Nt+s*Nm+cholesky_v[i]];
+			bVector[s*Nm+L.cholesky_u[i]] += L.cholesky_w[i] * z[Nt+s*Nm+L.cholesky_v[i]];
 		}
 	}
 
@@ -170,9 +167,9 @@ void DescentFunctor::BackwardTransform()
 	// bms = Lmnzns
 	for (int s = 0; s < Ns; ++s)
 	{
-		for (int i = 0; i < choleskyN; ++i)
+		for (int i = 0; i < L.choleskyN; ++i)
 		{
-			Gradient[Nt+s*Nm+cholesky_v[i]] += cholesky_w[i] * bVector[s*Nm+cholesky_u[i]];
+			Gradient[Nt+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
 		}
 	}
 
