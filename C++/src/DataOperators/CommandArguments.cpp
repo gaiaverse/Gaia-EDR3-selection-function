@@ -8,7 +8,7 @@ CommandArgs::CommandArgs()
 	GradLim = 1e-2;;
 	DataSource = "../../TestSets/magnitudes/";
 	OutputDirectory = "Output";	
-	MaxSteps = 2000;
+	MaxSteps = 5000;
 }
 
 
