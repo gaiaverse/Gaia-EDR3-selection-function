@@ -29,5 +29,30 @@ void LogLikelihoodPrior::MakeCovarianceMatrix()
 
 	//decompose to make CholeskyKg
 	CholeskyKg = Kg.llt().matrixL();
+
+	max_in_row = std::vector<double>(Nm,0);
+	for (int i = 0; i < Nm; i++) 
+	{
+		for (int j = 0; j <= i; j++) 
+		{
+			max_in_row[i] += max(0.0,abs(CholeskyKg(i,j))-max_in_row[i]);
+		}
+	}
+
+	int choleskyN = 0;
+	for (int i = 0; i < Nm; i++) 
+	{
+		for (int j = 0; j <= i; j++) 
+		{
+			if (abs(CholeskyKg(i,j)) > cholesky_tol * max_element[i])
+			{
+				choleskyN += 1;
+				cholesky_u.push_back(i);
+				cholesky_v.push_back(j);
+				cholesky_w.push_back(CholeskyKg(i,j));
+			}
+		}
+	}
+
 	Kg_decomposed = true;
 }

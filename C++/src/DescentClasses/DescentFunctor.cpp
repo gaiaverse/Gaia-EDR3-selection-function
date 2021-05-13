@@ -87,7 +87,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
     	TransformedPosition[i] = mut + sigmat * previous;
 	}
 
-	// bms = Lmnzns
+	/*// bms = Lmnzns
 	for (int s = 0; s < Ns; ++s)
 	{
 		for (int m = 0; m < Nm; ++m)
@@ -97,6 +97,19 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 			{
 				bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
 			}
+		}
+	}*/
+	// bms = Lmnzns
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			bVector[s*Nm+m] = 0;
+		}
+
+		for (int i = 0; i < choleskyN; ++i)
+		{
+			bVector[s*Nm+cholesky_u[i]] += cholesky_w[i] * z[Nt+s*Nm+cholesky_v[i]];
 		}
 	}
 
@@ -131,8 +144,8 @@ void DescentFunctor::BackwardTransform()
 	{
 		Gradient[0] = TransformedGradient[0]*sigmat;
 	}
+
 	// yml
-	
 	std::fill(bVector.begin(), bVector.end(),0);
 	for (int i = 0; i < needletN; ++i)
 	{
@@ -142,7 +155,7 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 
-	// bms = Lmnzns
+	/*// bms = Lmnzns
 	for (int s = 0; s < Ns; ++s)
 	{
 		for (int m = 0; m < Nm; ++m)
@@ -151,6 +164,15 @@ void DescentFunctor::BackwardTransform()
 			{
 				Gradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bVector[s*Nm+m];
 			}
+		}
+	}*/
+
+	// bms = Lmnzns
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int i = 0; i < choleskyN; ++i)
+		{
+			Gradient[Nt+s*Nm+cholesky_v[i]] += cholesky_w[i] * bVector[s*Nm+cholesky_u[i]];
 		}
 	}
 
