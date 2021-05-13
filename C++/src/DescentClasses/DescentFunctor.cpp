@@ -7,9 +7,9 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
-	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
-	std::fill(Gradient.begin(), Gradient.end(),0);
+	//~ std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
+	//~ std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
+	//~ std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
 void DescentFunctor::SavePosition(bool finalSave)
