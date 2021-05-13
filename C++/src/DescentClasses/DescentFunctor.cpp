@@ -64,8 +64,8 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	
 
 	
-	// Forward transformation
-	double u = exp(-1.0/lt);
+	// Forward transformation - definitely working version
+	/*double u = exp(-1.0/lt);
 	double ua = 1.0/sqrt(1.0-u*u);
 	double ub = -u*ua;
 	double previous = z[Nt-1]; // First case is trivial
@@ -73,6 +73,17 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	for (int i = Nt - 2; i >= 0; i--) 
 	{
     	previous = (z[i] - ub * previous) / ua;
+    	TransformedPosition[i] = mut + sigmat * previous;
+	}*/
+
+	// Forward transformation
+	double u = exp(-1.0/lt);
+	double ua = sqrt(1.0-u*u);
+	double previous = z[Nt-1]; // First case is trivial
+	TransformedPosition[Nt-1] = mut + sigmat * previous;
+	for (int i = Nt - 2; i >= 0; i--) 
+	{
+    	previous = ua * z[i] + u * previous;
     	TransformedPosition[i] = mut + sigmat * previous;
 	}
 
