@@ -7,9 +7,9 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	//~ std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
-	//~ std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
-	//~ std::fill(Gradient.begin(), Gradient.end(),0);
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
+	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
+	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
 void DescentFunctor::SavePosition(bool finalSave)
@@ -155,7 +155,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
-	//ForwardTransform(RawPosition);
+	ForwardTransform(RawPosition);
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	L.Calculate(TransformedPosition,batchID,effectiveBatches);
 	
@@ -171,7 +171,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
 	
-	//BackwardTransform();
+	BackwardTransform();
 	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
 	Value = Lsum;
 

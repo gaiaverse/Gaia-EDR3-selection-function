@@ -326,21 +326,21 @@ class Optimizer
 					//~ dx = b1Mod * m * Condition.StepSize;
 	
 					double gNorm = 0;
-					//~ for (int i = 0; i < Dimensions; ++i)
-					//~ {
-						//~ double g = Functor.Gradient[i];
-						//~ gNorm += g*g;
-						//~ m[i] = beta1 * m[i] + (1.0 - beta1)*g;
-						//~ v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
+					for (int i = 0; i < Dimensions; ++i)
+					{
+						double g = Functor.Gradient[i];
+						gNorm += g*g;
+						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
+						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						//~ dx_i = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
-						//~ x[i] -= dx_i;
-						//~ epochGradient[i] += g;
-					//~ }	
+						dx_i = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
+						x[i] -= dx_i;
+						epochGradient[i] += g;
+					}	
 					++t;
 					
 					epochL += Functor.Value;
-					//~ epochGradient += grad;
+					//epochGradient += grad;
 					if (EffectiveBatches > 1)
 					{
 						double df_mini = Functor.Value - previousMinibatch;
