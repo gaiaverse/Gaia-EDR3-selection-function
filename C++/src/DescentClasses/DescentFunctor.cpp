@@ -110,7 +110,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		}
 	}
 
-	// yml
+	// yml 
 	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)
