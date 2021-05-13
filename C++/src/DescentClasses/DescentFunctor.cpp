@@ -171,7 +171,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
 	
-	BackwardTransform();
+	//BackwardTransform();
 	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
 	Value = Lsum;
 
