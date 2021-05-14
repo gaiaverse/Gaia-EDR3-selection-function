@@ -43,6 +43,9 @@ struct Progresser
 	int BufferPosition;
 	std::chrono::time_point<std::chrono::system_clock> StartTime;
 
+	std::chrono::time_point<std::chrono::system_clock> LastBufferTime;
+	int BufferTime;
+
 	std::vector<double> PastFs;
 	std::vector<double> PastGradNorms;
 	std::vector<double> PastDFs;
@@ -54,6 +57,9 @@ struct Progresser
 	int AnalysisSteps;
 	int AnalysisMemorySize;
 	std::vector<double> AnalysisMemory;
+	
+	int Hashes;
+	int MaxHashes;
 };
 
 template<class T>
@@ -106,7 +112,10 @@ class Optimizer
 			Progress.HasSaved = false;
 			Progress.BufferPosition = 0;
 			Progress.StartTime = std::chrono::system_clock::now();
+			Progress.LastBufferTime = std::chrono::system_clock::now();
+			Progress.BufferTime = 300;
 			int n = Progress.BufferSize;
+			
 			Progress.PastBatchCount = std::vector<int>(n,0);
 			Progress.PastMiniBatch = std::vector<int>(n,0);
 			Progress.PastFs = std::vector<double>(n,0);
@@ -363,7 +372,6 @@ class Optimizer
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
-					std::cout << "I WANT TO QUIT!" << std::endl;
 					minimiseContinues = true;
 					EffectiveBatches = 1;
 				}
@@ -402,7 +410,7 @@ class Optimizer
 		
 			if (Status.CurrentSteps > Condition.MaxSteps)
 			{
-				std::cout << "STEPS" << std::endl;
+				//~ std::cout << "STEPS" << std::endl;
 				Status.TooManySteps = true;
 				return false;
 			}
@@ -415,14 +423,14 @@ class Optimizer
 			//~ }
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
-				std::cout << "G " << dg.norm() << std::endl;
+				//~ std::cout << "G " << dg.norm() << std::endl;
 				Status.ReachedGradConvergence = true;
 				Converged = true;
 				return false;
 			}
 			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
 			{
-				std::cout << "DF " << abs(df) << std::endl;
+				//~ std::cout << "DF " << abs(df) << std::endl;
 				Status.ReachedFunctionConvergence = true;
 				Converged = true;
 				return false;
@@ -507,26 +515,57 @@ class Optimizer
 			
 			++Progress.BufferPosition;
 			
-			if (Progress.BufferPosition >= Progress.BufferSize)
+			std::chrono::duration<double> savediff = time - Progress.LastBufferTime;
+			if (Progress.BufferPosition >= Progress.BufferSize || savediff.count() >= Progress.BufferTime)
 			{
-				SaveProgress(Progress.BufferSize);
+				SaveProgress(std::min(Progress.BufferSize,Progress.BufferPosition));
 				Progress.BufferPosition = 0;
+				Progress.LastBufferTime = time;
 			}
 			
 			if (batch == -1)
 			{
-				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
+				if (nBatches == 1)
+				{
+					std::cout << "\t\tEpoch " << Status.CurrentSteps;
+				}
+				else
+				{
+					std::cout << "]";
+				}
+				std::cout << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
 				std::cout << "\t\t\t(L,Gradnorm,dL,nBatch) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ", " << nBatches <<")\n"; 
 				
 				
 				
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
-					std::cout << "\t\t\tI have saved my position" << std::endl;
 					Functor.SavePosition(false,Status.CurrentSteps);
 				}
 				std::cout << "\t\t\t"; printTime();
 			}
+			else
+			{
+				if (batch == 0)
+				{
+					std::cout << "\t\tEpoch [" << Status.CurrentSteps + 1 << "   ";
+					Progress.Hashes = 0;
+				}
+				int nHashes = (batch+1) * Progress.MaxHashes / nBatches;
+				
+				if (nHashes > Progress.Hashes)
+				{
+					std::string h = "";
+					while (Progress.Hashes < nHashes)
+					{
+						h+="#";
+						++Progress.Hashes;
+					}
+					std::cout << h << std::flush;
+				}
+			}
+			
+			
 			
 		}
 

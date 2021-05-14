@@ -1,13 +1,29 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["DataSubsetRun"];
-folder = "DataSubsetRun";
-% getData(60)
+files = ["DataSubsetRun2"];
+folder = files(1);
+getData(60)
 
-
-temporalPlot(folder);
+% gifPlot(folder,43,"evolution.gif");
+temporalPlot(folder,63);
 progressPlot(files)
+
+function gifPlot(folder,maxN,fileName)
+    for i = 1:maxN
+        temporalPlot(folder,i);
+        title("Frame " + num2str(i) );
+        frame = getframe(gcf); 
+          im = frame2im(frame); 
+        [imind,cm] = rgb2ind(im,256); 
+        
+        if i == 1 
+          imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+      else 
+          imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+      end 
+    end
+end
 
 function getData(timeGap)
     f = load("SyncTime.mat");
@@ -16,13 +32,22 @@ function getData(timeGap)
 
     if timeSince > timeGap
         system(' rsync -avr "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/" Output/');
+        
+        SyncCurrentTime = datetime('now');
         save("SyncTime.mat","SyncCurrentTime");
     end
 end
-function temporalPlot(folder)
+function temporalPlot(folder,number)
     gaps = readtable("Output/edr3_gaps.csv");
     properties = readtable("Output/" + folder + "/Optimiser_Properties.dat");
-    z= readmatrix("Output/" + folder + "/FinalPosition_TransformedParameters.dat");
+    
+    name = "Output/" + folder + "/TempPositions/TempPosition";
+    if number > -1
+        name = name + num2str(number);
+    end
+    name = name + "_TransformedParameters.dat";
+    
+    z= readmatrix(name);
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
     Nt = properties.Nt(1);
     
@@ -34,6 +59,8 @@ function temporalPlot(folder)
     x = linspace(t(1),t(2),length(f));
     q = 1./(1 + exp(-f));
     z = q;
+    
+%     [sx,sz] = bottomOut(x,z,1);
     plot(x,z,'k');
     hold on;
 
@@ -53,7 +80,7 @@ function progressPlot(files)
     patterns = ["-","-","-","--"];
     cols = colororder;
     cols2 = min(1,cols*1.5);
-    minLim = 1;
+    minLim = 5e3;
     clf;
     hold on;
     for i = 1:length(files)
@@ -76,7 +103,7 @@ function progressPlot(files)
         subplot(2,1,1);
         hold on;
 
-        miniX = miniBatches.Epoch-1 + miniBatches.Batch ./ miniBatches.nBatches+1e-3;
+        miniX = miniBatches.Epoch + (miniBatches.Batch +1)./ miniBatches.nBatches+1e-3;
         L0 = miniBatches.F(1);
         xB = miniX; %miniBatches.Elapsed;
         xF = fullEpoch.Epoch; %fullEpoch.Elapsed;
@@ -94,7 +121,7 @@ function progressPlot(files)
 			cz(end+1) = shrinkLines.F(j)/L0;
 		end
 		scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
-%         xlim([400,max(xF)])
+        xlim([minLim,fullEpoch.Elapsed(end)])
 
         ylabel("Complete Epochs");
         xlabel("Time Elapsed (s)");
@@ -115,6 +142,7 @@ function progressPlot(files)
         ylabel("$L/L_0$");
         hold off;
         grid on;
+        xlim([minLim,fullEpoch.Elapsed(end)])
 %         hold on;
 %         dL = fullEpoch.dF;
 %         dL(1) = NaN;
@@ -153,3 +181,16 @@ function progressPlot(files)
 
 end
 
+function [sx,sy] = bottomOut(x,y,factor)
+    sx = [];
+    sy = [];
+    
+    i = 1;
+    
+    while i < length(x)
+        top = min(length(x),i+factor);
+        sx(end+1) = mean(x(i:top));
+        sy(end+1) = min(y(i:top));
+        i = i + factor;
+    end
+end
