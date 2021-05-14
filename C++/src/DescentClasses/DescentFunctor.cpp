@@ -7,7 +7,7 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	std::fill(TransformedPosition.begin(), TransformedPosition.end(),0);
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum);
 	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
@@ -113,7 +113,6 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	}
 
 	// yml
-	std::fill(Nt, TransformedPosition.end(),mum);
 	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)
