@@ -86,7 +86,7 @@ class Optimizer
 			Condition.gConvergence = 1e-7;
 			Condition.fConvergence = 0;
 			Condition.StepSize = 0.02;
-			Condition.SaveSteps = SaveSteps;
+			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
 			Status.CurrentSteps = 0;
 		
@@ -216,7 +216,7 @@ class Optimizer
 				prevF = Functor.Value;
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
-					Functor.SavePosition(false);
+					Functor.SavePosition(false,Status.CurrentSteps);
 				}
 				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t"; printTime();
 			}
@@ -355,6 +355,7 @@ class Optimizer
 				previousEpoch = epochL;
 				
 				
+				++Status.CurrentSteps;
 				UpdateProgress(-1,EffectiveBatches,epochL,epochGradient.norm(),df);
 				
 				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches);
@@ -367,9 +368,10 @@ class Optimizer
 					EffectiveBatches = 1;
 				}
 				
-				++Status.CurrentSteps;
+				
 			}
 			SaveProgress(Progress.BufferPosition);
+			Functor.SavePosition(true,0);
 		}
 		
 		void GradientTester(VectorXd &x)
@@ -514,14 +516,14 @@ class Optimizer
 			if (batch == -1)
 			{
 				std::cout << "\t\tEpoch " << Status.CurrentSteps << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
-				std::cout << "\t\t\t(L,Gradnorm,dL) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ")\n"; 
+				std::cout << "\t\t\t(L,Gradnorm,dL,nBatch) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ", " << nBatches <<")\n"; 
 				
 				
 				
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
 					std::cout << "\t\t\tI have saved my position" << std::endl;
-					Functor.SavePosition(false);
+					Functor.SavePosition(false,Status.CurrentSteps);
 				}
 				std::cout << "\t\t\t"; printTime();
 			}

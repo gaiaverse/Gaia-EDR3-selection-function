@@ -3,7 +3,7 @@ set(0,'defaultTextInterpreter','latex');
 
 files = ["DataSubsetRun"];
 folder = "DataSubsetRun";
-getData(60)
+% getData(60)
 
 
 temporalPlot(folder);
@@ -22,7 +22,7 @@ end
 function temporalPlot(folder)
     gaps = readtable("Output/edr3_gaps.csv");
     properties = readtable("Output/" + folder + "/Optimiser_Properties.dat");
-    z= readmatrix("Output/" + folder + "/TempPositions/TempPosition_TransformedParameters.dat");
+    z= readmatrix("Output/" + folder + "/FinalPosition_TransformedParameters.dat");
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
     Nt = properties.Nt(1);
     

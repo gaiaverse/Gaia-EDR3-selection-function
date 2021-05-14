@@ -12,7 +12,7 @@ void DescentFunctor::ResetPosition()
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
-void DescentFunctor::SavePosition(bool finalSave)
+void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 {
 	std::string fileBase = OutputDir + "/";
 	if (finalSave)
@@ -25,10 +25,12 @@ void DescentFunctor::SavePosition(bool finalSave)
 		fileBase += TempDirName + "/TempPosition";
 		if (SaveAllTemps)
 		{
-			fileBase += std::to_string(LoopID);
+			fileBase += std::to_string(saveStep);
 		}
 		fileBase += "_";
 	}
+	
+	
 	
 	
 	std::fstream rawfile;

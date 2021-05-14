@@ -51,7 +51,7 @@ class DescentFunctor
 		std::vector<int> needlet_u;
     	std::vector<int> needlet_v;
     	std::vector<double> needlet_w;
-    	std::vector<double> forwardBVector;
+  
 		int NStars;
 		int StarsInLastBatch;
 		//holder for transformed values
@@ -107,7 +107,7 @@ class DescentFunctor
 		
 		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
-		void SavePosition(bool finalSave);
+		void SavePosition(bool finalSave, int saveStep);
 };
 
 
