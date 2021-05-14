@@ -1,13 +1,13 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["DataSubsetRun2"];
+files = ["ProgressTest"];
 folder = files(1);
-getData(60)
+getData(10)
 
-% gifPlot(folder,43,"evolution.gif");
-temporalPlot(folder,63);
-progressPlot(files)
+gifPlot(folder,240,"small_evolution.gif");
+% temporalPlot(folder,240);
+% progressPlot(files)
 
 function gifPlot(folder,maxN,fileName)
     for i = 1:maxN
@@ -80,7 +80,7 @@ function progressPlot(files)
     patterns = ["-","-","-","--"];
     cols = colororder;
     cols2 = min(1,cols*1.5);
-    minLim = 5e3;
+    minLim = 1e-3;
     clf;
     hold on;
     for i = 1:length(files)
