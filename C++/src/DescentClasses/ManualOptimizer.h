@@ -104,6 +104,7 @@ class Optimizer
 			Progress.BufferSize = 10;
 			Progress.ProgressDir = "";
 			Progress.AnalysisMemorySize = 5;
+			Progress.MaxHashes = 20;
 			
 		}
 		
@@ -548,11 +549,11 @@ class Optimizer
 			{
 				if (batch == 0)
 				{
-					std::cout << "\t\tEpoch [" << Status.CurrentSteps + 1 << "   ";
+					std::cout << "\t\tEpoch " << Status.CurrentSteps + 1 << "   [";
 					Progress.Hashes = 0;
 				}
 				int nHashes = (batch+1) * Progress.MaxHashes / nBatches;
-				
+				//~ std::cout << batch << "   "<<nHashes << std::endl;
 				if (nHashes > Progress.Hashes)
 				{
 					std::string h = "";
