@@ -43,6 +43,10 @@ epoch_slider.js_on_change('value', callback)
 def refresh():
     directory = root_directory + text.value
     if os.path.isdir(directory):
+        
+        params = pd.read_csv(directory+'/Optimiser_Properties.dat',skipinitialspace=True)
+        Nt = int(params['Nt'][0])
+        
         while os.path.isfile(directory+f'/TempPositions/TempPosition{epoch_slider.end+1}_TransformedParameters.dat'):
             n = epoch_slider.end + 1
             file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
