@@ -112,7 +112,8 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		}
 	}
 
-	// yml 
+	// yml
+	std::fill(Nt, TransformedPosition.end(),mum);
 	for (int i = 0; i < needletN; ++i)
 	{
 		for (int m = 0; m < Nm; ++m)

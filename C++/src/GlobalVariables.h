@@ -19,6 +19,7 @@ const int needlet_order = 3; // maximum order of needlets used, can be any integ
 const int N_SGD_Batches = 128;
 const int DataLoadCount = 2e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
+const double mum = 2.5;
 const double mut = 5;
 const double sigmat = 1;
 const double lm = 3;
