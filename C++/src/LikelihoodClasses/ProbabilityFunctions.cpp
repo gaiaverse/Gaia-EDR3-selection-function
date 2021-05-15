@@ -198,3 +198,39 @@ double  sigmoid(double x)
         return 1.0 / (1.0 + exp(-x));
     }
 }
+
+/*
+double  elu(double x)
+{
+	return exp(-x);
+}
+
+double  elu_grad(double x, double elu_x)
+{
+	return -elu_x;
+}
+*/
+
+double  elu(double x)
+{
+    if (x < 0.0)
+    {
+        return 1.0 - x; 
+    }
+    else
+    {
+        return exp(-x);
+    }
+}
+
+double  elu_grad(double x, double elu_x)
+{
+    if (x < 0.0)
+    {
+        return -1.0; 
+    }
+    else
+    {
+        return -elu_x;
+    }
+}
