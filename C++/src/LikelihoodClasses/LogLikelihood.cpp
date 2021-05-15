@@ -281,7 +281,7 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
 		Gradient[Data.time_mapping[t]] += dFdP_p * (1.0 - Data.pt[i]);
-		Gradient[index1] += alpha * Data.expmxlm1[i] * dFdP_p;
-		Gradient[index2] += alpha * Data.expmxlm2[i] * dFdP_p;
+		Gradient[index1] += alpha * Data.expmxml1[i] * dFdP_p;
+		Gradient[index2] += alpha * Data.expmxml2[i] * dFdP_p;
 	}
 }
