@@ -283,5 +283,6 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		Gradient[Data.time_mapping[t]] += dFdP_p * (1.0 - Data.pt[i]);
 		Gradient[index1] -= alpha * Data.grad_elu_xml1[i] * dFdP_p;
 		Gradient[index2] -= alpha * Data.grad_elu_xml2[i] * dFdP_p;
+		
 	}
 }
