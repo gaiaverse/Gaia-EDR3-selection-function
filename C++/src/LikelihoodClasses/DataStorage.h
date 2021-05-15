@@ -34,6 +34,9 @@ class LikelihoodData
 		std::vector<double> pt;
 		std::vector<double> pml;
 		std::vector<double> p;
+
+		std::vector<double> expmxml1;
+		std::vector<double> expmxml2;
 	
 	
 };

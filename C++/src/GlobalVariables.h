@@ -24,6 +24,7 @@ const double mut = 5;
 const double sigmat = 1;
 const double lm = 3;
 const double lt = 96;
+const double alpha = 0.5*log(2.0);
 
 const int healpix_nside = pow(2,healpix_order);
 const int Nl = 12*pow(healpix_nside,2);

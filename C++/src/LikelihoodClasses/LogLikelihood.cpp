@@ -62,11 +62,13 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		double xt = x[Data.time_mapping[t]];
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
-		double xml1 = x[idx1];
-		double xml2 = x[idx2];
+		double expmxml1 = exp(-x[idx1]);
+		double expmxml2 = exp(-x[idx2]);
 		
 		Data.pt[i] = sigmoid(xt);
-		Data.pml[i] = sigmoid(xml1 + xml2);
+        Data.expmxml1[i] = expmxml1;
+        Data.expmxml2[i] = expmxml2;
+		Data.pml[i] = exp(-alpha * (expmxml1 + expmxml2));
 		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}
 }
@@ -275,12 +277,11 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		int t = candidate->TimeSeries[i];
 
 		int offset = Nt + candidate->gBin;
-		double mlGrad = dFdP_p * (1.0 - Data.pml[i]);	
 		int index1 = offset +  Data.healpix_fov_1[t] * Nm;
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
 		Gradient[Data.time_mapping[t]] += dFdP_p * (1.0 - Data.pt[i]);
-		Gradient[index1] += mlGrad;
-		Gradient[index2] += mlGrad;
+		Gradient[index1] += alpha * Data.expmxlm1[i] * dFdP_p;
+		Gradient[index2] += alpha * Data.expmxlm2[i] * dFdP_p;
 	}
 }
