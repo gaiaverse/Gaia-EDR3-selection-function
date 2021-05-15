@@ -12,8 +12,8 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	pt = std::vector<double>(nBig,0);
 	pml = std::vector<double>(nBig,0);
 	p = std::vector<double>(nBig,0);
-	expmxml1 = std::vector<double>(nBig,0);
-	expmxml2 = std::vector<double>(nBig,0);
+	grad_elu_xml1 = std::vector<double>(nBig,0);
+	grad_elu_xml2 = std::vector<double>(nBig,0);
 	dfdp = std::vector<double>(nBig,0);
 	
 	NStars = 0;
