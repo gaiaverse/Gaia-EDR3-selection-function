@@ -19,4 +19,4 @@ void  poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<doub
 // Implements an expit sigmoid via the tanh method
 double  sigmoid(double x);
 double  elu(double x);
-double  elu_grad(double x, double elu_x)
+double  elu_grad(double x, double elu_x);
