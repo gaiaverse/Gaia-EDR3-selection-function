@@ -72,7 +72,7 @@ void RootProcess()
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
 	op.Condition.SaveSteps = SaveSteps;
-	std::cout << "Running for " << op.Condition.MaxSteps << std::endl;
+
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";
 	// GO GO GO GO!
 	op.Minimize(x,N_SGD_Batches);

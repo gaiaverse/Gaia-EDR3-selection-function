@@ -1,13 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["ProgressTest"];
+files = ["NewSpatial"];
 folder = files(1);
-getData(10)
+getData(60)
 
-gifPlot(folder,240,"small_evolution.gif");
-% temporalPlot(folder,240);
-% progressPlot(files)
+N = 5;
+gifPlot(folder,N,"small_evolution.gif");
+% temporalPlot(folder,N);
+progressPlot(files)
 
 function gifPlot(folder,maxN,fileName)
     for i = 1:maxN
