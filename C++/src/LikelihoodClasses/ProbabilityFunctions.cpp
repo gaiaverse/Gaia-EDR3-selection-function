@@ -213,9 +213,9 @@ double  elu_grad(double x, double elu_x)
 
 double  elu(double x)
 {
-    if (x < 0.0)
+    if (x < density_cut)
     {
-        return 1.0 - x; 
+        return (1.0 + density_cut - x)*expm_density_cut; 
     }
     else
     {
@@ -227,7 +227,7 @@ double  elu_grad(double x, double elu_x)
 {
     if (x < 0.0)
     {
-        return -1.0; 
+        return -expm_density_cut; 
     }
     else
     {

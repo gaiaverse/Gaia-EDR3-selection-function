@@ -68,7 +68,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		Data.pt[i] = sigmoid(xt);
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
-		Data.pml[i] = exp(-alpha * (elu_xml1 + elu_xml2));
+		Data.pml[i] = exp(-density_alpha * (elu_xml1 + elu_xml2));
 		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}
 }
@@ -281,8 +281,8 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
 		Gradient[Data.time_mapping[t]] += dFdP_p * (1.0 - Data.pt[i]);
-		Gradient[index1] -= alpha * Data.grad_elu_xml1[i] * dFdP_p;
-		Gradient[index2] -= alpha * Data.grad_elu_xml2[i] * dFdP_p;
+		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
+		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
 		
 	}
 }
