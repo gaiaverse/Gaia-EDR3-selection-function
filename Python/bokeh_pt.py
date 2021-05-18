@@ -43,14 +43,15 @@ def fetch_data():
     Nt = int(params['Nt'][0])
     
     if epoch_slider.disabled == True:
-        n = 1
+        n = 0
         data = {'t': np.linspace(tbeg, tend, Nt), 'existing':0.5*np.ones(Nt)}
     else:
-        n = epoch_slider.end + 1
         data = dict(source.data)
+        n = epoch_slider.end if '2' in data.keys() else 1
         
-    while os.path.isfile(directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'):
-        file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
+        
+    while os.path.isfile(directory+f'/TempPositions/TempPosition{n+1}_TransformedParameters.dat'):
+        file = directory+f'/TempPositions/TempPosition{n+1}_TransformedParameters.dat'
         data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
         n += 1
     try:
