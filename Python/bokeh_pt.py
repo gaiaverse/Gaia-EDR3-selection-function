@@ -19,7 +19,7 @@ data = {'t':[tbeg,tend],'existing':[0.5,0.5]}
 source = ColumnDataSource(data=data)
 #output_file('pt.html')
 p = figure(title='Detection probability with time',plot_width=1200, plot_height=400,
-           background_fill_color="#fafafa",tools='reset,xbox_zoom,xpan',x_range=Range1d(bounds=(tbeg, tend)),y_range=Range1d(bounds=(0, 1)))
+           background_fill_color="#fafafa",tools='reset,xbox_zoom,xpan',x_range=Range1d(tbeg,tend,bounds=(tbeg, tend)),y_range=Range1d(0,1,bounds=(0, 1)))
 p.xaxis.axis_label = 'OBMT (revolutions)'
 p.yaxis.axis_label = 'Detection probability (pt)'
 
@@ -62,7 +62,7 @@ def change_directory(attrname, old, new):
 
 select = Select(title="Which run to load?", value='', options=['Loading directories...'])
 select.on_change('value', change_directory)
-
+change_directory()
 
 
 
