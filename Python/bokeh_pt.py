@@ -11,7 +11,7 @@ import os.path
 root_directory = '/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/'
 
 from bokeh.plotting import figure, output_file, show, curdoc
-from bokeh.models import ColumnDataSource, Slider, CustomJS, Button, TextInput
+from bokeh.models import ColumnDataSource, Slider, CustomJS, Button, Select, Range1d
 from bokeh.layouts import column, row
 
 tbeg, tend = 1717.6256+(np.linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4
@@ -19,11 +19,7 @@ data = {'t':[tbeg,tend],'existing':[0.5,0.5]}
 source = ColumnDataSource(data=data)
 #output_file('pt.html')
 p = figure(title='Detection probability with time',plot_width=1200, plot_height=400,
-           background_fill_color="#fafafa",tools='reset,xbox_zoom,xpan')
-p.y_range.start = 0
-p.y_range.end = 1
-p.x_range.start = tbeg
-p.x_range.end = tend
+           background_fill_color="#fafafa",tools='reset,xbox_zoom,xpan',x_range=Range1d(bounds=(tbeg, tend)),y_range=Range1d(bounds=(0, 1)))
 p.xaxis.axis_label = 'OBMT (revolutions)'
 p.yaxis.axis_label = 'Detection probability (pt)'
 
@@ -40,56 +36,33 @@ callback = CustomJS(args=dict(source=source, epoch=epoch_slider), code="""
     
 epoch_slider.js_on_change('value', callback)
 
-def refresh():
-    directory = root_directory + text.value
-    if os.path.isdir(directory):
+def fetch_data():
+    directory = root_directory + select.value
+    
+    params = pd.read_csv(directory+'/Optimiser_Properties.dat',skipinitialspace=True)
+    Nt = int(params['Nt'][0])
+    
+    n = epoch_slider.end + 1 if epoch_slider.disabled == False else 1
         
-        params = pd.read_csv(directory+'/Optimiser_Properties.dat',skipinitialspace=True)
-        Nt = int(params['Nt'][0])
+    while os.path.isfile(directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'):
+        file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
+        source.data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
+        n += 1
+    epoch_slider.end = n
+    epoch_slider.disabled = False
         
-        while os.path.isfile(directory+f'/TempPositions/TempPosition{epoch_slider.end+1}_TransformedParameters.dat'):
-            n = epoch_slider.end + 1
-            file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
-            source.data[str(n)] = special.expit(pd.read_csv(file,header=None)[0][:Nt].values)
-            epoch_slider.end = n
-    else:
-        epoch_slider.disabled = True
+fetch_data_button = Button(label='Fetch data')
+fetch_data_button.on_click(fetch_data)
 
-refresh_button = Button(label='Refresh')
-refresh_button.on_click(refresh)
+select = Select(title="Which run to load?", value='', options=['Loading directories...'])
+select.on_change('value', change_directory)
 
-# 
-text = TextInput(title="Which folder", value='Enter directory here')
-# Set up callbacks
-def update_directory(attrname, old, new):
-    directory = root_directory + text.value
-    if os.path.isdir(directory):
+def change_directory(attrname, old, new):
 
-        params = pd.read_csv(directory+'/Optimiser_Properties.dat',skipinitialspace=True)
-        Nt = int(params['Nt'][0])
+    epoch_slider.disabled = True
+    directories = [directory.split('/')[-2] for directory in glob.glob(root_directory+'*/')]
+    select.options = directories
 
-        t = np.linspace(tbeg,tend,Nt+1)
-        t = 0.5*(t[1:]+t[:-1])
-        data = {'t':t}
-
-        # Load in transformed parameters
-        files = glob.glob(directory+'/TempPositions/TempPosition*_TransformedParameters.dat')
-
-        N = 0
-        for file in files:
-            epoch = file.split('/')[-1].split('_')[0][12:]
-            data[epoch] = special.expit(pd.read_csv(file,header=None)[0][:Nt].values)
-            N += 1
-        data['existing'] = data['1']
-        epoch_slider.end = N
-        epoch_slider.disabled = False
-        
-        source.data = data
-        #source.change.emit()
-    else:
-        epoch_slider.disabled = True
-
-text.on_change('value', update_directory)
 
 # Combine plot and slider and output
-curdoc().add_root(row(p,column(text,epoch_slider,refresh_button)))
+curdoc().add_root(row(p,column(select,epoch_slider,fetch_data_button)))
