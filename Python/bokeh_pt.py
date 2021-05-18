@@ -52,7 +52,7 @@ def fetch_data():
         
     while os.path.isfile(directory+f'/TempPositions/TempPosition{n+1}_TransformedParameters.dat'):
         file = directory+f'/TempPositions/TempPosition{n+1}_TransformedParameters.dat'
-        data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
+        data[str(n+1)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
         n += 1
     try:
         data['existing'] = data['1']
