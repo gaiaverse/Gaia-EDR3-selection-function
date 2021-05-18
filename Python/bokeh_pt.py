@@ -53,12 +53,15 @@ def fetch_data():
         file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
         data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
         n += 1
-    data['existing'] = data['1']
-    source.data = data
-    epoch_slider.end = n
-    epoch_slider.disabled = False
-    epoch_slider.value = 1
-        
+    try:
+        data['existing'] = data['1']
+        source.data = data
+        epoch_slider.end = n
+        epoch_slider.disabled = False
+        epoch_slider.value = 1
+    except KeyError:
+        pass
+    
 fetch_data_button = Button(label='Fetch data')
 fetch_data_button.on_click(fetch_data)
 
