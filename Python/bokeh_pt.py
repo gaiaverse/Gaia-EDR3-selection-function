@@ -47,7 +47,7 @@ def fetch_data():
         data = {'t': np.linspace(tbeg, tend, Nt), 'existing':0.5*np.ones(Nt)}
     else:
         n = epoch_slider.end + 1
-        data = source.data
+        data = dict(source.data)
         
     while os.path.isfile(directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'):
         file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
