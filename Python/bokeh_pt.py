@@ -62,7 +62,7 @@ def change_directory(attrname, old, new):
 
 select = Select(title="Which run to load?", value='', options=['Loading directories...'])
 select.on_change('value', change_directory)
-change_directory()
+change_directory('value',0,1)
 
 
 
