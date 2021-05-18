@@ -42,12 +42,19 @@ def fetch_data():
     params = pd.read_csv(directory+'/Optimiser_Properties.dat',skipinitialspace=True)
     Nt = int(params['Nt'][0])
     
-    n = epoch_slider.end + 1 if epoch_slider.disabled == False else 1
+    if epoch_slider.disabled == True:
+        n = 1
+        data = {'t': np.linspace(tbeg, tend, Nt), 'existing':0.5*np.ones(Nt)}
+    else:
+        n = epoch_slider.end + 1
+        data = source.data
         
     while os.path.isfile(directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'):
         file = directory+f'/TempPositions/TempPosition{n}_TransformedParameters.dat'
-        source.data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
+        data[str(n)] = special.expit(pd.read_csv(file,header=None,nrows=Nt)[0].values)
         n += 1
+        
+    source.data = data
     epoch_slider.end = n
     epoch_slider.disabled = False
         
