@@ -54,14 +54,16 @@ def fetch_data():
 fetch_data_button = Button(label='Fetch data')
 fetch_data_button.on_click(fetch_data)
 
-select = Select(title="Which run to load?", value='', options=['Loading directories...'])
-select.on_change('value', change_directory)
-
 def change_directory(attrname, old, new):
 
     epoch_slider.disabled = True
     directories = [directory.split('/')[-2] for directory in glob.glob(root_directory+'*/')]
     select.options = directories
+
+select = Select(title="Which run to load?", value='', options=['Loading directories...'])
+select.on_change('value', change_directory)
+
+
 
 
 # Combine plot and slider and output
