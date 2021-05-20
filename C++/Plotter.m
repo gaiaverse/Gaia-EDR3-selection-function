@@ -5,10 +5,10 @@ files = ["Diagnostic2_mum0_mut0_sigmat3_space65"];
 folder = files(1);
 getData(60)
 
-N = 1;
+N = 10;
 % gifPlot(folder,N,"small_evolution.gif");
 temporalPlot(folder,N);
-progressPlot(files,1)
+progressPlot(files,3e3)
 
 function gifPlot(folder,maxN,fileName)
     for i = 1:maxN
@@ -42,7 +42,7 @@ end
 function temporalPlot(folder,number)
     figure(1);
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;
+    xmin = t(1);%2320;
     xmax = 2328;
     ymin = -10;
     ymax = 11.5;
@@ -156,7 +156,7 @@ function progressPlot(files,minLim)
         cz2 = [];
 		for j = 1:height(shrinkLines)
 			cx(end+1) = shrinkLines.Elapsed(j);
-			cy(end+1) = shrinkLines.Epoch(j);
+			cy(end+1) = shrinkLines.Epoch(j)-1;
 			cz(end+1) = shrinkLines.F(j)/L0;
             cz1(end+1) = shrinkLines.dF(j);
             cz2(end+1) = shrinkLines.GradNorm(j);
@@ -193,7 +193,7 @@ function progressPlot(files,minLim)
 
         miniBatches.dF(1) = 0;
         x1 = miniBatches.Elapsed';
-        y1 = miniBatches.dF';
+        y1 = (miniBatches.dF./miniBatches.F)';
         zq = zeros(size(x1));
         s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
         minner = min(s1);
@@ -209,7 +209,7 @@ function progressPlot(files,minLim)
         if height(fullEpoch) > 1
             fullEpoch.dF(1) = fullEpoch.F(1) - miniBatches.F(1);
             x2 = fullEpoch.Elapsed';
-            y2 = fullEpoch.dF';
+            y2 = (fullEpoch.dF./fullEpoch.F)';
             zq = zeros(size(x2));
             col = (y2>0)*1.0+2;
             surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
@@ -226,12 +226,12 @@ function progressPlot(files,minLim)
         set(gca,'yscale','log')
         set(gca,'xscale','log')
           xlabel("Elapsed Time (s)");
-        ylabel("$\Delta L$");
+        ylabel("$\Delta L / L $");
         hold off;
         grid on;
         xlim([minLim,ender])
         
-        
+        ylim([minner,maxer]);
        
 
         subplot(2,2,4);

@@ -373,7 +373,7 @@ class Optimizer
 			{
 				batchesAreAProblem = true;
 			}
-
+			Progress.AnalysisMemoryGrad = 0;
 			return batchesAreAProblem;
 		}
 
