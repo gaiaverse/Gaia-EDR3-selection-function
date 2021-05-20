@@ -10,20 +10,20 @@ using Eigen::VectorXd;
 
 const int RootID = 0; //<- declare that process 0 is always Root.
 
-const int Nm = 213;//35; // number of magnitude bins
-const int Nt = 8152; // number of time bins, coarse, feel free to change
+const int Nm = 213; // number of magnitude bins
+const int Nt = 896769; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 4; // order of healpix map, can be any integer >= 0
-const int needlet_order = 2; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 5; // order of healpix map, can be any integer >= 0
+const int needlet_order = 4; // maximum order of needlets used, can be any integ*needler >= -1
 
-const int N_SGD_Batches = 128;
-const int DataLoadCount = 2e6;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int N_SGD_Batches = 32;
+const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
-const double mum = 2.5;
-const double mut = 5;
-const double sigmat = 1;
+const double mum = 0;
+const double mut = 0;
+const double sigmat = 3;
 const double lm = 3;
-const double lt = 96;
+const double lt = 192;
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
 const double expm_density_cut = exp(-density_cut);
