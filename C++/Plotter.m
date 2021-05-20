@@ -1,22 +1,20 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic1_mum0_mut0_sigmat3_space54"];
+files = ["Diagnostic2_mum0_mut0_sigmat3_space65"];
 folder = files(1);
 getData(60)
 
-N = 295;
+N = 1;
 % gifPlot(folder,N,"small_evolution.gif");
 temporalPlot(folder,N);
-% progressPlot(files,3e4)
+progressPlot(files,1e3)
 
 function gifPlot(folder,maxN,fileName)
     for i = 1:maxN
         temporalPlot(folder,i);
         subplot(2,1,1)
-        title("$P_t$, Frame " + num2str(i) );
-        subplot(2,1,2)
-        title("$x_t$, Frame " + num2str(i) );
+       
         frame = getframe(gcf); 
           im = frame2im(frame); 
         [imind,cm] = rgb2ind(im,256); 
@@ -86,19 +84,25 @@ function temporalPlot(folder,number)
         t1 = (gaps.tbeg(i));
         t2 = (gaps.tend(i));
         subplot(2,1,1);
-        fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.3);
+        fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3);
         subplot(2,1,2);
         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3);
     end
     
     hold off;
+    
     subplot(2,1,1);
-    legend("pt","Known Gaps");
-    
-    xlim([xmin,xmax])
-    
-    subplot(2,1,2)
-%      legend("xt","Known Gaps");
+     title("$P_t$, Frame " + num2str(number) );
+     legend("pt","Known Gaps");
+     xlim([xmin,xmax])
+     ylim([0,1.01])
+    xlabel("OBMT (Revolutions)");
+    ylabel("Detection Efficiency,$P_t$")
+        
+     subplot(2,1,2)
+     title("$x_t$, Frame " + num2str(number) );
+    xlabel("OBMT (Revolutions)");
+    ylabel("Detection Parameter,$x_t$")
     xlim([xmin,xmax])
     ylim([ymin,ymax])
     grid on;
@@ -118,7 +122,11 @@ function progressPlot(files,minLim)
     
         fullEpoch = f(f.Batch == -1,:);
         miniBatches = f(f.Batch > -1,:);
-        ender = max(fullEpoch.Elapsed(end),miniBatches.Elapsed(end));
+        fE = 0;
+        if height(fullEpoch) > 0
+            fE = fullEpoch.Elapsed(end);
+        end
+        ender = max(fE,miniBatches.Elapsed(end));
 		cutx = false(1,height(fullEpoch));
 		for j = 2:height(fullEpoch)
 			up = fullEpoch.nBatches(j);
@@ -132,10 +140,10 @@ function progressPlot(files,minLim)
         subplot(2,2,1);
         hold on;
 
-        miniX = miniBatches.Epoch + (miniBatches.Batch +1)./ miniBatches.nBatches+1e-3;
+        miniX = miniBatches.Epoch + (miniBatches.Batch +1)./ miniBatches.nBatches-1;
         L0 = miniBatches.F(1);
         xB = miniX; %miniBatches.Elapsed;
-        xF = fullEpoch.Epoch; %fullEpoch.Elapsed;
+        xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
 
 %         plot(fullEpoch.Elapsed,xF);
         plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);   
@@ -196,7 +204,7 @@ function progressPlot(files,minLim)
         'edgecol','flat',...
         'linew',0.5);
         
-        fullEpoch.dF(1) = 0;
+        fullEpoch.dF(1) = fullEpoch.F(1) - miniBatches.F(1);
         x2 = fullEpoch.Elapsed';
         y2 = fullEpoch.dF';
         zq = zeros(size(x2));
@@ -204,7 +212,7 @@ function progressPlot(files,minLim)
         surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
         'facecol','no',...
         'edgecol','flat',...
-        'linew',1.8);
+        'linew',3);
         caxis([0,3]);
 		scatter(cx,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
         set(gca,'yscale','log')
@@ -218,9 +226,14 @@ function progressPlot(files,minLim)
         s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
         s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
         
-        minner = min(min(s1),min(s2));
+        minner = min(s1);
+        maxer = max(s1);
+        if height(fullEpoch) > 1
+            minner = min(min(s1),min(s2));
+            maxer = max(max(s1),max(s2));
+        end
+       
         
-        maxer = max(max(s1),max(s2));
         ylim([minner,maxer]);
 
         subplot(2,2,4);

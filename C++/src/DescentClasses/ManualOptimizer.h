@@ -57,7 +57,7 @@ struct Progresser
 	int AnalysisSteps;
 	int AnalysisMemorySize;
 	std::vector<double> AnalysisMemory;
-	
+	double AnalysisMemoryGrad;
 	int Hashes;
 	int MaxHashes;
 };
@@ -126,6 +126,7 @@ class Optimizer
 			Progress.PastEpoch = std::vector<int>(n,0);
 			Progress.AnalysisSteps = 0;
 			Progress.AnalysisMemory = std::vector<double>(Progress.AnalysisMemorySize,0);
+			Progress.AnalysisMemoryGrad = 0;
 		}
 		
 		void Minimize(VectorXd & x)
@@ -221,7 +222,9 @@ class Optimizer
 					{
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrt(gNorm),df_mini);
+						double gNorm = sqrt(gNorm);
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,gNorm,df_mini);
+						Progress.AnalysisMemoryGrad += gNorm;
 					}
 				}
 				
@@ -229,12 +232,12 @@ class Optimizer
 				epochGradient *= 1.0/EffectiveBatches;
 				double df = epochL - previousEpoch;
 				previousEpoch = epochL;
-				
+				double epochGradNorm = epochGradient.norm();
 				
 				++Status.CurrentSteps;
-				UpdateProgress(-1,EffectiveBatches,epochL,epochGradient.norm(),df);
+				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df);
 				
-				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches);
+				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches,epochGradNorm);
 				minimiseContinues = CheckContinues(epochGradient,df);
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
@@ -307,19 +310,20 @@ class Optimizer
 			return true;
 		} 
 
-		int UpdateBatchSize(double df,int currentSize)
+		int UpdateBatchSize(double df,int currentSize,double meanGNorm)
 		{
 		
 			int analysisPos = Progress.AnalysisSteps % Progress.AnalysisMemorySize; 
 			
 			Progress.AnalysisMemory[analysisPos] = df;
 			++Progress.AnalysisSteps;	
+			Progress.AnalysisMemoryGrad /= currentSize;
 			double newSize = currentSize;
 			
 			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
 			{
 			
-				if (NeedsBatchReduction())
+				if (NeedsBatchReduction(meanGNorm))
 				{
 				
 					Progress.AnalysisSteps = 0;
@@ -331,12 +335,13 @@ class Optimizer
 				}
 			
 			}		
-
+			Progress.AnalysisMemoryGrad = 0;
 			return newSize;
 		}
 
-		bool NeedsBatchReduction()
+		bool NeedsBatchReduction(double meanGNorm)
 		{
+			bool batchesAreAProblem = false;
 			
 			int N = Progress.AnalysisMemorySize;
 			
@@ -355,10 +360,16 @@ class Optimizer
 			}
 
 			double mean = sum / N;
-			
-			bool batchesAreAProblem = false;
+		
 			int problematicSignChanges = std::max(2,N/3);
 			if ((mean > 0) || signChanges >= problematicSignChanges)
+			{
+				batchesAreAProblem = true;
+			}
+
+			double gradThreshold = 3;
+
+			if (3*meanGNorm < Progress.AnalysisMemoryGrad)
 			{
 				batchesAreAProblem = true;
 			}
