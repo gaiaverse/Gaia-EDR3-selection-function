@@ -14,34 +14,37 @@ void DescentFunctor::ResetPosition()
 
 void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 {
-	std::string fileBase = OutputDir + "/";
+	std::string transBase = OutputDir + "/";
+	std::string intBase = OutputDir + "/";
 	if (finalSave)
 	{
-		fileBase += "FinalPosition_";
+		transBase += "FinalPosition_";
+		intBase = transBase;
 		ForwardTransform(PrevLock);
 	}
 	else
 	{
-		fileBase += TempDirName + "/TempPosition";
+		intBase += TempDirName + "/TempPosition";
 		if (SaveAllTemps)
 		{
-			fileBase += std::to_string(saveStep);
+			transBase = intBase + std::to_string(saveStep);
 		}
-		fileBase += "_";
+		intBase += "_";
+		transBase += "_";
 	}
 	
 	
 	
 	
 	std::fstream rawfile;
-	rawfile.open(fileBase + "InternalParameters.dat",std::ios::out);
+	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
 	
 	for (int i = 0; i < totalRawParams; ++i)
 	{
 		rawfile << PrevLock[i] << "\n";
 	}
 	std::fstream transfile;
-	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
+	transfile.open(transBase + "TransformedParameters.dat",std::ios::out);
 
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
