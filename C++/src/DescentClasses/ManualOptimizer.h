@@ -222,9 +222,9 @@ class Optimizer
 					{
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
-						double gNorm = sqrt(gNorm);
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,gNorm,df_mini);
-						Progress.AnalysisMemoryGrad += gNorm;
+						double sqrtgNorm = sqrt(gNorm);
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini);
+						Progress.AnalysisMemoryGrad += sqrtgNorm;
 					}
 				}
 				

@@ -8,7 +8,7 @@ getData(60)
 N = 1;
 % gifPlot(folder,N,"small_evolution.gif");
 temporalPlot(folder,N);
-progressPlot(files,1e3)
+progressPlot(files,1)
 
 function gifPlot(folder,maxN,fileName)
     for i = 1:maxN
@@ -195,7 +195,9 @@ function progressPlot(files,minLim)
         x1 = miniBatches.Elapsed';
         y1 = miniBatches.dF';
         zq = zeros(size(x1));
-
+        s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
+        minner = min(s1);
+        maxer = max(s1);
         col = (y1>0)*1.0;
 
 
@@ -204,15 +206,21 @@ function progressPlot(files,minLim)
         'edgecol','flat',...
         'linew',0.5);
         
-        fullEpoch.dF(1) = fullEpoch.F(1) - miniBatches.F(1);
-        x2 = fullEpoch.Elapsed';
-        y2 = fullEpoch.dF';
-        zq = zeros(size(x2));
-        col = (y2>0)*1.0+2;
-        surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
-        'facecol','no',...
-        'edgecol','flat',...
-        'linew',3);
+        if height(fullEpoch) > 1
+            fullEpoch.dF(1) = fullEpoch.F(1) - miniBatches.F(1);
+            x2 = fullEpoch.Elapsed';
+            y2 = fullEpoch.dF';
+            zq = zeros(size(x2));
+            col = (y2>0)*1.0+2;
+            surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
+            'facecol','no',...
+            'edgecol','flat',...
+            'linew',3);
+        
+             s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
+            minner = min(min(s1),min(s2));
+            maxer = max(max(s1),max(s2));
+        end
         caxis([0,3]);
 		scatter(cx,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
         set(gca,'yscale','log')
@@ -223,18 +231,8 @@ function progressPlot(files,minLim)
         grid on;
         xlim([minLim,ender])
         
-        s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
-        s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
         
-        minner = min(s1);
-        maxer = max(s1);
-        if height(fullEpoch) > 1
-            minner = min(min(s1),min(s2));
-            maxer = max(max(s1),max(s2));
-        end
        
-        
-        ylim([minner,maxer]);
 
         subplot(2,2,4);
         hold on;
