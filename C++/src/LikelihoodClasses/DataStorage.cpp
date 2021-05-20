@@ -48,6 +48,6 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 
 	for (int i = 0; i < TotalScanningTime; ++i)
 	{
-		time_mapping[i] = min(Nt-2,floor(time_ratio*i));
+		time_mapping[i] = floor(time_ratio*i);
 	}
 }

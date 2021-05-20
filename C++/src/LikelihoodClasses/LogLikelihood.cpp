@@ -60,7 +60,8 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
 		double time_multiplier = time_ratio * t - T;
-		double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
+		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
+		double xt = x[T];
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
 		double elu_xml1 = elu(x[idx1]);
