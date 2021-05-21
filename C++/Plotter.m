@@ -5,13 +5,15 @@ files = ["Diagnostic2_mum0_mut0_sigmat3_space65"];
 folder = files(1);
 getData(60)
 
-N = 10;
-% gifPlot(folder,N,"small_evolution.gif");
-temporalPlot(folder,N);
-progressPlot(files,3e3)
+N1 = 40;
+N2 = 101;
+progressPlot(files,12000)
+gifPlot(folder,N1,N2,"small_evolution.gif");
+temporalPlot(folder,N2);
 
-function gifPlot(folder,maxN,fileName)
-    for i = 1:maxN
+
+function gifPlot(folder,startN,maxN,fileName)
+    for i = startN:maxN
         temporalPlot(folder,i);
         subplot(2,1,1)
        
@@ -19,7 +21,7 @@ function gifPlot(folder,maxN,fileName)
           im = frame2im(frame); 
         [imind,cm] = rgb2ind(im,256); 
         
-        if i == 1 
+        if i == startN
           imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
       else 
           imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
@@ -42,8 +44,8 @@ end
 function temporalPlot(folder,number)
     figure(1);
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = t(1);%2320;
-    xmax = 2328;
+    xmin = 2310;
+    xmax = 2340;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("Output/edr3_gaps.csv");
@@ -158,7 +160,7 @@ function progressPlot(files,minLim)
 			cx(end+1) = shrinkLines.Elapsed(j);
 			cy(end+1) = shrinkLines.Epoch(j)-1;
 			cz(end+1) = shrinkLines.F(j)/L0;
-            cz1(end+1) = shrinkLines.dF(j);
+            cz1(end+1) = abs(shrinkLines.dF(j)/shrinkLines.F(j));
             cz2(end+1) = shrinkLines.GradNorm(j);
 		end
 		scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
@@ -168,8 +170,8 @@ function progressPlot(files,minLim)
         xlabel("Time Elapsed (s)");
         grid on;
 
-        set(gca,'yscale','log')
-        set(gca,'xscale','log')
+%         set(gca,'yscale','log')
+%         set(gca,'xscale','log')
         
         subplot(2,2,2);
         hold on;
@@ -178,7 +180,7 @@ function progressPlot(files,minLim)
         plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
 		scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
         set(gca,'yscale','log')
-        set(gca,'xscale','log')
+%         set(gca,'xscale','log')
           xlabel("Elapsed Time (s)");
         ylabel("$L/L_0$");
         hold off;
@@ -200,12 +202,12 @@ function progressPlot(files,minLim)
         maxer = max(s1);
         col = (y1>0)*1.0;
 
-
+    
         surface([x1;x1],[abs(y1);abs(y1)],[zq;zq],[col;col],...
         'facecol','no',...
         'edgecol','flat',...
         'linew',0.5);
-        
+        hold on;
         if height(fullEpoch) > 1
             fullEpoch.dF(1) = fullEpoch.F(1) - miniBatches.F(1);
             x2 = fullEpoch.Elapsed';
@@ -215,7 +217,7 @@ function progressPlot(files,minLim)
             surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
             'facecol','no',...
             'edgecol','flat',...
-            'linew',3);
+            'linew',1.);
         
              s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
             minner = min(min(s1),min(s2));
@@ -223,10 +225,12 @@ function progressPlot(files,minLim)
         end
         caxis([0,3]);
 		scatter(cx,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
-        set(gca,'yscale','log')
-        set(gca,'xscale','log')
-          xlabel("Elapsed Time (s)");
+        hold off;
+                xlabel("Elapsed Time (s)");
         ylabel("$\Delta L / L $");
+        set(gca,'yscale','log')
+%         set(gca,'xscale','log')
+
         hold off;
         grid on;
         xlim([minLim,ender])
@@ -241,7 +245,7 @@ function progressPlot(files,minLim)
         plot(fullEpoch.Elapsed,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
 		scatter(cx,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
         set(gca,'yscale','log')
-        set(gca,'xscale','log')
+%         set(gca,'xscale','log')
           xlabel("Elapsed Time (s)");
         ylabel("$|\nabla L|$");
         hold off;

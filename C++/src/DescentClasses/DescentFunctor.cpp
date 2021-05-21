@@ -67,20 +67,6 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		L.MakeCovarianceMatrix();
 	}
 	
-
-	
-	// Forward transformation - definitely working version
-	/*double u = exp(-1.0/lt);
-	double ua = 1.0/sqrt(1.0-u*u);
-	double ub = -u*ua;
-	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[Nt-1] = mut + sigmat * previous;
-	for (int i = Nt - 2; i >= 0; i--) 
-	{
-    	previous = (z[i] - ub * previous) / ua;
-    	TransformedPosition[i] = mut + sigmat * previous;
-	}*/
-
 	// Forward transformation
 	double u = exp(-1.0/lt);
 	double ua = sqrt(1.0-u*u);
@@ -92,18 +78,6 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
     	TransformedPosition[i] = mut + sigmat * previous;
 	}
 
-	/*// bms = Lmnzns
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			bVector[s*Nm+m] = 0;
-			for (int n = 0; n <= m; ++n)
-			{
-				bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
-			}
-		}
-	}*/
 	// bms = Lmnzns
 	
 	std::fill(bVector.begin(), bVector.end(),0);
@@ -157,18 +131,6 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 
-	/*// bms = Lmnzns
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			for (int n = 0; n <=m; ++n)
-			{
-				Gradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bVector[s*Nm+m];
-			}
-		}
-	}*/
-
 	// bms = Lmnzns
 	for (int s = 0; s < Ns; ++s)
 	{
@@ -212,7 +174,6 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	StarsInLastBatch = totalStarsUsed;
 
-	//~ checkNan(Gradient,"Gradient Calculation");
 	++LoopID;
 	
 	//negative sign for maximisation problem + normalise to number of stars
