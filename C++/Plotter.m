@@ -1,19 +1,20 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic2_mum0_mut0_sigmat3_space65"];
+files = ["Diagnostic3_mum0_mut0_sigmat3_lt36_space54"];
 folder = files(1);
 getData(60)
 
-N1 = 40;
-N2 = 101;
-progressPlot(files,12000)
-gifPlot(folder,N1,N2,"small_evolution.gif");
+N1 = 00;
+N2 = 230;
+gap = 5;
+progressPlot(files,40000)
+% gifPlot(folder,N1,N2,gap,"small_evolution.gif");
 temporalPlot(folder,N2);
 
 
-function gifPlot(folder,startN,maxN,fileName)
-    for i = startN:maxN
+function gifPlot(folder,startN,maxN,gap,fileName)
+    for i = startN:gap:maxN
         temporalPlot(folder,i);
         subplot(2,1,1)
        
@@ -44,8 +45,8 @@ end
 function temporalPlot(folder,number)
     figure(1);
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2310;
-    xmax = 2340;
+    xmin = 2320;%2310;
+    xmax = 2325;%2340;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("Output/edr3_gaps.csv");
@@ -217,7 +218,7 @@ function progressPlot(files,minLim)
             surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
             'facecol','no',...
             'edgecol','flat',...
-            'linew',1.);
+            'linew',2);
         
              s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
             minner = min(min(s1),min(s2));
@@ -237,7 +238,20 @@ function progressPlot(files,minLim)
         
         ylim([minner,maxer]);
        
-
+        sum = 0;
+        sq = [];
+        for p = 1:length(x2)
+            fac = 0.9;
+           sum = fac*sum +(1-fac)*y2(p);
+           sq(p) = sum;
+        end
+        subplot(2,2,1);
+        hold off;
+        plot(x2,sq);
+        grid on;
+         xlim([minLim,ender])
+%         set(gca,'yscale','log')
+        
         subplot(2,2,4);
         hold on;
         plot(miniBatches.Elapsed,miniBatches.GradNorm,'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');

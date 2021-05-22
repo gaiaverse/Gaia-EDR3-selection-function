@@ -23,13 +23,14 @@ struct Conditions
 	double fConvergence;
 	int SaveSteps;
 	int InitialStepMemory;
+
 };
 struct Statuses
 {
 	
 
 	int CurrentSteps;
-	
+	double MovingAverage;
 	bool TooManySteps;
 	bool ReachedGradConvergence;
 	bool ReachedStepConvergence;
@@ -60,6 +61,9 @@ struct Progresser
 	double AnalysisMemoryGrad;
 	int Hashes;
 	int MaxHashes;
+	
+
+	
 };
 
 template<class T>
@@ -94,8 +98,10 @@ class Optimizer
 			Condition.StepSize = 0.02;
 			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
+		
 			Status.CurrentSteps = 0;
 		
+			Status.MovingAverage = 0;
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
@@ -316,6 +322,12 @@ class Optimizer
 				Converged = true;
 				return false;
 			}
+			if (Status.MovingAverage > 0)
+			{
+				Status.ReachedFunctionConvergence = true;
+				Converged = true;
+				return false;
+			}
 
 			
 			return true;
@@ -414,6 +426,10 @@ class Optimizer
 			
 			if (batch == -1)
 			{
+				double frac = 0.9;
+				Status.MovingAverage = frac*Status.MovingAverage + (1.0- frac)*dF;
+				
+				
 				if (nBatches == 1)
 				{
 					std::cout << "\t\tEpoch " << Status.CurrentSteps;
