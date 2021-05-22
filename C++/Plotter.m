@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic3_mum0_mut0_sigmat3_lt36_space54"];
+files = ["Diagnostic4_mum0_mut0_sigmat3_lt36_space65"];
 folder = files(1);
 getData(60)
 
 N1 = 00;
-N2 = 230;
+N2 = 10;
 gap = 5;
-progressPlot(files,40000)
-% gifPlot(folder,N1,N2,gap,"small_evolution.gif");
+progressPlot(files,6000)
+gifPlot(folder,N1,N2,gap,"small_evolution.gif");
 temporalPlot(folder,N2);
 
 
@@ -45,8 +45,8 @@ end
 function temporalPlot(folder,number)
     figure(1);
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;%2310;
-    xmax = 2325;%2340;
+    xmin = 2175;%2310;
+    xmax = 2250;%2340;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("Output/edr3_gaps.csv");
@@ -238,16 +238,7 @@ function progressPlot(files,minLim)
         
         ylim([minner,maxer]);
        
-        sum = 0;
-        sq = [];
-        for p = 1:length(x2)
-            fac = 0.9;
-           sum = fac*sum +(1-fac)*y2(p);
-           sq(p) = sum;
-        end
-        subplot(2,2,1);
-        hold off;
-        plot(x2,sq);
+       
         grid on;
          xlim([minLim,ender])
 %         set(gca,'yscale','log')

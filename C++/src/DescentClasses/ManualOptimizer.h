@@ -390,7 +390,7 @@ class Optimizer
 				batchesAreAProblem = true;
 			}
 
-			double gradThreshold = 25;
+			double gradThreshold = 25e10;
 
 			if (gradThreshold*meanGNorm < Progress.AnalysisMemoryGrad)
 			{
