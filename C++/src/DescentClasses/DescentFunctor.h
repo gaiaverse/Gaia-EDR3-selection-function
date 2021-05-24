@@ -58,6 +58,7 @@ class DescentFunctor
 		std::vector<double> TransformedPosition;
 		std::vector<double> TransformedGradient;
 		std::vector<double> bVector;
+		std::vector<double> mut_gaps;
 
 		void ForwardTransform(const VectorXd &z);
 		void BackwardTransform();		
@@ -101,6 +102,61 @@ class DescentFunctor
 			    
 				Value = 0;
 				Gradient = std::vector<double>(totalRawParams,0);
+				
+				
+				mut_gaps = std::vector<double>(Nt,0);
+				std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+				double timeFactor = (double)TotalScanningTime / Nt;
+				int it = 0;
+				bool inGap = false;
+				int borderWidth = 3;
+				int modifiedBorderWidth = borderWidth * timeFactor;
+				std::cout << modifiedBorderWidth << "  " << timeFactor << std::endl;
+				bool inBorder= false;
+				int trueTime = 0;
+				int lastEnd = -9999;
+				
+				forLineVectorInFile(gapFile,' ',
+					
+					int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
+					int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);
+					
+					trueTime = floor(it * timeFactor);
+					while (trueTime < gapEnd)
+					{
+						int leftDistance = std::min(abs(trueTime - gapStart),abs(trueTime - lastEnd));
+						int rightDistance = abs(trueTime - gapEnd);
+						
+						bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
+						
+						bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
+						double insertValue = mut_normal;
+						if (inGap)
+						{
+							insertValue = mut_gap;
+						}
+						if (nearGapEdge)
+						{
+							insertValue = mut_border;
+						}
+					
+						mut_gaps[it] = insertValue;
+						//~ std::cout << "\t " <<it << "  " << trueTime << "   " << insertValue << "   " << leftDistance << "   " << rightDistance << std::endl;
+						
+						++it;
+						trueTime = floor((double)it * timeFactor);
+						
+					}
+					//~ std::cout << "Gap finished at it = " << it << " t = " << trueTime << std::endl;
+					lastEnd = gapEnd;
+				);
+				
+				while (it<Nt)
+				{
+					mut_gaps[it] = mut_normal;
+					++it;
+				}
+			
 		}
 	    void DistributeCalculations(const VectorXd &y, int batchID, int effectiveBatches);
  

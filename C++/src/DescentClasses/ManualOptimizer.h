@@ -223,7 +223,8 @@ class Optimizer
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double dx_i = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
+						double learningRate = Condition.StepSize * std::min(5.0,sqrt((double)nBatches / EffectiveBatches));
+						double dx_i = b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate;
 						dxNorm += dx_i * dx_i;
 						x[i] -= dx_i;
 						epochGradient[i] += g;
@@ -315,7 +316,7 @@ class Optimizer
 				Converged = true;
 				return false;
 			}
-			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
+			if (Condition.fConvergence > 0 && df < 0 && abs(df) < Condition.fConvergence)
 			{
 				//~ std::cout << "DF " << abs(df) << std::endl;
 				Status.ReachedFunctionConvergence = true;

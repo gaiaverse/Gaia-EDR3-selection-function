@@ -7,7 +7,7 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum);
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum_prior);
 	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
@@ -71,11 +71,11 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	double u = exp(-1.0/lt);
 	double ua = sqrt(1.0-u*u);
 	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[Nt-1] = mut + sigmat * previous;
+	TransformedPosition[Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
 	for (int i = Nt - 2; i >= 0; i--) 
 	{
     	previous = ua * z[i] + u * previous;
-    	TransformedPosition[i] = mut + sigmat * previous;
+    	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
 	}
 
 	// bms = Lmnzns
