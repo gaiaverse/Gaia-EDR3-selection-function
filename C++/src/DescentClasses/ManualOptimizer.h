@@ -146,7 +146,7 @@ class Optimizer
 			ADAM(x);
 		}
 		
-		void Minimize(VectorXd & x, int nBatches)
+		void Minimize(VectorXd & x, int nBatches,int ignore)
 		{
 			if (x.size() != Dimensions)
 			{
@@ -155,12 +155,12 @@ class Optimizer
 			}
 			
 			InitialiseProgress();
-			ADABADAM(x,nBatches);
+			ADABADAM(x,nBatches, ignore);
 			
 		}
 		
 	
-		void ADABADAM(VectorXd &x,int nBatches)
+		void ADABADAM(VectorXd &x,int nBatches,int dimensionToIgnore)
 		{
 			int EffectiveBatches = nBatches;
 			
@@ -216,7 +216,7 @@ class Optimizer
 	
 					double gNorm = 0;
 					double dxNorm = 0;
-					for (int i = 0; i < Dimensions; ++i)
+					for (int i = dimensionToIgnore; i < Dimensions; ++i)
 					{
 						double g = Functor.Gradient[i];
 						gNorm += g*g;
