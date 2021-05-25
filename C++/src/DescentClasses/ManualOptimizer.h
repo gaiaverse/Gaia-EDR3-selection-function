@@ -23,13 +23,14 @@ struct Conditions
 	double fConvergence;
 	int SaveSteps;
 	int InitialStepMemory;
+
 };
 struct Statuses
 {
 	
 
 	int CurrentSteps;
-	
+	double MovingAverage;
 	bool TooManySteps;
 	bool ReachedGradConvergence;
 	bool ReachedStepConvergence;
@@ -57,9 +58,12 @@ struct Progresser
 	int AnalysisSteps;
 	int AnalysisMemorySize;
 	std::vector<double> AnalysisMemory;
-	
+	double AnalysisMemoryGrad;
 	int Hashes;
 	int MaxHashes;
+	
+
+	
 };
 
 template<class T>
@@ -94,16 +98,18 @@ class Optimizer
 			Condition.StepSize = 0.02;
 			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
+		
 			Status.CurrentSteps = 0;
 		
+			Status.MovingAverage = 0;
 			Status.TooManySteps = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
 			Status.ReachedFunctionConvergence = false;
 			
-			Progress.BufferSize = 10;
+			Progress.BufferSize = 50;
 			Progress.ProgressDir = "";
-			Progress.AnalysisMemorySize = 5;
+			Progress.AnalysisMemorySize = 10;
 			Progress.MaxHashes = 20;
 			
 		}
@@ -126,6 +132,7 @@ class Optimizer
 			Progress.PastEpoch = std::vector<int>(n,0);
 			Progress.AnalysisSteps = 0;
 			Progress.AnalysisMemory = std::vector<double>(Progress.AnalysisMemorySize,0);
+			Progress.AnalysisMemoryGrad = 0;
 		}
 		
 		void Minimize(VectorXd & x)
@@ -139,7 +146,7 @@ class Optimizer
 			ADAM(x);
 		}
 		
-		void Minimize(VectorXd & x, int nBatches)
+		void Minimize(VectorXd & x, int nBatches,int ignore)
 		{
 			if (x.size() != Dimensions)
 			{
@@ -148,12 +155,12 @@ class Optimizer
 			}
 			
 			InitialiseProgress();
-			ADABADAM(x,nBatches);
+			ADABADAM(x,nBatches, ignore);
 			
 		}
 		
 	
-		void ADABADAM(VectorXd &x,int nBatches)
+		void ADABADAM(VectorXd &x,int nBatches,int dimensionToIgnore)
 		{
 			int EffectiveBatches = nBatches;
 			
@@ -161,6 +168,7 @@ class Optimizer
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
 			VectorXd epochGradient = VectorXd::Zero(Dimensions);
+			VectorXd oldX = x;
 			//~ VectorXd dx = VectorXd::Zero(Dimensions);
 			
 			//ADAM Variables
@@ -191,6 +199,11 @@ class Optimizer
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
+					//save initial position
+					if (batches == 0 && epochs == 1)
+					{
+						Functor.SavePosition(false,0);
+					}
 					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));			
@@ -202,14 +215,17 @@ class Optimizer
 					//~ dx = b1Mod * m * Condition.StepSize;
 	
 					double gNorm = 0;
-					for (int i = 0; i < Dimensions; ++i)
+					double dxNorm = 0;
+					for (int i = dimensionToIgnore; i < Dimensions; ++i)
 					{
 						double g = Functor.Gradient[i];
 						gNorm += g*g;
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double dx_i = b1Mod * m[i] * Condition.StepSize /  (sqrt(v[i]*b2Mod) + eps);
+						double learningRate = Condition.StepSize * std::min(5.0,sqrt((double)nBatches / EffectiveBatches));
+						double dx_i = b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate;
+						dxNorm += dx_i * dx_i;
 						x[i] -= dx_i;
 						epochGradient[i] += g;
 					}	
@@ -221,7 +237,9 @@ class Optimizer
 					{
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrt(gNorm),df_mini);
+						double sqrtgNorm = sqrt(gNorm);
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm));
+						Progress.AnalysisMemoryGrad += sqrtgNorm;
 					}
 				}
 				
@@ -229,13 +247,16 @@ class Optimizer
 				epochGradient *= 1.0/EffectiveBatches;
 				double df = epochL - previousEpoch;
 				previousEpoch = epochL;
+				double epochGradNorm = epochGradient.norm();
+				double epochDx = (x-oldX).norm();
 				
-				
+				oldX = x;
 				++Status.CurrentSteps;
-				UpdateProgress(-1,EffectiveBatches,epochL,epochGradient.norm(),df);
+				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx);
 				
-				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches);
-				minimiseContinues = CheckContinues(epochGradient,df);
+				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches,epochGradNorm);
+				
+				minimiseContinues = CheckContinues(epochGradient,df,epochDx);
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
@@ -272,7 +293,7 @@ class Optimizer
 			
 		}
 			
-		bool CheckContinues(const VectorXd & dg, double df)
+		bool CheckContinues(const VectorXd & dg, double df, double dx)
 		{
 		
 			if (Status.CurrentSteps > Condition.MaxSteps)
@@ -281,13 +302,13 @@ class Optimizer
 				Status.TooManySteps = true;
 				return false;
 			}
-			//~ if (Condition.xConvergence > 0 && dx.norm() < Condition.xConvergence)
-			//~ {
+			if (Condition.xConvergence > 0 && dx < Condition.xConvergence)
+			{
 				//~ std::cout << "X " << dx.norm() << std::endl;
-				//~ Status.ReachedStepConvergence = true;
-				//~ Converged = true;
-				//~ return false;
-			//~ }
+				Status.ReachedStepConvergence = true;
+				Converged = true;
+				return false;
+			}
 			if (Condition.gConvergence > 0 && dg.norm() < Condition.gConvergence)
 			{
 				//~ std::cout << "G " << dg.norm() << std::endl;
@@ -295,9 +316,15 @@ class Optimizer
 				Converged = true;
 				return false;
 			}
-			if (Condition.fConvergence > 0 && abs(df) < Condition.fConvergence)
+			if (Condition.fConvergence > 0 && df < 0 && abs(df) < Condition.fConvergence)
 			{
 				//~ std::cout << "DF " << abs(df) << std::endl;
+				Status.ReachedFunctionConvergence = true;
+				Converged = true;
+				return false;
+			}
+			if (Status.MovingAverage > 0)
+			{
 				Status.ReachedFunctionConvergence = true;
 				Converged = true;
 				return false;
@@ -307,19 +334,20 @@ class Optimizer
 			return true;
 		} 
 
-		int UpdateBatchSize(double df,int currentSize)
+		int UpdateBatchSize(double df,int currentSize,double meanGNorm)
 		{
 		
 			int analysisPos = Progress.AnalysisSteps % Progress.AnalysisMemorySize; 
 			
 			Progress.AnalysisMemory[analysisPos] = df;
 			++Progress.AnalysisSteps;	
+			Progress.AnalysisMemoryGrad /= currentSize;
 			double newSize = currentSize;
 			
 			if (Progress.AnalysisSteps >= Progress.AnalysisMemorySize)
 			{
 			
-				if (NeedsBatchReduction())
+				if (NeedsBatchReduction(meanGNorm))
 				{
 				
 					Progress.AnalysisSteps = 0;
@@ -331,12 +359,13 @@ class Optimizer
 				}
 			
 			}		
-
+			Progress.AnalysisMemoryGrad = 0;
 			return newSize;
 		}
 
-		bool NeedsBatchReduction()
+		bool NeedsBatchReduction(double meanGNorm)
 		{
+			bool batchesAreAProblem = false;
 			
 			int N = Progress.AnalysisMemorySize;
 			
@@ -355,18 +384,24 @@ class Optimizer
 			}
 
 			double mean = sum / N;
-			
-			bool batchesAreAProblem = false;
+		
 			int problematicSignChanges = std::max(2,N/3);
 			if ((mean > 0) || signChanges >= problematicSignChanges)
 			{
 				batchesAreAProblem = true;
 			}
 
+			double gradThreshold = 25e10;
+
+			if (gradThreshold*meanGNorm < Progress.AnalysisMemoryGrad)
+			{
+				batchesAreAProblem = true;
+			}
+			Progress.AnalysisMemoryGrad = 0;
 			return batchesAreAProblem;
 		}
 
-		void UpdateProgress(int batch, int nBatches,double F, double G, double dF)
+		void UpdateProgress(int batch, int nBatches,double F, double G, double dF,double dxNorm)
 		{
 			int i = Progress.BufferPosition;
 			Progress.PastMiniBatch[i] = batch;
@@ -392,6 +427,10 @@ class Optimizer
 			
 			if (batch == -1)
 			{
+				double frac = 0.9;
+				Status.MovingAverage = frac*Status.MovingAverage + (1.0- frac)*dF;
+				
+				
 				if (nBatches == 1)
 				{
 					std::cout << "\t\tEpoch " << Status.CurrentSteps;
@@ -401,7 +440,7 @@ class Optimizer
 					std::cout << "]";
 				}
 				std::cout << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
-				std::cout << "\t\t\t(L,Gradnorm,dL,nBatch) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ", " << nBatches <<")\n"; 
+				std::cout << "\t\t\t(L,Gradnorm,dL,|dx|,nBatch) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ", " << std::setprecision(10) << dxNorm << ", " << nBatches <<")\n"; 
 				
 				
 				

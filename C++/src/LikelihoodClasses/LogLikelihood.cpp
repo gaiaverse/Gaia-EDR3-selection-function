@@ -59,8 +59,9 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 	{
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
-		double time_multiplier = time_ratio * t - T;
-		double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
+		//double time_multiplier = time_ratio * t - T;
+		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
+		double xt = x[T];
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
 		double elu_xml1 = elu(x[idx1]);
@@ -277,14 +278,15 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
-		double time_multiplier = time_ratio * t - T;
+		//double time_multiplier = time_ratio * t - T;
 
 		int offset = Nt + candidate->gBin;
 		int index1 = offset +  Data.healpix_fov_1[t] * Nm;
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
-		Gradient[T] += dFdP_p * (1.0 - Data.pt[i]) * (1.0 - time_multiplier);
-		Gradient[T+1] += dFdP_p * (1.0 - Data.pt[i]) * time_multiplier;
+		//Gradient[T] += dFdP_p * (1.0 - Data.pt[i]) * (1.0 - time_multiplier);
+		//Gradient[T+1] += dFdP_p * (1.0 - Data.pt[i]) * time_multiplier;
+		Gradient[T] += dFdP_p * (1.0 - Data.pt[i]);
 
 		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
 		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;

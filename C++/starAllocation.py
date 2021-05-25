@@ -24,28 +24,33 @@ def size(filename):
 	return os.path.getsize(filename)
 
 def getUniqueFiles(rootToFiles):
-	list = os.listdir(rootToFiles)
+	# ~ list = os.listdir(rootToFiles)
 
-	baseBranch= {}
-	for file in list:
-		if ".csv" in file:
-			root = file.split(".")[0]
-			if "_" in root:
-				root = file.split("_")[0]
+	# ~ baseBranch= {}
+	# ~ for file in list:
+		# ~ if ".csv" in file:
+			# ~ root = file.split(".")[0]
+			# ~ if "_" in root:
+				# ~ root = file.split("_")[0]
 			
-			if root in baseBranch.keys():
-				baseBranch[root].append(file)
-			else:
-				baseBranch[root] = [file]
+			# ~ if root in baseBranch.keys():
+				# ~ baseBranch[root].append(file)
+			# ~ else:
+				# ~ baseBranch[root] = [file]
 		
+	# ~ uniqueFiles = [];
+	# ~ for files in baseBranch.values():
+		# ~ if len(files) == 1:
+			# ~ uniqueFiles.append(files[0])
+		# ~ else:
+			# ~ for file in files:
+				# ~ if "_" in file:
+					# ~ uniqueFiles.append(file)
+	
+	
 	uniqueFiles = [];
-	for files in baseBranch.values():
-		if len(files) == 1:
-			uniqueFiles.append(files[0])
-		else:
-			for file in files:
-				if "_" in file:
-					uniqueFiles.append(file)
+	for i in range(0,143):
+		uniqueFiles.append( str(i) + ".csv")
 	
 	return uniqueFiles
 
@@ -165,7 +170,8 @@ def printAllocation(fileAssign):
 		if coreAssigns[j] != None:
 			i = 0
 			for file in coreAssigns[j]:
-				d = nameSubstruct(file)
+				d = nameSubstruct(file)		
+				
 				s = s + d[0] + delim + str(d[1])
 				i += 1
 				if i < len(coreAssigns[j]):

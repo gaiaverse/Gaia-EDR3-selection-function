@@ -10,20 +10,25 @@ using Eigen::VectorXd;
 
 const int RootID = 0; //<- declare that process 0 is always Root.
 
-const int Nm = 213;//35; // number of magnitude bins
-const int Nt = 8152; // number of time bins, coarse, feel free to change
+const int Nm = 143; // number of magnitude bins
+const int Nt = 89676; // number of time bins, coarse, feel free to change
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 4; // order of healpix map, can be any integer >= 0
-const int needlet_order = 2; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 6; // order of healpix map, can be any integer >= 0
+const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
 
 const int N_SGD_Batches = 128;
-const int DataLoadCount = 2e6;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 3e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
-const double mum = 2.5;
-const double mut = 5;
-const double sigmat = 1;
+const double mum_prior = -2;
+const double mum_init = 4;
+
+const double mut_normal = 10;
+const double mut_border = 0;
+const double mut_gap = -10;
+
+const double sigmat = 3;
 const double lm = 3;
-const double lt = 96;
+const double lt = 3;
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
 const double expm_density_cut = exp(-density_cut);
@@ -45,7 +50,7 @@ const double VerySmallLog = -9999999999;
 const double SingularityPreventer = 1e-18;
 const int PipelineMinVisits = 5; 
 
-const int SaveSteps = 1;
+const int SaveSteps = 5;
 const bool SaveAllTemps = true;
 const std::string TempDirName = "TempPositions";
 

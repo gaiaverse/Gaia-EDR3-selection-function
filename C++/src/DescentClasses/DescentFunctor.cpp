@@ -7,41 +7,44 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum);
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum_prior);
 	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
 void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 {
-	std::string fileBase = OutputDir + "/";
+	std::string transBase = OutputDir + "/";
+	std::string intBase = OutputDir + "/";
 	if (finalSave)
 	{
-		fileBase += "FinalPosition_";
+		transBase += "FinalPosition_";
+		intBase = transBase;
 		ForwardTransform(PrevLock);
 	}
 	else
 	{
-		fileBase += TempDirName + "/TempPosition";
+		intBase += TempDirName + "/TempPosition";
 		if (SaveAllTemps)
 		{
-			fileBase += std::to_string(saveStep);
+			transBase = intBase + std::to_string(saveStep);
 		}
-		fileBase += "_";
+		intBase += "_";
+		transBase += "_";
 	}
 	
 	
 	
 	
 	std::fstream rawfile;
-	rawfile.open(fileBase + "InternalParameters.dat",std::ios::out);
+	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
 	
 	for (int i = 0; i < totalRawParams; ++i)
 	{
 		rawfile << PrevLock[i] << "\n";
 	}
 	std::fstream transfile;
-	transfile.open(fileBase + "TransformedParameters.dat",std::ios::out);
+	transfile.open(transBase + "TransformedParameters.dat",std::ios::out);
 
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
@@ -64,43 +67,17 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		L.MakeCovarianceMatrix();
 	}
 	
-
-	
-	// Forward transformation - definitely working version
-	/*double u = exp(-1.0/lt);
-	double ua = 1.0/sqrt(1.0-u*u);
-	double ub = -u*ua;
-	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[Nt-1] = mut + sigmat * previous;
-	for (int i = Nt - 2; i >= 0; i--) 
-	{
-    	previous = (z[i] - ub * previous) / ua;
-    	TransformedPosition[i] = mut + sigmat * previous;
-	}*/
-
 	// Forward transformation
 	double u = exp(-1.0/lt);
 	double ua = sqrt(1.0-u*u);
 	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[Nt-1] = mut + sigmat * previous;
+	TransformedPosition[Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
 	for (int i = Nt - 2; i >= 0; i--) 
 	{
     	previous = ua * z[i] + u * previous;
-    	TransformedPosition[i] = mut + sigmat * previous;
+    	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
 	}
 
-	/*// bms = Lmnzns
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			bVector[s*Nm+m] = 0;
-			for (int n = 0; n <= m; ++n)
-			{
-				bVector[s*Nm+m] += L.CholeskyKg(m,n) * z[Nt+s*Nm+n];
-			}
-		}
-	}*/
 	// bms = Lmnzns
 	
 	std::fill(bVector.begin(), bVector.end(),0);
@@ -154,18 +131,6 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 
-	/*// bms = Lmnzns
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			for (int n = 0; n <=m; ++n)
-			{
-				Gradient[Nt+s*Nm+n] += L.CholeskyKg(m,n)*bVector[s*Nm+m];
-			}
-		}
-	}*/
-
 	// bms = Lmnzns
 	for (int s = 0; s < Ns; ++s)
 	{
@@ -209,7 +174,6 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	StarsInLastBatch = totalStarsUsed;
 
-	//~ checkNan(Gradient,"Gradient Calculation");
 	++LoopID;
 	
 	//negative sign for maximisation problem + normalise to number of stars

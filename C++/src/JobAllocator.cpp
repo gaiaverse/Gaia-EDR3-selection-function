@@ -71,11 +71,13 @@ void RootProcess()
 	//set up the criteria for termination
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
+	op.Condition.fConvergence = 1e-7;
+	op.Condition.xConvergence = 0.0002;
 	op.Condition.SaveSteps = SaveSteps;
 
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";
 	// GO GO GO GO!
-	op.Minimize(x,N_SGD_Batches);
+	op.Minimize(x,N_SGD_Batches,Nt);
 		
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
