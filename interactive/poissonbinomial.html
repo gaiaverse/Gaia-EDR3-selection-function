@@ -1,0 +1,86 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Bokeh Plot</title>
+      
+      
+        
+          
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.3.2.min.js" integrity="sha384-XypntL49z55iwGVUW4qsEu83zKL3XEcz0MjuGOQ9SlaaQ68X/g+k1FcioZi7oQAc" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-2.3.2.min.js" integrity="sha384-TX0gSQTdXTTeScqxj6PVQxTiRW8DOoGVwinyi1D3kxv7wuxQ02XkOxv0xwiypcAH" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="46eeb781-947e-4a05-b72e-6c20f2ee12f0" data-root-id="7504"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="7577">
+          {"740577a0-0c0c-42bd-979b-f2e7fd10a69a":{"defs":[],"roots":{"references":[{"attributes":{"ticks":[0,1,2,3,4,5,6,7,8,9,10]},"id":"7483","type":"FixedTicker"},{"attributes":{"height":100,"text":"You are flipping 10 weighted coins. You can set the probability that each coin shows heads below. Given those probabilities, the histogram shows the probability of each number of heads.","width":200},"id":"7501","type":"Paragraph"},{"attributes":{},"id":"7507","type":"AllLabels"},{"attributes":{"axis_label":"Probability mass","formatter":{"id":"7508"},"major_label_policy":{"id":"7510"},"ticker":{"id":"7479"}},"id":"7478","type":"LinearAxis"},{"attributes":{"end":10.5,"start":-0.5},"id":"7466","type":"DataRange1d"},{"attributes":{},"id":"7511","type":"UnionRenderers"},{"attributes":{"children":[{"id":"7503"}]},"id":"7504","type":"Column"},{"attributes":{"source":{"id":"7462"}},"id":"7489","type":"CDSView"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 6","value":0.5},"id":"7495","type":"Slider"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 1","value":0.5},"id":"7490","type":"Slider"},{"attributes":{"active_multi":null},"id":"7482","type":"Toolbar"},{"attributes":{},"id":"7479","type":"BasicTicker"},{"attributes":{"bottom":{"value":0},"fill_color":{"value":"#1f77b4"},"left":{"field":"left_edges"},"line_color":{"value":"white"},"right":{"field":"right_edges"},"top":{"field":"values"}},"id":"7486","type":"Quad"},{"attributes":{"bottom":{"value":0},"fill_alpha":{"value":0.1},"fill_color":{"value":"#1f77b4"},"left":{"field":"left_edges"},"line_alpha":{"value":0.1},"line_color":{"value":"white"},"right":{"field":"right_edges"},"top":{"field":"values"}},"id":"7487","type":"Quad"},{"attributes":{"args":{"probability_0":{"id":"7490"},"probability_1":{"id":"7491"},"probability_2":{"id":"7492"},"probability_3":{"id":"7493"},"probability_4":{"id":"7494"},"probability_5":{"id":"7495"},"probability_6":{"id":"7496"},"probability_7":{"id":"7497"},"probability_8":{"id":"7498"},"probability_9":{"id":"7499"},"source":{"id":"7462"}},"code":"\n\n        function poisson_binomial(probs, probslen, result) {\n            var i;\n            var j;\n            var oldlen = 2; // length of old kernel\n            var signal = [0,0];\n            var t;\n            var tmp;\n\n            // initialize (old kernel)\n            result[0] = 1-probs[0];\n            result[1] = probs[0];\n\n            // loop through all other probs\n            for (i=1; i &lt; probslen; i++){\n\n                // set signal\n                signal[0] = probs[i];\n                signal[1] = 1-probs[i];\n\n                // initialize result and calculate the two edge cases\n                result[oldlen] = signal[0] * result[oldlen-1];\n\n                t = result[0];\n                result[0] = signal[1]*t;\n\n                //calculate the interior cases\n                for(j=1; j &lt; oldlen; j++){\n                    tmp=result[j];\n                    result[j] = signal[0] * t + signal[1] * result[j];\n                    t=tmp;\n                }\n\n            oldlen++;\n            }\n        }\n        \n        const p = probability_0.value;\n        const data = source.data;\n        const x = data['values']\n        const n = 10;\n        var probs = [probability_0.value,probability_1.value,probability_2.value,probability_3.value,probability_4.value,probability_5.value,probability_6.value,probability_7.value,probability_8.value,probability_9.value]\n        poisson_binomial(probs,n,x);\n        source.change.emit();\n    "},"id":"7500","type":"CustomJS"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 10","value":0.5},"id":"7499","type":"Slider"},{"attributes":{"axis":{"id":"7474"},"ticker":null,"visible":false},"id":"7477","type":"Grid"},{"attributes":{"data_source":{"id":"7462"},"glyph":{"id":"7486"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"7487"},"view":{"id":"7489"}},"id":"7488","type":"GlyphRenderer"},{"attributes":{"axis_label":"Number of heads","formatter":{"id":"7506"},"major_label_policy":{"id":"7507"},"ticker":{"id":"7483"}},"id":"7474","type":"LinearAxis"},{"attributes":{},"id":"7472","type":"LinearScale"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 8","value":0.5},"id":"7497","type":"Slider"},{"attributes":{},"id":"7506","type":"BasicTickFormatter"},{"attributes":{"axis":{"id":"7478"},"dimension":1,"ticker":null},"id":"7481","type":"Grid"},{"attributes":{"text":"Poisson Binomial"},"id":"7464","type":"Title"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 5","value":0.5},"id":"7494","type":"Slider"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 4","value":0.5},"id":"7493","type":"Slider"},{"attributes":{},"id":"7512","type":"Selection"},{"attributes":{"background_fill_color":"#fafafa","below":[{"id":"7474"}],"center":[{"id":"7477"},{"id":"7481"}],"left":[{"id":"7478"}],"renderers":[{"id":"7488"}],"title":{"id":"7464"},"toolbar":{"id":"7482"},"width":500,"x_range":{"id":"7466"},"x_scale":{"id":"7470"},"y_range":{"id":"7468"},"y_scale":{"id":"7472"}},"id":"7463","subtype":"Figure","type":"Plot"},{"attributes":{},"id":"7470","type":"LinearScale"},{"attributes":{"start":0},"id":"7468","type":"DataRange1d"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 9","value":0.5},"id":"7498","type":"Slider"},{"attributes":{"children":[{"id":"7501"},{"id":"7490"},{"id":"7491"},{"id":"7492"},{"id":"7493"},{"id":"7494"},{"id":"7495"},{"id":"7496"},{"id":"7497"},{"id":"7498"},{"id":"7499"}]},"id":"7502","type":"Column"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 3","value":0.5},"id":"7492","type":"Slider"},{"attributes":{},"id":"7508","type":"BasicTickFormatter"},{"attributes":{"data":{"left_edges":{"__ndarray__":"AAAAAAAA4L8AAAAAAADgPwAAAAAAAPg/AAAAAAAABEAAAAAAAAAMQAAAAAAAABJAAAAAAAAAFkAAAAAAAAAaQAAAAAAAAB5AAAAAAAAAIUAAAAAAAAAjQA==","dtype":"float64","order":"little","shape":[11]},"right_edges":{"__ndarray__":"AAAAAAAA4D8AAAAAAAD4PwAAAAAAAARAAAAAAAAADEAAAAAAAAASQAAAAAAAABZAAAAAAAAAGkAAAAAAAAAeQAAAAAAAACFAAAAAAAAAI0AAAAAAAAAlQA==","dtype":"float64","order":"little","shape":[11]},"values":{"__ndarray__":"AAAAAAAAUD8GAAAAAACEP///////f6Y/CgAAAAAAvj8IAAAAAEDKPwkAAAAAgM8/CAAAAABAyj8KAAAAAAC+P///////f6Y/BgAAAAAAhD8AAAAAAABQPw==","dtype":"float64","order":"little","shape":[11]}},"selected":{"id":"7512"},"selection_policy":{"id":"7511"}},"id":"7462","type":"ColumnDataSource"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 7","value":0.5},"id":"7496","type":"Slider"},{"attributes":{"children":[{"id":"7463"},{"id":"7502"}]},"id":"7503","type":"Row"},{"attributes":{"end":1,"js_property_callbacks":{"change:value":[{"id":"7500"}]},"start":0,"step":0.01,"title":"Probability 2","value":0.5},"id":"7491","type":"Slider"},{"attributes":{},"id":"7510","type":"AllLabels"}],"root_ids":["7504"]},"title":"Bokeh Application","version":"2.3.2"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('7577').textContent;
+                  var render_items = [{"docid":"740577a0-0c0c-42bd-979b-f2e7fd10a69a","root_ids":["7504"],"roots":{"7504":"46eeb781-947e-4a05-b72e-6c20f2ee12f0"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
