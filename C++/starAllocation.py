@@ -49,7 +49,7 @@ def getUniqueFiles(rootToFiles):
 	
 	
 	uniqueFiles = [];
-	for i in range(0,143):
+	for i in range(0,142):
 		uniqueFiles.append( str(i) + ".csv")
 	
 	return uniqueFiles

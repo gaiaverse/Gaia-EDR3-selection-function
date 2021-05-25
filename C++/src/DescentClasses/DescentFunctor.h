@@ -109,9 +109,8 @@ class DescentFunctor
 				double timeFactor = (double)TotalScanningTime / Nt;
 				int it = 0;
 				bool inGap = false;
-				int borderWidth = 3;
+				int borderWidth = 0;
 				int modifiedBorderWidth = borderWidth * timeFactor;
-				std::cout << modifiedBorderWidth << "  " << timeFactor << std::endl;
 				bool inBorder= false;
 				int trueTime = 0;
 				int lastEnd = -9999;

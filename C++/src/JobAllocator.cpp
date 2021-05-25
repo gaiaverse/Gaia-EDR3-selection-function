@@ -14,15 +14,6 @@
 
 //~ #include "libs/LBFG/LBFGS.h"
 
-#include "libs/cppoptlib/meta.h"
-#include "libs/cppoptlib/problem.h"
-#include "libs/cppoptlib/solver/gradientdescentsolver.h"
-#include "libs/cppoptlib/solver/conjugatedgradientdescentsolver.h"
-#include "libs/cppoptlib/solver/lbfgssolver.h"
-#include "libs/cppoptlib/solver/neldermeadsolver.h"
-
-#include "libs/cppoptlib/solver/newtondescentsolver.h"
-#include "libs/cppoptlib/solver/cmaessolver.h"
 #include "DataOperators/Star.h"
 #include "DataOperators/DataLoading.h"
 #include "DescentClasses/DescentFunctor.h"
@@ -72,7 +63,7 @@ void RootProcess()
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
 	op.Condition.fConvergence = 1e-7;
-	op.Condition.xConvergence = 0.0002;
+	op.Condition.xConvergence = 0.002;
 	op.Condition.SaveSteps = SaveSteps;
 
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";

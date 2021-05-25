@@ -1,6 +1,12 @@
 #pragma once
 #include <vector>
+#define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "libs/Eigen/Core"
+#include "libs/Eigen/Householder"
+#include "libs/Eigen/QR"
+#include "libs/Eigen/LU"
+#include <fstream>
+#define EIGEN_MPL2_ONLY
 #include <string.h>
 #include <iostream>
 #include <fstream>
@@ -17,10 +23,10 @@ const int healpix_order = 6; // order of healpix map, can be any integer >= 0
 const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
 
 const int N_SGD_Batches = 128;
-const int DataLoadCount = 3e6;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 0;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const double mum_prior = -2;
-const double mum_init = 4;
+const double mum_init = 5;
 
 const double mut_normal = 10;
 const double mut_border = 0;

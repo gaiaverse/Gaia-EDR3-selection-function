@@ -33,11 +33,31 @@ Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
 	{
 		x = initialisationBounds*VectorXd::Random(n);
 		
-		for (int i = Nt; i < Nt + Nm; ++i)
+		//initialise spatial part properly
+		
+		Eigen::Matrix<double, Nm, Nm> Kg;
+		for (int i = 0; i < Nm; i++) 
 		{
-			x[i] += mum_init;
+			for (int j = 0; j < i; j++) 
+			{
+				Kg(i,j) = Kg(j,i) = exp(-pow(i - j,2)/(2.0*lm*lm));
+			}
+			Kg(i,i) = 1.0 + SingularityPreventer;
 		}
-    }
+		
+		//decompose to make CholeskyKg
+		Eigen::Matrix<double, Nm, Nm> CholeskyKg = Kg.llt().matrixL();
+		Eigen::Matrix<double, Nm, Nm>  Inverted = CholeskyKg.inverse();
+		
+		Eigen::VectorXd mums = VectorXd::Constant(Nm,mum_init - mum_prior);
+		
+		mums = Inverted * mums;
+		
+		for (int i = 0; i < Nm; ++i)
+		{
+			x[Nt+i] += mums[i];
+		}
+	}
    
 	return x;
 }
