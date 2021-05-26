@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["InitTest"];
+files = ["Diagnostic10_fixedTime_spatialInit"];
 folder = files(1);
-getData(60);
+% getData(60);
 
 N1 =0;
-N2 = 0;
+N2 = 220;
 gap = 5;
-% progressPlot(files,4000)
-% gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
+progressPlot(files,40)
+gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
 temporalPlot(folder,N2);
 
 
@@ -159,7 +159,7 @@ function temporalPlot(folder,number)
     xlabel("$i$");
     ylabel("Magnitude Bin")
 %     xlim([xmin,xmax])
-    ylim([0,11])
+    ylim([0,16])
     grid on;
     
 end

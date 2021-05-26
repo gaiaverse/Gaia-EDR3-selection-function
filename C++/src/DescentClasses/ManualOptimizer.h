@@ -175,7 +175,7 @@ class Optimizer
 			double beta1 = 0.9;
 			double beta2 = 0.999;
 			double eps = 1e-8;
-	
+			double learningRate = Condition.StepSize;
 			double previousEpoch = 99999999;
 			double previousMinibatch = 9999999;
 			
@@ -223,7 +223,6 @@ class Optimizer
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double learningRate = Condition.StepSize * std::min(5.0,sqrt((double)nBatches / EffectiveBatches));
 						double dx_i = b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate;
 						dxNorm += dx_i * dx_i;
 						x[i] -= dx_i;
@@ -254,14 +253,24 @@ class Optimizer
 				++Status.CurrentSteps;
 				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx);
 				
-				EffectiveBatches = UpdateBatchSize(df,EffectiveBatches,epochGradNorm);
+				double newBatches = UpdateBatchSize(df,EffectiveBatches,epochGradNorm);
+				
+				if (newBatches < EffectiveBatches)
+				{
+					EffectiveBatches = newBatches;
+					learningRate = std::min(learningRate*1.25,3*Condition.StepSize);
+					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
+					m = VectorXd::Zero(Dimensions);
+					t = 1;
+				}
+				
 				
 				minimiseContinues = CheckContinues(epochGradient,df,epochDx);
 				
 				if (minimiseContinues == false && EffectiveBatches > 1)
 				{
 					minimiseContinues = true;
-					EffectiveBatches = 1;
+					EffectiveBatches = std::max(1,EffectiveBatches/4);
 				}
 				
 				
