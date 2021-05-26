@@ -6,9 +6,9 @@ folder = files(1);
 getData(60);
 
 N1 =0;
-N2 = 0;
-gap = 5;
-progressPlot(files,40)
+N2 = 28;
+gap = 2;
+progressPlot(files,12000)
 % gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
 temporalPlot(folder,N2);
 
@@ -172,6 +172,7 @@ function progressPlot(files,minLim)
     cols2 = min(1,cols*1.5);
     clf;
     hold on;
+    miniSmooth = 10;
     for i = 1:length(files)
         file = "../Output/" + files(i) + "/OptimiserProgress.txt";
         f = readtable(file);
@@ -236,7 +237,7 @@ function progressPlot(files,minLim)
         
         subplot(2,2,2);
         hold on;
-        plot(miniBatches.Elapsed,miniBatches.F/L0,'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+        plot(miniBatches.Elapsed,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
         
         plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
 		scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
@@ -257,7 +258,7 @@ function progressPlot(files,minLim)
         if height(miniBatches) > 1
             miniBatches.dF(1) = 0;
             x1 = miniBatches.Elapsed';
-            y1 = (miniBatches.dF./miniBatches.F)';
+            y1 = smooth(miniBatches.dF./miniBatches.F,miniSmooth)';
             zq = zeros(size(x1));
             s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
             minner = min(s1);
@@ -315,7 +316,7 @@ function progressPlot(files,minLim)
         
         subplot(2,2,4);
         hold on;
-        plot(miniBatches.Elapsed,miniBatches.GradNorm,'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+        plot(miniBatches.Elapsed,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
         
         plot(fullEpoch.Elapsed,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
 		scatter(cx,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');

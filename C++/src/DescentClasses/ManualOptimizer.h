@@ -261,6 +261,7 @@ class Optimizer
 					learningRate = std::min(learningRate*1.25,3*Condition.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 					m = VectorXd::Zero(Dimensions);
+					v = VectorXd::Zero(Dimensions);
 					t = 1;
 				}
 				
