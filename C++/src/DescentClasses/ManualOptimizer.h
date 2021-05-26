@@ -107,7 +107,7 @@ class Optimizer
 			Status.ReachedStepConvergence = false;
 			Status.ReachedFunctionConvergence = false;
 			
-			Progress.BufferSize = 50;
+			Progress.BufferSize = 20;
 			Progress.ProgressDir = "";
 			Progress.AnalysisMemorySize = 10;
 			Progress.MaxHashes = 20;

@@ -56,7 +56,7 @@ const double VerySmallLog = -9999999999;
 const double SingularityPreventer = 1e-18;
 const int PipelineMinVisits = 5; 
 
-const int SaveSteps = 5;
+const int SaveSteps = 2;
 const bool SaveAllTemps = true;
 const std::string TempDirName = "TempPositions";
 
