@@ -68,7 +68,7 @@ void RootProcess()
 
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";
 	// GO GO GO GO!
-	op.Minimize(x,N_SGD_Batches,Nt);
+	op.Minimize(x,N_SGD_Batches);
 		
 	GlobalLog(0,
 		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
