@@ -1,16 +1,16 @@
 #pragma once
 #include <vector>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
-#include "libs/Eigen/Core"
-#include "libs/Eigen/Householder"
-#include "libs/Eigen/QR"
-#include "libs/Eigen/LU"
+#include "../libs/Eigen/Core"
+#include "../libs/Eigen/Householder"
+#include "../libs/Eigen/QR"
+#include "../libs/Eigen/LU"
 #include <fstream>
 #define EIGEN_MPL2_ONLY
 #include <string.h>
 #include <iostream>
 #include <fstream>
-#include "GenericFunctions/FileHandler.h"
+#include "../GenericFunctions/FileHandler.h"
 #include <iomanip>
 using Eigen::VectorXd;
 

@@ -6,18 +6,11 @@
 #include "../libs/Eigen/Core"
 
 //~ #include "Star.h"
-#include "../LikelihoodClasses/LogLikelihoodPrior.h"
+#include "../Likelihood/LogLikelihoodPrior.h"
 
 #include "../GenericFunctions/timeCodes.h"
 
-
-#include "../libs/cppoptlib/meta.h"
-#include "../libs/cppoptlib/problem.h"
-#include "../libs/cppoptlib/solver/bfgssolver.h"
 using Eigen::VectorXd;
-
-using namespace cppoptlib;
-
 
 //DescentFunctor is a function-like class which acts as a wrapper for the gradient descent algorithm. 
 //The overloaded operator () allows the class to be called as a function by LBFGs, but the classlike nature allows the function to 

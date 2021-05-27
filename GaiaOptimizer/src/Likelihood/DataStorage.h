@@ -1,6 +1,6 @@
 #pragma once
-#include "../GlobalVariables.h"
-#include "../DataOperators/Star.h"
+#include "../Main/GlobalVariables.h"
+#include "../DataHandling/Star.h"
 #include "../GenericFunctions/FileHandler.h"
 #include <string>
 #include <vector>

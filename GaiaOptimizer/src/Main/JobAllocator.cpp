@@ -8,22 +8,22 @@
 #include <iomanip>
 #include <sstream>      // std::ostringstream
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
-#include "libs/Eigen/Core"
+#include "../libs/Eigen/Core"
 #include <fstream>
 #define EIGEN_MPL2_ONLY
 
 //~ #include "libs/LBFG/LBFGS.h"
 
-#include "DataOperators/Star.h"
-#include "DataOperators/DataLoading.h"
-#include "DescentClasses/DescentFunctor.h"
-#include "GenericFunctions/FileHandler.h"
-#include "LikelihoodClasses/LogLikelihood.h"
-#include "LikelihoodClasses/LogLikelihoodPrior.h"
-#include "GenericFunctions/timeCodes.h"
+#include "../DataHandling/Star.h"
+#include "../DataHandling/DataLoading.h"
+#include "../Optimizer/DescentFunctor.h"
+#include "../GenericFunctions/FileHandler.h"
+#include "../Likelihood/LogLikelihood.h"
+#include "../Likelihood/LogLikelihoodPrior.h"
+#include "../GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
-#include "DescentClasses/ManualOptimizer.h"
-#include "DataOperators/CommandArguments.h"
+#include "../Optimizer/ManualOptimizer.h"
+#include "../DataHandling/CommandArguments.h"
 using Eigen::VectorXd;
 
 

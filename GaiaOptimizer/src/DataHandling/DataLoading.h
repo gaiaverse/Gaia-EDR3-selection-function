@@ -9,7 +9,7 @@
 #include <mpi.h>
 #include <vector>
 #include "../GenericFunctions/FileHandler.h"
-#include "../GlobalVariables.h"
+#include "../Main/GlobalVariables.h"
 #include "../GenericFunctions/timeCodes.h"
 
 

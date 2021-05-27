@@ -24,33 +24,33 @@ def size(filename):
 	return os.path.getsize(filename)
 
 def getUniqueFiles(rootToFiles):
-	# ~ list = os.listdir(rootToFiles)
+	list = os.listdir(rootToFiles)
 
-	# ~ baseBranch= {}
-	# ~ for file in list:
-		# ~ if ".csv" in file:
-			# ~ root = file.split(".")[0]
-			# ~ if "_" in root:
-				# ~ root = file.split("_")[0]
+	baseBranch= {}
+	for file in list:
+		if ".csv" in file:
+			root = file.split(".")[0]
+			if "_" in root:
+				root = file.split("_")[0]
 			
-			# ~ if root in baseBranch.keys():
-				# ~ baseBranch[root].append(file)
-			# ~ else:
-				# ~ baseBranch[root] = [file]
+			if root in baseBranch.keys():
+				baseBranch[root].append(file)
+			else:
+				baseBranch[root] = [file]
 		
-	# ~ uniqueFiles = [];
-	# ~ for files in baseBranch.values():
-		# ~ if len(files) == 1:
-			# ~ uniqueFiles.append(files[0])
-		# ~ else:
-			# ~ for file in files:
-				# ~ if "_" in file:
-					# ~ uniqueFiles.append(file)
-	
-	
 	uniqueFiles = [];
-	for i in range(0,142):
-		uniqueFiles.append( str(i) + ".csv")
+	for files in baseBranch.values():
+		if len(files) == 1:
+			uniqueFiles.append(files[0])
+		else:
+			for file in files:
+				if "_" in file:
+					uniqueFiles.append(file)
+	
+	
+	# ~ uniqueFiles = [];
+	# ~ for i in range(0,142):
+		# ~ uniqueFiles.append( str(i) + ".csv")
 	
 	return uniqueFiles
 
@@ -177,7 +177,7 @@ def printAllocation(fileAssign):
 				if i < len(coreAssigns[j]):
 					s= s + delim
 		output = output + s+ "\n"
-	f = open("coreAssignments.dat","w")
+	f = open("../../ModelInputs/coreAssignments.dat","w")
 	f.write(output)
 	f.close()
 	

@@ -12,8 +12,8 @@
 #define EIGEN_MPL2_ONLY
 
 #include "../GenericFunctions/FileHandler.h"
-#include "../DataOperators/Star.h"
-#include "../GlobalVariables.h"
+#include "../DataHandling/Star.h"
+#include "../Main/GlobalVariables.h"
 #include "DataStorage.h"
 #include "ProbabilityFunctions.h"
 using Eigen::VectorXd;

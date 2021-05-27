@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "../GenericFunctions/FileHandler.h"
-#include "../GlobalVariables.h"
+#include "../Main/GlobalVariables.h"
 
 class CommandArgs
 {

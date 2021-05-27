@@ -1,7 +1,7 @@
 #pragma once
 #include "../GenericFunctions/FileHandler.h"
 
-#include "../GlobalVariables.h"
+#include "../Main/GlobalVariables.h"
 
 
 
