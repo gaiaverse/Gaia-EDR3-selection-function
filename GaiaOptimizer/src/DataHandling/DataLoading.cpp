@@ -100,7 +100,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	{
 		GlobalLog(1,
 			std::cout << "Initialising starAllocation script...\n";
-			std::string command = "python3 src/DataOperators/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
+			std::string command = "python3 src/DataHandling/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
 			std::cout << command << std::endl;
 			system(command.c_str() );
 			std::cout << "Data allocation complete, beginning readin...." <<std::endl;
