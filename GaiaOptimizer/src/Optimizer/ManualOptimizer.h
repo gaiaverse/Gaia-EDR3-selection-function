@@ -95,7 +95,7 @@ class Optimizer
 			Condition.xConvergence = 0;
 			Condition.gConvergence = 1e-7;
 			Condition.fConvergence = 0;
-			Condition.StepSize = 0.02;
+			Condition.StepSize = 0.01;
 			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
 		
@@ -146,7 +146,7 @@ class Optimizer
 			ADAM(x);
 		}
 		
-		void Minimize(VectorXd & x, int nBatches,int ignore)
+		void Minimize(VectorXd & x, int nBatches)
 		{
 			if (x.size() != Dimensions)
 			{
@@ -155,12 +155,12 @@ class Optimizer
 			}
 			
 			InitialiseProgress();
-			ADABADAM(x,nBatches, ignore);
+			ADABADAM(x,nBatches);
 			
 		}
 		
 	
-		void ADABADAM(VectorXd &x,int nBatches,int dimensionToIgnore)
+		void ADABADAM(VectorXd &x,int nBatches)
 		{
 			int EffectiveBatches = nBatches;
 			
@@ -216,7 +216,7 @@ class Optimizer
 	
 					double gNorm = 0;
 					double dxNorm = 0;
-					for (int i = dimensionToIgnore; i < Dimensions; ++i)
+					for (int i = 0; i < Dimensions; ++i)
 					{
 						double g = Functor.Gradient[i];
 						gNorm += g*g;
@@ -258,11 +258,8 @@ class Optimizer
 				if (newBatches < EffectiveBatches)
 				{
 					EffectiveBatches = newBatches;
-					learningRate = std::min(learningRate*1.25,3*Condition.StepSize);
+					learningRate = std::min(learningRate*1.5,3*Condition.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
-					m = VectorXd::Zero(Dimensions);
-					v = VectorXd::Zero(Dimensions);
-					t = 1;
 				}
 				
 				
