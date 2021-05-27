@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["InitTest"];
+files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5"];
 folder = files(1);
-% getData(60);
+getData(60);
 
 N1 =0;
-N2 = 300;
-gap = 10;
-progressPlot(files,0)
-gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
+N2 = 4;
+gap = 2;
+progressPlot(files,3000)
+% gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
 % temporalPlot(folder,N2);
 
 
@@ -161,6 +161,7 @@ function temporalPlot(folder,number)
 %     xlim([xmin,xmax])
     ylim([-2,8])
     grid on;
+	
     
 end
 function progressPlot(files,minLim)
@@ -328,7 +329,9 @@ function progressPlot(files,minLim)
         grid on;
         xlim([minLim,ender])
 		
-    end
+	end
+	
+	legend(files)
 end
 
 function [sx,sy] = bottomOut(x,y,factor)
