@@ -52,6 +52,9 @@ class DescentFunctor
 		std::vector<double> TransformedGradient;
 		std::vector<double> bVector;
 		std::vector<double> mut_gaps;
+		
+		std::vector<bool> freezeOuts;
+		 
 
 		void ForwardTransform(const VectorXd &z);
 		void BackwardTransform();		
@@ -107,7 +110,7 @@ class DescentFunctor
 				bool inBorder= false;
 				int trueTime = 0;
 				int lastEnd = -9999;
-				
+				freezeOuts = std::vector<bool>(Nt,true);
 				forLineVectorInFile(gapFile,' ',
 					
 					int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
@@ -126,6 +129,7 @@ class DescentFunctor
 						if (inGap)
 						{
 							insertValue = mut_gap;
+							freezeOuts[i] = false;
 						}
 						if (nearGapEdge)
 						{
@@ -156,6 +160,7 @@ class DescentFunctor
 		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
 		void SavePosition(bool finalSave, int saveStep);
+		void Unfreeze();
 };
 
 

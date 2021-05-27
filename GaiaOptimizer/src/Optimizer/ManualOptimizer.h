@@ -146,7 +146,7 @@ class Optimizer
 			ADAM(x);
 		}
 		
-		void Minimize(VectorXd & x, int nBatches)
+		void Minimize(VectorXd & x, int nBatches, int burnIn)
 		{
 			if (x.size() != Dimensions)
 			{
@@ -155,12 +155,12 @@ class Optimizer
 			}
 			
 			InitialiseProgress();
-			ADABADAM(x,nBatches);
+			ADABADAM(x,nBatches, burnIn);
 			
 		}
 		
 	
-		void ADABADAM(VectorXd &x,int nBatches)
+		void ADABADAM(VectorXd &x,int nBatches,int burnInSteps)
 		{
 			int EffectiveBatches = nBatches;
 			
@@ -182,8 +182,16 @@ class Optimizer
 			int epochs; 
 			int t = 1;
 			bool minimiseContinues = true;
+			bool burnInStopped = false;
 			while (minimiseContinues)
 			{
+				if (!burnInStopped && Status.CurrentSteps <= burnInSteps)
+				{
+					burnInStopped = true;
+					Functor.Unfreeze();
+				}
+				
+				
 				epochs = Status.CurrentSteps + 1;
 				double epochL = 0;
 				epochGradient -= epochGradient;

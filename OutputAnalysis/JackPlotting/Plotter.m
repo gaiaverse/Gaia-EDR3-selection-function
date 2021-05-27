@@ -1,14 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic11_spatialInit_resetOnThin/"];
+files = ["Diagnostic14_hydratest/"];
 folder = files(1);
 getData(60);
 
-N1 =0;
-N2 = 28;
-gap = 2;
-progressPlot(files,12000)
+N1 =50;
+N2 = 86;
+gap = 4;
+progressPlot(files,1400)
 % gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
 temporalPlot(folder,N2);
 
@@ -51,7 +51,7 @@ function getData(timeGap)
     timeSince = seconds(SyncCurrentTime - f.SyncCurrentTime);
 
     if timeSince > timeGap
-        system(' rsync -avr "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Code/C++/Output/" ../Output/');
+        system(' rsync -avr "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Output/" ../../../CodeOutput/');
         
         SyncCurrentTime = datetime('now');
         save("SyncTime.mat","SyncCurrentTime");
@@ -68,15 +68,15 @@ function temporalPlot(folder,number)
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
-    properties = readtable("../Output/" + folder + "/Optimiser_Properties.dat");
+    properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
     
-    name = "../Output/" + folder + "/TempPositions/TempPosition";
+    name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
     if number > -1
         name = name + num2str(number);
     end
     name = name + "_TransformedParameters.dat";
     if number == -1
-        name = "../Output/" + folder + "/FinalPosition_TransformedParameters.dat";
+        name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
     end
     
     
@@ -159,7 +159,7 @@ function temporalPlot(folder,number)
     xlabel("$i$");
     ylabel("Magnitude Bin")
 %     xlim([xmin,xmax])
-    ylim([0,16])
+    ylim([-2,8])
     grid on;
     
 end
@@ -174,7 +174,7 @@ function progressPlot(files,minLim)
     hold on;
     miniSmooth = 10;
     for i = 1:length(files)
-        file = "../Output/" + files(i) + "/OptimiserProgress.txt";
+        file = "../../../CodeOutput/" + files(i) + "/OptimiserProgress.txt";
         f = readtable(file);
     
         fullEpoch = f(f.Batch == -1,:);

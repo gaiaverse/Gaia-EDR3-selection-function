@@ -11,6 +11,8 @@ class CommandArgs
 		std::string StartVectorLocation;
 		double GradLim;
 		int MaxSteps;
+		
+		int FreezeSteps;
 		std::string DataSource;
 		std::string OutputDirectory;
 		

@@ -9,6 +9,7 @@ CommandArgs::CommandArgs()
 	DataSource = "../../TestSets/magnitudes/";
 	OutputDirectory = "Output";	
 	MaxSteps = 5000;
+	FreezeSteps = 0;
 }
 
 
@@ -20,6 +21,7 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 	bool targetFlag = false;
 	bool startFlag = false;
 	bool stepFlag = false;
+	bool freezeFlag = false;
 	for (int i = 1; i < argc; ++i)
 	{
 		
@@ -76,7 +78,17 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 			MaxSteps = stoi(arg);
 			stepFlag = false;
 		}
+		if (freezeFlag == true)
+		{
+			FreezeSteps = stoi(arg);
+			freezeFlag = false;
+		}
 		
+		
+		if (arg == "-b")
+		{
+			freezeFlag = true;
+		}
 		if (arg == "-f")
 		{
 			outDirFlag = true;
