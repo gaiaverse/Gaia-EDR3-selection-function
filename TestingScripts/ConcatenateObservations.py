@@ -16,6 +16,6 @@ with ExitStack() as stack:
         with open(f'./store/gaiaedr3_selection_function_{block_idx}.csv', 'r') as g:
             for idx,line in enumerate(g):
                 if line.strip():
-                    mag_str,rest_of_line = line.split(',', 1)
+                    mag_str,frac_str,rest_of_line = line.split(',', 2)
                     file_box[mag_str].write(rest_of_line)
                     star_count[mag_str] += 1

@@ -27,7 +27,7 @@ def mp_worker(args):
         
         # Load in data
         phot_g_mean_mag = g['phot_g_mean_mag'][block_idx*N_chunk:(block_idx+1)*N_chunk]
-        matched_transits = g['matched_transits'][block_idx*N_chunk:(block_idx+1)*N_chunk]
+        matched_transits = g['astrometric_matched_transits'][block_idx*N_chunk:(block_idx+1)*N_chunk]
         fov_1_n = t['fov_1_n'][block_idx*N_chunk:(block_idx+1)*N_chunk].astype(np.uint16)
         fov_2_n = t['fov_2_n'][block_idx*N_chunk:(block_idx+1)*N_chunk].astype(np.uint16)
         fov_1_times = t['fov_1_times'][block_idx*N_chunk:(block_idx+1)*N_chunk]

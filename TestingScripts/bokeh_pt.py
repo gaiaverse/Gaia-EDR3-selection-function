@@ -57,7 +57,7 @@ def fetch_data():
     try:
         data['existing'] = data['1']
         source.data = data
-        epoch_slider.end = n
+        epoch_slider.end = max(2,n)
         epoch_slider.disabled = False
         epoch_slider.value = 1
     except KeyError:

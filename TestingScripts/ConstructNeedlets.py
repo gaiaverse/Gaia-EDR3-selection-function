@@ -14,8 +14,8 @@ import copy
 ##### Load in sources and assign to bins
 B = 2.0
 p = 1.0
-needle_sparse_tol = 1e-4
-directory = './ModelInputs/'
+needle_sparse_tol = 1e-3
+directory = './ModelInputsSparse/'
 
 # Check it exists, if not then create
 if not os.path.exists(directory):
@@ -63,7 +63,7 @@ class chisquare:
 
 weighting = chisquare(p = p, B = B)
 
-for healpix_order in range(8):
+for healpix_order in range(6):
     
     # Compute locations of pixels
     nside = hp.order2nside(healpix_order)
