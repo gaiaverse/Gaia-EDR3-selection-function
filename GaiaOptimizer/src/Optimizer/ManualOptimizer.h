@@ -185,13 +185,12 @@ class Optimizer
 			bool burnInStopped = false;
 			while (minimiseContinues)
 			{
-				if (!burnInStopped && Status.CurrentSteps <= burnInSteps)
+				if (!burnInStopped && Status.CurrentSteps >= burnInSteps)
 				{
 					burnInStopped = true;
 					Functor.Unfreeze();
 				}
-				
-				
+
 				epochs = Status.CurrentSteps + 1;
 				double epochL = 0;
 				epochGradient -= epochGradient;

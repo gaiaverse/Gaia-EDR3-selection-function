@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic14_hydratest/"];
+files = ["InitTest"];
 folder = files(1);
-getData(60);
+% getData(60);
 
-N1 =50;
-N2 = 86;
-gap = 4;
-progressPlot(files,1400)
-% gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
-temporalPlot(folder,N2);
+N1 =0;
+N2 = 300;
+gap = 10;
+progressPlot(files,0)
+gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
+% temporalPlot(folder,N2);
 
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)

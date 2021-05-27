@@ -179,14 +179,22 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	//negative sign for maximisation problem + normalise to number of stars
 	for (int i = 0; i < Gradient.size(); ++i)
 	{
-		Gradient[i] = -Gradient[i]/StarsInLastBatch * freezeOuts[i];
+		Gradient[i] = -Gradient[i]/StarsInLastBatch;
+		
+		
+		
+		if (i < Nt && freezeOuts[i] == true)
+		{
+			Gradient[i] = 0;
+		}
+
 	}
 	Value = -Value/StarsInLastBatch;
 }
 
 void DescentFunctor::Unfreeze()
 {
-	freezeOuts = std::vector<bool>(Nt,true);
+	freezeOuts = std::vector<bool>(Nt,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)
