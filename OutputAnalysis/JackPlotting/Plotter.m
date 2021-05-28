@@ -4,12 +4,13 @@ set(0,'defaultTextInterpreter','latex');
 % files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
 % files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
 
-files = ["Diagnostic24_MagnitudeTimes"];
+% files = ["Diagnostic24_MagnitudeTimes"];
+files = ["temptest"];
 % folder = files(5);
-getData(60);
+% getData(60);
 
 N1 =0;
-N2 = 4;
+N2 = 16;
 gap = 2;
 progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
@@ -172,13 +173,13 @@ function temporalPlot(folders,number)
         if Ntm > 0
             subplot(ny,nx,4);
 
-            Nts = reshape(magT,Nm,Ntm);
+            Nts = reshape(magT,Ntm,Nm);
             Ntms = linspace(t(1),t(2),Ntm);
             hold on;
-            for mm = 1:Nm
+            for mm = 1:2
                 if Ntm > 1
 
-                    plot(Ntms,Nts(mm,:));
+                    plot(Ntms,Nts(:,mm));
                 else
 
                     plot([t(1),t(2)],[1,1]*Nts(mm));
@@ -186,7 +187,7 @@ function temporalPlot(folders,number)
             end
             hold off;
              xlim([xmin,xmax])
-            ylim([ymin,ymax])
+            ylim([2,6])
             
             title("Temporal-Magnitude Component " + frameTitle);
             ylabel("Magnitude Parameter, $x_{mt}$");

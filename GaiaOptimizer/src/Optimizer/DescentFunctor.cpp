@@ -129,6 +129,7 @@ void DescentFunctor::BackwardTransform()
 	double ubm = -um*uam;
 	double sigmatam = sigmat_mag/uam;
 	
+	
 	if (Nt > 1)
 	{
 	    Gradient[0] = sigmata * TransformedGradient[0];
@@ -143,8 +144,10 @@ void DescentFunctor::BackwardTransform()
 			int start_trans = Nt + Nm*Nl + m;
 			
 			Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
+		
 			for (int i = 1; i < Nt_m - 1; ++i)
 			{
+			
 				Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
 			}
 			Gradient[start_raw + (Nt_m-1)*Nm] = -ubm * Gradient[start_raw + (Nt_m-2)*Nm] + sigmat_mag * TransformedGradient[start_trans + (Nt_m -1)*Nm];
@@ -174,6 +177,7 @@ void DescentFunctor::BackwardTransform()
 			Gradient[Nt+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
 		}
 	}
+
 
 }
 
@@ -211,9 +215,31 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
+	
+	
+	for (int i = 0; i < Nt;++i)
+	{
+		if (freezeOuts[i])
+		{
+			TransformedGradient[i] = 0;
+		}
+	}
+	for (int i = 0; i < Nt_m; ++i)
+	{
+		if (freezeOuts_mag[i])
+		{
+			for (int m = 0; m < Nm; ++m)
+			{
+				TransformedGradient[Nt + Nm*(Nl+i) + m] = 0;
+			}
+		}
+	}
+	
+	
 	BackwardTransform();
 	
 	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
+	
 	Value = Lsum;
 
 	StarsInLastBatch = totalStarsUsed;
@@ -222,35 +248,11 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	//negative sign for maximisation problem + normalise to number of stars
 	
-	
-	for (int i = 0; i < Nt; ++i)
+	for (int i = 0; i < Gradient.size(); ++i)
 	{
-		double mult = 0;
-		if (freezeOuts[i] == false)
-		{
-			mult = -1.0/StarsInLastBatch;
-		}
-		Gradient[i]= mult * Gradient[i];
+		Gradient[i] = -Gradient[i] / StarsInLastBatch;
 	}
 	
-	for (int i = 0; i < Nl*Nm; ++i)
-	{
-		Gradient[Nt+i] = -Gradient[Nt+i]/StarsInLastBatch;
-	}
-	
-	for (int i = 0; i < Nt_m; ++i)	
-	{
-		double mult = 0;
-		if (freezeOuts_mag[i] == false)
-		{
-			mult = -1.0 / StarsInLastBatch;
-		}
-		for (int m = 0; m < Nm; ++m)
-		{
-			int idx = Nt + Nm*(Nl+i)+m;
-			Gradient[idx] = mult * Gradient[idx];
-		}
-	}
 
 	Value = -Value/StarsInLastBatch;
 }
