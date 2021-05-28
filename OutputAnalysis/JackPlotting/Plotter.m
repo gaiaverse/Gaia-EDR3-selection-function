@@ -9,9 +9,9 @@ files = ["Diagnostic24_MagnitudeTimes"];
 getData(60);
 
 N1 =0;
-N2 = 0;
+N2 = 4;
 gap = 2;
-% progressPlot(files,0)
+progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 temporalPlot(files,N2);
 
@@ -66,7 +66,7 @@ function temporalPlot(folders,number)
     ny = 2;
     nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;
+    xmin = t(1);%2320;
     xmax = 2330;
     ymin = -10;
     ymax = 11.5;
@@ -161,8 +161,8 @@ function temporalPlot(folders,number)
         hold off;
     %     plot(m);
         title("Spatial Components " + frameTitle);
-        xlabel("$i$");
-        ylabel("Magnitude Bin")
+        xlabel("Source file, $i$.csv");
+        ylabel("Mean $x_{ml}$ on sky")
         xlim([0,Nm])
         ylim([-2,8])
         grid on;
@@ -187,6 +187,12 @@ function temporalPlot(folders,number)
             hold off;
              xlim([xmin,xmax])
             ylim([ymin,ymax])
+            
+            title("Temporal-Magnitude Component " + frameTitle);
+            ylabel("Magnitude Parameter, $x_{mt}$");
+            xlabel("OBMT (Revolutions)")
+
+            grid on;
         end
     end
     
