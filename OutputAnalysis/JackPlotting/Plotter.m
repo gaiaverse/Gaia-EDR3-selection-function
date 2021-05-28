@@ -4,13 +4,13 @@ set(0,'defaultTextInterpreter','latex');
 % files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
 files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
 % folder = files(5);
-% getData(60);
+getData(60);
 
 N1 =0;
-N2 = 42;
+N2 = 52;
 gap = 2;
-progressPlot(files,6000)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
+progressPlot(files,80000)
+% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 temporalPlot(files,N2);
 
 

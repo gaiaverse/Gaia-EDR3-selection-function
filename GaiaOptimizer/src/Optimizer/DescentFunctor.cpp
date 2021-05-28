@@ -144,7 +144,7 @@ void DescentFunctor::BackwardTransform()
 			int start_trans = Nt + Nm*Nl + m;
 			
 			Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
-			for (int i = 1; i < Nt_m - 1; ++i)
+			for (int i = 1; i < Nt_m - 1; --i)
 			{
 				Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
 			}
