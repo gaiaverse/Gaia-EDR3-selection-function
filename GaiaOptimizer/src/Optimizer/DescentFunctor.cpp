@@ -225,15 +225,12 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	for (int i = 0; i < Nt; ++i)
 	{
-		
+		double mult = 0;
 		if (freezeOuts[i] == false)
 		{
-			Gradients[i]= - Gradient[i] / StarsInLastBatch;
+			mult = -1.0/StarsInLastBatch;
 		}
-		else
-		{
-			Gradient[i] = 0;
-		}
+		Gradient[i]= mult * Gradient[i];
 	}
 	
 	for (int i = 0; i < Nl*Nm; ++i)
@@ -244,14 +241,14 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	for (int i = 0; i < Nt_m; ++i)	
 	{
 		double mult = 0;
-		if (freezeOuts[i] == false)
+		if (freezeOuts_mag[i] == false)
 		{
 			mult = -1.0 / StarsInLastBatch;
 		}
 		for (int m = 0; m < Nm; ++m)
 		{
 			int idx = Nt + Nm*(Nl+i)+m;
-			Gradient[idx] = mult * idx;
+			Gradient[idx] = mult * Gradient[idx];
 		}
 	}
 
@@ -261,7 +258,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 void DescentFunctor::Unfreeze()
 {
 	freezeOuts = std::vector<bool>(Nt,false);
-	freezeMag = std::vector<bool>(Nt_m,false);
+	freezeOuts_mag = std::vector<bool>(Nt_m,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)

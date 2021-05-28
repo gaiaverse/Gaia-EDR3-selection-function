@@ -111,7 +111,7 @@ class DescentFunctor
 				int trueTime = 0;
 				int lastEnd = -9999;
 				freezeOuts = std::vector<bool>(Nt,true);
-				freezeOutsMag = std::vector<bool>(Nt_m,true);
+				freezeOuts_mag = std::vector<bool>(Nt_m,true);
 				forLineVectorInFile(gapFile,' ',
 					
 					int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
