@@ -1,16 +1,17 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25"];
-folder = files(2);
-getData(60);
+% files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
+files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
+% folder = files(5);
+% getData(60);
 
 N1 =0;
-N2 = 8;
+N2 = 42;
 gap = 2;
-progressPlot(files,10000)
-gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
-% temporalPlot(folder,N2);
+progressPlot(files,6000)
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
+temporalPlot(files,N2);
 
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
@@ -57,112 +58,130 @@ function getData(timeGap)
         save("SyncTime.mat","SyncCurrentTime");
     end
 end
-function temporalPlot(folder,number)
+function temporalPlot(folders,number)
     figure(1);
     clf;
     ny = 3;
     nx = 1;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = t(1);%2310;
-    xmax = 2250;%2340;
+    xmin = 2320;
+    xmax = 2330;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
-    properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
-    
-    name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-    if number > -1
-        name = name + num2str(number);
-    end
-    name = name + "_TransformedParameters.dat";
-    if number == -1
-        name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
-    end
-    
-    
-    z= readmatrix(name);
-    
-    
-    
-    Nt = properties.Nt(1);
-    Nl = properties.Nl(1);
-    Nm = properties.Nm(1);
-%     figure(1);
-%     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
-%     nexttile(T);
-    f = z(1:Nt);
-    m = z(Nt+1:end);
-    x = linspace(t(1),t(2),length(f));
-    cutT = (x > xmin) & (x < xmax);
-    q = 1./(1 + exp(-f));
-    z = q;
-    
-%     [sx,sz] = bottomOut(x,z,1);
-    
-    subplot(ny,nx,1);
-    plot(x(cutT),z(cutT),'k');
+    map = colororder;
+    subplot(ny,nx,3);
     hold on;
-    subplot(ny,nx,2);
-    plot(x(cutT),f(cutT),'k');
-    hold on;
+    for j = 1:length(folders)
+       plot([-1000,-1000],[0,1],'Color',map(j,:));
+    end
+    hold off;
+    for i = 1:length(folders)
+        folder = folders(i);
+        properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 
+        name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
+        if number > -1
+            name = name + num2str(number);
+        end
+        name = name + "_TransformedParameters.dat";
+        if number == -1
+            name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
+        end
+
+
+        z= readmatrix(name);
+
+
+
+        Nt = properties.Nt(1);
+        Nl = properties.Nl(1);
+        Nm = properties.Nm(1);
+    %     figure(1);
+    %     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
+    %     nexttile(T);
+        f = z(1:Nt);
+        m = z(Nt+1:end);
+        x = linspace(t(1),t(2),length(f));
+        cutT = (x > xmin) & (x < xmax);
+        q = 1./(1 + exp(-f));
+        z = q;
+
+    %     [sx,sz] = bottomOut(x,z,1);
+
+        subplot(ny,nx,1);
+       
+        hold on;
+        plot(x(cutT),z(cutT),'Color',map(i,:),"HandleVisibility","Off");
+        hold off;
+        subplot(ny,nx,2);
+        
+        hold on;
+        plot(x(cutT),f(cutT),'Color',map(i,:),"HandleVisibility","Off");
+      
+        subplot(ny,nx,1);
+        frameTitle = "Frame " + num2str(number);
+        if number == -1
+            frameTitle = "Final Position";
+        end
+         title("$P_t$ " + frameTitle );
+%          legend("pt","Known Gaps");
+         xlim([xmin,xmax])
+         ylim([0,1.01])
+        xlabel("OBMT (Revolutions)");
+        ylabel("Detection Efficiency,$P_t$")
+
+         subplot(ny,nx,2)
+         title("$x_t$ " + frameTitle);
+        xlabel("OBMT (Revolutions)");
+        ylabel("Detection Parameter,$x_t$")
+        xlim([xmin,xmax])
+        ylim([ymin,ymax])
+        grid on;
+
+        subplot(ny,nx,3);
+
+
+        q = zeros(1,Nm);
+
+        hold on;
+        ms = reshape(m,Nm,Nl);
+        for j = 1:Nl
+
+            q = q + ms(:,j);
+        end
+        if Nm > 1
+            plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
+        else
+            scatter(1,q/Nl,'Color',map(i,:),"HandleVisibility","Off");
+        end
+        hold off;
+    %     plot(m);
+        title("Spatial Components " + frameTitle);
+        xlabel("$i$");
+        ylabel("Magnitude Bin")
+        xlim([0,Nm])
+        ylim([-2,8])
+        grid on;
+	
+    end
+    
+    
     for i = 1:height(gaps)
         t1 = (gaps.tbeg(i));
         t2 = (gaps.tend(i));
         subplot(ny,nx,1);
-        fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3);
+        hold on;
+        fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+        hold off;
         subplot(ny,nx,2);
-        fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3);
+        hold on
+        fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+        hold off;
     end
-    
-    hold off;
-    
-    subplot(ny,nx,1);
-    frameTitle = "Frame " + num2str(number);
-    if number == -1
-        frameTitle = "Final Position";
-    end
-     title("$P_t$ " + frameTitle );
-     legend("pt","Known Gaps");
-     xlim([xmin,xmax])
-     ylim([0,1.01])
-    xlabel("OBMT (Revolutions)");
-    ylabel("Detection Efficiency,$P_t$")
-        
-     subplot(ny,nx,2)
-     title("$x_t$ " + frameTitle);
-    xlabel("OBMT (Revolutions)");
-    ylabel("Detection Parameter,$x_t$")
-    xlim([xmin,xmax])
-    ylim([ymin,ymax])
-    grid on;
     
     subplot(ny,nx,3);
-    
-    
-    q = zeros(1,Nm);
-    
-    hold on;
-    ms = reshape(m,Nm,Nl);
-    for j = 1:Nl
-       
-        q = q + ms(:,j);
-    end
-    if Nm > 1
-        plot(q/Nl)
-    else
-        scatter(1,q/Nl);
-    end
-    hold off;
-%     plot(m);
-    title("Spatial Components " + frameTitle);
-    xlabel("$i$");
-    ylabel("Magnitude Bin")
-%     xlim([xmin,xmax])
-    ylim([-2,8])
-    grid on;
-	
-    
+    legend(folders,"Interpreter","None")
 end
 function progressPlot(files,minLim)
 

@@ -33,7 +33,7 @@ const double mut_border = 0;
 const double mut_gap = -7;
 
 const double sigmat = 3;
-const double lm = 3;
+const double lm = 10;
 const double lt = 3;
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
