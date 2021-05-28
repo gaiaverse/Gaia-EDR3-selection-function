@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5"];
-folder = files(1);
+files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25"];
+folder = files(2);
 getData(60);
 
 N1 =0;
-N2 = 4;
+N2 = 8;
 gap = 2;
-progressPlot(files,3000)
-% gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
+progressPlot(files,10000)
+gifPlot(folder,N1,N2,gap,"mum1_evolution.gif",false);
 % temporalPlot(folder,N2);
 
 
@@ -174,7 +174,13 @@ function progressPlot(files,minLim)
     clf;
     hold on;
     miniSmooth = 10;
-    for i = 1:length(files)
+	
+	map = [];
+	for i = 1:length(files)
+		map = [map; cols2(i,:); 1-cols2(i,:); cols(i,:); 1-cols(i,:)];
+	end
+	
+	for i = 1:length(files)
         file = "../../../CodeOutput/" + files(i) + "/OptimiserProgress.txt";
         f = readtable(file);
     
@@ -252,7 +258,7 @@ function progressPlot(files,minLim)
         
         
         subplot(2,2,3);
-        map = [cols2(i,:); 1-cols2(i,:); cols(i,:); 1-cols(i,:)];
+        
         colormap(map);
         hold on;
         
@@ -264,7 +270,7 @@ function progressPlot(files,minLim)
             s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
             minner = min(s1);
             maxer = max(s1);
-            col = (y1>0)*1.0;
+            col = (y1>0)*(2*i);
 
 
             surface([x1;x1],[abs(y1);abs(y1)],[zq;zq],[col;col],...
@@ -279,7 +285,7 @@ function progressPlot(files,minLim)
             x2 = fullEpoch.Elapsed';
             y2 = (fullEpoch.dF./fullEpoch.F)';
             zq = zeros(size(x2));
-            col = (y2>0)*1.0+2;
+            col = (y2>0)*(2*i-1);
             surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
             'facecol','no',...
             'edgecol','flat',...
