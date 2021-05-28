@@ -221,30 +221,47 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	++LoopID;
 	
 	//negative sign for maximisation problem + normalise to number of stars
-	for (int i = 0; i < Gradient.size(); ++i)
+	
+	
+	for (int i = 0; i < Nt; ++i)
 	{
-		Gradient[i] = -Gradient[i]/StarsInLastBatch;
 		
-		
-		
-		if (i < Nt && freezeOuts[i] == true)
+		if (freezeOuts[i] == false)
+		{
+			Gradients[i]= - Gradient[i] / StarsInLastBatch;
+		}
+		else
 		{
 			Gradient[i] = 0;
 		}
-		//~ int n_nonMag = Nt + Nl*Nm;
-		//~ if (i >= n_nonMag && freezeOutsMag[i - n_nonMag] == true)
-		//~ {
-			//~ Gradient[i] = 0;
-		//~ }
-
 	}
+	
+	for (int i = 0; i < Nl*Nm; ++i)
+	{
+		Gradient[Nt+i] = -Gradient[Nt+i]/StarsInLastBatch;
+	}
+	
+	for (int i = 0; i < Nt_m; ++i)	
+	{
+		double mult = 0;
+		if (freezeOuts[i] == false)
+		{
+			mult = -1.0 / StarsInLastBatch;
+		}
+		for (int m = 0; m < Nm; ++m)
+		{
+			int idx = Nt + Nm*(Nl+i)+m;
+			Gradient[idx] = mult * idx;
+		}
+	}
+
 	Value = -Value/StarsInLastBatch;
 }
 
 void DescentFunctor::Unfreeze()
 {
 	freezeOuts = std::vector<bool>(Nt,false);
-	//~ freezeMag = std::vector<bool>(Nt,false);
+	freezeMag = std::vector<bool>(Nt_m,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)

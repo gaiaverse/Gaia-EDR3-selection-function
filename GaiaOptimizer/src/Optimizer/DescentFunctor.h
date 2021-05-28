@@ -54,7 +54,7 @@ class DescentFunctor
 		std::vector<double> mut_gaps;
 		
 		std::vector<bool> freezeOuts;
-		//~ std::vector<bool> freezeOuts_mag; 
+		std::vector<bool> freezeOuts_mag; 
 
 		void ForwardTransform(const VectorXd &z);
 		void BackwardTransform();		
@@ -111,7 +111,7 @@ class DescentFunctor
 				int trueTime = 0;
 				int lastEnd = -9999;
 				freezeOuts = std::vector<bool>(Nt,true);
-				//~ freezeOutsMag = std::vector<bool>(Nt_m,true);
+				freezeOutsMag = std::vector<bool>(Nt_m,true);
 				forLineVectorInFile(gapFile,' ',
 					
 					int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
