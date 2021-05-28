@@ -88,6 +88,7 @@ void WorkerProcess()
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
 	int dimensionality;
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	
 	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
 	LogLikelihood L = LogLikelihood(Data,ProcessRank);
@@ -106,10 +107,11 @@ void WorkerProcess()
 
 		if (targetBatch >= 0)
 		{	
+
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
+			
 			L.Calculate(pos,targetBatch,effectiveBatches);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;

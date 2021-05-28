@@ -75,14 +75,14 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
     	previous = ua * z[i] + u * previous;
     	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
 	}
-
+	//~ std::cout << "Starting new forward bit" << std::endl;
 	// time-mag bit
 	double um = exp(-1.0/lt_mag);
 	double uam = sqrt(1.0- um*um);
 	for (int m = 0; m < Nm; ++m)
 	{
-		int start_raw = totalRawParams - 1 - Nm + m;
-		int start_trans = totalTransformedParams -1 - Nm + m;
+		int start_raw = totalRawParams - Nm + m;
+		int start_trans = totalTransformedParams - Nm + m;
 		double previous_m = z[start_raw];
 		TransformedPosition[start_trans] = mut_mag + sigmat_mag * previous_m;
 		for (int i = Nt_m -2; i >= 0; --i)
@@ -93,7 +93,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 			TransformedPosition[idx_trans] = mut_mag + sigmat_mag * previous_m;
 		}
 	}
-
+	//~ std::cout << "Finished new forward bit" << std::endl;
 	// bms = Lmnzns
 	
 	std::fill(bVector.begin(), bVector.end(),0);
@@ -137,14 +137,13 @@ void DescentFunctor::BackwardTransform()
 	    }
 	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
 	    
-	    
 	    for (int m = 0; m < Nm; ++m)
 	    {
 			int start_raw = Nt + Nm*Ns + m;
 			int start_trans = Nt + Nm*Nl + m;
 			
 			Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
-			for (int i = 1; i < Nt_m - 1; --i)
+			for (int i = 1; i < Nt_m - 1; ++i)
 			{
 				Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
 			}
@@ -180,16 +179,22 @@ void DescentFunctor::BackwardTransform()
 
 void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int batchID, int effectiveBatches)
 {
-	const int n =  Nt+Nm*Nl;
+	const int n =  totalTransformedParams;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = batchID;
+
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
+
 	ForwardTransform(RawPosition);
+	
+
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
+	
+
 	L.Calculate(TransformedPosition,batchID,effectiveBatches);
 	
 	
@@ -198,13 +203,16 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
-	
+
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	
+
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
-	
 	BackwardTransform();
+	
 	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
 	Value = Lsum;
 

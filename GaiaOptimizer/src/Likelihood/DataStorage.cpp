@@ -47,7 +47,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
     if (Nt < TotalScanningTime)
     {
 		time_ratio = (double)Nt/TotalScanningTime;
-		time_ratio = (double)Nt_m/TotalScanningTime;
+		magtime_ratio = (double)Nt_m/TotalScanningTime;
 	}
 
 	for (int i = 0; i < TotalScanningTime; ++i)

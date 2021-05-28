@@ -2,15 +2,17 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 % files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
-files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
+% files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
+
+files = ["temptest"];
 % folder = files(5);
-getData(60);
+% getData(60);
 
 N1 =0;
-N2 = 52;
+N2 = 16;
 gap = 2;
-progressPlot(files,80000)
-% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
+progressPlot(files,0)
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 temporalPlot(files,N2);
 
 
@@ -61,11 +63,11 @@ end
 function temporalPlot(folders,number)
     figure(1);
     clf;
-    ny = 3;
-    nx = 1;
+    ny = 2;
+    nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;
-    xmax = 2330;
+    xmin = t(1);%2320;
+    xmax = t(2);%2330;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -101,7 +103,8 @@ function temporalPlot(folders,number)
     %     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
     %     nexttile(T);
         f = z(1:Nt);
-        m = z(Nt+1:end);
+        m = z(Nt+1:Nt+Nm*Nl);
+        magT = z(Nt+Nm*Nl+1:end);
         x = linspace(t(1),t(2),length(f));
         cutT = (x > xmin) & (x < xmax);
         q = 1./(1 + exp(-f));
@@ -163,7 +166,24 @@ function temporalPlot(folders,number)
         xlim([0,Nm])
         ylim([-2,8])
         grid on;
-	
+        
+        subplot(ny,nx,4);
+        Ntm = length(magT)/Nm;
+        Nts = reshape(magT,Nm,Ntm);
+        Ntms = linspace(t(1),t(2),Ntm);
+        hold on;
+        for mm = 1:Nm
+            if Ntm > 1
+           
+                plot(Ntms,Nts(mm,:));
+            else
+                
+                plot([t(1),t(2)],[1,1]*Nts(mm));
+            end
+        end
+        hold off;
+         xlim([xmin,xmax])
+        ylim([ymin,ymax])
     end
     
     
@@ -175,6 +195,11 @@ function temporalPlot(folders,number)
         fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
         subplot(ny,nx,2);
+        hold on
+        fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+        hold off;
+        
+        subplot(ny,nx,4);
         hold on
         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
