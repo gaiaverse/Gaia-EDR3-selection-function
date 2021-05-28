@@ -34,8 +34,6 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 	}
 	
 	
-	
-	
 	std::fstream rawfile;
 	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
 	
@@ -78,6 +76,24 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
     	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
 	}
 
+	// time-mag bit
+	double um = exp(-1.0/lt_mag);
+	double uam = sqrt(1.0- um*um);
+	for (int m = 0; m < Nm; ++m)
+	{
+		int start_raw = totalRawParams - 1 - Nm + m;
+		int start_trans = totalTransformedParams -1 - Nm + m;
+		double previous_m = z[start_raw];
+		TransformedPosition[start_trans] = mut_mag + sigmat_mag * previous_m;
+		for (int i = Nt_m -2; i >= 0; --i)
+		{
+			int idx_raw = Nt + Nm*(Ns + i) + m;
+			int idx_trans = Nt + Nm*(Nl + i) + m;
+			previous_m = uam * z[idx_raw] + um * previous_m;
+			TransformedPosition[idx_trans] = mut_mag + sigmat_mag * previous_m;
+		}
+	}
+
 	// bms = Lmnzns
 	
 	std::fill(bVector.begin(), bVector.end(),0);
@@ -108,6 +124,11 @@ void DescentFunctor::BackwardTransform()
 	double ub = -u*ua;
 	double sigmata = sigmat/ua;
 
+	double um = exp(-1.0/lt_mag);
+	double uam = 1.0/sqrt(1.0 - um*um);
+	double ubm = -um*uam;
+	double sigmatam = sigmat_mag/uam;
+	
 	if (Nt > 1)
 	{
 	    Gradient[0] = sigmata * TransformedGradient[0];
@@ -115,10 +136,25 @@ void DescentFunctor::BackwardTransform()
 	        Gradient[i] = u * Gradient[i-1] + sigmata * TransformedGradient[i];
 	    }
 	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
+	    
+	    
+	    for (int m = 0; m < Nm; ++m)
+	    {
+			int start_raw = Nt + Nm*Ns + m;
+			int start_trans = Nt + Nm*Nl + m;
+			
+			Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
+			for (int i = 1; i < Nt_m - 1; ++i)
+			{
+				Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
+			}
+			Gradient[start_raw + (Nt_m-1)*Nm] = -ubm * Gradient[start_raw + (Nt_m-2)*Nm] + sigmat_mag * TransformedGradient[start_trans + (Nt_m -1)*Nm];
+		}
 	}
 	else
 	{
 		Gradient[0] = TransformedGradient[0]*sigmat;
+		//~ Gradient[Trans] = TransformedGradient[0]*sigmat;
 	}
 
 	// yml
@@ -187,6 +223,11 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 		{
 			Gradient[i] = 0;
 		}
+		//~ int n_nonMag = Nt + Nl*Nm;
+		//~ if (i >= n_nonMag && freezeOutsMag[i - n_nonMag] == true)
+		//~ {
+			//~ Gradient[i] = 0;
+		//~ }
 
 	}
 	Value = -Value/StarsInLastBatch;
@@ -195,6 +236,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 void DescentFunctor::Unfreeze()
 {
 	freezeOuts = std::vector<bool>(Nt,false);
+	//~ freezeMag = std::vector<bool>(Nt,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)
