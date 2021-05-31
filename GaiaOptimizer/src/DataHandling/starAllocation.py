@@ -48,9 +48,9 @@ def getUniqueFiles(rootToFiles):
 					uniqueFiles.append(file)
 	
 	
-	uniqueFiles = [];
-	for i in range(100,142):
-		uniqueFiles.append( str(i) + ".csv")
+	# ~ uniqueFiles = [];
+	# ~ for i in range(100,142):
+		# ~ uniqueFiles.append( str(i) + ".csv")
 	
 	return uniqueFiles
 
@@ -149,7 +149,7 @@ def nameSubstruct(name):
 	
 	# ~ #OVERRIDE BIN ALLOCATION
 	
-	bin = 0;
+	#bin = 0;
 	return [name,bin]
 
 def printAllocation(fileAssign):

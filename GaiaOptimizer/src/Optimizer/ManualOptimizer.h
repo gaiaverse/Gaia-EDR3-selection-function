@@ -265,7 +265,7 @@ class Optimizer
 				if (newBatches < EffectiveBatches)
 				{
 					EffectiveBatches = newBatches;
-					learningRate = std::min(learningRate*1.5,3*Condition.StepSize);
+					learningRate = std::min(learningRate*1.1,2*Condition.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 				}
 				

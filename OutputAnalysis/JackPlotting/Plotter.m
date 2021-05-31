@@ -7,8 +7,8 @@ files = ["Diagnostic25_TimeOnly"];
 getData(60);
 
 N1 =0;
-N2 = 28;
-gap = 4;
+N2 = 120;
+gap = 10;
 progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 temporalPlot(files,N2);
@@ -152,9 +152,9 @@ function temporalPlot(folders,number)
             q = q + ms(:,j);
         end
         if Nm > 1
-            plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
+            plot(q/Nl-1,'Color',map(i,:),"HandleVisibility","Off")
         else
-            scatter(1,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
+            scatter(0,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
         end
         hold off;
     %     plot(m);
