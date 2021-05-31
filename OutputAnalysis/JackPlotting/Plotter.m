@@ -9,11 +9,11 @@ getData(60);
 N1 =0;
 N2 = 10;
 gap = 10;
-progressPlot(files,0)
+progressPlot(files,800)
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 % temporalPlot(files,N2,100,0,42);
 
-magGif(files,N2,100,0,41,1,"mag.gif");
+magGif(files,N2,0,1,213,10,"mag.gif");
 
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
@@ -50,7 +50,7 @@ end
 
 function magGif(folder,number,offset,start,max,jump,fileName)
     for m = start:jump:max
-        temporalPlot(folder,number,offset,m,m+jump);
+        temporalPlot(folder,number,offset,m,min(m+jump,212-offset));
 %         subplot(2,1,1)
        
         frame = getframe(gcf); 
@@ -84,8 +84,8 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     ny = 2;
     nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2321;
-    xmax = 2326;
+    xmin = 2150;%2321;
+    xmax = 2390;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -122,7 +122,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     %     nexttile(T);
         f = z(1:Nt);
         
-        f
+        
         
         m = z(Nt+1:Nt+Nm*Nl);
         magT = z(Nt+Nm*Nl+1:end);
@@ -188,7 +188,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
         ylim([-2,8])
         grid on;
         
-        Ntm = length(magT)/Nm;
+        Ntm = length(magT)/Nm
         
         if Ntm > 0
             subplot(ny,nx,4);
