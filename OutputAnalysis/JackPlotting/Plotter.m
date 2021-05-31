@@ -1,17 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
-% files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
+files = ["Diagnostic24_MagnitudeTimes"];
+% files = ["temptest"];
 
-% files = ["Diagnostic24_MagnitudeTimes"];
-files = ["temptest"];
-% folder = files(5);
 % getData(60);
 
 N1 =0;
-N2 = 16;
-gap = 2;
+N2 = 350;
+gap = 20;
 progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 temporalPlot(files,N2);
@@ -67,8 +64,8 @@ function temporalPlot(folders,number)
     ny = 2;
     nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = t(1);%2320;
-    xmax = 2330;
+    xmin = 2220;
+    xmax = 2430;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -173,21 +170,27 @@ function temporalPlot(folders,number)
         if Ntm > 0
             subplot(ny,nx,4);
 
-            Nts = reshape(magT,Ntm,Nm);
+            Nts = reshape(magT,Nm,Ntm);
             Ntms = linspace(t(1),t(2),Ntm);
             hold on;
-            for mm = 1:2
+            
+            magStart = 80;
+            magEnd = 150;
+            nLines = 80;
+            for mm = magStart:magEnd
                 if Ntm > 1
 
-                    plot(Ntms,Nts(:,mm));
+                    plot(Ntms,1./(1+exp(-Nts(mm,:))));
                 else
 
                     plot([t(1),t(2)],[1,1]*Nts(mm));
                 end
             end
+            leg = string([magStart:1:magEnd]) + ".csv";
+            legend(leg);
             hold off;
              xlim([xmin,xmax])
-            ylim([2,6])
+            ylim([0,1])
             
             title("Temporal-Magnitude Component " + frameTitle);
             ylabel("Magnitude Parameter, $x_{mt}$");

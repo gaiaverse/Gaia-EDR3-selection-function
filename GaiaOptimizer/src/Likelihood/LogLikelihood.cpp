@@ -71,7 +71,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		double elu_xml2 = elu(x[idx2]);
 		
 		Data.pt[i] = sigmoid(xt);
-		Data.ptm[i] = sigmoid(xtm);
+		Data.ptm[i] = 1.0;//sigmoid(xtm);
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
 		Data.pml[i] = exp(-density_alpha * (elu_xml1 + elu_xml2));
