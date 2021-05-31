@@ -7,7 +7,7 @@ files = ["Diagnostic26_MagTimeOnly"];
 getData(60);
 
 N1 =0;
-N2 = 4;
+N2 = 2;
 gap = 10;
 progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
@@ -177,10 +177,10 @@ function temporalPlot(folders,number)
 
             Ntms = linspace(t(1),t(2),Ntm);
             hold on;
-            
+            Nm
             magStart = 1;
-            magEnd = 213;
-            nLines = 80;
+            magEnd = 42;
+            
             for mm = magStart:magEnd
                 if Ntm > 1
 
