@@ -7,16 +7,18 @@ files = ["Diagnostic26_MagTimeOnly"];
 getData(60);
 
 N1 =0;
-N2 = 2;
+N2 = 10;
 gap = 10;
 progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
-temporalPlot(files,N2);
+% temporalPlot(files,N2,100,0,42);
+
+magGif(files,N2,100,0,41,1,"mag.gif");
 
 
-function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
+function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
     for i = startN:gap:maxN
-        temporalPlot(folder,i);
+        temporalPlot(folder,i,magOffset,mStart,mEnd);
 %         subplot(2,1,1)
        
         frame = getframe(gcf); 
@@ -46,6 +48,24 @@ function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
     end
 end
 
+function magGif(folder,number,offset,start,max,jump,fileName)
+    for m = start:jump:max
+        temporalPlot(folder,number,offset,m,m+jump);
+%         subplot(2,1,1)
+       
+        frame = getframe(gcf); 
+          im = frame2im(frame); 
+        [imind,cm] = rgb2ind(im,256); 
+        
+        if m == start
+          imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+      else 
+          imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+      end 
+    end
+
+end
+
 function getData(timeGap)
     f = load("SyncTime.mat");
     SyncCurrentTime = datetime('now');
@@ -58,14 +78,14 @@ function getData(timeGap)
         save("SyncTime.mat","SyncCurrentTime");
     end
 end
-function temporalPlot(folders,number)
+function temporalPlot(folders,number,magOffset,mStart,mEnd)
     figure(1);
     clf;
     ny = 2;
     nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = t(1);%2320;
-    xmax = t(2);%2330;
+    xmin = 2321;
+    xmax = 2326;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -177,11 +197,8 @@ function temporalPlot(folders,number)
 
             Ntms = linspace(t(1),t(2),Ntm);
             hold on;
-            Nm
-            magStart = 1;
-            magEnd = 42;
             
-            for mm = magStart:magEnd
+            for mm = mStart+1:mEnd
                 if Ntm > 1
 
                     plot(Ntms,1./(1+exp(-Nts(mm,:))));
@@ -190,8 +207,9 @@ function temporalPlot(folders,number)
                     plot([t(1),t(2)],[1,1]*Nts(mm));
                 end
             end
-            leg = string([magStart-1:1:magEnd-1]) + ".csv";
+            leg = string([mStart:1:mEnd]+magOffset) + ".csv";
             legend(leg);
+            
             hold off;
              xlim([xmin,xmax])
             ylim([0,1])
