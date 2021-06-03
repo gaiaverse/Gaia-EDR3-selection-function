@@ -1,17 +1,17 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
-files = ["InitTest","InitTest2","InitTest3"];
+files = ["Diagnostic29_PostProcessing"];
+% files = ["InitTest2"];
 
-% getData(60);
+getData(60);
 
 N1 =0;
-N2 = 10;
+N2 = 22;
 gap = 2;
 progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-% temporalPlot(files,N2,100,0,42);
+temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,N2,100,142,6,"comparison_90.gif")
@@ -95,7 +95,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
     xmin = t(1);
     xmax = t(2);
-% 	xmin = 2220;
+% 	xmin = 2320;
 % 	xmax = 2326;
     ymin = -10;
     ymax = 11.5;
@@ -187,12 +187,13 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
 
         hold on;
         ms = reshape(m,Nm,Nl);
+
         for j = 1:Nl
 
             q = q + ms(:,j);
         end
         if Nm > 1
-            plot(q/Nl-1,'Color',map(i,:),"HandleVisibility","Off")
+            plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
         else
             scatter(0,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
         end
@@ -205,7 +206,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
         ylim([-2,8])
         grid on;
         
-        Ntm = length(magT)/Nm
+        Ntm = length(magT)/Nm;
         
         if Ntm > 0
             subplot(ny,nx,4);
@@ -294,7 +295,7 @@ function progressPlot(files,minLim)
             mE = miniBatches.Elapsed(end);
              L0 = miniBatches.F(1);
 		end
-		L0 =1;
+% 		L0 =1;
         ender = max(fE,mE);
 		cutx = false(1,height(fullEpoch));
 		for j = 2:height(fullEpoch)
