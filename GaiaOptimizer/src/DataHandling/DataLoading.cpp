@@ -1,12 +1,12 @@
 #include "DataLoading.h"
 std::vector<int> Bins;
-std::vector<std::string> Files;
+
 std::vector<int> NumberOfStarsInFile;
 std::vector<int> StarsLeftInFile;
 std::vector<std::vector<int>> batchCounts;
 
 
-void GetAssignments(int id,std::string dataSource)
+std::vector<File> GetAssignments(int id,std::string dataSource)
 {
 	//collect number of stars per file
 	std::string starDirectoryFile = dataSource + "/directory.dat";
@@ -17,7 +17,7 @@ void GetAssignments(int id,std::string dataSource)
 			f.NStars = std::stoi(FILE_LINE_VECTOR[0]);
 			files.push_back(f);
 	);
-	
+	std::vector<File> Files;
 	
 	std::string assignmentFile = "../../ModelInputs/coreAssignments.dat";
 	
@@ -29,8 +29,12 @@ void GetAssignments(int id,std::string dataSource)
 			for (int i = 1; i < FILE_LINE_VECTOR.size(); i+=2)
 			{
 				std::string filename = FILE_LINE_VECTOR[i];
-				Files.push_back(dataSource + filename);
-				Bins.push_back(stoi(FILE_LINE_VECTOR[i+1]));
+				
+				File f;
+				f.Name = dataSource + filename;
+				f.Bin = stoi(FILE_LINE_VECTOR[i+1]);
+				
+				Files.push_back(f);
 				
 				bool fileInDirectory = false;
 				for (int j = 0; j < files.size(); ++j)
@@ -57,10 +61,11 @@ void GetAssignments(int id,std::string dataSource)
 			}
 		}
 	);
+	return Files;
 }
 
 
-void CalculateBatches(int id)
+void CalculateBatches(int id, std::vector<File> & Files)
 {
 	int bRemaining = N_SGD_Batches;
 	int NFiles = Files.size();
@@ -109,8 +114,8 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	MPI_Barrier(MPI_COMM_WORLD);
 	
 	auto start = std::chrono::system_clock::now();
-	GetAssignments(ProcessRank,dataSource);
-	CalculateBatches(ProcessRank);
+	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);
+	CalculateBatches(ProcessRank,Files);
 
 	//resize datafile
 	Data.resize(N_SGD_Batches);
@@ -118,8 +123,8 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	int allStarsLoaded = 0;
 	for (int i = 0; i < Files.size(); ++i)
 	{
-		std::string file = Files[i];
-		int gBin = Bins[i];
+		std::string file = Files[i].Name;
+		int gBin = Files[i].Bin;
 
 		//use a fancy macro (FileHandler.h)
 		

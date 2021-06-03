@@ -161,7 +161,7 @@ class DescentFunctor
 		
 		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
-		void SavePosition(bool finalSave, int saveStep);
+		void SavePosition(bool finalSave, int saveStep, const VectorXd & x);
 		void Unfreeze();
 };
 

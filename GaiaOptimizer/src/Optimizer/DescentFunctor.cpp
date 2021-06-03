@@ -12,7 +12,7 @@ void DescentFunctor::ResetPosition()
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
-void DescentFunctor::SavePosition(bool finalSave,int saveStep)
+void DescentFunctor::SavePosition(bool finalSave,int saveStep,const VectorXd  & x)
 {
 	std::string transBase = OutputDir + "/";
 	std::string intBase = OutputDir + "/";
@@ -20,7 +20,7 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 	{
 		transBase += "FinalPosition_";
 		intBase = transBase;
-		ForwardTransform(PrevLock);
+		ForwardTransform(x);
 	}
 	else
 	{
@@ -39,7 +39,7 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 	
 	for (int i = 0; i < totalRawParams; ++i)
 	{
-		rawfile << PrevLock[i] << "\n";
+		rawfile << std::setprecision(10) << x[i] << "\n";
 	}
 	std::fstream transfile;
 	transfile.open(transBase + "TransformedParameters.dat",std::ios::out);
@@ -47,7 +47,7 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 	
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
-		transfile << TransformedPosition[i] << "\n";
+		transfile << std::setprecision(10) << TransformedPosition[i] << "\n";
 		
 
 	}
@@ -55,6 +55,8 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep)
 	rawfile.close();
 	transfile.close();
 }
+
+
 
 void DescentFunctor::ForwardTransform(const VectorXd &z)
 {
@@ -77,20 +79,24 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	}
 	//~ std::cout << "Starting new forward bit" << std::endl;
 	// time-mag bit
-	double um = exp(-1.0/lt_mag);
-	double uam = sqrt(1.0- um*um);
-	for (int m = 0; m < Nm; ++m)
+	
+	if (Nt_m > 0)
 	{
-		int start_raw = totalRawParams - Nm + m;
-		int start_trans = totalTransformedParams - Nm + m;
-		double previous_m = z[start_raw];
-		TransformedPosition[start_trans] = mut_mag + sigmat_mag * previous_m;
-		for (int i = Nt_m -2; i >= 0; --i)
+		double um = exp(-1.0/lt_mag);
+		double uam = sqrt(1.0- um*um);
+		for (int m = 0; m < Nm; ++m)
 		{
-			int idx_raw = Nt + Nm*(Ns + i) + m;
-			int idx_trans = Nt + Nm*(Nl + i) + m;
-			previous_m = uam * z[idx_raw] + um * previous_m;
-			TransformedPosition[idx_trans] = mut_mag + sigmat_mag * previous_m;
+			int start_raw = totalRawParams - Nm + m;
+			int start_trans = totalTransformedParams - Nm + m;
+			double previous_m = z[start_raw];
+			TransformedPosition[start_trans] = mut_mag + sigmat_mag * previous_m;
+			for (int i = Nt_m -2; i >= 0; --i)
+			{
+				int idx_raw = Nt + Nm*(Ns + i) + m;
+				int idx_trans = Nt + Nm*(Nl + i) + m;
+				previous_m = uam * z[idx_raw] + um * previous_m;
+				TransformedPosition[idx_trans] = mut_mag + sigmat_mag * previous_m;
+			}
 		}
 	}
 	//~ std::cout << "Finished new forward bit" << std::endl;
@@ -138,19 +144,22 @@ void DescentFunctor::BackwardTransform()
 	    }
 	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
 	    
-	    for (int m = 0; m < Nm; ++m)
+	    if (Nt_m > 0)
 	    {
-			int start_raw = Nt + Nm*Ns + m;
-			int start_trans = Nt + Nm*Nl + m;
+		    for (int m = 0; m < Nm; ++m)
+		    {
+				int start_raw = Nt + Nm*Ns + m;
+				int start_trans = Nt + Nm*Nl + m;
+				
+				Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
 			
-			Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
-		
-			for (int i = 1; i < Nt_m - 1; ++i)
-			{
-			
-				Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
+				for (int i = 1; i < Nt_m - 1; ++i)
+				{
+				
+					Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
+				}
+				Gradient[start_raw + (Nt_m-1)*Nm] = -ubm * Gradient[start_raw + (Nt_m-2)*Nm] + sigmat_mag * TransformedGradient[start_trans + (Nt_m -1)*Nm];
 			}
-			Gradient[start_raw + (Nt_m-1)*Nm] = -ubm * Gradient[start_raw + (Nt_m-2)*Nm] + sigmat_mag * TransformedGradient[start_trans + (Nt_m -1)*Nm];
 		}
 	}
 	else
@@ -199,7 +208,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	
 
-	L.Calculate(TransformedPosition,batchID,effectiveBatches);
+	L.Calculate(TransformedPosition,batchID,effectiveBatches,N_SGD_Batches);
 	
 	
 	//collect values

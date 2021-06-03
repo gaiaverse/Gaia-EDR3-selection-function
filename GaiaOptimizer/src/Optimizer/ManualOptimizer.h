@@ -209,7 +209,7 @@ class Optimizer
 					//save initial position
 					if (batches == 0 && epochs == 1)
 					{
-						Functor.SavePosition(false,0);
+						Functor.SavePosition(false,0,x);
 					}
 					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
@@ -244,7 +244,7 @@ class Optimizer
 						double df_mini = Functor.Value - previousMinibatch;
 						previousMinibatch = Functor.Value;
 						double sqrtgNorm = sqrt(gNorm);
-						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm));
+						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 						Progress.AnalysisMemoryGrad += sqrtgNorm;
 					}
 				}
@@ -258,7 +258,7 @@ class Optimizer
 				
 				oldX = x;
 				++Status.CurrentSteps;
-				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx);
+				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx,x);
 				
 				double newBatches = UpdateBatchSize(df,EffectiveBatches,epochGradNorm);
 				
@@ -281,7 +281,7 @@ class Optimizer
 				
 			}
 			SaveProgress(Progress.BufferPosition);
-			Functor.SavePosition(true,0);
+			Functor.SavePosition(true,0,x);
 		}
 		
 		void GradientTester(VectorXd &x)
@@ -415,7 +415,7 @@ class Optimizer
 			return batchesAreAProblem;
 		}
 
-		void UpdateProgress(int batch, int nBatches,double F, double G, double dF,double dxNorm)
+		void UpdateProgress(int batch, int nBatches,double F, double G, double dF,double dxNorm,const VectorXd & x)
 		{
 			int i = Progress.BufferPosition;
 			Progress.PastMiniBatch[i] = batch;
@@ -460,7 +460,7 @@ class Optimizer
 				
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
-					Functor.SavePosition(false,Status.CurrentSteps);
+					Functor.SavePosition(false,Status.CurrentSteps,x);
 				}
 				std::cout << "\t\t\t"; printTime();
 			}

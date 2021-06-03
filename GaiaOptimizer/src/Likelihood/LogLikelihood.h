@@ -29,12 +29,12 @@ class LogLikelihood
 		std::vector<double> Gradient;
 		
 		LogLikelihood(const std::vector<std::vector<Star>> & data, int id);
-		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches);
-		
+		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches, int maxBatches);
+		LikelihoodData Data;
 	protected:
 		
 		//member data 
-		LikelihoodData Data;
+		
 
 		//internal functions
 		void Reset();

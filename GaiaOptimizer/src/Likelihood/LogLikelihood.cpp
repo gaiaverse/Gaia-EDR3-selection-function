@@ -7,20 +7,25 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id)
 	Gradient = std::vector<double>(totalTransformedParams,0.0);
 }
 
-void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches)
+void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
 
 	Reset();	
 
-	int realBatchesPerEffective = N_SGD_Batches / effectiveBatches;
+
+	int realBatchesPerEffective = maxBatches / effectiveBatches;
+
+	
 	
 	int start = effectiveBatchID * realBatchesPerEffective;
-	int end = N_SGD_Batches;
+	int end = maxBatches;
 	if (effectiveBatchID < effectiveBatches-1)
 	{
 		end = (effectiveBatchID+1) * realBatchesPerEffective;
 	}
 	StarsUsed = 0;
+	
+	
 	for (int i = start; i < end; ++i)
 	{
 		int n = Data.Stars[i].size();
@@ -59,18 +64,22 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 	{
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
-		int Tm = Data.magtime_mapping[t];
+		
 		//double time_multiplier = time_ratio * t - T;
 		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
 		double xt = x[T];
-		double xtm = x[Nt + Nl*Nm + Tm * Nm + candidate->gBin];
-		
+		double xtm = 100000.0;
+		if (Nt_m > 0)
+		{
+			int Tm = Data.magtime_mapping[t];
+			xtm = x[Nt + Nl*Nm + Tm * Nm + candidate->gBin];
+		}
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
 		double elu_xml1 = elu(x[idx1]);
 		double elu_xml2 = elu(x[idx2]);
 		
-		Data.pt[i] = 1;//sigmoid(xt);
+		Data.pt[i] = sigmoid(xt);
 		Data.ptm[i] = sigmoid(xtm);
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
@@ -282,7 +291,7 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
-		int Tm = Data.magtime_mapping[t];
+		
 		//double time_multiplier = time_ratio * t - T;
 
 		int offset = Nt + candidate->gBin;
@@ -296,6 +305,10 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
 		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
 		
-		Gradient[offset+Nm*(Nl + Tm)] += dFdP_p * (1.0 - Data.ptm[i]); 
+		if (Nt_m > 0)
+		{
+			int Tm = Data.magtime_mapping[t];
+			Gradient[offset+Nm*(Nl + Tm)] += dFdP_p * (1.0 - Data.ptm[i]); 
+		}
 	}
 }

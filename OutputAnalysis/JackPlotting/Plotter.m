@@ -1,20 +1,20 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData"];
-% files = ["temptest"];
+% files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
+files = ["InitTest","InitTest2","InitTest3"];
 
 % getData(60);
 
 N1 =0;
-N2 = 90;
-gap = 10;
-progressPlot(files(1),4000)
-% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
+N2 = 10;
+gap = 2;
+progressPlot(files,0)
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 % temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
-magComparison(files,N2,0,0,213,6,"comparison_90.gif")
+% magComparison(files,N2,100,142,6,"comparison_90.gif")
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
     for i = startN:gap:maxN
@@ -93,8 +93,10 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     ny = 2;
     nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;
-    xmax = 2326;
+    xmin = t(1);
+    xmax = t(2);
+% 	xmin = 2220;
+% 	xmax = 2326;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -110,8 +112,14 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
         properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 
         name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-        if number > -1
-            name = name + num2str(number);
+		
+		tnumber = number;
+		if name == "../../../CodeOutput/InitTest/TempPositions/TempPosition" && number > 92
+			tnumber = 92;
+		end
+		
+        if tnumber > -1
+            name = name + num2str(tnumber);
         end
         name = name + "_TransformedParameters.dat";
         if number == -1
@@ -285,7 +293,8 @@ function progressPlot(files,minLim)
         if height(miniBatches) > 1
             mE = miniBatches.Elapsed(end);
              L0 = miniBatches.F(1);
-        end
+		end
+		L0 =1;
         ender = max(fE,mE);
 		cutx = false(1,height(fullEpoch));
 		for j = 2:height(fullEpoch)
@@ -344,7 +353,7 @@ function progressPlot(files,minLim)
         hold off;
         grid on;
         xlim([minLim,ender])
-        
+       
         
         subplot(2,2,3);
         
@@ -429,8 +438,8 @@ function progressPlot(files,minLim)
 	legend(files)
 end
 
-function magComparison(files,number,offset,mStart,mEnd,gap,fileName)
-   
+function magComparison(files,number,mStart,mEnd,gap,fileName)
+   figure(1);
     frameTitle = "Frame " + num2str(number);
     if number == -1
         frameTitle = "Converged Position";
@@ -470,13 +479,13 @@ function magComparison(files,number,offset,mStart,mEnd,gap,fileName)
 
 			magT = z(Nt+Nm*Nl+1:end);
 			for j = 0:gap-1
-				j
-				fT = frameTitle + " (" + string(m+j+offset) + ".csv)";
-				if m + j +offset< 213
+				
+				fT = frameTitle + " (" + string(m+j) + ".csv)";
+				if m + j < 213
 
 					subplot(ny,nx,j+1);
 
-					magnitudeFrame(magT,Nm,m+j,m+j+1,offset,xmin,xmax,fT);
+					magnitudeFrame(magT,Nm,m+j,m+j+1,xmin,xmax,fT);
 				end
 			end
 		end
@@ -492,7 +501,7 @@ function magComparison(files,number,offset,mStart,mEnd,gap,fileName)
 	end
 end
 		
-function magnitudeFrame(magT,Nm,mStart,mEnd,magOffset,xmin,xmax,frameTitle)
+function magnitudeFrame(magT,Nm,mStart,mEnd,xmin,xmax,frameTitle)
         Ntm = length(magT)/Nm;
         t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
         if Ntm > 0
@@ -511,7 +520,7 @@ function magnitudeFrame(magT,Nm,mStart,mEnd,magOffset,xmin,xmax,frameTitle)
                 end
             end
 %             leg = string([mStart]+magOffset) + ".csv";
-            legend("Small Data" ," Big Data");
+            legend("Small Data" ," Big Data","No Batch");
             
             hold off;
              xlim([xmin,xmax])
