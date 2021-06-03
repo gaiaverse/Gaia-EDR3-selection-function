@@ -16,8 +16,8 @@ using Eigen::VectorXd;
 
 const int RootID = 0; //<- declare that process 0 is always Root.
 
-const int Nm = 10; // number of magnitude bins
-const int Nt = 10000; // number of time bins, coarse, feel free to change
+const int Nm = 40; // number of magnitude bins
+const int Nt = 30000; // number of time bins, coarse, feel free to change
 
 const int Nt_m = 0;
 
@@ -41,7 +41,7 @@ const double lt_mag = 5;
 
 const double sigmat = 5;
 const double lm = 3;
-const double lt = 1;
+const double lt = 10;
 
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
