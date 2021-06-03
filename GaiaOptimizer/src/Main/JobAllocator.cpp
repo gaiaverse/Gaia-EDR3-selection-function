@@ -264,7 +264,7 @@ void PostProcess(VectorXd x)
 	PostTransform(x,&TransformedPosition,&CleanedPosition, &L);
 	
 	
-	std::string trueDataSource = "../../TestSets/gaps_parallel/";
+	std::string trueDataSource = "../../Data/MainData/";
 	
 	std::vector<File> files = GetAssignments(ProcessRank,trueDataSource);
 	std::string base = Args.OutputDirectory + "/PostProcessing/";
