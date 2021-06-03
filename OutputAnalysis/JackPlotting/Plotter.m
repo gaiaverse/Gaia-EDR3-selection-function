@@ -4,17 +4,17 @@ set(0,'defaultTextInterpreter','latex');
 files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData"];
 % files = ["temptest"];
 
-getData(60);
+% getData(60);
 
 N1 =0;
-N2 = 10;
+N2 = 90;
 gap = 10;
-progressPlot(files(2),4000)
+progressPlot(files(1),4000)
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
 % temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
-magComparison(files,N2,0,1,213,5,"test.gif")
+magComparison(files,N2,0,0,213,6,"comparison_90.gif")
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
     for i = startN:gap:maxN
@@ -49,19 +49,28 @@ function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,m
 end
 
 function magGif(folder,number,offset,start,max,jump,fileName)
+	figure(1);
+	ny = 2;
+	nx = ceil(jump/ny);
     for m = start:jump:max
-        temporalPlot(folder,number,offset,m,min(m+jump,213-offset));
-%         subplot(2,1,1)
-       
-        frame = getframe(gcf); 
-          im = frame2im(frame); 
-        [imind,cm] = rgb2ind(im,256); 
-        
-        if m == start
-          imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
-      else 
-          imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
-      end 
+		
+		for i = 1:jump
+			if start + i < 213
+				subplot(ny,nx,i)
+				temporalPlot(folder,number,offset,start +i,start+i);
+		%         subplot(2,1,1)
+
+				frame = getframe(gcf); 
+				  im = frame2im(frame); 
+				[imind,cm] = rgb2ind(im,256); 
+
+				if m == start
+				  imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+			  else 
+				  imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+				end 
+			end
+		end
     end
 
 end
@@ -421,60 +430,68 @@ function progressPlot(files,minLim)
 end
 
 function magComparison(files,number,offset,mStart,mEnd,gap,fileName)
-    figure(1);
+   
     frameTitle = "Frame " + num2str(number);
     if number == -1
         frameTitle = "Converged Position";
-    end
+	end
+	ny = 2;
+	nx = ceil(gap/ny);
     for m = mStart:gap:mEnd
-        
         clf;
-        ny = 2;
-        nx = 1;
-        
-        xmin = 2320;
-        xmax = 2326;
-        ymin = 0;
-        ymax = 1;
-        
-        for i = 1:length(files)
-            
-            fT = frameTitle + " (\verb|" + files(i) + "|)";
-            folder = files(i);
-            subplot(ny,nx,i);
-            properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
-            
-            name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-            if number > -1
-                name = name + num2str(number);
-            end
-            name = name + "_TransformedParameters.dat";
-            if number == -1
-                name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
-            end
-            
-            
-            z= readmatrix(name);
-                       
-            Nt = properties.Nt(1);
-            Nl = properties.Nl(1);
-            Nm = properties.Nm(1);
-            
-            magT = z(Nt+Nm*Nl+1:end);
-            
-            magnitudeFrame(magT,Nm,m,min(m+gap,213-offset),offset,xmin,xmax,fT);
-        end
-        frame = getframe(gcf); 
-          im = frame2im(frame); 
-        [imind,cm] = rgb2ind(im,256); 
-        
-        if m == mStart
-          imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
-      else 
-          imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
-      end 
-    end
+		
+		xmin = 2320;
+		xmax = 2326;
+		ymin = 0;
+		ymax = 1;
+
+		for i = 1:length(files)
+
+			
+			folder = files(i);
+% 					subplot(ny,nx,i);
+			properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
+
+			name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
+			if number > -1
+				name = name + num2str(number);
+			end
+			name = name + "_TransformedParameters.dat";
+			if number == -1
+				name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
+			end
+
+
+			z= readmatrix(name);
+
+			Nt = properties.Nt(1);
+			Nl = properties.Nl(1);
+			Nm = properties.Nm(1);
+
+			magT = z(Nt+Nm*Nl+1:end);
+			for j = 0:gap-1
+				j
+				fT = frameTitle + " (" + string(m+j+offset) + ".csv)";
+				if m + j +offset< 213
+
+					subplot(ny,nx,j+1);
+
+					magnitudeFrame(magT,Nm,m+j,m+j+1,offset,xmin,xmax,fT);
+				end
+			end
+		end
+		frame = getframe(gcf); 
+		  im = frame2im(frame); 
+		[imind,cm] = rgb2ind(im,256); 
+
+		if m == mStart
+			  imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+		  else 
+			  imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+		end 
+	end
 end
+		
 function magnitudeFrame(magT,Nm,mStart,mEnd,magOffset,xmin,xmax,frameTitle)
         Ntm = length(magT)/Nm;
         t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
@@ -493,8 +510,8 @@ function magnitudeFrame(magT,Nm,mStart,mEnd,magOffset,xmin,xmax,frameTitle)
                     plot([t(1),t(2)],[1,1]*Nts(mm));
                 end
             end
-            leg = string([mStart:1:mEnd]+magOffset) + ".csv";
-            legend(leg);
+%             leg = string([mStart]+magOffset) + ".csv";
+            legend("Small Data" ," Big Data");
             
             hold off;
              xlim([xmin,xmax])
@@ -512,7 +529,7 @@ function magnitudeFrame(magT,Nm,mStart,mEnd,magOffset,xmin,xmax,frameTitle)
         t1 = (gaps.tbeg(i));
         t2 = (gaps.tend(i));
         hold on
-        fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+        fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.15,"HandleVisibility","Off");
         hold off;
     end
 
