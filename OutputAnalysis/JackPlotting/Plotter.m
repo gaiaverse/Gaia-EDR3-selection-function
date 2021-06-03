@@ -2,19 +2,19 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic29_PostProcessing"];
-% files = ["InitTest2"];
+% files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
 N1 =0;
-N2 = 12;
+N2 = 194;
 gap = 2;
-progressPlot(files,0)
+progressPlot(files,1000)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
-% magComparison(files,N2,100,142,6,"comparison_90.gif")
+% magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
 
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
     for i = startN:gap:maxN
@@ -95,8 +95,8 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
     xmin = t(1);
     xmax = t(2);
-	xmin = 2320;
-	xmax = 2326;
+	xmin = 2321;
+	xmax = 2328;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -439,8 +439,9 @@ function progressPlot(files,minLim)
 	legend(files)
 end
 
-function magComparison(files,number,mStart,mEnd,gap,fileName)
+function magComparison(files,numbers,mStart,mEnd,gap,fileName)
    figure(1);
+   number = numbers(1);
     frameTitle = "Frame " + num2str(number);
     if number == -1
         frameTitle = "Converged Position";
@@ -463,6 +464,7 @@ function magComparison(files,number,mStart,mEnd,gap,fileName)
 			properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 
 			name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
+            number = numbers(i);
 			if number > -1
 				name = name + num2str(number);
 			end

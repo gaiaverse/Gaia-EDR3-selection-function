@@ -62,8 +62,8 @@ VectorXd RootProcess()
 	//set up the criteria for termination
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
-	op.Condition.fConvergence = 1e-7;
-	op.Condition.xConvergence = 0.002;
+	op.Condition.fConvergence = 5e-7;
+	op.Condition.xConvergence = 0.02;
 	op.Condition.SaveSteps = SaveSteps;
 
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";
