@@ -16,8 +16,9 @@ using Eigen::VectorXd;
 
 const int RootID = 0; //<- declare that process 0 is always Root.
 
-const int Nm = 140; // number of magnitude bins
-const int Nt = 30000; // number of time bins, coarse, feel free to change
+
+const int Nm = 40; // number of magnitude bins
+const int Nt = 300000; // number of time bins, coarse, feel free to change
 
 const int Nt_m = 0;
 
@@ -31,6 +32,7 @@ const int DataLoadCount = 1e7;	//set to a value > 0, this truncates any datafile
 const double mum_prior = -3;
 const double mum_init = 5;
 
+const int magOffset = 100;
 const double mut_normal = 5;
 const double mut_border = 0;
 const double mut_gap = -5;

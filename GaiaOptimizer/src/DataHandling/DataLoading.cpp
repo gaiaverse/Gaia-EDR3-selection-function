@@ -32,7 +32,7 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 				
 				File f;
 				f.Name = dataSource + filename;
-				f.Bin = stoi(FILE_LINE_VECTOR[i+1]);
+				f.Bin = stoi(FILE_LINE_VECTOR[i+1]) - magOffset;
 				
 				Files.push_back(f);
 				
