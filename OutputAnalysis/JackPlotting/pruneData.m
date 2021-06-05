@@ -22,22 +22,28 @@ function [outputArg1,outputArg2] = pruneData(pathToPrune,pathToData,pathToOutput
    fprintf("Loaded in file with %d lines, found %d anomalies " + pathToOutput + " should have %d stars in it\n",n,a,n-a);
    ids = [1:n];
    badIDs = ids(anomaly);
-   
-   sourceList = pathToOutput + "_src.temp";
-   fid = fopen(sourceList,'w');
-   fprintf(fid,"%d\n",badIDs);
-   
+   badIDs(1)
+    
    createFileCommand = "cp " + pathToData + " " +pathToOutput + ".temp";
    system(createFileCommand);
-   
-   deleteLinesCommand = "bash sed -i ""$(sed -z 's/\n/d;/g' " + sourceList + ")"" "+ pathToOutput + ".temp"
-   system(deleteLinesCommand);
-   
-   shuffleCommand = "shuf " + pathToOutput + ".temp >" + pathToOutput;
-   system(shuffleCommand);
-   
-   removeTemp = "rm " + pathToOutput + ".temp";
-%    system(removeTemp);
 
+   i = a;
+   chunk = 10000;
+   while i >= 1
+       deleteLinesCommand = "sed -i -e '";
+       
+       j = 1;
+       while j < chunk && i >= 1
+           if j > 1
+               deleteLinesCommand = deleteLinesCommand + "; ";
+           end
+           deleteLinesCommand = deleteLinesCommand + num2str(badIDs(i)) + "d";
+           
+           i = i - 1;
+           j = j + 1;
+       end
+       deleteLinesCommand = deleteLinesCommand + "' " + pathToOutput + ".temp";
+        system(deleteLinesCommand);
+   end
 end
 
