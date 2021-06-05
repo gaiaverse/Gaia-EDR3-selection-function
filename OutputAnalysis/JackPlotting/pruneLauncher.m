@@ -6,7 +6,7 @@ output = "../../../Data/PrunedData/" + num2str(i) + ".csv";
 pruneData(target,data,output,0.1)
 end
 
-for i = 100:100
+for i = 100:139
     shuffleCommand = "shuf ../../../Data/PrunedData/" + num2str(i) + ".csv.temp > ../../../Data/PrunedData/" + num2str(i) + ".csv";
     system(shuffleCommand);
 end
