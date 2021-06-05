@@ -17,8 +17,8 @@ function [outputArg1,outputArg2] = pruneData(pathToPrune,pathToData,pathToOutput
 
    anomaly = gather(diff > anomalyCriteria);
    
-   a = sum(anomaly);
-   n = height(anomaly);
+   a = sum(anomaly)
+   n = size(anomaly,1)
    ids = [1:n];
    badIDs = ids(anomaly);
    
