@@ -23,17 +23,14 @@ function [outputArg1,outputArg2] = pruneData(pathToPrune,pathToData,pathToOutput
    ids = [1:n];
    badIDs = ids(anomaly);
    
+   sourceList = pathToOutput + "_src.temp";
+   fid = fopen(sourceList,'w');
+   fprintf(fid,"%d\n",badIDs);
+   
    createFileCommand = "cp " + pathToData + " " +pathToOutput + ".temp";
    system(createFileCommand);
    
-   deleteLinesCommand = "sed -i -e '";
-   for i = 1:a
-       deleteLinesCommand = deleteLinesCommand + num2str(badIDs(i)) + "d";
-       if i < a
-           deleteLinesCommand = deleteLinesCommand + ";";
-       end
-   end
-   deleteLinesCommand = deleteLinesCommand + "' " + pathToOutput + ".temp";
+   deleteLinesCommand = "bash sed -i ""$(sed -z 's/\n/d;/g' " + sourceList + ")"" "+ pathToOutput + ".temp"
    system(deleteLinesCommand);
    
    shuffleCommand = "shuf " + pathToOutput + ".temp >" + pathToOutput;
