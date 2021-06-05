@@ -1,17 +1,17 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic29_PostProcessing"];
+files = ["Diagnostic30_PrunedData","Diagnostic29_PostProcessing"];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
 N1 =0;
-N2 = 440;
-gap = 10;
-progressPlot(files,1000)
+N2 = 26;
+gap = 2;
+progressPlot(files(1),0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-temporalPlot(files,N2,100,0,42);
+% temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
