@@ -278,7 +278,7 @@ void PostProcess(VectorXd x)
 	{
 		std::cout << ProcessRank << " is saving to " << files[i].Name << std::endl;
 		std::fstream outfile;
-		outfile.open(base + std::to_string(files[i].Bin) + ".dat",std::ios::out);
+		outfile.open(base + std::to_string(files[i].Bin + magOffset) + ".dat",std::ios::out);
 		int n = 0;
 		outfile << "StarID, OriginalContribution, FlattenedGap\n"; 
 		forLineVectorInFile(files[i].Name,',',
@@ -293,7 +293,6 @@ void PostProcess(VectorXd x)
 			outfile << n <<", ";
 			outfile << std::setprecision(10) << v1 << ", ";
 			outfile << std::setprecision(10) << v2 << "\n";
-			outfile << "\n";
 			++n;
 		);
 		outfile.close();

@@ -7,8 +7,8 @@ files = ["Diagnostic29_PostProcessing"];
 getData(60);
 
 N1 =0;
-N2 = 194;
-gap = 2;
+N2 = 440;
+gap = 10;
 progressPlot(files,1000)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 temporalPlot(files,N2,100,0,42);

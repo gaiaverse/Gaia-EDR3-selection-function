@@ -23,7 +23,11 @@ Star::Star(const std::vector<std::string> & data, int bin)
 	{
 		TimeSeries[i -2] = stoi(data[i]);
 	}
-	
+	if (TimeSeries.size() != nVisit)
+	{
+		std::cout << "Something weird happened with a stellar time series!" << std::endl;
+		exit(-1000);
+	}
 
 	gBin = bin;
 }
