@@ -18,7 +18,12 @@ struct FileStarPairs
 	std::string FileName;
 	int NStars;
 };
+struct File
+{
+	std::string Name;
+	int Bin;
+};
 
-void GetAssignments(int id,std::string dataSource);
+std::vector<File> GetAssignments(int id,std::string dataSource);
 
 void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource);

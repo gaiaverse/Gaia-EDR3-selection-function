@@ -1,22 +1,25 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic18_BurnIn5","Diagnostic19_BurnIn25","Diagnostic22_TotalBurnIn25"];
-files = ["Diagnostic15_FreeTime","Diagnostic16_FixedGaps","Diagnostic19_BurnIn25"];
-% folder = files(5);
-% getData(60);
+files = ["Diagnostic29_PostProcessing","Diagnostic32_ArtificialK"];
+% files = ["Diagnostic33_SpoofedK"];
+% files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
+
+getData(60);
 
 N1 =0;
-N2 = 42;
+N2 = 2;
 gap = 2;
-progressPlot(files,6000)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false);
-temporalPlot(files,N2);
+progressPlot(files(1), 0)
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
+% % temporalPlot(files,N2,100,0,42);
 
+% magGif(files,N2,0,1,213,3,"bigmag.gif");
+% magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
 
-function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
+function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
     for i = startN:gap:maxN
-        temporalPlot(folder,i);
+        temporalPlot(folder,i,magOffset,mStart,mEnd);
 %         subplot(2,1,1)
        
         frame = getframe(gcf); 
@@ -46,6 +49,33 @@ function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
     end
 end
 
+function magGif(folder,number,offset,start,max,jump,fileName)
+	figure(1);
+	ny = 2;
+	nx = ceil(jump/ny);
+    for m = start:jump:max
+		
+		for i = 1:jump
+			if start + i < 213
+				subplot(ny,nx,i)
+				temporalPlot(folder,number,offset,start +i,start+i);
+		%         subplot(2,1,1)
+
+				frame = getframe(gcf); 
+				  im = frame2im(frame); 
+				[imind,cm] = rgb2ind(im,256); 
+
+				if m == start
+				  imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+			  else 
+				  imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+				end 
+			end
+		end
+    end
+
+end
+
 function getData(timeGap)
     f = load("SyncTime.mat");
     SyncCurrentTime = datetime('now');
@@ -58,14 +88,16 @@ function getData(timeGap)
         save("SyncTime.mat","SyncCurrentTime");
     end
 end
-function temporalPlot(folders,number)
+function temporalPlot(folders,number,magOffset,mStart,mEnd)
     figure(1);
     clf;
-    ny = 3;
-    nx = 1;
+    ny = 2;
+    nx = 2;
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-    xmin = 2320;
-    xmax = 2330;
+    xmin = t(1);
+    xmax = t(2);
+% 	xmin = 1300;%2321;
+	xmax = 1450;%2328;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
@@ -81,8 +113,14 @@ function temporalPlot(folders,number)
         properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 
         name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-        if number > -1
-            name = name + num2str(number);
+		
+		tnumber = number;
+		if name == "../../../CodeOutput/InitTest/TempPositions/TempPosition" && number > 92
+			tnumber = 92;
+		end
+		
+        if tnumber > -1
+            name = name + num2str(tnumber);
         end
         name = name + "_TransformedParameters.dat";
         if number == -1
@@ -101,25 +139,29 @@ function temporalPlot(folders,number)
     %     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
     %     nexttile(T);
         f = z(1:Nt);
-        m = z(Nt+1:end);
+        
+        
+        
+        m = z(Nt+1:Nt+Nm*Nl);
+        magT = z(Nt+Nm*Nl+1:end);
         x = linspace(t(1),t(2),length(f));
-        cutT = (x > xmin) & (x < xmax);
+        cutT = (x >= xmin) & (x <= xmax);
         q = 1./(1 + exp(-f));
         z = q;
 
     %     [sx,sz] = bottomOut(x,z,1);
 
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
        
         hold on;
         plot(x(cutT),z(cutT),'Color',map(i,:),"HandleVisibility","Off");
         hold off;
-        subplot(ny,nx,2);
+        subplot(ny,nx,3);
         
         hold on;
         plot(x(cutT),f(cutT),'Color',map(i,:),"HandleVisibility","Off");
       
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
         frameTitle = "Frame " + num2str(number);
         if number == -1
             frameTitle = "Final Position";
@@ -131,7 +173,7 @@ function temporalPlot(folders,number)
         xlabel("OBMT (Revolutions)");
         ylabel("Detection Efficiency,$P_t$")
 
-         subplot(ny,nx,2)
+         subplot(ny,nx,3)
          title("$x_t$ " + frameTitle);
         xlabel("OBMT (Revolutions)");
         ylabel("Detection Parameter,$x_t$")
@@ -139,13 +181,14 @@ function temporalPlot(folders,number)
         ylim([ymin,ymax])
         grid on;
 
-        subplot(ny,nx,3);
+        subplot(ny,nx,4);
 
 
         q = zeros(1,Nm);
 
         hold on;
         ms = reshape(m,Nm,Nl);
+
         for j = 1:Nl
 
             q = q + ms(:,j);
@@ -153,34 +196,72 @@ function temporalPlot(folders,number)
         if Nm > 1
             plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
         else
-            scatter(1,q/Nl,'Color',map(i,:),"HandleVisibility","Off");
+            scatter(0,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
         end
         hold off;
     %     plot(m);
         title("Spatial Components " + frameTitle);
-        xlabel("$i$");
-        ylabel("Magnitude Bin")
+        xlabel("Source file, $i$.csv");
+        ylabel("Mean $x_{ml}$ on sky")
         xlim([0,Nm])
         ylim([-2,8])
         grid on;
-	
+        
+        Ntm = length(magT)/Nm;
+        
+        if Ntm > 0
+            subplot(ny,nx,4);
+
+            Nts = reshape(magT,Nm,Ntm);
+
+            Ntms = linspace(t(1),t(2),Ntm);
+            hold on;
+            
+            for mm = mStart+1:mEnd
+                if Ntm > 1
+
+                    plot(Ntms,1./(1+exp(-Nts(mm,:))));
+                else
+
+                    plot([t(1),t(2)],[1,1]*Nts(mm));
+                end
+            end
+            leg = string([mStart:1:mEnd]+magOffset) + ".csv";
+            legend(leg);
+            
+            hold off;
+             xlim([xmin,xmax])
+            ylim([0,1])
+            
+            title("Temporal-Magnitude Component " + frameTitle);
+            ylabel("Magnitude Parameter, $x_{mt}$");
+            xlabel("OBMT (Revolutions)")
+
+            grid on;
+        end
     end
     
     
     for i = 1:height(gaps)
         t1 = (gaps.tbeg(i));
         t2 = (gaps.tend(i));
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
         hold on;
         fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
-        subplot(ny,nx,2);
+        subplot(ny,nx,3);
         hold on
         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
+        
+%         subplot(ny,nx,4);
+%         hold on
+%         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+%         hold off;
     end
     
     subplot(ny,nx,3);
+    
     legend(folders,"Interpreter","None")
 end
 function progressPlot(files,minLim)
@@ -215,7 +296,8 @@ function progressPlot(files,minLim)
         if height(miniBatches) > 1
             mE = miniBatches.Elapsed(end);
              L0 = miniBatches.F(1);
-        end
+		end
+% 		L0 =1;
         ender = max(fE,mE);
 		cutx = false(1,height(fullEpoch));
 		for j = 2:height(fullEpoch)
@@ -274,7 +356,7 @@ function progressPlot(files,minLim)
         hold off;
         grid on;
         xlim([minLim,ender])
-        
+       
         
         subplot(2,2,3);
         
@@ -359,6 +441,113 @@ function progressPlot(files,minLim)
 	legend(files)
 end
 
+function magComparison(files,numbers,mStart,mEnd,gap,fileName)
+   figure(1);
+   number = numbers(1);
+    frameTitle = "Frame " + num2str(number);
+    if number == -1
+        frameTitle = "Converged Position";
+	end
+	ny = 2;
+	nx = ceil(gap/ny);
+    for m = mStart:gap:mEnd
+        clf;
+		
+		xmin = 2320;
+		xmax = 2326;
+		ymin = 0;
+		ymax = 1;
+
+		for i = 1:length(files)
+
+			
+			folder = files(i);
+% 					subplot(ny,nx,i);
+			properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
+
+			name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
+            number = numbers(i);
+			if number > -1
+				name = name + num2str(number);
+			end
+			name = name + "_TransformedParameters.dat";
+			if number == -1
+				name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
+			end
+
+
+			z= readmatrix(name);
+
+			Nt = properties.Nt(1);
+			Nl = properties.Nl(1);
+			Nm = properties.Nm(1);
+
+			magT = z(Nt+Nm*Nl+1:end);
+			for j = 0:gap-1
+				
+				fT = frameTitle + " (" + string(m+j) + ".csv)";
+				if m + j < 213
+
+					subplot(ny,nx,j+1);
+
+					magnitudeFrame(magT,Nm,m+j,m+j+1,xmin,xmax,fT);
+				end
+			end
+		end
+		frame = getframe(gcf); 
+		  im = frame2im(frame); 
+		[imind,cm] = rgb2ind(im,256); 
+
+		if m == mStart
+			  imwrite(imind,cm,fileName,'gif', 'Loopcount',inf); 
+		  else 
+			  imwrite(imind,cm,fileName,'gif','WriteMode','append'); 
+		end 
+	end
+end
+		
+function magnitudeFrame(magT,Nm,mStart,mEnd,xmin,xmax,frameTitle)
+        Ntm = length(magT)/Nm;
+        t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
+        if Ntm > 0
+            Nts = reshape(magT,Nm,Ntm);
+
+            Ntms = linspace(t(1),t(2),Ntm);
+            hold on;
+            
+            for mm = mStart+1:mEnd
+                if Ntm > 1
+
+                    plot(Ntms,1./(1+exp(-Nts(mm,:))));
+                else
+
+                    plot([t(1),t(2)],[1,1]*Nts(mm));
+                end
+            end
+%             leg = string([mStart]+magOffset) + ".csv";
+            legend("Small Data" ," Big Data","No Batch");
+            
+            hold off;
+             xlim([xmin,xmax])
+            ylim([0,1])
+            
+            title("Temporal-Magnitude Component " + frameTitle);
+            ylabel("Magnitude Parameter, $x_{mt}$");
+            xlabel("OBMT (Revolutions)")
+
+            grid on;
+        end
+    
+    gaps = readtable("edr3_gaps.csv");
+    for i = 1:height(gaps)
+        t1 = (gaps.tbeg(i));
+        t2 = (gaps.tend(i));
+        hold on
+        fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.15,"HandleVisibility","Off");
+        hold off;
+    end
+
+end
 function [sx,sy] = bottomOut(x,y,factor)
     sx = [];
     sy = [];

@@ -42,7 +42,7 @@ int MaxStarsInCore;
 
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
-void RootProcess()
+VectorXd RootProcess()
 {
 	GlobalLog(1,
 		std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
@@ -62,8 +62,8 @@ void RootProcess()
 	//set up the criteria for termination
 	op.Condition.gConvergence = Args.GradLim;
 	op.Condition.MaxSteps = Args.MaxSteps;
-	op.Condition.fConvergence = 1e-7;
-	op.Condition.xConvergence = 0.002;
+	op.Condition.fConvergence = 5e-7;
+	op.Condition.xConvergence = 0.02;
 	op.Condition.SaveSteps = SaveSteps;
 
 	op.Progress.ProgressDir = Args.OutputDirectory + "/";
@@ -78,6 +78,9 @@ void RootProcess()
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);	
+	
+	
+	return x;
 }
 
 //this is the main action loop of all core with rank > 0 
@@ -88,6 +91,7 @@ void WorkerProcess()
 	//recieve initial broadcast (this serves as a basic check of MPI functionality, rather than actually needing this data....)
 	int dimensionality;
 	MPI_Bcast(&dimensionality, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	
 	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
 	LogLikelihood L = LogLikelihood(Data,ProcessRank);
@@ -106,11 +110,12 @@ void WorkerProcess()
 
 		if (targetBatch >= 0)
 		{	
+
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-			
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
-			L.Calculate(pos,targetBatch,effectiveBatches);
+			
+			L.Calculate(pos,targetBatch,effectiveBatches,N_SGD_Batches);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
@@ -128,6 +133,178 @@ void WorkerProcess()
 			);
 		}
 	}
+}
+
+
+void PostTransform(VectorXd & z, std::vector<double> * TransformedPosition, std::vector<double> * CleanedPosition, LogLikelihoodPrior * L)
+{
+	//convert converged position into converged-transformed coordinates. 
+	std::vector<double> mut_gaps = std::vector<double>(Nt,0);
+	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+	double timeFactor = (double)TotalScanningTime / Nt;
+	int it = 0;
+	bool inGap = false;
+	int borderWidth = 0;
+	int modifiedBorderWidth = borderWidth * timeFactor;
+	bool inBorder= false;
+	int trueTime = 0;
+	int lastEnd = -9999;
+	forLineVectorInFile(gapFile,' ',
+					
+		int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
+		int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);
+		
+		trueTime = floor(it * timeFactor);
+		while (trueTime < gapEnd)
+		{
+			int leftDistance = std::min(abs(trueTime - gapStart),abs(trueTime - lastEnd));
+			int rightDistance = abs(trueTime - gapEnd);
+			
+			bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
+			
+			bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
+			double insertValue = mut_normal;
+			if (inGap)
+			{
+				insertValue = mut_gap;
+				//~ freezeOuts[it] = true;
+
+			}
+			if (nearGapEdge)
+			{
+				insertValue = mut_border;
+			}
+		
+			mut_gaps[it] = insertValue;
+			//~ std::cout << "\t " <<it << "  " << trueTime << "   " << insertValue << "   " << leftDistance << "   " << rightDistance << std::endl;
+			
+			++it;
+			trueTime = floor((double)it * timeFactor);
+			
+		}
+		//~ std::cout << "Gap finished at it = " << it << " t = " << trueTime << std::endl;
+		lastEnd = gapEnd;
+	);
+	
+	while (it<Nt)
+	{
+		mut_gaps[it] = mut_normal;
+		++it;
+	}
+	L->MakeCovarianceMatrix();
+	
+	double u = exp(-1.0/lt);
+	double ua = sqrt(1.0-u*u);
+	double previous = z[Nt-1]; // First case is trivial
+	TransformedPosition[0][Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
+	for (int i = Nt - 2; i >= 0; i--) 
+	{
+    	previous = ua * z[i] + u * previous;
+    	TransformedPosition[0][i] = mut_gaps[i] + sigmat * previous;
+	}
+	
+	std::vector<int> needlet_u;
+	std::vector<int> needlet_v;
+    std::vector<double> needlet_w;
+	std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
+	int i = 0;
+    forLineVectorInFile(needlet_file,',',
+ 
+		if (i > 0)
+		{
+	        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
+	        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
+	        needlet_w.push_back(std::stod(FILE_LINE_VECTOR[2]));
+		}
+        ++i;
+    );    
+    int needletN = needlet_u.size();
+	
+	std::vector<double> bVector = std::vector<double>(Nm*Ns,0);
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int i = 0; i < L->choleskyN; ++i)
+		{
+			bVector[s*Nm+L->cholesky_u[i]] += L->cholesky_w[i] * z[Nt+s*Nm+L->cholesky_v[i]];
+		}
+	}
+
+	// yml
+	for (int i = 0; i < needletN; ++i)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			TransformedPosition[0][Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
+		}
+	}
+	
+	for (int i = 0; i < totalTransformedParams; ++i)
+	{
+		CleanedPosition[0][i] = TransformedPosition[0][i];
+		if (i < Nt && mut_gaps[i] == mut_gap)
+		{
+			CleanedPosition[0][i] = mut_gap;
+		}
+		
+	}
+	
+}
+
+void PostProcess(VectorXd x)
+{
+	//clean the memory
+	Data.resize(1);
+	Data[0].resize(1);
+	MPI_Bcast(&x[0],totalRawParams,MPI_DOUBLE,RootID,MPI_COMM_WORLD);
+	
+	std::vector<double> TransformedPosition(totalTransformedParams,mum_prior);
+	std::vector<double> CleanedPosition(totalTransformedParams,mum_prior);
+	LogLikelihoodPrior L = LogLikelihoodPrior(Data,ProcessRank);
+	
+	PostTransform(x,&TransformedPosition,&CleanedPosition, &L);
+	
+	
+	std::string trueDataSource = "../../Data/MainData/";
+	
+	std::vector<File> files = GetAssignments(ProcessRank,trueDataSource);
+	std::string base = Args.OutputDirectory + "/PostProcessing/";
+	if (ProcessRank == 0)
+	{
+		mkdirSafely(base);
+	}
+	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+	std::vector<int> gapStarts;
+	std::vector<int> gapEnds;
+	forLineVectorInFile(gapFile,' ',
+		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
+		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
+	);
+	
+	for (int i = 0; i < files.size(); ++i)
+	{
+		std::cout << ProcessRank << " is saving to " << files[i].Name << std::endl;
+		std::fstream outfile;
+		outfile.open(base + std::to_string(files[i].Bin + magOffset) + ".dat",std::ios::out);
+		int n = 0;
+		outfile << "StarID, OriginalContribution, FlattenedGap\n"; 
+		forLineVectorInFile(files[i].Name,',',
+
+			Data[0][0] = Star(FILE_LINE_VECTOR,files[i].Bin,gapStarts,gapEnds);
+			
+			L.Calculate(TransformedPosition,0,1,1);
+			double v1 = L.Value;
+			L.Calculate(CleanedPosition,0,1,1);
+			double v2 = L.Value;
+			
+			outfile << n <<", ";
+			outfile << std::setprecision(10) << v1 << ", ";
+			outfile << std::setprecision(10) << v2 << "\n";
+			++n;
+		);
+		outfile.close();
+		
+	}
+	
 }
 
 void Welcome()
@@ -162,14 +339,20 @@ int main(int argc, char *argv[])
 	Welcome();
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
+	VectorXd x;
 	if (ProcessRank == RootID) 
 	{
-		RootProcess();
+		x = RootProcess();
 	}
 	else
 	{
+		x = VectorXd::Zero(totalRawParams);
 		WorkerProcess();	
 	}
+
+	MPI_Barrier(MPI_COMM_WORLD);
+	PostProcess(x);
+
 
 	//exit gracefully
 	MPI_Barrier(MPI_COMM_WORLD);
