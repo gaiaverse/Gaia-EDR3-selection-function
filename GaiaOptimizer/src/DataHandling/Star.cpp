@@ -61,9 +61,6 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 		
 	}
 	
-	//SPOOFING
-	nMeasure = nEff;
-	
 	
 	if (nMeasure < 5)
 	{
