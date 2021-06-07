@@ -2,7 +2,7 @@
 folder = "../../../CodeOutput/Diagnostic29_PostProcessing/PostProcessing/";
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
-n = 100:139;
+n = 100:100;
 files = string(n)+".dat";
 datas = "../../../Data/MainData/" + string(n) + ".csv";
 T = table;
@@ -17,33 +17,33 @@ for i = 1:length(files)
     data = datas(i);
     disp("Opening " + file);
     
-%     [tt,nn,kk,tLine] = analyseFile(file,data,folder,0.1);
-%     times = [times,tt];
-%     ns = [ns,nn];
-%     ks = [ks,kk];
-%     T = [T;tLine];
+    [tt,nn,kk,tLine] = analyseFile(file,data,folder,0.01);
+    times = [times,tt];
+    ns = [ns,nn];
+    ks = [ks,kk];
+    T = [T;tLine];
 %     plotHists(times,ns,ks);
 
-    f = readtable(folder+file,"ReadVariableNames",true);
-    Lorig = [Lorig;f.OriginalContribution(:)];
-    Lmodif = [Lmodif;f.FlattenedGap(:)];
+%     f = readtable(folder+file,"ReadVariableNames",true);
+%     Lorig = [Lorig;f.OriginalContribution(:)];
+%     Lmodif = [Lmodif;f.FlattenedGap(:)];
 end
-
-cut = -5;
-Lorig = Lorig(Lorig > cut);
-Lmodif = Lmodif(Lmodif > cut);
-nBins = 1000;
-subplot(2,1,1);
-hist(Lorig,nBins);
-xlabel("Original L");
-ylabel("Counts");
-subplot(2,1,2);
-hist(Lmodif,nBins);
-xlabel("Smoothed L");
-ylabel("Counts");
+% 
+% cut = -5;
+% Lorig = Lorig(Lorig > cut);
+% Lmodif = Lmodif(Lmodif > cut);
+% nBins = 1000;
+% subplot(2,1,1);
+% hist(Lorig,nBins);
+% xlabel("Original L");
+% ylabel("Counts");
+% subplot(2,1,2);
+% hist(Lmodif,nBins);
+% xlabel("Smoothed L");
+% ylabel("Counts");
 % T.Properties.VariableNames = {'File','nStars','nAnomalies','AnomalyPercentage'};
-% disp(T)
-% plotHists(times,ns,ks)
+disp(T)
+plotHists(times,ns,ks)
 
 function [times,ns,ks,tLine] = analyseFile(file,data,folder,anomalyCriteria)
     times = [];
@@ -117,7 +117,7 @@ function plotHists(times,ns,ks)
     Nfull = height(f);
     nReduced = length(ns);
     
-    minTime = 8e6;
+    minTime = 0e6;
     maxTime = 10e6;
     selector = (times < maxTime) & (times > minTime);
     selectorBase = (h < maxTime) & (h > minTime);
