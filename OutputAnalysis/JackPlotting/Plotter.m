@@ -8,11 +8,11 @@ files = ["Diagnostic32_ArtificialK"];
 getData(60);
 
 N1 =0;
-N2 = 8;
+N2 = 6;
 gap = 2;
-progressPlot(files, 300)
+% progressPlot(files, 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-% temporalPlot(files,N2,100,0,42);
+% % temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
@@ -96,8 +96,8 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
     xmin = t(1);
     xmax = t(2);
-% 	xmin = 1300%2321;
-% 	xmax = 1450;%2328;
+	xmin = 1300;%2321;
+	xmax = 1450;%2328;
     ymin = -10;
     ymax = 11.5;
     gaps = readtable("edr3_gaps.csv");
