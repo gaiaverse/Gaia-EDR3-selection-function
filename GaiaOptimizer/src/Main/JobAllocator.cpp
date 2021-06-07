@@ -272,7 +272,13 @@ void PostProcess(VectorXd x)
 	{
 		mkdirSafely(base);
 	}
-	
+	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+	std::vector<int> gapStarts;
+	std::vector<int> gapEnds;
+	forLineVectorInFile(gapFile,' ',
+		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
+		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
+	);
 	
 	for (int i = 0; i < files.size(); ++i)
 	{
@@ -283,7 +289,7 @@ void PostProcess(VectorXd x)
 		outfile << "StarID, OriginalContribution, FlattenedGap\n"; 
 		forLineVectorInFile(files[i].Name,',',
 
-			Data[0][0] = Star(FILE_LINE_VECTOR,files[i].Bin);
+			Data[0][0] = Star(FILE_LINE_VECTOR,files[i].Bin,gapStarts,gapEnds);
 			
 			L.Calculate(TransformedPosition,0,1,1);
 			double v1 = L.Value;

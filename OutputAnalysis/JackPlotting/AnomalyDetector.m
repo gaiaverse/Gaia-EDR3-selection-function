@@ -8,7 +8,10 @@ datas = "../../../Data/MainData/" + string(n) + ".csv";
 T = table;
 ns = [];
 ks = [];
+nonGapNs = [];
 times = [];
+global gaps;
+findGaps()
 clf;
 Lorig = [];
 Lmodif = [];
@@ -17,12 +20,13 @@ for i = 1:length(files)
     data = datas(i);
     disp("Opening " + file);
     
-    [tt,nn,kk,tLine] = analyseFile(file,data,folder,0.01);
+    [tt,nn,kk,ng,tLine] = analyseFile(file,data,folder,0.4);
     times = [times,tt];
     ns = [ns,nn];
     ks = [ks,kk];
+    nonGapNs = [nonGapNs, ng];
     T = [T;tLine];
-%     plotHists(times,ns,ks);
+%     plotHists(times,ns,nonGapNs,ks);
 
 %     f = readtable(folder+file,"ReadVariableNames",true);
 %     Lorig = [Lorig;f.OriginalContribution(:)];
@@ -43,12 +47,13 @@ end
 % ylabel("Counts");
 % T.Properties.VariableNames = {'File','nStars','nAnomalies','AnomalyPercentage'};
 disp(T)
-plotHists(times,ns,ks)
+plotHists(times,ns,nonGapNs,ks)
 
-function [times,ns,ks,tLine] = analyseFile(file,data,folder,anomalyCriteria)
+function [times,ns,ks,ngs,tLine] = analyseFile(file,data,folder,anomalyCriteria)
     times = [];
     ns = [];
     ks = [];
+    ngs = [];
     formats = {'%d','%d'};
     names = ["n","k"];
     for i = 1:500
@@ -91,12 +96,15 @@ function [times,ns,ks,tLine] = analyseFile(file,data,folder,anomalyCriteria)
        ks(end+1) = faultyStars{k,1};
        n = faultyStars{k,2};
        ns(end+1) = n;
+       nMod = 0;
        for z = 1:n
            j = faultyStars{k,2+z}; 
-           
+           if tInGap(j)
+               nMod = nMod + 1;
+           end
           times(end+1) = j;
        end
-       
+       ngs(end+1) = n-nMod;
        progress= round((k/a)*100);
        if progress >= threshold
           while threshold <= progress
@@ -108,17 +116,17 @@ function [times,ns,ks,tLine] = analyseFile(file,data,folder,anomalyCriteria)
 
 end
 
-function plotHists(times,ns,ks)
+function plotHists(times,ns,ngs,ks)
     smallCut = 1e9;
-    
+    figure(1);
     f = readmatrix('../../../Data/MainData/100.csv');
     g = f(:,3:end);
     h = reshape(g,1,[]);
     Nfull = height(f);
     nReduced = length(ns);
     
-    minTime = 0e6;
-    maxTime = 10e6;
+    minTime = 4e6;
+    maxTime = 5e6;
     selector = (times < maxTime) & (times > minTime);
     selectorBase = (h < maxTime) & (h > minTime);
     h = h(selectorBase);
@@ -150,5 +158,38 @@ function plotHists(times,ns,ks)
     title("Bias in Anomalous Stars")
     xlabel("Gaia Timesteps (/10s)");
     ylabel("Fractional Bias");
+    
+    figure(2);
+    
+    subplot(2,2,1);
+    
+    hist(ns);
+    xlabel("Total Visits");
+    
+    subplot(2,2,2);
+    hist(ngs);
+    xlabel("Non-Gap Visits");
+    subplot(2,2,3);
+    hist(ks./ns);
+    xlabel("Ratio of detections to Visits");
+    subplot(2,2,4);
+    hist(ks./ngs);
+    xlabel("Ratio of detections to Non-Gap Visits");
     drawnow;
+end
+
+function inGap = tInGap(time)
+    global gaps
+    inGap = false;
+    for i = 1:height(gaps)
+        if (time < gaps(i,2) && time > gaps(i,1))
+           inGap = true; 
+        end
+    end
+end
+
+function findGaps()
+    global gaps
+    gFile = "../../../ModelInputs/gaps_prior_epsl.dat";
+    gaps = readmatrix(gFile);
 end

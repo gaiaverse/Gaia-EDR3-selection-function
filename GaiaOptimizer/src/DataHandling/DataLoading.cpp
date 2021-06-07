@@ -113,6 +113,15 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
 	
+	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+	std::vector<int> gapStarts;
+	std::vector<int> gapEnds;
+	forLineVectorInFile(gapFile,' ',
+		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
+		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
+	);
+	
+	
 	auto start = std::chrono::system_clock::now();
 	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);
 	CalculateBatches(ProcessRank,Files);
@@ -139,7 +148,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 				++batch;
 			}
 
-			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin));
+			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin,gapStarts,gapEnds));
 
 			++starsLoaded;
 			++allStarsLoaded;
