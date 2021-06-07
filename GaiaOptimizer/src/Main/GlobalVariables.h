@@ -27,7 +27,7 @@ const int healpix_order = 2; // order of healpix map, can be any integer >= 0
 const int needlet_order = 1; // maximum order of needlets used, can be any integ*needler >= -1
 
 const int N_SGD_Batches = 128;
-const int DataLoadCount = 0;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const double mum_prior = -3;
 const double mum_init = 5;
