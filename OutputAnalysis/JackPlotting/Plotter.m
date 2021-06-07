@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic32_ArtificialK","Diagnostic29_PostProcessing"];
-% files = ["temptest2","temptest"];
+files = ["Diagnostic29_PostProcessing","Diagnostic32_ArtificialK"];
+% files = ["Diagnostic33_SpoofedK"];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
 N1 =0;
-N2 = 16;
+N2 = 2;
 gap = 2;
-% progressPlot(files, 0)
+progressPlot(files(1), 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 % % temporalPlot(files,N2,100,0,42);
 
@@ -151,17 +151,17 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
 
     %     [sx,sz] = bottomOut(x,z,1);
 
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
        
         hold on;
         plot(x(cutT),z(cutT),'Color',map(i,:),"HandleVisibility","Off");
         hold off;
-        subplot(ny,nx,2);
+        subplot(ny,nx,3);
         
         hold on;
         plot(x(cutT),f(cutT),'Color',map(i,:),"HandleVisibility","Off");
       
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
         frameTitle = "Frame " + num2str(number);
         if number == -1
             frameTitle = "Final Position";
@@ -173,7 +173,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
         xlabel("OBMT (Revolutions)");
         ylabel("Detection Efficiency,$P_t$")
 
-         subplot(ny,nx,2)
+         subplot(ny,nx,3)
          title("$x_t$ " + frameTitle);
         xlabel("OBMT (Revolutions)");
         ylabel("Detection Parameter,$x_t$")
@@ -181,7 +181,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
         ylim([ymin,ymax])
         grid on;
 
-        subplot(ny,nx,3);
+        subplot(ny,nx,4);
 
 
         q = zeros(1,Nm);
@@ -245,22 +245,23 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     for i = 1:height(gaps)
         t1 = (gaps.tbeg(i));
         t2 = (gaps.tend(i));
-        subplot(ny,nx,1);
+        subplot(ny,nx,[1,2]);
         hold on;
         fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
-        subplot(ny,nx,2);
+        subplot(ny,nx,3);
         hold on
         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
         hold off;
         
-        subplot(ny,nx,4);
-        hold on
-        fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
-        hold off;
+%         subplot(ny,nx,4);
+%         hold on
+%         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+%         hold off;
     end
     
     subplot(ny,nx,3);
+    
     legend(folders,"Interpreter","None")
 end
 function progressPlot(files,minLim)
