@@ -32,7 +32,7 @@ const int DataLoadCount = 0;	//set to a value > 0, this truncates any datafile r
 const double mum_prior = -3;
 const double mum_init = 5;
 
-const int magOffset = 100;
+const int magOffset = 0;
 const double mut_normal = 5;
 const double mut_border = 0;
 const double mut_gap = -5;

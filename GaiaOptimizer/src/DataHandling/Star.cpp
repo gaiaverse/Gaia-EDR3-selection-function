@@ -59,8 +59,6 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	{
 		nMeasure = nEff;
 		
-		std::cout << "Star assigned (n,k) = (" << nVisit << ", " << nMeasure << ") from (" << data[1] << ", " << data[0] << ") " << std::endl;
-	
 	}
 	
 	if (nMeasure < 5)
