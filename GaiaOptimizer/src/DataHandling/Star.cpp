@@ -11,25 +11,48 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	//Column 1: Number of visits predicted 
 	//Column 2->?, the predicted times at which the star was visited (variable number of columns) 
 	
-	int gapsPassed = 0;
+	bool allGapsPassed = false;
+	int currentGap = 0;
 	int nGaps = gapsStart.size();
-	int nextGapStart = gapsStart[0];
-	int nextGapEnd = gapsEnd[0];
 	int obsInGaps = 0;
 	for (int i = 2; i < data.size(); ++i)
 	{
 		int t = stoi(data[i]);
 		
-		while (gapsPassed < nGaps && nextGapEnd < t)
+		bool inGap = false;
+		if (!allGapsPassed)
 		{
-			++gapsPassed;
-			nextGapStart = gapsStart[gapsPassed];
-			nextGapEnd = gapsEnd[gapsPassed];
+			if (t > gapsEnd[currentGap])
+			{
+				while (currentGap < nGaps && t > gapsEnd[currentGap])
+				{
+					++currentGap;
+				}
+			}
+			
+			if (currentGap == nGaps)
+			{
+				allGapsPassed = true;
+			}
+			else
+			{
+				if (t >= gapsStart[currentGap] && t<=gapsEnd[currentGap])
+				{
+					inGap = true;
+				}
+			}
 		}
-		if ( (gapsPassed < nGaps) && ( (t>=nextGapStart) && (t <= nextGapEnd)))
+		std::cout << "\tt = " << t;
+		if (inGap)
 		{
 			++obsInGaps;
+			std::cout << "t = " << t << " was in gap " << currentGap << std::endl;
 		}
+		else
+		{
+			std::cout << " was not in a gap " << std::endl;
+		}
+		
 		TimeSeries.push_back(t);
 	}
 	
@@ -41,6 +64,8 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	{
 		nMeasure = nEff;
 	}
+	
+	std::cout << "Star assigned (n,k) = (" << nVisit << ", " << nMeasure << ") from (" << data[1] << ", " << data[0] << ") " << std::endl;
 	
 	if (nMeasure < 5)
 	{
