@@ -42,17 +42,12 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 				}
 			}
 		}
-		std::cout << "\tt = " << t;
+		
 		if (inGap)
 		{
 			++obsInGaps;
-			std::cout << "t = " << t << " was in gap " << currentGap << std::endl;
 		}
-		else
-		{
-			std::cout << " was not in a gap " << std::endl;
-		}
-		
+				
 		TimeSeries.push_back(t);
 	}
 	
@@ -63,9 +58,10 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	if (nMeasure > nEff)
 	{
 		nMeasure = nEff;
-	}
+		
+		std::cout << "Star assigned (n,k) = (" << nVisit << ", " << nMeasure << ") from (" << data[1] << ", " << data[0] << ") " << std::endl;
 	
-	std::cout << "Star assigned (n,k) = (" << nVisit << ", " << nMeasure << ") from (" << data[1] << ", " << data[0] << ") " << std::endl;
+	}
 	
 	if (nMeasure < 5)
 	{
