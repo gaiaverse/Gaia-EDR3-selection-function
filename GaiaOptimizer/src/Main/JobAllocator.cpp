@@ -402,16 +402,16 @@ int main(int argc, char *argv[])
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
 	
-	GradTest();
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ x = RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ x = VectorXd::Zero(totalRawParams);
-		//~ WorkerProcess();	
-	//~ }
+	//~ GradTest();
+	if (ProcessRank == RootID) 
+	{
+		x = RootProcess();
+	}
+	else
+	{
+		x = VectorXd::Zero(totalRawParams);
+		WorkerProcess();	
+	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	//~ PostProcess(x);
