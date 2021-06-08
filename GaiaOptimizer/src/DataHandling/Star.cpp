@@ -56,7 +56,7 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	
 	nMeasure = stoi(data[0]);
 	nVisit = stoi(data[1]);
-	int nEff = nVisit - obsInGaps;
+	int nEff = TimeSeries.size(); //nVisit - obsInGaps;
 	if (nMeasure > nEff)
 	{
 		nMeasure = nEff;
