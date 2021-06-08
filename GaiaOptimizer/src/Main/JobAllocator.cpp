@@ -24,6 +24,9 @@
 #include "GlobalVariables.h"
 #include "../Optimizer/ManualOptimizer.h"
 #include "../DataHandling/CommandArguments.h"
+
+
+#include "../Likelihood/ProbabilityFunctions.h"
 using Eigen::VectorXd;
 
 
@@ -326,6 +329,52 @@ void Welcome()
 	srand(Args.RandomSeed);
 }
 
+
+void GradTest()
+{
+	VectorXd xV = initialisedVector(totalTransformedParams,false,"");
+	std::vector<double> x;
+	for (int i = 0; i < totalTransformedParams; ++i)
+	{
+		x.push_back(xV[i]);
+		std::cout << xV[i] << ", ";
+	}
+	std::cout << std::endl;
+	//~ Star s = Data[0][0];
+	//~ Data.resize(1);
+	//~ Data[0].resize(1);
+	
+	LogLikelihoodPrior L = LogLikelihoodPrior(Data,ProcessRank);
+	
+	double dx = 1e-6;
+	L.Calculate(x,0,1,1);
+	double trueVal = L.Value;
+	std::vector<double> analyticalGrad = L.Gradient;
+	for (int i = 0; i < 100; ++i)
+	{
+		std::vector<double> xCopy = x;
+		xCopy[i] += dx;
+		L.Calculate(xCopy,0,1,1);
+		
+		double numericalGrad = (L.Value - trueVal)/dx;
+		
+		std::cout << i << "\t"  << analyticalGrad[i] << "\t" << numericalGrad << "\t" << trueVal << "\t" << L.Value << std::endl; 
+		
+	}
+	
+	
+	for (int i = 0; i < 10; ++i)
+	{
+		double z, f, df;
+		z = (float)i/10;
+		logphi(z,f,df);
+		std::cout << "z = " << z << "   f = " << f << "   df_a = " << df;
+		double newVal;
+		logphi(z+1e-6,newVal,df);
+		std::cout << "    df_n = " << (newVal - f)/1e-6 << std::endl;
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	auto start = std::chrono::system_clock::now();
@@ -341,16 +390,16 @@ int main(int argc, char *argv[])
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
 	
-	
-	if (ProcessRank == RootID) 
-	{
-		x = RootProcess();
-	}
-	else
-	{
-		x = VectorXd::Zero(totalRawParams);
-		WorkerProcess();	
-	}
+	GradTest();
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ x = RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ x = VectorXd::Zero(totalRawParams);
+		//~ WorkerProcess();	
+	//~ }
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	//~ PostProcess(x);

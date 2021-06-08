@@ -95,9 +95,7 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
-	double contribution;
-	poisson_binomial_normal_lpmf(k, Data.p, n, contribution, Data.dfdp);
-	Value += contribution;
+	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp);
 	
 }
 
