@@ -82,6 +82,7 @@ void PrintStatus(std::string location)
 			else
 			{
 				file << std::setprecision(10) <<vals[j];
+				
 			}
 			if (j < properties.size() - 1)
 			{
