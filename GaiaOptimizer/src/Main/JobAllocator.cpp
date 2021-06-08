@@ -337,12 +337,11 @@ void GradTest()
 	for (int i = 0; i < totalTransformedParams; ++i)
 	{
 		x.push_back(xV[i]);
-		std::cout << xV[i] << ", ";
 	}
 	std::cout << std::endl;
 	//~ Star s = Data[0][0];
-	//~ Data.resize(1);
-	//~ Data[0].resize(1);
+	Data.resize(1);
+	Data[0].resize(1);
 	
 	LogLikelihoodPrior L = LogLikelihoodPrior(Data,ProcessRank);
 	
@@ -350,7 +349,7 @@ void GradTest()
 	L.Calculate(x,0,1,1);
 	double trueVal = L.Value;
 	std::vector<double> analyticalGrad = L.Gradient;
-	for (int i = 0; i < 100; ++i)
+	for (int i = 0; i < std::min(100,totalTransformedParams); ++i)
 	{
 		std::vector<double> xCopy = x;
 		xCopy[i] += dx;
@@ -358,21 +357,47 @@ void GradTest()
 		
 		double numericalGrad = (L.Value - trueVal)/dx;
 		
-		std::cout << i << "\t"  << analyticalGrad[i] << "\t" << numericalGrad << "\t" << trueVal << "\t" << L.Value << std::endl; 
+		std::cout << i << "\t"  << analyticalGrad[i] << "\t" << numericalGrad;
+		if (i < Nt)
+		{
+			std::cout << "    " << L.Data.time_mapping[i];
+		} 
+		std::cout << std::endl;
 		
 	}
 	
 	
-	for (int i = 0; i < 10; ++i)
-	{
-		double z, f, df;
-		z = (float)i/10;
-		logphi(z,f,df);
-		std::cout << "z = " << z << "   f = " << f << "   df_a = " << df;
-		double newVal;
-		logphi(z+1e-6,newVal,df);
-		std::cout << "    df_n = " << (newVal - f)/1e-6 << std::endl;
-	}
+	//~ for (int i = 0; i < 10; ++i)
+	//~ {
+		//~ double z, f, df;
+		//~ z = (float)i/10;
+		//~ logphi(z,f,df);
+		//~ std::cout << "z = " << z << "   f = " << f << "   df_a = " << df;
+		//~ double newVal;
+		//~ logphi(z+1e-6,newVal,df);
+		//~ std::cout << "    df_n = " << (newVal - f)/1e-6 << std::endl;
+	//~ }
+	
+	
+	
+	//~ std::vector<double> ps = {0.1,0.25,0.4876,0.989,0.77,0.43,0.76,0.5,0.21,0.91,0.000000001,0.99999999999};
+	//~ int n = ps.size();
+	//~ int k = n;
+	//~ std::vector<double> gradient(n,0.0);
+	//~ dx = 1e-12;
+	//~ double v = poisson_binomial_normal_lpmf(k,ps,n,gradient);
+	//~ std::vector<double> oldGradient = gradient;
+	//~ for (int i = 0; i < n; ++i)
+	//~ {
+		//~ std::cout << i << "\t p = " << ps[i] << " \tdf = " << oldGradient[i]; 
+		//~ gradient = std::vector<double>(n,0.0);
+		
+		//~ std::vector<double> dp = ps;
+		//~ dp[i] += dx;
+		
+		//~ double v2 = poisson_binomial_normal_lpmf(k,dp,n,gradient);
+		//~ std::cout << " \tdf_n = " << (v2 - v)/dx << "\t\t" <<std::endl;
+	//~ }
 }
 
 int main(int argc, char *argv[])
