@@ -8,11 +8,11 @@ files = ["Diagnostic29_PostProcessing","Diagnostic32_ArtificialK"];
 getData(60);
 
 N1 =0;
-N2 = 2;
-gap = 2;
+N2 = 54;
+gap = 10;
 progressPlot(files(1), 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-% % temporalPlot(files,N2,100,0,42);
+% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
+temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
@@ -82,7 +82,7 @@ function getData(timeGap)
     timeSince = seconds(SyncCurrentTime - f.SyncCurrentTime);
 
     if timeSince > timeGap
-        system(' rsync -avr "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Output/" ../../../CodeOutput/');
+        system(' rsync -avr --exclude "*PostProcessing" "jackfraser@hydra.physics.ox.ac.uk:/mnt/extraspace/GaiaSelectionFunction/Output/" ../../../CodeOutput/');
         
         SyncCurrentTime = datetime('now');
         save("SyncTime.mat","SyncCurrentTime");
@@ -100,7 +100,7 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
 	xmax = 1450;%2328;
     ymin = -10;
     ymax = 11.5;
-    gaps = readtable("edr3_gaps.csv");
+%     gaps = readtable("edr3_gaps.csv");
     map = colororder;
     subplot(ny,nx,3);
     hold on;
@@ -242,23 +242,23 @@ function temporalPlot(folders,number,magOffset,mStart,mEnd)
     end
     
     
-    for i = 1:height(gaps)
-        t1 = (gaps.tbeg(i));
-        t2 = (gaps.tend(i));
-        subplot(ny,nx,[1,2]);
-        hold on;
-        fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
-        hold off;
-        subplot(ny,nx,3);
-        hold on
-        fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
-        hold off;
-        
-%         subplot(ny,nx,4);
+%     for i = 1:height(gaps)
+%         t1 = (gaps.tbeg(i));
+%         t2 = (gaps.tend(i));
+%         subplot(ny,nx,[1,2]);
+%         hold on;
+%         fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+%         hold off;
+%         subplot(ny,nx,3);
 %         hold on
 %         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
 %         hold off;
-    end
+%         
+% %         subplot(ny,nx,4);
+% %         hold on
+% %         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+% %         hold off;
+%     end
     
     subplot(ny,nx,3);
     
