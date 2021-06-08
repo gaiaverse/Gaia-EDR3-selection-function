@@ -49,13 +49,13 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 		}
 		else
 		{	
-			TimeSeries.push_back(t);
+		TimeSeries.push_back(t);
 		}
 	}
 	
 	
 	nMeasure = stoi(data[0]);
-	nVisit = stoi(data[1]);
+	nVisit = TimeSeries.size();;
 	int nEff = TimeSeries.size(); //nVisit - obsInGaps;
 	if (nMeasure > nEff)
 	{
