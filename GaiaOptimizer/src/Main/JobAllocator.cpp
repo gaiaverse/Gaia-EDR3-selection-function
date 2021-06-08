@@ -340,8 +340,13 @@ void GradTest()
 	}
 	std::cout << std::endl;
 	//~ Star s = Data[0][0];
+	int nStar = 1;
 	Data.resize(1);
-	Data[0].resize(1);
+	Star s = Data[0][1];
+	Data[0].resize(2);
+	//~ Data[0][0] = s;
+	
+	std::cout << Data[0][0].gBin << std::endl;
 	
 	LogLikelihoodPrior L = LogLikelihoodPrior(Data,ProcessRank);
 	
@@ -349,7 +354,9 @@ void GradTest()
 	L.Calculate(x,0,1,1);
 	double trueVal = L.Value;
 	std::vector<double> analyticalGrad = L.Gradient;
-	for (int i = 0; i < std::min(100,totalTransformedParams); ++i)
+	int g = 0;
+	int space = 0;
+	for (int i = 0; i < std::min(300,totalTransformedParams); ++i)
 	{
 		std::vector<double> xCopy = x;
 		xCopy[i] += dx;
@@ -357,11 +364,23 @@ void GradTest()
 		
 		double numericalGrad = (L.Value - trueVal)/dx;
 		
-		std::cout << i << "\t"  << analyticalGrad[i] << "\t" << numericalGrad;
 		if (i < Nt)
 		{
-			std::cout << "    " << L.Data.time_mapping[i];
-		} 
+			std::cout << "Time " << i;
+		}
+		else
+		{
+			std::cout << "Mag " << g << " Space " << space;
+			++g;
+			if (g == Nm)
+			{
+				++space;
+				g = 0;
+			}
+		}
+		
+		std::cout << "\t"  << analyticalGrad[i] << "\t" << numericalGrad;
+		 
 		std::cout << std::endl;
 		
 	}
@@ -415,16 +434,16 @@ int main(int argc, char *argv[])
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
 	
-	GradTest();
-	//~ if (ProcessRank == RootID) 
-	//~ {
-		//~ x = RootProcess();
-	//~ }
-	//~ else
-	//~ {
-		//~ x = VectorXd::Zero(totalRawParams);
-		//~ WorkerProcess();	
-	//~ }
+	//~ GradTest();
+	if (ProcessRank == RootID) 
+	{
+		x = RootProcess();
+	}
+	else
+	{
+		x = VectorXd::Zero(totalRawParams);
+		WorkerProcess();	
+	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	//~ PostProcess(x);

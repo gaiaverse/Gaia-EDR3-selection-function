@@ -10,7 +10,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	pmf_backward =  std::vector<std::vector<double>>(nBig,std::vector<double>(nBig,0));
 	subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(nBig,0));
 	pt = std::vector<double>(nBig,0);
-	ptm = std::vector<double>(nBig,0);
+	//~ ptm = std::vector<double>(nBig,0);
 	pml = std::vector<double>(nBig,0);
 	p = std::vector<double>(nBig,0);
 	grad_elu_xml1 = std::vector<double>(nBig,0);
@@ -40,19 +40,19 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
     
     //prepare the temporal down stepping vector
     time_mapping = std::vector<int>(TotalScanningTime,0);
-	magtime_mapping = std::vector<int>(TotalScanningTime,0);
+	//~ magtime_mapping = std::vector<int>(TotalScanningTime,0);
     
     double time_ratio = 1;
     double magtime_ratio = 1;
     if (Nt < TotalScanningTime)
     {
 		time_ratio = (double)Nt/TotalScanningTime;
-		magtime_ratio = (double)Nt_m/TotalScanningTime;
+		//~ magtime_ratio = (double)Nt_m/TotalScanningTime;
 	}
 
 	for (int i = 0; i < TotalScanningTime; ++i)
 	{
 		time_mapping[i] = std::min(Nt-1,(int)round(time_ratio*i));
-		magtime_mapping[i] = std::min(Nt_m-1,(int)round(magtime_ratio*i));
+		//~ magtime_mapping[i] = std::min(Nt_m-1,(int)round(magtime_ratio*i));
 	}
 }

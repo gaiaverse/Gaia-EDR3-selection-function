@@ -20,7 +20,7 @@ class LikelihoodData
 		std::vector<int> healpix_fov_1;
     	std::vector<int> healpix_fov_2;
     	std::vector<int> time_mapping;
-		std::vector<int> magtime_mapping;
+		//~ std::vector<int> magtime_mapping;
 
 	
 	
@@ -32,7 +32,7 @@ class LikelihoodData
 		std::vector<std::vector<double>> subpmf;
 		std::vector<double> dfdp;
 		std::vector<double> pt;
-		std::vector<double> ptm;
+		//~ std::vector<double> ptm;
 		std::vector<double> pml;
 		std::vector<double> p;
 

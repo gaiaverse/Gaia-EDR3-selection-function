@@ -261,7 +261,7 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
     
     for(int i = 0; i < probslen; ++i)
     {
-        gradient[i] += dlpmf_dm + (1.0-2.0*probs[i])*dlpmf_ds2;
+        gradient[i] = dlpmf_dm + (1.0-2.0*probs[i])*dlpmf_ds2;
     }
     
     return value;
