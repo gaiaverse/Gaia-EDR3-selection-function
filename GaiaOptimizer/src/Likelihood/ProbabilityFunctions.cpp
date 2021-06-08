@@ -257,7 +257,7 @@ double poisson_binomial_normal_lpmf(int k, std::vector<double> & probs, int prob
     double value = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi;
     
     double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi)/s2;
+    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
     
     for(int i = 0; i < probslen; ++i)
     {
