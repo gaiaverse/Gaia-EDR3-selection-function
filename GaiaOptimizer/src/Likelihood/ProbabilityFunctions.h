@@ -39,4 +39,4 @@ std::vector<double> logphi_q{2.260528520767326969592,  9.3960340162350541504,
 
 double one_over_root2 = 1.0/sqrt(2.0);
 double one_over_root2pi = 1.0/sqrt(2.0*M_PI);
-double root2_over_pi = np.sqrt(2.0/M_pi);
+double root2_over_pi = sqrt(2.0/M_pi);
