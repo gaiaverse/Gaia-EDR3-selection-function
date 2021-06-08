@@ -1,14 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic29_PostProcessing","Diagnostic32_ArtificialK"];
-files = ["InitTest2"];
+files = ["Diagnostic29_PostProcessing","Diagnostic32_ArtificialK","Diagnostic34_RemovedObservation"];
+% files = ["InitTest2"];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
 N1 =0;
-N2 = 20;
+N2 = 8;
 gap = 2;
 progressPlot(files(1), 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);

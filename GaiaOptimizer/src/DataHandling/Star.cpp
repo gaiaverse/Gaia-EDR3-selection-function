@@ -14,7 +14,8 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	bool allGapsPassed = false;
 	int currentGap = 0;
 	int nGaps = gapsStart.size();
-	int obsInGaps = 0;
+	int obs = 0;
+	
 	for (int i = 2; i < data.size(); ++i)
 	{
 		int t = stoi(data[i]);
@@ -43,25 +44,18 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 			}
 		}
 		
-		if (inGap)
+		if (!inGap)
 		{
-			++obsInGaps;
+			++obs;
 		}
-		else
-		{	
 		TimeSeries.push_back(t);
-		}
 	}
 	
 	
-	nMeasure = stoi(data[0]);
-	nVisit = TimeSeries.size();;
-	int nEff = TimeSeries.size(); //nVisit - obsInGaps;
-	if (nMeasure > nEff)
-	{
-		nMeasure = nEff;
-		
-	}
+	int fileK = stoi(data[0]);
+	nVisit = TimeSeries.size();
+	
+	nMeasure = std::min(fileK,obs);
 	
 	
 	if (nMeasure < 5)
