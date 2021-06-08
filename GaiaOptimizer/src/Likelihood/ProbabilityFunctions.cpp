@@ -307,7 +307,7 @@ double  elu(double x)
 
 double  elu_grad(double x, double elu_x)
 {
-    if (x < 0.0)
+    if (x < density_cut)
     {
         return -expm_density_cut; 
     }

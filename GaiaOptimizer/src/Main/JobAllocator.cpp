@@ -384,39 +384,7 @@ void GradTest()
 		std::cout << std::endl;
 		
 	}
-	
-	
-	//~ for (int i = 0; i < 10; ++i)
-	//~ {
-		//~ double z, f, df;
-		//~ z = (float)i/10;
-		//~ logphi(z,f,df);
-		//~ std::cout << "z = " << z << "   f = " << f << "   df_a = " << df;
-		//~ double newVal;
-		//~ logphi(z+1e-6,newVal,df);
-		//~ std::cout << "    df_n = " << (newVal - f)/1e-6 << std::endl;
-	//~ }
-	
-	
-	
-	//~ std::vector<double> ps = {0.1,0.25,0.4876,0.989,0.77,0.43,0.76,0.5,0.21,0.91,0.000000001,0.99999999999};
-	//~ int n = ps.size();
-	//~ int k = n;
-	//~ std::vector<double> gradient(n,0.0);
-	//~ dx = 1e-12;
-	//~ double v = poisson_binomial_normal_lpmf(k,ps,n,gradient);
-	//~ std::vector<double> oldGradient = gradient;
-	//~ for (int i = 0; i < n; ++i)
-	//~ {
-		//~ std::cout << i << "\t p = " << ps[i] << " \tdf = " << oldGradient[i]; 
-		//~ gradient = std::vector<double>(n,0.0);
-		
-		//~ std::vector<double> dp = ps;
-		//~ dp[i] += dx;
-		
-		//~ double v2 = poisson_binomial_normal_lpmf(k,dp,n,gradient);
-		//~ std::cout << " \tdf_n = " << (v2 - v)/dx << "\t\t" <<std::endl;
-	//~ }
+
 }
 
 int main(int argc, char *argv[])
@@ -434,16 +402,16 @@ int main(int argc, char *argv[])
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
 	
-	//~ GradTest();
-	if (ProcessRank == RootID) 
-	{
-		x = RootProcess();
-	}
-	else
-	{
-		x = VectorXd::Zero(totalRawParams);
-		WorkerProcess();	
-	}
+	GradTest();
+	//~ if (ProcessRank == RootID) 
+	//~ {
+		//~ x = RootProcess();
+	//~ }
+	//~ else
+	//~ {
+		//~ x = VectorXd::Zero(totalRawParams);
+		//~ WorkerProcess();	
+	//~ }
 
 	MPI_Barrier(MPI_COMM_WORLD);
 	//~ PostProcess(x);
