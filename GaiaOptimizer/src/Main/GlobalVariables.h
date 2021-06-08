@@ -17,7 +17,7 @@ using Eigen::VectorXd;
 const int RootID = 0; //<- declare that process 0 is always Root.
 
 
-const int Nm = 213; // number of magnitude bins
+const int Nm = 10; // number of magnitude bins
 const int Nt = 89676; // number of time bins, coarse, feel free to change
 
 const int Nt_m = 0;

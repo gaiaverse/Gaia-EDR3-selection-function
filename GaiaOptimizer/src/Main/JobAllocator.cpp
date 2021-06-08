@@ -340,6 +340,8 @@ int main(int argc, char *argv[])
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
+	
+	
 	if (ProcessRank == RootID) 
 	{
 		x = RootProcess();
@@ -351,7 +353,7 @@ int main(int argc, char *argv[])
 	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
-	PostProcess(x);
+	//~ PostProcess(x);
 
 
 	//exit gracefully
