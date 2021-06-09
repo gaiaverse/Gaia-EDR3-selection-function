@@ -242,7 +242,8 @@ void logphi(double z, double& f, double& df)
 
 double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
 {
-	double m = 0.0, s2 = PredObsVariance;
+	double m = 0.0;
+	double s2 = PredObsVariance_zeroth + PredObsVariance_first * probslen * probslen;
 
 	for(int i = 0; i < probslen; ++i)
 	{

@@ -1,80 +1,22 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic29_PostProcessing","Diagnostic34_RemovedObservation","Diagnostic35_AggressiveK"];
-files = ["InitTest2"];
+files = ["Diagnostic29_PostProcessing","Diagnostic39_NewSpace2","Diagnostic40_NewSpace_HighVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
+% files = [""];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
-% getData(60);
+getData(0);
 
-N1 =0;
-N2 = 72;
-gap = 2;
-progressPlot(files(1), 0)
-% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-temporalPlot(files,N2,100,0,42);
+N1 =20;
+N2 = 56;
+gap = 4;
+progressPlot(files(2:end), 0)
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
+% temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
 
-function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
-for i = startN:gap:maxN
-	temporalPlot(folder,i,magOffset,mStart,mEnd);
-	%         subplot(2,1,1)
-	
-	frame = getframe(gcf);
-	im = frame2im(frame);
-	[imind,cm] = rgb2ind(im,256);
-	
-	if i == startN
-		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-	else
-		imwrite(imind,cm,fileName,'gif','WriteMode','append');
-	end
-end
-
-if includeFinal == true
-	temporalPlot(folder,-1);
-	%         subplot(2,1,1)
-	
-	frame = getframe(gcf);
-	im = frame2im(frame);
-	[imind,cm] = rgb2ind(im,256);
-	
-	if i == startN
-		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-	else
-		imwrite(imind,cm,fileName,'gif','WriteMode','append');
-	end
-end
-end
-
-function magGif(folder,number,offset,start,max,jump,fileName)
-figure(1);
-ny = 2;
-nx = ceil(jump/ny);
-for m = start:jump:max
-	
-	for i = 1:jump
-		if start + i < 213
-			subplot(ny,nx,i)
-			temporalPlot(folder,number,offset,start +i,start+i);
-			%         subplot(2,1,1)
-			
-			frame = getframe(gcf);
-			im = frame2im(frame);
-			[imind,cm] = rgb2ind(im,256);
-			
-			if m == start
-				imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-			else
-				imwrite(imind,cm,fileName,'gif','WriteMode','append');
-			end
-		end
-	end
-end
-
-end
 
 function getData(timeGap)
 f = load("SyncTime.mat");
@@ -96,10 +38,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2200;
-% xmax = 2500;
-ymin = -10;
-ymax = 11.5;
+% xmin = 2230;
+xmax = 1800;%2248;
+ymin = -12;
+ymax = 12;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -194,6 +136,8 @@ for i = 1:length(folders)
 		q = q + ms(:,j);
 	end
 	if Nm > 1
+        alpha = 0.5*log(2);
+        p = exp(-alpha*2*exp(-q/Nl));
 		plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
 	else
 		scatter(0,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
@@ -560,4 +504,62 @@ while i < length(x)
 	sy(end+1) = min(y(i:top));
 	i = i + factor;
 end
+end
+function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
+for i = startN:gap:maxN
+	temporalPlot(folder,i,magOffset,mStart,mEnd);
+	%         subplot(2,1,1)
+	
+	frame = getframe(gcf);
+	im = frame2im(frame);
+	[imind,cm] = rgb2ind(im,256);
+	
+	if i == startN
+		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
+	else
+		imwrite(imind,cm,fileName,'gif','WriteMode','append');
+	end
+end
+
+if includeFinal == true
+	temporalPlot(folder,-1);
+	%         subplot(2,1,1)
+	
+	frame = getframe(gcf);
+	im = frame2im(frame);
+	[imind,cm] = rgb2ind(im,256);
+	
+	if i == startN
+		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
+	else
+		imwrite(imind,cm,fileName,'gif','WriteMode','append');
+	end
+end
+end
+
+function magGif(folder,number,offset,start,max,jump,fileName)
+figure(1);
+ny = 2;
+nx = ceil(jump/ny);
+for m = start:jump:max
+	
+	for i = 1:jump
+		if start + i < 213
+			subplot(ny,nx,i)
+			temporalPlot(folder,number,offset,start +i,start+i);
+			%         subplot(2,1,1)
+			
+			frame = getframe(gcf);
+			im = frame2im(frame);
+			[imind,cm] = rgb2ind(im,256);
+			
+			if m == start
+				imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
+			else
+				imwrite(imind,cm,fileName,'gif','WriteMode','append');
+			end
+		end
+	end
+end
+
 end
