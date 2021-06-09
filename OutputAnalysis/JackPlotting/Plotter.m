@@ -1,18 +1,18 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic29_PostProcessing","Diagnostic39_NewSpace2","Diagnostic40_NewSpace_HighVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
+files = ["Diagnostic29_PostProcessing""Diagnostic40_NewSpace_HighVariance","Diagnostic41_VaryingVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
 % files = [""];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
-getData(0);
+getData(60);
 
-N1 =20;
-N2 = 56;
-gap = 4;
+N1 =0;
+N2 = 10;
+gap = 2;
 progressPlot(files(2:end), 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
-% temporalPlot(files,N2,100,0,42);
+temporalPlot(files,N2,100,0,42);
 
 % magGif(files,N2,0,1,213,3,"bigmag.gif");
 % magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
@@ -38,10 +38,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2230;
-xmax = 1800;%2248;
+% xmin = 1370;%2230;
+% xmax = 1390;%2248;
 ymin = -12;
-ymax = 12;
+ymax = 22;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
