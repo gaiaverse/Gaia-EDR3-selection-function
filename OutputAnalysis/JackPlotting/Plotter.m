@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic29_PostProcessing""Diagnostic40_NewSpace_HighVariance","Diagnostic41_VaryingVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
+files = ["Diagnostic29_PostProcessing","Diagnostic41_VaryingVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
 % files = [""];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
-N1 =0;
-N2 = 10;
+N1 =70;
+N2 = 80;
 gap = 2;
-progressPlot(files(2:end), 0)
+progressPlot(files(2:end), 7.2e4)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 temporalPlot(files,N2,100,0,42);
 
@@ -38,8 +38,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 1370;%2230;
-% xmax = 1390;%2248;
+xmin = 1382;%2230;
+xmax = 1400;%2248;
 ymin = -12;
 ymax = 22;
 gaps = readtable("edr3_gaps.csv");
@@ -191,11 +191,11 @@ for i = 1:height(gaps)
 	t2 = (gaps.tend(i));
 	subplot(ny,nx,[1,2]);
 	hold on;
-	fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+	fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
 	hold off;
 	subplot(ny,nx,3);
 	hold on
-	fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+	fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
 	hold off;
 	
 	%         subplot(ny,nx,4);
