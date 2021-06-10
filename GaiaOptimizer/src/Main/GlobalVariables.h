@@ -65,7 +65,7 @@ const double VerySmallLog = -9999999999;
 const double SingularityPreventer = 1e-18;
 const int PipelineMinVisits = 5; 
 
-const double PredObsVariance_zeroth = 0.01;
+const double PredObsVariance_zeroth = 0.005;
 const double PredObsVariance_first = 0.0005;
 
 const int SaveSteps = 2;
