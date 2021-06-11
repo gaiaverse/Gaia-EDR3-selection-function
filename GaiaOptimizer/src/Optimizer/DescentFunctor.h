@@ -8,7 +8,7 @@
 //~ #include "Star.h"
 #include "../Likelihood/LogLikelihoodPrior.h"
 
-#include "../GenericFunctions/timeCodes.h"
+#include "../libs/JSL/JSL.h"
 
 using Eigen::VectorXd;
 
@@ -54,7 +54,7 @@ class DescentFunctor
 		std::vector<double> mut_gaps;
 		
 		std::vector<bool> freezeOuts;
-		std::vector<bool> freezeOuts_mag; 
+		//~ std::vector<bool> freezeOuts_mag; 
 
 		void ForwardTransform(const VectorXd &z);
 		void BackwardTransform();		
@@ -82,7 +82,7 @@ class DescentFunctor
 				
 				std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
 				int i = 0;
-			    forLineVectorInFile(needlet_file,',',
+			    forLineVectorIn(needlet_file,',',
 			 
 					if (i > 0)
 					{
@@ -111,8 +111,8 @@ class DescentFunctor
 				int trueTime = 0;
 				int lastEnd = -9999;
 				freezeOuts = std::vector<bool>(Nt,true);
-				freezeOuts_mag = std::vector<bool>(Nt_m,true);
-				forLineVectorInFile(gapFile,' ',
+				//~ freezeOuts_mag = std::vector<bool>(Nt_m,true);
+				forLineVectorIn(gapFile,' ',
 					
 					int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
 					int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);

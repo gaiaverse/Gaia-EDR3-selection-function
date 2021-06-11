@@ -11,7 +11,7 @@
 
 #define EIGEN_MPL2_ONLY
 
-#include "../GenericFunctions/FileHandler.h"
+
 #include "../DataHandling/Star.h"
 #include "../Main/GlobalVariables.h"
 #include "DataStorage.h"
@@ -42,6 +42,10 @@ class LogLikelihood
 		
 		void GeneratePs(const Star * candidate,const std::vector<double> & position);
 		void GenerateContribution(const Star * candidate);
-		void GenerateExactContribution(const Star * candidate);
+		
 		void AssignGradients(const Star * candidate);
+		
+		void NormalContribution(const Star * candidate);
+		void PoissonContribution(const Star * candidate);
+		void ExactPoissonContribution(const Star * candidate);
 };

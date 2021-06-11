@@ -10,7 +10,7 @@ Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
 		VectorXd possibleX = VectorXd::Zero(n);
 		
 		int i = 0;
-		forLineInFile(loadLocation,
+		forLineIn(loadLocation,
 			possibleX[i] = (std::stod(FILE_LINE));
 			++i;
 			if (i > n)

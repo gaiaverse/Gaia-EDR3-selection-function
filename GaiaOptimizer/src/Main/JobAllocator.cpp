@@ -17,13 +17,14 @@
 #include "../DataHandling/Star.h"
 #include "../DataHandling/DataLoading.h"
 #include "../Optimizer/DescentFunctor.h"
-#include "../GenericFunctions/FileHandler.h"
 #include "../Likelihood/LogLikelihood.h"
 #include "../Likelihood/LogLikelihoodPrior.h"
-#include "../GenericFunctions/timeCodes.h"
 #include "GlobalVariables.h"
 #include "../Optimizer/ManualOptimizer.h"
 #include "../DataHandling/CommandArguments.h"
+#include "../Likelihood/ProbabilityFunctions.h"
+
+#include "../libs/JSL/JSL.h"
 using Eigen::VectorXd;
 
 
@@ -45,7 +46,7 @@ int MaxStarsInCore;
 VectorXd RootProcess()
 {
 	GlobalLog(1,
-		std::cout << "\nRoot Process is intialising gradient descent framework. "; printTime();
+		std::cout << "\nRoot Process is intialising gradient descent framework. "<< JSL::PrintCurrentTime();
 		std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
 	);
 	
@@ -136,177 +137,6 @@ void WorkerProcess()
 }
 
 
-void PostTransform(VectorXd & z, std::vector<double> * TransformedPosition, std::vector<double> * CleanedPosition, LogLikelihoodPrior * L)
-{
-	//convert converged position into converged-transformed coordinates. 
-	std::vector<double> mut_gaps = std::vector<double>(Nt,0);
-	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-	double timeFactor = (double)TotalScanningTime / Nt;
-	int it = 0;
-	bool inGap = false;
-	int borderWidth = 0;
-	int modifiedBorderWidth = borderWidth * timeFactor;
-	bool inBorder= false;
-	int trueTime = 0;
-	int lastEnd = -9999;
-	forLineVectorInFile(gapFile,' ',
-					
-		int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
-		int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);
-		
-		trueTime = floor(it * timeFactor);
-		while (trueTime < gapEnd)
-		{
-			int leftDistance = std::min(abs(trueTime - gapStart),abs(trueTime - lastEnd));
-			int rightDistance = abs(trueTime - gapEnd);
-			
-			bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
-			
-			bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
-			double insertValue = mut_normal;
-			if (inGap)
-			{
-				insertValue = mut_gap;
-				//~ freezeOuts[it] = true;
-
-			}
-			if (nearGapEdge)
-			{
-				insertValue = mut_border;
-			}
-		
-			mut_gaps[it] = insertValue;
-			//~ std::cout << "\t " <<it << "  " << trueTime << "   " << insertValue << "   " << leftDistance << "   " << rightDistance << std::endl;
-			
-			++it;
-			trueTime = floor((double)it * timeFactor);
-			
-		}
-		//~ std::cout << "Gap finished at it = " << it << " t = " << trueTime << std::endl;
-		lastEnd = gapEnd;
-	);
-	
-	while (it<Nt)
-	{
-		mut_gaps[it] = mut_normal;
-		++it;
-	}
-	L->MakeCovarianceMatrix();
-	
-	double u = exp(-1.0/lt);
-	double ua = sqrt(1.0-u*u);
-	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[0][Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
-	for (int i = Nt - 2; i >= 0; i--) 
-	{
-    	previous = ua * z[i] + u * previous;
-    	TransformedPosition[0][i] = mut_gaps[i] + sigmat * previous;
-	}
-	
-	std::vector<int> needlet_u;
-	std::vector<int> needlet_v;
-    std::vector<double> needlet_w;
-	std::string needlet_file = "../../ModelInputs/needlets_"+std::to_string(healpix_order)+"_"+std::to_string(needlet_order)+".csv";
-	int i = 0;
-    forLineVectorInFile(needlet_file,',',
- 
-		if (i > 0)
-		{
-	        needlet_u.push_back(std::stoi(FILE_LINE_VECTOR[0]));
-	        needlet_v.push_back(std::stoi(FILE_LINE_VECTOR[1]));
-	        needlet_w.push_back(std::stod(FILE_LINE_VECTOR[2]));
-		}
-        ++i;
-    );    
-    int needletN = needlet_u.size();
-	
-	std::vector<double> bVector = std::vector<double>(Nm*Ns,0);
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int i = 0; i < L->choleskyN; ++i)
-		{
-			bVector[s*Nm+L->cholesky_u[i]] += L->cholesky_w[i] * z[Nt+s*Nm+L->cholesky_v[i]];
-		}
-	}
-
-	// yml
-	for (int i = 0; i < needletN; ++i)
-	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			TransformedPosition[0][Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
-		}
-	}
-	
-	for (int i = 0; i < totalTransformedParams; ++i)
-	{
-		CleanedPosition[0][i] = TransformedPosition[0][i];
-		if (i < Nt && mut_gaps[i] == mut_gap)
-		{
-			CleanedPosition[0][i] = mut_gap;
-		}
-		
-	}
-	
-}
-
-void PostProcess(VectorXd x)
-{
-	//clean the memory
-	Data.resize(1);
-	Data[0].resize(1);
-	MPI_Bcast(&x[0],totalRawParams,MPI_DOUBLE,RootID,MPI_COMM_WORLD);
-	
-	std::vector<double> TransformedPosition(totalTransformedParams,mum_prior);
-	std::vector<double> CleanedPosition(totalTransformedParams,mum_prior);
-	LogLikelihoodPrior L = LogLikelihoodPrior(Data,ProcessRank);
-	
-	PostTransform(x,&TransformedPosition,&CleanedPosition, &L);
-	
-	
-	std::string trueDataSource = "../../Data/MainData/";
-	
-	std::vector<File> files = GetAssignments(ProcessRank,trueDataSource);
-	std::string base = Args.OutputDirectory + "/PostProcessing/";
-	if (ProcessRank == 0)
-	{
-		mkdirSafely(base);
-	}
-	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-	std::vector<int> gapStarts;
-	std::vector<int> gapEnds;
-	forLineVectorInFile(gapFile,' ',
-		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
-		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
-	);
-	
-	for (int i = 0; i < files.size(); ++i)
-	{
-		std::cout << ProcessRank << " is saving to " << files[i].Name << std::endl;
-		std::fstream outfile;
-		outfile.open(base + std::to_string(files[i].Bin + magOffset) + ".dat",std::ios::out);
-		int n = 0;
-		outfile << "StarID, OriginalContribution, FlattenedGap\n"; 
-		forLineVectorInFile(files[i].Name,',',
-
-			Data[0][0] = Star(FILE_LINE_VECTOR,files[i].Bin,gapStarts,gapEnds);
-			
-			L.Calculate(TransformedPosition,0,1,1);
-			double v1 = L.Value;
-			L.Calculate(CleanedPosition,0,1,1);
-			double v2 = L.Value;
-			
-			outfile << n <<", ";
-			outfile << std::setprecision(10) << v1 << ", ";
-			outfile << std::setprecision(10) << v2 << "\n";
-			++n;
-		);
-		outfile.close();
-		
-	}
-	
-}
-
 void Welcome()
 {
 	GlobalLog(0,
@@ -315,7 +145,7 @@ void Welcome()
 			std::cout << "\n\n----------------------------------------------\n";
 			std::cout << "\n~~ Gaia Selection Function Optimization ~~\n\n";
 			std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
-			printTime();
+			std::cout << JSL::PrintCurrentTime();
 			std::cout << "\n----------------------------------------------\n\n";
 			std::cout << std::endl;
 		}
@@ -340,6 +170,8 @@ int main(int argc, char *argv[])
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
 	VectorXd x;
+	
+	//~ GradTest();
 	if (ProcessRank == RootID) 
 	{
 		x = RootProcess();
@@ -351,7 +183,7 @@ int main(int argc, char *argv[])
 	}
 
 	MPI_Barrier(MPI_COMM_WORLD);
-	PostProcess(x);
+	//~ PostProcess(x);
 
 
 	//exit gracefully
@@ -360,7 +192,7 @@ int main(int argc, char *argv[])
 	GlobalLog(0,
 		if (ProcessRank == RootID)
 		{
-			std::cout << "All workers reached end of line. Duration was: " << formatDuration(start,end) << "\n";
+			std::cout << "All workers reached end of line. Duration was: " << JSL::FormatTimeDuration(start,end) << "\n";
 		}
 	);
 	

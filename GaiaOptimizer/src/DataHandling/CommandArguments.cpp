@@ -115,7 +115,7 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 		}
 		if (arg == "-h" || arg == "--help")
 		{
-			forLineVectorInFile("src/GenericFunctions/commandHelpFile.txt",'|',
+			forLineVectorIn("src/GenericFunctions/commandHelpFile.txt",'|',
 				for (int i = 0; i < FILE_LINE_VECTOR.size(); ++i)
 				{
 					std::cout << std::setw(10) << std::left << FILE_LINE_VECTOR[i];
@@ -128,8 +128,8 @@ void CommandArgs::ReadArguments(int argc, char * argv[],int ProcessRank)
 		
 	}
 	
-	mkdirReturn dirReport = mkdirSafely(OutputDirectory);
-	mkdirReturn dirReport2= mkdirSafely(OutputDirectory + "/" + TempDirName);
+	JSL::mkdirReturn dirReport = JSL::mkdirSafely(OutputDirectory);
+	JSL::mkdirReturn dirReport2= JSL::mkdirSafely(OutputDirectory + "/" + TempDirName);
 	if ((dirReport.Successful || dirReport2.Successful) == false)
 	{
 		ERROR(1,"Could not locate or create the output directory " + OutputDirectory + " or subdirectories therein.");

@@ -4,7 +4,6 @@
 #include <ctime>
 #include <iomanip>
 #include <fstream>
-#include "../GenericFunctions/timeCodes.h"
 #include <iostream>
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #define EIGEN_MPL2_ONLY
@@ -462,7 +461,7 @@ class Optimizer
 				{
 					Functor.SavePosition(false,Status.CurrentSteps,x);
 				}
-				std::cout << "\t\t\t"; printTime();
+				std::cout << "\t\t\t" << JSL::PrintCurrentTime();
 			}
 			else
 			{
@@ -626,7 +625,7 @@ class Optimizer
 				{
 					Functor.SavePosition(false,Status.CurrentSteps);
 				}
-				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t"; printTime();
+				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t" << JSL::PrintCurrentTime();
 			}
 			
 			Functor.SavePosition(true);
@@ -676,7 +675,7 @@ class Optimizer
 				}
 				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << "\n";
 				std::cout << "\t\t\t(L,Gradnorm,df) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) <<Functor.Gradient.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
-				std::cout << "\t\t\t"; printTime();
+				std::cout << "\t\t\t" << JSL::PrintCurrentTime();
 				
 				if (std::isnan(Functor.Value))
 				{

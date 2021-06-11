@@ -185,6 +185,89 @@ void  poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<doub
 
 }
 
+void logphi(double z, double& f, double& df)
+{
+	
+	
+    if (z > 6)
+    {
+        // zeroth case: log(1+x) approx x
+        f = -0.5 * erfc(z*one_over_root2);
+        df = exp(-z*z/2-f)*one_over_root2pi;
+    }
+    else 
+    {
+		if (z*z < 0.0492)
+	    {
+	        // first case: close to zero
+	        double lp0 = -z*one_over_root2pi;
+	        f = 0;
+	        for(int i = 0; i < 14; ++i)
+	        {
+	            f = lp0*(logphi_c[i]+f);
+	        }
+	        f = -2*f - log(2);
+	        df = exp(-z*z/2-f)*one_over_root2pi;
+	    }
+		else 
+		{
+			if (z < -11.3137)
+			{
+				// second case: very small
+				double num = 0.5641895835477550741;
+				for(int i = 0; i < 5; ++i)
+				{
+					num = -z*num*one_over_root2 + logphi_r[i];
+				}
+			
+				double den = 1.0;
+				for(int i = 0; i < 6; ++i)
+				{
+					den = -z*den*one_over_root2 + logphi_q[i];
+				}
+			
+				f = log(num/den/2) - z*z/2;
+				df = abs(den/num) * root2_over_pi;
+			}
+			else
+		    {
+		        // third case: everything else
+		        f = log(erfc(-z*one_over_root2)/2);
+		        df = exp(-z*z/2-f)*one_over_root2pi;
+		    }
+		}
+	}
+		
+}
+
+double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
+{
+	double m = 0.0;
+	double s2 = PredObsVariance_zeroth + PredObsVariance_first * probslen * probslen;
+
+	for(int i = 0; i < probslen; ++i)
+	{
+        m += probs[i];
+        s2 += probs[i]*(1.0-probs[i]);
+	}
+    double s = sqrt(s2);
+
+    double logPhi, dlogPhi;
+    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
+
+    double value = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi;
+    
+    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
+    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
+    
+    for(int i = 0; i < probslen; ++i)
+    {
+        gradient[i] = dlpmf_dm + (1.0-2.0*probs[i])*dlpmf_ds2;
+    }
+    
+    return value;
+}
+
 double  sigmoid(double x)
 {
    // return 0.5*(1.0+tanh(0.5*x));
@@ -225,7 +308,7 @@ double  elu(double x)
 
 double  elu_grad(double x, double elu_x)
 {
-    if (x < 0.0)
+    if (x < density_cut)
     {
         return -expm_density_cut; 
     }

@@ -55,7 +55,7 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	int fileK = stoi(data[0]);
 	nVisit = TimeSeries.size();
 	
-	nMeasure = std::min(fileK,obs);
+	nMeasure = fileK; //std::min(fileK,obs);
 	
 	
 	if (nMeasure < 5)

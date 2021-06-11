@@ -11,7 +11,7 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 	//collect number of stars per file
 	std::string starDirectoryFile = dataSource + "/directory.dat";
 	std::vector<FileStarPairs> files;
-	forLineVectorInFile(starDirectoryFile,' ',
+	forLineVectorIn(starDirectoryFile,' ',
 			FileStarPairs f;
 			f.FileName = FILE_LINE_VECTOR[1];
 			f.NStars = std::stoi(FILE_LINE_VECTOR[0]);
@@ -21,7 +21,7 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 	
 	std::string assignmentFile = "../../ModelInputs/coreAssignments.dat";
 	
-	forLineVectorInFile(assignmentFile,',',
+	forLineVectorIn(assignmentFile,',',
 		
 		int core = stoi(FILE_LINE_VECTOR[0]);
 		if (core == id)
@@ -116,7 +116,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
 	std::vector<int> gapStarts;
 	std::vector<int> gapEnds;
-	forLineVectorInFile(gapFile,' ',
+	forLineVectorIn(gapFile,' ',
 		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
 		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
 	);
@@ -141,7 +141,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 		int idx =0;
 		
 		int starsLoaded = 0;
-		forLineVectorInFile(file,',',
+		forLineVectorIn(file,',',
 
 			while (batchCounts[batch][i] == 0)
 			{
@@ -167,10 +167,10 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 			}
 		);
 	}
-
+	auto end = std::chrono::system_clock::now();
+		std::string duration = JSL::FormatTimeDuration(start,end);
 	GlobalLog(1,
-		auto end = std::chrono::system_clock::now();
-		std::string duration = formatDuration(start,end);
+		
 		std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
 	);
 	

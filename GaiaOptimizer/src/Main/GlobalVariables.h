@@ -10,7 +10,7 @@
 #include <string.h>
 #include <iostream>
 #include <fstream>
-#include "../GenericFunctions/FileHandler.h"
+#include "../libs/JSL/JSL.h"
 #include <iomanip>
 using Eigen::VectorXd;
 
@@ -18,16 +18,15 @@ const int RootID = 0; //<- declare that process 0 is always Root.
 
 
 const int Nm = 213; // number of magnitude bins
-const int Nt = 89676; // number of time bins, coarse, feel free to change
+const int Nt = 896769; // number of time bins, coarse, feel free to change
 
-const int Nt_m = 0;
 
 const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 0; // order of healpix map, can be any integer >= 0
-const int needlet_order = -1; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 6; // order of healpix map, can be any integer >= 0
+const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
 
 const int N_SGD_Batches = 128;
-const int DataLoadCount = 3e5;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const double mum_prior = -3;
 const double mum_init = 5;
@@ -43,7 +42,7 @@ const double lt_mag = 5;
 
 const double sigmat = 5;
 const double lm = 3;
-const double lt = 10;
+const double lt = 1000;
 
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
@@ -53,8 +52,8 @@ const int healpix_nside = pow(2,healpix_order);
 const int Nl = 12*pow(healpix_nside,2);
 const int Ns = pow(4,needlet_order+2) - 3;
 
-const int totalRawParams = Nt + Nm*(Ns+Nt_m);
-const int totalTransformedParams = Nt + Nm*(Nl+Nt_m);
+const int totalRawParams = Nt + Nm*(Ns);
+const int totalTransformedParams = Nt + Nm*(Nl);
 
 
 
@@ -65,6 +64,9 @@ const double VerySmallLog = -9999999999;
 
 const double SingularityPreventer = 1e-18;
 const int PipelineMinVisits = 5; 
+
+const double PredObsVariance_zeroth = 0.005;
+const double PredObsVariance_first = 0.005;
 
 const int SaveSteps = 2;
 const bool SaveAllTemps = true;

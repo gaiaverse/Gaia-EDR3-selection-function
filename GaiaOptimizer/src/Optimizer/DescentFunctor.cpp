@@ -77,28 +77,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
     	previous = ua * z[i] + u * previous;
     	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
 	}
-	//~ std::cout << "Starting new forward bit" << std::endl;
-	// time-mag bit
 	
-	if (Nt_m > 0)
-	{
-		double um = exp(-1.0/lt_mag);
-		double uam = sqrt(1.0- um*um);
-		for (int m = 0; m < Nm; ++m)
-		{
-			int start_raw = totalRawParams - Nm + m;
-			int start_trans = totalTransformedParams - Nm + m;
-			double previous_m = z[start_raw];
-			TransformedPosition[start_trans] = mut_mag + sigmat_mag * previous_m;
-			for (int i = Nt_m -2; i >= 0; --i)
-			{
-				int idx_raw = Nt + Nm*(Ns + i) + m;
-				int idx_trans = Nt + Nm*(Nl + i) + m;
-				previous_m = uam * z[idx_raw] + um * previous_m;
-				TransformedPosition[idx_trans] = mut_mag + sigmat_mag * previous_m;
-			}
-		}
-	}
 	//~ std::cout << "Finished new forward bit" << std::endl;
 	// bms = Lmnzns
 	
@@ -130,10 +109,6 @@ void DescentFunctor::BackwardTransform()
 	double ub = -u*ua;
 	double sigmata = sigmat/ua;
 
-	double um = exp(-1.0/lt_mag);
-	double uam = 1.0/sqrt(1.0 - um*um);
-	double ubm = -um*uam;
-	double sigmatam = sigmat_mag/uam;
 	
 	
 	if (Nt > 1)
@@ -144,28 +119,11 @@ void DescentFunctor::BackwardTransform()
 	    }
 	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
 	    
-	    if (Nt_m > 0)
-	    {
-		    for (int m = 0; m < Nm; ++m)
-		    {
-				int start_raw = Nt + Nm*Ns + m;
-				int start_trans = Nt + Nm*Nl + m;
-				
-				Gradient[start_raw] = sigmatam * TransformedGradient[start_trans];
-			
-				for (int i = 1; i < Nt_m - 1; ++i)
-				{
-				
-					Gradient[start_raw + i*Nm] = um * Gradient[start_raw + (i-1)*Nm] + sigmatam * TransformedGradient[start_trans + i*Nm];
-				}
-				Gradient[start_raw + (Nt_m-1)*Nm] = -ubm * Gradient[start_raw + (Nt_m-2)*Nm] + sigmat_mag * TransformedGradient[start_trans + (Nt_m -1)*Nm];
-			}
-		}
+	 
 	}
 	else
 	{
 		Gradient[0] = TransformedGradient[0]*sigmat;
-		//~ Gradient[Trans] = TransformedGradient[0]*sigmat;
 	}
 
 	// yml
@@ -233,16 +191,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 			TransformedGradient[i] = 0;
 		}
 	}
-	for (int i = 0; i < Nt_m; ++i)
-	{
-		if (freezeOuts_mag[i])
-		{
-			for (int m = 0; m < Nm; ++m)
-			{
-				TransformedGradient[Nt + Nm*(Nl+i) + m] = 0;
-			}
-		}
-	}
+	
 	
 	
 	BackwardTransform();
@@ -269,7 +218,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 void DescentFunctor::Unfreeze()
 {
 	freezeOuts = std::vector<bool>(Nt,false);
-	freezeOuts_mag = std::vector<bool>(Nt_m,false);
+	//~ freezeOuts_mag = std::vector<bool>(Nt_m,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)

@@ -1,8 +1,7 @@
 #pragma once
 #include <string>
-#include "../GenericFunctions/FileHandler.h"
 #include "../Main/GlobalVariables.h"
-
+#include "../libs/JSL/JSL.h"
 class CommandArgs
 {
 	public:

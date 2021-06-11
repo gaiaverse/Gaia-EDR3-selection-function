@@ -1,16 +1,13 @@
-#ifndef FILEHANDLER
-#define FILEHANDLER
+#pragma once
 
-#include <iomanip>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
 
-#include <dirent.h>
-#include "StringAlgorithms.h"
+#include "../Strings/split.h"
 
-#define forLineInFile(macroFileName, ...)\
+
+#define forLineIn(macroFileName, ...)\
 {								\
 	do 							\
 	{							\
@@ -29,7 +26,7 @@
 	} while(0);						\
 }									\
 
-#define forLineVectorInFile(macroFileName, token,...)\
+#define forLineVectorIn(macroFileName, token,...)\
 {								\
 	do 							\
 	{							\
@@ -42,20 +39,9 @@
 		std::string FILE_LINE;				\
 		while (getline(macroFile,FILE_LINE))	\
 		{							\
-			std::vector<std::string> FILE_LINE_VECTOR = split(FILE_LINE,token);	\
+			std::vector<std::string> FILE_LINE_VECTOR = JSL::split(FILE_LINE,token);	\
 			__VA_ARGS__;				\
 		}							\
 		macroFile.close();			\
 	} while(0);						\
 }		
-
-struct mkdirReturn
-{
-	bool Successful;
-	std::string Message;
-};
-
-mkdirReturn mkdirSafely(std::string dirLoc);
-#endif
-
-
