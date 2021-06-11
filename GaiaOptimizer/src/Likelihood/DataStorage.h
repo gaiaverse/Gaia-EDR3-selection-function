@@ -1,9 +1,10 @@
 #pragma once
 #include "../Main/GlobalVariables.h"
 #include "../DataHandling/Star.h"
-#include "../GenericFunctions/FileHandler.h"
 #include <string>
 #include <vector>
+
+#include "../libs/JSL/JSL.h"
 class LikelihoodData
 {
 	public:

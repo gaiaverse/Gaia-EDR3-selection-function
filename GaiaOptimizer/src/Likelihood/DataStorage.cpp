@@ -27,7 +27,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);
 	healpix_fov_2 = std::vector<int>(TotalScanningTime,0);
 	int i = 0;
-	forLineVectorInFile(healpix_fov_file,',',
+	forLineVectorIn(healpix_fov_file,',',
 		if (i > 0)
 		{
 	        healpix_fov_1[i] = std::stoi(FILE_LINE_VECTOR[1]);

@@ -11,7 +11,7 @@
 
 #define EIGEN_MPL2_ONLY
 
-#include "../GenericFunctions/FileHandler.h"
+
 #include "../DataHandling/Star.h"
 #include "../Main/GlobalVariables.h"
 #include "DataStorage.h"

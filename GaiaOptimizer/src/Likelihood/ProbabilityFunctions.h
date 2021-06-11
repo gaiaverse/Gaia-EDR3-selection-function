@@ -1,6 +1,4 @@
 #pragma once
-#include "../GenericFunctions/FileHandler.h"
-
 #include "../Main/GlobalVariables.h"
 #include <cmath>
 
