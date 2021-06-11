@@ -5,6 +5,9 @@
 #include <vector>
 
 #include "../libs/JSL/JSL.h"
+
+enum Probability { NormalApproximation, PoissonBinomial};
+
 class LikelihoodData
 {
 	public:
@@ -40,5 +43,6 @@ class LikelihoodData
 		std::vector<double> grad_elu_xml1;
 		std::vector<double> grad_elu_xml2;
 	
-	
+		Probability Mode;
 };
+

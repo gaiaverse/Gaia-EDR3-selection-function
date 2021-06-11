@@ -55,4 +55,6 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 		time_mapping[i] = std::min(Nt-1,(int)round(time_ratio*i));
 		//~ magtime_mapping[i] = std::min(Nt_m-1,(int)round(magtime_ratio*i));
 	}
+	
+	Mode = NormalApproximation;
 }
