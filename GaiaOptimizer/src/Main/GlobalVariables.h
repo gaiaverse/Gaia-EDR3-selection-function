@@ -42,7 +42,7 @@ const double lt_mag = 5;
 
 const double sigmat = 5;
 const double lm = 3;
-const double lt = 10;
+const double lt = 1000;
 
 const double density_alpha = 0.5*log(2.0);
 const double density_cut = -3.0;
@@ -66,7 +66,7 @@ const double SingularityPreventer = 1e-18;
 const int PipelineMinVisits = 5; 
 
 const double PredObsVariance_zeroth = 0.005;
-const double PredObsVariance_first = 0.0005;
+const double PredObsVariance_first = 0.005;
 
 const int SaveSteps = 2;
 const bool SaveAllTemps = true;

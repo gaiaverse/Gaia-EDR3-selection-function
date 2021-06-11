@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic29_PostProcessing","Diagnostic41_VaryingVariance"];%,"Diagnostic40_NewSpace_SillyVariance"];
+files = ["Diagnostic29_PostProcessing","Diagnostic41_VaryingVariance","Diagnostic43_a005_b0005"];%,"Diagnostic40_NewSpace_SillyVariance"];
 % files = [""];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
 getData(60);
 
-N1 =70;
-N2 = 80;
+N1 =0;
+N2 = 46;
 gap = 2;
-progressPlot(files(2:end), 7.2e4)
+progressPlot(files(2:end), 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 temporalPlot(files,N2,100,0,42);
 
