@@ -1,9 +1,10 @@
 #include "GlobalVariables.h"
 
 
-Eigen::VectorXd initialisedVector(int n, bool loadIn, std::string loadLocation)
+Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 {
 	VectorXd x;
+	bool loadIn = !(loadLocation == "__null_location__");
 	if (loadIn)
 	{
 		

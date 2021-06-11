@@ -54,7 +54,7 @@ VectorXd RootProcess()
 	int nParameters = totalRawParams;
 	int nParametersForWorkers = totalTransformedParams; 
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-	VectorXd x = initialisedVector(nParameters,Args.LoadInStartVector,Args.StartVectorLocation);
+	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
 	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
@@ -67,7 +67,7 @@ VectorXd RootProcess()
 	op.Condition.xConvergence = 0.02;
 	op.Condition.SaveSteps = SaveSteps;
 
-	op.Progress.ProgressDir = Args.OutputDirectory + "/";
+	op.Progress.ProgressDir = (std::string)Args.OutputDirectory + "/";
 	// GO GO GO GO!
 	op.Minimize(x,N_SGD_Batches,Args.FreezeSteps);
 		
@@ -156,7 +156,7 @@ void Welcome()
 	srand(Args.RandomSeed);
 }
 
-int main(int argc, char *argv[])
+int main(int argc,char *argv[])
 {
 	auto start = std::chrono::system_clock::now();
 	
@@ -164,6 +164,8 @@ int main(int argc, char *argv[])
 	MPI_Init(&argc, &argv);
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);	
+	
+	
 	Args.ReadArguments(argc,argv,ProcessRank);
 	
 	Welcome();

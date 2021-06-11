@@ -14,7 +14,7 @@
 		std::ifstream macroFile(macroFileName);	\
 		if (!macroFile.is_open())	\
 		{							\
-			std::cout << "\n\nERROR: Could not find the file '" << macroFileName << ".\n\nPlease provide a valid directory within the Output directory\n\n " << std::endl;	\
+			std::cout << "\n\nERROR: Could not find the file '" << macroFileName << ".\n\nPlease provide a valid filepath.\n\n " << std::endl;	\
 			exit(1);				\
 		}							\
 		std::string FILE_LINE;				\
@@ -33,7 +33,7 @@
 		std::ifstream macroFile(macroFileName);	\
 		if (!macroFile.is_open())	\
 		{							\
-			std::cout << "\n\nERROR: Could not find the file '" << macroFileName << ".\n\nPlease provide a valid directory within the Output directory\n\n " << std::endl;	\
+			std::cout << "\n\nERROR: Could not find the file '" << macroFileName << ".\n\nPlease provide a valid filepath.\n\n " << std::endl;	\
 			exit(1);				\
 		}							\
 		std::string FILE_LINE;				\

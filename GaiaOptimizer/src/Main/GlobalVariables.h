@@ -77,7 +77,7 @@ const bool QuitOnLargeGrad = true;
 #define FILEGAP << ", " << 
 
 const double initialisationBounds = 0.1;
-Eigen::VectorXd initialisedVector(int n,bool loadIn,std::string loadLocation);
+Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
 
 /// OUTPUT STUFF
