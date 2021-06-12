@@ -26,4 +26,4 @@ struct File
 
 std::vector<File> GetAssignments(int id,std::string dataSource);
 
-void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource);
+void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource, int batches);

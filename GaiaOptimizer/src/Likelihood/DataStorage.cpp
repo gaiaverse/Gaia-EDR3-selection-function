@@ -17,11 +17,11 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	grad_elu_xml2 = std::vector<double>(nBig,0);
 	dfdp = std::vector<double>(nBig,0);
 	
-	NStars = 0;
-	for (int i = 0; i < N_SGD_Batches; ++i)
-	{
-		NStars +=	Stars[i].size();
-	}
+	//~ NStars = 0;
+	//~ for (int i = 0; i < N_SGD_Batches; ++i)
+	//~ {
+		//~ NStars +=	Stars[i].size();
+	//~ }
     //read in the healpix stuff
     std::string healpix_fov_file = "../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
 	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);

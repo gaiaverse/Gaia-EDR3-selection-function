@@ -60,20 +60,20 @@ class DescentFunctor
 		void BackwardTransform();		
 		void ResetPosition();
 		
-
+		int MaxBatches;
 	public:
 		int LoopID;
 
 		double Value;
 		std::vector<double> Gradient;
 	
-	    DescentFunctor(int n,const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars): Data(data), L(data, n)
+	    DescentFunctor(int n,const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars, int maxBatches): Data(data), L(data, n)
 	    {
 				NStars = nStars;
 				RunningID = n;
 				LoopID = 0;
 				Start = std::chrono::system_clock::now();
-								
+				MaxBatches = maxBatches;		
 				PrevLock = VectorXd::Random(totalRawParams);
 				
 				TransformedPosition = std::vector<double>(totalTransformedParams,0);

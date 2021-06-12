@@ -57,23 +57,29 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars);
-	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(nParameters,fun);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches);
+	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
-	op.Condition.gConvergence = Args.GradLim;
-	op.Condition.MaxSteps = Args.MaxSteps;
-	op.Condition.fConvergence = 5e-7;
-	op.Condition.xConvergence = 0.02;
-	op.Condition.SaveSteps = Args.SaveSteps;
-	op.Condition.UniqueSaves = Args.SaveAllSteps;
+	op.HaltConditions.GradientThreshold = Args.GradLim;
+	op.HaltConditions.MaxSteps = Args.MaxSteps;
+	op.HaltConditions.FunctionChangeThreshold = 5e-7;
+	op.HaltConditions.PositionChangeThreshold = 0.02;
 	
-	op.Progress.ProgressDir = (std::string)Args.OutputDirectory + "/";
+	//set up other properties
+	op.Properties.MiniBatches = Args.Minibatches;
+	op.Properties.BurnInSteps = Args.FreezeSteps;
+	op.Progress.StepsPerPositionSave = Args.SaveSteps;
+	op.Progress.UniquePositionSaves = Args.SaveAllSteps;
+	
+	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
+	
+	
 	// GO GO GO GO!
-	op.Minimize(x,N_SGD_Batches,Args.FreezeSteps);
+	op.Minimize(x);
 		
 	GlobalLog(0,
-		std::cout << "\nSOLVER ENDED: " << op.Converged << std::endl;
+		std::cout << "\nSOLVER ENDED: " << op.Status.Converged << std::endl;
 		std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
 	);
 	
@@ -117,7 +123,7 @@ void WorkerProcess()
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
-			L.Calculate(pos,targetBatch,effectiveBatches,N_SGD_Batches);
+			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
 			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
@@ -171,7 +177,7 @@ int main(int argc,char *argv[])
 	
 	Welcome();
 	
-	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource);
+	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
 	VectorXd x;
 	
 	//~ GradTest();

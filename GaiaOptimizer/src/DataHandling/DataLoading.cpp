@@ -65,17 +65,17 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 }
 
 
-void CalculateBatches(int id, std::vector<File> & Files)
+void CalculateBatches(int id, std::vector<File> & Files, int batches)
 {
-	int bRemaining = N_SGD_Batches;
+	int bRemaining = batches;
 	int NFiles = Files.size();
-	batchCounts = std::vector<std::vector<int>>(N_SGD_Batches,std::vector<int>(NFiles,0));
+	batchCounts = std::vector<std::vector<int>>(batches,std::vector<int>(NFiles,0));
 	int batchOffset = 0;
 	
 	while (bRemaining > 1)
 	{
 		
-		int index = N_SGD_Batches - bRemaining;
+		int index = batches - bRemaining;
 		int starsRemaining = std::accumulate(StarsLeftInFile.begin(),StarsLeftInFile.end(),0);
 		int starsPerBatch = starsRemaining / bRemaining;
 		
@@ -95,11 +95,11 @@ void CalculateBatches(int id, std::vector<File> & Files)
 	for (int i = 0; i < NFiles; ++i)
 	{
 		finalBatchSize += StarsLeftInFile[i];
-		batchCounts[N_SGD_Batches - 1][i] = StarsLeftInFile[i];	
+		batchCounts[batches - 1][i] = StarsLeftInFile[i];	
 	}
 }
 
-void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource)
+void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource, int batches)
 {
 	if (ProcessRank == RootID)
 	{
@@ -124,10 +124,10 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	
 	auto start = std::chrono::system_clock::now();
 	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);
-	CalculateBatches(ProcessRank,Files);
+	CalculateBatches(ProcessRank,Files,batches);
 
 	//resize datafile
-	Data.resize(N_SGD_Batches);
+	Data.resize(batches);
 
 	int allStarsLoaded = 0;
 	for (int i = 0; i < Files.size(); ++i)

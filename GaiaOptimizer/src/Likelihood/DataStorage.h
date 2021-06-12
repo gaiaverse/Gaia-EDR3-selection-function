@@ -18,7 +18,7 @@ class LikelihoodData
 		int ID;
 		
 		const std::vector<std::vector<Star>> &Stars;
-		int NStars;
+		//~ int NStars;
 		
 		//Indexing data, allows us to index properly into the 
 		//spatial and temporal parts of the vector

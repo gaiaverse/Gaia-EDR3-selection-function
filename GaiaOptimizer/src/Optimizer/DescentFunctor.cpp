@@ -25,9 +25,10 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,co
 	else
 	{
 		intBase += TempDirName + "/TempPosition";
+		transBase = intBase;
 		if (uniqueSave)
 		{
-			transBase = intBase + std::to_string(saveStep);
+			transBase += std::to_string(saveStep);
 		}
 		intBase += "_";
 		transBase += "_";
@@ -166,7 +167,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	
 
-	L.Calculate(TransformedPosition,batchID,effectiveBatches,N_SGD_Batches);
+	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
 	
 	
 	//collect values
@@ -222,12 +223,7 @@ void DescentFunctor::Unfreeze()
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)
-{
-	if (N_SGD_Batches != 1)
-	{
-		ERROR(-9, "You have called somehow ended up calling a single-batch function when your data is distributed into multiple batches - you should go and cry now");
-	}
-	
+{	
 	Calculate(x,0,1);
 }
 
