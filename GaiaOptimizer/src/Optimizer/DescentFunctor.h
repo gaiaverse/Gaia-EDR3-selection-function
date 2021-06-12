@@ -7,7 +7,7 @@
 
 //~ #include "Star.h"
 #include "../Likelihood/LogLikelihoodPrior.h"
-
+#include "../Main/GlobalConstants.h"
 #include "../libs/JSL/JSL.h"
 
 using Eigen::VectorXd;
@@ -126,16 +126,16 @@ class DescentFunctor
 						bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
 						
 						bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
-						double insertValue = mut_normal;
+						double insertValue = xtPriorNonGap;
 						if (inGap)
 						{
-							insertValue = mut_gap;
+							insertValue = xtPriorInsideGap;
 							//~ freezeOuts[it] = true;
 
 						}
 						if (nearGapEdge)
 						{
-							insertValue = mut_border;
+							insertValue = xtPriorBorderCase;
 						}
 					
 						mut_gaps[it] = insertValue;
@@ -151,7 +151,7 @@ class DescentFunctor
 				
 				while (it<Nt)
 				{
-					mut_gaps[it] = mut_normal;
+					mut_gaps[it] = xtPriorNonGap;
 					++it;
 				}
 			
@@ -161,7 +161,7 @@ class DescentFunctor
 		
 		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
 		void Calculate(const VectorXd &x);
-		void SavePosition(bool finalSave, int saveStep, const VectorXd & x);
+		void SavePosition(bool finalSave, int saveStep, bool uniqueSave, const VectorXd & x);
 		void Unfreeze();
 };
 

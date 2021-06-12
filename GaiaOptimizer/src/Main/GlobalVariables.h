@@ -14,69 +14,43 @@
 #include <iomanip>
 using Eigen::VectorXd;
 
-const int RootID = 0; //<- declare that process 0 is always Root.
-
-
-const int Nm = 213; // number of magnitude bins
-const int Nt = 896769; // number of time bins, coarse, feel free to change
-
-
-const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
-const int healpix_order = 6; // order of healpix map, can be any integer >= 0
-const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
-
+//Optimiser + data properties
 const int N_SGD_Batches = 128;
 const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
-const double mum_prior = -3;
-const double mum_init = 5;
+const std::string TempDirName = "TempPositions";
 
-const int magOffset = 0;
-const double mut_normal = 5;
-const double mut_border = 0;
-const double mut_gap = -5;
+//temporal, spatial and magnitude resolution
 
-const double mut_mag = -5;
-const double sigmat_mag = 3;
-const double lt_mag = 5;
+const int Nt = 896769; // number of time bins, coarse, feel free to change
+const int healpix_order = 6; // order of healpix map, can be any integer >= 0
+const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
+const int Nm = 213; // number of magnitude bins
+const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
+
+
+//temporal and magnitude lengthscales + variances
 
 const double sigmat = 5;
 const double lm = 3;
 const double lt = 1000;
 
-const double density_alpha = 0.5*log(2.0);
-const double density_cut = -3.0;
-const double expm_density_cut = exp(-density_cut);
+//prior and initialisation values
+const double xmPrior = -3;
+const double xmInitialised = 5;
 
-const int healpix_nside = pow(2,healpix_order);
-const int Nl = 12*pow(healpix_nside,2);
-const int Ns = pow(4,needlet_order+2) - 3;
+const double xtPriorNonGap = 5;
+const double xtPriorBorderCase = 0;
+const double xtPriorInsideGap = -5;
 
-const int totalRawParams = Nt + Nm*(Ns);
-const int totalTransformedParams = Nt + Nm*(Nl);
+const double initialisationBounds = 0.1;
 
-
-
-const int NumberLargerThanMaxObservations = 1024;
-const double VerySmallNumber = 1e-310;
-const double VerySmallLog = -9999999999;
-
-
-const double SingularityPreventer = 1e-18;
-const int PipelineMinVisits = 5; 
+//normal approximation variances
 
 const double PredObsVariance_zeroth = 0.005;
 const double PredObsVariance_first = 0.005;
 
-const int SaveSteps = 2;
-const bool SaveAllTemps = true;
-const std::string TempDirName = "TempPositions";
 
-
-const bool QuitOnLargeGrad = true;
-#define FILEGAP << ", " << 
-
-const double initialisationBounds = 0.1;
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
 
@@ -92,17 +66,4 @@ const int GlobalDebuggingLevel = 8;
 void PrintStatus(std::string location);
 
 
-#define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}
- 
-#ifdef GLOBAL_LOGGING
-	#define GlobalLog(level, ...){	if (level <= GlobalLoggingLevel){__VA_ARGS__}}
-#else
-	#define GlobalLog(level, ...){}
-#endif	
 
-#ifdef GLOBAL_DEBUGGING
-	#define GlobalDebug(level, ...){	if (level <= GlobalDebuggingLevel){__VA_ARGS__}}
-#else
-	#define GlobalDebug(level, ...)
-#endif	
-	

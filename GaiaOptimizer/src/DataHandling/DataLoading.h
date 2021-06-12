@@ -9,8 +9,8 @@
 #include <mpi.h>
 #include <vector>
 #include <chrono>
-#include "../Main/GlobalVariables.h"
-
+//~ #include "../Main/GlobalVariables.h"
+#include "../Main/GlobalConstants.h"
 #include "../libs/JSL/JSL.h"
 
 struct FileStarPairs

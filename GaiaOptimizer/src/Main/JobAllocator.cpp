@@ -65,8 +65,9 @@ VectorXd RootProcess()
 	op.Condition.MaxSteps = Args.MaxSteps;
 	op.Condition.fConvergence = 5e-7;
 	op.Condition.xConvergence = 0.02;
-	op.Condition.SaveSteps = SaveSteps;
-
+	op.Condition.SaveSteps = Args.SaveSteps;
+	op.Condition.UniqueSaves = Args.SaveAllSteps;
+	
 	op.Progress.ProgressDir = (std::string)Args.OutputDirectory + "/";
 	// GO GO GO GO!
 	op.Minimize(x,N_SGD_Batches,Args.FreezeSteps);

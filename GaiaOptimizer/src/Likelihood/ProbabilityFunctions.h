@@ -1,5 +1,6 @@
 #pragma once
 #include "../Main/GlobalVariables.h"
+#include "../Main/GlobalConstants.h"
 #include <cmath>
 
 

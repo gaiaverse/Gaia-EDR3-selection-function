@@ -7,12 +7,12 @@
 void DescentFunctor::ResetPosition()
 {
 	Value = 0;
-	std::fill(TransformedPosition.begin(), TransformedPosition.end(),mum_prior);
+	std::fill(TransformedPosition.begin(), TransformedPosition.end(),xmPrior);
 	std::fill(TransformedGradient.begin(), TransformedGradient.end(),0);
 	std::fill(Gradient.begin(), Gradient.end(),0);
 }
 
-void DescentFunctor::SavePosition(bool finalSave,int saveStep,const VectorXd  & x)
+void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,const VectorXd  & x)
 {
 	std::string transBase = OutputDir + "/";
 	std::string intBase = OutputDir + "/";
@@ -25,7 +25,7 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,const VectorXd  & 
 	else
 	{
 		intBase += TempDirName + "/TempPosition";
-		if (SaveAllTemps)
+		if (uniqueSave)
 		{
 			transBase = intBase + std::to_string(saveStep);
 		}

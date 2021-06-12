@@ -22,12 +22,10 @@ struct Conditions
 	double fConvergence;
 	int SaveSteps;
 	int InitialStepMemory;
-
+	bool UniqueSaves;
 };
 struct Statuses
 {
-	
-
 	int CurrentSteps;
 	double MovingAverage;
 	bool TooManySteps;
@@ -97,7 +95,8 @@ class Optimizer
 			Condition.StepSize = 0.01;
 			Condition.SaveSteps = 5;
 			Condition.InitialStepMemory= 10;
-		
+			Condition.UniqueSaves = false;
+			
 			Status.CurrentSteps = 0;
 		
 			Status.MovingAverage = 0;
@@ -134,16 +133,6 @@ class Optimizer
 			Progress.AnalysisMemoryGrad = 0;
 		}
 		
-		void Minimize(VectorXd & x)
-		{
-			if (x.size() != Dimensions)
-			{
-				std::cout << "OPTIMIZER ERROR: Initial position vector is not of the provided size." << std::endl;
-				exit(2);
-			}
-			
-			ADAM(x);
-		}
 		
 		void Minimize(VectorXd & x, int nBatches, int burnIn)
 		{
@@ -208,7 +197,7 @@ class Optimizer
 					//save initial position
 					if (batches == 0 && epochs == 1)
 					{
-						Functor.SavePosition(false,0,x);
+						Functor.SavePosition(false,0,Condition.UniqueSaves,x);
 					}
 					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
@@ -280,7 +269,7 @@ class Optimizer
 				
 			}
 			SaveProgress(Progress.BufferPosition);
-			Functor.SavePosition(true,0,x);
+			Functor.SavePosition(true,0,Condition.UniqueSaves,x);
 		}
 		
 		void GradientTester(VectorXd &x)
@@ -459,7 +448,7 @@ class Optimizer
 				
 				if (Status.CurrentSteps % Condition.SaveSteps == 0)
 				{
-					Functor.SavePosition(false,Status.CurrentSteps,x);
+					Functor.SavePosition(false,Status.CurrentSteps,Condition.UniqueSaves,x);
 				}
 				std::cout << "\t\t\t" << JSL::PrintCurrentTime();
 			}
@@ -548,141 +537,7 @@ class Optimizer
 		}
 		
 		
-				
-		void BinaryWolfeDescent(VectorXd & x)
-		{
-			double prevF = 0;
-			Functor.Calculate(x);
-			bool minimiseContinues = true;
-			double alpha;
-			double alphaInit = 1;
-			
-			double c1_orig = 1e-2;
-			double c2_orig = 0.9;
-			
-
-			while (minimiseContinues)
-			{
-				double c1 = c1_orig;
-				double c2 = c2_orig;
-			
-				double OriginalValue = Functor.Value;
-				VectorXd Grad = Functor.Gradient;
-				double alpha = alphaInit;
-				bool alphaFound = false;
-				double gNorm = Grad.norm();
-				VectorXd pk = -1*Grad; 
-				double armijoValue = pk.dot(Grad);
-				VectorXd dx;
-				int alphaSteps = 0;
-				
-				
-				while (!alphaFound)
-				{
-					dx = alpha * pk;
-					VectorXd xHyp = x + dx;
-					Functor.Calculate(xHyp);
-					bool armijoSuccess = (Functor.Value <= OriginalValue);
-					//~ bool curvatureSuccess = ( - pk.dot(Functor.Gradient) <= - c2* armijoValue);
-					bool nanSuccess = ! (std::isnan(Functor.Value) || Functor.Gradient.hasNaN() );
-					
-					std::cout << "\t\t\tTrying alpha = " << alpha << " which gives |dx| = " << dx.norm() << " \n\t\t\t\tL = " << Functor.Value << " <=! " << OriginalValue - alpha*c1*armijoValue;
-					std::cout << "\n\t\t\t\tGrad: " <<   Grad.dot(Functor.Gradient) << "<=! " << c2*armijoValue << "\n";
-					
-					if (armijoSuccess && nanSuccess)
-					{
-						alphaFound = true;
-						x = xHyp;
-					}
-					else
-					{
-						//~ std::cout << Grad.transpose() << std::endl;
-						++alphaSteps;
-						alpha = alpha*0.5;
-					}
-					
-					if (alphaSteps > 10)
-					{
-						alphaSteps = 0;
-						std::cout << "Reducing convergence conditions" << std::endl;
-						c1 = c1*0.5;
-						c2 = c2 * 1.1;
-					}
-				}
-				if (alpha == alphaInit)
-				{
-					alphaInit *= 1.3;
-				}
-				else
-				{
-					alphaInit = alpha;
-				}
-				++Status.CurrentSteps;				
-				double df = Functor.Value - prevF;
-				minimiseContinues = CheckContinues(Functor.Gradient,df);
-				prevF = Functor.Value;
-				if (Status.CurrentSteps % Condition.SaveSteps == 0)
-				{
-					Functor.SavePosition(false,Status.CurrentSteps);
-				}
-				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << " (L,Gradnorm,df) = (" <<prevF << ", " <<  Functor.Gradient.norm() << ", " << df << ")\n\t\t\t" << JSL::PrintCurrentTime();
-			}
-			
-			Functor.SavePosition(true);
-		}
-		
-		void ADAM(VectorXd &x)
-		{
-			
-			//initialise ADAM vectors
-			VectorXd m = VectorXd::Zero(Dimensions);
-			VectorXd v = VectorXd::Zero(Dimensions);
-			
-			double beta1 = 0.9;
-			double beta2 = 0.999;
-			double eps = 1e-10;
-			bool minimiseContinues = true;
-			double prevF = 0;
-			VectorXd ones = VectorXd::Constant(Dimensions,1.0);
-			while (minimiseContinues)
-			{
-				int t = Status.CurrentSteps + 1;
-				Functor.Calculate(x);
-				double b1Mod = 1.0/(1.0 - pow(beta1,t));
-				double b2Mod = 1.0/(1.0 - pow(beta2,t));
-				m = (  beta1 *m + (1.0-beta1)*Functor.Gradient);
-				
-				
-				VectorXd gSq = Functor.Gradient.array() * Functor.Gradient.array(); 
-				v = ( beta2 * v + (1.0-beta2)* ( gSq) );
-			
-				VectorXd dx = b1Mod * m * Condition.StepSize;
-
-				for (int i = 0; i < Dimensions; ++i)
-				{
-					dx[i] /= (sqrt(v[i]*b2Mod) + eps);
-				}
-
-				x -= dx;
-				
-				double df = Functor.Value - prevF;
-				minimiseContinues = CheckContinues(Functor.Gradient,df);
-				prevF = Functor.Value;
-				++Status.CurrentSteps;
-				if (Status.CurrentSteps % Condition.SaveSteps == 0)
-				{
-					Functor.SavePosition(false);
-				}
-				std::cout << "\t\tStep " << Status.CurrentSteps << " Taken, at Calculation Evaluation " << Functor.LoopID << "\n";
-				std::cout << "\t\t\t(L,Gradnorm,df) = (" << std::setprecision(10) << prevF << ", " <<  std::setprecision(10) <<Functor.Gradient.norm() << ", " << std::setprecision(10) <<df << ")\n"; 
-				std::cout << "\t\t\t" << JSL::PrintCurrentTime();
-				
-				if (std::isnan(Functor.Value))
-				{
-					exit(10);
-				}
-			}
-		}
+	
 
 };
 

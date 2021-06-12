@@ -1,5 +1,5 @@
 #include "GlobalVariables.h"
-
+#include "GlobalConstants.h"
 
 Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 {
@@ -50,7 +50,7 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		Eigen::Matrix<double, Nm, Nm> CholeskyKg = Kg.llt().matrixL();
 		Eigen::Matrix<double, Nm, Nm>  Inverted = CholeskyKg.inverse();
 		
-		Eigen::VectorXd mums = VectorXd::Constant(Nm,mum_init - mum_prior);
+		Eigen::VectorXd mums = VectorXd::Constant(Nm,xmInitialised - xmPrior);
 		
 		mums = Inverted * mums;
 		
@@ -64,33 +64,33 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 }
 void PrintStatus(std::string location)
 {
-	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","initialisationBounds"};
-	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)totalRawParams,(double)totalTransformedParams,(double)mut_normal,(double)sigmat,(double)lm,(double)lt,(double)initialisationBounds};
+	//~ std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","initialisationBounds"};
+	//~ std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)totalRawParams,(double)totalTransformedParams,(double)mut_normal,(double)sigmat,(double)lm,(double)lt,(double)initialisationBounds};
 	
-	std::fstream file;
-	file.open(location + "/Optimiser_Properties.dat",std::ios::out);
-	int w = 15;
+	//~ std::fstream file;
+	//~ file.open(location + "/Optimiser_Properties.dat",std::ios::out);
+	//~ int w = 15;
 	
-	for (int i = 0; i < 2; ++i)
-	{
-		for (int j = 0; j < properties.size(); ++j)
-		{
+	//~ for (int i = 0; i < 2; ++i)
+	//~ {
+		//~ for (int j = 0; j < properties.size(); ++j)
+		//~ {
 			//~ file << std::setw(w) << std::left;
-			if (i ==0)
-			{
-				file << properties[j];
-			}
-			else
-			{
-				file << std::setprecision(10) <<vals[j];
+			//~ if (i ==0)
+			//~ {
+				//~ file << properties[j];
+			//~ }
+			//~ else
+			//~ {
+				//~ file << std::setprecision(10) <<vals[j];
 				
-			}
-			if (j < properties.size() - 1)
-			{
-				file << ", ";
-			}
-		}
-		file << "\n";
-	}
-	file.close();
+			//~ }
+			//~ if (j < properties.size() - 1)
+			//~ {
+				//~ file << ", ";
+			//~ }
+		//~ }
+		//~ file << "\n";
+	//~ }
+	//~ file.close();
 }

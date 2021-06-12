@@ -15,6 +15,9 @@ class CommandArgs
 		Argument<double> GradLim = Argument<double>(0,"gradlim");
 		Argument<int> MaxSteps = Argument<int>(1000,"max-steps");
 		Argument<int> FreezeSteps = Argument<int>(0,"burnin");
+		Argument<int> SaveSteps = Argument<int>(1,"save-steps");
+		Argument<bool> SaveAllSteps = Argument<bool>(false,"unique-temp-save");
+		
 		
 		//save locations
 		Argument<std::string> DataSource= Argument<std::string>("../../Data/ShuffledData","data");
@@ -22,7 +25,7 @@ class CommandArgs
 		
 		
 		//put pointers in here so can easily loop over the (heterogenous) array
-		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory};
+		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps};
 		
 		CommandArgs(){};
 		
