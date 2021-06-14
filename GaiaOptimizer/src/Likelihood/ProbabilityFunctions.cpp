@@ -240,31 +240,75 @@ void logphi(double z, double& f, double& df)
 		
 }
 
+struct Population
+{
+	double Fraction;
+	double BaselineVariance;
+	double ScalingVariance;
+	Population(double fraction,double base,double scaling)
+	{
+		Fraction = fraction;
+		BaselineVariance = base;
+		ScalingVariance = scaling;
+	} 
+};
+
 double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
 {
-	double m = 0.0;
-	double s2 = PredObsVariance_zeroth + PredObsVariance_first * probslen * probslen;
+
+	Population pop1(Population1_Fraction,Population1_Baseline,Population1_Scaling);
+	Population pop2(1.0-Population1_Fraction,Population2_Baseline,Population2_Scaling);
+	
+	std::vector<Population> populations = {pop1,pop2};
+	
+	double m_base = 0.0;
+	double s2_base = 0;
 
 	for(int i = 0; i < probslen; ++i)
 	{
-        m += probs[i];
-        s2 += probs[i]*(1.0-probs[i]);
+        m_base += probs[i];
+        s2_base += probs[i]*(1.0-probs[i]);
 	}
-    double s = sqrt(s2);
-
-    double logPhi, dlogPhi;
-    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
-
-    double value = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi;
-    
-    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
-    
-    for(int i = 0; i < probslen; ++i)
-    {
-        gradient[i] = dlpmf_dm + (1.0-2.0*probs[i])*dlpmf_ds2;
+	
+	std::vector<double> populationValues(populations.size(),0.0);
+	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(gradient.size(),0.0));
+	for (int i =0; i < populations.size(); ++i)
+	{
+		double m = m_base;
+		double s2 = s2_base + populations[i].BaselineVariance + populations[i].ScalingVariance * probslen;
+				
+	    double s = sqrt(s2);
+	
+	    double logPhi, dlogPhi;
+	    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
+	
+	    populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
+	    
+	    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
+	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
+	    
+	    for(int j = 0; j < probslen; ++j)
+	    {
+	        populationGradients[i][j] = dlpmf_dm + (1.0-2.0*probs[j])*dlpmf_ds2;
+	    }
     }
     
+    double value = VerySmallLog;
+    
+    for (int j = 0; j < populations.size(); ++j)
+    {
+		value = log_add_exp(value, populationValues[j]);
+    }
+    
+    for (int i = 0; i < probslen; ++i)
+	{
+		double temp = 0;
+		for (int j = 0; j < populations.size(); ++j)
+		{
+			temp += exp(populationValues[j] - value) * populationGradients[j][i];
+		}
+		gradient[i] = temp;
+	}
     return value;
 }
 

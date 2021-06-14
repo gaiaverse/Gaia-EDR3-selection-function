@@ -2,15 +2,15 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 % files = ["Diagnostic29_PostProcessing","Diagnostic43_a005_b0005","Diagnostic44_a005_b005","Diagnostic45_a1_b005"];%,"Diagnostic40_NewSpace_SillyVariance"];
-files = ["Diagnostic34"];
+files = ["temptest2"];
 % files = ["Diagnostic26_MagTimeOnly","Diagnostic27_MagTimeOnly_BigData","Diagnostic28_MagTimeOnly_NoBatches"];
 
-getData(60);
+% getData(60);
 
 N1 =6;
-N2 = 100;
+N2 = -1;
 gap = 2;
-progressPlot(files(2:end), 0)
+progressPlot(files(1:end), 0)
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
 temporalPlot(files,N2,100,0,42);
 
@@ -42,7 +42,7 @@ xmax = t(2);
 % xmax = 1400;%2248;
 ymin = -12;
 ymax = 22;
-gaps = readtable("edr3_gaps.csv");
+% gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
 hold on;
@@ -52,7 +52,7 @@ end
 hold off;
 for i = 1:length(folders)
 	folder = folders(i);
-	properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
+% 	properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 	
 	name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
 	
@@ -74,9 +74,9 @@ for i = 1:length(folders)
 	
 	
 	
-	Nt = properties.Nt(1);
-	Nl = properties.Nl(1);
-	Nm = properties.Nm(1);
+	Nt = 8967;%properties.Nt(1);
+	Nl = 12;%properties.Nl(1);
+	Nm = 213;%properties.Nm(1);
 	%     figure(1);
 	%     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
 	%     nexttile(T);
@@ -185,24 +185,24 @@ for i = 1:length(folders)
 	end
 end
 
-
-for i = 1:height(gaps)
-	t1 = (gaps.tbeg(i));
-	t2 = (gaps.tend(i));
-	subplot(ny,nx,[1,2]);
-	hold on;
-	fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
-	hold off;
-	subplot(ny,nx,3);
-	hold on
-	fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
-	hold off;
-	
-	%         subplot(ny,nx,4);
-	%         hold on
-	%         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
-	%         hold off;
-end
+% 
+% for i = 1:height(gaps)
+% 	t1 = (gaps.tbeg(i));
+% 	t2 = (gaps.tend(i));
+% 	subplot(ny,nx,[1,2]);
+% 	hold on;
+% 	fill([t1,t1,t2,t2],[0,2,2,0],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
+% 	hold off;
+% 	subplot(ny,nx,3);
+% 	hold on
+% 	fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.1,"HandleVisibility","Off");
+% 	hold off;
+% 	
+% 	%         subplot(ny,nx,4);
+% 	%         hold on
+% 	%         fill([t1,t1,t2,t2],[ymin,ymax,ymax,ymin],'b','LineStyle','None','FaceAlpha',0.3,"HandleVisibility","Off");
+% 	%         hold off;
+% end
 
 subplot(ny,nx,3);
 
