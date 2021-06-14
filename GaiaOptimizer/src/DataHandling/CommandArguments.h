@@ -51,6 +51,7 @@ class CommandArgs
 			}
 			
 			
+			
 			//if necessary, create the directories necessary for output saving
 			if (ProcessRank == RootID)
 			{
