@@ -1,19 +1,19 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostc64_NewProbModel"];%"hometest_nominal","hometest_nominal_boosted"];
+% files = ["Diagnostic64_NewProbModel"];
+files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
+% files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes_10Scaling"];
 getData(60);
 
 N1 =0;
-N2 = 30;
+N2 = 12;
 gap = 2;
-progressPlot(files, 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,10);
+
+% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
-% magGif(files,N2,0,1,213,3,"bigmag.gif");
-% magComparison(files,[-1,16,N2],0,213,6,"comparison_90.gif")
-
+progressPlot(files(2:end), 15e3)
 
 function getData(timeGap)
 f = load("SyncTime.mat");
@@ -35,10 +35,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 1382;%2230;
-xmax = 1400;%2248;
-ymin = -12;
-ymax = 22;
+xmin = 1220;%2230;
+xmax = 1232;%2248;
+ymin = -10;
+ymax = 10;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -129,57 +129,46 @@ for i = 1:length(folders)
 	ms = reshape(m,Nm,Nl);
 	
 	for j = 1:Nl
-		
-		q = q + ms(:,j);
-	end
-	if Nm > 1
+		q = q + ms(:,j)';
+    end
+    q = q';
+    maxes = max(ms,[],2);
+    
+    mins = min(ms,[],2);
+	zs = [0:length(mins)-1];
+    xRow = [zs, fliplr(zs)]';
+    yRow = [maxes; flipud(mins)];
+
+    expMode = true;
+    if Nm > 1
         alpha = 0.5*log(2);
-        p = exp(-alpha*2*exp(-q/Nl));
-		plot(q/Nl,'Color',map(i,:),"HandleVisibility","Off")
+        if expMode == true
+            p = @(x)  exp(-alpha*2*exp(-x));
+           yl = [0,1];
+        else
+             p = @(x) x;
+              yl = [-2,8];
+             
+        end
+		plot(p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")
+        
+        fill(xRow,p(yRow),map(i,:),'FaceAlpha',0.1,'EdgeColor','None');
+%         plot(maxes,'Color',map(i,:),"HandleVisibility","Off")
+%         plot(mins,'Color',map(i,:),"HandleVisibility","Off")
 	else
 		scatter(0,q/Nl,'MarkerEdgeColor',map(i,:),"HandleVisibility","Off");
-	end
+    end
+  
 	hold off;
 	%     plot(m);
 	title("Spatial Components " + frameTitle);
 	xlabel("Source file, $i$.csv");
 	ylabel("Mean $x_{ml}$ on sky")
 	xlim([0,Nm])
-	ylim([-2,8])
+	ylim(yl)
 	grid on;
 	
-	Ntm = length(magT)/Nm;
 	
-	if Ntm > 0
-		subplot(ny,nx,4);
-		
-		Nts = reshape(magT,Nm,Ntm);
-		
-		Ntms = linspace(t(1),t(2),Ntm);
-		hold on;
-		
-		for mm = mStart+1:mEnd
-			if Ntm > 1
-				
-				plot(Ntms,1./(1+exp(-Nts(mm,:))));
-			else
-				
-				plot([t(1),t(2)],[1,1]*Nts(mm));
-			end
-		end
-		leg = string([mStart:1:mEnd]+magOffset) + ".csv";
-		legend(leg);
-		
-		hold off;
-		xlim([xmin,xmax])
-		ylim([0,1])
-		
-		title("Temporal-Magnitude Component " + frameTitle);
-		ylabel("Magnitude Parameter, $x_{mt}$");
-		xlabel("OBMT (Revolutions)")
-		
-		grid on;
-	end
 end
 
 
