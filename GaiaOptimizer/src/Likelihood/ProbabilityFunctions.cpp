@@ -253,13 +253,16 @@ struct Population
 	} 
 };
 
-double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
-{
 
-	Population pop1(Population1_Fraction,Population1_Baseline,Population1_Scaling);
+Population pop1(Population1_Fraction,Population1_Baseline,Population1_Scaling);
 	Population pop2(1.0-Population1_Fraction,Population2_Baseline,Population2_Scaling);
 	
 	std::vector<Population> populations = {pop1,pop2};
+
+double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
+{
+
+	
 	
 	double m_base = 0.0;
 	double s2_base = 0;
@@ -271,12 +274,11 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	}
 	
 	std::vector<double> populationValues(populations.size(),0.0);
-	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(gradient.size(),0.0));
+	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
 	for (int i =0; i < populations.size(); ++i)
 	{
 		double m = m_base;
 		double s2 = s2_base + populations[i].BaselineVariance + populations[i].ScalingVariance * probslen;
-				
 	    double s = sqrt(s2);
 	
 	    double logPhi, dlogPhi;
@@ -297,9 +299,11 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
     
     for (int j = 0; j < populations.size(); ++j)
     {
+		
 		value = log_add_exp(value, populationValues[j]);
+		//~ std::cout << "Pop " << 1+ j << "  "  << populationValues[j]<< "  running total: " << value << std::endl;
     }
-    
+		//~ std::cout << "\n\n";
     for (int i = 0; i < probslen; ++i)
 	{
 		double temp = 0;

@@ -70,6 +70,11 @@ class Optimizer
 		
 		void Initialise()
 		{
+			Status.TooManySteps = false;
+			Status.Converged = false;
+			Status.ReachedFunctionConvergence = false;
+			Status.ReachedGradConvergence = false;
+			Status.ReachedStepConvergence = false;
 			
 			Progress.BufferFileOpened = false;
 			
@@ -91,7 +96,7 @@ class Optimizer
 			Buffer.Analysis = std::vector<double>(Buffer.AnalysisSize,0);
 			
 			Progress.Hashes = 0;
-			
+			Progress.CurrentSteps = 0;
 			Status.Continues = true;
 		}
 			
@@ -228,23 +233,27 @@ class Optimizer
 		{
 			if (Progress.CurrentSteps > HaltConditions.MaxSteps)
 			{
+				std::cout << "STeps! " << Progress.CurrentSteps << std::endl;
 				Status.TooManySteps = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.PositionChangeThreshold > 0 && dx < HaltConditions.PositionChangeThreshold)
 			{
+				std::cout << "Position! " << dx << std::endl;
 				Status.ReachedStepConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.GradientThreshold > 0 && dg.norm() < HaltConditions.GradientThreshold)
 			{
+				std::cout << "Gradient! " << dg.norm() << std::endl;
 				Status.ReachedGradConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.FunctionChangeThreshold > 0  && abs(df) < HaltConditions.FunctionChangeThreshold)
 			{
+				std::cout << "Function! " << df << std::endl;
 				Status.ReachedFunctionConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
