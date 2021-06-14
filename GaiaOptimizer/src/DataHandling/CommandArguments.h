@@ -35,6 +35,7 @@ class CommandArgs
 			Argument<std::string> ConfigFile = Argument<std::string>("__null_location__","config",argc,argv);
 			Argument<char> ConfigDelimiter = Argument<char>(' ',"config-delim",argc,argv);
 			
+			
 			if ((std::string)ConfigFile == "__null_location__")
 			{
 				for (int i = 0; i < argPointers.size(); ++i)

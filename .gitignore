@@ -1,3 +1,9 @@
+#Custom testing files + compiled code
+*.png
+*.gif
+gaia
+*.mat
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
