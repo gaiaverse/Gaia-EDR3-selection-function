@@ -48,16 +48,16 @@ const double initialisationBounds = 0.1;
 //normal approximation variances
 
 //m-scaling models
-//~ const std::vector<double> VariancePopulationFractions = {0.499501,0.407572,0.0929271};
-//~ const std::vector<double> VarianceBaselines = {0.0138608,0.00445439,0.0736989};
-//~ const std::vector<double> VarianceLinears = {0.003143,0.0034633,0.0211255};
-//~ const std::vector<double> VarianceQuadratics = {0,0,0};
+const std::vector<double> VariancePopulationFractions = {0.499501,0.407572,0.0929271};
+const std::vector<double> VarianceBaselines = {0.0138608,0.00445439,0.0736989};
+const std::vector<double> VarianceLinears = {0.003143,0.0034633,0.0211255};
+const std::vector<double> VarianceQuadratics = {0,0,0};
 
 //n-gaps-scaling models
-const std::vector<double> VariancePopulationFractions = {0.595329,0.4033,0.00131};
-const std::vector<double> VarianceBaselines = {0.003599,0.0024822,0.599044};
-const std::vector<double> VarianceLinears = {6.95e-5,0.01267,0.03866};
-const std::vector<double> VarianceQuadratics = {1.6e-10,3.04e-7,0.000346};
+//~ const std::vector<double> VariancePopulationFractions = {0.595329,0.4033,0.00131};
+//~ const std::vector<double> VarianceBaselines = {0.003599,0.0024822,0.599044};
+//~ const std::vector<double> VarianceLinears = {6.95e-5,0.01267,0.03866};
+//~ const std::vector<double> VarianceQuadratics = {1.6e-10,3.04e-7,0.000346};
 
 
 
