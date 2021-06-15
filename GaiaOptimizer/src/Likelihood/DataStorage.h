@@ -23,7 +23,14 @@ struct VariancePopulation
 		BaselineVariance = base;
 		LinearVariance = linearscaling;
 		QuadraticVariance = quadraticscaling;
+		Print();
 	}; 
+	void Print()
+	{
+				
+		std::cout << "I have: " << std::endl;
+		std::cout << Fraction << "   " << BaselineVariance << "   " << LinearVariance << "   " << QuadraticVariance << std::endl;
+	}
 };
 class LikelihoodData
 {
