@@ -263,7 +263,19 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	{
 		double m = m_base;
 		
-		int scaling = m; // or m?
+		bool mScaling = false;
+		int scaling;
+		int gradientFactor;
+		if (mScaling)
+		{
+			gradientFactor = 1;
+			scaling = m;
+		}
+		else
+		{
+			gradientFactor = 0;
+			scaling = probslen;
+		}
 		
 		double s2 = s2_base + populations[i].BaselineVariance + populations[i].LinearVariance * scaling + populations[i].QuadraticVariance * scaling*scaling;
 	    double s = sqrt(s2);
@@ -293,7 +305,7 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 
 	    for(int j = 0; j < probslen; ++j)
 	    {
-	        populationGradients[i][j] = dlpmf_dm + (1.0-2.0*probs[j] + populations[i].LinearVariance)*dlpmf_ds2;
+	        populationGradients[i][j] = dlpmf_dm + (1.0-2.0*probs[j] + populations[i].LinearVariance*gradientFactor)*dlpmf_ds2;
 	    }
     }
     
