@@ -23,7 +23,6 @@ struct VariancePopulation
 		BaselineVariance = base;
 		LinearVariance = linearscaling;
 		QuadraticVariance = quadraticscaling;
-		Print();
 	}; 
 	void Print()
 	{
