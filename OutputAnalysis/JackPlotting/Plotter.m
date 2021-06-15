@@ -2,18 +2,18 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 % files = ["Diagnostic64_NewProbModel"];
-files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
-% files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes_10Scaling"];
+% files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
+files = ["Diagnostic64_NewProbModel","Diagnostic52_OmittedGaps"];
 getData(60);
 
 N1 =0;
-N2 = 42;
+N2 = 2;
 gap = 2;
 
-% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
+gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 temporalPlot(files,N2,100,0,42);
 
-progressPlot(files(2:end), 15e3)
+progressPlot(files(2:end), 0)
 
 function getData(timeGap)
 f = load("SyncTime.mat");
@@ -35,8 +35,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 1220;%2230;
-xmax = 1232;%2248;
+% xmin = 1220;%2230;
+% xmax = 1232;%2248;
 ymin = -10;
 ymax = 10;
 gaps = readtable("edr3_gaps.csv");
