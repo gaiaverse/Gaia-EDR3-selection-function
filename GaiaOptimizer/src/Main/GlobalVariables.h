@@ -47,10 +47,10 @@ const double initialisationBounds = 0.5;
 
 //normal approximation variances
 
-const std::vector<double> VariancePopulationFractions = {0.84415,1.0-0.84415};
-const std::vector<double> VarianceBaselines = {0.5,0.5};
-const std::vector<double> VarianceLinears = {0.00308153,0.0192088};
-const std::vector<double> VarianceQuadratics = {0,0};
+const std::vector<double> VariancePopulationFractions = {0.595329,0.403356,0.00131505};
+const std::vector<double> VarianceBaselines = {0.00359918,0.0024822,0.599044};
+const std::vector<double> VarianceLinears = {6.956e-5,0.0126743,3.04e-7};
+const std::vector<double> VarianceQuadratics = {1.61e-10,3.04e-7,0.000346167};
 
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
