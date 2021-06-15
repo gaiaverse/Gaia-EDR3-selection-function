@@ -3,12 +3,12 @@ set(0,'defaultTextInterpreter','latex');
 
 % files = ["Diagnostic64_NewProbModel"];
 % files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
-files = ["Diagnostic64_NewProbModel","Diagnostic54_hometest"];
+files = ["Diagnostic64_NewProbModel","hometest"];
 % getData(60);
 
 N1 =0;
 N2 = 60;
-gap = 10;
+gap = 2;
 progressPlot(files(2:end), 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 temporalPlot(files,N2,100,0,42);
