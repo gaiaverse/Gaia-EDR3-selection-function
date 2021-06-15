@@ -268,14 +268,29 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 		double s2 = s2_base + populations[i].BaselineVariance + populations[i].LinearVariance * scaling + populations[i].QuadraticVariance * scaling*scaling;
 	    double s = sqrt(s2);
 	
-	    double logPhi, dlogPhi;
-	    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
+		double logPhiUpper, dlogPhiUpper;
+	    logphi((k-m+0.5)/s,logPhiUpper, dlogPhiUpper); 
+
+	    double logPhiLower, dlogPhiLower;
+	    logphi((k-m-0.5)/s,logPhiLower, dlogPhiLower); 
+
+	    double logPhiMin, dlogPhiMin;
+	    logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
+
+	    double logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
 	
-	    populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
-	    
+	    /*populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
+
 	    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
+	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;*/
 	    
+	    
+
+	    populationValues[i] = logPhiDifference - logPhiMin + log(populations[i].Fraction);
+	    
+	    double dlpmf_dm = -(exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower + dlogPhiMin)/s;
+	    double dlpmf_ds2 = -0.5*((k-m+0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m-0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower + (PipelineMinVisits-m+0.5)*dlogPhiMin)/s/s2;
+
 	    for(int j = 0; j < probslen; ++j)
 	    {
 	        populationGradients[i][j] = dlpmf_dm + (1.0-2.0*probs[j] + populations[i].LinearVariance)*dlpmf_ds2;
