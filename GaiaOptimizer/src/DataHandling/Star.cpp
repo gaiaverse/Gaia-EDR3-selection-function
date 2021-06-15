@@ -48,7 +48,10 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 		{
 			++obs;
 		}
-		TimeSeries.push_back(t);
+		else
+		{
+			TimeSeries.push_back(t);
+		}
 	}
 	
 	

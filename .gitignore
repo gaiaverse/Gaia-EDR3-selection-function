@@ -3,6 +3,7 @@
 *.gif
 gaia
 *.mat
+.nfs*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

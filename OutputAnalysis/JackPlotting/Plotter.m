@@ -7,11 +7,11 @@ files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diag
 getData(60);
 
 N1 =0;
-N2 = 12;
+N2 = 42;
 gap = 2;
 
 % gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
-% temporalPlot(files,N2,100,0,42);
+temporalPlot(files,N2,100,0,42);
 
 progressPlot(files(2:end), 15e3)
 
