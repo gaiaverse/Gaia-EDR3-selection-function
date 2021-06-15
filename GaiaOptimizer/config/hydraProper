@@ -1,0 +1,10 @@
+output       ../../Output/Diagnostic55_normalScaling/
+data         ../../Data/ShuffledData/
+random-seed  3
+gradlim      1e-5
+max-steps    500
+burnin       1
+save-steps   2
+unique-temp-save 1
+minibatch     128
+
