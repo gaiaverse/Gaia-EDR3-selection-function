@@ -43,13 +43,13 @@ const double xtPriorNonGap = 0;
 const double xtPriorBorderCase = 0;
 const double xtPriorInsideGap = 0;
 
-const double initialisationBounds = 0.5;
+const double initialisationBounds = 0.2;
 
 //normal approximation variances
 
 const std::vector<double> VariancePopulationFractions = {0.499501,0.407572,0.0929271};//{0.595329,0.403356,0.00131505};
-const std::vector<double> VarianceBaselines = {0.01386,0.00445,0.073};
-const std::vector<double> VarianceLinears = {0.003,0.0034,0.0211};
+const std::vector<double> VarianceBaselines = {0.0138608,0.00445439,0.0736989};
+const std::vector<double> VarianceLinears = {0.003143,0.0034633,0.0211255};
 const std::vector<double> VarianceQuadratics = {0,0,0};
 
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
