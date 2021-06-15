@@ -57,4 +57,10 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	}
 	
 	Mode = NormalApproximation;
+	
+	for(int i = 0; i < VariancePopulations.size(); ++i)
+	{
+		VariancePopulation p = VariancePopulation(VariancePopulationFractions[i],VarianceBaselines[i],VarianceLinears[i],VarianceQuadratics[i]);
+		VariancePopulations.push_back(p);	
+	}
 }

@@ -7,7 +7,7 @@ files = ["Diagnostic64_NewProbModel","Diagnostic52_OmittedGaps"];
 getData(60);
 
 N1 =0;
-N2 = 2;
+N2 = 10;
 gap = 2;
 
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);

@@ -9,6 +9,22 @@
 
 enum Probability { NormalApproximation, PoissonBinomial};
 
+struct VariancePopulation
+{
+	double Fraction;
+	double BaselineVariance;
+	double LinearVariance;
+	double QuadraticVariance;
+	
+	//~ VariancePopulation(){};
+	VariancePopulation(double fraction,double base,double linearscaling, double quadraticscaling)
+	{
+		Fraction = fraction;
+		BaselineVariance = base;
+		LinearVariance = linearscaling;
+		QuadraticVariance = quadraticscaling;
+	}; 
+};
 class LikelihoodData
 {
 	public:
@@ -43,7 +59,8 @@ class LikelihoodData
 
 		std::vector<double> grad_elu_xml1;
 		std::vector<double> grad_elu_xml2;
-	
+		
+		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
 };
 

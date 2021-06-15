@@ -240,29 +240,13 @@ void logphi(double z, double& f, double& df)
 		
 }
 
-struct Population
+
+
+
+
+
+double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient, std::vector<VariancePopulation> & populations)
 {
-	double Fraction;
-	double BaselineVariance;
-	double ScalingVariance;
-	Population(double fraction,double base,double scaling)
-	{
-		Fraction = fraction;
-		BaselineVariance = base;
-		ScalingVariance = scaling;
-	} 
-};
-
-
-Population pop1(Population1_Fraction,Population1_Baseline,Population1_Scaling);
-	Population pop2(1.0-Population1_Fraction,Population2_Baseline,Population2_Scaling);
-	
-	std::vector<Population> populations = {pop1,pop2};
-
-double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient)
-{
-
-	
 	
 	double m_base = 0.0;
 	double s2_base = 0;
@@ -278,7 +262,10 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	for (int i =0; i < populations.size(); ++i)
 	{
 		double m = m_base;
-		double s2 = s2_base + populations[i].BaselineVariance + populations[i].ScalingVariance * probslen;
+		
+		int scaling = probslen; // or m?
+		
+		double s2 = s2_base + populations[i].BaselineVariance + populations[i].LinearVariance * scaling + populations[i].QuadraticVariance * scaling*scaling;
 	    double s = sqrt(s2);
 	
 	    double logPhi, dlogPhi;

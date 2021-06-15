@@ -105,7 +105,7 @@ void LogLikelihood::NormalContribution(const Star * candidate)
 {
 	int n = candidate->nVisit;
 	int k = candidate->nMeasure;
-	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp);
+	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp,Data.VariancePopulations);
 }
 
 void LogLikelihood::PoissonContribution(const Star * candidate)
