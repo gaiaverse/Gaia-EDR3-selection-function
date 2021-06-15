@@ -43,7 +43,7 @@ const double xtPriorNonGap = 5;
 const double xtPriorBorderCase =5;
 const double xtPriorInsideGap = 5;
 
-const double initialisationBounds = 0.2;
+const double initialisationBounds = 0.1;
 
 //normal approximation variances
 
