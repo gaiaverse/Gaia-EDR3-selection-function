@@ -3,16 +3,16 @@ set(0,'defaultTextInterpreter','latex');
 
 files = ["hometest","hometest_normal"];
 % files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
-files = ["Diagnostic64_NewProbModel","Diagnostic55_normalScaling"];
+files = ["Diagnostic64_NewProbModel","Diagnostic55_mScaling","Diagnostic55_normalScaling"];
 getData(60);
 
-N1 =4;
-N2 = 12;
+N1 =0;
+N2 = 6;
 gap = 2;
-progressPlot(files, 0)
+
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 temporalPlot(files,N2,100,0,42);
-
+progressPlot(files(2:end), 0)
 
 
 function getData(timeGap)
@@ -139,7 +139,7 @@ for i = 1:length(folders)
     xRow = [zs, fliplr(zs)]';
     yRow = [maxes; flipud(mins)];
 
-    expMode = false;
+    expMode = true;
     if Nm > 1
         alpha = 0.5*log(2);
         if expMode == true
@@ -279,7 +279,7 @@ for i = 1:length(files)
 	
 	plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
 	scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
-	set(gca,'yscale','log')
+% 	set(gca,'yscale','log')
 	%         set(gca,'xscale','log')
 	xlabel("Elapsed Time (s)");
 	ylabel("$L/L_0$");
