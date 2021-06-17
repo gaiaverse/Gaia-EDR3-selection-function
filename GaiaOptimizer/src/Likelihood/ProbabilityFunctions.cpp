@@ -281,44 +281,62 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	    double s = sqrt(s2);
 
 	    
+		double value_Full;
+		double value_Approx;
 
-		//~ double logPhiUpper, dlogPhiUpper;
-		//~ double logPhiLower, dlogPhiLower;
-		//~ double logPhiDifference;
-		//~ double dlpmf_dm, dlpmf_ds2;
+		double logPhiUpper, dlogPhiUpper;
+		double logPhiLower, dlogPhiLower;
+		double logPhiDifference;
+		double dlpmf_dm, dlpmf_ds2;
 
-		//~ if ( (k-m)/s < 0 ){
-		    //~ logphi((k-m+0.5)/s,logPhiUpper, dlogPhiUpper); 
-		    //~ logphi((k-m-0.5)/s,logPhiLower, dlogPhiLower); 
-			//~ logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
-			//~ dlpmf_dm = -(exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
-		    //~ dlpmf_ds2 = -0.5*((k-m+0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m-0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
-		//~ }
-		//~ else{
-			//~ logphi(-(k-m-0.5)/s,logPhiUpper, dlogPhiUpper); 
-		    //~ logphi(-(k-m+0.5)/s,logPhiLower, dlogPhiLower); 
-			//~ logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
-			//~ dlpmf_dm = (exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
-		    //~ dlpmf_ds2 = 0.5*((k-m-0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m+0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
-		//~ }
+		if ( (k-m)/s < 0 ){
+		    logphi((k-m+0.5)/s,logPhiUpper, dlogPhiUpper); 
+		    logphi((k-m-0.5)/s,logPhiLower, dlogPhiLower); 
+			logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
+			dlpmf_dm = -(exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
+		    dlpmf_ds2 = -0.5*((k-m+0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m-0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
+		}
+		else{
+			logphi(-(k-m-0.5)/s,logPhiUpper, dlogPhiUpper); 
+		    logphi(-(k-m+0.5)/s,logPhiLower, dlogPhiLower); 
+			logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
+			dlpmf_dm = (exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
+		    dlpmf_ds2 = 0.5*((k-m-0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m+0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
+		}
 
-		//~ double logPhiMin, dlogPhiMin;
-	    //~ logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
-	    //~ populationValues[i] = logPhiDifference - logPhiMin + log(populations[i].Fraction);
-	    //~ dlpmf_dm -= dlogPhiMin/s;
-	    //~ dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
+		double logPhiMin, dlogPhiMin;
+	    logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
+	    value_Full = logPhiDifference - logPhiMin + log(populations[i].Fraction);
+	    dlpmf_dm -= dlogPhiMin/s;
+	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
 
 	
 		double logPhi, dlogPhi;
 	    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
-	    populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
-	    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
+	    value_Approx = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
+	    double dlpmf_dm_approx = (k-m)/s2 - dlogPhi/s;
+	    double dlpmf_ds2_approx = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
 	   
+	   populationValues[i] = value_Full;
 
+
+		//~ double delta = abs((value_Full - value_Approx)/value_Full);
+		//~ bool printMode = false;
+		//~ if (delta > 3 || value_Full/abs(value_Full) != value_Approx/abs(value_Approx))
+		//~ {
+			//~ printMode = true;
+			//~ double up = (k-m+0.5)/s;
+			//~ double down = (k-m-0.5)/s;
+			//~ std::cout << "New anomaly for population " << i << " calculated, with n = " << probslen << " m = " << m_base << " k = " << k << " and variance " << s2 << "   up/down = " << up << "/" << down <<  "\n";
+		//~ std::cout << "\tApprox Value: " << value_Approx << "   Analytical Value" << value_Full << "   Delta: " << value_Full - value_Approx << "   Relative Delta: " << (value_Full - value_Approx)/value_Full << "\n"; 
+		//~ }
+		
 	    for(int j = 0; j < probslen; ++j)
 	    {
-	        populationGradients[i][j] = dlpmf_dm + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2;
+			double grad_full = dlpmf_dm + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2;
+			double grad_approx = dlpmf_dm_approx + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2_approx;
+	        populationGradients[i][j] = grad_full;
+	      
 	    }
     }
     
@@ -329,6 +347,16 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 		
 		value = log_add_exp(value, populationValues[j]);
     }
+    if (value > 0)
+    {
+		std::cout << "A star has a positive value contribution!  n = " << probslen << " m = " << m_base << " k = " << k << std::endl;
+		std::cout << "\tPopulation contributions: ";
+		for (int i =0; i < populations.size(); ++i)
+		{
+			std::cout << populationValues[i] << "  ";
+		}
+		std::cout << std::endl;
+	}
 
     for (int i = 0; i < probslen; ++i)
 	{
