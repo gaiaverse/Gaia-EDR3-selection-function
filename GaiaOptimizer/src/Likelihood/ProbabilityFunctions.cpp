@@ -266,7 +266,7 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	if (mScaling)
 	{
 		mGradientFactor = 1;
-		scaling = m;
+		scaling = m_base;
 	}
 	else
 	{
