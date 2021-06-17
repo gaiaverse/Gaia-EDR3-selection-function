@@ -432,8 +432,6 @@ class Optimizer
 				file << std::setw(width) << std::setprecision(prec) << Buffer.Gradnorms[i] << ",";
 				
 				file << "\n";
-				
-				std::cout << "Outputting buffer position " << i << "  " << Buffer.Times[i] << "  " << Buffer.Epochs[i] << "   " << Buffer.MiniBatches[i] << std::endl;
 			}
 			
 			file.close();

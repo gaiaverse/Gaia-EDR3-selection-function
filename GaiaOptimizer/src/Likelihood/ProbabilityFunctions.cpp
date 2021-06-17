@@ -282,38 +282,38 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 
 	    
 
-		//~ double logPhiUpper, dlogPhiUpper;
-		//~ double logPhiLower, dlogPhiLower;
-		//~ double logPhiDifference;
-		//~ double dlpmf_dm, dlpmf_ds2;
+		double logPhiUpper, dlogPhiUpper;
+		double logPhiLower, dlogPhiLower;
+		double logPhiDifference;
+		double dlpmf_dm, dlpmf_ds2;
 
-		//~ if ( (k-m)/s < 0 ){
-		    //~ logphi((k-m+0.5)/s,logPhiUpper, dlogPhiUpper); 
-		    //~ logphi((k-m-0.5)/s,logPhiLower, dlogPhiLower); 
-			//~ logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
-			//~ dlpmf_dm = -(exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
-		    //~ dlpmf_ds2 = -0.5*((k-m+0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m-0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
-		//~ }
-		//~ else{
-			//~ logphi(-(k-m-0.5)/s,logPhiUpper, dlogPhiUpper); 
-		    //~ logphi(-(k-m+0.5)/s,logPhiLower, dlogPhiLower); 
-			//~ logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
-			//~ dlpmf_dm = (exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
-		    //~ dlpmf_ds2 = 0.5*((k-m-0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m+0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
-		//~ }
+		if ( (k-m)/s < 0 ){
+		    logphi((k-m+0.5)/s,logPhiUpper, dlogPhiUpper); 
+		    logphi((k-m-0.5)/s,logPhiLower, dlogPhiLower); 
+			logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
+			dlpmf_dm = -(exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
+		    dlpmf_ds2 = -0.5*((k-m+0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m-0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
+		}
+		else{
+			logphi(-(k-m-0.5)/s,logPhiUpper, dlogPhiUpper); 
+		    logphi(-(k-m+0.5)/s,logPhiLower, dlogPhiLower); 
+			logPhiDifference = logPhiUpper + log1p(-exp(logPhiLower-logPhiUpper));
+			dlpmf_dm = (exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s;
+		    dlpmf_ds2 = 0.5*((k-m-0.5)*exp(logPhiUpper-logPhiDifference)*dlogPhiUpper - (k-m+0.5)*exp(logPhiLower-logPhiDifference)*dlogPhiLower)/s/s2;
+		}
 
-		//~ double logPhiMin, dlogPhiMin;
-	    //~ logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
-	    //~ populationValues[i] = logPhiDifference - logPhiMin + log(populations[i].Fraction);
-	    //~ dlpmf_dm -= dlogPhiMin/s;
-	    //~ dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
+		double logPhiMin, dlogPhiMin;
+	    logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
+	    populationValues[i] = logPhiDifference - logPhiMin + log(populations[i].Fraction);
+	    dlpmf_dm -= dlogPhiMin/s;
+	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
 
 	
-		double logPhi, dlogPhi;
-	    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
-	    populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
-	    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
+		//~ double logPhi, dlogPhi;
+	    //~ logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
+	    //~ populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
+	    //~ double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
+	    //~ double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
 	   
 
 	    for(int j = 0; j < probslen; ++j)
