@@ -309,10 +309,11 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
 
 	
-	    /*populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
-
-	    double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
-	    double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;*/
+		//~ double logPhi, dlogPhi;
+	    //~ logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
+	    //~ populationValues[i] = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
+	    //~ double dlpmf_dm = (k-m)/s2 - dlogPhi/s;
+	    //~ double dlpmf_ds2 = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
 	   
 
 	    for(int j = 0; j < probslen; ++j)
@@ -327,9 +328,8 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
     {
 		
 		value = log_add_exp(value, populationValues[j]);
-		//~ std::cout << "Pop " << 1+ j << "  "  << populationValues[j]<< "  running total: " << value << std::endl;
     }
-		//~ std::cout << "\n\n";
+
     for (int i = 0; i < probslen; ++i)
 	{
 		double temp = 0;
