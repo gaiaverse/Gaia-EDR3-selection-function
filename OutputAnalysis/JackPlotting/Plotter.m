@@ -3,16 +3,16 @@ set(0,'defaultTextInterpreter','latex');
 
 files = ["hometest","hometest_normal"];
 % files = ["Diagnostic64_NewProbModel","Diagnostic51_NewProbModel_HigherRes","Diagnostic51_NewProbModel_HigherRes_HigherVariance"];%"Diagnostic51_NewProbModel_HigherRes_10Scaling"
-files = ["Diagnostic55_mScaling"];
-getData(60);
+files = ["Diagnostic55_mScaling","Diagnostic55_normalScaling"];
+getData(0);
 
 N1 =0;
-N2 = 8;
+N2 = 0;
 gap = 2;
-
+progressPlot(files, 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 temporalPlot(files,N2,100,0,42);
-progressPlot(files, 0)
+
 
 
 function getData(timeGap)
