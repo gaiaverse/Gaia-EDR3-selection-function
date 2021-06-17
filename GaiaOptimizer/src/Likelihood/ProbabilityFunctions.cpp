@@ -305,36 +305,16 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 		}
 
 		double logPhiMin, dlogPhiMin;
-	    logphi(-(PipelineMinVisits-m+0.5)/s,logPhiMin, dlogPhiMin);
+	    logphi(-(PipelineMinVisits-m-0.5)/s,logPhiMin, dlogPhiMin);
 	    value_Full = logPhiDifference - logPhiMin + log(populations[i].Fraction);
 	    dlpmf_dm -= dlogPhiMin/s;
-	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m+0.5)*dlogPhiMin/s/s2;
+	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m-0.5)*dlogPhiMin/s/s2;
 
-	
-		double logPhi, dlogPhi;
-	    logphi(-(PipelineMinVisits-m)/s,logPhi, dlogPhi); 
-	    value_Approx = -0.5*log(2.0*M_PI*s2) - 0.5*(k-m)*(k-m)/s2 - logPhi + log(populations[i].Fraction);
-	    double dlpmf_dm_approx = (k-m)/s2 - dlogPhi/s;
-	    double dlpmf_ds2_approx = 0.5*((k-m)*(k-m)/s2 - 1.0 - (PipelineMinVisits-m)*dlogPhi/s)/s2;
-	   
-	   populationValues[i] = value_Full;
+		populationValues[i] = value_Full;
 
-
-		//~ double delta = abs((value_Full - value_Approx)/value_Full);
-		//~ bool printMode = false;
-		//~ if (delta > 3 || value_Full/abs(value_Full) != value_Approx/abs(value_Approx))
-		//~ {
-			//~ printMode = true;
-			//~ double up = (k-m+0.5)/s;
-			//~ double down = (k-m-0.5)/s;
-			//~ std::cout << "New anomaly for population " << i << " calculated, with n = " << probslen << " m = " << m_base << " k = " << k << " and variance " << s2 << "   up/down = " << up << "/" << down <<  "\n";
-		//~ std::cout << "\tApprox Value: " << value_Approx << "   Analytical Value" << value_Full << "   Delta: " << value_Full - value_Approx << "   Relative Delta: " << (value_Full - value_Approx)/value_Full << "\n"; 
-		//~ }
-		
 	    for(int j = 0; j < probslen; ++j)
 	    {
 			double grad_full = dlpmf_dm + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2;
-			double grad_approx = dlpmf_dm_approx + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2_approx;
 	        populationGradients[i][j] = grad_full;
 	      
 	    }

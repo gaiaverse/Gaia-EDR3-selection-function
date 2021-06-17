@@ -10,8 +10,8 @@ N1 =0;
 N2 = 10;
 gap = 2;
 progressPlot(files, 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
-temporalPlot(files,N2,100,0,42);
+% gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
+% temporalPlot(files,N2,100,0,42);
 
 
 
