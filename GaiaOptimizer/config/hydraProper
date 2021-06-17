@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic55_normalScaling/
+output       ../../Output/Diagnostic60_normalScaling/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5

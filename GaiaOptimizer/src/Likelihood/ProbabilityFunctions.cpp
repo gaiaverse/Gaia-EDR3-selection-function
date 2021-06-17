@@ -259,23 +259,24 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	
 	std::vector<double> populationValues(populations.size(),0.0);
 	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
+	
+	const bool mScaling = false;
+	int scaling;
+	int mGradientFactor;
+	if (mScaling)
+	{
+		mGradientFactor = 1;
+		scaling = m;
+	}
+	else
+	{
+		mGradientFactor = 0;
+		scaling = probslen;
+	}
+	
 	for (int i =0; i < populations.size(); ++i)
 	{
 		double m = m_base;
-		
-		bool mScaling = false;
-		int scaling;
-		int mGradientFactor;
-		if (mScaling)
-		{
-			mGradientFactor = 1;
-			scaling = m;
-		}
-		else
-		{
-			mGradientFactor = 0;
-			scaling = probslen;
-		}
 		
 		double s2 = s2_base + populations[i].BaselineVariance + populations[i].LinearVariance * scaling + populations[i].QuadraticVariance * scaling*scaling;
 	    double s = sqrt(s2);
@@ -323,20 +324,10 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
     double value = VerySmallLog;
     
     for (int j = 0; j < populations.size(); ++j)
-    {
-		
+    {		
 		value = log_add_exp(value, populationValues[j]);
     }
-    if (value > 0)
-    {
-		std::cout << "A star has a positive value contribution!  n = " << probslen << " m = " << m_base << " k = " << k << std::endl;
-		std::cout << "\tPopulation contributions: ";
-		for (int i =0; i < populations.size(); ++i)
-		{
-			std::cout << populationValues[i] << "  ";
-		}
-		std::cout << std::endl;
-	}
+
 
     for (int i = 0; i < probslen; ++i)
 	{
