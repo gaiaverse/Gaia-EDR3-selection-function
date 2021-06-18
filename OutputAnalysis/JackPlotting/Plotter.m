@@ -1,14 +1,12 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic60_normalScaling","Diagnostic60_normalScaling_lowerLength","Diagnostic60_mScaling_lowerLength_noBurn",...
-    "Diagnostic60_nScaling_lowerLength_noBurn","Diagnostic60_mScaling_longBurn_priors","Diagnostic60_nScaling_longBurn_priors",...
-    "Diagnostic60_mScaling"];
-files = [files(6)];
+files = ["Diagnostic61_mScaling","Diagnostic61_nScaling"];
+files = [files(1)];
 getData(60);
 
 N1 =0;
-N2 = 50;
+N2 = 8;
 gap = 2;
 progressPlot(files, 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);

@@ -29,6 +29,10 @@ const int Nm = 213; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
+
+const int NVariancePops = 3;
+const int hyperOrder = 2;
+
 //temporal and magnitude lengthscales + variances
 
 const double sigmat = 5;

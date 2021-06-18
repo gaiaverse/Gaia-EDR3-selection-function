@@ -16,8 +16,15 @@ const int PipelineMinVisits = 5;
 const int healpix_nside = pow(2,healpix_order);
 const int Nl = 12*pow(healpix_nside,2);
 const int Ns = pow(4,needlet_order+2) - 3;
-const int totalRawParams = Nt + Nm*(Ns);
-const int totalTransformedParams = Nt + Nm*(Nl);
+
+const int NHyper = (2 + hyperOrder) * NVariancePops;
+const int hyperFractionOffset = (1+hyperOrder)*NVariancePops; 
+const int rawNonHyperParams = Nt + Nm*(Ns);
+const int transformedNonHyperParams =  Nt + Nm*Nl;
+
+const int totalRawParams = rawNonHyperParams + NHyper;
+const int totalTransformedParams = transformedNonHyperParams + NHyper;
+
 
 
 //some common re-used numbers

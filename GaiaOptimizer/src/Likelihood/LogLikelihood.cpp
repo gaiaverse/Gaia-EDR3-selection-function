@@ -12,7 +12,8 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 
 	Reset();	
 
-
+	GenerateVariancePopulations(x);
+	
 	int realBatchesPerEffective = maxBatches / effectiveBatches;
 
 	
@@ -42,6 +43,7 @@ void LogLikelihood::Reset()
 	Value = 0;
 	std::fill(Gradient.begin(),Gradient.end(),0.0);
 }
+
 
 
 void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
@@ -105,7 +107,7 @@ void LogLikelihood::NormalContribution(const Star * candidate)
 {
 	int n = candidate->nVisit;
 	int k = candidate->nMeasure;
-	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp,Data.VariancePopulations);
+	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp,Data.VariancePopulations,Data.hypergradient);
 }
 
 void LogLikelihood::PoissonContribution(const Star * candidate)
@@ -322,6 +324,10 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 
 		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
 		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
+	}
 	
+	for (int i = 0; i < NHyper)
+	{
+		Gradient[transformedNonHyperParams + i] += hypergradient[i];
 	}
 }

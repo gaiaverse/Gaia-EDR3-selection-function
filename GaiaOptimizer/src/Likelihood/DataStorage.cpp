@@ -16,7 +16,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	grad_elu_xml1 = std::vector<double>(nBig,0);
 	grad_elu_xml2 = std::vector<double>(nBig,0);
 	dfdp = std::vector<double>(nBig,0);
-	
+	hypergradient = std::vector<double>(NHyper,0.0);
 	//~ NStars = 0;
 	//~ for (int i = 0; i < N_SGD_Batches; ++i)
 	//~ {

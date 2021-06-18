@@ -99,6 +99,29 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
 		}
 	}
+	
+	//hyper params
+	
+	
+	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
+	
+	double popSum = 0;
+	int offset = hyperFractionOffset;
+	for (int i = 0; i < (1 + hyperOrder)*NVariancePops; ++i)
+	{
+		double v = exp(z[rawNonHyperParams + offset + i]);
+		TransformedPosition[transformedNonHyperParams + i] = v;
+		
+		if (i >=offset)
+		{
+			popSum += v;
+		}
+	}
+	
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		TransformedPosition[transformedNonHyperParams + offset + i] /= popSum;
+	}
 }
 
 void DescentFunctor::BackwardTransform()
@@ -145,6 +168,20 @@ void DescentFunctor::BackwardTransform()
 			Gradient[Nt+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
 		}
 	}
+	
+
+	for (int i = 0; i < NHyper; ++i)
+	{
+		int x = TransformedPosition[transformedNonHyperParams + i];
+		int df = TransformedGradient[transformedNonHyperParams + i];
+		Gradient[rawNonHyperParams + i] = x * df;
+		
+		if (i >= hyperFractionOffset)
+		{
+			Gradient[rawNonHyperParams + i] *= (1.0 - x);
+		}
+	}
+	
 
 
 }
