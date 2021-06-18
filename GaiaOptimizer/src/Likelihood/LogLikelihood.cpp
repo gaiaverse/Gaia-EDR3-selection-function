@@ -11,12 +11,8 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 {
 
 	Reset();	
-
-	GenerateVariancePopulations(x);
-	
+	Data.GeneratePopulations(x);
 	int realBatchesPerEffective = maxBatches / effectiveBatches;
-
-	
 	
 	int start = effectiveBatchID * realBatchesPerEffective;
 	int end = maxBatches;
@@ -25,7 +21,6 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 		end = (effectiveBatchID+1) * realBatchesPerEffective;
 	}
 	StarsUsed = 0;
-	
 	
 	for (int i = start; i < end; ++i)
 	{
@@ -326,8 +321,9 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
 	}
 	
-	for (int i = 0; i < NHyper)
+	for (int i = 0; i < NHyper; ++i)
 	{
-		Gradient[transformedNonHyperParams + i] += hypergradient[i];
+		Gradient[transformedNonHyperParams + i] += Data.hypergradient[i];
 	}
+	
 }

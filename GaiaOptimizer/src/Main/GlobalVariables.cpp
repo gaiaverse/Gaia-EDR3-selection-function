@@ -59,7 +59,7 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 			x[Nt+i] += mums[i];
 		}
 	}
-   
+
 	return x;
 }
 void PrintStatus(std::string location)

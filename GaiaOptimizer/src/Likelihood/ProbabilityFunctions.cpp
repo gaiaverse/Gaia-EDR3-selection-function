@@ -242,12 +242,24 @@ void logphi(double z, double& f, double& df)
 
 
 
-
+void populationAccumulate(const std::vector<double> popValues, const std::vector<std::vector<double>> gradientToBeAccumulated, const double value, const int nAccumulate, const int nPopulations, std::vector<double> & accumulator)
+{
+	 for (int i = 0; i < nAccumulate; ++i)
+	{
+		double temp = 0;
+		for (int j = 0; j < nPopulations; ++j)
+		{
+			temp += exp(popValues[j] - value) * gradientToBeAccumulated[j][i];
+		}
+		accumulator[i] = temp;
+	}
+	
+	
+}
 
 
 double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient, std::vector<VariancePopulation> & populations,std::vector<double> & hypergradient)
 {
-	
 	double m = 0.0;
 	double s2_base = 0;
 
@@ -259,7 +271,7 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	
 	std::vector<double> populationValues(populations.size(),0.0);
 	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
-	std::vector<std::vector<double>> populationHyperGradients(populations.size(), std::vector<double>(hypergradients.size(),0.0));
+	std::vector<double> hyperGradientHolder(NHyper,0.0);
 
 	const bool mScaling = true;
 	double scaling;
@@ -274,7 +286,6 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 		mGradientFactor = 0;
 		scaling = probslen;
 	}
-	
 	for (int i =0; i < populations.size(); ++i)
 	{
 
@@ -312,12 +323,10 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 
 		populationValues[i] = value_Full;
 
-		populationHyperGradient[i][hyperFractionOffset + i] = 1.0/populations[i].Fraction;
-		
-		
-		for (int j = 0; j <= hyperOrder; ++i)
+		hypergradient[hyperFractionOffset + i] = 1.0/populations[i].Fraction;
+		for (int j = 0; j <= hyperOrder; ++j)
 		{
-			populationHyperGradient[i][j*NVariancePops+i] = dlpmf_ds2 * pow(scaling,j);
+			hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(scaling,j);
 		}
 		
 		double chainRuleTerm  = populations[i].Gradient(scaling,mGradientFactor);
@@ -336,25 +345,15 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 		value = log_add_exp(value, populationValues[j]);
     }
 
-
-    for (int i = 0; i < probslen; ++i)
+	populationAccumulate(populationValues, populationGradients, value, probslen, populations.size(), gradient);
+    
+	for (int i = 0; i < NVariancePops; ++i)
 	{
-		double temp = 0;
-		for (int j = 0; j < populations.size(); ++j)
+		for (int j = 0; j < (2+hyperOrder); ++j)
 		{
-			temp += exp(populationValues[j] - value) * populationGradients[j][i];
+			int index = j*NVariancePops + i;
+			hypergradient[index] *= exp(populationValues[i] - value);
 		}
-		gradient[i] = temp;
-	}
-	
-	for (int i = 0; i < NHyper; ++i)
-	{
-		double temp = 0;
-		for (int j = 0; j < populations.size(); ++j)
-		{
-			temp += exp(populationValues[j] - value) * populationHyperGradients[j][i];
-		}
-		hypergradient[i] = temp;
 	}
     return value;
 }

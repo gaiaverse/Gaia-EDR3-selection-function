@@ -105,11 +105,13 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	
 	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
 	
+
 	double popSum = 0;
 	int offset = hyperFractionOffset;
-	for (int i = 0; i < (1 + hyperOrder)*NVariancePops; ++i)
+	for (int i = 0; i < NHyper; ++i)
 	{
-		double v = exp(z[rawNonHyperParams + offset + i]);
+
+		double v = exp(z[rawNonHyperParams + i]);
 		TransformedPosition[transformedNonHyperParams + i] = v;
 		
 		if (i >=offset)
@@ -122,6 +124,7 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	{
 		TransformedPosition[transformedNonHyperParams + offset + i] /= popSum;
 	}
+
 }
 
 void DescentFunctor::BackwardTransform()
@@ -169,11 +172,10 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 	
-
 	for (int i = 0; i < NHyper; ++i)
 	{
-		int x = TransformedPosition[transformedNonHyperParams + i];
-		int df = TransformedGradient[transformedNonHyperParams + i];
+		double x = TransformedPosition[transformedNonHyperParams + i];
+		double df = TransformedGradient[transformedNonHyperParams + i];
 		Gradient[rawNonHyperParams + i] = x * df;
 		
 		if (i >= hyperFractionOffset)
@@ -181,8 +183,6 @@ void DescentFunctor::BackwardTransform()
 			Gradient[rawNonHyperParams + i] *= (1.0 - x);
 		}
 	}
-	
-
 
 }
 
@@ -200,12 +200,10 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	ForwardTransform(RawPosition);
 	
-
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	
 
 	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
-	
 	
 	//collect values
 	const double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake

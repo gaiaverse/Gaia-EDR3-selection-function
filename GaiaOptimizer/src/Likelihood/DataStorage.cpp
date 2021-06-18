@@ -58,9 +58,26 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	
 	Mode = NormalApproximation;
 	
-	for(int i = 0; i < VariancePopulationFractions.size(); ++i)
+	//~ for(int i = 0; i < VariancePopulationFractions.size(); ++i)
+	//~ {
+		//~ VariancePopulation p = VariancePopulation(VariancePopulationFractions[i],VarianceBaselines[i],VarianceLinears[i],VarianceQuadratics[i]);
+		//~ VariancePopulations.push_back(p);	
+	//~ }
+	VariancePopulations = std::vector<VariancePopulation>(NVariancePops);
+}
+
+void LikelihoodData::GeneratePopulations(const std::vector<double> & x)
+{
+	
+	for (int i = 0; i < NVariancePops; ++i)
 	{
-		VariancePopulation p = VariancePopulation(VariancePopulationFractions[i],VarianceBaselines[i],VarianceLinears[i],VarianceQuadratics[i]);
-		VariancePopulations.push_back(p);	
+		double frac = x[transformedNonHyperParams + hyperFractionOffset + i];
+		std::vector<double> c(hyperOrder,0.0);
+		for (int j =  0; j < hyperOrder; ++j)
+		{
+			c[j] = x[transformedNonHyperParams + j*NVariancePops + i];
+		}
+		
+		VariancePopulations[i] = VariancePopulation(frac,c);
 	}
 }

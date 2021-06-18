@@ -12,28 +12,32 @@ enum Probability { NormalApproximation, PoissonBinomial};
 struct VariancePopulation
 {
 	double Fraction;
-	double BaselineVariance;
-	double LinearVariance;
-	double QuadraticVariance;
+	std::vector<double> PowerContributions;
 	
-	//~ VariancePopulation(){};
-	VariancePopulation(double fraction,double base,double linearscaling, double quadraticscaling)
+	VariancePopulation(){};
+	VariancePopulation(double fraction,std::vector<double> contributions)
 	{
 		Fraction = fraction;
-		BaselineVariance = base;
-		LinearVariance = linearscaling;
-		QuadraticVariance = quadraticscaling;
+		PowerContributions = contributions;
 	}; 
 	double Variance(double scaling)
 	{
-		return BaselineVariance + scaling * LinearVariance + scaling*scaling * QuadraticVariance;
+		double v = 0;
+		for (int i =0; i < PowerContributions.size(); ++i)
+		{
+			v += PowerContributions[i] * pow(scaling,i);
+		}
+		return v;
 	}
 	double Gradient(double scaling,bool active)
 	{
 		double value = 0;
 		if (active)
 		{
-			value += LinearVariance + 2 * scaling * QuadraticVariance;
+			for (int i = 1; i < PowerContributions.size(); ++i)
+			{
+				value+= i * PowerContributions[i] * pow(scaling,i-1);
+			}
 		}
 		return value;
 	}
@@ -76,5 +80,7 @@ class LikelihoodData
 		
 		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
+		
+		void GeneratePopulations(const std::vector<double> & x);
 };
 

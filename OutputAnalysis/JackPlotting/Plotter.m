@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic61_mScaling","Diagnostic61_nScaling"];
-files = [files(1)];
-getData(60);
+% files = ["Diagnostic61_mScaling","Diagnostic61_nScaling"];
+files = ["hometest"];
+% getData(60);
 
 N1 =0;
-N2 = 8;
+N2 = 14;
 gap = 2;
 progressPlot(files, 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
-% temporalPlot(files,N2,100,0,42);
+temporalPlot(files,N2,100,0,42);
 
 
 
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2310;%2230;
-% xmax = 2415;%2248;
+xmin = 2310;%2230;
+xmax = 2415;%2248;
 ymin = -18;
 ymax = 18;
 gaps = readtable("edr3_gaps.csv");

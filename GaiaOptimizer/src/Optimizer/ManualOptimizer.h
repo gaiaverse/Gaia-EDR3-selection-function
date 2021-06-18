@@ -102,6 +102,7 @@ class Optimizer
 			
 		void Minimize(VectorXd & x)
 		{
+
 			Initialise();
 			
 			switch(Properties.Mode)
