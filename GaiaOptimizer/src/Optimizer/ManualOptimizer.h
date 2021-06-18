@@ -318,7 +318,7 @@ class Optimizer
 			int problematicSignChanges = std::max(2,N/3);
 			if ((mean > 0) || signChanges >= problematicSignChanges)
 			{
-				std::cout << "Problem: " << mean << "   " << signChanges << std::endl;
+
 				batchesAreAProblem = true;
 			}
 

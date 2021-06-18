@@ -6,8 +6,8 @@ files = ["hometest_noVariance"];
 % getData(60);
 
 N1 =0;
-N2 = 45;
-gap = 6;
+N2 = 40;
+gap = 10;
 progressPlot(files, 0)
 gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
 temporalPlot(files,N2,100,0,42);
@@ -75,7 +75,7 @@ for i = 1:length(folders)
 	Nm = properties.Nm(1);
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
-    pow = 2;
+    pow = 1;
     pop = length(varianceSegment)/(pow+2);
     
     for k = 1:pop
