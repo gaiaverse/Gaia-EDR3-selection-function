@@ -248,12 +248,12 @@ void logphi(double z, double& f, double& df)
 double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient, std::vector<VariancePopulation> & populations)
 {
 	
-	double m_base = 0.0;
+	double m = 0.0;
 	double s2_base = 0;
 
 	for(int i = 0; i < probslen; ++i)
 	{
-        m_base += probs[i];
+        m += probs[i];
         s2_base += probs[i]*(1.0-probs[i]);
 	}
 	
@@ -261,12 +261,12 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
 	
 	const bool mScaling = true;
-	int scaling;
+	double scaling;
 	int mGradientFactor;
 	if (mScaling)
 	{
 		mGradientFactor = 1;
-		scaling = m_base;
+		scaling = m;
 	}
 	else
 	{
@@ -276,11 +276,9 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	
 	for (int i =0; i < populations.size(); ++i)
 	{
-		double m = m_base;
-		
-		double s2 = s2_base + populations[i].BaselineVariance + populations[i].LinearVariance * scaling + populations[i].QuadraticVariance * scaling*scaling;
-	    double s = sqrt(s2);
 
+		double s2 = s2_base + populations[i].Variance(scaling);
+	    double s = sqrt(s2);
 	    
 		double value_Full;
 		double value_Approx;
@@ -313,9 +311,10 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 
 		populationValues[i] = value_Full;
 
+		double chainRuleTerm  = populations[i].Gradient(scaling,mGradientFactor);
 	    for(int j = 0; j < probslen; ++j)
-	    {
-			double grad_full = dlpmf_dm + (1.0-2.0*probs[j] + mGradientFactor*(populations[i].LinearVariance + 2*m*populations[i].QuadraticVariance))*dlpmf_ds2;
+	    {	
+			double grad_full = dlpmf_dm + (1.0 - 2.0*probs[j] + chainRuleTerm)*dlpmf_ds2;
 	        populationGradients[i][j] = grad_full;
 	      
 	    }

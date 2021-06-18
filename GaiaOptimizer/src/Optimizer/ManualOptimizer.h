@@ -56,7 +56,7 @@ class Optimizer
 			Properties.Mode = OptimiserModes::ADABADAM;
 			Properties.MiniBatches = 1;
 			Properties.BurnInSteps = 0;
-			Properties.StepSize = 0.01;			
+			Properties.StepSize = 0.05;			
 			
 			Properties.MinibatchDownStep = 4;
 			

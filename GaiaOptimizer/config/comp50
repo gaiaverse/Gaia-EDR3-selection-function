@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic60_mScaling/
+output       ../../Output/Diagnostic61_mScaling/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
 max-steps    500
-burnin       1
+burnin       5
 save-steps   2
 unique-temp-save 1
 minibatch     128

@@ -24,11 +24,18 @@ struct VariancePopulation
 		LinearVariance = linearscaling;
 		QuadraticVariance = quadraticscaling;
 	}; 
-	void Print()
+	double Variance(double scaling)
 	{
-				
-		std::cout << "I have: " << std::endl;
-		std::cout << Fraction << "   " << BaselineVariance << "   " << LinearVariance << "   " << QuadraticVariance << std::endl;
+		return BaselineVariance + scaling * LinearVariance + scaling*scaling * QuadraticVariance;
+	}
+	double Gradient(double scaling,bool active)
+	{
+		double value = 0;
+		if (active)
+		{
+			value += LinearVariance + 2 * scaling * QuadraticVariance;
+		}
+		return value;
 	}
 };
 class LikelihoodData
