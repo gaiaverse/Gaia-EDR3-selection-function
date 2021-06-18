@@ -273,10 +273,10 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
 	std::vector<double> hyperGradientHolder(NHyper,0.0);
 
-	const bool mScaling = false;
+
 	double scaling;
 	int mGradientFactor;
-	if (mScaling)
+	if (useMVarianceScaling)
 	{
 		mGradientFactor = 1;
 		scaling = m;

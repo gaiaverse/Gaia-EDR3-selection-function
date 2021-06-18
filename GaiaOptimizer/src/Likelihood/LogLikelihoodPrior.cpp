@@ -4,19 +4,20 @@
 void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches)
 {
 	int n = rawNonHyperParams;
-	for (int i = 0; i < n ; ++i)
+	for (int i = 0; i < totalRawParams ; ++i)
 	{
 		double d = RawParams[i];
+		
+		if (i >= n && i < totalRawParams - NVariancePops)
+		{
+			d -= log(1e-1);
+		}
+		
 		currentValue[0] -= 0.5 * d * d / effectiveBatches;
 		
 		currentGradient[0][i] -= d / effectiveBatches;
 	}
 	
-	//different prior on the hyperparameters
-	for (int i = rawNonHyperParams; i < totalRawParams; ++i)
-	{
-		
-	}
 }
 
 
