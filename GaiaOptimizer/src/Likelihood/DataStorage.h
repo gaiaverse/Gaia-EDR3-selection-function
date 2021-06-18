@@ -19,6 +19,8 @@ struct VariancePopulation
 	{
 		Fraction = fraction;
 		PowerContributions = contributions;
+		
+		
 	}; 
 	double Variance(double scaling)
 	{

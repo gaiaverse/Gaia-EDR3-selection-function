@@ -259,12 +259,12 @@ class Optimizer
 				Status.Converged = true;
 				Status.Continues = false;
 			}
-			if (Progress.MovingAverage > 0)
-			{
-				Status.ReachedFunctionConvergence = true;
-				Status.Converged = true;
-				Status.Continues = false;
-			}
+			//~ if (Progress.MovingAverage > 0)
+			//~ {
+				//~ Status.ReachedFunctionConvergence = true;
+				//~ Status.Converged = true;
+				//~ Status.Continues = false;
+			//~ }
 		} 
 
 		int CheckMinibatches(double df,int currentSize)

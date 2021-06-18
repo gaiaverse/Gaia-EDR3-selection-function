@@ -30,14 +30,14 @@ const int magOffset = 0; //offset of loaded files from 0.csv (assuming default f
 
 
 
-const int NVariancePops = 1;
-const int hyperOrder = 1;
+const int NVariancePops = 3;
+const int hyperOrder = 4;
 
 //temporal and magnitude lengthscales + variances
 
 const double sigmat = 5;
 const double lm = 3;
-const double lt = 10;
+const double lt = 100;
 
 //prior and initialisation values
 const double xmPrior = -3;

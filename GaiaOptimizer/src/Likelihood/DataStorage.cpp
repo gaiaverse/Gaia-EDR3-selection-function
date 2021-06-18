@@ -72,9 +72,10 @@ void LikelihoodData::GeneratePopulations(const std::vector<double> & x)
 	for (int i = 0; i < NVariancePops; ++i)
 	{
 		double frac = x[transformedNonHyperParams + hyperFractionOffset + i];
-		std::vector<double> c(hyperOrder,0.0);
-		for (int j =  0; j < hyperOrder; ++j)
+		std::vector<double> c(hyperOrder+1,0.0);
+		for (int j =  0; j <= hyperOrder; ++j)
 		{
+			//~ std::cout << "POW " << j << std::endl;
 			c[j] = x[transformedNonHyperParams + j*NVariancePops + i];
 		}
 		
