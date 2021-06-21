@@ -57,7 +57,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 {
 	int n = candidate->nVisit;
 	//generate p vectors
-	Data.ExpectedActiveVisitations = 0;
+
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate->TimeSeries[i];

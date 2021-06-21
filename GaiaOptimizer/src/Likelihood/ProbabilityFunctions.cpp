@@ -296,7 +296,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		}
 		case ActiveNScaling:
 		{
-			nPrime = data.ExpectedActiveVisitations;
+			nPrime = activeN;
 			s2ChainRuleOn = true;
 			s2PmlDivisionOn = true;
 			break;
@@ -351,14 +351,14 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		double chainRuleBase  = pop->Gradient(nPrime,s2ChainRuleOn) * dlpmf_ds2;
 	    for(int j = 0; j < probslen; ++j)
 	    {	
-			double chainRuleTerm;
+			double chainRuleTerm = chainRuleBase;
 			if (s2PmlDivisionOn)
 			{
-				chainRuleTerm = chainRuleBase * data.pt[j];
+				chainRuleTerm *= data.pt[j];
 			}
 			else
 			{
-				chainRuleTerm = chainRuleBase * data.p[j];
+				chainRuleTerm *= data.p[j];
 			}
 			double grad_full = ( dlpmf_dm + (1.0 - 2.0*data.p[j] )*dlpmf_ds2) * data.p[j] + chainRuleTerm;
 	        populationGradients[i][j] = grad_full;

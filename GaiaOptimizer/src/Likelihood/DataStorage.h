@@ -77,7 +77,6 @@ class LikelihoodData
 		std::vector<double> grad_elu_xml2;
 		
 		
-		double ExpectedActiveVisitations;
 		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
 		

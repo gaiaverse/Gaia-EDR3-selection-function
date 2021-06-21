@@ -6,10 +6,10 @@ files = files(end)
 getData(60);
 
 N1 =0;
-N2 = 16;
+N2 = 4;
 gap = 2;
-progressPlot(files, 3)
-gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+progressPlot(files, 4)
+% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
 
