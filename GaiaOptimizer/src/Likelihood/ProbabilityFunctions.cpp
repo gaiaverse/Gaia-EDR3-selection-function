@@ -347,15 +347,19 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(nPrime,j);
 		}
 		
-		double chainRuleTerm  = pop->Gradient(nPrime,s2ChainRuleOn);
-		double divider = 1;
+		double chainRuleBase  = pop->Gradient(nPrime,s2ChainRuleOn) * dlpmf_ds2;
 	    for(int j = 0; j < probslen; ++j)
 	    {	
+			double chainRuleTerm;
 			if (s2PmlDivisionOn)
 			{
-				divider = data.pml[j];
+				chainRuleTerm = chainRuleBase * data.pt[j];
 			}
-			double grad_full = dlpmf_dm + (1.0 - 2.0*data.p[j] + chainRuleTerm/divider )*dlpmf_ds2;
+			else
+			{
+				chainRuleTerm = chainRuleBase * data.p[j];
+			}
+			double grad_full = ( dlpmf_dm + (1.0 - 2.0*data.p[j] )*dlpmf_ds2) * data.p[j] + chainRuleTerm;
 	        populationGradients[i][j] = grad_full;
 	      
 	    }
@@ -368,7 +372,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		value = log_add_exp(value, populationValues[j]);
     }
 
-	populationAccumulate(populationValues, populationGradients, value, probslen, NVariancePops, data.dfdp);
+	populationAccumulate(populationValues, populationGradients, value, probslen, NVariancePops, data.p_dfdp);
     
 	for (int i = 0; i < NVariancePops; ++i)
 	{

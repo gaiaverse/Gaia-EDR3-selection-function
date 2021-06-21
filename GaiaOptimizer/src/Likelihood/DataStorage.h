@@ -51,16 +51,13 @@ class LikelihoodData
 		LikelihoodData(const std::vector<std::vector<Star>> &data, int id);
 		
 		int ID;
-		
 		const std::vector<std::vector<Star>> &Stars;
-		//~ int NStars;
 		
 		//Indexing data, allows us to index properly into the 
 		//spatial and temporal parts of the vector
 		std::vector<int> healpix_fov_1;
     	std::vector<int> healpix_fov_2;
     	std::vector<int> time_mapping;
-		//~ std::vector<int> magtime_mapping;
 
 	
 	
@@ -70,10 +67,9 @@ class LikelihoodData
 		std::vector<std::vector<double>> pmf_forward;
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
-		std::vector<double> dfdp;
+		std::vector<double> p_dfdp;
 		std::vector<double> hypergradient;
 		std::vector<double> pt;
-		//~ std::vector<double> ptm;
 		std::vector<double> pml;
 		std::vector<double> p;
 

@@ -188,7 +188,7 @@ void LogLikelihood::PoissonContribution(const Star * candidate)
 			ExactPoissonContribution(candidate);
 			return;
 		}
-		Data.dfdp[i] =  dfdp_i;
+		Data.p_dfdp[i] =  dfdp_i*Data.p[i];
 	}
 	
 }
@@ -262,7 +262,7 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 		{
 			dfdpEmergency = true;
 		}
-		Data.dfdp[i] = dfdp_i;
+		Data.p_dfdp[i] = Data.p[i] * dfdp_i;
 	}
 	
 	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
@@ -291,10 +291,10 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 			std::cout << Data.subpmf[0][i] << "\t\t" << Data.subpmf[1][i] << "\t\t" << Data.subpmf[2][i] << "\n";
 		}
 		
-		std::cout << "\n\ndfdp = (";
+		std::cout << "\n\np*dfdp = (";
 		for (int i = 0; i < n; ++i)
 		{
-			std::cout << Data.dfdp[i] << ", ";
+			std::cout << Data.p_dfdp[i] << ", ";
 		}
 		std::cout << ")\n\n";
 		ERROR(100, "See above output");
@@ -305,7 +305,7 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 	int n = candidate->nVisit;
 	for (int i = 0; i < n; ++i)
 	{		
-		double dFdP_p = Data.dfdp[i] * Data.p[i];
+		double dFdP_p = Data.p_dfdp[i];
 
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];

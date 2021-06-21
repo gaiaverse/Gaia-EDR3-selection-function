@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic62_mScaling_fittedVariance","Diagnostic62_nScaling_fittedVariance"];
-files = ["hometest_nActive"];
+files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
+files = ["hometest_nActive"];%files(end)
 % getData(60);
 
 N1 =0;
-N2 = 40;
+N2 = 48;
 gap = 2;
 progressPlot(files, 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
-% temporalPlot(files,N2,100,0,42);
+% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+temporalPlot(files,N2,100,0,42);
 
 
 
@@ -36,8 +36,8 @@ xmin = t(1);
 xmax = t(2);
 % xmin = 2380;%2230;
 % xmax = 2415;%2248;
-ymin = -38;
-ymax = 38;
+ymin = -10;
+ymax = 10;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -243,8 +243,8 @@ for i = 1:length(files)
 		mE = miniBatches.Elapsed(end);
 		L0 = miniBatches.F(1);
 	end
-	% 		L0 =1;
-	ender = max(fE,mE);
+			L0 =1;
+	
 	cutx = false(1,height(fullEpoch));
 	for j = 2:height(fullEpoch)
 		up = fullEpoch.nBatches(j);
@@ -262,7 +262,7 @@ for i = 1:length(files)
 	
 	xB = miniX; %miniBatches.Elapsed;
 	xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
-	
+	ender = max(xB);
 	%         plot(fullEpoch.Elapsed,xF);
 	plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);
 	plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:),'HandleVisibility','Off');
@@ -280,7 +280,7 @@ for i = 1:length(files)
 		cz2(end+1) = shrinkLines.GradNorm(j);
 	end
 	scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
-	xlim([minLim,ender])
+% 	xlim([minLim,ender])
 	
 	ylabel("Complete Epochs");
 	xlabel("Time Elapsed (s)");
@@ -291,13 +291,13 @@ for i = 1:length(files)
 	
 	subplot(2,2,2);
 	hold on;
-	plot(miniBatches.Elapsed,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+	plot(xB,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
-	plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
+	plot(xF,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
 	scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 % 	        set(gca,'xscale','log')
-	xlabel("Elapsed Time (s)");
+	xlabel("Complete Epochs");
 	ylabel("$L/L_0$");
 	hold off;
 	grid on;
@@ -311,7 +311,7 @@ for i = 1:length(files)
 	
 	if height(miniBatches) > 1
 		miniBatches.dF(1) = 0;
-		x1 = miniBatches.Elapsed';
+		x1 = xB';
 		y1 = smooth(miniBatches.dF./miniBatches.F,miniSmooth)';
 		zq = zeros(size(x1));
 		s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
@@ -329,7 +329,7 @@ for i = 1:length(files)
 	if height(fullEpoch) > 1
 		
 		fullEpoch.dF(1) = fullEpoch.F(1) - L0;
-		x2 = fullEpoch.Elapsed';
+		x2 = xF';
 		y2 = (fullEpoch.dF./fullEpoch.F)';
 		zq = zeros(size(x2));
 		col = (y2>0)*(2*i-1);
@@ -370,9 +370,9 @@ for i = 1:length(files)
 	
 	subplot(2,2,4);
 	hold on;
-	plot(miniBatches.Elapsed,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+	plot(xB,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
-	plot(fullEpoch.Elapsed,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
+	plot(xF,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
 	scatter(cx,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 	%         set(gca,'xscale','log')
