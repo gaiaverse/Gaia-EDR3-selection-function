@@ -2,13 +2,13 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = "hometest_nActive";
-% getData(60);
+files = files(end);
+getData(30);
 
 N1 =0;
-N2 = 82;
-gap = 4;
-progressPlot(files, 1)
+N2 = 12;
+gap = 2;
+progressPlot(files, 2)
 gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
@@ -262,8 +262,11 @@ for i = 1:length(files)
 	
 	xB = miniX; %miniBatches.Elapsed;
 	xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
-	ender = max(max(xB),max(xF));
-    
+    if height(fullEpoch) > 0
+        ender = max(max(xB),max(xF));
+    else
+        ender = max(xB);
+    end
 	%         plot(fullEpoch.Elapsed,xF);
 	plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);
 	plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:),'HandleVisibility','Off');
