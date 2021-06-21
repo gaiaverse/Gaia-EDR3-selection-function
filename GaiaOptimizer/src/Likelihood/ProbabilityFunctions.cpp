@@ -258,38 +258,56 @@ void populationAccumulate(const std::vector<double> popValues, const std::vector
 }
 
 
-double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, int probslen, std::vector<double> & gradient, std::vector<VariancePopulation> & populations,std::vector<double> & hypergradient)
+double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 {
 	double m = 0.0;
 	double s2_base = 0;
 
 	for(int i = 0; i < probslen; ++i)
 	{
-        m += probs[i];
-        s2_base += probs[i]*(1.0-probs[i]);
+        m += data.p[i];
+        s2_base += data.p[i]*(1.0-data.p[i]);
 	}
 	
-	std::vector<double> populationValues(populations.size(),0.0);
-	std::vector<std::vector<double>> populationGradients(populations.size(), std::vector<double>(probslen,0.0));
+	std::vector<double> populationValues(NVariancePops,0.0);
+	std::vector<std::vector<double>> populationGradients(NVariancePops, std::vector<double>(probslen,0.0));
 	std::vector<double> hyperGradientHolder(NHyper,0.0);
 
 
-	double scaling;
-	int mGradientFactor;
-	if (useMVarianceScaling)
+	double nPrime;
+	bool s2ChainRuleOn;
+	bool s2PmlDivisionOn;
+	switch (ScalingMode)
 	{
-		mGradientFactor = 1;
-		scaling = m;
+		case NScaling:
+		{
+			nPrime = probslen;
+			s2ChainRuleOn= false;
+			s2PmlDivisionOn = false;
+			break;
+		}
+		case MScaling:
+		{
+			nPrime = m;
+			s2ChainRuleOn = true;
+			s2PmlDivisionOn = false;
+			break;
+		}
+		case ActiveNScaling:
+		{
+			nPrime = data.ExpectedActiveVisitations;
+			s2ChainRuleOn = true;
+			s2PmlDivisionOn = true;
+			break;
+		}
 	}
-	else
+	
+	
+	for (int i =0; i < NVariancePops; ++i)
 	{
-		mGradientFactor = 0;
-		scaling = probslen;
-	}
-	for (int i =0; i < populations.size(); ++i)
-	{
-
-		double s2 = s2_base + populations[i].Variance(scaling);
+		VariancePopulation * pop = &data.VariancePopulations[i];
+		
+		double s2 = s2_base + pop->Variance(nPrime);
 	    double s = sqrt(s2);
 	    
 		double value_Full;
@@ -317,22 +335,27 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
 
 		double logPhiMin, dlogPhiMin;
 	    logphi(-(PipelineMinVisits-m-0.5)/s,logPhiMin, dlogPhiMin);
-	    value_Full = logPhiDifference - logPhiMin + log(populations[i].Fraction);
+	    value_Full = logPhiDifference - logPhiMin + log(pop->Fraction);
 	    dlpmf_dm -= dlogPhiMin/s;
 	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m-0.5)*dlogPhiMin/s/s2;
 
 		populationValues[i] = value_Full;
 
-		hypergradient[hyperFractionOffset + i] = 1.0/populations[i].Fraction;
+		data.hypergradient[hyperFractionOffset + i] = 1.0/pop->Fraction;
 		for (int j = 0; j <= hyperOrder; ++j)
 		{
-			hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(scaling,j);
+			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(nPrime,j);
 		}
 		
-		double chainRuleTerm  = populations[i].Gradient(scaling,mGradientFactor);
+		double chainRuleTerm  = pop->Gradient(nPrime,s2ChainRuleOn);
+		double divider = 1;
 	    for(int j = 0; j < probslen; ++j)
 	    {	
-			double grad_full = dlpmf_dm + (1.0 - 2.0*probs[j] + chainRuleTerm)*dlpmf_ds2;
+			if (s2PmlDivisionOn)
+			{
+				divider = data.pml[j];
+			}
+			double grad_full = dlpmf_dm + (1.0 - 2.0*data.p[j] + chainRuleTerm/divider )*dlpmf_ds2;
 	        populationGradients[i][j] = grad_full;
 	      
 	    }
@@ -340,19 +363,19 @@ double poisson_binomial_normal_lpmf(int k, const std::vector<double> & probs, in
     
     double value = VerySmallLog;
     
-    for (int j = 0; j < populations.size(); ++j)
+    for (int j = 0; j < NVariancePops; ++j)
     {		
 		value = log_add_exp(value, populationValues[j]);
     }
 
-	populationAccumulate(populationValues, populationGradients, value, probslen, populations.size(), gradient);
+	populationAccumulate(populationValues, populationGradients, value, probslen, NVariancePops, data.dfdp);
     
 	for (int i = 0; i < NVariancePops; ++i)
 	{
 		for (int j = 0; j < (2+hyperOrder); ++j)
 		{
 			int index = j*NVariancePops + i;
-			hypergradient[index] *= exp(populationValues[i] - value);
+			data.hypergradient[index] *= exp(populationValues[i] - value);
 		}
 	}
     return value;

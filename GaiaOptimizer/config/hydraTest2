@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic63_activeScaling_noGapPrior/
+output       ../../Output/Diagnostic63_mScaling_noGapPrior/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
@@ -7,4 +7,3 @@ burnin       4
 save-steps   2
 unique-temp-save 1
 minibatch     128
-

@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic61_mScaling","Diagnostic61_nScaling"];
-files = ["hometest_initTest2"];
+files = ["Diagnostic62_mScaling_fittedVariance","Diagnostic62_nScaling_fittedVariance"];
+files = ["hometest_nActive"];
 % getData(60);
 
 N1 =0;
-N2 = 100;
-gap = 10;
-progressPlot(files, 10)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
-temporalPlot(files,N2,100,0,42);
+N2 = 40;
+gap = 2;
+progressPlot(files, 0)
+gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+% temporalPlot(files,N2,100,0,42);
 
 
 
@@ -34,10 +34,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2310;%2230;
+% xmin = 2380;%2230;
 % xmax = 2415;%2248;
-ymin = -18;
-ymax = 18;
+ymin = -38;
+ymax = 38;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -51,14 +51,9 @@ for i = 1:length(folders)
 	properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 	
 	name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-	
-	tnumber = number;
-	if name == "../../../CodeOutput/InitTest/TempPositions/TempPosition" && number > 92
-		tnumber = 92;
-	end
-	
-	if tnumber > -1
-		name = name + num2str(tnumber);
+		
+	if number > -1
+		name = name + num2str(number);
 	end
 	name = name + "_TransformedParameters.dat";
 	if number == -1
@@ -75,16 +70,16 @@ for i = 1:length(folders)
 	Nm = properties.Nm(1);
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
-    pow = 4;
+    pow = 1;
     pop = length(varianceSegment)/(pow+2);
-    
+    fprintf("\nVarince output for " + name+"\n");
     for k = 1:pop
        ps = [];
         for j = 0:pow
            ps(end+1) = varianceSegment(j*pop+k);  
         end
         frac = varianceSegment((1+pow)*pop + k);
-        fprintf("Pop %d has fraction %.3f and variance model ",k,frac)
+        fprintf("\tPop %d has fraction %.3f and variance model ",k,frac)
         for j = 0:pow
             s = "%f n^%d ";
             if j < pow
@@ -171,7 +166,7 @@ for i = 1:length(folders)
               yl = [-2,8];
              
         end
-		plot(p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")
+		plot(zs,p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")
         
         fill(xRow,p(yRow),map(i,:),'FaceAlpha',0.1,'EdgeColor','None');
 %         plot(maxes,'Color',map(i,:),"HandleVisibility","Off")
@@ -185,7 +180,7 @@ for i = 1:length(folders)
 	title("Spatial Components " + frameTitle);
 	xlabel("Source file, $i$.csv");
 	ylabel("Mean $x_{ml}$ on sky")
-	xlim([0,Nm])
+	xlim([0,Nm-1])
 	ylim(yl)
 	grid on;
 	
@@ -300,8 +295,8 @@ for i = 1:length(files)
 	
 	plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
 	scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
-% 	set(gca,'yscale','log')
-	%         set(gca,'xscale','log')
+	set(gca,'yscale','log')
+% 	        set(gca,'xscale','log')
 	xlabel("Elapsed Time (s)");
 	ylabel("$L/L_0$");
 	hold off;

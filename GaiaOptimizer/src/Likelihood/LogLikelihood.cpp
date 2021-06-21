@@ -57,6 +57,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 {
 	int n = candidate->nVisit;
 	//generate p vectors
+	Data.ExpectedActiveVisitations = 0;
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate->TimeSeries[i];
@@ -71,7 +72,9 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		double elu_xml1 = elu(x[idx1]);
 		double elu_xml2 = elu(x[idx2]);
 		
-		Data.pt[i] = sigmoid(xt);
+		double pt = sigmoid(xt);
+		Data.pt[i] = pt;
+		Data.ExpectedActiveVisitations += pt;
 
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
@@ -102,7 +105,7 @@ void LogLikelihood::NormalContribution(const Star * candidate)
 {
 	int n = candidate->nVisit;
 	int k = candidate->nMeasure;
-	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp,Data.VariancePopulations,Data.hypergradient);
+	Value += poisson_binomial_normal_lpmf(k, n, Data);
 }
 
 void LogLikelihood::PoissonContribution(const Star * candidate)
