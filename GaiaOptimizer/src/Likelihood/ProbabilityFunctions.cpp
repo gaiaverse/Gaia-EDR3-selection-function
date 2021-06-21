@@ -262,10 +262,11 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 {
 	double m = 0.0;
 	double s2_base = 0;
-
+	double activeN = 0;
 	for(int i = 0; i < probslen; ++i)
 	{
         m += data.p[i];
+        activeN += data.pt[i];
         s2_base += data.p[i]*(1.0-data.p[i]);
 	}
 	

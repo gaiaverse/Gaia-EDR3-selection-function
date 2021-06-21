@@ -2,15 +2,15 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = ["hometest_nActive"];%files(end)
-% getData(60);
+files = files(end)
+getData(60);
 
 N1 =0;
-N2 = 48;
+N2 = 16;
 gap = 2;
-progressPlot(files, 0)
-% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
-temporalPlot(files,N2,100,0,42);
+progressPlot(files, 3)
+gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+% temporalPlot(files,N2,100,0,42);
 
 
 
@@ -155,7 +155,7 @@ for i = 1:length(folders)
     xRow = [zs, fliplr(zs)]';
     yRow = [maxes; flipud(mins)];
 
-    expMode = true;
+    expMode = false;
     if Nm > 1
         alpha = 0.5*log(2);
         if expMode == true
@@ -163,7 +163,7 @@ for i = 1:length(folders)
            yl = [0,1];
         else
              p = @(x) x;
-              yl = [-2,8];
+              yl = [-12,18];
              
         end
 		plot(zs,p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")

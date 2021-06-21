@@ -74,7 +74,6 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		
 		double pt = sigmoid(xt);
 		Data.pt[i] = pt;
-		Data.ExpectedActiveVisitations += pt;
 
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
