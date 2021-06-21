@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior","Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior"];
-files = files([2]);
+files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
+% files = files(end);
 getData(60);
 
 N1 =0;
-N2 = 14;
+N2 = 6;
 gap = 2;
-progressPlot(files, 6)
-gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+progressPlot(files, 0)
+% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
 
@@ -95,7 +95,7 @@ for i = 1:length(folders)
 	%     nexttile(T);
 	f = z(1:Nt);
 	
-	
+
 	
 	m = z(Nt+1:Nt+Nm*Nl);
 	magT = z(Nt+Nm*Nl+1:end);
