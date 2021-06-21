@@ -1,14 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = files(end);
-getData(30);
+files = ["Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior","Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior"];
+files = files([2]);
+getData(60);
 
 N1 =0;
-N2 = 12;
+N2 = 14;
 gap = 2;
-progressPlot(files, 2)
+progressPlot(files, 6)
 gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 2170;%2230;
-xmax = 2414;%2248;
+% xmin = 2170;%2230;
+% xmax = 2414;%2248;
 ymin = -10;
 ymax = 10;
 gaps = readtable("edr3_gaps.csv");
@@ -155,7 +155,7 @@ for i = 1:length(folders)
     xRow = [zs, fliplr(zs)]';
     yRow = [maxes; flipud(mins)];
 
-    expMode = false;
+    expMode = true;
     if Nm > 1
         alpha = 0.5*log(2);
         if expMode == true
