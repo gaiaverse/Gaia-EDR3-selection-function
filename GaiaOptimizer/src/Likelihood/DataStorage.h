@@ -68,6 +68,8 @@ class LikelihoodData
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
 		std::vector<double> p_dfdp;
+		std::vector<double> dfdp_variance_time;
+		std::vector<double> dfdp_variance_space;
 		std::vector<double> hypergradient;
 		std::vector<double> pt;
 		std::vector<double> pml;

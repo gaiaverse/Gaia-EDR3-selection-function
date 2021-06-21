@@ -15,6 +15,8 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	grad_elu_xml1 = std::vector<double>(nBig,0);
 	grad_elu_xml2 = std::vector<double>(nBig,0);
 	p_dfdp = std::vector<double>(nBig,0);
+	dfdp_variance_time = std::vector<double>(nBig,0);
+	dfdp_variance_space = std::vector<double>(nBig,0);
 	hypergradient = std::vector<double>(NHyper,0.0);
 
     //read in the healpix stuff

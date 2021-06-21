@@ -2,14 +2,14 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = files(end)
-getData(60);
+files = "hometest_nActive";
+% getData(60);
 
 N1 =0;
-N2 = 4;
-gap = 2;
-progressPlot(files, 4)
-% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
+N2 = 82;
+gap = 4;
+progressPlot(files, 1)
+gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
 % temporalPlot(files,N2,100,0,42);
 
 
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2380;%2230;
-% xmax = 2415;%2248;
+xmin = 2170;%2230;
+xmax = 2414;%2248;
 ymin = -10;
 ymax = 10;
 gaps = readtable("edr3_gaps.csv");
@@ -262,7 +262,8 @@ for i = 1:length(files)
 	
 	xB = miniX; %miniBatches.Elapsed;
 	xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
-	ender = max(xB);
+	ender = max(max(xB),max(xF));
+    
 	%         plot(fullEpoch.Elapsed,xF);
 	plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);
 	plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:),'HandleVisibility','Off');
@@ -294,7 +295,7 @@ for i = 1:length(files)
 	plot(xB,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
 	plot(xF,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
-	scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
+	scatter(cy,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 % 	        set(gca,'xscale','log')
 	xlabel("Complete Epochs");
@@ -350,7 +351,7 @@ for i = 1:length(files)
 		end
 	end
 	caxis([0,3]);
-	scatter(cx,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
+	scatter(cy,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
 	hold off;
 	xlabel("Elapsed Time (s)");
 	ylabel("$\Delta L / L $");
@@ -373,7 +374,7 @@ for i = 1:length(files)
 	plot(xB,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
 	plot(xF,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
-	scatter(cx,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
+	scatter(cy,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 	%         set(gca,'xscale','log')
 	xlabel("Elapsed Time (s)");

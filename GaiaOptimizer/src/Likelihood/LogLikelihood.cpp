@@ -306,6 +306,9 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 	{		
 		double dFdP_p = Data.p_dfdp[i];
 
+		double timeVarianceTerm = Data.dfdp_variance_time[i] * Data.pt[i];
+		double spaceVarianceTerm = Data.dfdp_variance_space[i] * Data.pml[i];
+		
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
 		
@@ -317,10 +320,10 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		
 		//Gradient[T] += dFdP_p * (1.0 - Data.pt[i]) * (1.0 - time_multiplier);
 		//Gradient[T+1] += dFdP_p * (1.0 - Data.pt[i]) * time_multiplier;
-		Gradient[T] += dFdP_p * (1.0 - Data.pt[i]);
+		Gradient[T] += (dFdP_p + timeVarianceTerm) * (1.0 - Data.pt[i]);
 
-		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
-		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
+		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * (dFdP_p + spaceVarianceTerm);
+		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * (dFdP_p + spaceVarianceTerm);
 	}
 	
 	for (int i = 0; i < NHyper; ++i)
