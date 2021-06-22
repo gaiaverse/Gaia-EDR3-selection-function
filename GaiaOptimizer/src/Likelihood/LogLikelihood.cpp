@@ -86,7 +86,7 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 {
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
-	
+	std::cout << "Contribution from " << candidate->nMeasure << "   " << candidate->nVisit << std::endl;
 	switch(Data.Mode)
 	{
 		case PoissonBinomial:

@@ -2,8 +2,8 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = "hometest_nActive";
-% getData(60);
+% files = "hometest_nActive";
+getData(60);
 
 N1 =0;
 N2 = 80;

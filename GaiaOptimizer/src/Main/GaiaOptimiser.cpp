@@ -58,6 +58,7 @@ VectorXd RootProcess()
 
 	//initialise the functor & the solver
 	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches);
+	std::cout << "Descent functor initialised" << std::endl;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
@@ -76,6 +77,7 @@ VectorXd RootProcess()
 	
 	
 	// GO GO GO GO!
+	std::cout << "Optimiser launching..." << std::endl;
 	op.Minimize(x);
 		
 	GlobalLog(0,
