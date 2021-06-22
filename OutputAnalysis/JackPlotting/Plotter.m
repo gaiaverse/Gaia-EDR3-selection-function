@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_mScaling_noGapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-% files = files(end);
-getData(60);
+files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
+files = "hometest_nActive";
+% getData(60);
 
 N1 =0;
-N2 = 6;
+N2 = 80;
 gap = 2;
 progressPlot(files, 0)
 % gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
-% temporalPlot(files,N2,100,0,42);
+temporalPlot(files,N2,100,0,42);
 
 
 
@@ -70,7 +70,7 @@ for i = 1:length(folders)
 	Nm = properties.Nm(1);
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
-    pow = 1;
+    pow = 2;
     pop = length(varianceSegment)/(pow+2);
     fprintf("\nVarince output for " + name+"\n");
     for k = 1:pop

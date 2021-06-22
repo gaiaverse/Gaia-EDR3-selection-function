@@ -14,9 +14,17 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	p = std::vector<double>(nBig,0);
 	grad_elu_xml1 = std::vector<double>(nBig,0);
 	grad_elu_xml2 = std::vector<double>(nBig,0);
-	p_dfdp = std::vector<double>(nBig,0);
-	dfdp_variance_time = std::vector<double>(nBig,0);
-	dfdp_variance_space = std::vector<double>(nBig,0);
+	dfdp_constantN = std::vector<double>(nBig,0);
+	dfdN_constantP = 0;
+	
+	
+	
+	populationValues = std::vector<double>(NVariancePops,0.0);
+	varianceAccumulator = std::vector<double>(NVariancePops,0.0);
+	populationGradients= std::vector<std::vector<double>>(NVariancePops, std::vector<double>(nBig,0.0));
+	hyperGradientHolder= std::vector<double> (NHyper,0.0);
+	
+	
 	hypergradient = std::vector<double>(NHyper,0.0);
 
     //read in the healpix stuff

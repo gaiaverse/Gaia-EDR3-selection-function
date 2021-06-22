@@ -270,37 +270,23 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
         s2_base += data.p[i]*(1.0-data.p[i]);
 	}
 	
-	std::vector<double> populationValues(NVariancePops,0.0);
-	std::vector<std::vector<double>> populationGradients(NVariancePops, std::vector<double>(probslen,0.0));
-	std::vector<std::vector<double>> timeVarianceGradients(NVariancePops, std::vector<double>(probslen,0.0));
-	std::vector<std::vector<double>> spaceVarianceGradients(NVariancePops, std::vector<double>(probslen,0.0));
-	std::vector<double> hyperGradientHolder(NHyper,0.0);
-
-
+	
 	double nPrime;
-	bool varianceChainRuleOn;
-	bool spatialKillerOn;
 	switch (ScalingMode)
 	{
 		case NScaling:
 		{
 			nPrime = probslen;
-			varianceChainRuleOn= false;
-			spatialKillerOn = false;
 			break;
 		}
 		case MScaling:
 		{
 			nPrime = m;
-			varianceChainRuleOn = true;
-			spatialKillerOn = false;
 			break;
 		}
 		case ActiveNScaling:
 		{
 			nPrime = activeN;
-			varianceChainRuleOn = true;
-			spatialKillerOn = true;
 			break;
 		}
 	}
@@ -342,7 +328,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 	    dlpmf_dm -= dlogPhiMin/s;
 	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m-0.5)*dlogPhiMin/s/s2;
 
-		populationValues[i] = value_Full;
+		data.populationValues[i] = value_Full;
 
 		data.hypergradient[hyperFractionOffset + i] = 1.0/pop->Fraction;
 		for (int j = 0; j <= hyperOrder; ++j)
@@ -350,42 +336,33 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(nPrime,j);
 		}
 		
-		double varianceBase  = pop->Gradient(nPrime,varianceChainRuleOn) * dlpmf_ds2;
+		
 	    for(int j = 0; j < probslen; ++j)
 	    {	
-			double tVariance = varianceBase;
-			double sVariance = varianceBase;
-			if (spatialKillerOn)
-			{
-				tVariance *= data.pml[i];
-				sVariance = 0;
-			}
-			else
-			{
-				tVariance *= data.pml[i];
-				sVariance *= data.pt[i];
-			}
-			double grad_full = ( dlpmf_dm + (1.0 - 2.0*data.p[j] )*dlpmf_ds2) * data.p[j];
-	        populationGradients[i][j] = grad_full;
-	        
-	        timeVarianceGradients[i][j] = tVariance;
-	        spaceVarianceGradients[i][j] = sVariance;
-	      
+			double grad_full = ( dlpmf_dm + (1.0 - 2.0*data.p[j] )*dlpmf_ds2);
+	        data.populationGradients[i][j] = grad_full;	      
 	    }
+
+	    data.varianceAccumulator[i] = pop->Gradient(nPrime) * dlpmf_ds2;
     }
     
     double value = VerySmallLog;
-    
+		
     for (int j = 0; j < NVariancePops; ++j)
     {		
-		value = log_add_exp(value, populationValues[j]);
+		value = log_add_exp(value, data.populationValues[j]);
+    }
+    
+	data.dfdN_constantP = 0;
+	for (int j = 0; j < NVariancePops; ++j)
+    {		
+		data.dfdN_constantP += exp(data.populationValues[j] - value) * data.varianceAccumulator[j];
     }
 
-	populationAccumulate(populationValues, populationGradients, value, probslen, NVariancePops, data.p_dfdp);
+
+	populationAccumulate(data.populationValues, data.populationGradients, value, probslen, NVariancePops, data.dfdp_constantN);
     
-    populationAccumulate(populationValues, timeVarianceGradients, value, probslen, NVariancePops, data.dfdp_variance_time);
-    
-    populationAccumulate(populationValues, spaceVarianceGradients, value, probslen, NVariancePops, data.dfdp_variance_space);
+ 
     
     
 	for (int i = 0; i < NVariancePops; ++i)
@@ -393,7 +370,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		for (int j = 0; j < (2+hyperOrder); ++j)
 		{
 			int index = j*NVariancePops + i;
-			data.hypergradient[index] *= exp(populationValues[i] - value);
+			data.hypergradient[index] *= exp(data.populationValues[i] - value);
 		}
 	}
     return value;

@@ -31,15 +31,12 @@ struct VariancePopulation
 		}
 		return v;
 	}
-	double Gradient(double scaling,bool active)
+	double Gradient(double scaling)
 	{
 		double value = 0;
-		if (active)
+		for (int i = 1; i < PowerContributions.size(); ++i)
 		{
-			for (int i = 1; i < PowerContributions.size(); ++i)
-			{
-				value+= i * PowerContributions[i] * pow(scaling,i-1);
-			}
+			value+= i * PowerContributions[i] * pow(scaling,i-1);
 		}
 		return value;
 	}
@@ -67,9 +64,10 @@ class LikelihoodData
 		std::vector<std::vector<double>> pmf_forward;
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
-		std::vector<double> p_dfdp;
-		std::vector<double> dfdp_variance_time;
-		std::vector<double> dfdp_variance_space;
+		
+		std::vector<double> dfdp_constantN;
+		double dfdN_constantP;
+		
 		std::vector<double> hypergradient;
 		std::vector<double> pt;
 		std::vector<double> pml;
@@ -81,6 +79,13 @@ class LikelihoodData
 		
 		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
+		
+		
+		std::vector<double> populationValues;
+		std::vector<double> varianceAccumulator;
+		std::vector<std::vector<double>> populationGradients;
+		
+		std::vector<double> hyperGradientHolder;
 		
 		void GeneratePopulations(const std::vector<double> & x);
 };
