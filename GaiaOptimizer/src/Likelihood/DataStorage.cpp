@@ -19,10 +19,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	
 	
 	
-	populationValues = std::vector<double>(NVariancePops,0.0);
-	varianceAccumulator = std::vector<double>(NVariancePops,0.0);
-	populationGradients= std::vector<std::vector<double>>(NVariancePops, std::vector<double>(nBig,0.0));
-	hyperGradientHolder= std::vector<double> (NHyper,0.0);
+
 	
 	
 	hypergradient = std::vector<double>(NHyper,0.0);

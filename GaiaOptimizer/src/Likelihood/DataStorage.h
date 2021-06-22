@@ -81,11 +81,9 @@ class LikelihoodData
 		Probability Mode;
 		
 		
-		std::vector<double> populationValues;
-		std::vector<double> varianceAccumulator;
-		std::vector<std::vector<double>> populationGradients;
 		
-		std::vector<double> hyperGradientHolder;
+		
+		
 		
 		void GeneratePopulations(const std::vector<double> & x);
 };
