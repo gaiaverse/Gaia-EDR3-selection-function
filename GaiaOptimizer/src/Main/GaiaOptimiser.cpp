@@ -58,7 +58,6 @@ VectorXd RootProcess()
 
 	//initialise the functor & the solver
 	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches);
-	std::cout << "Descent functor initialised" << std::endl;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
@@ -77,7 +76,6 @@ VectorXd RootProcess()
 	
 	
 	// GO GO GO GO!
-	std::cout << "Optimiser launching..." << std::endl;
 	op.Minimize(x);
 		
 	GlobalLog(0,
@@ -126,7 +124,7 @@ void WorkerProcess()
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
 			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
-			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
+			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
 			//broadcast results back to root 

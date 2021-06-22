@@ -9,7 +9,6 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id)
 
 void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
-	std::cout << "LIKELIHOOD BEGINS " << std::endl;
 	Reset();	
 	Data.GeneratePopulations(x);
 	int realBatchesPerEffective = maxBatches / effectiveBatches;
@@ -31,7 +30,6 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 		}
 		StarsUsed += n;
 	}
-	std::cout << "LIKELIHOOD ENDS" << std::endl;
 }
 
 void LogLikelihood::Reset()
@@ -44,15 +42,12 @@ void LogLikelihood::Reset()
 
 void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
 {
-	std::cout << "\tPER STAR LIKELIHOOD BEGINS " << std::endl;
 	const Star * candidate = &Data.Stars[batchId][starID];
 
 	GeneratePs(candidate,x);
 	
 	GenerateContribution(candidate);
-	std::cout << "\tAssigning Gradients" << std::endl;	
 	AssignGradients(candidate);
-	std::cout << "\tPER STAR LIKELIHOOD ENDS" << std::endl;
 }
 
 void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double> & x)
@@ -88,7 +83,6 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 {
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
-	std::cout << "Contribution from " << candidate->nMeasure << "   " << candidate->nVisit << std::endl;
 	switch(Data.Mode)
 	{
 		case PoissonBinomial:
