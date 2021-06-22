@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic63_mScaling_gapPrior/
+output       ../../Output/Diagnostic64_mScaling_gapPrior/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
