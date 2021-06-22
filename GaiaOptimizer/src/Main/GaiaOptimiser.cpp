@@ -121,20 +121,16 @@ void WorkerProcess()
 		
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
-			std::cout << ProcessRank << "\tGetting Position " << std::endl;
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
 			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
-			std::cout << ProcessRank << "\tPushing values 1 " << std::endl;
 			//broadcast results back to root 
-			MPI_Reduce(&nS, &emptyS2, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
-			std::cout << ProcessRank << "\tPushing values 2 " << std::endl;
-			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-			std::cout << ProcessRank << "\tPushing values 3 " << std::endl;
-			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&nS, NULL, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&l,NULL,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&L.Gradient[0], NULL, dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 			
 		}
 		else

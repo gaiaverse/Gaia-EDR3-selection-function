@@ -16,7 +16,7 @@ using Eigen::VectorXd;
 
 //Optimiser + data properties
 
-const int DataLoadCount = 1e5;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 4e5;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const std::string TempDirName = "TempPositions";
 
