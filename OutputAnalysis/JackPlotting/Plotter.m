@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic63_mScaling_gapPrior","Diagnostic63_activeScaling_gapPrior","Diagnostic63_activeScaling_noGapPrior"];
-files = files(3);
-getData(60);
+files = ["Diagnostic64_mScaling_gapPrior","Diagnostic64_mScaling_noGapPrior","Diagnostic64_activeScaling_gapPrior","Diagnostic64_activeScaling_noGapPrior","Diagnostic64_activeScaling_noGapPrior_noBurn_cubic","Diagnostic64_activeScaling_noGapPrior_cubic"];
+files = files([4]);
+getData(30);
 
-N1 =0;
-N2 = 12;
+N1 =20;
+N2 = 50;
 gap = 2;
 progressPlot(files, 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false,0,0,213);
-temporalPlot(files,N2,100,0,42);
+% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false);
+temporalPlot(files,N2);
 
 
 
@@ -26,7 +26,7 @@ if timeSince > timeGap
 	save("SyncTime.mat","SyncCurrentTime");
 end
 end
-function temporalPlot(folders,number,magOffset,mStart,mEnd)
+function temporalPlot(folders,number)
 figure(1);
 clf;
 ny = 2;
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2170;%2230;
-% xmax = 2414;%2248;
+xmin = 2097;%2230;
+xmax = 2195;%2248;
 ymin = -10;
 ymax = 10;
 gaps = readtable("edr3_gaps.csv");
@@ -219,7 +219,7 @@ cols = colororder;
 cols2 = min(1,cols*1.5);
 clf;
 hold on;
-miniSmooth = 10;
+miniSmooth = 1;
 
 map = [];
 for i = 1:length(files)
@@ -391,113 +391,6 @@ end
 legend(files)
 end
 
-function magComparison(files,numbers,mStart,mEnd,gap,fileName)
-figure(1);
-number = numbers(1);
-frameTitle = "Frame " + num2str(number);
-if number == -1
-	frameTitle = "Converged Position";
-end
-ny = 2;
-nx = ceil(gap/ny);
-for m = mStart:gap:mEnd
-	clf;
-	
-	xmin = 2320;
-	xmax = 2326;
-	ymin = 0;
-	ymax = 1;
-	
-	for i = 1:length(files)
-		
-		
-		folder = files(i);
-		% 					subplot(ny,nx,i);
-		properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
-		
-		name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-		number = numbers(i);
-		if number > -1
-			name = name + num2str(number);
-		end
-		name = name + "_TransformedParameters.dat";
-		if number == -1
-			name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
-		end
-		
-		
-		z= readmatrix(name);
-		
-		Nt = properties.Nt(1);
-		Nl = properties.Nl(1);
-		Nm = properties.Nm(1);
-		
-		magT = z(Nt+Nm*Nl+1:end);
-		for j = 0:gap-1
-			
-			fT = frameTitle + " (" + string(m+j) + ".csv)";
-			if m + j < 213
-				
-				subplot(ny,nx,j+1);
-				
-				magnitudeFrame(magT,Nm,m+j,m+j+1,xmin,xmax,fT);
-			end
-		end
-	end
-	frame = getframe(gcf);
-	im = frame2im(frame);
-	[imind,cm] = rgb2ind(im,256);
-	
-	if m == mStart
-		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-	else
-		imwrite(imind,cm,fileName,'gif','WriteMode','append');
-	end
-end
-end
-
-function magnitudeFrame(magT,Nm,mStart,mEnd,xmin,xmax,frameTitle)
-Ntm = length(magT)/Nm;
-t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-if Ntm > 0
-	Nts = reshape(magT,Nm,Ntm);
-	
-	Ntms = linspace(t(1),t(2),Ntm);
-	hold on;
-	
-	for mm = mStart+1:mEnd
-		if Ntm > 1
-			
-			plot(Ntms,1./(1+exp(-Nts(mm,:))));
-		else
-			
-			plot([t(1),t(2)],[1,1]*Nts(mm));
-		end
-	end
-	%             leg = string([mStart]+magOffset) + ".csv";
-	legend("Small Data" ," Big Data","No Batch");
-	
-	hold off;
-	xlim([xmin,xmax])
-	ylim([0,1])
-	
-	title("Temporal-Magnitude Component " + frameTitle);
-	ylabel("Magnitude Parameter, $x_{mt}$");
-	xlabel("OBMT (Revolutions)")
-	
-	grid on;
-end
-
-gaps = readtable("edr3_gaps.csv");
-for i = 1:height(gaps)
-	t1 = (gaps.tbeg(i));
-	t2 = (gaps.tend(i));
-	hold on
-	fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.15,"HandleVisibility","Off");
-	hold off;
-end
-
-end
 function [sx,sy] = bottomOut(x,y,factor)
 sx = [];
 sy = [];
@@ -511,9 +404,9 @@ while i < length(x)
 	i = i + factor;
 end
 end
-function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
+function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
 for i = startN:gap:maxN
-	temporalPlot(folder,i,magOffset,mStart,mEnd);
+	temporalPlot(folder,i);
 	%         subplot(2,1,1)
 	
 	frame = getframe(gcf);

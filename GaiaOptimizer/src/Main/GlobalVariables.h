@@ -16,26 +16,25 @@ using Eigen::VectorXd;
 
 //Optimiser + data properties
 
-const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 5e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const std::string TempDirName = "TempPositions";
 
 //temporal, spatial and magnitude resolution
 
 const int Nt = 1e6; // number of time bins, coarse, feel free to change
-const int healpix_order = 5; // order of healpix map, can be any integer >= 0
-const int needlet_order = 4; // maximum order of needlets used, can be any integ*needler >= -1
+const int healpix_order = 6; // order of healpix map, can be any integer >= 0
+const int needlet_order = 5; // maximum order of needlets used, can be any integ*needler >= -1
 const int Nm = 213; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
-
-const int NVariancePops = 3;
+const int NVariancePops = 4;
 const int hyperOrder = 2;
 
 //temporal and magnitude lengthscales + variances
 
-const double sigmat = 1;
+const double sigmat = 5;
 const double lm = 3;
 const double lt = 240;
 

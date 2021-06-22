@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic64_activeScaling_gapPrior/
+output       ../../Output/Diagnostic64_activeScaling_quartic/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
 max-steps    500
-burnin       4
+burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     128

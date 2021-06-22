@@ -23,6 +23,7 @@ std::vector<int> randomShuffle(int n)
 		order.push_back(i);
 	}
 	std::random_shuffle ( order.begin(), order.end() );
+
 	return order;
 }
 
@@ -151,7 +152,8 @@ class Optimizer
 
 				
 				std::vector<int> batchOrder = randomShuffle(EffectiveBatches);
-								
+
+		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
 					int currentBatch = batchOrder[batches];
