@@ -206,7 +206,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
 	
 	//collect values
-	const double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
+	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
