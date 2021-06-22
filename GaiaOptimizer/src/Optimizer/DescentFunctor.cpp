@@ -210,12 +210,12 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
-	std::cout << "Root sending data1" << std::endl;
+	std::cout << "Root getting data1" << std::endl;
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	std::cout << "Root sending data2" << std::endl;
+	std::cout << "Root getting data2" << std::endl;
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	std::cout << "Root sending data3" << std::endl;
+	std::cout << "Root getting data3" << std::endl;
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
 	
