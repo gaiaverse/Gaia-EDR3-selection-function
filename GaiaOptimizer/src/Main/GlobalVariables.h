@@ -25,7 +25,7 @@ const std::string TempDirName = "TempPositions";
 const int Nt = 2e5; // number of time bins, coarse, feel free to change
 const int healpix_order = 3; // order of healpix map, can be any integer >= 0
 const int needlet_order = 2; // maximum order of needlets used, can be any integ*needler >= -1
-const int Nm = 10; // number of magnitude bins
+const int Nm = 213; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
