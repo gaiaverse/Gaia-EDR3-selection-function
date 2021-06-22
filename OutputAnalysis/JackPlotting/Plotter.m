@@ -1,14 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic64_mScaling_gapPrior","Diagnostic64_mScaling_noGapPrior","Diagnostic64_activeScaling_gapPrior","Diagnostic64_activeScaling_noGapPrior","Diagnostic64_activeScaling_noGapPrior_noBurn_cubic","Diagnostic64_activeScaling_noGapPrior_cubic"];
-files = files([4]);
+files = ["Diagnostic64_activeScaling_quartic","Diagnostic65_activeScaling_quadratic"];
+% files = files([4]);
 getData(30);
 
 N1 =20;
-N2 = 50;
+N2 = 0;
 gap = 2;
-progressPlot(files, 0)
+progressPlot(files, 0.1)
 % gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false);
 temporalPlot(files,N2);
 
