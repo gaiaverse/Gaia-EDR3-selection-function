@@ -127,6 +127,7 @@ void WorkerProcess()
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
+			std::cout << ProcessRank << " Pushing values " << std::endl;
 			//broadcast results back to root 
 			MPI_Reduce(&nS, &emptyS2, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
