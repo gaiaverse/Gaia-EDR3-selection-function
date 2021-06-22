@@ -118,9 +118,10 @@ void WorkerProcess()
 
 		if (targetBatch >= 0)
 		{	
-
+		
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
+			std::cout << ProcessRank << " Getting Position " << std::endl;
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
 			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
