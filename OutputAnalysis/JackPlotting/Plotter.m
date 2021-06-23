@@ -1,18 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic60_normalScaling","Diagnostic60_normalScaling_lowerLength","Diagnostic60_mScaling_lowerLength_noBurn",...
-    "Diagnostic60_nScaling_lowerLength_noBurn","Diagnostic60_mScaling_longBurn_priors","Diagnostic60_nScaling_longBurn_priors",...
-    "Diagnostic60_mScaling"];
-files = [files(6)];
-getData(60);
+files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
+files = ["hometest_baseLine_slow","hometest_baseLine_medium","hometest_baseLine_fast","hometest_harnessed_veryfast"];
+% getData(30);
 
 N1 =0;
-N2 = 50;
-gap = 2;
-progressPlot(files, 0)
-gifPlot(files,N1,N2,gap,"mixed_evolution.gif",false,0,0,213);
-% temporalPlot(files,N2,100,0,42);
+N2 = 40;
+gap = 8;
+progressPlot(files,20)
+% gifPlot(files,N1,N2,gap,"evolution.gif",false);
+temporalPlot(files,N2);
 
 
 
@@ -28,7 +26,7 @@ if timeSince > timeGap
 	save("SyncTime.mat","SyncCurrentTime");
 end
 end
-function temporalPlot(folders,number,magOffset,mStart,mEnd)
+function temporalPlot(folders,number)
 figure(1);
 clf;
 ny = 2;
@@ -36,10 +34,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2310;%2230;
-% xmax = 2415;%2248;
-ymin = -18;
-ymax = 18;
+% xmin = 2097;%2230;
+xmax = 1300;%2248;
+ymin = -10;
+ymax = 15;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -53,14 +51,9 @@ for i = 1:length(folders)
 	properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
 	
 	name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-	
-	tnumber = number;
-	if name == "../../../CodeOutput/InitTest/TempPositions/TempPosition" && number > 92
-		tnumber = 92;
-	end
-	
-	if tnumber > -1
-		name = name + num2str(tnumber);
+		
+	if number > -1
+		name = name + num2str(number);
 	end
 	name = name + "_TransformedParameters.dat";
 	if number == -1
@@ -75,12 +68,40 @@ for i = 1:length(folders)
 	Nt = properties.Nt(1);
 	Nl = properties.Nl(1);
 	Nm = properties.Nm(1);
+    
+    varianceSegment = z(Nt+Nl*Nm+1:end);
+    
+    pop = 2;
+    pow = length(varianceSegment)/(pop)-2;
+    fprintf("\nVarince output for " + name+"\n");
+    for k = 1:pop
+       ps = [];
+        for j = 0:pow
+           ps(end+1) = varianceSegment(j*pop+k);  
+        end
+        frac = varianceSegment((1+pow)*pop + k);
+        fprintf("\tPop %d has fraction %.3f and variance model ",k,frac)
+        for j = 0:pow
+            s = "%f ";
+
+            if j > 0
+                s = " + " + s + "n^%d";
+                powFac = j;
+                fprintf(s,varianceSegment(j*pop+k)^powFac,j);  
+            else
+                 fprintf(s,varianceSegment(j*pop+k));  
+            end
+           
+        end
+        fprintf("\n");
+    end
+    
 	%     figure(1);
 	%     T = tiledlayout(1,1,'Padding','compact','TileSpacing','compact');
 	%     nexttile(T);
 	f = z(1:Nt);
 	
-	
+
 	
 	m = z(Nt+1:Nt+Nm*Nl);
 	magT = z(Nt+Nm*Nl+1:end);
@@ -148,10 +169,10 @@ for i = 1:length(folders)
            yl = [0,1];
         else
              p = @(x) x;
-              yl = [-2,8];
+              yl = [-12,18];
              
         end
-		plot(p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")
+		plot(zs,p(q/Nl),'Color',map(i,:),"HandleVisibility","Off")
         
         fill(xRow,p(yRow),map(i,:),'FaceAlpha',0.1,'EdgeColor','None');
 %         plot(maxes,'Color',map(i,:),"HandleVisibility","Off")
@@ -165,7 +186,7 @@ for i = 1:length(folders)
 	title("Spatial Components " + frameTitle);
 	xlabel("Source file, $i$.csv");
 	ylabel("Mean $x_{ml}$ on sky")
-	xlim([0,Nm])
+	xlim([0,Nm-1])
 	ylim(yl)
 	grid on;
 	
@@ -204,7 +225,7 @@ cols = colororder;
 cols2 = min(1,cols*1.5);
 clf;
 hold on;
-miniSmooth = 10;
+miniSmooth = 1;
 
 map = [];
 for i = 1:length(files)
@@ -228,8 +249,8 @@ for i = 1:length(files)
 		mE = miniBatches.Elapsed(end);
 		L0 = miniBatches.F(1);
 	end
-	% 		L0 =1;
-	ender = max(fE,mE);
+			L0 =1;
+	
 	cutx = false(1,height(fullEpoch));
 	for j = 2:height(fullEpoch)
 		up = fullEpoch.nBatches(j);
@@ -247,7 +268,11 @@ for i = 1:length(files)
 	
 	xB = miniX; %miniBatches.Elapsed;
 	xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
-	
+    if height(fullEpoch) > 0
+        ender = max(max(xB),max(xF));
+    else
+        ender = max(xB);
+    end
 	%         plot(fullEpoch.Elapsed,xF);
 	plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);
 	plot(fullEpoch.Elapsed,xF,'LineWidth',2,'Color',cols(i,:),'HandleVisibility','Off');
@@ -265,7 +290,7 @@ for i = 1:length(files)
 		cz2(end+1) = shrinkLines.GradNorm(j);
 	end
 	scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
-	xlim([minLim,ender])
+% 	xlim([minLim,ender])
 	
 	ylabel("Complete Epochs");
 	xlabel("Time Elapsed (s)");
@@ -276,13 +301,13 @@ for i = 1:length(files)
 	
 	subplot(2,2,2);
 	hold on;
-	plot(miniBatches.Elapsed,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+	plot(xB,smooth(miniBatches.F/L0,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
-	plot(fullEpoch.Elapsed,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
-	scatter(cx,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
-% 	set(gca,'yscale','log')
-	%         set(gca,'xscale','log')
-	xlabel("Elapsed Time (s)");
+	plot(xF,fullEpoch.F/L0,'LineWidth',1.4,'Color',cols(i,:));
+	scatter(cy,cz,40,cols(i,:),'Filled','HandleVisibility','Off');
+	set(gca,'yscale','log')
+% 	        set(gca,'xscale','log')
+	xlabel("Complete Epochs");
 	ylabel("$L/L_0$");
 	hold off;
 	grid on;
@@ -296,7 +321,7 @@ for i = 1:length(files)
 	
 	if height(miniBatches) > 1
 		miniBatches.dF(1) = 0;
-		x1 = miniBatches.Elapsed';
+		x1 = xB';
 		y1 = smooth(miniBatches.dF./miniBatches.F,miniSmooth)';
 		zq = zeros(size(x1));
 		s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
@@ -314,7 +339,7 @@ for i = 1:length(files)
 	if height(fullEpoch) > 1
 		
 		fullEpoch.dF(1) = fullEpoch.F(1) - L0;
-		x2 = fullEpoch.Elapsed';
+		x2 = xF';
 		y2 = (fullEpoch.dF./fullEpoch.F)';
 		zq = zeros(size(x2));
 		col = (y2>0)*(2*i-1);
@@ -335,7 +360,7 @@ for i = 1:length(files)
 		end
 	end
 	caxis([0,3]);
-	scatter(cx,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
+	scatter(cy,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
 	hold off;
 	xlabel("Elapsed Time (s)");
 	ylabel("$\Delta L / L $");
@@ -355,10 +380,10 @@ for i = 1:length(files)
 	
 	subplot(2,2,4);
 	hold on;
-	plot(miniBatches.Elapsed,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
+	plot(xB,smooth(miniBatches.GradNorm,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
-	plot(fullEpoch.Elapsed,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
-	scatter(cx,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
+	plot(xF,fullEpoch.GradNorm,'LineWidth',1.4,'Color',cols(i,:));
+	scatter(cy,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 	%         set(gca,'xscale','log')
 	xlabel("Elapsed Time (s)");
@@ -371,130 +396,9 @@ end
 
 legend(files)
 end
-
-function magComparison(files,numbers,mStart,mEnd,gap,fileName)
-figure(1);
-number = numbers(1);
-frameTitle = "Frame " + num2str(number);
-if number == -1
-	frameTitle = "Converged Position";
-end
-ny = 2;
-nx = ceil(gap/ny);
-for m = mStart:gap:mEnd
-	clf;
-	
-	xmin = 2320;
-	xmax = 2326;
-	ymin = 0;
-	ymax = 1;
-	
-	for i = 1:length(files)
-		
-		
-		folder = files(i);
-		% 					subplot(ny,nx,i);
-		properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
-		
-		name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
-		number = numbers(i);
-		if number > -1
-			name = name + num2str(number);
-		end
-		name = name + "_TransformedParameters.dat";
-		if number == -1
-			name = "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat";
-		end
-		
-		
-		z= readmatrix(name);
-		
-		Nt = properties.Nt(1);
-		Nl = properties.Nl(1);
-		Nm = properties.Nm(1);
-		
-		magT = z(Nt+Nm*Nl+1:end);
-		for j = 0:gap-1
-			
-			fT = frameTitle + " (" + string(m+j) + ".csv)";
-			if m + j < 213
-				
-				subplot(ny,nx,j+1);
-				
-				magnitudeFrame(magT,Nm,m+j,m+j+1,xmin,xmax,fT);
-			end
-		end
-	end
-	frame = getframe(gcf);
-	im = frame2im(frame);
-	[imind,cm] = rgb2ind(im,256);
-	
-	if m == mStart
-		imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-	else
-		imwrite(imind,cm,fileName,'gif','WriteMode','append');
-	end
-end
-end
-
-function magnitudeFrame(magT,Nm,mStart,mEnd,xmin,xmax,frameTitle)
-Ntm = length(magT)/Nm;
-t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
-if Ntm > 0
-	Nts = reshape(magT,Nm,Ntm);
-	
-	Ntms = linspace(t(1),t(2),Ntm);
-	hold on;
-	
-	for mm = mStart+1:mEnd
-		if Ntm > 1
-			
-			plot(Ntms,1./(1+exp(-Nts(mm,:))));
-		else
-			
-			plot([t(1),t(2)],[1,1]*Nts(mm));
-		end
-	end
-	%             leg = string([mStart]+magOffset) + ".csv";
-	legend("Small Data" ," Big Data","No Batch");
-	
-	hold off;
-	xlim([xmin,xmax])
-	ylim([0,1])
-	
-	title("Temporal-Magnitude Component " + frameTitle);
-	ylabel("Magnitude Parameter, $x_{mt}$");
-	xlabel("OBMT (Revolutions)")
-	
-	grid on;
-end
-
-gaps = readtable("edr3_gaps.csv");
-for i = 1:height(gaps)
-	t1 = (gaps.tbeg(i));
-	t2 = (gaps.tend(i));
-	hold on
-	fill([t1,t1,t2,t2],[0,1,1,0],'b','LineStyle','None','FaceAlpha',0.15,"HandleVisibility","Off");
-	hold off;
-end
-
-end
-function [sx,sy] = bottomOut(x,y,factor)
-sx = [];
-sy = [];
-
-i = 1;
-
-while i < length(x)
-	top = min(length(x),i+factor);
-	sx(end+1) = mean(x(i:top));
-	sy(end+1) = min(y(i:top));
-	i = i + factor;
-end
-end
-function gifPlot(folder,startN,maxN,gap,fileName,includeFinal,magOffset,mStart,mEnd)
+function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
 for i = startN:gap:maxN
-	temporalPlot(folder,i,magOffset,mStart,mEnd);
+	temporalPlot(folder,i);
 	%         subplot(2,1,1)
 	
 	frame = getframe(gcf);
@@ -523,30 +427,17 @@ if includeFinal == true
 	end
 end
 end
+function [sx,sy] = bottomOut(x,y,factor)
+sx = [];
+sy = [];
 
-function magGif(folder,number,offset,start,max,jump,fileName)
-figure(1);
-ny = 2;
-nx = ceil(jump/ny);
-for m = start:jump:max
-	
-	for i = 1:jump
-		if start + i < 213
-			subplot(ny,nx,i)
-			temporalPlot(folder,number,offset,start +i,start+i);
-			%         subplot(2,1,1)
-			
-			frame = getframe(gcf);
-			im = frame2im(frame);
-			[imind,cm] = rgb2ind(im,256);
-			
-			if m == start
-				imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-			else
-				imwrite(imind,cm,fileName,'gif','WriteMode','append');
-			end
-		end
-	end
+i = 1;
+
+while i < length(x)
+	top = min(length(x),i+factor);
+	sx(end+1) = mean(x(i:top));
+	sy(end+1) = min(y(i:top));
+	i = i + factor;
+end
 end
 
-end

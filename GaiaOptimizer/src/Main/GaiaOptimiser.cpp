@@ -72,6 +72,10 @@ VectorXd RootProcess()
 	op.Progress.StepsPerPositionSave = Args.SaveSteps;
 	op.Progress.UniquePositionSaves = Args.SaveAllSteps;
 	
+	op.Properties.MaxHarnessFactor = 20;
+	op.Properties.HarnessReleaseFactor = 0.1;
+	op.Properties.StepSize= 0.05;
+	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
 	
 	
@@ -118,19 +122,19 @@ void WorkerProcess()
 
 		if (targetBatch >= 0)
 		{	
-
+		
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
 			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
-			const double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
+			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
 			//broadcast results back to root 
-			MPI_Reduce(&nS, &emptyS2, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&l,&emptyS,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
-			MPI_Reduce(&L.Gradient[0], &emptyVec[0], dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&nS, NULL, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&l,NULL,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
+			MPI_Reduce(&L.Gradient[0], NULL, dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 			
 		}
 		else

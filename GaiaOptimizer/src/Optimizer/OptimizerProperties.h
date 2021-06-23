@@ -10,7 +10,8 @@ struct OptimiserProperties
 	int BurnInSteps;
 	double StepSize;
 	double MinibatchDownStep;
-	
+	double MaxHarnessFactor;
+	double HarnessReleaseFactor;
 };
 struct StopConditions
 {
@@ -32,7 +33,7 @@ struct ProgressTracker
 {
 	int CurrentSteps;
 	double MovingAverage;
-	
+	double Harness;
 	int StepsPerPositionSave;
 	bool UniquePositionSaves;
 	

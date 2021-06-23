@@ -9,13 +9,9 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id)
 
 void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
-
 	Reset();	
-
-
+	Data.GeneratePopulations(x);
 	int realBatchesPerEffective = maxBatches / effectiveBatches;
-
-	
 	
 	int start = effectiveBatchID * realBatchesPerEffective;
 	int end = maxBatches;
@@ -24,7 +20,6 @@ void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchI
 		end = (effectiveBatchID+1) * realBatchesPerEffective;
 	}
 	StarsUsed = 0;
-	
 	
 	for (int i = start; i < end; ++i)
 	{
@@ -44,15 +39,14 @@ void LogLikelihood::Reset()
 }
 
 
+
 void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
 {
-
 	const Star * candidate = &Data.Stars[batchId][starID];
 
 	GeneratePs(candidate,x);
 	
 	GenerateContribution(candidate);
-		
 	AssignGradients(candidate);
 }
 
@@ -60,6 +54,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 {
 	int n = candidate->nVisit;
 	//generate p vectors
+
 	for (int i = 0; i < n; ++i)
 	{
 		int t= candidate->TimeSeries[i];
@@ -74,7 +69,8 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		double elu_xml1 = elu(x[idx1]);
 		double elu_xml2 = elu(x[idx2]);
 		
-		Data.pt[i] = sigmoid(xt);
+		double pt = sigmoid(xt);
+		Data.pt[i] = pt;
 
         Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
@@ -87,7 +83,6 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 {
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
-	
 	switch(Data.Mode)
 	{
 		case PoissonBinomial:
@@ -105,7 +100,7 @@ void LogLikelihood::NormalContribution(const Star * candidate)
 {
 	int n = candidate->nVisit;
 	int k = candidate->nMeasure;
-	Value += poisson_binomial_normal_lpmf(k, Data.p, n,  Data.dfdp,Data.VariancePopulations);
+	Value += poisson_binomial_normal_lpmf(k, n, Data);
 }
 
 void LogLikelihood::PoissonContribution(const Star * candidate)
@@ -188,7 +183,7 @@ void LogLikelihood::PoissonContribution(const Star * candidate)
 			ExactPoissonContribution(candidate);
 			return;
 		}
-		Data.dfdp[i] =  dfdp_i;
+		Data.dfdp_constantN[i] =  dfdp_i;
 	}
 	
 }
@@ -262,7 +257,7 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 		{
 			dfdpEmergency = true;
 		}
-		Data.dfdp[i] = dfdp_i;
+		Data.dfdp_constantN[i] = dfdp_i;
 	}
 	
 	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
@@ -294,7 +289,7 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 		std::cout << "\n\ndfdp = (";
 		for (int i = 0; i < n; ++i)
 		{
-			std::cout << Data.dfdp[i] << ", ";
+			std::cout << Data.dfdp_constantN[i] << ", ";
 		}
 		std::cout << ")\n\n";
 		ERROR(100, "See above output");
@@ -305,23 +300,48 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 	int n = candidate->nVisit;
 	for (int i = 0; i < n; ++i)
 	{		
-		double dFdP_p = Data.dfdp[i] * Data.p[i];
-
 		int t= candidate->TimeSeries[i];
 		int T= Data.time_mapping[t];
 		
-		//double time_multiplier = time_ratio * t - T;
-
 		int offset = Nt + candidate->gBin;
 		int index1 = offset +  Data.healpix_fov_1[t] * Nm;
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		
-		//Gradient[T] += dFdP_p * (1.0 - Data.pt[i]) * (1.0 - time_multiplier);
-		//Gradient[T+1] += dFdP_p * (1.0 - Data.pt[i]) * time_multiplier;
-		Gradient[T] += dFdP_p * (1.0 - Data.pt[i]);
-
-		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * dFdP_p;
-		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * dFdP_p;
-	
+		double dndp_time, dndp_space;
+		switch (ScalingMode)
+		{
+			case (NScaling):
+			{
+				dndp_time = 0;
+				dndp_space = 0;
+				break;
+			}
+			case (MScaling):
+			{
+				dndp_time = Data.pml[i];
+				dndp_space = Data.pt[i];
+				break;
+			}
+			
+			case (ActiveNScaling):
+			{
+				dndp_time = 1.0;
+				dndp_space = 0.0;
+			}
+		}
+		double dfdP_time = Data.pml[i] * Data.dfdp_constantN[i] + Data.dfdN_constantP * dndp_time;
+		double dfdP_space = Data.pt[i] * Data.dfdp_constantN[i] + Data.dfdN_constantP * dndp_space;
+		
+		
+		
+		Gradient[T] += Data.pt[i] * (1.0 - Data.pt[i]) * dfdP_time;
+		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * Data.pml[i] * dfdP_space;
+		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * Data.pml[i] * dfdP_space;
 	}
+	
+	for (int i = 0; i < NHyper; ++i)
+	{
+		Gradient[transformedNonHyperParams + i] += Data.hypergradient[i];
+	}
+	
 }

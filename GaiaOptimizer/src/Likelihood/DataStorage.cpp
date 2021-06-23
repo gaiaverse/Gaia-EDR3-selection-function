@@ -10,18 +10,20 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 	pmf_backward =  std::vector<std::vector<double>>(nBig,std::vector<double>(nBig,0));
 	subpmf =  std::vector<std::vector<double>>(3,std::vector<double>(nBig,0));
 	pt = std::vector<double>(nBig,0);
-	//~ ptm = std::vector<double>(nBig,0);
 	pml = std::vector<double>(nBig,0);
 	p = std::vector<double>(nBig,0);
 	grad_elu_xml1 = std::vector<double>(nBig,0);
 	grad_elu_xml2 = std::vector<double>(nBig,0);
-	dfdp = std::vector<double>(nBig,0);
+	dfdp_constantN = std::vector<double>(nBig,0);
+	dfdN_constantP = 0;
 	
-	//~ NStars = 0;
-	//~ for (int i = 0; i < N_SGD_Batches; ++i)
-	//~ {
-		//~ NStars +=	Stars[i].size();
-	//~ }
+	
+	
+
+	
+	
+	hypergradient = std::vector<double>(NHyper,0.0);
+
     //read in the healpix stuff
     std::string healpix_fov_file = "../../ModelInputs/scanninglaw_to_healpix_"+std::to_string(healpix_order)+".csv";
 	healpix_fov_1 = std::vector<int>(TotalScanningTime,0);
@@ -40,27 +42,36 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
     
     //prepare the temporal down stepping vector
     time_mapping = std::vector<int>(TotalScanningTime,0);
-	//~ magtime_mapping = std::vector<int>(TotalScanningTime,0);
     
     double time_ratio = 1;
     double magtime_ratio = 1;
     if (Nt < TotalScanningTime)
     {
 		time_ratio = (double)Nt/TotalScanningTime;
-		//~ magtime_ratio = (double)Nt_m/TotalScanningTime;
 	}
 
 	for (int i = 0; i < TotalScanningTime; ++i)
 	{
 		time_mapping[i] = std::min(Nt-1,(int)round(time_ratio*i));
-		//~ magtime_mapping[i] = std::min(Nt_m-1,(int)round(magtime_ratio*i));
 	}
 	
 	Mode = NormalApproximation;
+	VariancePopulations = std::vector<VariancePopulation>(NVariancePops);
+}
+
+void LikelihoodData::GeneratePopulations(const std::vector<double> & x)
+{
 	
-	for(int i = 0; i < VariancePopulationFractions.size(); ++i)
+	for (int i = 0; i < NVariancePops; ++i)
 	{
-		VariancePopulation p = VariancePopulation(VariancePopulationFractions[i],VarianceBaselines[i],VarianceLinears[i],VarianceQuadratics[i]);
-		VariancePopulations.push_back(p);	
+		double frac = x[transformedNonHyperParams + hyperFractionOffset + i];
+		std::vector<double> c(hyperOrder+1,0.0);
+		for (int j =  0; j <= hyperOrder; ++j)
+		{
+			//~ std::cout << "POW " << j << std::endl;
+			c[j] = x[transformedNonHyperParams + j*NVariancePops + i];
+		}
+		
+		VariancePopulations[i] = VariancePopulation(frac,c);
 	}
 }

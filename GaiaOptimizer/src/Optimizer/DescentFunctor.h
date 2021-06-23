@@ -139,13 +139,11 @@ class DescentFunctor
 						}
 					
 						mut_gaps[it] = insertValue;
-						//~ std::cout << "\t " <<it << "  " << trueTime << "   " << insertValue << "   " << leftDistance << "   " << rightDistance << std::endl;
 						
 						++it;
 						trueTime = floor((double)it * timeFactor);
 						
 					}
-					//~ std::cout << "Gap finished at it = " << it << " t = " << trueTime << std::endl;
 					lastEnd = gapEnd;
 				);
 				

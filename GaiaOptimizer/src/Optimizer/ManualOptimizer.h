@@ -23,6 +23,7 @@ std::vector<int> randomShuffle(int n)
 		order.push_back(i);
 	}
 	std::random_shuffle ( order.begin(), order.end() );
+
 	return order;
 }
 
@@ -56,7 +57,10 @@ class Optimizer
 			Properties.Mode = OptimiserModes::ADABADAM;
 			Properties.MiniBatches = 1;
 			Properties.BurnInSteps = 0;
-			Properties.StepSize = 0.05;			
+			Properties.StepSize = 0.1;			
+			
+			Properties.HarnessReleaseFactor = 0.25;
+			Properties.MaxHarnessFactor = 100;
 			
 			Properties.MinibatchDownStep = 4;
 			
@@ -75,7 +79,7 @@ class Optimizer
 			Status.ReachedFunctionConvergence = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
-			
+			Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 			Progress.BufferFileOpened = false;
 			
 			Buffer.Position = 0;
@@ -102,6 +106,7 @@ class Optimizer
 			
 		void Minimize(VectorXd & x)
 		{
+
 			Initialise();
 			
 			switch(Properties.Mode)
@@ -150,9 +155,11 @@ class Optimizer
 
 				
 				std::vector<int> batchOrder = randomShuffle(EffectiveBatches);
-								
+
+		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
+					std::cout << Progress.Harness << std::endl;
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
@@ -176,7 +183,7 @@ class Optimizer
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate;
+						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate * Progress.Harness;
 						dxNorm += dx_i * dx_i;
 						x[i] += dx_i;
 						epochGradient[i] += g;
@@ -192,6 +199,7 @@ class Optimizer
 						double sqrtgNorm = sqrt(gNorm);
 						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 					}
+					Progress.Harness = std::min(1.0,Progress.Harness * (1.0 + Properties.HarnessReleaseFactor));
 				}
 				
 				epochL/=EffectiveBatches;
@@ -210,6 +218,7 @@ class Optimizer
 				if (newBatches < EffectiveBatches)
 				{
 					EffectiveBatches = newBatches;
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					learningRate = std::min(learningRate*1.1,2*Properties.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 				}
@@ -220,6 +229,7 @@ class Optimizer
 				{
 					Status.Continues = true;
 					EffectiveBatches = std::max(1,EffectiveBatches/4);
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 				}
 				
@@ -317,7 +327,7 @@ class Optimizer
 			int problematicSignChanges = std::max(2,N/3);
 			if ((mean > 0) || signChanges >= problematicSignChanges)
 			{
-				std::cout << "Problem: " << mean << "   " << signChanges << std::endl;
+
 				batchesAreAProblem = true;
 			}
 

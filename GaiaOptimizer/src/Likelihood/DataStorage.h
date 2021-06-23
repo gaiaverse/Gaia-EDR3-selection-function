@@ -12,28 +12,31 @@ enum Probability { NormalApproximation, PoissonBinomial};
 struct VariancePopulation
 {
 	double Fraction;
-	double BaselineVariance;
-	double LinearVariance;
-	double QuadraticVariance;
+	std::vector<double> PowerContributions;
 	
-	//~ VariancePopulation(){};
-	VariancePopulation(double fraction,double base,double linearscaling, double quadraticscaling)
+	VariancePopulation(){};
+	VariancePopulation(double fraction,std::vector<double> contributions)
 	{
 		Fraction = fraction;
-		BaselineVariance = base;
-		LinearVariance = linearscaling;
-		QuadraticVariance = quadraticscaling;
+		PowerContributions = contributions;
+		
+		
 	}; 
 	double Variance(double scaling)
 	{
-		return BaselineVariance + scaling * LinearVariance + scaling*scaling * QuadraticVariance;
+		double v = PowerContributions[0];
+		for (int i =1; i < PowerContributions.size(); ++i)
+		{
+			v += pow(scaling*PowerContributions[i],i);
+		}
+		return v;
 	}
-	double Gradient(double scaling,bool active)
+	double Gradient(double scaling)
 	{
 		double value = 0;
-		if (active)
+		for (int i = 1; i < PowerContributions.size(); ++i)
 		{
-			value += LinearVariance + 2 * scaling * QuadraticVariance;
+			value+= i * PowerContributions[i] * pow(PowerContributions[i]*scaling,i-1);
 		}
 		return value;
 	}
@@ -45,16 +48,13 @@ class LikelihoodData
 		LikelihoodData(const std::vector<std::vector<Star>> &data, int id);
 		
 		int ID;
-		
 		const std::vector<std::vector<Star>> &Stars;
-		//~ int NStars;
 		
 		//Indexing data, allows us to index properly into the 
 		//spatial and temporal parts of the vector
 		std::vector<int> healpix_fov_1;
     	std::vector<int> healpix_fov_2;
     	std::vector<int> time_mapping;
-		//~ std::vector<int> magtime_mapping;
 
 	
 	
@@ -64,16 +64,27 @@ class LikelihoodData
 		std::vector<std::vector<double>> pmf_forward;
 		std::vector<std::vector<double>> pmf_backward;
 		std::vector<std::vector<double>> subpmf;
-		std::vector<double> dfdp;
+		
+		std::vector<double> dfdp_constantN;
+		double dfdN_constantP;
+		
+		std::vector<double> hypergradient;
 		std::vector<double> pt;
-		//~ std::vector<double> ptm;
 		std::vector<double> pml;
 		std::vector<double> p;
 
 		std::vector<double> grad_elu_xml1;
 		std::vector<double> grad_elu_xml2;
 		
+		
 		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
+		
+		
+		
+		
+		
+		
+		void GeneratePopulations(const std::vector<double> & x);
 };
 

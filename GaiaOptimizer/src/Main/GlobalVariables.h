@@ -16,51 +16,41 @@ using Eigen::VectorXd;
 
 //Optimiser + data properties
 
-const int DataLoadCount = 4e5;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 5e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const std::string TempDirName = "TempPositions";
 
 //temporal, spatial and magnitude resolution
 
-const int Nt = 5e5; // number of time bins, coarse, feel free to change
-const int healpix_order = 5; // order of healpix map, can be any integer >= 0
-const int needlet_order = 4; // maximum order of needlets used, can be any integ*needler >= -1
-const int Nm = 213; // number of magnitude bins
+const int Nt = 1e6; // number of time bins, coarse, feel free to change
+const int healpix_order = 1; // order of healpix map, can be any integer >= 0
+const int needlet_order = 0; // maximum order of needlets used, can be any integ*needler >= -1
+const int Nm = 10; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
+const int NVariancePops = 2;
+const int hyperOrder = 2;
+
 //temporal and magnitude lengthscales + variances
 
-const double sigmat = 5;
+const double sigmat = 2;
 const double lm = 3;
-const double lt = 100;
+const double lt = 240;
 
 //prior and initialisation values
 const double xmPrior = -3;
 const double xmInitialised = 5;
 
 const double xtPriorNonGap = 5;
-const double xtPriorBorderCase =0;
-const double xtPriorInsideGap = -5;
+const double xtPriorBorderCase =5;
+const double xtPriorInsideGap = 5;
 
 const double initialisationBounds = 0.1;
 
 //normal approximation variances
-
-//m-scaling models
-const std::vector<double> VariancePopulationFractions = {0.499501,0.407572,0.0929271};
-const std::vector<double> VarianceBaselines = {0.0138608,0.00445439,0.0736989};
-const std::vector<double> VarianceLinears = {0.003143,0.0034633,0.0211255};
-const std::vector<double> VarianceQuadratics = {0,0,0};
-
-//n-gaps-scaling models
-//~ const std::vector<double> VariancePopulationFractions = {0.595329,0.4033,0.00131};
-//~ const std::vector<double> VarianceBaselines = {0.003599,0.0024822,0.599044};
-//~ const std::vector<double> VarianceLinears = {6.95e-5,0.01267,0.03866};
-//~ const std::vector<double> VarianceQuadratics = {1.6e-10,3.04e-7,0.000346};
-
-
-
+enum VarianceScaling {NScaling, MScaling, ActiveNScaling};
+const VarianceScaling ScalingMode = ActiveNScaling;
 
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 

@@ -99,6 +99,32 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
 		}
 	}
+	
+	//hyper params
+	
+	
+	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
+	
+
+	double popSum = 0;
+	int offset = hyperFractionOffset;
+	for (int i = 0; i < NHyper; ++i)
+	{
+
+		double v = exp(z[rawNonHyperParams + i]);
+		TransformedPosition[transformedNonHyperParams + i] = v;
+		
+		if (i >=offset)
+		{
+			popSum += v;
+		}
+	}
+	
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		TransformedPosition[transformedNonHyperParams + offset + i] /= popSum;
+	}
+
 }
 
 void DescentFunctor::BackwardTransform()
@@ -145,7 +171,18 @@ void DescentFunctor::BackwardTransform()
 			Gradient[Nt+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
 		}
 	}
-
+	
+	for (int i = 0; i < NHyper; ++i)
+	{
+		double x = TransformedPosition[transformedNonHyperParams + i];
+		double df = TransformedGradient[transformedNonHyperParams + i];
+		Gradient[rawNonHyperParams + i] = x * df;
+		
+		if (i >= hyperFractionOffset)
+		{
+			Gradient[rawNonHyperParams + i] *= (1.0 - x);
+		}
+	}
 
 }
 
@@ -155,7 +192,6 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = batchID;
-
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
@@ -163,24 +199,19 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	ForwardTransform(RawPosition);
 	
-
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	
 
 	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
 	
-	
 	//collect values
-	const double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
+	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
-
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
-	
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	
 	

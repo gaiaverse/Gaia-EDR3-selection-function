@@ -19,7 +19,7 @@ void  poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<doub
 
 // Normal approximation to the Poisson-Binomial
 void logphi(double z, double& f, double& df);
-double poisson_binomial_normal_lpmf(int k,const std::vector<double> & probs, int probslen, std::vector<double> & gradient,std::vector<VariancePopulation> & VarPops);
+double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data);
 
 // Implements an expit sigmoid via the tanh method
 double  sigmoid(double x);
