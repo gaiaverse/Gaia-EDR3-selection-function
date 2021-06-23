@@ -2,13 +2,13 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
-files = ["hometest_baseLine_slow","hometest_baseLine_medium","hometest_baseLine_fast","hometest_harnessed_veryfast"];
-% getData(30);
+files = files([1,3]);
+getData(30);
 
 N1 =0;
-N2 = 40;
+N2 = 38;
 gap = 8;
-progressPlot(files,20)
+progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
 temporalPlot(files,N2);
 
@@ -37,7 +37,7 @@ xmax = t(2);
 % xmin = 2097;%2230;
 xmax = 1300;%2248;
 ymin = -10;
-ymax = 15;
+ymax = 30;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -71,7 +71,7 @@ for i = 1:length(folders)
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
     
-    pop = 2;
+    pop = 4;
     pow = length(varianceSegment)/(pop)-2;
     fprintf("\nVarince output for " + name+"\n");
     for k = 1:pop

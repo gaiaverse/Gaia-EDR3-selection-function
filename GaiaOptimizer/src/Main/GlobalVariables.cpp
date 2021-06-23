@@ -77,33 +77,16 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 }
 void PrintStatus(std::string location)
 {
-	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t"};
-	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)totalRawParams,(double)totalTransformedParams,(double)xtPriorNonGap,(double)sigmat,(double)lm,(double)lt};
+	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","hyperOrder","NVariancePopulations","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","xt_Prior_normal","xt_Prior_gaps","xm_Prior"};
+	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)hyperOrder,(double)NVariancePops,(double)totalRawParams,(double)totalTransformedParams,(double)xtPriorNonGap,(double)sigmat,(double)lm,(double)lt,(double)xtPriorNonGap,(double)xtPriorInsideGap,double(xmPrior)};
 	
 	std::fstream file;
-	file.open(location + "/Optimiser_Properties.dat",std::ios::out);
+	file.open(location + "/OptimiserProperties.dat",std::ios::out);
 	int w = 15;
 	
-	for (int i = 0; i < 2; ++i)
+	for (int i = 0; i < properties.size(); ++i)
 	{
-		for (int j = 0; j < properties.size(); ++j)
-		{
-			file << std::setw(w) << std::left;
-			if (i ==0)
-			{
-				file << properties[j];
-			}
-			else
-			{
-				file << std::setprecision(10) <<vals[j];
-				
-			}
-			if (j < properties.size() - 1)
-			{
-				file << ", ";
-			}
-		}
-		file << "\n";
+		file << properties[i] << " = " << std::setprecision(10) << vals[i] << "\n";
 	}
 	file.close();
 }
