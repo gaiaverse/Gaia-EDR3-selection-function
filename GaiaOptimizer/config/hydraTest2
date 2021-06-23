@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic64_mScaling_quartic/
+output       ../../Output/Diagnostic66_mScaling_quartic/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
@@ -7,3 +7,5 @@ burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     128
+harness-slow  20
+harness-release 0.1

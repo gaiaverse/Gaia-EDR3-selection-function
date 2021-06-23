@@ -2,11 +2,11 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
-files = files([1,3]);
-getData(30);
+files = files([3]);
+% getData(30);
 
 N1 =0;
-N2 = 38;
+N2 = 46;
 gap = 8;
 progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
@@ -35,7 +35,7 @@ t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 -
 xmin = t(1);
 xmax = t(2);
 % xmin = 2097;%2230;
-xmax = 1300;%2248;
+% xmax = 1300;%2248;
 ymin = -10;
 ymax = 30;
 gaps = readtable("edr3_gaps.csv");

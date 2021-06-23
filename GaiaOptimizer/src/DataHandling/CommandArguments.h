@@ -18,6 +18,8 @@ class CommandArgs
 		Argument<int> SaveSteps = Argument<int>(1,"save-steps");
 		Argument<bool> SaveAllSteps = Argument<bool>(false,"unique-temp-save");
 		Argument<int> Minibatches = Argument<int>(64,"minibatch");
+		Argument<double> HarnessSlowDown = Argument<double>(10,"harness-slow");
+		Argument<double> HarnessRelease = Argument<double>(0.2,"harness-release");
 		
 		//save locations
 		Argument<std::string> DataSource= Argument<std::string>("../../Data/ShuffledData","data");
@@ -25,7 +27,7 @@ class CommandArgs
 		
 		
 		//put pointers in here so can easily loop over the (heterogenous) array
-		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps,&Minibatches};
+		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps,&Minibatches,&HarnessRelease,&HarnessSlowDown};
 		
 		CommandArgs(){};
 		
