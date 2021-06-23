@@ -159,7 +159,6 @@ class Optimizer
 		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
-					std::cout << Progress.Harness << std::endl;
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
