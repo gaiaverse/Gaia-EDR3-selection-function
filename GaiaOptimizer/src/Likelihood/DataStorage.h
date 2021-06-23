@@ -24,10 +24,10 @@ struct VariancePopulation
 	}; 
 	double Variance(double scaling)
 	{
-		double v = 0;
-		for (int i =0; i < PowerContributions.size(); ++i)
+		double v = PowerContributions[0];
+		for (int i =1; i < PowerContributions.size(); ++i)
 		{
-			v += PowerContributions[i] * pow(scaling,i);
+			v += pow(scaling*PowerContributions[i],i);
 		}
 		return v;
 	}
@@ -36,7 +36,7 @@ struct VariancePopulation
 		double value = 0;
 		for (int i = 1; i < PowerContributions.size(); ++i)
 		{
-			value+= i * PowerContributions[i] * pow(scaling,i-1);
+			value+= i * PowerContributions[i] * pow(PowerContributions[i]*scaling,i-1);
 		}
 		return value;
 	}

@@ -57,7 +57,10 @@ class Optimizer
 			Properties.Mode = OptimiserModes::ADABADAM;
 			Properties.MiniBatches = 1;
 			Properties.BurnInSteps = 0;
-			Properties.StepSize = 0.05;			
+			Properties.StepSize = 0.1;			
+			
+			Properties.HarnessReleaseFactor = 0.25;
+			Properties.MaxHarnessFactor = 100;
 			
 			Properties.MinibatchDownStep = 4;
 			
@@ -76,7 +79,7 @@ class Optimizer
 			Status.ReachedFunctionConvergence = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
-			
+			Progress.Harness = 0.0;
 			Progress.BufferFileOpened = false;
 			
 			Buffer.Position = 0;
@@ -179,7 +182,7 @@ class Optimizer
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate;
+						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate * Progress.Harness;
 						dxNorm += dx_i * dx_i;
 						x[i] += dx_i;
 						epochGradient[i] += g;
@@ -195,6 +198,7 @@ class Optimizer
 						double sqrtgNorm = sqrt(gNorm);
 						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 					}
+					Progress.Harness = 
 				}
 				
 				epochL/=EffectiveBatches;

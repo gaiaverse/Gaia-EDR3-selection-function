@@ -334,9 +334,10 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		populationValues[i] = value_Full;
 
 		data.hypergradient[hyperFractionOffset + i] = 1.0/pop->Fraction;
-		for (int j = 0; j <= hyperOrder; ++j)
+		data.hypergradient[i] = dlpmf_ds2; // zeroth order term
+		for (int j = 1; j <= hyperOrder; ++j)
 		{
-			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(nPrime,j);
+			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pow(nPrime,j) * j * pow(pop->PowerContributions[j],j-1);
 		}
 		
 		

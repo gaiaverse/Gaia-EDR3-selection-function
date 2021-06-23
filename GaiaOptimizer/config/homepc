@@ -1,5 +1,5 @@
 output       ../../CodeOutput/hometest_nActive/
-data         ../../TestSets/gaps_parallel_spikes/
+data         ../../Data/TestSets/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
 max-steps    500

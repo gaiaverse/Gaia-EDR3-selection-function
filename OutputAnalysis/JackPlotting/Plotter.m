@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic64_activeScaling_quartic","Diagnostic65_activeScaling_quadratic"];
-% files = files([4]);
-getData(30);
+files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
+files = "hometest_nActive";
+% getData(30);
 
-N1 =20;
-N2 = 0;
+N1 =0;
+N2 = 40;
 gap = 2;
-progressPlot(files, 0.1)
-% gifPlot(files,N1,N2,gap,"mixed_evolution_4.gif",false);
-temporalPlot(files,N2);
+progressPlot(files,0)
+% gifPlot(files,N1,N2,gap,"evolution.gif",false);
+% temporalPlot(files,N2);
 
 
 
@@ -34,10 +34,10 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 2097;%2230;
-xmax = 2195;%2248;
+% xmin = 2097;%2230;
+xmax = 1300;%2248;
 ymin = -10;
-ymax = 10;
+ymax = 35;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -70,8 +70,9 @@ for i = 1:length(folders)
 	Nm = properties.Nm(1);
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
-    pow = 2;
-    pop = length(varianceSegment)/(pow+2)
+    
+    pop = 2;
+    pow = length(varianceSegment)/(pop)-2;
     fprintf("\nVarince output for " + name+"\n");
     for k = 1:pop
        ps = [];
@@ -81,11 +82,16 @@ for i = 1:length(folders)
         frac = varianceSegment((1+pow)*pop + k);
         fprintf("\tPop %d has fraction %.3f and variance model ",k,frac)
         for j = 0:pow
-            s = "%f n^%d ";
-            if j < pow
-                s = s + " + ";
+            s = "%f ";
+
+            if j > 0
+                s = " + " + s + "n^%d";
+                powFac = j;
+                fprintf(s,varianceSegment(j*pop+k)^powFac,j);  
+            else
+                 fprintf(s,varianceSegment(j*pop+k));  
             end
-           fprintf(s,varianceSegment(j*pop+k),j);  
+           
         end
         fprintf("\n");
     end
@@ -390,20 +396,6 @@ end
 
 legend(files)
 end
-
-function [sx,sy] = bottomOut(x,y,factor)
-sx = [];
-sy = [];
-
-i = 1;
-
-while i < length(x)
-	top = min(length(x),i+factor);
-	sx(end+1) = mean(x(i:top));
-	sy(end+1) = min(y(i:top));
-	i = i + factor;
-end
-end
 function gifPlot(folder,startN,maxN,gap,fileName,includeFinal)
 for i = startN:gap:maxN
 	temporalPlot(folder,i);
@@ -435,30 +427,17 @@ if includeFinal == true
 	end
 end
 end
+function [sx,sy] = bottomOut(x,y,factor)
+sx = [];
+sy = [];
 
-function magGif(folder,number,offset,start,max,jump,fileName)
-figure(1);
-ny = 2;
-nx = ceil(jump/ny);
-for m = start:jump:max
-	
-	for i = 1:jump
-		if start + i < 213
-			subplot(ny,nx,i)
-			temporalPlot(folder,number,offset,start +i,start+i);
-			%         subplot(2,1,1)
-			
-			frame = getframe(gcf);
-			im = frame2im(frame);
-			[imind,cm] = rgb2ind(im,256);
-			
-			if m == start
-				imwrite(imind,cm,fileName,'gif', 'Loopcount',inf);
-			else
-				imwrite(imind,cm,fileName,'gif','WriteMode','append');
-			end
-		end
-	end
+i = 1;
+
+while i < length(x)
+	top = min(length(x),i+factor);
+	sx(end+1) = mean(x(i:top));
+	sy(end+1) = min(y(i:top));
+	i = i + factor;
+end
 end
 
-end
