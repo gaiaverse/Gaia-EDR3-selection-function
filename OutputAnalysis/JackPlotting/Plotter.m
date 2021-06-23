@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
-files = files([3]);
-% getData(30);
+files = ["Diagnostic66_mScaling_quartic","Diagnostic66_mScaling_quintic","Diagnostic66_activeScaling_quartic","Diagnostic66_activeScaling_quadratic"];
+files = files([4]);
+getData(30);
 
 N1 =0;
-N2 = 46;
-gap = 8;
-progressPlot(files,0)
-% gifPlot(files,N1,N2,gap,"evolution.gif",false);
-temporalPlot(files,N2);
+N2 = 16;
+gap = 2;
+progressPlot(files,6.5)
+gifPlot(files,N1,N2,gap,"evolution.gif",false);
+% temporalPlot(files,N2);
 
 
 
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2097;%2230;
-% xmax = 1300;%2248;
+xmin = 1191;%2230;
+xmax = 1214;%2248;
 ymin = -10;
 ymax = 30;
 gaps = readtable("edr3_gaps.csv");
@@ -48,8 +48,10 @@ end
 hold off;
 for i = 1:length(folders)
 	folder = folders(i);
-	properties = readtable("../../../CodeOutput/" + folder + "/Optimiser_Properties.dat");
-	
+	properties = readtable("../../../CodeOutput/" + folder + "/OptimiserProperties.dat","ReadRowNames",true,"Delimiter","=");
+	pData = table2array(properties)';
+    vnames = properties.Properties.RowNames;
+    properties = array2table(pData,"VariableNames",vnames);
 	name = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition";
 		
 	if number > -1
@@ -71,8 +73,8 @@ for i = 1:length(folders)
     
     varianceSegment = z(Nt+Nl*Nm+1:end);
     
-    pop = 4;
-    pow = length(varianceSegment)/(pop)-2;
+    pop = properties.NVariancePopulations(1);
+    pow = properties.hyperOrder(1);
     fprintf("\nVarince output for " + name+"\n");
     for k = 1:pop
        ps = [];
@@ -80,7 +82,7 @@ for i = 1:length(folders)
            ps(end+1) = varianceSegment(j*pop+k);  
         end
         frac = varianceSegment((1+pow)*pop + k);
-        fprintf("\tPop %d has fraction %.3f and variance model ",k,frac)
+        fprintf("\tPop %d has fraction %.8f and variance model ",k,frac)
         for j = 0:pow
             s = "%f ";
 
