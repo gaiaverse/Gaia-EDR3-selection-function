@@ -79,7 +79,7 @@ class Optimizer
 			Status.ReachedFunctionConvergence = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
-			Progress.Harness = 0.0;
+			Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 			Progress.BufferFileOpened = false;
 			
 			Buffer.Position = 0;
@@ -159,6 +159,7 @@ class Optimizer
 		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
+					std::cout << Progress.Harness << std::endl;
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
@@ -198,7 +199,7 @@ class Optimizer
 						double sqrtgNorm = sqrt(gNorm);
 						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 					}
-					Progress.Harness = 
+					Progress.Harness = std::min(1.0,Progress.Harness * (1.0 + Properties.HarnessReleaseFactor));
 				}
 				
 				epochL/=EffectiveBatches;
@@ -217,6 +218,7 @@ class Optimizer
 				if (newBatches < EffectiveBatches)
 				{
 					EffectiveBatches = newBatches;
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					learningRate = std::min(learningRate*1.1,2*Properties.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 				}
@@ -227,6 +229,7 @@ class Optimizer
 				{
 					Status.Continues = true;
 					EffectiveBatches = std::max(1,EffectiveBatches/4);
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 				}
 				

@@ -72,6 +72,10 @@ VectorXd RootProcess()
 	op.Progress.StepsPerPositionSave = Args.SaveSteps;
 	op.Progress.UniquePositionSaves = Args.SaveAllSteps;
 	
+	op.Properties.MaxHarnessFactor = 20;
+	op.Properties.HarnessReleaseFactor = 0.1;
+	op.Properties.StepSize= 0.05;
+	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
 	
 	

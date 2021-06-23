@@ -2,15 +2,15 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic65_mScaling_quartic","Diagnostic65_mScaling_quintic","Diagnostic65_activeScaling_quadratic","Diagnostic65_activeScaling_quartic"];
-files = "hometest_nActive";
+files = ["hometest_baseLine_slow","hometest_baseLine_medium","hometest_baseLine_fast","hometest_harnessed_veryfast"];
 % getData(30);
 
 N1 =0;
 N2 = 40;
-gap = 2;
-progressPlot(files,0)
+gap = 8;
+progressPlot(files,20)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
-% temporalPlot(files,N2);
+temporalPlot(files,N2);
 
 
 
@@ -37,7 +37,7 @@ xmax = t(2);
 % xmin = 2097;%2230;
 xmax = 1300;%2248;
 ymin = -10;
-ymax = 35;
+ymax = 15;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
