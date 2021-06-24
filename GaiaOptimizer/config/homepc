@@ -1,5 +1,5 @@
-output       ../../CodeOutput/hometest_harnessed_veryfast/
-data         ../../Data/TestSets/gaps_parallel_spikes/
+output       ../../CodeOutput/hometest_heavy_slowRelease_noReset2/
+data         ../../TestSets/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
 max-steps    500
@@ -7,4 +7,7 @@ burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     16
+harness-slow  10
+harness-release 1
+
 

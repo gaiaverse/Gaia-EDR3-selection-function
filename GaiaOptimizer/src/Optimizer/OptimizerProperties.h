@@ -11,7 +11,7 @@ struct OptimiserProperties
 	double StepSize;
 	double MinibatchDownStep;
 	double MaxHarnessFactor;
-	double HarnessReleaseFactor;
+	int HarnessReleaseSteps;
 };
 struct StopConditions
 {

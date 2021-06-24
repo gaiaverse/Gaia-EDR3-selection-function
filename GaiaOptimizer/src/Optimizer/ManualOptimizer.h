@@ -57,15 +57,15 @@ class Optimizer
 			Properties.Mode = OptimiserModes::ADABADAM;
 			Properties.MiniBatches = 1;
 			Properties.BurnInSteps = 0;
-			Properties.StepSize = 0.1;			
+			Properties.StepSize = 0.05;			
 			
-			Properties.HarnessReleaseFactor = 0.25;
+			Properties.HarnessReleaseSteps = 5;
 			Properties.MaxHarnessFactor = 100;
 			
-			Properties.MinibatchDownStep = 4;
+			Properties.MinibatchDownStep = 2;
 			
 			Buffer.Size = 10;
-			Buffer.AnalysisSize = 10;
+			Buffer.AnalysisSize = 20;
 			Buffer.OverrideTime = 300;
 			Progress.SaveLocation = "";
 			Progress.MaxHashes = 16;
@@ -143,6 +143,7 @@ class Optimizer
 			bool burnInStopped = false;
 			while (Status.Continues)
 			{
+				std::cout << Progress.Harness << std::endl;
 				int epochs = Progress.CurrentSteps + 1;
 				double epochL = 0;
 				epochGradient -= epochGradient;
@@ -159,12 +160,13 @@ class Optimizer
 		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
+					
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
 					
 					//save initial position
-					if (batches == 0 && epochs == 1)
+					if (batches == 0 && epochs == 1 && EffectiveBatches > 1)
 					{
 						Functor.SavePosition(false,0,Progress.UniquePositionSaves,x);
 						previousEpoch = Functor.Value;
@@ -198,7 +200,10 @@ class Optimizer
 						double sqrtgNorm = sqrt(gNorm);
 						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 					}
-					Progress.Harness = std::min(1.0,Progress.Harness * (1.0 + Properties.HarnessReleaseFactor));
+					
+					double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * EffectiveBatches));
+					//~ std::cout << harnessFactor << std::endl;
+					Progress.Harness = std::min(1.0,Progress.Harness * harnessFactor);
 				}
 				
 				epochL/=EffectiveBatches;
@@ -218,8 +223,11 @@ class Optimizer
 				{
 					EffectiveBatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-					learningRate = std::min(learningRate*1.1,2*Properties.StepSize);
+					learningRate = std::min(learningRate*0.8,0.5*Properties.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
+					//~ t = 1;
+					//~ m =  VectorXd::Zero(Dimensions);
+					//~ v =  VectorXd::Zero(Dimensions);
 				}
 				
 				
@@ -227,9 +235,12 @@ class Optimizer
 				if (Status.Continues == false && EffectiveBatches > 1)
 				{
 					Status.Continues = true;
-					EffectiveBatches = std::max(1,EffectiveBatches/4);
+					EffectiveBatches = std::max(1,EffectiveBatches/2);
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
+					//~ t = 1;
+					//~ m =  VectorXd::Zero(Dimensions);
+					//~ v =  VectorXd::Zero(Dimensions);
 				}
 				
 				
@@ -242,37 +253,33 @@ class Optimizer
 		{
 			if (Progress.CurrentSteps > HaltConditions.MaxSteps)
 			{
-				std::cout << "STeps! " << Progress.CurrentSteps << std::endl;
 				Status.TooManySteps = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.PositionChangeThreshold > 0 && dx < HaltConditions.PositionChangeThreshold)
 			{
-				std::cout << "Position! " << dx << std::endl;
 				Status.ReachedStepConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.GradientThreshold > 0 && dg.norm() < HaltConditions.GradientThreshold)
 			{
-				std::cout << "Gradient! " << dg.norm() << std::endl;
 				Status.ReachedGradConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
 			}
 			if (HaltConditions.FunctionChangeThreshold > 0  && abs(df) < HaltConditions.FunctionChangeThreshold)
 			{
-				std::cout << "Function! " << df << std::endl;
 				Status.ReachedFunctionConvergence = true;
 				Status.Converged = true;
 				Status.Continues = false;
 			}
-			if (Progress.MovingAverage > 0)
-			{
-				Status.ReachedFunctionConvergence = true;
-				Status.Converged = true;
-				Status.Continues = false;
-			}
+			//~ if (Progress.MovingAverage > 0)
+			//~ {
+				//~ Status.ReachedFunctionConvergence = true;
+				//~ Status.Converged = true;
+				//~ Status.Continues = false;
+			//~ }
 		} 
 
 		int CheckMinibatches(double df,int currentSize)

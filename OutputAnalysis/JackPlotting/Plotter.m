@@ -2,14 +2,14 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic66_mScaling_quartic","Diagnostic66_mScaling_quintic","Diagnostic66_activeScaling_quartic","Diagnostic66_activeScaling_quadratic"];
-files = files([4]);
-getData(30);
+files = ["hometest_heavy_slowRelease_noReset","hometest_heavy_slowRelease_noReset2"];
+% getData(30);
 
-N1 =0;
-N2 = 16;
-gap = 2;
-progressPlot(files,6.5)
-gifPlot(files,N1,N2,gap,"evolution.gif",false);
+N1 =150;
+N2 = 280;
+gap = 10;
+progressPlot(files,15)
+% gifPlot(files,N1,N2,gap,"evolution.gif",false);
 % temporalPlot(files,N2);
 
 
@@ -34,9 +34,9 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 1191;%2230;
-xmax = 1214;%2248;
-ymin = -10;
+% xmin = 3540;%1191;%2230;
+% xmax = 3544;%1214;%2248;
+ymin = -30;
 ymax = 30;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
@@ -163,7 +163,7 @@ for i = 1:length(folders)
     xRow = [zs, fliplr(zs)]';
     yRow = [maxes; flipud(mins)];
 
-    expMode = true;
+    expMode = false;
     if Nm > 1
         alpha = 0.5*log(2);
         if expMode == true
@@ -271,7 +271,11 @@ for i = 1:length(files)
 	xB = miniX; %miniBatches.Elapsed;
 	xF = fullEpoch.Epoch-1; %fullEpoch.Elapsed;
     if height(fullEpoch) > 0
-        ender = max(max(xB),max(xF));
+		if height(miniBatches) > 0
+	        ender = max(max(xB),max(xF));
+		else
+			ender = max(xF);
+		end
     else
         ender = max(xB);
     end
