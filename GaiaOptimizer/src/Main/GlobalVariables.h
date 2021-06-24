@@ -43,8 +43,8 @@ const double xmPrior = -3;
 const double xmInitialised = 5;
 
 const double xtPriorNonGap = 5;
-const double xtPriorBorderCase =5;
-const double xtPriorInsideGap = 5;
+const double xtPriorBorderCase =0;
+const double xtPriorInsideGap = -5;
 
 const double initialisationBounds = 0.1;
 

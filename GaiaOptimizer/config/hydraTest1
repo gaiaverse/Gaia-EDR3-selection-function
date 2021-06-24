@@ -1,11 +1,11 @@
-output       ../../Output/Diagnostic66_activeScaling_quartic/
+output       ../../Output/Diagnostic67_newOptimiser_burnIn/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
 max-steps    500
-burnin       0
+burnin       5
 save-steps   2
 unique-temp-save 1
-minibatch     128
+minibatch     64
 harness-slow  20
-harness-release 0.1
+harness-release 3

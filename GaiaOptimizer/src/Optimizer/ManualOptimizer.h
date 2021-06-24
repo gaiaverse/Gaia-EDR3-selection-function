@@ -152,6 +152,7 @@ class Optimizer
 				{
 					burnInStopped = true;
 					Functor.Unfreeze();
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 				}
 
 				
