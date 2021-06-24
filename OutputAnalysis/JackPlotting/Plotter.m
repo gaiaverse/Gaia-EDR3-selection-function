@@ -1,16 +1,17 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic66_activeScaling_quadratic","Diagnostic67_newOptimiser"];
+files = ["Diagnostic66_activeScaling_quadratic","Diagnostic67_newOptimiser","Diagnostic67_newOptimiser_burnIn"];
 
+files = files(1:2);
 getData(30);
 
 N1 =0;
-N2 = 10;
+N2 = 4;
 gap = 2;
-progressPlot(files,7)
-gifPlot(files,N1,N2,gap,"evolution.gif",false);
-% temporalPlot(files,N2);
+progressPlot(files,14)
+% gifPlot(files,N1,N2,gap,"evolution.gif",false);
+temporalPlot(files,N2);
 
 
 
@@ -163,7 +164,7 @@ for i = 1:length(folders)
     xRow = [zs, fliplr(zs)]';
     yRow = [maxes; flipud(mins)];
 
-    expMode = false;
+    expMode = true;
     if Nm > 1
         alpha = 0.5*log(2);
         if expMode == true
@@ -322,52 +323,8 @@ for i = 1:length(files)
 	
 	subplot(2,2,3);
 	
-	colormap(map);
-	hold on;
 	
-	if height(miniBatches) > 1
-		miniBatches.dF(1) = 0;
-		x1 = xB';
-		y1 = smooth(miniBatches.dF./miniBatches.F,miniSmooth)';
-		zq = zeros(size(x1));
-		s1 = abs(y1(abs(y1) > 0 & miniBatches.Elapsed' > minLim));
-		minner = min(s1);
-		maxer = max(s1);
-		col = (y1>0)*(2*i);
-		
-		
-		surface([x1;x1],[abs(y1);abs(y1)],[zq;zq],[col;col],...
-			'facecol','no',...
-			'edgecol','flat',...
-			'linew',0.5);
-		hold on;
-	end
-	if height(fullEpoch) > 1
-		
-		fullEpoch.dF(1) = fullEpoch.F(1) - L0;
-		x2 = xF';
-		y2 = (fullEpoch.dF./fullEpoch.F)';
-		zq = zeros(size(x2));
-		col = (y2>0)*(2*i-1);
-		surface([x2;x2],[abs(y2);abs(y2)],[zq;zq],[col;col],...
-			'facecol','no',...
-			'edgecol','flat',...
-			'linew',2);
-		
-		s2 = abs(y2(abs(y2) > 0 & fullEpoch.Elapsed' > minLim));
-		
-		if height(miniBatches) > 1
-			
-			minner = min(min(s1),min(s2));
-			maxer = max(max(s1),max(s2));
-		else
-			minner = min(s2);
-			maxer = max(s2);
-		end
-	end
-	caxis([0,3]);
-	scatter(cy,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
-	hold off;
+	
 	xlabel("Elapsed Time (s)");
 	ylabel("$\Delta L / L $");
 	set(gca,'yscale','log')
@@ -375,9 +332,7 @@ for i = 1:length(files)
 	
 	hold off;
 	grid on;
-	xlim([minLim,ender])
-	
-	ylim([minner,maxer]);
+
 	
 	
 	grid on;
