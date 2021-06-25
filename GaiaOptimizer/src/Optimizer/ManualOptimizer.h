@@ -143,7 +143,6 @@ class Optimizer
 			bool burnInStopped = false;
 			while (Status.Continues)
 			{
-				std::cout << Progress.Harness << std::endl;
 				int epochs = Progress.CurrentSteps + 1;
 				double epochL = 0;
 				epochGradient -= epochGradient;

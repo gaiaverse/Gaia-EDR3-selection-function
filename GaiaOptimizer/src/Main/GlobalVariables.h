@@ -16,7 +16,7 @@ using Eigen::VectorXd;
 
 //Optimiser + data properties
 
-const int DataLoadCount = 5e6;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 2e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const std::string TempDirName = "TempPositions";
 
@@ -29,14 +29,14 @@ const int Nm = 213; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
-const int NVariancePops = 5;
+const int NVariancePops = 3;
 const int hyperOrder = 2;
 
 //temporal and magnitude lengthscales + variances
 
-const double sigmat = 5;
+const double sigmat = 1;
 const double lm = 3;
-const double lt = 240;
+const double lt = 120;
 
 //prior and initialisation values
 const double xmPrior = -3;

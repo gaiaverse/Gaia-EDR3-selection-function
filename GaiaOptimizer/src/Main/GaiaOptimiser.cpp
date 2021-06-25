@@ -182,10 +182,10 @@ int main(int argc,char *argv[])
 	Welcome();
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
-	VectorXd x;
 	
-	//~ GradTest();
-	if (ProcessRank == RootID) 
+	//~ GradientTest();
+	VectorXd x;
+		if (ProcessRank == RootID) 
 	{
 		x = RootProcess();
 	}

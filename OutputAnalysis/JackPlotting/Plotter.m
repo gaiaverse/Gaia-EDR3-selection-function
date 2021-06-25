@@ -3,13 +3,14 @@ set(0,'defaultTextInterpreter','latex');
 
 files = ["Diagnostic66_activeScaling_quadratic","Diagnostic67_newOptimiser","Diagnostic67_newOptimiser_burnIn"];
 
-files = files(1:2);
-getData(30);
+files = files(1);
+files = "hometest";
+% getData(30);
 
 N1 =0;
-N2 = 98;
+N2 = -1;
 gap = 2;
-progressPlot(files,14)
+progressPlot(files,10)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
 temporalPlot(files,N2);
 
@@ -35,8 +36,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 4000;
-xmax = 4120;
+% xmin = 4000;
+% xmax = 4120;
 ymin = -30;
 ymax = 30;
 gaps = readtable("edr3_gaps.csv");

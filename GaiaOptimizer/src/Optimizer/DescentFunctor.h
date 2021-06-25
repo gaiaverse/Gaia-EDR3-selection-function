@@ -9,6 +9,7 @@
 #include "../Likelihood/LogLikelihoodPrior.h"
 #include "../Main/GlobalConstants.h"
 #include "../libs/JSL/JSL.h"
+#include "../Likelihood/ProbabilityFunctions.h"
 
 using Eigen::VectorXd;
 

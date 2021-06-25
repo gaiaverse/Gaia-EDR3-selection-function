@@ -105,26 +105,25 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 	
 	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
 	
-
-	double popSum = 0;
 	int offset = hyperFractionOffset;
-	for (int i = 0; i < NHyper; ++i)
-	{
-
-		double v = exp(z[rawNonHyperParams + i]);
-		TransformedPosition[transformedNonHyperParams + i] = v;
-		
-		if (i >=offset)
-		{
-			popSum += v;
-		}
-	}
+	double X = VerySmallLog;
 	
 	for (int i = 0; i < NVariancePops; ++i)
 	{
-		TransformedPosition[transformedNonHyperParams + offset + i] /= popSum;
+		X = log_add_exp(X,z[rawNonHyperParams + offset + i]);
+		
 	}
-
+	
+	for (int i = 0; i < NHyper; ++i)
+	{
+		double normalisation = 0;
+		if (i >= offset)
+		{
+			normalisation = X;
+		}
+		double v = exp(z[rawNonHyperParams + i] - normalisation);
+		TransformedPosition[transformedNonHyperParams + i] = v;
+	}	
 }
 
 void DescentFunctor::BackwardTransform()
@@ -172,16 +171,32 @@ void DescentFunctor::BackwardTransform()
 		}
 	}
 	
-	for (int i = 0; i < NHyper; ++i)
+	for (int i = 0; i < hyperFractionOffset; ++i)
 	{
 		double x = TransformedPosition[transformedNonHyperParams + i];
 		double df = TransformedGradient[transformedNonHyperParams + i];
-		Gradient[rawNonHyperParams + i] = x * df;
+
+		Gradient[rawNonHyperParams + i] = x* df;		
+	}
+	
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		double xi = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ i];
+		double sum = 0;
 		
-		if (i >= hyperFractionOffset)
+		for (int j = 0; j <  NVariancePops; ++j)
 		{
-			Gradient[rawNonHyperParams + i] *= (1.0 - x);
+			double xj = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ j];
+			double dfj = TransformedGradient[transformedNonHyperParams + hyperFractionOffset+ j];
+			
+			double ijTerm = 0;
+			if (i==j)
+			{
+				ijTerm = 1;
+			}
+			sum += dfj * xi*(ijTerm -xj);
 		}
+		Gradient[rawNonHyperParams + hyperFractionOffset + i] = sum;
 	}
 
 }
@@ -216,13 +231,13 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	
 	
-	for (int i = 0; i < Nt;++i)
-	{
-		if (freezeOuts[i])
-		{
-			TransformedGradient[i] = 0;
-		}
-	}
+	//~ for (int i = 0; i < Nt;++i)
+	//~ {
+		//~ if (freezeOuts[i])
+		//~ {
+			//~ TransformedGradient[i] = 0;
+		//~ }
+	//~ }
 	
 	
 	
@@ -241,6 +256,10 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	for (int i = 0; i < Gradient.size(); ++i)
 	{
 		Gradient[i] = -Gradient[i] / StarsInLastBatch;
+		if (i > totalRawParams)
+		{
+			std::cout << "\t\t" << Gradient[i] << std::endl;
+		}
 	}
 	
 

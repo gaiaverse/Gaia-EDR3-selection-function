@@ -19,8 +19,7 @@ struct VariancePopulation
 	{
 		Fraction = fraction;
 		PowerContributions = contributions;
-		
-		
+				
 	}; 
 	double Variance(double scaling)
 	{
@@ -31,12 +30,12 @@ struct VariancePopulation
 		}
 		return v;
 	}
-	double Gradient(double scaling)
+	double dVariancedN(double scaling)
 	{
 		double value = 0;
 		for (int i = 1; i < PowerContributions.size(); ++i)
 		{
-			value+= i * PowerContributions[i] * pow(PowerContributions[i]*scaling,i-1);
+			value+= i * pow(PowerContributions[i],i) * pow(scaling,i-1);
 		}
 		return value;
 	}

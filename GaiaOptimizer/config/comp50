@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic68_5Pops/
+output       ../../Output/Diagnostic70_FixedHyperParameters/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
