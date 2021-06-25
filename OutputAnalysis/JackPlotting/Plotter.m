@@ -1,18 +1,17 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic66_activeScaling_quadratic","Diagnostic67_newOptimiser","Diagnostic67_newOptimiser_burnIn"];
+files = ["Diagnostic66_activeScaling_quadratic","Diagnostic70_FixedHyperParameters"];
 
-files = files(1);
-files = "hometest";
-% getData(30);
+files = files(2);
+getData(30);
 
 N1 =0;
-N2 = -1;
+N2 = 12;
 gap = 2;
-progressPlot(files,10)
+progressPlot(files,9)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
-temporalPlot(files,N2);
+% temporalPlot(files,N2);
 
 
 
@@ -38,8 +37,8 @@ xmin = t(1);
 xmax = t(2);
 % xmin = 4000;
 % xmax = 4120;
-ymin = -30;
-ymax = 30;
+ymin = -10;
+ymax = 10;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -77,7 +76,7 @@ for i = 1:length(folders)
     
     pop = properties.NVariancePopulations(1);
     pow = properties.hyperOrder(1);
-    fprintf("\nVarince output for " + name+"\n");
+    fprintf("\nVariance output for " + name+"\n");
     for k = 1:pop
        ps = [];
         for j = 0:pow

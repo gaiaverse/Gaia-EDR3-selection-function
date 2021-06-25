@@ -91,7 +91,7 @@ class Optimizer
 			Buffer.Batches = std::vector<int>(n,0);
 			Buffer.MiniBatches = std::vector<int>(n,0);
 			Buffer.Fs = std::vector<double>(n,0);
-			Buffer.DFs = std::vector<double>(n,0);
+			Buffer.DXs = std::vector<double>(n,0);
 			Buffer.Gradnorms = std::vector<double>(n,0);
 			Buffer.Times = std::vector<double>(n,0);
 			Buffer.Epochs = std::vector<int>(n,0);
@@ -348,7 +348,7 @@ class Optimizer
 			Buffer.Batches[i] = nBatches;
 			Buffer.Fs[i] = F;
 			Buffer.Gradnorms[i] = G;
-			Buffer.DFs[i] = dF;
+			Buffer.DXs[i] = dxNorm;
 			Buffer.Epochs[i] = Progress.CurrentSteps + 1;
 			auto time = std::chrono::system_clock::now();
 			std::chrono::duration<double> diff = time - Buffer.StartTime;
@@ -423,7 +423,7 @@ class Optimizer
 			if (Progress.BufferFileOpened == false)
 			{
 				file.open(saveFile,std::ios::out);
-				std::vector<std::string> headers = {"Elapsed","Epoch","Batch", "nBatches","F","dF","GradNorm"};
+				std::vector<std::string> headers = {"Elapsed","Epoch","Batch", "nBatches","F","dX","GradNorm"};
 				for (int i = 0; i < headers.size(); ++i)
 				{
 					file << std::setw(width) << headers[i] + ",";
@@ -444,7 +444,7 @@ class Optimizer
 				file << std::setw(width) << std::setprecision(prec) << Buffer.MiniBatches[i] << ",";
 				file << std::setw(width) << std::setprecision(prec) << Buffer.Batches[i] << ",";
 				file << std::setw(width) << std::setprecision(prec) << Buffer.Fs[i] << ",";
-				file << std::setw(width) << std::setprecision(prec) << Buffer.DFs[i] << ",";
+				file << std::setw(width) << std::setprecision(prec) << Buffer.DXs[i] << ",";
 				file << std::setw(width) << std::setprecision(prec) << Buffer.Gradnorms[i] << ",";
 				
 				file << "\n";

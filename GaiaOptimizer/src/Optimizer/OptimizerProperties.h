@@ -53,7 +53,7 @@ struct MemoryBuffer
 	
 	std::vector<double> Fs;
 	std::vector<double> Gradnorms;
-	std::vector<double> DFs;
+	std::vector<double> DXs;
 	std::vector<double> Times;
 	std::vector<int> MiniBatches;
 	std::vector<int> Epochs;
