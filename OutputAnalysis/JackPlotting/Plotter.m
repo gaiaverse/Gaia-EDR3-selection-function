@@ -7,7 +7,7 @@ files = files(1:2);
 getData(30);
 
 N1 =0;
-N2 = 4;
+N2 = 98;
 gap = 2;
 progressPlot(files,14)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);

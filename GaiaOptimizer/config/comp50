@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic67_newOptimiser/
+output       ../../Output/Diagnostic68_5Pops/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
