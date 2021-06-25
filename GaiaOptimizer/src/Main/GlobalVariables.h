@@ -34,7 +34,7 @@ const int hyperOrder = 2;
 
 //temporal and magnitude lengthscales + variances
 
-const double sigmat = 1;
+const double sigmat = 3;
 const double lm = 3;
 const double lt = 120;
 

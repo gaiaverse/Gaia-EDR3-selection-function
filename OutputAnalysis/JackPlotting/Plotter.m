@@ -7,11 +7,11 @@ files = files(2);
 getData(30);
 
 N1 =0;
-N2 = 12;
+N2 = 14;
 gap = 2;
-progressPlot(files,9)
+progressPlot(files,3)
 % gifPlot(files,N1,N2,gap,"evolution.gif",false);
-% temporalPlot(files,N2);
+temporalPlot(files,N2);
 
 
 
@@ -35,8 +35,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 4000;
-% xmax = 4120;
+xmin = 2390;
+xmax = 2420;
 ymin = -10;
 ymax = 10;
 gaps = readtable("edr3_gaps.csv");
