@@ -40,11 +40,11 @@ const double lt = 120;
 
 //prior and initialisation values
 const double xmPrior = -3;
-const double xmInitialised = 5;
+const double xmInitialised = 3;
 
 const double xtPriorNonGap = 5;
-const double xtPriorBorderCase =5;
-const double xtPriorInsideGap = 5;
+const double xtPriorBorderCase =0;
+const double xtPriorInsideGap = -8;
 
 const double initialisationBounds = 0.1;
 

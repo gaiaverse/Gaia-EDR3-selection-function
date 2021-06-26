@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic66_activeScaling_quadratic","Diagnostic70_FixedHyperParameters"];
+files = ["Diagnostic70_FixedHyperParameters","Diagnostic70_fixedHyper_burnIn","Diagnostic70_fixedHyper_absoluteFreedom"];
 
-files = files(2);
+% files = files([2,3]);
 getData(30);
 
-N1 =0;
-N2 = 14;
+N1 =00;
+N2 = 54;
 gap = 2;
-progressPlot(files,3)
-% gifPlot(files,N1,N2,gap,"evolution.gif",false);
+progressPlot(files,36)
+% gifPlot(files,N1,N2,gap,"evolution2.gif",false);
 temporalPlot(files,N2);
 
 
@@ -35,7 +35,7 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 2390;
+% xmin = 2390;
 xmax = 2420;
 ymin = -10;
 ymax = 10;
@@ -293,7 +293,7 @@ for i = 1:length(files)
 		cx(end+1) = shrinkLines.Elapsed(j);
 		cy(end+1) = shrinkLines.Epoch(j)-1;
 		cz(end+1) = shrinkLines.F(j)/L0;
-		cz1(end+1) = abs(shrinkLines.dF(j)/shrinkLines.F(j));
+% 		cz1(end+1) = abs(shrinkLines.dF(j)/shrinkLines.F(j));
 		cz2(end+1) = shrinkLines.GradNorm(j);
 	end
 	scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');

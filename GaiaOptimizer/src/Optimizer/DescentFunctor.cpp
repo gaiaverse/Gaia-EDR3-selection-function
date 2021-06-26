@@ -231,13 +231,13 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	
 	
-	//~ for (int i = 0; i < Nt;++i)
-	//~ {
-		//~ if (freezeOuts[i])
-		//~ {
-			//~ TransformedGradient[i] = 0;
-		//~ }
-	//~ }
+	for (int i = 0; i < Nt;++i)
+	{
+		if (freezeOuts[i])
+		{
+			TransformedGradient[i] = 0;
+		}
+	}
 	
 	
 	

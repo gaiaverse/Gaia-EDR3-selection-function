@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic67_newOptimiser_burnIn/
+output       ../../Output/Diagnostic70_fixedHyper_fixedGaps/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-5
 max-steps    500
-burnin       5
+burnin       500
 save-steps   2
 unique-temp-save 1
 minibatch     64

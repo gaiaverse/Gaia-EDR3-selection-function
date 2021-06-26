@@ -111,7 +111,7 @@ class DescentFunctor
 				bool inBorder= false;
 				int trueTime = 0;
 				int lastEnd = -9999;
-				freezeOuts = std::vector<bool>(Nt,true);
+				freezeOuts = std::vector<bool>(Nt,false);
 				//~ freezeOuts_mag = std::vector<bool>(Nt_m,true);
 				forLineVectorIn(gapFile,' ',
 					
@@ -131,7 +131,7 @@ class DescentFunctor
 						if (inGap)
 						{
 							insertValue = xtPriorInsideGap;
-							//~ freezeOuts[it] = true;
+							freezeOuts[it] = true;
 
 						}
 						if (nearGapEdge)
