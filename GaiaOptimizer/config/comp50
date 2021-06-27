@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic70_FixedHyperParameters/
+output       ../../Output/Diagnostic71_noHyperPrior_2Pop_Quadratic/
 data         ../../Data/ShuffledData/
 random-seed  3
-gradlim      1e-5
+gradlim      1e-6
 max-steps    500
-burnin       0
+burnin       20
 save-steps   2
 unique-temp-save 1
 minibatch     64

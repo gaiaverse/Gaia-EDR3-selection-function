@@ -1,11 +1,11 @@
-output       ../../Output/Diagnostic66_mScaling_quintic/
+output       ../../Output/Diagnostic71_noHyperPrior_2Pop_Linear/
 data         ../../Data/ShuffledData/
 random-seed  3
-gradlim      1e-5
+gradlim      1e-6
 max-steps    500
-burnin       0
+burnin       20
 save-steps   2
 unique-temp-save 1
-minibatch     128
+minibatch     64
 harness-slow  20
-harness-release 0.1
+harness-release 3

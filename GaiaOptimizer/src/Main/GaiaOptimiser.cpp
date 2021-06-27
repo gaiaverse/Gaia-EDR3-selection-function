@@ -63,8 +63,8 @@ VectorXd RootProcess()
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
-	op.HaltConditions.FunctionChangeThreshold = 5e-7;
-	op.HaltConditions.PositionChangeThreshold = 0.02;
+	op.HaltConditions.FunctionChangeThreshold = 1e-7;
+	op.HaltConditions.PositionChangeThreshold = 0;
 	
 	//set up other properties
 	op.Properties.MiniBatches = Args.Minibatches;

@@ -64,11 +64,11 @@ class Optimizer
 			
 			Properties.MinibatchDownStep = 2;
 			
-			Buffer.Size = 10;
+			Buffer.Size = 50;
 			Buffer.AnalysisSize = 20;
 			Buffer.OverrideTime = 300;
 			Progress.SaveLocation = "";
-			Progress.MaxHashes = 16;
+			Progress.MaxHashes = 32;
 			Progress.StepsPerPositionSave = 1;
 		}
 		
@@ -223,7 +223,7 @@ class Optimizer
 				{
 					EffectiveBatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-					learningRate = std::min(learningRate*0.8,0.5*Properties.StepSize);
+					learningRate = std::min(learningRate*0.9,0.5*Properties.StepSize);
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 					//~ t = 1;
 					//~ m =  VectorXd::Zero(Dimensions);

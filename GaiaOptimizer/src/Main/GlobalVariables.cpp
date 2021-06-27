@@ -60,16 +60,26 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		}
 		
 		
-		
 		//hyper parameters
-		for (int i = rawNonHyperParams; i < totalRawParams - NVariancePops; ++i)
-		{
-			double v = log(1e-5);
-			if (i - rawNonHyperParams < NVariancePops)
+		for (int i = 0; i < hyperOrder+ 1; ++i)
+		{			
+			double prior = pow(10.0,-(6+2*i));
+			if ( i > 0)
 			{
-				v = 0;
+				prior = pow(prior,1.0/i);
 			}
-			x[i] += v;
+			prior = log(prior);
+			
+			for (int j = 0;j < NVariancePops; ++j)
+			{
+				int index = rawNonHyperParams + i*NVariancePops + j;
+				x[index] += prior;
+			}
+			
+		}
+		for (int i = 0; i < NVariancePops; ++i)
+		{
+			x[rawNonHyperParams + hyperFractionOffset + i] += -i*log(10);
 		}
 	}
 

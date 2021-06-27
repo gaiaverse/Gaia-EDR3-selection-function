@@ -1,15 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = ["Diagnostic70_FixedHyperParameters","Diagnostic70_fixedHyper_burnIn","Diagnostic70_fixedHyper_absoluteFreedom"];
-
-% files = files([2,3]);
-getData(30);
+% files = ["Diagnostic70_FixedHyperParameters","Diagnostic70_fixedHyper_burnIn","Diagnostic70_fixedHyper_absoluteFreedom"];
+% files = ["Diagnostic70_fixedHyper_fixedGaps","Diagnostic70_fixedHyper_bigMut","Diagnostic70_fixedHypers_smallPop_quadratic","Diagnostic70_fixedHyper_smallPop","Diagnostic70_fixedHyper_disabledPrior_sixthOrder"];
+files = ["hometest_manyPops_withPrior","hometest_manyPops_noPrior"];
+% getData(60);
 
 N1 =00;
-N2 = 54;
+N2 = -1;
 gap = 2;
-progressPlot(files,36)
+progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"evolution2.gif",false);
 temporalPlot(files,N2);
 
@@ -37,8 +37,8 @@ xmin = t(1);
 xmax = t(2);
 % xmin = 2390;
 xmax = 2420;
-ymin = -10;
-ymax = 10;
+ymin = -16;
+ymax = 16;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 subplot(ny,nx,3);
@@ -293,7 +293,7 @@ for i = 1:length(files)
 		cx(end+1) = shrinkLines.Elapsed(j);
 		cy(end+1) = shrinkLines.Epoch(j)-1;
 		cz(end+1) = shrinkLines.F(j)/L0;
-% 		cz1(end+1) = abs(shrinkLines.dF(j)/shrinkLines.F(j));
+		cz1(end+1) = abs(shrinkLines.dX(j)/shrinkLines.F(j));
 		cz2(end+1) = shrinkLines.GradNorm(j);
 	end
 	scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
@@ -322,22 +322,20 @@ for i = 1:length(files)
 	
 	
 	subplot(2,2,3);
+    hold on;
+	plot(xB,smooth(miniBatches.dX,miniSmooth),'Color',cols2(i,:),'LineWidth',0.5,'HandleVisibility','Off');
 	
-	
+	plot(xF,fullEpoch.dX,'LineWidth',1.4,'Color',cols(i,:));
+	scatter(cy,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
+	hold off;
 	
 	xlabel("Elapsed Time (s)");
-	ylabel("$\Delta L / L $");
+	ylabel("$|\Delta X|$");
 	set(gca,'yscale','log')
-	%         set(gca,'xscale','log')
-	
-	hold off;
 	grid on;
 
-	
-	
-	grid on;
 	xlim([minLim,ender])
-	%         set(gca,'yscale','log')
+
 	
 	subplot(2,2,4);
 	hold on;
