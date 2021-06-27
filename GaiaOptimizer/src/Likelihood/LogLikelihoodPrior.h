@@ -12,7 +12,7 @@ class LogLikelihoodPrior : public LogLikelihood
 		
 	     
 	    //additional functions
-	    void Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches);
+	    void Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches,bool space, bool time, bool hyper);
 		void MakeCovarianceMatrix();
 		
 		//saved values 

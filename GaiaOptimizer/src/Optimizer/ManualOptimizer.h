@@ -160,7 +160,6 @@ class Optimizer
 		
 				for (int batches = 0; batches < EffectiveBatches; ++batches)
 				{
-					
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);

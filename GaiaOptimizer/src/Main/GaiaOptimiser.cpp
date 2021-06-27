@@ -57,7 +57,19 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,false,false,true);
+	
+	//generate fake data
+	fun.FrozenTime = fun.mut_gaps;
+	fun.FrozenSpace = std::vector<double>(Nl*Nm,10.0);
+	VectorXd xSpoof = VectorXd::Zero(NHyper);
+	for (int i = 0; i < NHyper; ++i)
+	{
+		std::cout << i << std::endl;
+		xSpoof[i] = x[rawNonHyperParams + i];
+	}
+	x = xSpoof;
+	std::cout << "Spoofing complete!" << std::endl;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination

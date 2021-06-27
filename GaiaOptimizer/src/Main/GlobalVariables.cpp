@@ -63,7 +63,7 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		//hyper parameters
 		for (int i = 0; i < hyperOrder+ 1; ++i)
 		{			
-			double prior = pow(10.0,-(6+2*i));
+			double prior = pow(10.0,-(1+2*i));
 			if ( i > 0)
 			{
 				prior = pow(prior,1.0/i);

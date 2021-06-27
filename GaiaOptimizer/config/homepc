@@ -1,9 +1,9 @@
-output       ../../CodeOutput/hometest_manyPops_withPrior/
+output       ../../CodeOutput/hometest_fancyFreezer2/
 data         ../../Data/TestSets/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
-max-steps    2000
-burnin       10000
+max-steps    200
+burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     16
