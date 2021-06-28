@@ -57,21 +57,21 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,false,false,true);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,false,true,true);
 	
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
 	fun.FrozenSpace = std::vector<double>(Nl*Nm,25.0);
-	VectorXd xSpoof = VectorXd::Zero(NHyper);
+	VectorXd xSpoof = VectorXd::Zero(totalRawParams - Nt);
 	
-	//~ for (int i = 0; i < Nt; ++i)
-	//~ {
-		//~ xSpoof[i] = x[i];
-	//~ }
-	for (int i = 0; i < NHyper; ++i)
+	for (int i = Nt; i < totalRawParams; ++i)
 	{
-		xSpoof[i] = x[rawNonHyperParams + i];
+		xSpoof[i] = x[i];
 	}
+	//~ for (int i = 0; i < NHyper; ++i)
+	//~ {
+		//~ xSpoof[i] = x[rawNonHyperParams + i];
+	//~ }
 	x = xSpoof;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
