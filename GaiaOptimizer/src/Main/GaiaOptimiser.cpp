@@ -57,7 +57,7 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,false,true,true);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,true,true,true);
 	
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
@@ -72,7 +72,7 @@ VectorXd RootProcess()
 	//~ {
 		//~ xSpoof[i] = x[rawNonHyperParams + i];
 	//~ }
-	x = xSpoof;
+	//~ x = xSpoof;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination

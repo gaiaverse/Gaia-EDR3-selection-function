@@ -83,7 +83,7 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		}
 		for (int i = 0; i < NVariancePops; ++i)
 		{
-			x[rawNonHyperParams + hyperFractionOffset + i] += -i*log(10);
+			x[rawNonHyperParams + hyperFractionOffset + i] = pow(-0.65822,i);
 		}
 	}
 
