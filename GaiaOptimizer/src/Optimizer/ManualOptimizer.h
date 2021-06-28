@@ -231,11 +231,14 @@ class Optimizer
 				
 				
 				CheckConvergence(epochGradient,df,epochDx);
-				if (Status.Continues == false && EffectiveBatches > 1)
+				if (Status.Continues == false && (EffectiveBatches > 1 || Progress.Harness < 1))
 				{
 					Status.Continues = true;
 					EffectiveBatches = std::max(1,EffectiveBatches/2);
-					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
+					if (Progress.Harness ==1)
+					{
+						Progress.Harness = 1.0/Properties.MaxHarnessFactor;
+					}
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 					//~ t = 1;
 					//~ m =  VectorXd::Zero(Dimensions);
@@ -255,7 +258,7 @@ class Optimizer
 				Status.TooManySteps = true;
 				Status.Continues = false;
 			}
-			if (HaltConditions.PositionChangeThreshold > 0 && dx < HaltConditions.PositionChangeThreshold)
+			if (HaltConditions.PositionChangeThreshold > 0 && dx < HaltConditions.PositionChangeThreshold && Progress.Harness > 0.95)
 			{
 				Status.ReachedStepConvergence = true;
 				Status.Converged = true;

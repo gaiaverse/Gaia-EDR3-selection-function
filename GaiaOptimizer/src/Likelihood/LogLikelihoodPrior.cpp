@@ -3,6 +3,7 @@
 
 void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches, bool space, bool time, bool hyper)
 {
+	
 	int n = rawNonHyperParams;
 	int N = n;
 	if (useHyperPrior == true)
@@ -37,7 +38,6 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 		}
 	}
 	
-	
 	if (hyper && useHyperPrior)
 	{
 		int hyperOffset = 0;
@@ -52,21 +52,22 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 		
 		for (int i = 0; i < hyperOrder + 1;++i)
 		{
-			for (int j = 0;j < NVariancePops; ++j)
+			
+			if (i > 1)
 			{
-				double mean = 0;
-				if (i > 0)
+				for (int j = 0;j < NVariancePops; ++j)
 				{
-					mean = log(1e-3);
+					double mean = log(1e-3);
+					double d = (RawParams[hyperOffset + i*NVariancePops + j] - mean);
+					currentValue[0] -= 0.5 * d * d / effectiveBatches;
+					
+					currentGradient[0][hyperOffset + i*NVariancePops + j] -= d / effectiveBatches;
 				}
-				double d = (RawParams[hyperOffset + i*NVariancePops + j] - mean);
-				currentValue[0] -= 0.5 * d * d / effectiveBatches;
-				
-				currentGradient[0][hyperOffset + i*NVariancePops + j] -= d / effectiveBatches;
 			}
 		}
 		
 	}
+
 }
 
 

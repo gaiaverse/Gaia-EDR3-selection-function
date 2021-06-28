@@ -61,15 +61,18 @@ VectorXd RootProcess()
 	
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
-	fun.FrozenSpace = std::vector<double>(Nl*Nm,10.0);
+	fun.FrozenSpace = std::vector<double>(Nl*Nm,15.0);
 	VectorXd xSpoof = VectorXd::Zero(NHyper);
+	
+	//~ for (int i = 0; i < Nt; ++i)
+	//~ {
+		//~ xSpoof[i] = x[i];
+	//~ }
 	for (int i = 0; i < NHyper; ++i)
 	{
-		std::cout << i << std::endl;
 		xSpoof[i] = x[rawNonHyperParams + i];
 	}
 	x = xSpoof;
-	std::cout << "Spoofing complete!" << std::endl;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
@@ -86,10 +89,10 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.02;
+	op.Properties.StepSize= 0.01;
 	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
-	
+		
 	
 	// GO GO GO GO!
 	op.Minimize(x);

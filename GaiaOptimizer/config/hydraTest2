@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic71_noHyperPrior_4Pop_Quadratic/
+output       ../../Output/Diagnostic72_hyperOptim_P3_O5/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-6
 max-steps    500
-burnin       20
+burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     64

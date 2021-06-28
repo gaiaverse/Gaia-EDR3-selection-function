@@ -20,35 +20,35 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 	{
 		int t = stoi(data[i]);
 		
-		bool inGap = false;
-		if (!allGapsPassed)
-		{
-			if (t > gapsEnd[currentGap])
-			{
-				while (currentGap < nGaps && t > gapsEnd[currentGap])
-				{
-					++currentGap;
-				}
-			}
+		//~ bool inGap = false;
+		//~ if (!allGapsPassed)
+		//~ {
+			//~ if (t > gapsEnd[currentGap])
+			//~ {
+				//~ while (currentGap < nGaps && t > gapsEnd[currentGap])
+				//~ {
+					//~ ++currentGap;
+				//~ }
+			//~ }
 			
-			if (currentGap == nGaps)
-			{
-				allGapsPassed = true;
-			}
-			else
-			{
-				if (t >= gapsStart[currentGap] && t<=gapsEnd[currentGap])
-				{
-					inGap = true;
-				}
-			}
-		}
+			//~ if (currentGap == nGaps)
+			//~ {
+				//~ allGapsPassed = true;
+			//~ }
+			//~ else
+			//~ {
+				//~ if (t >= gapsStart[currentGap] && t<=gapsEnd[currentGap])
+				//~ {
+					//~ inGap = true;
+				//~ }
+			//~ }
+		//~ }
 		
-		if (!inGap)
-		{
-			++obs;
+		//~ if (!inGap)
+		//~ {
+			//~ ++obs;
 			
-		}
+		//~ }
 		
 		TimeSeries.push_back(t);
 		

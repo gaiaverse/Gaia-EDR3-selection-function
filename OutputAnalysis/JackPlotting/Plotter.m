@@ -2,15 +2,15 @@ set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegend
 set(0,'defaultTextInterpreter','latex');
 
 % files = "Diagnostic71_" + ["noHyperPrior_2Pop_Quadratic","hyperPrior_2Pop_Quadratic","noHyperPrior_2Pop_Linear","noHyperPrior_4Pop_Quadratic"];
-files = "hometest_fancyFreezer";
+files = "hometest_fancyFreezer_" + ["unfreeze"];
 % getData(60);
 
 N1 =0;
-N2 = 30;
+N2 =72;
 gap = 2;
-progressPlot(files,0)
-gifPlot(files,N1,N2,gap,"evolution2.gif",false);
-% temporalPlot(files,N2);
+progressPlot(files,10)
+% gifPlot(files,N1,N2,gap,"evolution2.gif",false);
+temporalPlot(files,N2);
 
 
 
