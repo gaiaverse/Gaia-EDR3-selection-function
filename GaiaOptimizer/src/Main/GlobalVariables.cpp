@@ -68,6 +68,10 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 			{
 				prior = pow(prior,1.0/i);
 			}
+			else
+			{
+				prior = 10;
+			}
 			prior = log(prior);
 			
 			for (int j = 0;j < NVariancePops; ++j)

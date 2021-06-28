@@ -66,7 +66,7 @@ VectorXd RootProcess()
 	
 	for (int i = Nt; i < totalRawParams; ++i)
 	{
-		xSpoof[i] = x[i];
+		xSpoof[i-Nt] = x[i];
 	}
 	//~ for (int i = 0; i < NHyper; ++i)
 	//~ {

@@ -116,7 +116,7 @@ class DescentFunctor
 		    
 		    
 			Value = 0;
-			ActiveParams = Nt*TimeActive + Ns*Nm*TimeActive + NHyper*HyperActive;
+			ActiveParams = Nt*TimeActive + Ns*Nm*SpaceActive + NHyper*HyperActive;
 			FrozenTime = std::vector<double>(Nt,0.0);
 			FrozenSpace = std::vector<double>(Nm*Nl,0.0);
 			FrozenHypers = std::vector<double>(NHyper,0.0);

@@ -52,7 +52,7 @@ const double initialisationBounds = 0.1;
 enum VarianceScaling {NScaling, MScaling, ActiveNScaling};
 const VarianceScaling ScalingMode = NScaling;
 const bool useHyperPrior = true;
-
+const bool ignoreGapObs = false;
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
 
