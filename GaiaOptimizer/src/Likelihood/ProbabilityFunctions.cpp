@@ -294,6 +294,10 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		}
 	}
 	
+	//~ if (k > round(activeN))
+	//~ {
+		//~ std::cout << k << "   " << probslen << "   " << m << "    "<< activeN << std::endl;
+	//~ }
 	for (int i =0; i < NVariancePops; ++i)
 	{
 		VariancePopulation * pop = &data.VariancePopulations[i];

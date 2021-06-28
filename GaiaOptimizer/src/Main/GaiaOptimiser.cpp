@@ -61,7 +61,7 @@ VectorXd RootProcess()
 	
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
-	fun.FrozenSpace = std::vector<double>(Nl*Nm,15.0);
+	fun.FrozenSpace = std::vector<double>(Nl*Nm,25.0);
 	VectorXd xSpoof = VectorXd::Zero(NHyper);
 	
 	//~ for (int i = 0; i < Nt; ++i)

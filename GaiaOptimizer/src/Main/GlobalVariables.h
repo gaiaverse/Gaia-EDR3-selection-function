@@ -42,15 +42,15 @@ const double lt = 120;
 const double xmPrior = -3;
 const double xmInitialised = 3;
 
-const double xtPriorNonGap = 0;
+const double xtPriorNonGap = 10;
 const double xtPriorBorderCase =0;
-const double xtPriorInsideGap = 0;
+const double xtPriorInsideGap = -10;
 
 const double initialisationBounds = 0.1;
 
 //normal approximation variances
 enum VarianceScaling {NScaling, MScaling, ActiveNScaling};
-const VarianceScaling ScalingMode = ActiveNScaling;
+const VarianceScaling ScalingMode = NScaling;
 const bool useHyperPrior = true;
 
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
