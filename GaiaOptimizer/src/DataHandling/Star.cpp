@@ -47,8 +47,9 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 		if (!inGap)
 		{
 			++obs;
-			TimeSeries.push_back(t);
+			
 		}
+		TimeSeries.push_back(t);
 	}
 	
 	
