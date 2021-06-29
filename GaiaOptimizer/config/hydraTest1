@@ -1,8 +1,8 @@
-output       ../../Output/Diagnostic72_hyperOptim_P2_O1_gaps/
+output       ../../Output/Diagnostic75_normal_1rev/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-6
-max-steps    500
+max-steps    100
 burnin       0
 save-steps   2
 unique-temp-save 1

@@ -25,7 +25,7 @@ F_dF Normal(double x, double mu, double sigma)
 
 F_dF StudentT(double x, double mu, double nu)
 {
-	double div = 1;
+	double div = 2;
 	double d = (x - mu)/div;
 	double v = - (nu + 1)/2 * log(1 + d*d/nu);
 	double dv = - (nu + 1) * d/ ( nu * (1 + d*d/nu) * div);
@@ -53,18 +53,8 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 	{
 		for (int i = 0; i < Nt; ++i)
 		{
-			//~ F_dF p = Normal(RawParams[i],0,1);
-			F_dF p;
-			double d = RawParams[i];
-			if (abs(d) > 1)
-			{
-				p = StudentT(RawParams[i],0,studentNu);
-			}
-			else
-			{
-				p = Normal(RawParams[i],0,1);
-			}
-				
+			F_dF p = Normal(RawParams[i],0,1);
+			
 			//~ F_dF p = StudentT(RawParams[i],0,studentNu);
 			currentValue[0] += p.F / effectiveBatches;
 			currentGradient[0][i] += p.dF / effectiveBatches;
