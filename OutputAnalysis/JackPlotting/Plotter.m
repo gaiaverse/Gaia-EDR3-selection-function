@@ -1,19 +1,21 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = "Diagnostic71_" + ["noHyperPrior_2Pop_Quadratic","hyperPrior_2Pop_Quadratic","noHyperPrior_2Pop_Linear","noHyperPrior_4Pop_Quadratic"];
-files = "hometest_fancyFreezer"+ ["","2"];
-% files = "Diagnostic73_newPrior"+["","_s5_mut5","_s5_mut5_quadratic"];
-files = "Diagnostic73_" + ["newPrior_s5_mut5_quadratic","vSmallSigma","extremeTemporalScaling"];
-files = files([3]);
-getData(60);
+files = "hometest_"+ ["normal_05rev","normal_1rev","normal_2rev",...
+	"student05_05rev","student05_1rev","student05_2rev",...
+	"student1_05rev","student1_1rev","student1_2rev",...
+	"student2_05rev","student2_1rev","student2_2rev",...
+	"student01_2rev","student02_2rev","student100_2rev",...
+	"normal_st5_2rev","student","student2","student3","student4"];
+files = files([14,16,20]);
+% getData(60);
 
 N1 =0;
-N2 =20;
+N2 = 30;
 gap = 2;
-progressPlot(files,10)
-% gifPlot(files,N1,N2,gap,"evolution2.gif",false);
-% temporalPlot(files,N2);
+progressPlot(files,0)
+% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+temporalPlot(files,N2);
 
 
 
@@ -37,12 +39,21 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 1378;
-% xmax = 1381;
+xmin = 2390;
+xmax = 2415;
 ymin = -16;
 ymax = 16;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
+nc =  [0.83 0.14 0.14;
+             1.00 0.54 0.00;
+             0.47 0.25 0.80;
+             0.25 0.80 0.54];
+map = [ map; nc];
+
+while height(map) < length(folders)
+	map = [map; [0,0,0]];
+end
 subplot(ny,nx,3);
 hold on;
 for j = 1:length(folders)
@@ -227,6 +238,11 @@ figure(2);
 
 patterns = ["-","-","-","--"];
 cols = colororder;
+
+while height(cols) < length(files)
+	cols = [cols; [rand,rand,rand]];
+end
+
 cols2 = min(1,cols*1.5);
 clf;
 hold on;

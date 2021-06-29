@@ -1,8 +1,8 @@
-output       ../../CodeOutput/hometest_normal_05rev/
+output       ../../CodeOutput/hometest_student4/
 data         ../../TestSets/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
-max-steps    100
+max-steps    200
 burnin       0
 save-steps   2
 unique-temp-save 1

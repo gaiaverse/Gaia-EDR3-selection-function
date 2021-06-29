@@ -1,73 +1,91 @@
 #include "LogLikelihoodPrior.h"
 
+struct F_dF
+{
+	double F;
+	double dF;
+	F_dF()
+	{
+		F = 0;
+		dF = 0;
+	}
+	F_dF(double f, double df) : F(f), dF(df){};
+};
+
+
+F_dF Normal(double x, double mu, double sigma)
+{
+	double d = (x - mu);
+	double s2 = sigma*sigma;
+	double v = -0.5 * d*d/(s2);
+	double dv = - d/s2;
+	
+	return F_dF(v,dv);
+}
+
+F_dF StudentT(double x, double mu, double nu)
+{
+	double div = 1;
+	double d = (x - mu)/div;
+	double v = - (nu + 1)/2 * log(1 + d*d/nu);
+	double dv = - (nu + 1) * d/ ( nu * (1 + d*d/nu) * div);
+	
+	return F_dF(v,dv); 
+}
+
 
 void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches, bool space, bool time, bool hyper)
 {
 	
-	int n = rawNonHyperParams;
-	int N = n;
-	if (useHyperPrior == true)
+	int spaceOffset = 0;
+	int hyperOffset = 0;
+	if (time)
 	{
-		N = totalRawParams;
+		spaceOffset += Nt;
+		hyperOffset += Nt;
+	}
+	if (space)
+	{
+		hyperOffset += Ns*Nm;
 	}
 	
 	if (time)
 	{
 		for (int i = 0; i < Nt; ++i)
 		{
-
+			//~ F_dF p = Normal(RawParams[i],0,1);
+			F_dF p;
 			double d = RawParams[i];
-			currentValue[0] -= 0.5 * d * d / effectiveBatches;
-			
-			currentGradient[0][i] -= d / effectiveBatches;
+			if (abs(d) > 1)
+			{
+				p = StudentT(RawParams[i],0,studentNu);
+			}
+			else
+			{
+				p = Normal(RawParams[i],0,1);
+			}
+				
+			//~ F_dF p = StudentT(RawParams[i],0,studentNu);
+			currentValue[0] += p.F / effectiveBatches;
+			currentGradient[0][i] += p.dF / effectiveBatches;
 		}
 	}
 	if (space)
 	{
-		int spaceOffset = 0;
-		if (time)
-		{
-			spaceOffset += Nt;
-		}
 		for (int i = 0; i < Nm*Ns; ++i)
 		{
 			double d = RawParams[spaceOffset + i];
-			currentValue[0] -= 0.5 * d * d / effectiveBatches;
-			
-			currentGradient[0][spaceOffset + i] -= d / effectiveBatches;
+			F_dF p = Normal(RawParams[spaceOffset + i],0,1);
+			currentValue[0] += p.F / effectiveBatches;
+			currentGradient[0][spaceOffset + i] += p.dF / effectiveBatches;
 		}
 	}
 	
 	if (hyper && useHyperPrior)
-	{
-		int hyperOffset = 0;
-		if (time)
-		{
-			hyperOffset += Nt;
-		}
-		if (space)
-		{
-			hyperOffset += Ns*Nm;
-		}
-		
-		for (int i = 0; i < hyperOrder + 1;++i)
-		{
+	{	
+		// no hyper prior decided upon yet!
 			
-			if (i > 1)
-			{
-				for (int j = 0;j < NVariancePops; ++j)
-				{
-					double mean = log(1e-3);
-					double d = (RawParams[hyperOffset + i*NVariancePops + j] - mean);
-					currentValue[0] -= 0.5 * d * d / effectiveBatches;
-					
-					currentGradient[0][hyperOffset + i*NVariancePops + j] -= d / effectiveBatches;
-				}
-			}
-		}
-		
 	}
-
 }
 
 

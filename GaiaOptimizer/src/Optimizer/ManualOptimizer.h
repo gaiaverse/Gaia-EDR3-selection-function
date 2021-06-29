@@ -64,7 +64,7 @@ class Optimizer
 			
 			Properties.MinibatchDownStep = 2;
 			
-			Buffer.Size = 50;
+			Buffer.Size = 30;
 			Buffer.AnalysisSize = 20;
 			Buffer.OverrideTime = 300;
 			Progress.SaveLocation = "";
