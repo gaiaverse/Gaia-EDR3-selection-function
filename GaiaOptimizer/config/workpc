@@ -1,5 +1,5 @@
-output       ../../CodeOutput/hometest_student4/
-data         ../../TestSets/gaps_parallel_spikes/
+output       ../../CodeOutput/hometest_hard_studentlownu_rev1/
+data         ../../TestSets/gaps_parallel_spikes_hard/
 random-seed  3
 gradlim      1e-5
 max-steps    200

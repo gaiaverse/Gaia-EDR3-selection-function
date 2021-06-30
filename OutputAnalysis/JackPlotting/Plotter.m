@@ -1,21 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = "hometest_"+ ["normal_05rev","normal_1rev","normal_2rev",...
-	"student05_05rev","student05_1rev","student05_2rev",...
-	"student1_05rev","student1_1rev","student1_2rev",...
-	"student2_05rev","student2_1rev","student2_2rev",...
-	"student01_2rev","student02_2rev","student100_2rev",...
-	"normal_st5_2rev","student","student2","student3","student4"];
-files = files([14,16,20]);
-% getData(60);
-
+files = "Diagnostic75_" + ["normal_1rev","normal_2rev","student_1rev"];
+% files = "hometest_hard_" + ["student05_rev1","normal_rev1","studentlownu_rev1"];
+getData(60);
+% files = files([1,2])
 N1 =0;
-N2 = 30;
+N2 = 24;
 gap = 2;
 progressPlot(files,0)
-% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-temporalPlot(files,N2);
+gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+% temporalPlot(files,N2);
 
 
 
@@ -39,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 2390;
-xmax = 2415;
+xmin = 1350;%2400;
+xmax = 1420;%2410.5;
 ymin = -16;
 ymax = 16;
 gaps = readtable("edr3_gaps.csv");

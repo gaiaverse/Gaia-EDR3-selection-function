@@ -22,10 +22,10 @@ const std::string TempDirName = "TempPositions";
 
 //temporal, spatial and magnitude resolution
 
-const int Nt =  1e6; // number of time bins, coarse, feel free to change
-const int healpix_order = 2; // order of healpix map, can be any integer >= 0
-const int needlet_order = 1; // maximum order of needlets used, can be any integ*needler >= -1
-const int Nm = 213; // number of magnitude bins
+const int Nt =  2e6; // number of time bins, coarse, feel free to change
+const int healpix_order = 0; // order of healpix map, can be any integer >= 0
+const int needlet_order = -1; // maximum order of needlets used, can be any integ*needler >= -1
+const int Nm = 10; // number of magnitude bins
 const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
@@ -48,7 +48,7 @@ const double xmInitialised = 3;
 const double xtPriorNonGap = 4;
 const double xtPriorBorderCase =4;
 const double xtPriorInsideGap = 4;
-const double studentNu = 0.5;
+const double studentNu = 0.01;
 
 
 const double initialisationBounds = 0.1;

@@ -53,9 +53,7 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 	{
 		for (int i = 0; i < Nt; ++i)
 		{
-			F_dF p = Normal(RawParams[i],0,1);
-			
-			//~ F_dF p = StudentT(RawParams[i],0,studentNu);
+			F_dF p = StudentT(RawParams[i],0,studentNu);
 			currentValue[0] += p.F / effectiveBatches;
 			currentGradient[0][i] += p.dF / effectiveBatches;
 		}
