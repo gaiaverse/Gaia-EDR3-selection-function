@@ -198,6 +198,11 @@ int main(int argc,char *argv[])
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
 	
+	for (int i = 0; i < Args.Minibatches; ++i)
+	{
+		Data[i].resize(1);
+	}
+	
 	//~ GradientTest();
 	VectorXd x;
 		if (ProcessRank == RootID) 

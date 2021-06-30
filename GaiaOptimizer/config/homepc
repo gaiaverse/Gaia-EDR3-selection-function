@@ -1,4 +1,4 @@
-output       ../../CodeOutput/hometest_noGapInfo/
+output       ../../CodeOutput/hometest/
 data         ../../Data/TestSets/gaps_parallel_spikes_hard/
 random-seed  3
 gradlim      1e-5
