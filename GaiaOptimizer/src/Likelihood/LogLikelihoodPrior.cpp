@@ -33,8 +33,14 @@ F_dF StudentT(double x, double mu, double nu)
 	return F_dF(v,dv); 
 }
 
+F_dF GapEnforcer(double x)
+{
+	double v = gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
+	double dv = (gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
+	return F_dF(v,dv);
+}
 
-void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches, bool space, bool time, bool hyper)
+void LogLikelihoodPrior::RawPrior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches, bool space, bool time, bool hyper)
 {
 	
 	int spaceOffset = 0;
@@ -74,6 +80,24 @@ void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * curren
 		// no hyper prior decided upon yet!
 			
 	}
+}
+
+void LogLikelihoodPrior::TransformPrior(const std::vector<double> & TransformPosition, double * currentValue, std::vector<double> & TransformGradient, int effectiveBatches,bool space, bool time, bool hyper)
+{
+	if (time)
+	{
+		for (int i = 0; i < Nt; ++i)
+		{
+			if (GapList[i])
+			{
+				F_dF p = GapEnforcer(TransformPosition[i]);
+				currentValue[0] += p.F / effectiveBatches;
+				TransformGradient[i] += p.dF / effectiveBatches;
+			}
+		}
+		
+	}
+	
 }
 
 

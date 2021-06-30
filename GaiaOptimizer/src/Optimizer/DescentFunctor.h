@@ -123,59 +123,15 @@ class DescentFunctor
 			Gradient = std::vector<double>(ActiveParams,0);
 			
 			
-			mut_gaps = std::vector<double>(Nt,0);
-			std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-			double timeFactor = (double)TotalScanningTime / Nt;
-			int it = 0;
-			bool inGap = false;
-			int borderWidth = 0;
-			int modifiedBorderWidth = borderWidth * timeFactor;
-			bool inBorder= false;
-			int trueTime = 0;
-			int lastEnd = -9999;
-			freezeOuts = std::vector<bool>(Nt,true);
-			//~ freezeOuts_mag = std::vector<bool>(Nt_m,true);
-			forLineVectorIn(gapFile,' ',
-				
-				int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
-				int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);
-				
-				trueTime = floor(it * timeFactor);
-				while (trueTime < gapEnd)
-				{
-					int leftDistance = std::min(abs(trueTime - gapStart),abs(trueTime - lastEnd));
-					int rightDistance = abs(trueTime - gapEnd);
-					
-					bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
-					
-					bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
-					double insertValue = xtPriorNonGap;
-					if (inGap)
-					{
-						insertValue = xtPriorInsideGap;
-						//~ freezeOuts[it] = true;
-
-					}
-					if (nearGapEdge)
-					{
-						insertValue = xtPriorBorderCase;
-					}
-				
-					mut_gaps[it] = insertValue;
-					
-					++it;
-					trueTime = floor((double)it * timeFactor);
-					
-				}
-				lastEnd = gapEnd;
-			);
+			mut_gaps = std::vector<double>(Nt,xtPriorNonGap);
 			
-			while (it<Nt)
+			for (int i = 0; i < Nt; ++i)
 			{
-				mut_gaps[it] = xtPriorNonGap;
-				++it;
+				if (GapList[i] == true)
+				{
+					mut_gaps[i] = xtPriorInsideGap;
+				}
 			}
-			
 		}
 	    void DistributeCalculations(const VectorXd &y, int batchID, int effectiveBatches);
  

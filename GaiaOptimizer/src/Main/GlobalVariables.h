@@ -38,7 +38,7 @@ const double sigmat = 3;
 const double lm = 3;
 
 const double secondsPerNtStep = 8967691.0 / Nt * 10;
-const double lt_revs = 1;
+const double lt_revs = 0.1;
 const double lt = 3600*6 * lt_revs / secondsPerNtStep;
 
 //prior and initialisation values
@@ -46,10 +46,13 @@ const double xmPrior = -3;
 const double xmInitialised = 3;
 
 const double xtPriorNonGap = 4;
-const double xtPriorBorderCase =4;
 const double xtPriorInsideGap = 4;
-const double studentNu = 0.01;
 
+const double studentNu = 0.1;
+
+const double gapPriorAlpha = 1e-4;
+const double gapPriorPeak = -8.0;
+const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak);
 
 const double initialisationBounds = 0.1;
 
@@ -71,6 +74,7 @@ const int GlobalDebuggingLevel = 8;
 
 
 void PrintStatus(std::string location);
-
+std::vector<bool> AssembleGapList();
+extern std::vector<bool> GapList;
 
 

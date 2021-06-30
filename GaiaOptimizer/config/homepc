@@ -1,5 +1,5 @@
-output       ../../CodeOutput/hometest_normal_05rev/
-data         ../../TestSets/gaps_parallel_spikes/
+output       ../../CodeOutput/hometest_noGapInfo/
+data         ../../Data/TestSets/gaps_parallel_spikes_hard/
 random-seed  3
 gradlim      1e-5
 max-steps    100
