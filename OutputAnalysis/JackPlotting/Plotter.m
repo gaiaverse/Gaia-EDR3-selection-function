@@ -4,13 +4,13 @@ set(0,'defaultTextInterpreter','latex');
 files = "Diagnostic76_gapPrior_" + ["alpha4_beta8","alpha4_beta10", "alpha2_beta10", "alpha2_beta8"];
 % files = "hometest";
 getData(60);
-% files = files([4]);
+files = files([4]);
 N1 =2;
-N2 = 8;
+N2 = 96;
 gap = 2;
 progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-% temporalPlot(files,N2);
+temporalPlot(files,N2);
 
 
 
@@ -35,7 +35,7 @@ t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 -
 xmin = t(1);
 xmax = t(2);
 % xmin = 2390;
-% xmax = 2415;
+xmax = 1500;
 ymin = -16;
 ymax = 16;
 gaps = readtable("edr3_gaps.csv");

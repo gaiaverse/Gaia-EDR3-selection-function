@@ -89,7 +89,7 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.01;
+	op.Properties.StepSize= 0.02;
 	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
 		

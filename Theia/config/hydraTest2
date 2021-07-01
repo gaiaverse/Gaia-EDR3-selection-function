@@ -1,8 +1,8 @@
-output       ../../Output/Diagnostic75_normal_2rev/
+output       ../../Output/Diagnostic77_StrongPrior_3Pop_Quadratic_lt2/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-6
-max-steps    100
+max-steps    500
 burnin       0
 save-steps   2
 unique-temp-save 1

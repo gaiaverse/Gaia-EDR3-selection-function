@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic72_hyperOptim_P2_O1/
+output       ../../Output/Diagnostic77_StrongPrior_3Pop_Quadratic_lt1/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-6
