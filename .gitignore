@@ -1,7 +1,8 @@
 #Custom testing files + compiled code
 *.png
 *.gif
-gaia
+theia
+*.asv
 *.mat
 .nfs*
 

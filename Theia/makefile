@@ -1,5 +1,5 @@
 # Project Name (executable)
-PROJECT = gaia
+PROJECT = theia
 # Compiler
 CC = mpic++
 
