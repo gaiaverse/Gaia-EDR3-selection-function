@@ -1,6 +1,6 @@
 #!/bin/bash
 
 module load openmpi
-rm gaia
+rm theia
 make
 
