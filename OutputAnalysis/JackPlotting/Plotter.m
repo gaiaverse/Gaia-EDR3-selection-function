@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = "Diagnostic76_gapPrior_" + ["alpha4_beta8","alpha4_beta10", "alpha2_beta10"];
-files = "hometest";
-% getData(60);
-% files = files([1,3]);
-N1 =4;
-N2 = 100;
+files = "Diagnostic76_gapPrior_" + ["alpha4_beta8","alpha4_beta10", "alpha2_beta10", "alpha2_beta8"];
+% files = "hometest";
+getData(60);
+% files = files([4]);
+N1 =2;
+N2 = 8;
 gap = 2;
 progressPlot(files,0)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-temporalPlot(files,N2);
+% temporalPlot(files,N2);
 
 
 
@@ -34,8 +34,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 1120;
-% xmax = 1200;%2410.5;
+% xmin = 2390;
+% xmax = 2415;
 ymin = -16;
 ymax = 16;
 gaps = readtable("edr3_gaps.csv");

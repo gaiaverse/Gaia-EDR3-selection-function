@@ -138,10 +138,7 @@ std::vector<bool> AssembleGapList()
 				insertValue = true;
 				
 			}
-			//~ if (nearGapEdge)
-			//~ {
-				//~ insertValue = fa;
-			//~ }
+
 		
 			list[it] = insertValue;
 			

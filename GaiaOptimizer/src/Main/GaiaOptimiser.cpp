@@ -198,14 +198,9 @@ int main(int argc,char *argv[])
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
 	
-	for (int i = 0; i < Args.Minibatches; ++i)
-	{
-		Data[i].resize(1);
-	}
-	
-	//~ GradientTest();
+
 	VectorXd x;
-		if (ProcessRank == RootID) 
+	if (ProcessRank == RootID) 
 	{
 		x = RootProcess();
 	}
@@ -214,9 +209,6 @@ int main(int argc,char *argv[])
 		x = VectorXd::Zero(totalRawParams);
 		WorkerProcess();	
 	}
-
-	MPI_Barrier(MPI_COMM_WORLD);
-	//~ PostProcess(x);
 
 
 	//exit gracefully

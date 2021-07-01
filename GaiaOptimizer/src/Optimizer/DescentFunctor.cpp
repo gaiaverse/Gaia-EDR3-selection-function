@@ -319,7 +319,7 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
-	
+	totalStarsUsed = std::max(1,totalStarsUsed);
 	
 	
 	L.TransformPrior(TransformedPosition,&Lsum,TransformedGradient, effectiveBatches,SpaceActive,TimeActive,HyperActive);
