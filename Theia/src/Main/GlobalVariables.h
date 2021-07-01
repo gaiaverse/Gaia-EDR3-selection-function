@@ -37,9 +37,9 @@ const int hyperOrder = 2;
 const double sigmat = 5;
 const double lm = 3;
 
-const double secondsPerNtStep = 8967691.0 / Nt * 10;
+
 const double lt_revs = 1.0;
-const double lt = 3600*6 * lt_revs / secondsPerNtStep;
+
 
 //prior and initialisation values
 const double xmPrior = -3;
@@ -74,7 +74,7 @@ const int GlobalDebuggingLevel = 8;
 
 
 void PrintStatus(std::string location);
-std::vector<bool> AssembleGapList();
+std::vector<bool> AssembleGapList(bool buffered);
 extern std::vector<bool> GapList;
-
+extern std::vector<bool> BufferedGapList;
 

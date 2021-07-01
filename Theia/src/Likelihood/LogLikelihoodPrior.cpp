@@ -88,7 +88,7 @@ void LogLikelihoodPrior::TransformPrior(const std::vector<double> & TransformPos
 	{
 		for (int i = 0; i < Nt; ++i)
 		{
-			if (GapList[i])
+			if (BufferedGapList[i])
 			{
 				F_dF p = GapEnforcer(TransformPosition[i]);
 				currentValue[0] += p.F / effectiveBatches;

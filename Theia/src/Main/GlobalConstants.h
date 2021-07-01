@@ -26,6 +26,9 @@ const int totalRawParams = rawNonHyperParams + NHyper;
 const int totalTransformedParams = transformedNonHyperParams + NHyper;
 
 
+const double secondsPerNtStep = 8967691.0 / Nt * 10;
+const double lt = 3600*6 * lt_revs / secondsPerNtStep;
+
 
 //some common re-used numbers
 const int NumberLargerThanMaxObservations = 1024;

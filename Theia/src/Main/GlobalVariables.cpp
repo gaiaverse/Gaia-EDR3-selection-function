@@ -105,14 +105,14 @@ void PrintStatus(std::string location)
 	file.close();
 }
 
-std::vector<bool> AssembleGapList()
+std::vector<bool> AssembleGapList(bool buffered)
 {
 	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-	double timeFactor = (double)TotalScanningTime / Nt;
+	double timeFactor = 2160;
 	int it = 0;
 	bool inGap = false;
-	int borderWidth = 0;
-	int modifiedBorderWidth = borderWidth * timeFactor;
+	double borderWidthRevs = 0.2;
+	int modifiedBorderWidth = borderWidthRevs * timeFactor;
 	bool inBorder= false;
 	int trueTime = 0;
 	int lastEnd = -9999;
@@ -136,9 +136,12 @@ std::vector<bool> AssembleGapList()
 			if (inGap)
 			{
 				insertValue = true;
-				
 			}
 
+			if (buffered && nearGapEdge)
+			{
+				insertValue = false;
+			}
 		
 			list[it] = insertValue;
 			
@@ -158,4 +161,5 @@ std::vector<bool> AssembleGapList()
 	return list;
 	
 }
-std::vector<bool> GapList = AssembleGapList();
+std::vector<bool> GapList = AssembleGapList(false);
+std::vector<bool> BufferedGapList = AssembleGapList(true);
