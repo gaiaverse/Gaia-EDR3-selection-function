@@ -1,9 +1,9 @@
-output       ../../Output/Diagnostic71_noHyperPrior_2Pop_Linear/
+output       ../../Output/Diagnostic75_student_1rev/
 data         ../../Data/ShuffledData/
 random-seed  3
 gradlim      1e-6
-max-steps    500
-burnin       20
+max-steps    100
+burnin       0
 save-steps   2
 unique-temp-save 1
 minibatch     64

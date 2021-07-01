@@ -148,7 +148,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 				++batch;
 			}
 
-			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin,gapStarts,gapEnds));
+			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin,gapStarts,gapEnds,ignoreGapObs));
 
 			++starsLoaded;
 			++allStarsLoaded;

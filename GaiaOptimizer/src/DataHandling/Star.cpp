@@ -4,7 +4,7 @@ Star::Star()
 	//designed to throw an error when it uses an unitialized star to access memory
 	gBin = -9999999999999;
 }
-Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int> & gapsStart, const std::vector<int> & gapsEnd)
+Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int> & gapsStart, const std::vector<int> & gapsEnd,bool ignoreGapObs)
 {
 	//the gaia data is stored as a csv with columns as follows:
 	//Column 0: Number of Measurements reported by Gaia
@@ -44,13 +44,10 @@ Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int
 			}
 		}
 		
-		if (!inGap)
+		if (!inGap || ignoreGapObs== false)
 		{
-			++obs;
-			
+			TimeSeries.push_back(t);
 		}
-		
-		TimeSeries.push_back(t);
 		
 	}
 	

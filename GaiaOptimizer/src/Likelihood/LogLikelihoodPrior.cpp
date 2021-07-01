@@ -1,29 +1,101 @@
 #include "LogLikelihoodPrior.h"
 
-
-void LogLikelihoodPrior::Prior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches)
+struct F_dF
 {
-	int n = rawNonHyperParams;
-	int N = n;
-	if (useHyperPrior == true)
+	double F;
+	double dF;
+	F_dF()
 	{
-		N = totalRawParams;
+		F = 0;
+		dF = 0;
 	}
-	for (int i = 0; i < N; ++i)
+	F_dF(double f, double df) : F(f), dF(df){};
+};
+
+
+F_dF Normal(double x, double mu, double sigma)
+{
+	double d = (x - mu);
+	double s2 = sigma*sigma;
+	double v = -0.5 * d*d/(s2);
+	double dv = - d/s2;
+	
+	return F_dF(v,dv);
+}
+
+F_dF StudentT(double x, double mu, double nu)
+{
+	double div = 2;
+	double d = (x - mu)/div;
+	double v = - (nu + 1)/2 * log(1 + d*d/nu);
+	double dv = - (nu + 1) * d/ ( nu * (1 + d*d/nu) * div);
+	
+	return F_dF(v,dv); 
+}
+
+F_dF GapEnforcer(double x)
+{
+	double v = gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
+	double dv = (gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
+	return F_dF(v,dv);
+}
+
+void LogLikelihoodPrior::RawPrior(const Eigen::VectorXd& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches, bool space, bool time, bool hyper)
+{
+	
+	int spaceOffset = 0;
+	int hyperOffset = 0;
+	if (time)
 	{
-		double mean = 0;
-		
-		if (i >= n && i < totalRawParams - NVariancePops)
+		spaceOffset += Nt;
+		hyperOffset += Nt;
+	}
+	if (space)
+	{
+		hyperOffset += Ns*Nm;
+	}
+	
+	if (time)
+	{
+		for (int i = 0; i < Nt; ++i)
 		{
-			mean = log(1e-3);
+			F_dF p = StudentT(RawParams[i],0,studentNu);
+			currentValue[0] += p.F / effectiveBatches;
+			currentGradient[0][i] += p.dF / effectiveBatches;
 		}
-		double d = (RawParams[i]-mean);
+	}
+	if (space)
+	{
+		for (int i = 0; i < Nm*Ns; ++i)
+		{
+			double d = RawParams[spaceOffset + i];
+			F_dF p = Normal(RawParams[spaceOffset + i],0,1);
+			currentValue[0] += p.F / effectiveBatches;
+			currentGradient[0][spaceOffset + i] += p.dF / effectiveBatches;
+		}
+	}
+	
+	if (hyper && useHyperPrior)
+	{	
+		// no hyper prior decided upon yet!
+			
+	}
+}
+
+void LogLikelihoodPrior::TransformPrior(const std::vector<double> & TransformPosition, double * currentValue, std::vector<double> & TransformGradient, int effectiveBatches,bool space, bool time, bool hyper)
+{
+	if (time)
+	{
+		for (int i = 0; i < Nt; ++i)
+		{
+			if (GapList[i])
+			{
+				F_dF p = GapEnforcer(TransformPosition[i]);
+				currentValue[0] += p.F / effectiveBatches;
+				TransformGradient[i] += p.dF / effectiveBatches;
+			}
+		}
 		
-		
-		
-		currentValue[0] -= 0.5 * d * d / effectiveBatches;
-		
-		currentGradient[0][i] -= d / effectiveBatches;
 	}
 	
 }

@@ -1,17 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = ["Diagnostic70_FixedHyperParameters","Diagnostic70_fixedHyper_burnIn","Diagnostic70_fixedHyper_absoluteFreedom"];
-% files = ["Diagnostic70_fixedHyper_fixedGaps","Diagnostic70_fixedHyper_bigMut","Diagnostic70_fixedHypers_smallPop_quadratic","Diagnostic70_fixedHyper_smallPop","Diagnostic70_fixedHyper_disabledPrior_sixthOrder"];
-files = ["hometest_manyPops_withPrior","hometest_manyPops_noPrior"];
-% getData(60);
-
-N1 =00;
-N2 = -1;
+files = "Diagnostic76_gapPrior_" + ["alpha4_beta8","alpha4_beta10", "alpha2_beta10", "alpha2_beta8"];
+% files = "hometest";
+getData(60);
+% files = files([4]);
+N1 =2;
+N2 = 8;
 gap = 2;
 progressPlot(files,0)
-% gifPlot(files,N1,N2,gap,"evolution2.gif",false);
-temporalPlot(files,N2);
+% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+% temporalPlot(files,N2);
 
 
 
@@ -36,11 +35,20 @@ t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 -
 xmin = t(1);
 xmax = t(2);
 % xmin = 2390;
-xmax = 2420;
+% xmax = 2415;
 ymin = -16;
 ymax = 16;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
+nc =  [0.83 0.14 0.14;
+             1.00 0.54 0.00;
+             0.47 0.25 0.80;
+             0.25 0.80 0.54];
+map = [ map; nc];
+
+while height(map) < length(folders)
+	map = [map; [0,0,0]];
+end
 subplot(ny,nx,3);
 hold on;
 for j = 1:length(folders)
@@ -225,6 +233,11 @@ figure(2);
 
 patterns = ["-","-","-","--"];
 cols = colororder;
+
+while height(cols) < length(files)
+	cols = [cols; [rand,rand,rand]];
+end
+
 cols2 = min(1,cols*1.5);
 clf;
 hold on;
@@ -329,7 +342,7 @@ for i = 1:length(files)
 	scatter(cy,cz1,40,cols(i,:),'Filled','HandleVisibility','Off');
 	hold off;
 	
-	xlabel("Elapsed Time (s)");
+	xlabel("Complete Epochs");
 	ylabel("$|\Delta X|$");
 	set(gca,'yscale','log')
 	grid on;
@@ -345,7 +358,7 @@ for i = 1:length(files)
 	scatter(cy,cz2,40,cols(i,:),'Filled','HandleVisibility','Off');
 	set(gca,'yscale','log')
 	%         set(gca,'xscale','log')
-	xlabel("Elapsed Time (s)");
+	xlabel("Complete Epochs");
 	ylabel("$|\nabla L|$");
 	hold off;
 	grid on;

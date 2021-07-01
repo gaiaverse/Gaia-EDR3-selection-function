@@ -13,5 +13,5 @@ class Star
 		std::vector<unsigned int> TimeSeries;
 		
 		Star();
-		Star(const std::vector<std::string> &data, int bin,const std::vector<int> & gapBegins,const std::vector<int> & gapEnds);
+		Star(const std::vector<std::string> &data, int bin,const std::vector<int> & gapBegins,const std::vector<int> & gapEnds, bool ignoreGaps);
 };

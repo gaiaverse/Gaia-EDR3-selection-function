@@ -38,7 +38,7 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,co
 	std::fstream rawfile;
 	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
 	
-	for (int i = 0; i < totalRawParams; ++i)
+	for (int i = 0; i < x.size(); ++i)
 	{
 		rawfile << std::setprecision(10) << x[i] << "\n";
 	}
@@ -68,137 +68,229 @@ void DescentFunctor::ForwardTransform(const VectorXd &z)
 		L.MakeCovarianceMatrix();
 	}
 	
-	// Forward transformation
-	double u = exp(-1.0/lt);
-	double ua = sqrt(1.0-u*u);
-	double previous = z[Nt-1]; // First case is trivial
-	TransformedPosition[Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
-	for (int i = Nt - 2; i >= 0; i--) 
-	{
-    	previous = ua * z[i] + u * previous;
-    	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
-	}
+	ForwardTransform_Temporal(z);
 	
-	//~ std::cout << "Finished new forward bit" << std::endl;
-	// bms = Lmnzns
+	ForwardTransform_Spatial(z);
 	
-	std::fill(bVector.begin(), bVector.end(),0);
-	for (int s = 0; s < Ns; ++s)
-	{
-		for (int i = 0; i < L.choleskyN; ++i)
-		{
-			bVector[s*Nm+L.cholesky_u[i]] += L.cholesky_w[i] * z[Nt+s*Nm+L.cholesky_v[i]];
-		}
-	}
+	ForwardTransform_Hyper(z);
+}
 
-	// yml
-	for (int i = 0; i < needletN; ++i)
+void DescentFunctor::ForwardTransform_Spatial(const VectorXd &z)
+{
+	if (SpaceActive)
 	{
-		for (int m = 0; m < Nm; ++m)
-		{
-			TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
-		}
-	}
-	
-	//hyper params
-	
-	
-	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
-	
-	int offset = hyperFractionOffset;
-	double X = VerySmallLog;
-	
-	for (int i = 0; i < NVariancePops; ++i)
-	{
-		X = log_add_exp(X,z[rawNonHyperParams + offset + i]);
 		
-	}
-	
-	for (int i = 0; i < NHyper; ++i)
-	{
-		double normalisation = 0;
-		if (i >= offset)
+		int spaceOffset = Nt;
+		if (TimeActive == false)
 		{
-			normalisation = X;
+			spaceOffset = 0;
 		}
-		double v = exp(z[rawNonHyperParams + i] - normalisation);
-		TransformedPosition[transformedNonHyperParams + i] = v;
-	}	
+		
+		std::fill(bVector.begin(), bVector.end(),0);
+		for (int s = 0; s < Ns; ++s)
+		{
+			for (int i = 0; i < L.choleskyN; ++i)
+			{
+				bVector[s*Nm+L.cholesky_u[i]] += L.cholesky_w[i] * z[spaceOffset+s*Nm+L.cholesky_v[i]];
+			}
+		}
+	
+		// yml
+		for (int i = 0; i < needletN; ++i)
+		{
+			for (int m = 0; m < Nm; ++m)
+			{
+				TransformedPosition[Nt+needlet_u[i]*Nm+m] += needlet_w[i]*bVector[needlet_v[i]*Nm+m];
+			}
+		}
+	}
+	else
+	{
+		for (int i = 0; i < Nm*Nl; ++i)
+		{
+			TransformedPosition[Nt + i] = FrozenSpace[i];
+		}
+	}
+}
+
+void DescentFunctor::ForwardTransform_Temporal(const VectorXd &z)
+{
+	if (TimeActive)
+	{
+		double u = exp(-1.0/lt);
+		double ua = sqrt(1.0-u*u);
+		double previous = z[Nt-1]; // First case is trivial
+		TransformedPosition[Nt-1] = mut_gaps[Nt-1] + sigmat * previous;
+		for (int i = Nt - 2; i >= 0; i--) 
+		{
+	    	previous = ua * z[i] + u * previous;
+	    	TransformedPosition[i] = mut_gaps[i] + sigmat * previous;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < Nt; ++i)
+		{
+			TransformedPosition[i] = FrozenTime[i];
+		}
+	}
+}
+
+void DescentFunctor::ForwardTransform_Hyper(const VectorXd &z)
+{
+	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
+	if (HyperActive)
+	{
+		int hyperStart = 0;
+		if (TimeActive)
+		{
+			hyperStart+= Nt;
+		}
+		if (SpaceActive)
+		{
+			hyperStart += Nm*Ns;
+		}
+		
+		int offset = hyperFractionOffset;
+		double X = VerySmallLog;
+		
+		for (int i = 0; i < NVariancePops; ++i)
+		{
+			X = log_add_exp(X,z[hyperStart + offset + i]);
+			
+		}
+		
+		for (int i = 0; i < NHyper; ++i)
+		{
+			double normalisation = 0;
+			if (i >= offset)
+			{
+				normalisation = X;
+			}
+			double v = exp(z[hyperStart + i] - normalisation);
+			TransformedPosition[transformedNonHyperParams + i] = v;
+		}	
+	}
+	else
+	{
+		for (int i = 0; i < NHyper; ++i)
+		{
+			TransformedPosition[transformedNonHyperParams + i] = FrozenHypers[i];
+		}
+	}
 }
 
 void DescentFunctor::BackwardTransform()
 {
-	// Backward transformation
-	double u = exp(-1.0/lt);
-    
-	double ua = 1.0/sqrt(1.0-u*u);
-	double ub = -u*ua;
-	double sigmata = sigmat/ua;
+	BackwardTransform_Temporal();
+	
+	BackwardTransform_Spatial();
+	
+	BackwardTransform_Hyper();
 
-	
-	
-	if (Nt > 1)
+}
+
+void DescentFunctor::BackwardTransform_Temporal()
+{
+	if (TimeActive)
 	{
-	    Gradient[0] = sigmata * TransformedGradient[0];
-	    for (int i = 1; i < Nt-1; i++) {
-	        Gradient[i] = u * Gradient[i-1] + sigmata * TransformedGradient[i];
-	    }
-	    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
+		// Backward transformation
+		double u = exp(-1.0/lt);
 	    
-	 
-	}
-	else
-	{
-		Gradient[0] = TransformedGradient[0]*sigmat;
-	}
-
-	// yml
-	std::fill(bVector.begin(), bVector.end(),0);
-	for (int i = 0; i < needletN; ++i)
-	{
-		for (int m = 0; m < Nm; ++m)
+		double ua = 1.0/sqrt(1.0-u*u);
+		double ub = -u*ua;
+		double sigmata = sigmat/ua;
+	
+		if (Nt > 1)
 		{
-			bVector[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
+		    Gradient[0] = sigmata * TransformedGradient[0];
+		    for (int i = 1; i < Nt-1; i++) {
+		        Gradient[i] = u * Gradient[i-1] + sigmata * TransformedGradient[i];
+		    }
+		    Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
+		    
+		 
+		}
+		else
+		{
+			Gradient[0] = TransformedGradient[0]*sigmat;
 		}
 	}
+}
 
-	// bms = Lmnzns
-	for (int s = 0; s < Ns; ++s)
+void DescentFunctor::BackwardTransform_Spatial()
+{
+	if (SpaceActive)
 	{
-		for (int i = 0; i < L.choleskyN; ++i)
+		int insertOffset = 0;
+		if (TimeActive)
 		{
-			Gradient[Nt+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
+			insertOffset += Nt;
 		}
-	}
-	
-	for (int i = 0; i < hyperFractionOffset; ++i)
-	{
-		double x = TransformedPosition[transformedNonHyperParams + i];
-		double df = TransformedGradient[transformedNonHyperParams + i];
-
-		Gradient[rawNonHyperParams + i] = x* df;		
-	}
-	
-	for (int i = 0; i < NVariancePops; ++i)
-	{
-		double xi = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ i];
-		double sum = 0;
-		
-		for (int j = 0; j <  NVariancePops; ++j)
+		// yml
+		std::fill(bVector.begin(), bVector.end(),0);
+		for (int i = 0; i < needletN; ++i)
 		{
-			double xj = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ j];
-			double dfj = TransformedGradient[transformedNonHyperParams + hyperFractionOffset+ j];
-			
-			double ijTerm = 0;
-			if (i==j)
+			for (int m = 0; m < Nm; ++m)
 			{
-				ijTerm = 1;
+				bVector[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
 			}
-			sum += dfj * xi*(ijTerm -xj);
 		}
-		Gradient[rawNonHyperParams + hyperFractionOffset + i] = sum;
+		// bms = Lmnzns
+		for (int s = 0; s < Ns; ++s)
+		{
+			for (int i = 0; i < L.choleskyN; ++i)
+			{
+				Gradient[insertOffset+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
+			}
+		}
 	}
+}
 
+void DescentFunctor::BackwardTransform_Hyper()
+{
+	if (HyperActive)
+	{
+		int insertOffset = 0;
+		if (TimeActive)
+		{
+			insertOffset+=Nt;
+		}
+		if (SpaceActive)
+		{
+			insertOffset += Ns*Nm;
+		}
+		
+		for (int i = 0; i < hyperFractionOffset; ++i)
+		{
+			double x = TransformedPosition[transformedNonHyperParams + i];
+			double df = TransformedGradient[transformedNonHyperParams + i];
+	
+			Gradient[insertOffset + i] = x* df;		
+		}
+		
+		for (int i = 0; i < NVariancePops; ++i)
+		{
+			double xi = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ i];
+			double sum = 0;
+			
+			for (int j = 0; j <  NVariancePops; ++j)
+			{
+				double xj = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ j];
+				double dfj = TransformedGradient[transformedNonHyperParams + hyperFractionOffset+ j];
+				
+				double ijTerm = 0;
+				if (i==j)
+				{
+					ijTerm = 1;
+				}
+				sum += dfj * xi*(ijTerm -xj);
+			}
+			Gradient[insertOffset + hyperFractionOffset + i] = sum;
+		}
+		
+	}
+	
 }
 
 void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int batchID, int effectiveBatches)
@@ -211,12 +303,11 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
-
 	ForwardTransform(RawPosition);
 	
 	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
 	
-
+	
 	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
 	
 	//collect values
@@ -228,22 +319,14 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+	totalStarsUsed = std::max(1,totalStarsUsed);
 	
 	
-	
-	for (int i = 0; i < Nt;++i)
-	{
-		if (freezeOuts[i])
-		{
-			TransformedGradient[i] = 0;
-		}
-	}
-	
-	
+	L.TransformPrior(TransformedPosition,&Lsum,TransformedGradient, effectiveBatches,SpaceActive,TimeActive,HyperActive);
 	
 	BackwardTransform();
 	
-	L.Prior(RawPosition,&Lsum,&Gradient,effectiveBatches);
+	L.RawPrior(RawPosition,&Lsum,&Gradient,effectiveBatches,SpaceActive,TimeActive,HyperActive);
 	
 	Value = Lsum;
 
@@ -256,20 +339,14 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	for (int i = 0; i < Gradient.size(); ++i)
 	{
 		Gradient[i] = -Gradient[i] / StarsInLastBatch;
-		if (i > totalRawParams)
-		{
-			std::cout << "\t\t" << Gradient[i] << std::endl;
-		}
 	}
 	
-
 	Value = -Value/StarsInLastBatch;
 }
 
 void DescentFunctor::Unfreeze()
 {
 	freezeOuts = std::vector<bool>(Nt,false);
-	//~ freezeOuts_mag = std::vector<bool>(Nt_m,false);
 }
 
 void DescentFunctor::Calculate(const VectorXd & x)
@@ -279,7 +356,5 @@ void DescentFunctor::Calculate(const VectorXd & x)
 
 void DescentFunctor::Calculate(const VectorXd &x, int batchID, int effectiveBatches)
 {
-	
 	DistributeCalculations(x,batchID,effectiveBatches);
-	PrevLock = x;	
 }

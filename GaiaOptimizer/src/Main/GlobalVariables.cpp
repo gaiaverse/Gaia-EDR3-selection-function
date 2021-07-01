@@ -63,10 +63,14 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		//hyper parameters
 		for (int i = 0; i < hyperOrder+ 1; ++i)
 		{			
-			double prior = pow(10.0,-(6+2*i));
+			double prior = pow(10.0,-(1+2*i));
 			if ( i > 0)
 			{
 				prior = pow(prior,1.0/i);
+			}
+			else
+			{
+				prior = 10;
 			}
 			prior = log(prior);
 			
@@ -79,7 +83,7 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		}
 		for (int i = 0; i < NVariancePops; ++i)
 		{
-			x[rawNonHyperParams + hyperFractionOffset + i] += -i*log(10);
+			x[rawNonHyperParams + hyperFractionOffset + i] = pow(-0.65822,i);
 		}
 	}
 
@@ -100,3 +104,58 @@ void PrintStatus(std::string location)
 	}
 	file.close();
 }
+
+std::vector<bool> AssembleGapList()
+{
+	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
+	double timeFactor = (double)TotalScanningTime / Nt;
+	int it = 0;
+	bool inGap = false;
+	int borderWidth = 0;
+	int modifiedBorderWidth = borderWidth * timeFactor;
+	bool inBorder= false;
+	int trueTime = 0;
+	int lastEnd = -9999;
+
+	std::vector<bool> list(Nt,false);
+	forLineVectorIn(gapFile,' ',
+		
+		int gapStart = std::stoi(FILE_LINE_VECTOR[0]);
+		int gapEnd = std::stoi(FILE_LINE_VECTOR[1]);
+		
+		trueTime = floor(it * timeFactor);
+		while (trueTime < gapEnd)
+		{
+			int leftDistance = std::min(abs(trueTime - gapStart),abs(trueTime - lastEnd));
+			int rightDistance = abs(trueTime - gapEnd);
+			
+			bool inGap = (trueTime >= gapStart) && (trueTime <= gapEnd);
+			
+			bool nearGapEdge = (leftDistance < modifiedBorderWidth) || (rightDistance < modifiedBorderWidth);
+			bool insertValue = false;;
+			if (inGap)
+			{
+				insertValue = true;
+				
+			}
+
+		
+			list[it] = insertValue;
+			
+			++it;
+			trueTime = floor((double)it * timeFactor);
+			
+		}
+		lastEnd = gapEnd;
+	);
+	
+	while (it<Nt)
+	{
+		list[it] = false;
+		++it;
+	}
+		
+	return list;
+	
+}
+std::vector<bool> GapList = AssembleGapList();

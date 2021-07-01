@@ -2,7 +2,7 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
     set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
     set(0,'defaultTextInterpreter','latex');
 
-    textures = ["-","--"];
+    textures = ["-","--",":","-."];
     figure(3);
         clf;
     for z = 1:length(folders)
@@ -88,8 +88,8 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
             end
             subplot(nx,ny,sp)
             set(gca,'yscale','log')
-            set(gca,'xscale','log')
-            xlim([max(gap,startN),stopN])
+%             set(gca,'xscale','log')
+%             xlim([max(gap,startN)-0.5,stopN])
             if k < hyperOrder+2
                title("$n^"+string(k-1)+"$ term");
             else

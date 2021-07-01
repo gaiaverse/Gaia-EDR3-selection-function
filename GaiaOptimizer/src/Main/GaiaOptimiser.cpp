@@ -57,7 +57,22 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches);
+	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,true,true,true);
+	
+	//generate fake data
+	fun.FrozenTime = fun.mut_gaps;
+	fun.FrozenSpace = std::vector<double>(Nl*Nm,25.0);
+	VectorXd xSpoof = VectorXd::Zero(totalRawParams - Nt);
+	
+	for (int i = Nt; i < totalRawParams; ++i)
+	{
+		xSpoof[i-Nt] = x[i];
+	}
+	//~ for (int i = 0; i < NHyper; ++i)
+	//~ {
+		//~ xSpoof[i] = x[rawNonHyperParams + i];
+	//~ }
+	//~ x = xSpoof;
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
@@ -74,10 +89,10 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.02;
+	op.Properties.StepSize= 0.01;
 	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
-	
+		
 	
 	// GO GO GO GO!
 	op.Minimize(x);
@@ -176,16 +191,16 @@ int main(int argc,char *argv[])
 	MPI_Comm_rank(MPI_COMM_WORLD, &ProcessRank);
 	MPI_Comm_size(MPI_COMM_WORLD, &JobSize);	
 	
-	
+
 	Args.ReadArguments(argc,argv,ProcessRank);
 	
 	Welcome();
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
 	
-	//~ GradientTest();
+
 	VectorXd x;
-		if (ProcessRank == RootID) 
+	if (ProcessRank == RootID) 
 	{
 		x = RootProcess();
 	}
@@ -194,9 +209,6 @@ int main(int argc,char *argv[])
 		x = VectorXd::Zero(totalRawParams);
 		WorkerProcess();	
 	}
-
-	MPI_Barrier(MPI_COMM_WORLD);
-	//~ PostProcess(x);
 
 
 	//exit gracefully
