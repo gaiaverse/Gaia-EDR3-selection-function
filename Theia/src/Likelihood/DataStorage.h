@@ -39,6 +39,18 @@ struct VariancePopulation
 		}
 		return value;
 	}
+	double dVariancedAlpha(int term, double scaling)
+	{
+		if (term == 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return term * pow(PowerContributions[term],term-1) * pow(scaling,term);
+		}
+		
+	}
 };
 class LikelihoodData
 {

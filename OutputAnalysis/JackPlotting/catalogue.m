@@ -28,7 +28,7 @@ function [outputArg1,outputArg2] = catalogue(fileLocation,fileName)
 	enclosed = [];
 	gapThreshold = 0.9;
 	
-	nonSpuriousThreshold = 0.05;
+	nonSpuriousThreshold = 0.1;
 	spuriousCost = 0.25;
 	spuriousAlpha = log(spuriousCost)/(nonSpuriousThreshold - gapThreshold);
 	spuriousB = exp(-spuriousAlpha * gapThreshold);
@@ -74,7 +74,7 @@ function [outputArg1,outputArg2] = catalogue(fileLocation,fileName)
 	
 	M = [begins', ends', durations', quality'];
 	
-	thresh = 80;
+	thresh = 40;
 	goodGaps = array2table(M(quality > thresh,:));
 	spuriousGaps = array2table(M(quality <= thresh,:));
 	
@@ -85,8 +85,5 @@ function [outputArg1,outputArg2] = catalogue(fileLocation,fileName)
 	writetable(goodGaps,fileLocation + "/confidentGapCatalogue.csv");
 	writetable(spuriousGaps,fileLocation + "/suspectGapCatalogue.csv");
 
-	
-	cutter = t < t(cutNt);
-	plot(t(cutter),p(cutter));
 end
 

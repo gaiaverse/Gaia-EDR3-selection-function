@@ -1,16 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = "Diagnostic77_StrongPrior_" + ["3Pop_Quadratic_lt1", "3Pop_Linear_lt1", "3Pop_Quadratic_lt2"];
+files = "Diagnostic77_StrongPrior_" + ["3Pop_Linear_lt1", "3Pop_Quadratic_lt2","3Pop_Quadratic_lt1_buffered","3Pop_Quadratic_lt15_buffered_highres","3Pop_Quadratic_lt1"];
 % files = "hometest";
-getData(60);
-files = files([1]);
-N1 =0;
-N2 = 8;
-gap = 2;
-progressPlot(files,3)
+% getData(10);
+files = files([4]);
+N1 =20;
+N2 = 56;
+gap = 4;
+progressPlot(files,20)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-% temporalPlot(files,N2);
+temporalPlot(files,N2);
 
 
 
@@ -36,8 +36,8 @@ xmin = t(1);
 xmax = t(2);
 xmin = 3580;
 xmax = 3680;
-ymin = -16;
-ymax = 16;
+ymin = -25;
+ymax = 25;
 gaps = readtable("edr3_gaps.csv");
 map = colororder;
 nc =  [0.83 0.14 0.14;
@@ -132,7 +132,10 @@ for i = 1:length(folders)
 	
 	hold on;
 	plot(x(cutT),f(cutT),'Color',map(i,:),"HandleVisibility","Off");
-	
+    xC = x(cutT);
+    M = mean(f(cutT));
+	plot([xC(1),xC(end)],[M,M],'--','Color',0.3*map(i,:),"HandleVisibility","Off");
+    
 	subplot(ny,nx,[1,2]);
 	frameTitle = "Frame " + num2str(number);
 	if number == -1
@@ -306,7 +309,7 @@ for i = 1:length(files)
 		cx(end+1) = shrinkLines.Elapsed(j);
 		cy(end+1) = shrinkLines.Epoch(j)-1;
 		cz(end+1) = shrinkLines.F(j)/L0;
-		cz1(end+1) = abs(shrinkLines.dX(j)/shrinkLines.F(j));
+		cz1(end+1) = abs(shrinkLines.dX(j));
 		cz2(end+1) = shrinkLines.GradNorm(j);
 	end
 	scatter(cx,cy,40,cols(i,:),'Filled','HandleVisibility','Off');
