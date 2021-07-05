@@ -61,6 +61,8 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int i
 
 void LikelihoodData::GeneratePopulations(const std::vector<double> & x)
 {
+
+	
 	
 	for (int i = 0; i < NVariancePops; ++i)
 	{

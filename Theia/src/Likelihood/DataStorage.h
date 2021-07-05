@@ -2,6 +2,7 @@
 #include "../Main/GlobalVariables.h"
 #include "../Main/GlobalConstants.h"
 #include "../DataHandling/Star.h"
+#include "MiscFunctions.h"
 #include <string>
 #include <vector>
 
@@ -18,37 +19,46 @@ struct VariancePopulation
 	VariancePopulation(double fraction,std::vector<double> contributions)
 	{
 		Fraction = fraction;
-		PowerContributions = contributions;
-				
+		PowerContributions = contributions;				
+		//~ std::cout << "Hey! I have fraction " << fraction << " and :";
+		//~ for (int i = 0; i < contributions.size(); ++i)
+		//~ {
+			//~ std::cout << "alpha_" << i << " =   " << PowerContributions[i] << std::endl;
+		//~ }
 	}; 
-	double Variance(double scaling)
+	
+	double Scaler(double scaling)
 	{
 		double v = PowerContributions[0];
 		for (int i =1; i < PowerContributions.size(); ++i)
 		{
-			v += pow(scaling*PowerContributions[i],i);
+			v += PowerContributions[i] * pow(scaling,i);
 		}
 		return v;
 	}
+	double Variance(double scaling)
+	{
+		double v = Scaler(scaling);
+		double q =  v*v;
+
+		return q;
+	}
 	double dVariancedN(double scaling)
 	{
+		
 		double value = 0;
 		for (int i = 1; i < PowerContributions.size(); ++i)
 		{
-			value+= i * pow(PowerContributions[i],i) * pow(scaling,i-1);
+			value+= i * PowerContributions[i] * pow(scaling,i-1);
 		}
-		return value;
+		return 2 * value * Scaler(scaling);
 	}
 	double dVariancedAlpha(int term, double scaling)
 	{
-		if (term == 0)
-		{
-			return 1;
-		}
-		else
-		{
-			return term * pow(PowerContributions[term],term-1) * pow(scaling,term);
-		}
+		double v = Scaler(scaling);
+		double q = 2 * v * pow(scaling,term);
+		//~ std::cout << "Per-alpha variance_" << term << "   " << v << "  " << scaling << "    " << q << std::endl;
+		return q;
 		
 	}
 };

@@ -35,8 +35,8 @@ F_dF StudentT(double x, double mu, double nu)
 
 F_dF GapEnforcer(double x)
 {
-	double v = gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
-	double dv = (gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
+	double v = 0;//gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
+	double dv = 0;//(gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
 	return F_dF(v,dv);
 }
 
@@ -77,7 +77,19 @@ void LogLikelihoodPrior::RawPrior(const Eigen::VectorXd& RawParams, double * cur
 	
 	if (hyper && useHyperPrior)
 	{	
-		// no hyper prior decided upon yet!
+		for (int i = 1; i < hyperOrder+1; ++i)
+		{
+			for (int j = 0; j < NVariancePops; ++j)
+			{
+				int index = hyperOffset + i * NVariancePops + j;
+				double d = RawParams[index];
+				F_dF p = Normal(d,0,pow(10,-(i)));
+				currentValue[0] += p.F / effectiveBatches;
+				double old = currentGradient[0][index];
+				currentGradient[0][index] += p.dF / effectiveBatches;
+				
+			}
+		}
 			
 	}
 }

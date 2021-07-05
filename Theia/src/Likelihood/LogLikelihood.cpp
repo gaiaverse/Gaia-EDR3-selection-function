@@ -9,6 +9,8 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id)
 
 void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
+
+	
 	Reset();	
 	Data.GeneratePopulations(x);
 	int realBatchesPerEffective = maxBatches / effectiveBatches;

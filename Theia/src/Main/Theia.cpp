@@ -62,12 +62,12 @@ VectorXd RootProcess()
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
 	fun.FrozenSpace = std::vector<double>(Nl*Nm,25.0);
-	VectorXd xSpoof = VectorXd::Zero(totalRawParams - Nt);
+	VectorXd xSpoof = VectorXd::Zero(NHyper);
 	
-	for (int i = Nt; i < totalRawParams; ++i)
-	{
-		xSpoof[i-Nt] = x[i];
-	}
+	//~ for (int i = Nt; i < totalRawParams; ++i)
+	//~ {
+		//~ xSpoof[i-Nt] = x[i];
+	//~ }
 	//~ for (int i = 0; i < NHyper; ++i)
 	//~ {
 		//~ xSpoof[i] = x[rawNonHyperParams + i];
@@ -78,7 +78,7 @@ VectorXd RootProcess()
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
-	op.HaltConditions.FunctionChangeThreshold = 1e-7;
+	op.HaltConditions.FunctionChangeThreshold = 0;//1e-7;
 	op.HaltConditions.PositionChangeThreshold = 0;
 	
 	//set up other properties
@@ -89,7 +89,20 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.02;
+	op.Properties.StepSize= 0.005;
+	
+	std::vector<int> sizes = {Nt,Ns*Nm};
+	std::vector<double> speeds = {1.0,1.5};
+	for (int i = 0; i < hyperOrder+1; ++i)
+	{
+		double mult = 1.5;
+		double div = 20;
+		speeds.push_back(mult/pow(div,i));
+		sizes.push_back(NVariancePops);
+	}
+	speeds.push_back(5.0);
+	sizes.push_back(NVariancePops);
+	op.InitialiseSpeedControls(sizes,speeds);
 	
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
 		
@@ -163,6 +176,55 @@ void WorkerProcess()
 }
 
 
+void GradientTest()
+{
+	LogLikelihood L = LogLikelihood(Data,ProcessRank);
+	
+	std::vector<double> xd;
+	for (int i = 0; i < Nt; ++i)
+	{
+		if (GapList[i])
+		{
+			xd.push_back(-8);
+		}
+		else
+		{
+			xd.push_back(8);
+		}
+	}
+	for (int i = 0; i < Nl*Nm; ++i)
+	{
+		xd.push_back(10);
+	}
+	for (int i = 0; i < NHyper-NVariancePops; ++i)
+	{
+		xd.push_back(1);
+	}
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		xd.push_back(1.0/NVariancePops);
+	}
+	
+	int hyperOffset = Nt + Nl*Nm;
+	
+	L.Calculate(xd,0,1,1);
+	double L0 = L.Value;
+	std::cout << "Original value: " << L0 << std::endl;
+	std::vector<double> G0 = L.Gradient;
+	double ddx = 1e-3;
+	for (int i = 0; i < NHyper; ++i)
+	{
+		std::vector<double> x = xd;
+		double dx = std::max(x[hyperOffset + i]*ddx,1e-8);
+		x[hyperOffset+i] += dx;
+		
+		L.Calculate(x,0,1,1);
+		
+		double grad = (L.Value - L0)/dx;
+		std::cout << "x_" << i << " =  " << x[hyperOffset + i] << "   l = " << L.Value  << "   g_n=" << grad << "    g_a =" << G0[hyperOffset + i] << std::endl;
+	}
+}
+
 void Welcome()
 {
 	GlobalLog(0,
@@ -198,6 +260,8 @@ int main(int argc,char *argv[])
 	
 	LoadData(ProcessRank,JobSize,Data,TotalStars,Args.DataSource,Args.Minibatches);
 	
+	//~ Data[0].resize(1);
+	//~ GradientTest();
 
 	VectorXd x;
 	if (ProcessRank == RootID) 

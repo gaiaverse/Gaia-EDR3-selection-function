@@ -34,6 +34,7 @@ struct ProgressTracker
 	int CurrentSteps;
 	double MovingAverage;
 	double Harness;
+	std::vector<double> SpeedController;
 	int StepsPerPositionSave;
 	bool UniquePositionSaves;
 	
@@ -42,6 +43,7 @@ struct ProgressTracker
 	
 	int Hashes;
 	int MaxHashes;
+	int SlowdownTriggers;
 };
 struct MemoryBuffer
 {

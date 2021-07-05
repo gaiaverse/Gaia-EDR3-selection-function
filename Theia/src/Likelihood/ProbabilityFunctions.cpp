@@ -1,7 +1,5 @@
 #include "ProbabilityFunctions.h"
 
-
-          
 void poisson_binomial_pmf_forward(std::vector<double> &  probs, int probslen, std::vector<std::vector<double>> & result)
 {
 	//stolen from https://github.com/biscarri1/convpoibin/blob/master/src/convpoibin.c
@@ -378,58 +376,11 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		for (int j = 0; j < (2+hyperOrder); ++j)
 		{
 			int index = j*NVariancePops + i;
+			
 			data.hypergradient[index] *= exp(populationValues[i] - value);
+			
 		}
 	}
     return value;
 }
 
-double  sigmoid(double x)
-{
-   // return 0.5*(1.0+tanh(0.5*x));
-    if (x < 0.0)
-    {
-        double a = exp(x);
-        return a / (1.0 + a); 
-    }
-    else
-    {
-        return 1.0 / (1.0 + exp(-x));
-    }
-}
-
-/*
-double  elu(double x)
-{
-	return exp(-x);
-}
-
-double  elu_grad(double x, double elu_x)
-{
-	return -elu_x;
-}
-*/
-
-double  elu(double x)
-{
-    if (x < density_cut)
-    {
-        return (1.0 + density_cut - x)*expm_density_cut; 
-    }
-    else
-    {
-        return exp(-x);
-    }
-}
-
-double  elu_grad(double x, double elu_x)
-{
-    if (x < density_cut)
-    {
-        return -expm_density_cut; 
-    }
-    else
-    {
-        return -elu_x;
-    }
-}

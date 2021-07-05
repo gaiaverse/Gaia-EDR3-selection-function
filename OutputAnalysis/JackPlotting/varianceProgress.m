@@ -3,7 +3,7 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
     set(0,'defaultTextInterpreter','latex');
 
     textures = ["-","--",":","-."];
-    figure(3);
+    figure(4);
         clf;
     for z = 1:length(folders)
         folder = folders(z);
@@ -38,7 +38,7 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
             variance = f(start:end);
              for j= varRange
                 for k = hypRange  
-                    pFac = k-1;
+                    pFac = 1;%k-1;
                     if k == 1
                         pFac = 1;
                     end
@@ -71,7 +71,7 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
 
             subplot(nx,ny,hyperOrder+2);
             hold on;
-            plot(v,sum,textures(z),'Color',m(j,:));
+            plot(v,sum.^2,textures(z),'Color',m(j,:));
             hold off;
 
 
@@ -87,14 +87,16 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
               sp = s;  
             end
             subplot(nx,ny,sp)
-            set(gca,'yscale','log')
+%             set(gca,'yscale','log')
 %             set(gca,'xscale','log')
 %             xlim([max(gap,startN)-0.5,stopN])
             if k < hyperOrder+2
                title("$n^"+string(k-1)+"$ term");
             else
+                set(gca,'yscale','log')
                 if k < hyperOrder + 3
                    title("Induced Variance for star with n = " + num2str(nBar)); 
+                   
                 else
                     title("Population Fraction");
 %                     legend(folders)

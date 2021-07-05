@@ -16,11 +16,12 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,co
 {
 	std::string transBase = OutputDir + "/";
 	std::string intBase = OutputDir + "/";
+	ForwardTransform(x);
 	if (finalSave)
 	{
 		transBase += "FinalPosition_";
 		intBase = transBase;
-		ForwardTransform(x);
+		
 	}
 	else
 	{
@@ -55,6 +56,8 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,co
 
 	rawfile.close();
 	transfile.close();
+	
+
 }
 
 
@@ -162,12 +165,14 @@ void DescentFunctor::ForwardTransform_Hyper(const VectorXd &z)
 		
 		for (int i = 0; i < NHyper; ++i)
 		{
-			double normalisation = 0;
+			double v = z[hyperStart + i];
 			if (i >= offset)
 			{
-				normalisation = X;
+				v = exp(z[hyperStart + i] - X);
+				//~ std::cout << z[hyperStart + i] << "   " << v << std::endl;
 			}
-			double v = exp(z[hyperStart + i] - normalisation);
+			
+			
 			TransformedPosition[transformedNonHyperParams + i] = v;
 		}	
 	}
@@ -265,8 +270,9 @@ void DescentFunctor::BackwardTransform_Hyper()
 		{
 			double x = TransformedPosition[transformedNonHyperParams + i];
 			double df = TransformedGradient[transformedNonHyperParams + i];
-	
-			Gradient[insertOffset + i] = x* df;		
+
+			
+			Gradient[insertOffset + i] = df;		
 		}
 		
 		for (int i = 0; i < NVariancePops; ++i)
