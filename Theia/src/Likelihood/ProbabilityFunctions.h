@@ -2,8 +2,8 @@
 #include "../Main/GlobalVariables.h"
 #include "../Main/GlobalConstants.h"
 #include "DataStorage.h"
+#include "MiscFunctions.h"
 #include <cmath>
-
 
 
 //function stolen from a git repo somewhere, see the implementation for more details
@@ -21,10 +21,6 @@ void  poisson_binomial_sublpmf(int m, int probslen, std::vector<std::vector<doub
 void logphi(double z, double& f, double& df);
 double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data);
 
-// Implements an expit sigmoid via the tanh method
-double  sigmoid(double x);
-double  elu(double x);
-double  elu_grad(double x, double elu_x);
 
 const std::vector<double> logphi_c= { 0.00048204, -0.00142906, 0.0013200243174, 0.0009461589032,
        -0.0045563339802, 0.00556964649138, 0.00125993961762116,
@@ -36,7 +32,3 @@ const std::vector<double> logphi_r = {1.2753666447299659525, 5.01904972678426746
 const std::vector<double> logphi_q = {2.260528520767326969592,  9.3960340162350541504,
        12.048951927855129036034, 17.081440747466004316,
         9.608965327192787870698,  3.3690752069827527677};
-
-const double one_over_root2 = 1.0/sqrt(2.0);
-const double one_over_root2pi = 1.0/sqrt(2.0*M_PI);
-const double root2_over_pi = sqrt(2.0/M_PI);

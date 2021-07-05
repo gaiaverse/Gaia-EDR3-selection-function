@@ -1,14 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = "Diagnostic77_StrongPrior_" + ["3Pop_Linear_lt1", "3Pop_Quadratic_lt2","3Pop_Quadratic_lt1_buffered","3Pop_Quadratic_lt15_buffered_highres","3Pop_Quadratic_lt1"];
-% files = "hometest";
+% files = "Diagnostic77_StrongPrior_" + ["3Pop_Linear_lt1", "3Pop_Quadratic_lt2","3Pop_Quadratic_lt1_buffered","3Pop_Quadratic_lt15_buffered_highres","3Pop_Quadratic_lt1"];
+files = "hometest_" + ["noControl_fast","noControl_medium","noControl_slow",...
+    "controlledPolys_fast","controlledPolys_medium","tightControlledPolys_medium"];
 % getData(10);
-files = files([4]);
-N1 =20;
-N2 = 56;
-gap = 4;
-progressPlot(files,20)
+files = files([4,5,6]);
+N1 =0;
+N2 =150;
+gap = 2;
+progressPlot(files,100)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
 temporalPlot(files,N2);
 
@@ -34,8 +35,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-xmin = 3580;
-xmax = 3680;
+% xmin = 2370;
+% xmax = 2420;
 ymin = -25;
 ymax = 25;
 gaps = readtable("edr3_gaps.csv");
@@ -96,8 +97,8 @@ for i = 1:length(folders)
             s = "%f ";
 
             if j > 0
-                s = " + " + s + "n^%d";
-                powFac = j;
+                s = " + " + s + "* n.^%d";
+                powFac = 1;
                 fprintf(s,varianceSegment(j*pop+k)^powFac,j);  
             else
                  fprintf(s,varianceSegment(j*pop+k));  

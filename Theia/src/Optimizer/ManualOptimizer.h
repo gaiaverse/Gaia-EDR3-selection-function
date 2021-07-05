@@ -35,18 +35,7 @@ class Optimizer
 
 		MemoryBuffer Buffer;
 		
-	public:
-		
-		OptimiserStatus Status;
-		OptimiserProperties Properties;
-		StopConditions HaltConditions;
-		ProgressTracker Progress;
-		
-		Optimizer<T>(T& functor) : Functor(functor)
-		{
-			SetDefaults();	
-		}
-		
+			
 		void SetDefaults()
 		{
 			HaltConditions.MaxSteps = 10000;
@@ -62,7 +51,7 @@ class Optimizer
 			Properties.HarnessReleaseSteps = 5;
 			Properties.MaxHarnessFactor = 100;
 			
-			Properties.MinibatchDownStep = 2;
+			Properties.MinibatchDownStep = 4;
 			
 			Buffer.Size = 30;
 			Buffer.AnalysisSize = 20;
@@ -101,28 +90,18 @@ class Optimizer
 			
 			Progress.Hashes = 0;
 			Progress.CurrentSteps = 0;
+			Progress.SlowdownTriggers = 0;
 			Status.Continues = true;
 		}
 			
-		void Minimize(VectorXd & x)
-		{
-
-			Initialise();
-			
-			switch(Properties.Mode)
-			{
-				case OptimiserModes::ADABADAM:
-				{
-					ADABADAM(x);
-					break;
-				}
-			}
-		}
-		
+				
 		void ADABADAM(VectorXd &x)
 		{
 			int EffectiveBatches = Properties.MiniBatches;
+
 			int Dimensions = x.size();
+			
+			
 			//initialise ADAM vectors
 			VectorXd m = VectorXd::Zero(Dimensions);
 			VectorXd v = VectorXd::Zero(Dimensions);
@@ -130,9 +109,9 @@ class Optimizer
 			VectorXd oldX = x;
 			
 			//ADAM Variables
-			double beta1 = 0.9;
-			double beta2 = 0.99;
-			double eps = 1e-8;
+			double beta1 = 0.2;
+			double beta2 = 0.999;
+			double eps = 1e-14;
 			double learningRate = Properties.StepSize;
 			
 			double previousEpoch = 99999999;
@@ -141,6 +120,7 @@ class Optimizer
 			int t = 1;
 
 			bool burnInStopped = false;
+			bool initSaved = false;
 			while (Status.Continues)
 			{
 				int epochs = Progress.CurrentSteps + 1;
@@ -163,31 +143,33 @@ class Optimizer
 					int currentBatch = batchOrder[batches];
 							
 					Functor.Calculate(x,currentBatch,EffectiveBatches);
-					
+
 					//save initial position
-					if (batches == 0 && epochs == 1 && EffectiveBatches > 1)
-					{
-						Functor.SavePosition(false,0,Progress.UniquePositionSaves,x);
-						previousEpoch = Functor.Value;
-					}
+					
 					
 					double b1Mod = 1.0/(1.0 - pow(beta1,t));
 					double b2Mod = 1.0/(1.0 - pow(beta2,t));			
 					
 					double gNorm = 0;
 					double dxNorm = 0;
+				
 					for (int i = 0; i < Dimensions; ++i)
 					{
 						double g = Functor.Gradient[i];
+					
 						gNorm += g*g;
 						m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 						v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 						
-						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * learningRate * Progress.Harness;
+						double effectiveRate = learningRate * Progress.Harness * Progress.SpeedController[i];
+						double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
+						
+						
 						dxNorm += dx_i * dx_i;
 						x[i] += dx_i;
 						epochGradient[i] += g;
 					}	
+					
 					++t;
 					
 					epochL += Functor.Value;
@@ -199,10 +181,17 @@ class Optimizer
 						double sqrtgNorm = sqrt(gNorm);
 						UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 					}
-					
+					if (!initSaved)
+					{
+						previousEpoch = Functor.Value;
+						Functor.SavePosition(false,0,Progress.UniquePositionSaves,x);
+						initSaved = true;
+					}
 					double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * EffectiveBatches));
 					//~ std::cout << harnessFactor << std::endl;
 					Progress.Harness = std::min(1.0,Progress.Harness * harnessFactor);
+					
+					
 				}
 				
 				epochL/=EffectiveBatches;
@@ -222,11 +211,27 @@ class Optimizer
 				{
 					EffectiveBatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-					learningRate = std::min(learningRate*0.9,0.5*Properties.StepSize);
+					learningRate = learningRate/4;
+					Properties.StepSize = Properties.StepSize / 2;
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 					//~ t = 1;
 					//~ m =  VectorXd::Zero(Dimensions);
 					//~ v =  VectorXd::Zero(Dimensions);
+				}
+				
+				
+				if (df > 0)
+				{
+					learningRate *= 0.5;
+					++Progress.SlowdownTriggers;
+				}
+				if (df < 0)
+				{
+					learningRate *= 1.01;
+					if (learningRate > Properties.StepSize)
+					{
+						learningRate = Properties.StepSize;
+					}
 				}
 				
 				
@@ -244,7 +249,6 @@ class Optimizer
 					//~ m =  VectorXd::Zero(Dimensions);
 					//~ v =  VectorXd::Zero(Dimensions);
 				}
-				
 				
 			}
 			SaveProgress(Buffer.Position);
@@ -299,6 +303,7 @@ class Optimizer
 				if (NeedsBatchReduction())
 				{	
 					Buffer.AnalysisSteps = 0;
+					Progress.SlowdownTriggers = 0;
 					newSize = currentSize / Properties.MinibatchDownStep;
 					if (newSize < 1)
 					{
@@ -333,9 +338,9 @@ class Optimizer
 			double mean = sum / N;
 		
 			int problematicSignChanges = std::max(2,N/3);
-			if ((mean > 0) || signChanges >= problematicSignChanges)
+			if ((mean > 0) || signChanges >= problematicSignChanges || Progress.SlowdownTriggers > 5)
 			{
-
+				
 				batchesAreAProblem = true;
 			}
 
@@ -455,6 +460,34 @@ class Optimizer
 			file.close();
 		}
 
+		
+	public:
+		
+		OptimiserStatus Status;
+		OptimiserProperties Properties;
+		StopConditions HaltConditions;
+		ProgressTracker Progress;
+		
+		Optimizer<T>(T& functor) : Functor(functor)
+		{
+			SetDefaults();	
+		}
+	
+		void Minimize(VectorXd & x)
+		{
+
+			Initialise();
+			
+			switch(Properties.Mode)
+			{
+				case OptimiserModes::ADABADAM:
+				{
+					ADABADAM(x);
+					break;
+				}
+			}
+		}
+
 		std::string GetStatus()
 		{
 			std::string s = "";
@@ -476,6 +509,24 @@ class Optimizer
 			return s;
 		}
 		
+		void InitialiseSpeedControls(std::vector<int> sizes, std::vector<double> speeds)
+		{
+			int n = 0;
+			for (int i = 0; i < sizes.size(); ++i)
+			{
+				n+=sizes[i];
+			}
+			int c = 0;
+			Progress.SpeedController.resize(n);
+			for (int i = 0; i < sizes.size(); ++i)
+			{
+				for (int j = 0; j < sizes[i]; ++j)
+				{
+					Progress.SpeedController[c] = speeds[i];
+					++c; 
+				}
+			}
+		}
 };
 
 
