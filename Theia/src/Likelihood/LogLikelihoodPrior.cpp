@@ -35,8 +35,8 @@ F_dF StudentT(double x, double mu, double nu)
 
 F_dF GapEnforcer(double x)
 {
-	double v = 0;//gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
-	double dv = 0;//(gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
+	double v = gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
+	double dv = (gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
 	return F_dF(v,dv);
 }
 

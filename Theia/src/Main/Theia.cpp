@@ -78,7 +78,7 @@ VectorXd RootProcess()
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
-	op.HaltConditions.FunctionChangeThreshold = 0;//1e-7;
+	op.HaltConditions.FunctionChangeThreshold = 1e-7;
 	op.HaltConditions.PositionChangeThreshold = 0;
 	
 	//set up other properties
@@ -89,14 +89,14 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.005;
+	op.Properties.StepSize= 0.004;
 	
 	std::vector<int> sizes = {Nt,Ns*Nm};
 	std::vector<double> speeds = {1.0,1.5};
 	for (int i = 0; i < hyperOrder+1; ++i)
 	{
-		double mult = 1.5;
-		double div = 20;
+		double mult = 3;
+		double div = 50;
 		speeds.push_back(mult/pow(div,i));
 		sizes.push_back(NVariancePops);
 	}
