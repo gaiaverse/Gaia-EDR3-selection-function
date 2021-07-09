@@ -33,6 +33,11 @@ class DescentFunctor
 
 		//running values for the loglikelihood and gradient 
 
+		std::vector<std::vector<std::vector<double>>> HyperBuffer;
+		int HyperBufferLoc;
+		int HyperBufferSize = 30;
+		bool HyperSaved = false;
+		int hyperStep = 0;
 		std::string OutputDir;		
 
 		
@@ -69,6 +74,7 @@ class DescentFunctor
 		void BackwardTransform_Temporal();
 		void BackwardTransform_Hyper();
 		
+		void SaveHyperBuffer();
 		void ResetPosition();
 		
 		int MaxBatches;
@@ -123,6 +129,12 @@ class DescentFunctor
 			Gradient = std::vector<double>(ActiveParams,0);
 			
 			
+
+			if (HyperActive)
+			{
+				HyperBuffer = std::vector(NVariancePops,std::vector(hyperOrder+2,std::vector(HyperBufferSize,0.0)));
+			}
+			HyperBufferLoc = 0;
 			mut_gaps = std::vector<double>(Nt,xtPriorNonGap);
 			
 			for (int i = 0; i < Nt; ++i)

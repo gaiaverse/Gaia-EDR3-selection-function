@@ -1,9 +1,12 @@
-function varianceProgress(folders,startN,stopN, gap, includeFinal)
+function varianceProgress(folders,minLim)
+    if nargin < 2
+        minLim = 0;
+    end
     set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
     set(0,'defaultTextInterpreter','latex');
 
     textures = ["-","--",":","-."];
-    figure(4);
+    figure(3);
         clf;
     for z = 1:length(folders)
         folder = folders(z);
@@ -20,13 +23,8 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
         start = totalN - (hyperOrder+2)*nVariancePopulations+1;
 
 
-        v = [startN:gap:stopN];
-        files = "../../../CodeOutput/" + folder + "/TempPositions/TempPosition" + string(v) +"_TransformedParameters.dat";
-
-        if includeFinal == true
-            files = [files, "../../../CodeOutput/" + folder + "/FinalPosition_TransformedParameters.dat"];
-            v = [v, stopN+gap];
-        end
+        v = [0:1:nVariancePopulations-1];
+        files = "../../../CodeOutput/" + folder + "/TempPositions/Population" + string(v) +"HyperParams.dat";     
 
         terms= [];
         fracs = [];
@@ -35,21 +33,39 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
         for i = 1:length(files)
             files(i)
             f = readmatrix(files(i));
-            variance = f(start:end);
-             for j= varRange
-                for k = hypRange  
-                    pFac = 1;%k-1;
-                    if k == 1
-                        pFac = 1;
-                    end
-                   terms(i,k,j) = variance((k-1)*nVariancePopulations + j)^pFac; 
-                end
-                fracs(i,j) = variance((hyperOrder+1)*nVariancePopulations + j);
+            
+            fracs(:,i) = f(:,2);
+            for j = hypRange
+               rawterms(:,j,i) = f(:,2+j); 
             end
-
         end
-
         
+        L = [1:height(f)];
+        maxxer = L(end);
+        if minLim > maxxer
+            minLim = 0;
+        end
+        bounds = [minLim, maxxer];
+        terms = zeros(size(rawterms));
+        for i = varRange
+            
+            terms(:,1,i) = rawterms(:,1,i).^2;
+
+            for j = 1:hyperOrder+1
+                v = zeros(size(L))';
+                q = j - 1;
+                for k = max(1,ceil(q/2)):hyperOrder/2
+                   v = v + nchoosek(2*k,2*k-q) * rawterms(:,2*k,i).^(2*k-q) .* rawterms(:,2*k+1,i).^q;
+                end
+
+                terms(:,j,i) = terms(:,j,i) + v; 
+ 
+            end
+        end
+        
+%         dim = 2;
+%         [terms(:,dim,1),terms(:,dim,2),terms(:,dim,3)]
+
         nx = floor(sqrt(hyperOrder +4));
         ny = ceil((hyperOrder + 3)/nx);
 
@@ -63,7 +79,7 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
             for k = 1:hyperOrder + 1
                subplot(nx,ny,k)
                hold on;
-               plot(v,terms(:,k,j),textures(z),'Color',m(j,:));
+               plot(L,terms(:,k,j),textures(z),'Color',m(j,:));
 
                hold off;
                sum = sum + terms(:,k,j)*nBar^(k-1);
@@ -71,13 +87,13 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
 
             subplot(nx,ny,hyperOrder+2);
             hold on;
-            plot(v,sum.^2,textures(z),'Color',m(j,:));
+            plot(L,sum,textures(z),'Color',m(j,:));
             hold off;
 
 
             subplot(nx,ny,s);
             hold on;
-            plot(v,fracs(:,j),textures(z),'Color',m(j,:));
+            plot(L,fracs(:,j),textures(z),'Color',m(j,:));
             hold off;
         end
 
@@ -102,7 +118,8 @@ function varianceProgress(folders,startN,stopN, gap, includeFinal)
 %                     legend(folders)
                 end
             end
-           xlabel("Complete Epochs");
+            xlim(bounds);
+           xlabel("Minibatch Evaluations");
            ylabel("Optimiser Value");
         end
     end

@@ -1,10 +1,10 @@
-output       ../../CodeOutput/hometest_tightControlledPolys_medium/
+output       ../../CodeOutput/hometest2/
 data         ../../Data/TestSets/gaps_parallel_spikes_hard/
 random-seed  3
 gradlim      0
 max-steps    2000
 burnin       0
-save-steps   2
+save-steps   5
 unique-temp-save 1
 minibatch     32
 harness-slow  100

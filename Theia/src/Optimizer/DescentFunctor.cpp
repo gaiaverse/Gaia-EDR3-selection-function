@@ -163,6 +163,9 @@ void DescentFunctor::ForwardTransform_Hyper(const VectorXd &z)
 			
 		}
 		
+		
+		
+		
 		for (int i = 0; i < NHyper; ++i)
 		{
 			double v = z[hyperStart + i];
@@ -175,6 +178,21 @@ void DescentFunctor::ForwardTransform_Hyper(const VectorXd &z)
 			
 			TransformedPosition[transformedNonHyperParams + i] = v;
 		}	
+		
+		for (int i = 0; i < NVariancePops; ++i)
+		{
+			for (int j = 0; j < hyperOrder + 2; ++j)
+			{
+				int index = j * NVariancePops + i;
+				HyperBuffer[i][j][HyperBufferLoc] = TransformedPosition[transformedNonHyperParams + index];
+				
+			}
+		}
+		++HyperBufferLoc;
+		if (HyperBufferLoc >= HyperBufferSize)
+		{
+			SaveHyperBuffer();
+		}
 	}
 	else
 	{
@@ -183,6 +201,48 @@ void DescentFunctor::ForwardTransform_Hyper(const VectorXd &z)
 			TransformedPosition[transformedNonHyperParams + i] = FrozenHypers[i];
 		}
 	}
+}
+
+void DescentFunctor::SaveHyperBuffer()
+{
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		std::string fileName = OutputDir + "/TempPositions/Population" + std::to_string(i) + "HyperParams.dat";
+		std::fstream file;
+	
+		if (HyperSaved == false)
+		{
+			file.open(fileName,std::ios::out);
+			
+			file << "Step, Fraction";
+			for (int j = 0; j <= hyperOrder; ++j)
+			{
+				file << ", a_" << j; 
+			}
+			file << "\n";
+		}
+		else
+		{
+			file.open(fileName,std::ios::app);
+		}
+			
+		for (int k = 0; k < HyperBufferSize; ++k)
+		{
+			file << hyperStep + k << ", " << HyperBuffer[i][hyperOrder + 1][k];
+			for (int j = 0; j <=hyperOrder; ++j)
+			{
+				file << ", " << HyperBuffer[i][j][k];
+			}
+			file << "\n";
+		}
+		file.close();
+	}
+	HyperSaved = true;
+	HyperBufferLoc = 0;
+	hyperStep += HyperBufferSize;
+	
+	
+	
 }
 
 void DescentFunctor::BackwardTransform()

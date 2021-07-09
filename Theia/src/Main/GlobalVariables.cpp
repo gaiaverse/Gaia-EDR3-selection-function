@@ -70,14 +70,14 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 			}
 			else
 			{
-				prior = 10;
+				prior = 3;
 			}
 			//~ double prior = -0.01;
 			
 			for (int j = 0;j < NVariancePops; ++j)
 			{
 				int index = rawNonHyperParams + i*NVariancePops + j;
-				x[index] = (prior + x[index])/pow(10,2*(1+i));
+				x[index] = (prior + x[index])/(100*(i+1));
 			}
 			
 		}

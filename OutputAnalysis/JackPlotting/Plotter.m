@@ -1,17 +1,15 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-% files = "Diagnostic77_StrongPrior_" + ["3Pop_Linear_lt1", "3Pop_Quadratic_lt2","3Pop_Quadratic_lt1_buffered","3Pop_Quadratic_lt15_buffered_highres","3Pop_Quadratic_lt1"];
-files = "hometest_" + ["noControl_fast","noControl_medium","noControl_slow",...
-    "controlledPolys_fast","controlledPolys_medium","tightControlledPolys_medium"];
+files = "hometest" + ["2"];
 % getData(10);
-files = files([4,5,6]);
+% files= files(2);
 N1 =0;
-N2 =150;
-gap = 2;
-progressPlot(files,100)
-% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-temporalPlot(files,N2);
+N2 = 140;
+gap = 10;
+progressPlot(files,0)
+gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+% temporalPlot(files,N2);
 
 
 
@@ -92,18 +90,14 @@ for i = 1:length(folders)
            ps(end+1) = varianceSegment(j*pop+k);  
         end
         frac = varianceSegment((1+pow)*pop + k);
-        fprintf("\tPop %d has fraction %.8f and variance model ",k,frac)
-        for j = 0:pow
-            s = "%f ";
+        fprintf("\tPop %d has fraction %.8f and variance model V(n) = ",k,frac)
+        fprintf("%.8f ",varianceSegment(k).^2);  
+        for j = 1:2:pow
+            s = "+ (%.8f+ %.8f * n).^%d";
 
-            if j > 0
-                s = " + " + s + "* n.^%d";
-                powFac = 1;
-                fprintf(s,varianceSegment(j*pop+k)^powFac,j);  
-            else
-                 fprintf(s,varianceSegment(j*pop+k));  
-            end
-           
+
+            fprintf(s,varianceSegment(j*pop+k),varianceSegment((j+1)*pop+k),j+1);  
+            
         end
         fprintf("\n");
     end
@@ -296,6 +290,9 @@ for i = 1:length(files)
 		end
     else
         ender = max(xB);
+    end
+    if minLim >= ender
+        minLim = 0;
     end
 	%         plot(fullEpoch.Elapsed,xF);
 	plot(miniBatches.Elapsed,xB,'Color',cols2(i,:),'LineWidth',0.5);

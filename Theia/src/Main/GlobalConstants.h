@@ -60,3 +60,4 @@ const double expm_density_cut = exp(-density_cut);
 	#define GlobalDebug(level, ...)
 #endif	
 	
+static_assert(hyperOrder % 2 == 0,"hyperOrder must be an even integer");

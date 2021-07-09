@@ -1,10 +1,10 @@
-output       ../../Output/Diagnostic80_segmentedSpeeds_quadratic/
+output       ../../Output/Diagnostic81_largeData/
 data         ../../Data/ShuffledData/
-random-seed  3
+random-seed  0
 gradlim      1e-6
-max-steps    500
+max-steps    5000
 burnin       0
-save-steps   2
+save-steps   5
 unique-temp-save 1
 minibatch     128
 harness-slow  20

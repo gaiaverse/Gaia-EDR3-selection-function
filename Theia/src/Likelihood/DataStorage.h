@@ -20,46 +20,81 @@ struct VariancePopulation
 	{
 		Fraction = fraction;
 		PowerContributions = contributions;				
-		//~ std::cout << "Hey! I have fraction " << fraction << " and :";
-		//~ for (int i = 0; i < contributions.size(); ++i)
-		//~ {
-			//~ std::cout << "alpha_" << i << " =   " << PowerContributions[i] << std::endl;
-		//~ }
 	}; 
 	
-	double Scaler(double scaling)
-	{
-		double v = PowerContributions[0];
-		for (int i =1; i < PowerContributions.size(); ++i)
-		{
-			v += PowerContributions[i] * pow(scaling,i);
-		}
-		return v;
-	}
+
 	double Variance(double scaling)
 	{
-		double v = Scaler(scaling);
-		double q =  v*v;
+		double v = pow(PowerContributions[0],2);
+		
+		for (int i = 1; i <= hyperOrder/2; ++i)
+		{
+			int power = 2*i;
+			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
+			v += pow(term,power); 
+		} 
+		
 
-		return q;
+		return v;
+		
 	}
 	double dVariancedN(double scaling)
 	{
+		double v = 0;
 		
-		double value = 0;
-		for (int i = 1; i < PowerContributions.size(); ++i)
+		for (int i = 1; i <= hyperOrder/2; ++i)
 		{
-			value+= i * PowerContributions[i] * pow(scaling,i-1);
-		}
-		return 2 * value * Scaler(scaling);
+			int power = 2*i;
+			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
+			v += power * pow(term,power-1) * PowerContributions[power]; 
+		} 
+		return v;
 	}
 	double dVariancedAlpha(int term, double scaling)
 	{
-		double v = Scaler(scaling);
-		double q = 2 * v * pow(scaling,term);
-		//~ std::cout << "Per-alpha variance_" << term << "   " << v << "  " << scaling << "    " << q << std::endl;
-		return q;
+		double v;
+		if (term > 0)
+		{
+			if (term % 2 == 0)
+			{
+				double bracket = PowerContributions[term-1] + PowerContributions[term] * scaling;
+				v = term * pow(bracket,term - 1) * scaling;
+			}
+			else
+			{
+				double bracket = PowerContributions[term] + PowerContributions[term+1] * scaling;
+				v = (term + 1 ) * pow(bracket,term);
+			}
+		}
+		else
+		{
+			v = 2 * PowerContributions[0];
+		}
+		return v;
+	}
+	void Print(double scale)
+	{
+		std::cout << "I have fraction: " << Fraction << " and\n" ;
+		for (int i = 0; i <= hyperOrder; ++i)
+		{
+			std::cout << "a" << i << " = " << PowerContributions[i] << ";" <<std::endl;
+		}
 		
+		std::cout << "SO: V(n) = " << PowerContributions[0];
+		for (int i = 1; i<= hyperOrder/2; ++i)
+		{
+			int power = 2*i-1;
+			std::cout << "+ (" << PowerContributions[power] << " + " << PowerContributions[power+1] << "*n).^" << power+1;
+		}
+		std::cout<< "\n With n = " << scale << " I have: \n";
+		
+		
+		std::cout << "V = " << Variance(scale) << std::endl;
+		std::cout << "dVdN = " << dVariancedN(scale) << std::endl;
+		for (int i = 0; i < hyperOrder + 1; ++i)
+		{
+			std::cout << "dVdA_" << i << " = " << dVariancedAlpha(i,scale) << std::endl;
+		}
 	}
 };
 class LikelihoodData

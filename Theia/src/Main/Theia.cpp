@@ -95,12 +95,12 @@ VectorXd RootProcess()
 	std::vector<double> speeds = {1.0,1.5};
 	for (int i = 0; i < hyperOrder+1; ++i)
 	{
-		double mult = 3;
-		double div = 50;
+		double mult = 1;
+		double div = 5;
 		speeds.push_back(mult/pow(div,i));
 		sizes.push_back(NVariancePops);
 	}
-	speeds.push_back(5.0);
+	speeds.push_back(4.0);
 	sizes.push_back(NVariancePops);
 	op.InitialiseSpeedControls(sizes,speeds);
 	
