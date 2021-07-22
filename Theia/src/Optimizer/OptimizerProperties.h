@@ -19,6 +19,7 @@ struct StopConditions
 	double PositionChangeThreshold;
 	double GradientThreshold;
 	double FunctionChangeThreshold;
+	int SingleBatchStepThreshold;
 };
 struct OptimiserStatus
 {
@@ -28,6 +29,7 @@ struct OptimiserStatus
 	bool ReachedGradConvergence;
 	bool ReachedStepConvergence;
 	bool ReachedFunctionConvergence;
+	bool CarryingOnRegardless;
 };
 struct ProgressTracker
 {
@@ -44,6 +46,7 @@ struct ProgressTracker
 	int Hashes;
 	int MaxHashes;
 	int SlowdownTriggers;
+	int TimeSinceSingleBatch;
 };
 struct MemoryBuffer
 {

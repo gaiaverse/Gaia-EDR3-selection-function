@@ -89,18 +89,18 @@ VectorXd RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.004;
+	op.Properties.StepSize= 0.008;
 	
 	std::vector<int> sizes = {Nt,Ns*Nm};
-	std::vector<double> speeds = {1.0,1.5};
+	std::vector<double> speeds = {1.3,0.8};
 	for (int i = 0; i < hyperOrder+1; ++i)
 	{
-		double mult = 1;
-		double div = 5;
+		double mult = 2;
+		double div = 3;
 		speeds.push_back(mult/pow(div,i));
 		sizes.push_back(NVariancePops);
 	}
-	speeds.push_back(4.0);
+	speeds.push_back(2.0);
 	sizes.push_back(NVariancePops);
 	op.InitialiseSpeedControls(sizes,speeds);
 	

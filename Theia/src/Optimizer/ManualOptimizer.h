@@ -42,6 +42,7 @@ class Optimizer
 			HaltConditions.PositionChangeThreshold = 1e-5;
 			HaltConditions.GradientThreshold = 1e-6;
 			HaltConditions.FunctionChangeThreshold = 1e-7;
+			HaltConditions.SingleBatchStepThreshold = 40;
 			
 			Properties.Mode = OptimiserModes::ADABADAM;
 			Properties.MiniBatches = 1;
@@ -54,7 +55,7 @@ class Optimizer
 			Properties.MinibatchDownStep = 4;
 			
 			Buffer.Size = 30;
-			Buffer.AnalysisSize = 20;
+			Buffer.AnalysisSize = 15;
 			Buffer.OverrideTime = 300;
 			Progress.SaveLocation = "";
 			Progress.MaxHashes = 32;
@@ -64,6 +65,7 @@ class Optimizer
 		void Initialise()
 		{
 			Status.TooManySteps = false;
+			Status.CarryingOnRegardless = false;
 			Status.Converged = false;
 			Status.ReachedFunctionConvergence = false;
 			Status.ReachedGradConvergence = false;
@@ -109,7 +111,7 @@ class Optimizer
 			VectorXd oldX = x;
 			
 			//ADAM Variables
-			double beta1 = 0.2;
+			double beta1 = 0.8;
 			double beta2 = 0.999;
 			double eps = 1e-14;
 			double learningRate = Properties.StepSize;
@@ -121,7 +123,7 @@ class Optimizer
 
 			bool burnInStopped = false;
 			bool initSaved = false;
-			while (Status.Continues)
+			while (Status.Continues && ~Status.CarryingOnRegardless)
 			{
 				int epochs = Progress.CurrentSteps + 1;
 				double epochL = 0;
@@ -212,7 +214,7 @@ class Optimizer
 					EffectiveBatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					learningRate = learningRate/4;
-					Properties.StepSize = Properties.StepSize / 2;
+					Properties.StepSize = Properties.StepSize;
 					std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
 					//~ t = 1;
 					//~ m =  VectorXd::Zero(Dimensions);
@@ -224,10 +226,12 @@ class Optimizer
 				{
 					learningRate *= 0.5;
 					++Progress.SlowdownTriggers;
+					beta1 = 0.2;
 				}
 				if (df < 0)
 				{
 					learningRate *= 1.01;
+					beta1 = 0.8;
 					if (learningRate > Properties.StepSize)
 					{
 						learningRate = Properties.StepSize;
@@ -280,6 +284,11 @@ class Optimizer
 				Status.Converged = true;
 				Status.Continues = false;
 			}
+			Status.CarryingOnRegardless = false;
+			if (Status.Continues == false && Progress.TimeSinceSingleBatch < HaltConditions.SingleBatchStepThreshold)
+			{
+				Status.CarryingOnRegardless = true;
+			}
 			//~ if (Progress.MovingAverage > 0)
 			//~ {
 				//~ Status.ReachedFunctionConvergence = true;
@@ -312,6 +321,10 @@ class Optimizer
 				}
 			
 			}		
+			if (currentSize == 1)
+			{
+				++Progress.TimeSinceSingleBatch;
+			}
 			return newSize;
 		}
 

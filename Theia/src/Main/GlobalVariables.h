@@ -45,13 +45,13 @@ const double lt_revs = 3;
 const double xmPrior = -3;
 const double xmInitialised = 3;
 
-const double xtPriorNonGap = 8;
-const double xtPriorInsideGap = 8;
+const double xtPriorNonGap = 6;
+const double xtPriorInsideGap = 6;
 
-const double studentNu = 0.3;
+const double studentNu = 0.5;
 
 const double gapPriorAlpha = 0.1;
-const double gapPriorPeak = -8;
+const double gapPriorPeak = -6;
 const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak);
 
 const double initialisationBounds = 0.3;
