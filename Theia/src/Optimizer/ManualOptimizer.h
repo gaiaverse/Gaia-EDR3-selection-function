@@ -52,7 +52,7 @@ class Optimizer
 			Properties.HarnessReleaseSteps = 5;
 			Properties.MaxHarnessFactor = 100;
 			
-			Properties.MinibatchDownStep = 4;
+			Properties.MinibatchDownStep = 2;
 			
 			Buffer.Size = 30;
 			Buffer.AnalysisSize = 15;
