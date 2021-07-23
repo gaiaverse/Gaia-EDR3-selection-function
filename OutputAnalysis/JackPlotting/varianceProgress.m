@@ -71,7 +71,7 @@ function varianceProgress(folders,minLim)
 
         nF = mod(nx*ny,hyperOrder+2);
         s = [1:nF] + hyperOrder + 2;
-        nBar = 100;
+        nBar = 200;
         m = colororder;
         for j = 1:nVariancePopulations
 

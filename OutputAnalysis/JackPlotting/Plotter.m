@@ -1,14 +1,14 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-files = "hometest" + ["2"];
-% getData(10);
+files = "Diagnostic81_largeData";
+getData(60);
 % files= files(2);
 N1 =0;
-N2 = 140;
-gap = 10;
-progressPlot(files,0)
-gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+N2 = 300;
+gap = 100;
+progressPlot(files,80)
+% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
 % temporalPlot(files,N2);
 
 
@@ -33,8 +33,8 @@ nx = 2;
 t = 1717.6256+(linspace(1666.4384902198801, 2704.3655735533684, 2) + 2455197.5 - 2457023.5 - 0.25)*4;
 xmin = t(1);
 xmax = t(2);
-% xmin = 2370;
-% xmax = 2420;
+% xmin = 2380;
+% xmax = 2440;
 ymin = -25;
 ymax = 25;
 gaps = readtable("edr3_gaps.csv");
@@ -329,7 +329,7 @@ for i = 1:length(files)
 	set(gca,'yscale','log')
 % 	        set(gca,'xscale','log')
 	xlabel("Complete Epochs");
-	ylabel("$L/L_0$");
+	ylabel("$L$");
 	hold off;
 	grid on;
 	xlim([minLim,ender])
