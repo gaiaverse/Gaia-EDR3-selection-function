@@ -12,13 +12,27 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 		
 		int i = 0;
 		forLineIn(loadLocation,
-			possibleX[i] = (std::stod(FILE_LINE));
-			++i;
-			if (i > n)
+			if (i >= n)
 			{
-				std::cout << "Internal quit " << std::endl;
 				ERROR(100,"Asked to load in start position from file, but it was the wrong length");
 			}
+			
+			double value; 
+			try
+			{
+				value = std::stod(FILE_LINE);
+			}
+			catch(const std::exception& e)
+			{
+				value = 0;
+				  //sometimes the stod fails for values <1e-300, so just default these to zero
+
+			}
+			
+			
+			possibleX[i] = value;
+			++i;
+			
 		);
 		
 		bool wentUnder = (i < n);
