@@ -111,9 +111,9 @@ class Optimizer
 			VectorXd oldX = x;
 			
 			//ADAM Variables
-			double beta1 = 0.8;
-			double beta2 = 0.999;
-			double eps = 1e-14;
+			double beta1 = 0.7;
+			double beta2 = 0.99;
+			double eps = 1e-10;
 			double learningRate = Properties.StepSize;
 			
 			double previousEpoch = 99999999;
