@@ -1,15 +1,27 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
+<<<<<<< HEAD
 files = "Diagnostic83_largeData_76";
+=======
+files = "Diagnostic82_largeData_" +["66","76"];
+>>>>>>> 1cc19c756fb17708ce9bdad150f491a3a6922888
 getData(60);
-% files= files(2);
+% files= files(1);
 N1 =0;
+<<<<<<< HEAD
 N2 = -1;
 gap = 10;
 progressPlot(files,80)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
 temporalPlot(files,N2);
+=======
+N2 = 770;
+gap = 50;
+progressPlot(files,80)
+% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
+temporalPlot(files,[770,200]);
+>>>>>>> 1cc19c756fb17708ce9bdad150f491a3a6922888
 
 
 
@@ -25,7 +37,7 @@ if timeSince > timeGap
 	save("SyncTime.mat","SyncCurrentTime");
 end
 end
-function temporalPlot(folders,number)
+function temporalPlot(folders,numbers)
 figure(1);
 clf;
 ny = 2;
@@ -55,6 +67,11 @@ for j = 1:length(folders)
 end
 hold off;
 for i = 1:length(folders)
+	if length(numbers) > 1
+		number = numbers(i);
+	else
+		number = numbers;
+	end
 	folder = folders(i);
 	properties = readtable("../../../CodeOutput/" + folder + "/OptimiserProperties.dat","ReadRowNames",true,"Delimiter","=");
 	pData = table2array(properties)';

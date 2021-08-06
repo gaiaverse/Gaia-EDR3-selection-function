@@ -92,11 +92,11 @@ VectorXd RootProcess()
 	op.Properties.StepSize= 0.008;
 	
 	std::vector<int> sizes = {Nt,Ns*Nm};
-	std::vector<double> speeds = {1.3,0.8};
+	std::vector<double> speeds = {1.2,0.8};
 	for (int i = 0; i < hyperOrder+1; ++i)
 	{
 		double mult = 2;
-		double div = 3;
+		double div = 2;
 		speeds.push_back(mult/pow(div,i));
 		sizes.push_back(NVariancePops);
 	}

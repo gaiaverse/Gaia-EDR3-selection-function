@@ -1,11 +1,12 @@
-output       ../../Output/Diagnostic82_largeData_76/
+output       ../../Output/PrepRun_1/
 data         ../../Data/ShuffledData/
 random-seed  0
-gradlim      1e-6
+gradlim      1e-7
 max-steps    5000
 burnin       0
-save-steps   10
+save-steps   5
 unique-temp-save 1
 minibatch     64
 harness-slow  20
 harness-release 5
+

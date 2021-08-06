@@ -1,4 +1,4 @@
-output       ../../Output/Diagnostic82_largeData_66/
+output       ../../Output/Diagnostic83_largeData_66/
 data         ../../Data/ShuffledData/
 random-seed  0
 gradlim      1e-6
@@ -9,3 +9,4 @@ unique-temp-save 1
 minibatch     64
 harness-slow  20
 harness-release 5
+restart ../../Output/Diagnostic82_largeData_66/TempPositions/TempPosition_InternalParameters.dat
