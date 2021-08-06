@@ -16,7 +16,7 @@ using Eigen::VectorXd;
 
 //Optimiser + data properties
 
-const int DataLoadCount = 1e7;	//set to a value > 0, this truncates any datafile readin to that many lines
+const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
 
 const std::string TempDirName = "TempPositions";
 
@@ -34,11 +34,11 @@ const int hyperOrder = 4;
 
 //temporal and magnitude lengthscales + variances
 
-const double sigmat = 5;
+const double sigmat = 3;
 const double lm = 3;
 
 
-const double lt_revs = 3;
+const double lt_revs = 1;
 
 
 //prior and initialisation values
@@ -50,7 +50,7 @@ const double xtPriorInsideGap = 6;
 
 const double studentNu = 0.5;
 
-const double gapPriorAlpha = 0.1;
+const double gapPriorAlpha = 0.5;
 const double gapPriorPeak = -6;
 const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak);
 
@@ -59,7 +59,7 @@ const double initialisationBounds = 0.3;
 
 //normal approximation variances
 enum VarianceScaling {NScaling, MScaling, ActiveNScaling};
-const VarianceScaling ScalingMode = NScaling;
+const VarianceScaling ScalingMode = ActiveNScaling;
 const bool useHyperPrior = true;
 const bool ignoreGapObs = false;
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
