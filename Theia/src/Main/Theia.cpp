@@ -10,6 +10,7 @@
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "../libs/Eigen/Core"
 #include <fstream>
+#include <unistd.h>
 #define EIGEN_MPL2_ONLY
 
 //~ #include "libs/LBFG/LBFGS.h"
@@ -78,8 +79,11 @@ VectorXd RootProcess()
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
-	op.HaltConditions.FunctionChangeThreshold = 1e-7;
-	op.HaltConditions.PositionChangeThreshold = 0;
+	op.HaltConditions.FunctionChangeThreshold = 0;
+	op.HaltConditions.PositionChangeThreshold = 1e-4;
+	op.HaltConditions.UseExternalInstructions = true;
+	op.HaltConditions.TerminationFile = (std::string)Args.OutputDirectory + "/termination_file_" + std::to_string(::getpid()) + ".optim";
+	op.HaltConditions.DownStepFile = (std::string)Args.OutputDirectory + "/downstep_file_"+ std::to_string(::getpid()) + ".optim";
 	
 	//set up other properties
 	op.Properties.MiniBatches = Args.Minibatches;
@@ -114,7 +118,7 @@ VectorXd RootProcess()
 		std::cout << "\nSOLVER ENDED: " << op.Status.Converged << std::endl;
 		std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
 	);
-	
+
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);	

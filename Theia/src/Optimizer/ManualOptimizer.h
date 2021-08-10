@@ -70,6 +70,8 @@ class Optimizer
 			Status.ReachedFunctionConvergence = false;
 			Status.ReachedGradConvergence = false;
 			Status.ReachedStepConvergence = false;
+			Status.ExternalDownStep = false;
+			Status.ExternalTermination = false;
 			Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 			Progress.BufferFileOpened = false;
 			
@@ -94,6 +96,11 @@ class Optimizer
 			Progress.CurrentSteps = 0;
 			Progress.SlowdownTriggers = 0;
 			Status.Continues = true;
+			
+			if (HaltConditions.UseExternalInstructions)
+			{
+				InitialiseExternalFiles();
+			}
 		}
 			
 				
@@ -190,7 +197,7 @@ class Optimizer
 						initSaved = true;
 					}
 					double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * EffectiveBatches));
-					//~ std::cout << harnessFactor << std::endl;
+
 					Progress.Harness = std::min(1.0,Progress.Harness * harnessFactor);
 					
 					
@@ -205,6 +212,7 @@ class Optimizer
 				oldX = x;
 				
 				++Progress.CurrentSteps;
+				CheckExternalFiles();
 				UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx,x);
 				
 				double newBatches = CheckMinibatches(df,EffectiveBatches);
@@ -240,7 +248,7 @@ class Optimizer
 				
 				
 				CheckConvergence(epochGradient,df,epochDx);
-				if (Status.Continues == false && (EffectiveBatches > 1 || Progress.Harness < 1))
+				if (Status.Continues == false && (EffectiveBatches > 1 || Progress.Harness < 1) && !Status.ExternalTermination)
 				{
 					Status.Continues = true;
 					EffectiveBatches = std::max(1,EffectiveBatches/2);
@@ -257,6 +265,7 @@ class Optimizer
 			}
 			SaveProgress(Buffer.Position);
 			Functor.SavePosition(true,0,Progress.UniquePositionSaves,x);
+			CleanExternalFiles();
 		}
 			
 		void CheckConvergence(const VectorXd & dg, double df, double dx)
@@ -284,17 +293,17 @@ class Optimizer
 				Status.Converged = true;
 				Status.Continues = false;
 			}
+			if (Status.ExternalTermination == true)
+			{
+				Status.Continues = false;
+				Status.Converged = false;
+			}
+			
 			Status.CarryingOnRegardless = false;
 			if (Status.Continues == false && Progress.TimeSinceSingleBatch < HaltConditions.SingleBatchStepThreshold)
 			{
-				Status.CarryingOnRegardless = true;
+				Status.CarryingOnRegardless = true || !Status.ExternalTermination;
 			}
-			//~ if (Progress.MovingAverage > 0)
-			//~ {
-				//~ Status.ReachedFunctionConvergence = true;
-				//~ Status.Converged = true;
-				//~ Status.Continues = false;
-			//~ }
 		} 
 
 		int CheckMinibatches(double df,int currentSize)
@@ -307,9 +316,9 @@ class Optimizer
 
 			double newSize = currentSize;
 			
-			if (Buffer.AnalysisSteps >= Buffer.AnalysisSize)
+			if (Status.ExternalDownStep || Buffer.AnalysisSteps >= Buffer.AnalysisSize)
 			{
-				if (NeedsBatchReduction())
+				if (NeedsBatchReduction() || Status.ExternalDownStep)
 				{	
 					Buffer.AnalysisSteps = 0;
 					Progress.SlowdownTriggers = 0;
@@ -473,7 +482,67 @@ class Optimizer
 			file.close();
 		}
 
+
+		void InitialiseExternalFiles()
+		{
+			
+			std::vector<std::string> names = {HaltConditions.TerminationFile, HaltConditions.DownStepFile};
+			std::vector<std::string> purposes = {"terminate the optimisation process", "trigger a minibatch downstep"};
+			std::fstream file;
+			
+			for (int i = 0; i < names.size(); ++i)
+			{
+				file.open(names[i],std::ios::out);
+
+				file << "#### This file can be used to " << purposes[i] << ": set the value below to 1 to trigger the action at the end of the current epoch ####\n0";
+				file.close();
+			}
+			
+		}
 		
+		void CheckExternalFiles()
+		{
+			if (HaltConditions.UseExternalInstructions)
+			{
+				std::vector<std::string> names = {HaltConditions.TerminationFile, HaltConditions.DownStepFile};
+	
+				//~ Status.ExternalTermination = false;
+				//~ Status.ExternalDownStep = false;
+				for (int i = 0; i < names.size(); ++i)
+				{
+					int j = 0;
+					forLineIn(names[i],
+						if (j != 0)
+						{
+							bool fileActivated = bool(std::stod(FILE_LINE));
+							if (i == 0)
+							{
+								Status.ExternalTermination = fileActivated;
+							}
+							else
+							{
+								Status.ExternalDownStep = fileActivated;
+							}
+						}
+						++j;
+					);
+				}
+				InitialiseExternalFiles();
+			}
+		}
+		
+		void CleanExternalFiles()
+		{
+			if (HaltConditions.UseExternalInstructions)
+			{
+				std::vector<std::string> names = {HaltConditions.TerminationFile, HaltConditions.DownStepFile};
+				for (int i = 0; i < names.size(); ++i)
+				{
+					std::string command = "rm " + names[i];
+					system(command.c_str());
+				}
+			}
+		}
 	public:
 		
 		OptimiserStatus Status;
@@ -506,8 +575,8 @@ class Optimizer
 			std::string s = "";
 			s += "Steps Taken: " + std::to_string(Progress.CurrentSteps) + " / " + std::to_string(HaltConditions.MaxSteps);
 			s += "\nHalt conditions: ";
-			std::vector<std::string> titles = {"Too many steps", "Reached Gradient Convergence", "Reached Step Convergence", "Reached Functional Convergence"};
-			std::vector<bool> values = {Status.TooManySteps, Status.ReachedGradConvergence, Status.ReachedStepConvergence, Status.ReachedFunctionConvergence};
+			std::vector<std::string> titles = {"Too many steps", "Reached Gradient Convergence", "Reached Step Convergence", "Reached Functional Convergence","External Quit"};
+			std::vector<bool> values = {Status.TooManySteps, Status.ReachedGradConvergence, Status.ReachedStepConvergence, Status.ReachedFunctionConvergence,Status.ExternalTermination};
 			for (int i = 0; i < titles.size(); ++i)
 			{
 				s +=  "\n\t" + titles[i] + ": ";

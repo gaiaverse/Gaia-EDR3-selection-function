@@ -20,6 +20,10 @@ struct StopConditions
 	double GradientThreshold;
 	double FunctionChangeThreshold;
 	int SingleBatchStepThreshold;
+	bool UseExternalInstructions;
+	std::string DownStepFile;
+	std::string TerminationFile;
+	
 };
 struct OptimiserStatus
 {
@@ -30,6 +34,8 @@ struct OptimiserStatus
 	bool ReachedStepConvergence;
 	bool ReachedFunctionConvergence;
 	bool CarryingOnRegardless;
+	bool ExternalDownStep;
+	bool ExternalTermination;
 };
 struct ProgressTracker
 {
