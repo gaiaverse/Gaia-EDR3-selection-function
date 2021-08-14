@@ -77,10 +77,10 @@ VectorXd RootProcess()
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
-	op.HaltConditions.GradientThreshold = Args.GradLim;
+	op.HaltConditions.GradientThreshold = 0;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
 	op.HaltConditions.FunctionChangeThreshold = 0;
-	op.HaltConditions.PositionChangeThreshold = 1e-4;
+	op.HaltConditions.PositionChangeThreshold = 0;
 	op.HaltConditions.UseExternalInstructions = true;
 	op.HaltConditions.TerminationFile = (std::string)Args.OutputDirectory + "/termination_file_" + std::to_string(::getpid()) + ".optim";
 	op.HaltConditions.DownStepFile = (std::string)Args.OutputDirectory + "/downstep_file_"+ std::to_string(::getpid()) + ".optim";
