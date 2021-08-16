@@ -1,27 +1,16 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
 
-<<<<<<< HEAD
-files = "Diagnostic83_largeData_76";
-=======
-files = "Diagnostic82_largeData_" +["66","76"];
->>>>>>> 1cc19c756fb17708ce9bdad150f491a3a6922888
+
+files = "PrepRun_1";
 getData(60);
 % files= files(1);
-N1 =0;
-<<<<<<< HEAD
-N2 = -1;
+N1 = 0;
+N2 = 1245;
 gap = 10;
 progressPlot(files,80)
 % gifPlot(files,N1,N2,gap,"evolution4.gif",false);
 temporalPlot(files,N2);
-=======
-N2 = 770;
-gap = 50;
-progressPlot(files,80)
-% gifPlot(files,N1,N2,gap,"evolution4.gif",false);
-temporalPlot(files,[770,200]);
->>>>>>> 1cc19c756fb17708ce9bdad150f491a3a6922888
 
 
 
