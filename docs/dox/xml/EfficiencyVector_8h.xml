@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="EfficiencyVector_8h" kind="file" language="C++">
+    <compoundname>EfficiencyVector.h</compoundname>
+    <includes local="no">vector.h</includes>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <incdepgraph>
+      <node id="319">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="320">
+        <label>iomanip</label>
+      </node>
+      <node id="310">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h_source"/>
+        <childnode refid="311" relation="include">
+        </childnode>
+        <childnode refid="312" relation="include">
+        </childnode>
+        <childnode refid="313" relation="include">
+        </childnode>
+        <childnode refid="314" relation="include">
+        </childnode>
+        <childnode refid="315" relation="include">
+        </childnode>
+        <childnode refid="316" relation="include">
+        </childnode>
+        <childnode refid="317" relation="include">
+        </childnode>
+        <childnode refid="318" relation="include">
+        </childnode>
+        <childnode refid="319" relation="include">
+        </childnode>
+        <childnode refid="320" relation="include">
+        </childnode>
+      </node>
+      <node id="316">
+        <label>fstream</label>
+      </node>
+      <node id="309">
+        <label>vector.h</label>
+      </node>
+      <node id="313">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="317">
+        <label>string.h</label>
+      </node>
+      <node id="311">
+        <label>vector</label>
+      </node>
+      <node id="312">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="318">
+        <label>iostream</label>
+      </node>
+      <node id="308">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="309" relation="include">
+        </childnode>
+        <childnode refid="310" relation="include">
+        </childnode>
+        <childnode refid="321" relation="include">
+        </childnode>
+      </node>
+      <node id="314">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="315">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="321">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h_source"/>
+        <childnode refid="310" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classEfficiencyVector" prot="public">EfficiencyVector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="classEfficiencyVector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Raw;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Transformed;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Transform();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h"/>
+  </compounddef>
+</doxygen>

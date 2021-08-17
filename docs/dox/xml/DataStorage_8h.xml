@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="DataStorage_8h" kind="file" language="C++">
+    <compoundname>DataStorage.h</compoundname>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <includes refid="Star_8h" local="yes">../DataHandling/Star.h</includes>
+    <includes refid="MiscFunctions_8h" local="yes">MiscFunctions.h</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes local="yes">../libs/JSL/JSL.h</includes>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <incdepgraph>
+      <node id="210">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="211">
+        <label>iomanip</label>
+      </node>
+      <node id="214">
+        <label>string</label>
+      </node>
+      <node id="201">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h_source"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="203" relation="include">
+        </childnode>
+        <childnode refid="204" relation="include">
+        </childnode>
+        <childnode refid="205" relation="include">
+        </childnode>
+        <childnode refid="206" relation="include">
+        </childnode>
+        <childnode refid="207" relation="include">
+        </childnode>
+        <childnode refid="208" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+        <childnode refid="210" relation="include">
+        </childnode>
+        <childnode refid="211" relation="include">
+        </childnode>
+      </node>
+      <node id="215">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h_source"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+      </node>
+      <node id="207">
+        <label>fstream</label>
+      </node>
+      <node id="200">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+        <childnode refid="213" relation="include">
+        </childnode>
+        <childnode refid="215" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="210" relation="include">
+        </childnode>
+      </node>
+      <node id="204">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="213">
+        <label>../DataHandling/Star.h</label>
+        <link refid="Star_8h_source"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+      </node>
+      <node id="208">
+        <label>string.h</label>
+      </node>
+      <node id="202">
+        <label>vector</label>
+      </node>
+      <node id="203">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="209">
+        <label>iostream</label>
+      </node>
+      <node id="205">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="206">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="212">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h_source"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="216">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="220" relation="include">
+        </childnode>
+      </node>
+      <node id="220">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h_source"/>
+        <childnode refid="217" relation="include">
+        </childnode>
+        <childnode refid="219" relation="include">
+        </childnode>
+      </node>
+      <node id="219">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
+        <link refid="DescentFunctor_8h_source"/>
+      </node>
+      <node id="218">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h_source"/>
+        <childnode refid="219" relation="include">
+        </childnode>
+      </node>
+      <node id="217">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h_source"/>
+        <childnode refid="218" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structVariancePopulation" prot="public">VariancePopulation</innerclass>
+    <innerclass refid="classLikelihoodData" prot="public">LikelihoodData</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" prot="public" static="no">
+        <name>Probability</name>
+        <enumvalue id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54ea00bb67a1daee733a1f5346311dafa31d" prot="public">
+          <name>NormalApproximation</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54eac83211c45e8315686a7a45d3fb7586f7" prot="public">
+          <name>PoissonBinomial</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../DataHandling/Star.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;MiscFunctions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/JSL/JSL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>Probability<sp/>{<sp/>NormalApproximation,<sp/>PoissonBinomial};</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13" refid="structVariancePopulation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Fraction;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>PowerContributions;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref>(){};</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>fraction,std::vector&lt;double&gt;<sp/>contributions)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Fraction<sp/>=<sp/>fraction;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PowerContributions<sp/>=<sp/>contributions;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>};<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Variance(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaling)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>pow(PowerContributions[0],2);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>1;<sp/>i<sp/>&lt;=<sp/>hyperOrder/2;<sp/>++i)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>power<sp/>=<sp/>2*i;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>term<sp/>=<sp/>PowerContributions[power-1]<sp/>+<sp/>PowerContributions[power]<sp/>*<sp/>scaling;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>+=<sp/>pow(term,power);<sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>v;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dVariancedN(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaling)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>1;<sp/>i<sp/>&lt;=<sp/>hyperOrder/2;<sp/>++i)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>power<sp/>=<sp/>2*i;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>term<sp/>=<sp/>PowerContributions[power-1]<sp/>+<sp/>PowerContributions[power]<sp/>*<sp/>scaling;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>+=<sp/>power<sp/>*<sp/>pow(term,power-1)<sp/>*<sp/>PowerContributions[power];<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>v;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dVariancedAlpha(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>term,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scaling)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>v;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(term<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(term<sp/>%<sp/>2<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bracket<sp/>=<sp/>PowerContributions[term-1]<sp/>+<sp/>PowerContributions[term]<sp/>*<sp/>scaling;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>=<sp/>term<sp/>*<sp/>pow(bracket,term<sp/>-<sp/>1)<sp/>*<sp/>scaling;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bracket<sp/>=<sp/>PowerContributions[term]<sp/>+<sp/>PowerContributions[term+1]<sp/>*<sp/>scaling;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>=<sp/>(term<sp/>+<sp/>1<sp/>)<sp/>*<sp/>pow(bracket,term);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>=<sp/>2<sp/>*<sp/>PowerContributions[0];</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>v;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Print(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>scale)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;I<sp/>have<sp/>fraction:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>Fraction<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>and\n&quot;</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;=<sp/>hyperOrder;<sp/>++i)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>PowerContributions[i]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;;&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;std::endl;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;SO:<sp/>V(n)<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>PowerContributions[0];</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>1;<sp/>i&lt;=<sp/>hyperOrder/2;<sp/>++i)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>power<sp/>=<sp/>2*i-1;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;+<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>PowerContributions[power]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>+<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>PowerContributions[power+1]<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;*n).^&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>power+1;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;\n<sp/>With<sp/>n<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>scale<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>I<sp/>have:<sp/>\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;V<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>Variance(scale)<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;dVdN<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>dVariancedN(scale)<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>hyperOrder<sp/>+<sp/>1;<sp/>++i)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;dVdA_&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>i<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>dVariancedAlpha(i,scale)<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="100" refid="classLikelihoodData" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref></highlight></codeline>
+<codeline lineno="101"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ID;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;Stars;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Indexing<sp/>data,<sp/>allows<sp/>us<sp/>to<sp/>index<sp/>properly<sp/>into<sp/>the<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//spatial<sp/>and<sp/>temporal<sp/>parts<sp/>of<sp/>the<sp/>vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>healpix_fov_1;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>healpix_fov_2;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>time_mapping;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//frequently<sp/>overwritten<sp/>vectors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//makes<sp/>sense<sp/>to<sp/>initialise<sp/>these<sp/>vectors<sp/>to<sp/>a<sp/>large<sp/>size<sp/>and<sp/>be<sp/>careful<sp/>about<sp/>memory<sp/>access</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//rather<sp/>than<sp/>continually<sp/>create<sp/>and<sp/>delete<sp/>them<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>pmf_forward;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>pmf_backward;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>subpmf;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>dfdp_constantN;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dfdN_constantP;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>hypergradient;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>pt;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>pml;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>p;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>grad_elu_xml1;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>grad_elu_xml2;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;VariancePopulation&gt;<sp/>VariancePopulations;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Probability<sp/>Mode;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GeneratePopulations(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h"/>
+  </compounddef>
+</doxygen>

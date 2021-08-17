@@ -1,20 +1,27 @@
 #pragma once
 #include "GlobalVariables.h"
 
-/////Contains non-alterable constants and compile-time determined variables
-///Things in this file should never, ever been changed without knowing what you are doing and why you are doing it
+/*
+	Contains non-alterable constants and compile-time determined variables
+	Things in this file should never, ever been changed without knowing what you are doing and why you are doing it
+*/
 
-const int RootID = 0; //<- declare that process 0 is always Root.
 
+//! Declares that process id=0 is always Root.
+const int RootID = 0; 
 
-//properties of the Gaia dataset
-const int TotalScanningTime = 8967691; // number of time bins, must be 8967691, do not change!
+//!	The maximum number of 10s time bins within the eDR3 catalogue
+const int TotalScanningTime = 8967691; 
+
+//! The minimum number of visitations that a star is required to have to enter into the astrometric pipeline
 const int PipelineMinVisits = 5; 
 
-
 //numbers derived from the spatial and temporal resolution, used for number of individual parameters + transforms
-const int healpix_nside = pow(2,healpix_order);
-const int Nl = 12*pow(healpix_nside,2);
+
+//! The number of spatial elements within the EfficiencyVector **raw** vector
+const int Nl = 12*pow(2,2*healpix_order);
+
+//! The number of spatial elements within the EfficiencyVector **transformed** vector
 const int Ns = pow(4,needlet_order+2) - 3;
 
 const int NHyper = (2 + hyperOrder) * NVariancePops;

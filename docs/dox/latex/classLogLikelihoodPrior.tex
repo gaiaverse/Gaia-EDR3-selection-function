@@ -1,0 +1,53 @@
+\hypertarget{classLogLikelihoodPrior}{}\section{Log\+Likelihood\+Prior Class Reference}
+\label{classLogLikelihoodPrior}\index{Log\+Likelihood\+Prior@{Log\+Likelihood\+Prior}}
+Inheritance diagram for Log\+Likelihood\+Prior\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLogLikelihoodPrior}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a5aa0180264b8be7d7f4bf842bf3fc763}\label{classLogLikelihoodPrior_a5aa0180264b8be7d7f4bf842bf3fc763}} 
+{\bfseries Log\+Likelihood\+Prior} (const std\+::vector$<$ std\+::vector$<$ \hyperlink{classStar}{Star} $>$$>$ \&data, int id)
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_ac3213ddda043b381b0175ffd89445180}\label{classLogLikelihoodPrior_ac3213ddda043b381b0175ffd89445180}} 
+void {\bfseries Transform\+Prior} (const std\+::vector$<$ double $>$ \&Transform\+Position, double $\ast$current\+Value, std\+::vector$<$ double $>$ \&Transform\+Gradient, int effective\+Batches, bool space, bool time, bool hyper)
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_ae3178e88d84bd9602a451d5742bc3538}\label{classLogLikelihoodPrior_ae3178e88d84bd9602a451d5742bc3538}} 
+void {\bfseries Raw\+Prior} (const Eigen\+::\+Vector\+Xd \&Raw\+Params, double $\ast$current\+Value, std\+::vector$<$ double $>$ $\ast$current\+Gradient, int effective\+Batches, bool space, bool time, bool hyper)
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a218acdef04bef419aebc1f5870469b42}\label{classLogLikelihoodPrior_a218acdef04bef419aebc1f5870469b42}} 
+void {\bfseries Make\+Covariance\+Matrix} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a26006b4353f2d1983cfd936f1969953c}\label{classLogLikelihoodPrior_a26006b4353f2d1983cfd936f1969953c}} 
+bool {\bfseries Kg\+\_\+decomposed} = false
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a5b64d5b52eec4a6ab6b42345c77ba7f2}\label{classLogLikelihoodPrior_a5b64d5b52eec4a6ab6b42345c77ba7f2}} 
+Eigen\+::\+Matrix$<$ double, Nm, Nm $>$ {\bfseries Cholesky\+Kg}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_ac4567245e5f7eaa048016dbb3c7ebac4}\label{classLogLikelihoodPrior_ac4567245e5f7eaa048016dbb3c7ebac4}} 
+double {\bfseries cholesky\+\_\+tol} = 1e-\/4
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_acb82f3170dc5ef9992ca3c0b1d451e08}\label{classLogLikelihoodPrior_acb82f3170dc5ef9992ca3c0b1d451e08}} 
+int {\bfseries choleskyN}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_aa0413d932c2bc78bde5b6b0d69efbaa3}\label{classLogLikelihoodPrior_aa0413d932c2bc78bde5b6b0d69efbaa3}} 
+std\+::vector$<$ int $>$ {\bfseries cholesky\+\_\+u}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a9ee359462c406bcd3e0a851eec71ba07}\label{classLogLikelihoodPrior_a9ee359462c406bcd3e0a851eec71ba07}} 
+std\+::vector$<$ int $>$ {\bfseries cholesky\+\_\+v}
+\item 
+\mbox{\Hypertarget{classLogLikelihoodPrior_a4af02e24015068335bd22d870b0cfb32}\label{classLogLikelihoodPrior_a4af02e24015068335bd22d870b0cfb32}} 
+std\+::vector$<$ double $>$ {\bfseries cholesky\+\_\+w}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/fraserj/\+Documents/\+Work/\+Gaia\+Selection\+Function/\+Code/\+Theia/src/\+Likelihood/Log\+Likelihood\+Prior.\+h\end{DoxyCompactItemize}

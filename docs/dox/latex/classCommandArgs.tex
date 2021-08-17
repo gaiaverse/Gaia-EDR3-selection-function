@@ -1,0 +1,55 @@
+\hypertarget{classCommandArgs}{}\section{Command\+Args Class Reference}
+\label{classCommandArgs}\index{Command\+Args@{Command\+Args}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCommandArgs_a93f101d465df0ff6e79950c6b8ac4cd5}\label{classCommandArgs_a93f101d465df0ff6e79950c6b8ac4cd5}} 
+void {\bfseries Read\+Arguments} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, int Process\+Rank)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCommandArgs_a7227f10097dae1825feea951fc3132a6}\label{classCommandArgs_a7227f10097dae1825feea951fc3132a6}} 
+Argument$<$ int $>$ {\bfseries Random\+Seed} = Argument$<$int$>$(0,\char`\"{}random-\/seed\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_acaf9e3be3c41eeb7f3fe61d26312a0ad}\label{classCommandArgs_acaf9e3be3c41eeb7f3fe61d26312a0ad}} 
+Argument$<$ std\+::string $>$ {\bfseries Start\+Vector\+Location} = Argument$<$std\+::string$>$(\char`\"{}\+\_\+\+\_\+null\+\_\+location\+\_\+\+\_\+\char`\"{},\char`\"{}restart\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_a47a53ea373bc6c81ed80c2b651e9c405}\label{classCommandArgs_a47a53ea373bc6c81ed80c2b651e9c405}} 
+Argument$<$ double $>$ {\bfseries Grad\+Lim} = Argument$<$double$>$(0,\char`\"{}gradlim\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_a9d8b6a8c21f7b330979c7a173994ca37}\label{classCommandArgs_a9d8b6a8c21f7b330979c7a173994ca37}} 
+Argument$<$ int $>$ {\bfseries Max\+Steps} = Argument$<$int$>$(1000,\char`\"{}max-\/steps\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_aedd3311893f45b92b4a7f598792f7f2e}\label{classCommandArgs_aedd3311893f45b92b4a7f598792f7f2e}} 
+Argument$<$ int $>$ {\bfseries Freeze\+Steps} = Argument$<$int$>$(0,\char`\"{}burnin\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_af906f01863ff7b503914b462a8a7ddb5}\label{classCommandArgs_af906f01863ff7b503914b462a8a7ddb5}} 
+Argument$<$ int $>$ {\bfseries Save\+Steps} = Argument$<$int$>$(1,\char`\"{}save-\/steps\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_ad1018830dc6772a972df87a843059416}\label{classCommandArgs_ad1018830dc6772a972df87a843059416}} 
+Argument$<$ bool $>$ {\bfseries Save\+All\+Steps} = Argument$<$bool$>$(false,\char`\"{}unique-\/temp-\/save\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_ad16d6cadaedb80e8d3abfc51b3b73335}\label{classCommandArgs_ad16d6cadaedb80e8d3abfc51b3b73335}} 
+Argument$<$ int $>$ {\bfseries Minibatches} = Argument$<$int$>$(64,\char`\"{}minibatch\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_ae64dd25052a877832d3db4e289f1bb13}\label{classCommandArgs_ae64dd25052a877832d3db4e289f1bb13}} 
+Argument$<$ double $>$ {\bfseries Harness\+Slow\+Down} = Argument$<$double$>$(10,\char`\"{}harness-\/slow\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_a2a92d19a8106254917659b8d432b8fd2}\label{classCommandArgs_a2a92d19a8106254917659b8d432b8fd2}} 
+Argument$<$ int $>$ {\bfseries Harness\+Release} = Argument$<$int$>$(5,\char`\"{}harness-\/release\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_a5e4469cda4fd80e0d827a11147b15afa}\label{classCommandArgs_a5e4469cda4fd80e0d827a11147b15afa}} 
+Argument$<$ std\+::string $>$ {\bfseries Data\+Source} = Argument$<$std\+::string$>$(\char`\"{}../../Data/Shuffled\+Data\char`\"{},\char`\"{}data\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_adf5dd695a6a88eed97d1317d534af4d6}\label{classCommandArgs_adf5dd695a6a88eed97d1317d534af4d6}} 
+Argument$<$ std\+::string $>$ {\bfseries Output\+Directory} = Argument$<$std\+::string$>$(\char`\"{}Output\char`\"{},\char`\"{}output\char`\"{})
+\item 
+\mbox{\Hypertarget{classCommandArgs_ab0522bf4c5550780b9ff929fbc272f72}\label{classCommandArgs_ab0522bf4c5550780b9ff929fbc272f72}} 
+std\+::vector$<$ J\+S\+L\+::\+Argument\+Interface $\ast$ $>$ {\bfseries arg\+Pointers} = \{\&Random\+Seed, \&Start\+Vector\+Location, \&Grad\+Lim, \&Max\+Steps, \&Freeze\+Steps, \&Data\+Source, \&Output\+Directory,\&Save\+Steps,\&Save\+All\+Steps,\&Minibatches,\&Harness\+Release,\&Harness\+Slow\+Down\}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/fraserj/\+Documents/\+Work/\+Gaia\+Selection\+Function/\+Code/\+Theia/src/\+Data\+Handling/Command\+Arguments.\+h\end{DoxyCompactItemize}

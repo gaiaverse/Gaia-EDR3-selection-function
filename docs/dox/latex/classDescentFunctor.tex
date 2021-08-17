@@ -1,0 +1,52 @@
+\hypertarget{classDescentFunctor}{}\section{Descent\+Functor Class Reference}
+\label{classDescentFunctor}\index{Descent\+Functor@{Descent\+Functor}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a8d72ed3391cb867e5568ca2cc1b4c325}\label{classDescentFunctor_a8d72ed3391cb867e5568ca2cc1b4c325}} 
+{\bfseries Descent\+Functor} (int n, const std\+::vector$<$ std\+::vector$<$ \hyperlink{classStar}{Star} $>$$>$ \&data, int n\+Params, std\+::string outdir, int n\+Stars, int max\+Batches, bool time\+Active, bool space\+Active, bool hyper\+Active)
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a38f1c319b730f318c9ce89718e377ebf}\label{classDescentFunctor_a38f1c319b730f318c9ce89718e377ebf}} 
+void {\bfseries Distribute\+Calculations} (const Vector\+Xd \&y, int batch\+ID, int effective\+Batches)
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a0c3a1b76e6fce3713c6d6a8761ff1bf3}\label{classDescentFunctor_a0c3a1b76e6fce3713c6d6a8761ff1bf3}} 
+void {\bfseries Calculate} (const Vector\+Xd \&x, int batch\+ID, int effective\+Batches)
+\item 
+\mbox{\Hypertarget{classDescentFunctor_acfae2cdc2983a8eb215fb334bcdb0863}\label{classDescentFunctor_acfae2cdc2983a8eb215fb334bcdb0863}} 
+void {\bfseries Calculate} (const Vector\+Xd \&x)
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a3de250a0703477a82312614785bcdb8b}\label{classDescentFunctor_a3de250a0703477a82312614785bcdb8b}} 
+void {\bfseries Save\+Position} (bool final\+Save, int save\+Step, bool unique\+Save, const Vector\+Xd \&x)
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a516e1d332b2ce3d3307e2ee67ee0b94f}\label{classDescentFunctor_a516e1d332b2ce3d3307e2ee67ee0b94f}} 
+void {\bfseries Unfreeze} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a14a7ae0eb78ad3a56a289ee300119104}\label{classDescentFunctor_a14a7ae0eb78ad3a56a289ee300119104}} 
+int {\bfseries Loop\+ID}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a09bd6f8a2558a7530486ae0605f44983}\label{classDescentFunctor_a09bd6f8a2558a7530486ae0605f44983}} 
+double {\bfseries Value}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_acb32f6b34a3eb2d0ebf170a674ab1c02}\label{classDescentFunctor_acb32f6b34a3eb2d0ebf170a674ab1c02}} 
+std\+::vector$<$ double $>$ {\bfseries Gradient}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a424da8de442d996ae9062bbedbcd7868}\label{classDescentFunctor_a424da8de442d996ae9062bbedbcd7868}} 
+std\+::vector$<$ double $>$ {\bfseries mut\+\_\+gaps}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a80f4fb498c367c3bf9752163cb13f8f5}\label{classDescentFunctor_a80f4fb498c367c3bf9752163cb13f8f5}} 
+std\+::vector$<$ double $>$ {\bfseries Frozen\+Space}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a2bddad96900bc85af34e773c092c257f}\label{classDescentFunctor_a2bddad96900bc85af34e773c092c257f}} 
+std\+::vector$<$ double $>$ {\bfseries Frozen\+Time}
+\item 
+\mbox{\Hypertarget{classDescentFunctor_a8d0f68c56e365aa9d2a6804ea2627de8}\label{classDescentFunctor_a8d0f68c56e365aa9d2a6804ea2627de8}} 
+std\+::vector$<$ double $>$ {\bfseries Frozen\+Hypers}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/fraserj/\+Documents/\+Work/\+Gaia\+Selection\+Function/\+Code/\+Theia/src/\+Optimizer/Descent\+Functor.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classEfficiencyVector" kind="class" language="C++" prot="public">
+    <compoundname>EfficiencyVector</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classEfficiencyVector_1a138e823e4829aadd9e43b475848804cf" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; EfficiencyVector::Raw</definition>
+        <argsstring></argsstring>
+        <name>Raw</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" line="9" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEfficiencyVector_1af4687a6e7c72f35b35310e2368335b25" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; EfficiencyVector::Transformed</definition>
+        <argsstring></argsstring>
+        <name>Transformed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEfficiencyVector_1a2d1d57201cf71d48e21ab3af1491860a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EfficiencyVector::Transform</definition>
+        <argsstring>()</argsstring>
+        <name>Transform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" line="13" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" line="7" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="classEfficiencyVector_1a138e823e4829aadd9e43b475848804cf" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Raw</name></member>
+      <member refid="classEfficiencyVector_1a2d1d57201cf71d48e21ab3af1491860a" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>Transform</name></member>
+      <member refid="classEfficiencyVector_1af4687a6e7c72f35b35310e2368335b25" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Transformed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

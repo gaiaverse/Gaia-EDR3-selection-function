@@ -1,0 +1,546 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="GlobalConstants_8h" kind="file" language="C++">
+    <compoundname>GlobalConstants.h</compoundname>
+    <includes refid="GlobalVariables_8h" local="yes">GlobalVariables.h</includes>
+    <includedby refid="DataLoading_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h</includedby>
+    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="MiscFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</includedby>
+    <includedby refid="DescentFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</includedby>
+    <incdepgraph>
+      <node id="333">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="334">
+        <label>iomanip</label>
+      </node>
+      <node id="324">
+        <label>GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h_source"/>
+        <childnode refid="325" relation="include">
+        </childnode>
+        <childnode refid="326" relation="include">
+        </childnode>
+        <childnode refid="327" relation="include">
+        </childnode>
+        <childnode refid="328" relation="include">
+        </childnode>
+        <childnode refid="329" relation="include">
+        </childnode>
+        <childnode refid="330" relation="include">
+        </childnode>
+        <childnode refid="331" relation="include">
+        </childnode>
+        <childnode refid="332" relation="include">
+        </childnode>
+        <childnode refid="333" relation="include">
+        </childnode>
+        <childnode refid="334" relation="include">
+        </childnode>
+      </node>
+      <node id="330">
+        <label>fstream</label>
+      </node>
+      <node id="327">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="331">
+        <label>string.h</label>
+      </node>
+      <node id="325">
+        <label>vector</label>
+      </node>
+      <node id="326">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="332">
+        <label>iostream</label>
+      </node>
+      <node id="328">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="329">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="323">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h"/>
+        <childnode refid="324" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="336">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h</label>
+        <link refid="DataLoading_8h_source"/>
+      </node>
+      <node id="342">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h_source"/>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="341" relation="include">
+        </childnode>
+      </node>
+      <node id="337">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h_source"/>
+        <childnode refid="338" relation="include">
+        </childnode>
+        <childnode refid="341" relation="include">
+        </childnode>
+      </node>
+      <node id="341">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h_source"/>
+        <childnode refid="338" relation="include">
+        </childnode>
+        <childnode refid="340" relation="include">
+        </childnode>
+      </node>
+      <node id="340">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
+        <link refid="DescentFunctor_8h_source"/>
+      </node>
+      <node id="339">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h_source"/>
+        <childnode refid="340" relation="include">
+        </childnode>
+      </node>
+      <node id="343">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h_source"/>
+      </node>
+      <node id="335">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h"/>
+        <childnode refid="336" relation="include">
+        </childnode>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="342" relation="include">
+        </childnode>
+        <childnode refid="341" relation="include">
+        </childnode>
+        <childnode refid="343" relation="include">
+        </childnode>
+        <childnode refid="340" relation="include">
+        </childnode>
+      </node>
+      <node id="338">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h_source"/>
+        <childnode refid="339" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="GlobalConstants_8h_1aedaf17ffacd0615a869d8a49d6d6b726" prot="public" static="no">
+        <name>FILEGAP</name>
+        <initializer>&lt;&lt; &quot;, &quot; &lt;&lt;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="54" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" prot="public" static="no">
+        <name>ERROR</name>
+        <param><defname>exitCode</defname></param>
+        <param><defname>string</defname></param>
+        <initializer>{ std::cout &lt;&lt; &quot;\n\nCRITICAL ERROR: &quot; &lt;&lt; string &lt;&lt; &quot;\nTerminating Job\n&quot;; exit(exitCode);}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="56" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="GlobalConstants_8h_1a222a96bce520d86e95edc95efb9f5856" prot="public" static="no">
+        <name>GlobalLog</name>
+        <param><defname>level</defname></param>
+        <param><defname>...</defname></param>
+        <initializer>{	if (level &lt;= GlobalLoggingLevel){__VA_ARGS__}}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="59" column="10" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="GlobalConstants_8h_1afdab2359a7bc6cf0c2e883c63ce9cfd7" prot="public" static="no">
+        <name>GlobalDebug</name>
+        <param><defname>level</defname></param>
+        <param><defname>...</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="67" column="11" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int RootID</definition>
+        <argsstring></argsstring>
+        <name>RootID</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Declares that process id=0 is always Root. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int TotalScanningTime</definition>
+        <argsstring></argsstring>
+        <name>TotalScanningTime</name>
+        <initializer>= 8967691</initializer>
+        <briefdescription>
+<para>The maximum number of 10s time bins within the eDR3 catalogue. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="14" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1aeab1391c53c52eb2b029db07141d2c7c" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int PipelineMinVisits</definition>
+        <argsstring></argsstring>
+        <name>PipelineMinVisits</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+<para>The minimum number of visitations that a star is required to have to enter into the astrometric pipeline. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="17" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a27996c716450a1295fe62bada51cc608" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int Nl</definition>
+        <argsstring></argsstring>
+        <name>Nl</name>
+        <initializer>= 12*pow(2,2*healpix_order)</initializer>
+        <briefdescription>
+<para>The number of spatial elements within the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> <bold>raw</bold> vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="22" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a3490bb846d2422704fe14bd5985b8b47" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int Ns</definition>
+        <argsstring></argsstring>
+        <name>Ns</name>
+        <initializer>= pow(4,needlet_order+2) - 3</initializer>
+        <briefdescription>
+<para>The number of spatial elements within the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> <bold>transformed</bold> vector. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1afbbf79d40e5acd414a0f731f665d1a39" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int NHyper</definition>
+        <argsstring></argsstring>
+        <name>NHyper</name>
+        <initializer>= (2 + hyperOrder) * NVariancePops</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1aaafbffbcd13ec5d52120cde0b8e4d56d" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int hyperFractionOffset</definition>
+        <argsstring></argsstring>
+        <name>hyperFractionOffset</name>
+        <initializer>= (1+hyperOrder)*NVariancePops</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a053910dff43b2fcd8ab32b97fb0481da" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int rawNonHyperParams</definition>
+        <argsstring></argsstring>
+        <name>rawNonHyperParams</name>
+        <initializer>= Nt + Nm*(Ns)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="29" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1aba50580eaf4dee5ddc642c86f26b59e1" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int transformedNonHyperParams</definition>
+        <argsstring></argsstring>
+        <name>transformedNonHyperParams</name>
+        <initializer>=  Nt + Nm*Nl</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="30" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a30a64a6b17b075364135d42c0f488dc4" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int totalRawParams</definition>
+        <argsstring></argsstring>
+        <name>totalRawParams</name>
+        <initializer>= rawNonHyperParams + NHyper</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="32" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1ae0db6f76f317d33ec86e20bd2f4d97a9" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int totalTransformedParams</definition>
+        <argsstring></argsstring>
+        <name>totalTransformedParams</name>
+        <initializer>= transformedNonHyperParams + NHyper</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a06f77834ff83e05fe31fd919eced9b28" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double secondsPerNtStep</definition>
+        <argsstring></argsstring>
+        <name>secondsPerNtStep</name>
+        <initializer>= 8967691.0 / Nt * 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="36" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1aad4c75e786a703dbf2e1123a2d8ca9f4" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double lt</definition>
+        <argsstring></argsstring>
+        <name>lt</name>
+        <initializer>= 3600*6 * lt_revs / secondsPerNtStep</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="37" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int NumberLargerThanMaxObservations</definition>
+        <argsstring></argsstring>
+        <name>NumberLargerThanMaxObservations</name>
+        <initializer>= 1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1ad1cb42f81dc669c161aaf0ee375e41d2" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double VerySmallNumber</definition>
+        <argsstring></argsstring>
+        <name>VerySmallNumber</name>
+        <initializer>= 1e-310</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="42" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double VerySmallLog</definition>
+        <argsstring></argsstring>
+        <name>VerySmallLog</name>
+        <initializer>= -9999999999</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="43" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a29fd98777063d8cc858d7c08b6ba0a10" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double SingularityPreventer</definition>
+        <argsstring></argsstring>
+        <name>SingularityPreventer</name>
+        <initializer>= 1e-18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="44" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a684e972e79d46a90cd5963eafce28894" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double density_alpha</definition>
+        <argsstring></argsstring>
+        <name>density_alpha</name>
+        <initializer>= 0.5*log(2.0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="48" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double density_cut</definition>
+        <argsstring></argsstring>
+        <name>density_cut</name>
+        <initializer>= -3.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1ac1b665f890830a0d7ef15fb5dd160994" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double expm_density_cut</definition>
+        <argsstring></argsstring>
+        <name>expm_density_cut</name>
+        <initializer>= exp(-density_cut)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="50" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/><sp/>Contains<sp/>non-alterable<sp/>constants<sp/>and<sp/>compile-time<sp/>determined<sp/>variables</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/><sp/>Things<sp/>in<sp/>this<sp/>file<sp/>should<sp/>never,<sp/>ever<sp/>been<sp/>changed<sp/>without<sp/>knowing<sp/>what<sp/>you<sp/>are<sp/>doing<sp/>and<sp/>why<sp/>you<sp/>are<sp/>doing<sp/>it</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>RootID<sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>TotalScanningTime<sp/>=<sp/>8967691;<sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>PipelineMinVisits<sp/>=<sp/>5;<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//numbers<sp/>derived<sp/>from<sp/>the<sp/>spatial<sp/>and<sp/>temporal<sp/>resolution,<sp/>used<sp/>for<sp/>number<sp/>of<sp/>individual<sp/>parameters<sp/>+<sp/>transforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nl<sp/>=<sp/>12*pow(2,2*healpix_order);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Ns<sp/>=<sp/>pow(4,needlet_order+2)<sp/>-<sp/>3;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NHyper<sp/>=<sp/>(2<sp/>+<sp/>hyperOrder)<sp/>*<sp/>NVariancePops;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hyperFractionOffset<sp/>=<sp/>(1+hyperOrder)*NVariancePops;<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rawNonHyperParams<sp/>=<sp/>Nt<sp/>+<sp/>Nm*(Ns);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>transformedNonHyperParams<sp/>=<sp/><sp/>Nt<sp/>+<sp/>Nm*Nl;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>totalRawParams<sp/>=<sp/>rawNonHyperParams<sp/>+<sp/>NHyper;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>totalTransformedParams<sp/>=<sp/>transformedNonHyperParams<sp/>+<sp/>NHyper;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>secondsPerNtStep<sp/>=<sp/>8967691.0<sp/>/<sp/>Nt<sp/>*<sp/>10;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lt<sp/>=<sp/>3600*6<sp/>*<sp/>lt_revs<sp/>/<sp/>secondsPerNtStep;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">//some<sp/>common<sp/>re-used<sp/>numbers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NumberLargerThanMaxObservations<sp/>=<sp/>1024;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>VerySmallNumber<sp/>=<sp/>1e-310;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>VerySmallLog<sp/>=<sp/>-9999999999;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>SingularityPreventer<sp/>=<sp/>1e-18;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment">//spatial<sp/>probability<sp/>paramaters</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>density_alpha<sp/>=<sp/>0.5*log(2.0);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>density_cut<sp/>=<sp/>-3.0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>expm_density_cut<sp/>=<sp/>exp(-density_cut);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//some<sp/>useful<sp/>macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FILEGAP<sp/>&lt;&lt;<sp/>&quot;,<sp/>&quot;<sp/>&lt;&lt;<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ERROR(exitCode,<sp/>string){<sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;\n\nCRITICAL<sp/>ERROR:<sp/>&quot;<sp/>&lt;&lt;<sp/>string<sp/>&lt;&lt;<sp/>&quot;\nTerminating<sp/>Job\n&quot;;<sp/>exit(exitCode);}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>GLOBAL_LOGGING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>GlobalLog(level,<sp/>...){<sp/><sp/>if<sp/>(level<sp/>&lt;=<sp/>GlobalLoggingLevel){__VA_ARGS__}}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>GlobalLog(level,<sp/>...){}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>GLOBAL_DEBUGGING</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>GlobalDebug(level,<sp/>...){<sp/><sp/><sp/><sp/>if<sp/>(level<sp/>&lt;=<sp/>GlobalDebuggingLevel){__VA_ARGS__}}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>GlobalDebug(level,<sp/>...)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">static_assert(hyperOrder<sp/>%<sp/>2<sp/>==<sp/>0,</highlight><highlight class="stringliteral">&quot;hyperOrder<sp/>must<sp/>be<sp/>an<sp/>even<sp/>integer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h"/>
+  </compounddef>
+</doxygen>

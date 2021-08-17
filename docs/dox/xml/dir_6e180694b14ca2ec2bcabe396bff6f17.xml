@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir">
+    <compoundname>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src</compoundname>
+    <innerdir refid="dir_f6c381002d14419d46b0855ac2e79474">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling</innerdir>
+    <innerdir refid="dir_27dc48ac8f1e2183863cf404a23cd75c">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood</innerdir>
+    <innerdir refid="dir_7ab18e81297531cd815408aa3639c9f5">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main</innerdir>
+    <innerdir refid="dir_5b33b82c44092ecd03b3d80b0c3255b5">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/"/>
+  </compounddef>
+</doxygen>

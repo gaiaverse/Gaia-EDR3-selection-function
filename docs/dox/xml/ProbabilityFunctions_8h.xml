@@ -1,0 +1,488 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="ProbabilityFunctions_8h" kind="file" language="C++">
+    <compoundname>ProbabilityFunctions.h</compoundname>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <includes refid="DataStorage_8h" local="yes">DataStorage.h</includes>
+    <includes refid="MiscFunctions_8h" local="yes">MiscFunctions.h</includes>
+    <includes local="no">cmath</includes>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="DescentFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</includedby>
+    <incdepgraph>
+      <node id="296">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="297">
+        <label>iomanip</label>
+      </node>
+      <node id="303">
+        <label>cmath</label>
+      </node>
+      <node id="301">
+        <label>string</label>
+      </node>
+      <node id="287">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h_source"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="289" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+        <childnode refid="291" relation="include">
+        </childnode>
+        <childnode refid="292" relation="include">
+        </childnode>
+        <childnode refid="293" relation="include">
+        </childnode>
+        <childnode refid="294" relation="include">
+        </childnode>
+        <childnode refid="295" relation="include">
+        </childnode>
+        <childnode refid="296" relation="include">
+        </childnode>
+        <childnode refid="297" relation="include">
+        </childnode>
+      </node>
+      <node id="302">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h_source"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="298" relation="include">
+        </childnode>
+      </node>
+      <node id="293">
+        <label>fstream</label>
+      </node>
+      <node id="299">
+        <label>DataStorage.h</label>
+        <link refid="DataStorage_8h_source"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="298" relation="include">
+        </childnode>
+        <childnode refid="300" relation="include">
+        </childnode>
+        <childnode refid="302" relation="include">
+        </childnode>
+        <childnode refid="301" relation="include">
+        </childnode>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="296" relation="include">
+        </childnode>
+      </node>
+      <node id="290">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="300">
+        <label>../DataHandling/Star.h</label>
+        <link refid="Star_8h_source"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="301" relation="include">
+        </childnode>
+        <childnode refid="295" relation="include">
+        </childnode>
+      </node>
+      <node id="294">
+        <label>string.h</label>
+      </node>
+      <node id="286">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="298" relation="include">
+        </childnode>
+        <childnode refid="299" relation="include">
+        </childnode>
+        <childnode refid="302" relation="include">
+        </childnode>
+        <childnode refid="303" relation="include">
+        </childnode>
+      </node>
+      <node id="288">
+        <label>vector</label>
+      </node>
+      <node id="289">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="295">
+        <label>iostream</label>
+      </node>
+      <node id="291">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="292">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="298">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h_source"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="304">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="305" relation="include">
+        </childnode>
+        <childnode refid="307" relation="include">
+        </childnode>
+      </node>
+      <node id="307">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
+        <link refid="DescentFunctor_8h_source"/>
+      </node>
+      <node id="306">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h_source"/>
+        <childnode refid="307" relation="include">
+        </childnode>
+      </node>
+      <node id="305">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h_source"/>
+        <childnode refid="306" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ProbabilityFunctions_8h_1afb04ce96742a46c445e5fad7fc0854bc" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; double &gt;</type>
+        <definition>const std::vector&lt;double&gt; logphi_c</definition>
+        <argsstring></argsstring>
+        <name>logphi_c</name>
+        <initializer>= { 0.00048204, -0.00142906, 0.0013200243174, 0.0009461589032,
+       -0.0045563339802, 0.00556964649138, 0.00125993961762116,
+       -0.01621575378835404, 0.02629651521057465, -0.001829764677455021,
+       2.0*(1.0-M_PI/3.0), (4.0-M_PI)/3.0, 1.0, 1.0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ProbabilityFunctions_8h_1a05de0c589c0b9d42588c9e15cec9e83b" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; double &gt;</type>
+        <definition>const std::vector&lt;double&gt; logphi_r</definition>
+        <argsstring></argsstring>
+        <name>logphi_r</name>
+        <initializer>= {1.2753666447299659525, 5.019049726784267463450,
+        6.1602098531096305441, 7.409740605964741794425,
+        2.9788656263939928886}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="29" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ProbabilityFunctions_8h_1afc88f52f504ed0ebf64a50c27484d840" prot="public" static="no" mutable="no">
+        <type>const std::vector&lt; double &gt;</type>
+        <definition>const std::vector&lt;double&gt; logphi_q</definition>
+        <argsstring></argsstring>
+        <name>logphi_q</name>
+        <initializer>= {2.260528520767326969592,  9.3960340162350541504,
+       12.048951927855129036034, 17.081440747466004316,
+        9.608965327192787870698,  3.3690752069827527677}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="32" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_pmf_forward</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;probs, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;result)</argsstring>
+        <name>poisson_binomial_pmf_forward</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>probs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="10" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_pmf_backward</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;probs, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;result)</argsstring>
+        <name>poisson_binomial_pmf_backward</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>probs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="11" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_subpmf</definition>
+        <argsstring>(int m, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;pmf_forward, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;pmf_backward, std::vector&lt; double &gt; &amp;result)</argsstring>
+        <name>poisson_binomial_subpmf</name>
+        <param>
+          <type>int</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>pmf_forward</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>pmf_backward</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="12" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double log_add_exp</definition>
+        <argsstring>(double a, double b)</argsstring>
+        <name>log_add_exp</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="15" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_lpmf_forward</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;probs, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;result)</argsstring>
+        <name>poisson_binomial_lpmf_forward</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>probs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="16" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_lpmf_backward</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;probs, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;result)</argsstring>
+        <name>poisson_binomial_lpmf_backward</name>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>probs</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void poisson_binomial_sublpmf</definition>
+        <argsstring>(int m, int probslen, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;lpmf_forward, std::vector&lt; std::vector&lt; double &gt;&gt; &amp;lpmf_backward, std::vector&lt; double &gt; &amp;result)</argsstring>
+        <name>poisson_binomial_sublpmf</name>
+        <param>
+          <type>int</type>
+          <declname>m</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>lpmf_forward</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>lpmf_backward</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="18" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1a653b1d81f66a9a87c3815143415f0538" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void logphi</definition>
+        <argsstring>(double z, double &amp;f, double &amp;df)</argsstring>
+        <name>logphi</name>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double &amp;</type>
+          <declname>df</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="21" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double poisson_binomial_normal_lpmf</definition>
+        <argsstring>(int k, int probslen, LikelihoodData &amp;data)</argsstring>
+        <name>poisson_binomial_normal_lpmf</name>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>probslen</declname>
+        </param>
+        <param>
+          <type><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="22" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;DataStorage.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;MiscFunctions.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//function<sp/>stolen<sp/>from<sp/>a<sp/>git<sp/>repo<sp/>somewhere,<sp/>see<sp/>the<sp/>implementation<sp/>for<sp/>more<sp/>details</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_pmf_forward(std::vector&lt;double&gt;<sp/>&amp;<sp/><sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_pmf_backward(std::vector&lt;double&gt;<sp/>&amp;<sp/><sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_subpmf(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>pmf_forward,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>pmf_backward,<sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Log-versions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>log_add_exp(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_lpmf_forward(std::vector&lt;double&gt;<sp/>&amp;<sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_lpmf_backward(std::vector&lt;double&gt;<sp/>&amp;<sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/>poisson_binomial_sublpmf(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>lpmf_forward,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>lpmf_backward,<sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Normal<sp/>approximation<sp/>to<sp/>the<sp/>Poisson-Binomial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>logphi(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>z,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>f,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>df);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>poisson_binomial_normal_lpmf(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref><sp/>&amp;<sp/>data);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>logphi_c=<sp/>{<sp/>0.00048204,<sp/>-0.00142906,<sp/>0.0013200243174,<sp/>0.0009461589032,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.0045563339802,<sp/>0.00556964649138,<sp/>0.00125993961762116,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.01621575378835404,<sp/>0.02629651521057465,<sp/>-0.001829764677455021,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0*(1.0-M_PI/3.0),<sp/>(4.0-M_PI)/3.0,<sp/>1.0,<sp/>1.0<sp/>};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>logphi_r<sp/>=<sp/>{1.2753666447299659525,<sp/>5.019049726784267463450,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6.1602098531096305441,<sp/>7.409740605964741794425,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.9788656263939928886};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>logphi_q<sp/>=<sp/>{2.260528520767326969592,<sp/><sp/>9.3960340162350541504,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12.048951927855129036034,<sp/>17.081440747466004316,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9.608965327192787870698,<sp/><sp/>3.3690752069827527677};</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h"/>
+  </compounddef>
+</doxygen>

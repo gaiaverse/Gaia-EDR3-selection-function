@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir">
+    <compoundname>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer</compoundname>
+    <innerfile refid="DescentFunctor_8h">DescentFunctor.h</innerfile>
+    <innerfile refid="ManualOptimizer_8h">ManualOptimizer.h</innerfile>
+    <innerfile refid="OptimizerProperties_8h">OptimizerProperties.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/"/>
+  </compounddef>
+</doxygen>

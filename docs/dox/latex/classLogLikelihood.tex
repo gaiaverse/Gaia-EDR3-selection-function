@@ -1,0 +1,64 @@
+\hypertarget{classLogLikelihood}{}\section{Log\+Likelihood Class Reference}
+\label{classLogLikelihood}\index{Log\+Likelihood@{Log\+Likelihood}}
+Inheritance diagram for Log\+Likelihood\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classLogLikelihood}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a677cb07d3097385392fe49944e522858}\label{classLogLikelihood_a677cb07d3097385392fe49944e522858}} 
+{\bfseries Log\+Likelihood} (const std\+::vector$<$ std\+::vector$<$ \hyperlink{classStar}{Star} $>$$>$ \&data, int id)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}\label{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}} 
+void {\bfseries Calculate} (const std\+::vector$<$ double $>$ \&position, int batch\+ID, int effective\+Batches, int max\+Batches)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}\label{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}} 
+double {\bfseries Value}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}\label{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}} 
+int {\bfseries Stars\+Used}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}\label{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}} 
+std\+::vector$<$ double $>$ {\bfseries Gradient}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}\label{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}} 
+\hyperlink{classLikelihoodData}{Likelihood\+Data} {\bfseries Data}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a323459623fea6256267c9724ceea8ec9}\label{classLogLikelihood_a323459623fea6256267c9724ceea8ec9}} 
+void {\bfseries Reset} ()
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a85c0af6993edd46373165089a11b4fb7}\label{classLogLikelihood_a85c0af6993edd46373165089a11b4fb7}} 
+void {\bfseries Per\+Star\+Contribution} (int batch\+Id, int star\+ID, const std\+::vector$<$ double $>$ \&position)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_aec7a3964705a6a48a1d18011e330d585}\label{classLogLikelihood_aec7a3964705a6a48a1d18011e330d585}} 
+void {\bfseries Generate\+Ps} (const \hyperlink{classStar}{Star} $\ast$candidate, const std\+::vector$<$ double $>$ \&position)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_ae0db177a301dbcb1ceb13575585dc2b2}\label{classLogLikelihood_ae0db177a301dbcb1ceb13575585dc2b2}} 
+void {\bfseries Generate\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a525d4693f7231cb70405af68d2c2c6e9}\label{classLogLikelihood_a525d4693f7231cb70405af68d2c2c6e9}} 
+void {\bfseries Assign\+Gradients} (const \hyperlink{classStar}{Star} $\ast$candidate)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a45c146d322f6a78b760383b624df66c8}\label{classLogLikelihood_a45c146d322f6a78b760383b624df66c8}} 
+void {\bfseries Normal\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_a48e99798d1bad7dc63fdf2019acc1c7b}\label{classLogLikelihood_a48e99798d1bad7dc63fdf2019acc1c7b}} 
+void {\bfseries Poisson\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
+\item 
+\mbox{\Hypertarget{classLogLikelihood_ac848d93699c16868bf4da1884fe5c45a}\label{classLogLikelihood_ac848d93699c16868bf4da1884fe5c45a}} 
+void {\bfseries Exact\+Poisson\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/fraserj/\+Documents/\+Work/\+Gaia\+Selection\+Function/\+Code/\+Theia/src/\+Likelihood/Log\+Likelihood.\+h\end{DoxyCompactItemize}

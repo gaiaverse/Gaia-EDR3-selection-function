@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="OptimizerProperties_8h" kind="file" language="C++">
+    <compoundname>OptimizerProperties.h</compoundname>
+    <includes local="no">ctime</includes>
+    <includes local="no">vector</includes>
+    <includedby refid="ManualOptimizer_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h</includedby>
+    <incdepgraph>
+      <node id="400">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
+        <link refid="OptimizerProperties_8h"/>
+        <childnode refid="401" relation="include">
+        </childnode>
+        <childnode refid="402" relation="include">
+        </childnode>
+      </node>
+      <node id="401">
+        <label>ctime</label>
+      </node>
+      <node id="402">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="403">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
+        <link refid="OptimizerProperties_8h"/>
+        <childnode refid="404" relation="include">
+        </childnode>
+      </node>
+      <node id="404">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h</label>
+        <link refid="ManualOptimizer_8h_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structOptimiserProperties" prot="public">OptimiserProperties</innerclass>
+    <innerclass refid="structStopConditions" prot="public">StopConditions</innerclass>
+    <innerclass refid="structOptimiserStatus" prot="public">OptimiserStatus</innerclass>
+    <innerclass refid="structProgressTracker" prot="public">ProgressTracker</innerclass>
+    <innerclass refid="structMemoryBuffer" prot="public">MemoryBuffer</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2" prot="public" static="no">
+        <name>OptimiserModes</name>
+        <enumvalue id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2adc9aaf26c6ab28af8b73cb24d59de341" prot="public">
+          <name>ADAM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2af7674144b719b6c18ceeccad2a5e3784" prot="public">
+          <name>ADABADAM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="5" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="5" bodyend="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctime&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>OptimiserModes<sp/>{ADAM,<sp/>ADABADAM};</highlight></codeline>
+<codeline lineno="6" refid="structOptimiserProperties" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structOptimiserProperties" kindref="compound">OptimiserProperties</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>OptimiserModes<sp/>Mode;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MiniBatches;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>BurnInSteps;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>StepSize;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MinibatchDownStep;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MaxHarnessFactor;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>HarnessReleaseSteps;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="16" refid="structStopConditions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structStopConditions" kindref="compound">StopConditions</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MaxSteps;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>PositionChangeThreshold;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>GradientThreshold;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>FunctionChangeThreshold;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SingleBatchStepThreshold;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UseExternalInstructions;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>DownStepFile;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>TerminationFile;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="28" refid="structOptimiserStatus" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structOptimiserStatus" kindref="compound">OptimiserStatus</ref></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Continues;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Converged;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>TooManySteps;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ReachedGradConvergence;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ReachedStepConvergence;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ReachedFunctionConvergence;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>CarryingOnRegardless;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ExternalDownStep;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ExternalTermination;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="40" refid="structProgressTracker" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structProgressTracker" kindref="compound">ProgressTracker</ref></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>CurrentSteps;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>MovingAverage;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Harness;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>SpeedController;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>StepsPerPositionSave;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>UniquePositionSaves;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>BufferFileOpened;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>SaveLocation;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Hashes;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MaxHashes;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SlowdownTriggers;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>TimeSinceSingleBatch;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57" refid="structMemoryBuffer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structMemoryBuffer" kindref="compound">MemoryBuffer</ref></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Size;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Position;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>std::chrono::time_point&lt;std::chrono::system_clock&gt;<sp/>StartTime;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>std::chrono::time_point&lt;std::chrono::system_clock&gt;<sp/>LastSaveTime;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>OverrideTime;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Fs;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Gradnorms;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>DXs;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Times;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>MiniBatches;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>Epochs;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>Batches;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>AnalysisSteps;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>AnalysisSize;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Analysis;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h"/>
+  </compounddef>
+</doxygen>

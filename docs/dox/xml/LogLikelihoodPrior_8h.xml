@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="LogLikelihoodPrior_8h" kind="file" language="C++">
+    <compoundname>LogLikelihoodPrior.h</compoundname>
+    <includes refid="LogLikelihood_8h" local="yes">LogLikelihood.h</includes>
+    <includedby refid="DescentFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</includedby>
+    <incdepgraph>
+      <node id="259">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="249">
+        <label>iomanip</label>
+      </node>
+      <node id="264">
+        <label>cmath</label>
+      </node>
+      <node id="248">
+        <label>string</label>
+      </node>
+      <node id="255">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h_source"/>
+        <childnode refid="246" relation="include">
+        </childnode>
+        <childnode refid="250" relation="include">
+        </childnode>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="252" relation="include">
+        </childnode>
+        <childnode refid="256" relation="include">
+        </childnode>
+        <childnode refid="257" relation="include">
+        </childnode>
+        <childnode refid="258" relation="include">
+        </childnode>
+        <childnode refid="247" relation="include">
+        </childnode>
+        <childnode refid="259" relation="include">
+        </childnode>
+        <childnode refid="249" relation="include">
+        </childnode>
+      </node>
+      <node id="262">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h_source"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+        <childnode refid="261" relation="include">
+        </childnode>
+      </node>
+      <node id="257">
+        <label>fstream</label>
+      </node>
+      <node id="260">
+        <label>DataStorage.h</label>
+        <link refid="DataStorage_8h_source"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+        <childnode refid="261" relation="include">
+        </childnode>
+        <childnode refid="254" relation="include">
+        </childnode>
+        <childnode refid="262" relation="include">
+        </childnode>
+        <childnode refid="248" relation="include">
+        </childnode>
+        <childnode refid="246" relation="include">
+        </childnode>
+        <childnode refid="259" relation="include">
+        </childnode>
+      </node>
+      <node id="251">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="254">
+        <label>../DataHandling/Star.h</label>
+        <link refid="Star_8h_source"/>
+        <childnode refid="246" relation="include">
+        </childnode>
+        <childnode refid="248" relation="include">
+        </childnode>
+        <childnode refid="247" relation="include">
+        </childnode>
+      </node>
+      <node id="258">
+        <label>string.h</label>
+      </node>
+      <node id="263">
+        <label>ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h_source"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+        <childnode refid="261" relation="include">
+        </childnode>
+        <childnode refid="260" relation="include">
+        </childnode>
+        <childnode refid="262" relation="include">
+        </childnode>
+        <childnode refid="264" relation="include">
+        </childnode>
+      </node>
+      <node id="246">
+        <label>vector</label>
+      </node>
+      <node id="250">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="244">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="245" relation="include">
+        </childnode>
+      </node>
+      <node id="247">
+        <label>iostream</label>
+      </node>
+      <node id="252">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="256">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="261">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h_source"/>
+        <childnode refid="255" relation="include">
+        </childnode>
+      </node>
+      <node id="245">
+        <label>LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h_source"/>
+        <childnode refid="246" relation="include">
+        </childnode>
+        <childnode refid="247" relation="include">
+        </childnode>
+        <childnode refid="248" relation="include">
+        </childnode>
+        <childnode refid="249" relation="include">
+        </childnode>
+        <childnode refid="250" relation="include">
+        </childnode>
+        <childnode refid="251" relation="include">
+        </childnode>
+        <childnode refid="252" relation="include">
+        </childnode>
+        <childnode refid="253" relation="include">
+        </childnode>
+        <childnode refid="254" relation="include">
+        </childnode>
+        <childnode refid="255" relation="include">
+        </childnode>
+        <childnode refid="260" relation="include">
+        </childnode>
+        <childnode refid="263" relation="include">
+        </childnode>
+      </node>
+      <node id="253">
+        <label>algorithm</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="266">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
+        <link refid="DescentFunctor_8h_source"/>
+      </node>
+      <node id="265">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="266" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classLogLikelihoodPrior" prot="public">LogLikelihoodPrior</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="LogLikelihoodPrior_8h_1aa69893f50bcb8cec4064f6bc1017497f" prot="public" static="no">
+        <name>EIGEN_STACK_ALLOCATION_LIMIT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="2" column="10" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;LogLikelihood.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Eigen::VectorXd;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceEigen" kindref="compound">Eigen</ref>;</highlight></codeline>
+<codeline lineno="7" refid="classLogLikelihoodPrior" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>data,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">):<sp/><ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>(data,<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">){};</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//additional<sp/>functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TransformPrior(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>TransformPosition,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>currentValue,<sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>TransformGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches,</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>space,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>time,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>hyper);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>RawPrior(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::VectorXd&amp;<sp/>RawParams,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*<sp/>currentValue,<sp/>std::vector&lt;double&gt;<sp/>*<sp/>currentGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches,</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>space,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>time,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>hyper);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>MakeCovarianceMatrix();</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//saved<sp/>values<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Kg_decomposed<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Matrix&lt;double,<sp/>Nm,<sp/>Nm&gt;<sp/>CholeskyKg;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cholesky_tol<sp/>=<sp/>1e-4;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>choleskyN;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>cholesky_u;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>cholesky_v;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>cholesky_w;<sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h"/>
+  </compounddef>
+</doxygen>
