@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classLogLikelihood" kind="class" language="C++" prot="public">
     <compoundname>LogLikelihood</compoundname>
     <derivedcompoundref refid="classLogLikelihoodPrior" prot="public" virt="non-virtual">LogLikelihoodPrior</derivedcompoundref>
+    <includes refid="LogLikelihood_8h" local="no">LogLikelihood.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -10,25 +11,13 @@
         <argsstring></argsstring>
         <name>Value</name>
         <briefdescription>
+<para>The last-calculated value of the <ref refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" kindref="member">Calculate()</ref> function. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="27" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int LogLikelihood::StarsUsed</definition>
-        <argsstring></argsstring>
-        <name>StarsUsed</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="28" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="29" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -36,25 +25,43 @@
         <argsstring></argsstring>
         <name>Gradient</name>
         <briefdescription>
+<para>The last-calculated gradient of the <ref refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" kindref="member">Calculate()</ref> function with respect to the associated <computeroutput>position</computeroutput> </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="29" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="29" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="31" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="31" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LogLikelihood::StarsUsed</definition>
+        <argsstring></argsstring>
+        <name>StarsUsed</name>
+        <briefdescription>
+<para>The number of stars within the last-called minibatch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="33" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" prot="protected" static="no" mutable="no">
         <type><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref></type>
         <definition>LikelihoodData LogLikelihood::Data</definition>
         <argsstring></argsstring>
         <name>Data</name>
         <briefdescription>
+<para>member data </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="57" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="57" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -72,12 +79,31 @@
           <declname>id</declname>
         </param>
         <briefdescription>
+<para>Constructor function. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <ref refid="classStar" kindref="compound">Star</ref> objects arranged according to the minibatching schedule. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the MPI ID of the running process. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="31" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="43" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -103,10 +129,46 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>The key function: executes a single minibatch calculation of the loglikelihood. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>position</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>batchID</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The minibatch to be executed </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>effectiveBatches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current number of active minibatches </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxBatches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The original number of active minibatches </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Assigns the value of L to <ref refid="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" kindref="member">Value</ref>, and the associated gradient to <ref refid="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" kindref="member">Gradient</ref> </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="32" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="52" column="6"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="protected-func">
@@ -121,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="40" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="60" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1a85c0af6993edd46373165089a11b4fb7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -146,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="41" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="61" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1aec7a3964705a6a48a1d18011e330d585" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -167,7 +229,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="43" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="63" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1ae0db177a301dbcb1ceb13575585dc2b2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -184,7 +246,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="44" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="64" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -201,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="46" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="66" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1a45c146d322f6a78b760383b624df66c8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -218,7 +280,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="48" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="68" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1a48e99798d1bad7dc63fdf2019acc1c7b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -235,7 +297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="49" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="69" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -252,43 +314,44 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="50" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="70" column="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>This class holds the data and functions necessary to calculate log p(data | x), where x is the provided <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref>. The majority of the guts + internal workings of the class are hidden away in the <ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref>. </para>
     </detaileddescription>
     <inheritancegraph>
-      <node id="17">
+      <node id="2">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="16" relation="public-inheritance">
+        <childnode refid="1" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="16">
+      <node id="1">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="19">
+      <node id="2">
         <label>LikelihoodData</label>
         <link refid="classLikelihoodData"/>
       </node>
-      <node id="18">
+      <node id="1">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="19" relation="usage">
+        <childnode refid="2" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="24" bodyend="51"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" line="25" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h" bodystart="24" bodyend="71"/>
     <listofallmembers>
       <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" virt="non-virtual"><scope>LogLikelihood</scope><name>AssignGradients</name></member>
       <member refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" prot="public" virt="non-virtual"><scope>LogLikelihood</scope><name>Calculate</name></member>
-      <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" prot="public" virt="non-virtual"><scope>LogLikelihood</scope><name>Data</name></member>
+      <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" prot="protected" virt="non-virtual"><scope>LogLikelihood</scope><name>Data</name></member>
       <member refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" prot="protected" virt="non-virtual"><scope>LogLikelihood</scope><name>ExactPoissonContribution</name></member>
       <member refid="classLogLikelihood_1ae0db177a301dbcb1ceb13575585dc2b2" prot="protected" virt="non-virtual"><scope>LogLikelihood</scope><name>GenerateContribution</name></member>
       <member refid="classLogLikelihood_1aec7a3964705a6a48a1d18011e330d585" prot="protected" virt="non-virtual"><scope>LogLikelihood</scope><name>GeneratePs</name></member>

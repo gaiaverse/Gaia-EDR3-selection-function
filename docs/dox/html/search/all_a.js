@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['transformed',['Transformed',['../classEfficiencyVector.html#af4687a6e7c72f35b35310e2368335b25',1,'EfficiencyVector']]]
+  ['value_19',['Value',['../classLogLikelihood.html#a97ff9863958ffb93e74da07721a30cc6',1,'LogLikelihood']]],
+  ['variancepopulation_20',['VariancePopulation',['../structVariancePopulation.html',1,'']]]
 ];

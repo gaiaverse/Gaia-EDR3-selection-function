@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['transformed',['Transformed',['../classEfficiencyVector.html#af4687a6e7c72f35b35310e2368335b25',1,'EfficiencyVector']]]
+  ['gradient_40',['Gradient',['../classLogLikelihood.html#af6d93b053cfdc1966318018831a849ec',1,'LogLikelihood']]]
 ];

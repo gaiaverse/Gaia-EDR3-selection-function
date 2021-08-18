@@ -72,35 +72,15 @@ struct VariancePopulation
 		}
 		return v;
 	}
-	void Print(double scale)
-	{
-		std::cout << "I have fraction: " << Fraction << " and\n" ;
-		for (int i = 0; i <= hyperOrder; ++i)
-		{
-			std::cout << "a" << i << " = " << PowerContributions[i] << ";" <<std::endl;
-		}
-		
-		std::cout << "SO: V(n) = " << PowerContributions[0];
-		for (int i = 1; i<= hyperOrder/2; ++i)
-		{
-			int power = 2*i-1;
-			std::cout << "+ (" << PowerContributions[power] << " + " << PowerContributions[power+1] << "*n).^" << power+1;
-		}
-		std::cout<< "\n With n = " << scale << " I have: \n";
-		
-		
-		std::cout << "V = " << Variance(scale) << std::endl;
-		std::cout << "dVdN = " << dVariancedN(scale) << std::endl;
-		for (int i = 0; i < hyperOrder + 1; ++i)
-		{
-			std::cout << "dVdA_" << i << " = " << dVariancedAlpha(i,scale) << std::endl;
-		}
-	}
 };
+
+/*!
+ A magical, mythical class? 
+*/
 class LikelihoodData
 {
 	public:
-	
+		
 		LikelihoodData(const std::vector<std::vector<Star>> &data, int id);
 		
 		int ID;

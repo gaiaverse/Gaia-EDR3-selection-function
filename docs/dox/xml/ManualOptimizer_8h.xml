@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="ManualOptimizer_8h" kind="file" language="C++">
     <compoundname>ManualOptimizer.h</compoundname>
     <includes local="no">vector</includes>
@@ -11,53 +11,53 @@
     <includes local="yes">../libs/Eigen/Core</includes>
     <includes refid="OptimizerProperties_8h" local="yes">OptimizerProperties.h</includes>
     <incdepgraph>
-      <node id="394">
+      <node id="5">
         <label>iomanip</label>
       </node>
-      <node id="398">
+      <node id="9">
         <label>OptimizerProperties.h</label>
         <link refid="OptimizerProperties_8h_source"/>
-        <childnode refid="393" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="391" relation="include">
-        </childnode>
-      </node>
-      <node id="390">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h</label>
-        <link refid="ManualOptimizer_8h"/>
-        <childnode refid="391" relation="include">
-        </childnode>
-        <childnode refid="392" relation="include">
-        </childnode>
-        <childnode refid="393" relation="include">
-        </childnode>
-        <childnode refid="394" relation="include">
-        </childnode>
-        <childnode refid="395" relation="include">
-        </childnode>
-        <childnode refid="396" relation="include">
-        </childnode>
-        <childnode refid="397" relation="include">
-        </childnode>
-        <childnode refid="398" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="395">
+      <node id="6">
         <label>fstream</label>
       </node>
-      <node id="393">
+      <node id="4">
         <label>ctime</label>
       </node>
-      <node id="391">
+      <node id="2">
         <label>vector</label>
       </node>
-      <node id="397">
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h</label>
+        <link refid="ManualOptimizer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
         <label>../libs/Eigen/Core</label>
       </node>
-      <node id="392">
+      <node id="3">
         <label>math.h</label>
       </node>
-      <node id="396">
+      <node id="7">
         <label>iostream</label>
       </node>
     </incdepgraph>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="8" column="16" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="8" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="8" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="8" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="ManualOptimizer_8h_1a56e1504926ca8dfaa658bed64aa32207" prot="public" static="no">
         <name>EIGEN_MPL2_ONLY</name>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="9" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="9" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="9" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="15" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="15" bodyend="17"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="15" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="15" bodyend="17"/>
       </memberdef>
       <memberdef kind="function" id="ManualOptimizer_8h_1afed92e0b891cde45cdca03f7d16a856e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
@@ -123,7 +123,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="18" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="18" bodyend="28"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="18" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="18" bodyend="28"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -746,6 +746,6 @@
 <codeline lineno="613"><highlight class="normal"></highlight></codeline>
 <codeline lineno="614"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h"/>
   </compounddef>
 </doxygen>

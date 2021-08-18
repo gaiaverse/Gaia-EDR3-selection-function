@@ -14,47 +14,67 @@
 #include <iomanip>
 using Eigen::VectorXd;
 
-//Optimiser + data properties
-
-const int DataLoadCount = 1e6;	//set to a value > 0, this truncates any datafile readin to that many lines
-
-const std::string TempDirName = "TempPositions";
-
-//temporal, spatial and magnitude resolution
-
-const int Nt =  8967691;; // number of time bins, coarse, feel free to change
-const int healpix_order = 0; // order of healpix map, can be any integer >= 0
-const int needlet_order = -1; // maximum order of needlets used, can be any integ*needler >= -1
-const int Nm = 213; // number of magnitude bins
-const int magOffset = 0; //offset of loaded files from 0.csv (assuming default file/bin association)
 
 
-const int NVariancePops = 3;
-const int hyperOrder = 4;	
-
-//temporal and magnitude lengthscales + variances
-
-const double sigmat = 3;
-const double lm = 3;
 
 
-const double lt_revs = 1;
+const int Nt =  8967691; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
+
+const int healpix_order = 0; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
+
+const int needlet_order = -1; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
+
+const int Nm = 213; // Number of magnitude bins
+
+const int NVariancePops = 3; //!< Number of variance populations (hyperparameter)
+
+const int hyperOrder = 4;	 //!< Order of the variance fitting, must be an even number
 
 
-//prior and initialisation values
-const double xmPrior = -3;
-const double xmInitialised = 3;
+/*
+ * 
+ * Priors & Lengthscales
+ * 
+*/
 
-const double xtPriorNonGap = 6;
-const double xtPriorInsideGap = 6;
+const double xtPriorNonGap = 6; //!< Mean of prior on xt outside of gaps
+const double xtPriorInsideGap = 6; //!< Mean of prior  on xt within the pre-listed gaps (unused)
+const double studentNu = 0.5; //!<Student t nu parameter for zt prior
 
-const double studentNu = 0.5;
 
-const double gapPriorAlpha = 0.5;
-const double gapPriorPeak = -6;
-const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak);
+const double sigmat = 3; //!< Standard deviation of zt/xt prior (sort of)
 
-const double initialisationBounds = 0.3;
+const double lm = 3; //!< Magnitude coupling lengthscale (in mag-bins)
+
+const double lt_revs = 1; //!<Temporal coupling lengthscale for zt (in Gaia revolution periods)
+
+const double xmPrior = -3; //!< Mean of gaussian prior on xml 
+
+
+const double gapPriorAlpha = 0.5; //!< Beta distribution alpha-value for the prior on the known gaps (in xt space)
+const double gapPriorPeak = -6; //!< Beta distribution peak value of xt 
+const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak); //!< Given peak value and alpha value, derive appropriate beta parameter
+
+/*
+ * 
+ * Initialisation
+ * 
+*/
+
+const double initialisationBounds = 0.3;//!< Unless otherwise specified, the efficiency vector randomly initialises values between +/- this value
+const double xmInitialised = 3; //!< The initialisation value of the zeroth-order (whole-sky) spatial mode. 
+
+/*
+ * 
+ * Data Properties
+ * 
+*/
+
+const std::string TempDirName = "TempPositions";//!< The subdirectory within the output directory used to save non-converged positions
+
+const int DataLoadCount = 1e6;	//!< The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read.
+const int magOffset = 0; //!<offset of loaded files from 0.csv (assuming default file/bin association)
+
 
 
 //normal approximation variances

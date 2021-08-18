@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['star',['Star',['../classStar.html',1,'']]],
-  ['stopconditions',['StopConditions',['../structStopConditions.html',1,'']]]
+  ['star_34',['Star',['../classStar.html',1,'']]],
+  ['stopconditions_35',['StopConditions',['../structStopConditions.html',1,'']]]
 ];

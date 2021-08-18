@@ -1,5 +1,5 @@
 #pragma once
-#include <vector.h>
+#include <vector>
 #include "../Main/GlobalVariables.h"
 #include "../Main/GlobalConstants.h"
 
@@ -10,5 +10,5 @@ class EfficiencyVector
 		std::vector<double> Transformed;
 	
 	private:
-		Transform();
-}
+		void Transform();
+};

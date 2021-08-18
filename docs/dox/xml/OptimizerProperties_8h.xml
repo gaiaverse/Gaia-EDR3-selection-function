@@ -1,35 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="OptimizerProperties_8h" kind="file" language="C++">
     <compoundname>OptimizerProperties.h</compoundname>
     <includes local="no">ctime</includes>
     <includes local="no">vector</includes>
-    <includedby refid="ManualOptimizer_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h</includedby>
+    <includedby refid="ManualOptimizer_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h</includedby>
     <incdepgraph>
-      <node id="400">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
         <link refid="OptimizerProperties_8h"/>
-        <childnode refid="401" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="402" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="401">
+      <node id="2">
         <label>ctime</label>
       </node>
-      <node id="402">
+      <node id="3">
         <label>vector</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="403">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h</label>
         <link refid="OptimizerProperties_8h"/>
-        <childnode refid="404" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
       </node>
-      <node id="404">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h</label>
+      <node id="2">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h</label>
         <link refid="ManualOptimizer_8h_source"/>
       </node>
     </invincdepgraph>
@@ -39,7 +39,8 @@
     <innerclass refid="structProgressTracker" prot="public">ProgressTracker</innerclass>
     <innerclass refid="structMemoryBuffer" prot="public">MemoryBuffer</innerclass>
       <sectiondef kind="enum">
-      <memberdef kind="enum" id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2" prot="public" static="no">
+      <memberdef kind="enum" id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2" prot="public" static="no" strong="no">
+        <type></type>
         <name>OptimiserModes</name>
         <enumvalue id="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2adc9aaf26c6ab28af8b73cb24d59de341" prot="public">
           <name>ADAM</name>
@@ -61,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="5" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="5" bodyend="5"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="5" column="20" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="5" bodyend="5"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -146,6 +147,6 @@
 <codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Analysis;</highlight></codeline>
 <codeline lineno="76"><highlight class="normal">};</highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h"/>
   </compounddef>
 </doxygen>

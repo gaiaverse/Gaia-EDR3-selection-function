@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['descentfunctor',['DescentFunctor',['../classDescentFunctor.html',1,'']]]
+  ['descentfunctor_22',['DescentFunctor',['../classDescentFunctor.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['raw',['Raw',['../classEfficiencyVector.html#a138e823e4829aadd9e43b475848804cf',1,'EfficiencyVector']]]
+  ['data_39',['Data',['../classLogLikelihood.html#ae89760ae57fa9e0ce5ef01c2b35cf487',1,'LogLikelihood']]]
 ];

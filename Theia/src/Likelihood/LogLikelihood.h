@@ -18,23 +18,43 @@
 #include "ProbabilityFunctions.h"
 using Eigen::VectorXd;
 using namespace Eigen;
-//Likelihood class acts as a container for the values of the log liklihood and its gradient
-//Also contains the data necessary to update these values when Calculate(newPosition) is called
-
+/*!
+ This class holds the data and functions necessary to calculate log p(data | x), where x is the provided EfficiencyVector. The majority of the guts + internal workings of the class are hidden away in the LikelihoodData.
+*/
 class LogLikelihood
 {
 	public:
-		double Value;
-		int StarsUsed;
-		std::vector<double> Gradient;
 		
+		//! The last-calculated value of the Calculate() function
+		double Value; 
+		//! The last-calculated gradient of the Calculate() function with respect to the associated `position`
+		std::vector<double> Gradient;
+		//! The number of stars within the last-called minibatch
+		int StarsUsed;
+		
+		
+		
+		
+		/*!
+		 \brief Constructor function. 
+		 \param data A vector of Star objects arranged according to the minibatching schedule. 
+		 \param id the MPI ID of the running process. 
+		*/
 		LogLikelihood(const std::vector<std::vector<Star>> & data, int id);
+		
+		/*!The key function: executes a single minibatch calculation of the loglikelihood. 
+		 \param position The current EfficiencyVector
+		 \param batchID The minibatch to be executed
+		 \param effectiveBatches The current number of active minibatches
+		 \param maxBatches The original number of active minibatches
+		 \returns Assigns the value of L to #Value, and the associated gradient to #Gradient
+		*/
 		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches, int maxBatches);
-		LikelihoodData Data;
+		
 	protected:
 		
-		//member data 
-		
+		//! member data 
+		LikelihoodData Data;
 
 		//internal functions
 		void Reset();

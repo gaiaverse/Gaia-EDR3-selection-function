@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
   <compound refid="classCommandArgs" kind="class"><name>CommandArgs</name>
     <member refid="classCommandArgs_1a7227f10097dae1825feea951fc3132a6" kind="variable"><name>RandomSeed</name></member>
     <member refid="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" kind="variable"><name>StartVectorLocation</name></member>
@@ -70,7 +70,7 @@
   <compound refid="classEfficiencyVector" kind="class"><name>EfficiencyVector</name>
     <member refid="classEfficiencyVector_1a138e823e4829aadd9e43b475848804cf" kind="variable"><name>Raw</name></member>
     <member refid="classEfficiencyVector_1af4687a6e7c72f35b35310e2368335b25" kind="variable"><name>Transformed</name></member>
-    <member refid="classEfficiencyVector_1a2d1d57201cf71d48e21ab3af1491860a" kind="function"><name>Transform</name></member>
+    <member refid="classEfficiencyVector_1a92c8c4eb6b6a416e34e8932150f97dd8" kind="function"><name>Transform</name></member>
   </compound>
   <compound refid="structFile" kind="struct"><name>File</name>
     <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kind="variable"><name>Name</name></member>
@@ -104,8 +104,8 @@
   </compound>
   <compound refid="classLogLikelihood" kind="class"><name>LogLikelihood</name>
     <member refid="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" kind="variable"><name>Value</name></member>
-    <member refid="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" kind="variable"><name>StarsUsed</name></member>
     <member refid="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" kind="variable"><name>Gradient</name></member>
+    <member refid="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" kind="variable"><name>StarsUsed</name></member>
     <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kind="variable"><name>Data</name></member>
     <member refid="classLogLikelihood_1a677cb07d3097385392fe49944e522858" kind="function"><name>LogLikelihood</name></member>
     <member refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" kind="function"><name>Calculate</name></member>
@@ -231,7 +231,6 @@
     <member refid="structVariancePopulation_1a7328d57433a870f569cf6e2bcb12e2f3" kind="function"><name>Variance</name></member>
     <member refid="structVariancePopulation_1a5a54f3140bc15898d3bf57340e19b90f" kind="function"><name>dVariancedN</name></member>
     <member refid="structVariancePopulation_1ad2a89f4584be76a4822005764f2f6e6c" kind="function"><name>dVariancedAlpha</name></member>
-    <member refid="structVariancePopulation_1ac601ad05d66b5691ed0a4b117b60c8d7" kind="function"><name>Print</name></member>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
   </compound>
@@ -285,18 +284,18 @@
     <member refid="GlobalConstants_8h_1a222a96bce520d86e95edc95efb9f5856" kind="define"><name>GlobalLog</name></member>
     <member refid="GlobalConstants_8h_1afdab2359a7bc6cf0c2e883c63ce9cfd7" kind="define"><name>GlobalDebug</name></member>
     <member refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kind="variable"><name>RootID</name></member>
-    <member refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kind="variable"><name>TotalScanningTime</name></member>
     <member refid="GlobalConstants_8h_1aeab1391c53c52eb2b029db07141d2c7c" kind="variable"><name>PipelineMinVisits</name></member>
+    <member refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kind="variable"><name>TotalScanningTime</name></member>
+    <member refid="GlobalConstants_8h_1a06f77834ff83e05fe31fd919eced9b28" kind="variable"><name>secondsPerNtStep</name></member>
+    <member refid="GlobalConstants_8h_1aad4c75e786a703dbf2e1123a2d8ca9f4" kind="variable"><name>lt</name></member>
     <member refid="GlobalConstants_8h_1a27996c716450a1295fe62bada51cc608" kind="variable"><name>Nl</name></member>
     <member refid="GlobalConstants_8h_1a3490bb846d2422704fe14bd5985b8b47" kind="variable"><name>Ns</name></member>
     <member refid="GlobalConstants_8h_1afbbf79d40e5acd414a0f731f665d1a39" kind="variable"><name>NHyper</name></member>
-    <member refid="GlobalConstants_8h_1aaafbffbcd13ec5d52120cde0b8e4d56d" kind="variable"><name>hyperFractionOffset</name></member>
     <member refid="GlobalConstants_8h_1a053910dff43b2fcd8ab32b97fb0481da" kind="variable"><name>rawNonHyperParams</name></member>
     <member refid="GlobalConstants_8h_1aba50580eaf4dee5ddc642c86f26b59e1" kind="variable"><name>transformedNonHyperParams</name></member>
     <member refid="GlobalConstants_8h_1a30a64a6b17b075364135d42c0f488dc4" kind="variable"><name>totalRawParams</name></member>
     <member refid="GlobalConstants_8h_1ae0db6f76f317d33ec86e20bd2f4d97a9" kind="variable"><name>totalTransformedParams</name></member>
-    <member refid="GlobalConstants_8h_1a06f77834ff83e05fe31fd919eced9b28" kind="variable"><name>secondsPerNtStep</name></member>
-    <member refid="GlobalConstants_8h_1aad4c75e786a703dbf2e1123a2d8ca9f4" kind="variable"><name>lt</name></member>
+    <member refid="GlobalConstants_8h_1aaafbffbcd13ec5d52120cde0b8e4d56d" kind="variable"><name>hyperFractionOffset</name></member>
     <member refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kind="variable"><name>NumberLargerThanMaxObservations</name></member>
     <member refid="GlobalConstants_8h_1ad1cb42f81dc669c161aaf0ee375e41d2" kind="variable"><name>VerySmallNumber</name></member>
     <member refid="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" kind="variable"><name>VerySmallLog</name></member>
@@ -313,27 +312,27 @@
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba054c79124c2ce286684afeaa9ed56726" kind="enumvalue"><name>NScaling</name></member>
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59ebae939c17b2563c480e0fe2bc793f2a5ba" kind="enumvalue"><name>MScaling</name></member>
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kind="enumvalue"><name>ActiveNScaling</name></member>
-    <member refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kind="variable"><name>DataLoadCount</name></member>
-    <member refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kind="variable"><name>TempDirName</name></member>
     <member refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kind="variable"><name>Nt</name></member>
     <member refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" kind="variable"><name>healpix_order</name></member>
     <member refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" kind="variable"><name>needlet_order</name></member>
     <member refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kind="variable"><name>Nm</name></member>
-    <member refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kind="variable"><name>magOffset</name></member>
     <member refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" kind="variable"><name>NVariancePops</name></member>
     <member refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kind="variable"><name>hyperOrder</name></member>
+    <member refid="GlobalVariables_8h_1a7c36a597048b7516c28c7ccfb3e03fa5" kind="variable"><name>xtPriorNonGap</name></member>
+    <member refid="GlobalVariables_8h_1aa638f0bdf5fab923c414a10630cd4710" kind="variable"><name>xtPriorInsideGap</name></member>
+    <member refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kind="variable"><name>studentNu</name></member>
     <member refid="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" kind="variable"><name>sigmat</name></member>
     <member refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" kind="variable"><name>lm</name></member>
     <member refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" kind="variable"><name>lt_revs</name></member>
     <member refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" kind="variable"><name>xmPrior</name></member>
-    <member refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" kind="variable"><name>xmInitialised</name></member>
-    <member refid="GlobalVariables_8h_1a7c36a597048b7516c28c7ccfb3e03fa5" kind="variable"><name>xtPriorNonGap</name></member>
-    <member refid="GlobalVariables_8h_1aa638f0bdf5fab923c414a10630cd4710" kind="variable"><name>xtPriorInsideGap</name></member>
-    <member refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kind="variable"><name>studentNu</name></member>
     <member refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kind="variable"><name>gapPriorAlpha</name></member>
     <member refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kind="variable"><name>gapPriorPeak</name></member>
     <member refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" kind="variable"><name>gapPriorBeta</name></member>
     <member refid="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" kind="variable"><name>initialisationBounds</name></member>
+    <member refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" kind="variable"><name>xmInitialised</name></member>
+    <member refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kind="variable"><name>TempDirName</name></member>
+    <member refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kind="variable"><name>DataLoadCount</name></member>
+    <member refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kind="variable"><name>magOffset</name></member>
     <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
     <member refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" kind="variable"><name>useHyperPrior</name></member>
     <member refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kind="variable"><name>ignoreGapObs</name></member>
@@ -360,16 +359,16 @@
     <member refid="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2adc9aaf26c6ab28af8b73cb24d59de341" kind="enumvalue"><name>ADAM</name></member>
     <member refid="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2af7674144b719b6c18ceeccad2a5e3784" kind="enumvalue"><name>ADABADAM</name></member>
   </compound>
-  <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling</name>
+  <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling</name>
   </compound>
-  <compound refid="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood</name>
+  <compound refid="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood</name>
   </compound>
-  <compound refid="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main</name>
+  <compound refid="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main</name>
   </compound>
-  <compound refid="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer</name>
+  <compound refid="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer</name>
   </compound>
-  <compound refid="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src</name>
+  <compound refid="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src</name>
   </compound>
-  <compound refid="dir_0681e4331e8c0cb9b9006c8ffbe59bbe" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia</name>
+  <compound refid="dir_0681e4331e8c0cb9b9006c8ffbe59bbe" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia</name>
   </compound>
 </doxygenindex>

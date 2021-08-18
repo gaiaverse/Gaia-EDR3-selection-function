@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="dir_f6c381002d14419d46b0855ac2e79474" kind="dir">
-    <compoundname>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling</compoundname>
+    <compoundname>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling</compoundname>
     <innerfile refid="CommandArguments_8h">CommandArguments.h</innerfile>
     <innerfile refid="DataLoading_8h">DataLoading.h</innerfile>
     <innerfile refid="Star_8h">Star.h</innerfile>
@@ -9,6 +9,6 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/"/>
   </compounddef>
 </doxygen>

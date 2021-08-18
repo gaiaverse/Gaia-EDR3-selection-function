@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['optimiserproperties',['OptimiserProperties',['../structOptimiserProperties.html',1,'']]],
-  ['optimiserstatus',['OptimiserStatus',['../structOptimiserStatus.html',1,'']]],
-  ['optimizer',['Optimizer',['../classOptimizer.html',1,'']]]
+  ['memorybuffer_11',['MemoryBuffer',['../structMemoryBuffer.html',1,'']]]
 ];
