@@ -72,7 +72,8 @@ const int hyperFractionOffset = (1+hyperOrder)*NVariancePops;
  * 
  * Common Reused Numbers
  * 
-*/
+*/#
+
 //! The pre-set length of all {p_i} vectors - needs to be larger than max visitations to prevent overflow 
 const int NumberLargerThanMaxObservations = 1024;
 

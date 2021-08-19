@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['likelihooddata_26',['LikelihoodData',['../classLikelihoodData.html',1,'']]],
-  ['loglikelihood_27',['LogLikelihood',['../classLogLikelihood.html',1,'']]],
-  ['loglikelihoodprior_28',['LogLikelihoodPrior',['../classLogLikelihoodPrior.html',1,'']]]
+  ['likelihooddata',['LikelihoodData',['../classLikelihoodData.html',1,'']]],
+  ['loglikelihood',['LogLikelihood',['../classLogLikelihood.html',1,'']]],
+  ['loglikelihoodprior',['LogLikelihoodPrior',['../classLogLikelihoodPrior.html',1,'']]]
 ];

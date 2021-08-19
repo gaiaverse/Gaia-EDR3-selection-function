@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classLikelihoodData" kind="class" language="C++" prot="public">
     <compoundname>LikelihoodData</compoundname>
     <includes refid="DataStorage_8h" local="no">DataStorage.h</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="86" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="86" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="86" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="86" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" prot="public" static="no" mutable="no">
         <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt; &gt; &amp;</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="87" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="87" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="91" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="91" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="91" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="91" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="92" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="92" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="92" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="92" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ab996d0af29ea194954e9ddfeba2bea9e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="93" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="93" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="93" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="93" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a930a1b35ff6c789074f50dc56bada379" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="100" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="100" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="100" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="101" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="101" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a22d6828dd96c1d54a3b70fe0ef613b15" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -106,7 +106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="102" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="102" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="102" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="102" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -119,7 +119,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="104" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="104" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="104" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a5778396081010881534302e7cc999b1f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -132,7 +132,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="105" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="105" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="105" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="105" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -145,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="107" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="107" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="107" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -158,7 +158,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="108" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="108" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="108" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -171,7 +171,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="109" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="109" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="109" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="109" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -184,7 +184,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="110" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="110" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="110" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -197,7 +197,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="112" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="112" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="112" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="112" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="113" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="113" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="113" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref> &gt;</type>
@@ -223,7 +223,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="116" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="116" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="116" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" prot="public" static="no" mutable="no">
         <type>Probability</type>
@@ -236,7 +236,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="117" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="117" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="117" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="117" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -259,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="84" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="84" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -276,15 +276,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="124" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="124" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A magical, mythical class? </para>
-    </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="81" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="80" bodyend="125"/>
+<para>A magical, mythical class? </para>    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="81" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="80" bodyend="125"/>
     <listofallmembers>
       <member refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>dfdN_constantP</name></member>
       <member refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>dfdp_constantN</name></member>

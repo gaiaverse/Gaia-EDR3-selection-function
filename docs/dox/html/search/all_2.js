@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['efficiencyvector_4',['EfficiencyVector',['../classEfficiencyVector.html',1,'']]]
+  ['efficiencyvector',['EfficiencyVector',['../classEfficiencyVector.html',1,'']]]
 ];

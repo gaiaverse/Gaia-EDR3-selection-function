@@ -1,5 +1,5 @@
-\hypertarget{classLogLikelihood}{}\doxysection{Log\+Likelihood Class Reference}
-\label{classLogLikelihood}\index{LogLikelihood@{LogLikelihood}}
+\hypertarget{classLogLikelihood}{}\section{Log\+Likelihood Class Reference}
+\label{classLogLikelihood}\index{Log\+Likelihood@{Log\+Likelihood}}
 
 
 {\ttfamily \#include $<$Log\+Likelihood.\+h$>$}
@@ -10,26 +10,26 @@ Inheritance diagram for Log\+Likelihood\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classLogLikelihood}
 \end{center}
 \end{figure}
-\doxysubsection*{Public Member Functions}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classLogLikelihood_a677cb07d3097385392fe49944e522858}{Log\+Likelihood}} (const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classStar}{Star}} $>$$>$ \&data, int id)
+\hyperlink{classLogLikelihood_a677cb07d3097385392fe49944e522858}{Log\+Likelihood} (const std\+::vector$<$ std\+::vector$<$ \hyperlink{classStar}{Star} $>$$>$ \&data, int id)
 \begin{DoxyCompactList}\small\item\em Constructor function. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate}} (const std\+::vector$<$ double $>$ \&position, int batch\+ID, int effective\+Batches, int max\+Batches)
+void \hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate} (const std\+::vector$<$ double $>$ \&position, int batch\+ID, int effective\+Batches, int max\+Batches)
 \end{DoxyCompactItemize}
-\doxysubsection*{Data Fields}
+\subsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}\label{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}} 
-double \mbox{\hyperlink{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}{Value}}
-\begin{DoxyCompactList}\small\item\em The last-\/calculated value of the \mbox{\hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate()}} function. \end{DoxyCompactList}\item 
+double \hyperlink{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}{Value}
+\begin{DoxyCompactList}\small\item\em The last-\/calculated value of the \hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate()} function. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}\label{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}} 
-std\+::vector$<$ double $>$ \mbox{\hyperlink{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}{Gradient}}
-\begin{DoxyCompactList}\small\item\em The last-\/calculated gradient of the \mbox{\hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate()}} function with respect to the associated {\ttfamily position} \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \hyperlink{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}{Gradient}
+\begin{DoxyCompactList}\small\item\em The last-\/calculated gradient of the \hyperlink{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}{Calculate()} function with respect to the associated {\ttfamily position} \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}\label{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}} 
-int \mbox{\hyperlink{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}{Stars\+Used}}
+int \hyperlink{classLogLikelihood_a3a4e3a1d76a663bca3705b471af583cc}{Stars\+Used}
 \begin{DoxyCompactList}\small\item\em The number of stars within the last-\/called minibatch. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Member Functions}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classLogLikelihood_a323459623fea6256267c9724ceea8ec9}\label{classLogLikelihood_a323459623fea6256267c9724ceea8ec9}} 
@@ -39,40 +39,40 @@ void {\bfseries Reset} ()
 void {\bfseries Per\+Star\+Contribution} (int batch\+Id, int star\+ID, const std\+::vector$<$ double $>$ \&position)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_aec7a3964705a6a48a1d18011e330d585}\label{classLogLikelihood_aec7a3964705a6a48a1d18011e330d585}} 
-void {\bfseries Generate\+Ps} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate, const std\+::vector$<$ double $>$ \&position)
+void {\bfseries Generate\+Ps} (const \hyperlink{classStar}{Star} $\ast$candidate, const std\+::vector$<$ double $>$ \&position)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_ae0db177a301dbcb1ceb13575585dc2b2}\label{classLogLikelihood_ae0db177a301dbcb1ceb13575585dc2b2}} 
-void {\bfseries Generate\+Contribution} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate)
+void {\bfseries Generate\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_a525d4693f7231cb70405af68d2c2c6e9}\label{classLogLikelihood_a525d4693f7231cb70405af68d2c2c6e9}} 
-void {\bfseries Assign\+Gradients} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate)
+void {\bfseries Assign\+Gradients} (const \hyperlink{classStar}{Star} $\ast$candidate)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_a45c146d322f6a78b760383b624df66c8}\label{classLogLikelihood_a45c146d322f6a78b760383b624df66c8}} 
-void {\bfseries Normal\+Contribution} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate)
+void {\bfseries Normal\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_a48e99798d1bad7dc63fdf2019acc1c7b}\label{classLogLikelihood_a48e99798d1bad7dc63fdf2019acc1c7b}} 
-void {\bfseries Poisson\+Contribution} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate)
+void {\bfseries Poisson\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
 \item 
 \mbox{\Hypertarget{classLogLikelihood_ac848d93699c16868bf4da1884fe5c45a}\label{classLogLikelihood_ac848d93699c16868bf4da1884fe5c45a}} 
-void {\bfseries Exact\+Poisson\+Contribution} (const \mbox{\hyperlink{classStar}{Star}} $\ast$candidate)
+void {\bfseries Exact\+Poisson\+Contribution} (const \hyperlink{classStar}{Star} $\ast$candidate)
 \end{DoxyCompactItemize}
-\doxysubsection*{Protected Attributes}
+\subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}\label{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}} 
-\mbox{\hyperlink{classLikelihoodData}{Likelihood\+Data}} \mbox{\hyperlink{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}{Data}}
+\hyperlink{classLikelihoodData}{Likelihood\+Data} \hyperlink{classLogLikelihood_ae89760ae57fa9e0ce5ef01c2b35cf487}{Data}
 \begin{DoxyCompactList}\small\item\em member data \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-This class holds the data and functions necessary to calculate log p(data $\vert$ x), where x is the provided \mbox{\hyperlink{classEfficiencyVector}{Efficiency\+Vector}}. The majority of the guts + internal workings of the class are hidden away in the \mbox{\hyperlink{classLikelihoodData}{Likelihood\+Data}}. 
+\subsection{Detailed Description}
+This class holds the data and functions necessary to calculate log p(data $\vert$ x), where x is the provided \hyperlink{classEfficiencyVector}{Efficiency\+Vector}. The majority of the guts + internal workings of the class are hidden away in the \hyperlink{classLikelihoodData}{Likelihood\+Data}. 
 
-\doxysubsection{Constructor \& Destructor Documentation}
+\subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classLogLikelihood_a677cb07d3097385392fe49944e522858}\label{classLogLikelihood_a677cb07d3097385392fe49944e522858}} 
-\index{LogLikelihood@{LogLikelihood}!LogLikelihood@{LogLikelihood}}
-\index{LogLikelihood@{LogLikelihood}!LogLikelihood@{LogLikelihood}}
-\doxysubsubsection{\texorpdfstring{LogLikelihood()}{LogLikelihood()}}
-{\footnotesize\ttfamily Log\+Likelihood\+::\+Log\+Likelihood (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classStar}{Star}} $>$$>$ \&}]{data,  }\item[{int}]{id }\end{DoxyParamCaption})}
+\index{Log\+Likelihood@{Log\+Likelihood}!Log\+Likelihood@{Log\+Likelihood}}
+\index{Log\+Likelihood@{Log\+Likelihood}!Log\+Likelihood@{Log\+Likelihood}}
+\subsubsection{\texorpdfstring{Log\+Likelihood()}{LogLikelihood()}}
+{\footnotesize\ttfamily Log\+Likelihood\+::\+Log\+Likelihood (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ \hyperlink{classStar}{Star} $>$$>$ \&}]{data,  }\item[{int}]{id }\end{DoxyParamCaption})}
 
 
 
@@ -80,23 +80,23 @@ Constructor function.
 
 
 \begin{DoxyParams}{Parameters}
-{\em data} & A vector of \mbox{\hyperlink{classStar}{Star}} objects arranged according to the minibatching schedule. \\
+{\em data} & A vector of \hyperlink{classStar}{Star} objects arranged according to the minibatching schedule. \\
 \hline
 {\em id} & the M\+PI ID of the running process. \\
 \hline
 \end{DoxyParams}
 
 
-\doxysubsection{Member Function Documentation}
+\subsection{Member Function Documentation}
 \mbox{\Hypertarget{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}\label{classLogLikelihood_a748d75e2eb89965246436eb6a9274004}} 
-\index{LogLikelihood@{LogLikelihood}!Calculate@{Calculate}}
-\index{Calculate@{Calculate}!LogLikelihood@{LogLikelihood}}
-\doxysubsubsection{\texorpdfstring{Calculate()}{Calculate()}}
+\index{Log\+Likelihood@{Log\+Likelihood}!Calculate@{Calculate}}
+\index{Calculate@{Calculate}!Log\+Likelihood@{Log\+Likelihood}}
+\subsubsection{\texorpdfstring{Calculate()}{Calculate()}}
 {\footnotesize\ttfamily void Log\+Likelihood\+::\+Calculate (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{position,  }\item[{int}]{batch\+ID,  }\item[{int}]{effective\+Batches,  }\item[{int}]{max\+Batches }\end{DoxyParamCaption})}
 
 The key function\+: executes a single minibatch calculation of the loglikelihood. 
 \begin{DoxyParams}{Parameters}
-{\em position} & The current \mbox{\hyperlink{classEfficiencyVector}{Efficiency\+Vector}} \\
+{\em position} & The current \hyperlink{classEfficiencyVector}{Efficiency\+Vector} \\
 \hline
 {\em batch\+ID} & The minibatch to be executed \\
 \hline
@@ -106,10 +106,10 @@ The key function\+: executes a single minibatch calculation of the loglikelihood
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Assigns the value of L to \mbox{\hyperlink{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}{Value}}, and the associated gradient to \mbox{\hyperlink{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}{Gradient}} 
+Assigns the value of L to \hyperlink{classLogLikelihood_a97ff9863958ffb93e74da07721a30cc6}{Value}, and the associated gradient to \hyperlink{classLogLikelihood_af6d93b053cfdc1966318018831a849ec}{Gradient} 
 \end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/jack/\+Documents/\+Work/\+Gaia\+Completeness/\+Code/\+Theia/src/\+Likelihood/Log\+Likelihood.\+h\end{DoxyCompactItemize}
+/home/fraserj/\+Documents/\+Work/\+Gaia\+Selection\+Function/\+Code/\+Theia/src/\+Likelihood/Log\+Likelihood.\+h\end{DoxyCompactItemize}

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="structFile" kind="struct" language="C++" prot="public">
     <compoundname>File</compoundname>
       <sectiondef kind="public-attrib">
@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="23" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" bodystart="23" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="23" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structFile_1aced9c357d2c770816f23676e0a059d88" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -27,14 +27,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="24" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" bodystart="24" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="22" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" bodystart="21" bodyend="25"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="22" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="21" bodyend="25"/>
     <listofallmembers>
       <member refid="structFile_1aced9c357d2c770816f23676e0a059d88" prot="public" virt="non-virtual"><scope>File</scope><name>Bin</name></member>
       <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" prot="public" virt="non-virtual"><scope>File</scope><name>Name</name></member>
