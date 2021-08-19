@@ -7,8 +7,8 @@ theia
 .nfs*
 
 *_build/*
-*/dox/html/*
-*/dox/latex/*
+*/html
+*/latex
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
