@@ -9,6 +9,8 @@ theia
 *_build/*
 */html
 */latex
+*/dox/html
+*/dox/latex
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
