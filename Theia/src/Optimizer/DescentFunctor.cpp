@@ -365,13 +365,13 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
 	int circuitBreaker = batchID;
-	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
-	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RunningID, MPI_COMM_WORLD);
+	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
 	ForwardTransform(RawPosition);
 	
-	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RunningID, MPI_COMM_WORLD);
+	MPI_Bcast(&TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 	
 	
 	L.Calculate(TransformedPosition,batchID,effectiveBatches,MaxBatches);
@@ -381,9 +381,9 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
-	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 
-	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RunningID,MPI_COMM_WORLD);
+	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	MPI_Reduce(&L.Gradient[0], &TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	totalStarsUsed = std::max(1,totalStarsUsed);
 	

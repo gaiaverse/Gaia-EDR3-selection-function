@@ -12,15 +12,15 @@ enum Probability { NormalApproximation, PoissonBinomial};
 
 
 /*!
- A magical, mythical class? 
+	A class which packages most of the gnarly bits of :doc:`likelihood`. This is essentially just a container class for the requisite data 
 */
 class LikelihoodData
 {
 	public:
 		
-		LikelihoodData(const std::vector<std::vector<Star>> &data, int id);
+		//! Constructor function
+		LikelihoodData(const std::vector<std::vector<Star>> &data);
 		
-		int ID;
 		const std::vector<std::vector<Star>> &Stars;
 		
 		//Indexing data, allows us to index properly into the 

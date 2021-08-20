@@ -38,9 +38,8 @@ class LogLikelihood
 		/*!
 		 \brief Constructor function. 
 		 \param data A vector of Star objects arranged according to the minibatching schedule. 
-		 \param id the MPI ID of the running process. 
 		*/
-		LogLikelihood(const std::vector<std::vector<Star>> & data, int id);
+		LogLikelihood(const std::vector<std::vector<Star>> & data);
 		
 		/*!The key function: executes a single minibatch calculation of the loglikelihood. 
 		 \param position The current EfficiencyVector

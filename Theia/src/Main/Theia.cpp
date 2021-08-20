@@ -59,7 +59,7 @@ VectorXd RootProcess()
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(ProcessRank,Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,true,true,true);
+	DescentFunctor fun = DescentFunctor(Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,true,true,true);
 	
 	//generate fake data
 	fun.FrozenTime = fun.mut_gaps;
@@ -138,7 +138,7 @@ void WorkerProcess()
 	
 	std::vector<double> pos = std::vector<double>(dimensionality,0.0);
 	
-	LogLikelihood L = LogLikelihood(Data,ProcessRank);
+	LogLikelihood L = LogLikelihood(Data);
 	
 	//empty vectors for broadcasting reasons (do I really need these?!)
 	std::vector<double> emptyVec(dimensionality,0.0);
@@ -179,55 +179,6 @@ void WorkerProcess()
 	}
 }
 
-
-void GradientTest()
-{
-	LogLikelihood L = LogLikelihood(Data,ProcessRank);
-	
-	std::vector<double> xd;
-	for (int i = 0; i < Nt; ++i)
-	{
-		if (GapList[i])
-		{
-			xd.push_back(-8);
-		}
-		else
-		{
-			xd.push_back(8);
-		}
-	}
-	for (int i = 0; i < Nl*Nm; ++i)
-	{
-		xd.push_back(10);
-	}
-	for (int i = 0; i < NHyper-NVariancePops; ++i)
-	{
-		xd.push_back(1);
-	}
-	for (int i = 0; i < NVariancePops; ++i)
-	{
-		xd.push_back(1.0/NVariancePops);
-	}
-	
-	int hyperOffset = Nt + Nl*Nm;
-	
-	L.Calculate(xd,0,1,1);
-	double L0 = L.Value;
-	std::cout << "Original value: " << L0 << std::endl;
-	std::vector<double> G0 = L.Gradient;
-	double ddx = 1e-3;
-	for (int i = 0; i < NHyper; ++i)
-	{
-		std::vector<double> x = xd;
-		double dx = std::max(x[hyperOffset + i]*ddx,1e-8);
-		x[hyperOffset+i] += dx;
-		
-		L.Calculate(x,0,1,1);
-		
-		double grad = (L.Value - L0)/dx;
-		std::cout << "x_" << i << " =  " << x[hyperOffset + i] << "   l = " << L.Value  << "   g_n=" << grad << "    g_a =" << G0[hyperOffset + i] << std::endl;
-	}
-}
 
 void Welcome()
 {

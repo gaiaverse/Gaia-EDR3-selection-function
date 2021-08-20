@@ -1,6 +1,6 @@
 #include "LogLikelihood.h"
 
-LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id): Data(data,id)
+LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data): Data(data)
 {
 	Value = 0.0;
 	StarsUsed = 0;
@@ -253,49 +253,9 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 		{
 			dfdp_i -= exp(Data.subpmf[2][i]-log_likelihood);
 		}
-		
-		
-		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
-		{
-			dfdpEmergency = true;
-		}
 		Data.dfdp_constantN[i] = dfdp_i;
 	}
 	
-	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
-	{
-		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
-		std::cout << "n = " << n << "k = " << k << std::endl;
-		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
-		std::cout << "triggered loop inversion: " << triggeredLoopInvert << "\n";
-		std::cout << "log_likelihood = " << log_likelihood << "  log_correction = " << log_correction << "\n";
-		std::cout << "p = (";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.p[i] << ", ";
-		}
-		std::cout << ")\n\nl_pmf = (";
-		for (int i = 0; i <= n; ++i)
-		{
-			double v = Data.pmf_forward[n-1][i];
-
-			std::cout << v << ",";
-		}
-		
-		std::cout << "\nsub_pmf_0 \t\tsub_pmf_1\t\tsub_pmf_2";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.subpmf[0][i] << "\t\t" << Data.subpmf[1][i] << "\t\t" << Data.subpmf[2][i] << "\n";
-		}
-		
-		std::cout << "\n\ndfdp = (";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.dfdp_constantN[i] << ", ";
-		}
-		std::cout << ")\n\n";
-		ERROR(100, "See above output");
-	}
 }
 void LogLikelihood::AssignGradients(const Star * candidate)
 {

@@ -21,7 +21,6 @@ using Eigen::VectorXd;
 class DescentFunctor
 {
 	private:
-		int RunningID;
 
 		//since the descent functor runs only once (i.e. on Root), we would still like root to use its CPU cycles to do some calculating, so we have a copy of 
 		//the structures needed to do liklihood analysis stored within
@@ -89,14 +88,14 @@ class DescentFunctor
 		std::vector<double> FrozenTime;
 		std::vector<double> FrozenHypers;
 		
-	    DescentFunctor(int n,const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars, int maxBatches, bool timeActive, bool spaceActive, bool hyperActive): Data(data), L(data, n)
+	    DescentFunctor(const std::vector<std::vector<Star>> & data, int nParams,std::string outdir, int nStars, int maxBatches, bool timeActive, bool spaceActive, bool hyperActive): Data(data), L(data)
 	    {
 			TimeActive = timeActive;
 			SpaceActive = spaceActive;
 			HyperActive = hyperActive;
 			
 			NStars = nStars;
-			RunningID = n;
+			//~ RunningID = n;
 			LoopID = 0;
 			Start = std::chrono::system_clock::now();
 			MaxBatches = maxBatches;		

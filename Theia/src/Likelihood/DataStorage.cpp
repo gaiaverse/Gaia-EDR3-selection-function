@@ -1,9 +1,8 @@
 #include "DataStorage.h"
 
-LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data, int id) : Stars(data)
+LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data) : Stars(data)
 {
 	//initialise the frequently overwritten vectors
-	ID = id;
 	int nBig = NumberLargerThanMaxObservations;
 	
 	pmf_forward = std::vector<std::vector<double>>(nBig,std::vector<double>(nBig,0));
