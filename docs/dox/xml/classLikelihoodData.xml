@@ -4,19 +4,6 @@
     <compoundname>LikelihoodData</compoundname>
     <includes refid="DataStorage_8h" local="no">DataStorage.h</includes>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="classLikelihoodData_1a9cb6c7ac3a9bfb1c9108ead8ea8fde91" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int LikelihoodData::ID</definition>
-        <argsstring></argsstring>
-        <name>ID</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="23" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="23" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" prot="public" static="no" mutable="no">
         <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt; &gt; &amp;</type>
         <definition>const std::vector&lt;std::vector&lt;Star&gt; &gt;&amp; LikelihoodData::Stars</definition>
@@ -240,26 +227,23 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classLikelihoodData_1abe754db1273e8ed99a0bf08a26c13aad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
         <definition>LikelihoodData::LikelihoodData</definition>
-        <argsstring>(const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data, int id)</argsstring>
+        <argsstring>(const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data)</argsstring>
         <name>LikelihoodData</name>
         <param>
           <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt;&gt; &amp;</type>
           <declname>data</declname>
         </param>
-        <param>
-          <type>int</type>
-          <declname>id</declname>
-        </param>
         <briefdescription>
+<para>Constructor function. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="21" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="22" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -282,7 +266,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A magical, mythical class? </para>
+<para>A class which packages most of the gnarly bits of :doc:<computeroutput>likelihood</computeroutput>. This is essentially just a container class for the requisite data </para>
     </detaileddescription>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="17" bodyend="62"/>
     <listofallmembers>
@@ -294,8 +278,7 @@
       <member refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>healpix_fov_1</name></member>
       <member refid="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>healpix_fov_2</name></member>
       <member refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>hypergradient</name></member>
-      <member refid="classLikelihoodData_1a9cb6c7ac3a9bfb1c9108ead8ea8fde91" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>ID</name></member>
-      <member refid="classLikelihoodData_1abe754db1273e8ed99a0bf08a26c13aad" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>LikelihoodData</name></member>
+      <member refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>LikelihoodData</name></member>
       <member refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>Mode</name></member>
       <member refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>p</name></member>
       <member refid="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>pmf_backward</name></member>

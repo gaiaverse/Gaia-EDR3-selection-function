@@ -15,18 +15,20 @@ class EfficiencyVector
 	public:
 		enum VectorMode {Raw, Transformed};
 		enum VectorComponent {Temporal, Spatial, Hyper};
-	
+		enum VectorType {Position, Gradient};
 	
 		EfficiencyVector(std::string load_location);
 	
 		//Access Functions
 		
-		double Access(int index, VectorComponent component, VectorMode mode);
-		void Assign(int index, VectorComponent, VectorMode mode, double newValue);
-		void Increment(int index, VectorComponent, VectorMode mode, double value);
-		double Access(int index1, int index2, VectorComponent component, VectorMode mode);
-		void Assign(int index1, int index2, VectorComponent, VectorMode mode, double value);
-		void Increment(int index1, int index2, VectorComponent, VectorMode mode, double newValue);
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index);
+		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient,int index, double newValue);
+		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index, double value);
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2);
+		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2, double value);
+		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2, double newValue);
+		
+
 		
 		
 		std::vector<double> RawPosition;

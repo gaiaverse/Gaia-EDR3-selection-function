@@ -190,7 +190,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>This is a structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>
+<para>This structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>
     </detaileddescription>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="9" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="8" bodyend="97"/>
     <listofallmembers>

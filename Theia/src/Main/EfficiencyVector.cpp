@@ -21,7 +21,7 @@ EfficiencyVector::EfficiencyVector(std::string load_location)
 }
 
 
-double EfficiencyVector::Access(int i, VectorComponent component, VectorMode mode)
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i)
 {	
 	int index;
 	switch (component)
@@ -51,10 +51,33 @@ double EfficiencyVector::Access(int i, VectorComponent component, VectorMode mod
 			v = TransformedPosition[index];
 			break;
 	}
+	
+	if (mode == Raw)
+	{
+		if (type == Position)
+		{
+			v = RawPosition[index];
+		}
+		if (type == Gradient)
+		{
+			v = RawGradient[index];
+		}
+	}
+	if (mode == Transformed)
+	{
+		if (type == Position)
+		{
+			v = TransformedPosition[index];
+		}
+		if (type == Gradient)
+		{
+			v = TransformedGradient[index];
+		}
+	}
 	return v;
 }
 
-double EfficiencyVector::Access(int sl, int m, VectorComponent component, VectorMode mode)
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int sl, int m)
 {
 	switch (component)
 	{
@@ -62,7 +85,7 @@ double EfficiencyVector::Access(int sl, int m, VectorComponent component, Vector
 			ERROR(2, "Incorrect access mode used for temporal component of the EfficiencyVector");
 			break;
 		case Spatial:
-			Access(sl*Nm +m, component, mode);
+			Access(mode, component,type, sl*Nm + m);
 			break;
 		case Hyper:
 			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
@@ -70,7 +93,7 @@ double EfficiencyVector::Access(int sl, int m, VectorComponent component, Vector
 	}
 }
 
-void EfficiencyVector::Assign(int i, VectorComponent component, VectorMode mode, double newValue)
+void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type, int i, double newValue)
 {	
 	int index;
 	switch (component)
@@ -89,21 +112,33 @@ void EfficiencyVector::Assign(int i, VectorComponent component, VectorMode mode,
 			}
 			break;
 	}
-
 	
-	switch (mode)
+	if (mode == Raw)
 	{
-		case Raw:
+		if (type == Position)
+		{
 			RawPosition[index] = newValue;
-			break;
-		case Transformed:
+		}
+		if (type == Gradient)
+		{
+			RawGradient[index] = newValue;
+		}
+	}
+	if (mode == Transformed)
+	{
+		if (type == Position)
+		{
 			TransformedPosition[index] = newValue;
-			break;
+		}
+		if (type == Gradient)
+		{
+			TransformedGradient[index] = newValue;
+		}
 	}
 	
 }
 
-void EfficiencyVector::Assign(int sl, int m, VectorComponent component, VectorMode mode, double newValue)
+void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type,int sl, int m, double newValue)
 {
 	switch (component)
 	{
@@ -111,7 +146,7 @@ void EfficiencyVector::Assign(int sl, int m, VectorComponent component, VectorMo
 			ERROR(2, "Incorrect access mode used for temporal component of the EfficiencyVector");
 			break;
 		case Spatial:
-			Assign(sl*Nm +m, component, mode, newValue);
+			Assign(mode, component,type,  sl*Nm + m, newValue);
 			break;
 		case Hyper:
 			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
@@ -119,8 +154,7 @@ void EfficiencyVector::Assign(int sl, int m, VectorComponent component, VectorMo
 	}
 }
 
-
-void EfficiencyVector::Increment(int i, VectorComponent component, VectorMode mode, double value)
+void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type,int i, double value)
 {	
 	int index;
 	switch (component)
@@ -141,18 +175,31 @@ void EfficiencyVector::Increment(int i, VectorComponent component, VectorMode mo
 	}
 
 	
-	switch (mode)
+	if (mode == Raw)
 	{
-		case Raw:
+		if (type == Position)
+		{
 			RawPosition[index] += value;
-			break;
-		case Transformed:
+		}
+		if (type == Gradient)
+		{
+			RawGradient[index] += value;
+		}
+	}
+	if (mode == Transformed)
+	{
+		if (type == Position)
+		{
 			TransformedPosition[index] += value;
-			break;
+		}
+		if (type == Gradient)
+		{
+			TransformedGradient[index] += value;
+		}
 	}
 }
 
-void EfficiencyVector::Increment(int sl, int m, VectorComponent component, VectorMode mode, double value)
+void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type,int sl, int m, double value)
 {
 	switch (component)
 	{
@@ -160,7 +207,7 @@ void EfficiencyVector::Increment(int sl, int m, VectorComponent component, Vecto
 			ERROR(2, "Incorrect access mode used for temporal component of the EfficiencyVector");
 			break;
 		case Spatial:
-			Increment(sl*Nm +m, component, mode, value);
+			Increment(mode, component,type,  sl*Nm + m, value);
 			break;
 		case Hyper:
 			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
@@ -229,7 +276,7 @@ void EfficiencyVector::GenerateVector()
 	
 	for (int i = 0; i < Nm; ++i)
 	{
-		Increment(0,i,Spatial,Raw,mums[i]);
+		Increment(Raw,Spatial,Position,0,i,mums[i]);
 	}
 }
 
@@ -319,7 +366,7 @@ void EfficiencyVector::ForwardTransform_Spatial()
 	{
 		for (int i = 0; i < choleskyN; ++i)
 		{
-			bVector[s*Nm+cholesky_u[i]] += cholesky_w[i] * Access(s,cholesky_v[i],Spatial,Raw);
+			bVector[s*Nm+cholesky_u[i]] += cholesky_w[i] * Access(Raw,Spatial,Position,s,cholesky_v[i]);
 		}
 	}
 
@@ -328,7 +375,7 @@ void EfficiencyVector::ForwardTransform_Spatial()
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			Increment(needlet_u[i],m, Spatial, Transformed, needlet_w[i]*bVector[needlet_v[i]*Nm+m]);
+			Increment(Transformed,Spatial,Position, needlet_u[i],m, needlet_w[i]*bVector[needlet_v[i]*Nm+m]);
 		}
 	}
 }
@@ -338,12 +385,12 @@ void EfficiencyVector::ForwardTransform_Temporal()
 
 	double u = exp(-1.0/lt);
 	double ua = sqrt(1.0-u*u);
-	double previous = Access(Nt-1,Temporal,Raw); // First case is trivial
-	Assign(Nt-1, Temporal, Transformed, xtPrior + sigmat * previous);
+	double previous = Access(Raw,Temporal,Position,Nt-1); // First case is trivial
+	Assign(Transformed,Temporal,Position,Nt-1, xtPrior + sigmat * previous);
 	for (int i = Nt - 2; i >= 0; i--) 
 	{
-    	previous = ua * Access(i,Temporal,Raw) + u * previous;
-    	Assign(i, Temporal, Transformed, xtPrior + sigmat * previous);
+    	previous = ua * Access(Raw,Temporal,Position,i) + u * previous;
+    	Assign(Transformed, Temporal, Position,i, xtPrior + sigmat * previous);
 	}
 }
 
@@ -355,18 +402,18 @@ void EfficiencyVector::ForwardTransform_Hyper()
 	
 	for (int i = 0; i < NVariancePops; ++i)
 	{
-		X = log_add_exp(X,Access(offset + i,Hyper,Raw));
+		X = log_add_exp(X,Access(Raw,Hyper,Position,offset + i));
 		
 	}
 		
 	for (int i = 0; i < NHyper; ++i)
 	{
-		double v = Access(i,Hyper,Raw);
+		double v = Access(Raw,Hyper,Position,i);
 		if (i >= offset)
 		{
 			v = exp(v - X);
 		}
-		Assign(i,Hyper,Transformed,v);
+		Assign(Transformed,Hyper,Position,i,v);
 	}	
 }
 

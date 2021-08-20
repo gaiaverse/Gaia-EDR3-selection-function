@@ -3,19 +3,6 @@
   <compounddef id="classDescentFunctor" kind="class" language="C++" prot="public">
     <compoundname>DescentFunctor</compoundname>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classDescentFunctor_1a0238893478e17443915b0c6506f09c04" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::RunningID</definition>
-        <argsstring></argsstring>
-        <name>RunningID</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="24" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="24" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" prot="private" static="no" mutable="no">
         <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt; &gt; &amp;</type>
         <definition>const std::vector&lt;std::vector&lt;Star&gt; &gt;&amp; DescentFunctor::Data</definition>
@@ -136,57 +123,18 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="41" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="41" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a025988646eabaa265556e4c9a2ac088d" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::needletN</definition>
-        <argsstring></argsstring>
-        <name>needletN</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="45" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="45" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a78abada6e722740ff7844c4f7b4d528d" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; int &gt;</type>
-        <definition>std::vector&lt;int&gt; DescentFunctor::needlet_u</definition>
-        <argsstring></argsstring>
-        <name>needlet_u</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="46" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="46" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a10d7497dae2dfdeb7fd3c446575d7dd6" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; int &gt;</type>
-        <definition>std::vector&lt;int&gt; DescentFunctor::needlet_v</definition>
-        <argsstring></argsstring>
-        <name>needlet_v</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="47" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="47" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a70cf6d28e2db7355c2fe25fb9570fefb" prot="private" static="no" mutable="no">
+      <memberdef kind="variable" id="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::needlet_w</definition>
+        <definition>std::vector&lt;double&gt; DescentFunctor::bVector</definition>
         <argsstring></argsstring>
-        <name>needlet_w</name>
+        <name>bVector</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="48" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="48" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="42" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -199,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="50" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="46" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -212,111 +160,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="51" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="51" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="47" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="47" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a35b69a5fdb491503662d678bc76c0bfe" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool DescentFunctor::SpaceActive</definition>
+      <memberdef kind="variable" id="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" prot="private" static="no" mutable="no">
+        <type><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></type>
+        <definition>EfficiencyVector DescentFunctor::Efficiency</definition>
         <argsstring></argsstring>
-        <name>SpaceActive</name>
+        <name>Efficiency</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="54" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="54" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a830a7df6679e753994705183e41a78a8" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool DescentFunctor::TimeActive</definition>
-        <argsstring></argsstring>
-        <name>TimeActive</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="55" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="55" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1af12f00f71067f3d5f070f1c5c9571c7e" prot="private" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool DescentFunctor::HyperActive</definition>
-        <argsstring></argsstring>
-        <name>HyperActive</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="56" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="56" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1afd8cc7df3928cdff5d798b45389144d9" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::ActiveParams</definition>
-        <argsstring></argsstring>
-        <name>ActiveParams</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="57" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="57" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1adcf093725a37c7203f07d3c9c841708b" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::TransformedPosition</definition>
-        <argsstring></argsstring>
-        <name>TransformedPosition</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="59" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="59" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1accca748d668ed61a06261b7d835c5c7a" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::TransformedGradient</definition>
-        <argsstring></argsstring>
-        <name>TransformedGradient</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="60" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="60" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::bVector</definition>
-        <argsstring></argsstring>
-        <name>bVector</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="61" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="61" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a54c89e2904dcda1e1f484ced58daa6df" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; bool &gt;</type>
-        <definition>std::vector&lt;bool&gt; DescentFunctor::freezeOuts</definition>
-        <argsstring></argsstring>
-        <name>freezeOuts</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="64" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="64" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="49" column="18" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -329,7 +186,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="80" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="80" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="55" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="55" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -344,7 +201,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="82" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="82" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="57" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="57" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -357,7 +214,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="84" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="84" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="59" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="59" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -370,7 +227,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="85" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="85" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="60" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="60" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -383,169 +240,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="87" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="87" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a80f4fb498c367c3bf9752163cb13f8f5" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::FrozenSpace</definition>
-        <argsstring></argsstring>
-        <name>FrozenSpace</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="88" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="88" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a2bddad96900bc85af34e773c092c257f" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::FrozenTime</definition>
-        <argsstring></argsstring>
-        <name>FrozenTime</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="89" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="89" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a8d0f68c56e365aa9d2a6804ea2627de8" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::FrozenHypers</definition>
-        <argsstring></argsstring>
-        <name>FrozenHypers</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="90" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="90" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="62" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="62" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classDescentFunctor_1a78455b0e5345ec7d495d3c9af61695ac" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::ForwardTransform</definition>
-        <argsstring>(const VectorXd &amp;z)</argsstring>
-        <name>ForwardTransform</name>
-        <param>
-          <type>const VectorXd &amp;</type>
-          <declname>z</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="67" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1acfde48e683f6c72b4d6538f14143426e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::ForwardTransform_Spatial</definition>
-        <argsstring>(const VectorXd &amp;z)</argsstring>
-        <name>ForwardTransform_Spatial</name>
-        <param>
-          <type>const VectorXd &amp;</type>
-          <declname>z</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="68" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1a1eb63eb2f604355eaab892aaf5d81f52" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::ForwardTransform_Temporal</definition>
-        <argsstring>(const VectorXd &amp;z)</argsstring>
-        <name>ForwardTransform_Temporal</name>
-        <param>
-          <type>const VectorXd &amp;</type>
-          <declname>z</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="69" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1a9b8a3d6e0f490a4a4fca6c5a022e9e19" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::ForwardTransform_Hyper</definition>
-        <argsstring>(const VectorXd &amp;z)</argsstring>
-        <name>ForwardTransform_Hyper</name>
-        <param>
-          <type>const VectorXd &amp;</type>
-          <declname>z</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="70" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1a363bfef318602a75e3bdba3e23cb38e9" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::BackwardTransform</definition>
-        <argsstring>()</argsstring>
-        <name>BackwardTransform</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="72" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1aa948a7525eb380f8e69730fddce4a699" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::BackwardTransform_Spatial</definition>
-        <argsstring>()</argsstring>
-        <name>BackwardTransform_Spatial</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="73" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1ab0f4dac51f523a6eba16a0eadc9bc627" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::BackwardTransform_Temporal</definition>
-        <argsstring>()</argsstring>
-        <name>BackwardTransform_Temporal</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="74" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1aa4ac4a82816f4f9501e5a5cd96c521e3" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::BackwardTransform_Hyper</definition>
-        <argsstring>()</argsstring>
-        <name>BackwardTransform_Hyper</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="75" column="6"/>
-      </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void DescentFunctor::SaveHyperBuffer</definition>
@@ -557,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="77" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="52" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -570,30 +268,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="78" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="53" column="6"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classDescentFunctor_1a8d72ed3391cb867e5568ca2cc1b4c325" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>DescentFunctor::DescentFunctor</definition>
-        <argsstring>(int n, const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data, int nParams, std::string outdir, int nStars, int maxBatches, bool timeActive, bool spaceActive, bool hyperActive)</argsstring>
+        <argsstring>(const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data, std::string outdir, std::string loadPosition, int nStars, int maxBatches)</argsstring>
         <name>DescentFunctor</name>
-        <param>
-          <type>int</type>
-          <declname>n</declname>
-        </param>
         <param>
           <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt;&gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>nParams</declname>
+          <type>std::string</type>
+          <declname>outdir</declname>
         </param>
         <param>
           <type>std::string</type>
-          <declname>outdir</declname>
+          <declname>loadPosition</declname>
         </param>
         <param>
           <type>int</type>
@@ -603,25 +297,13 @@
           <type>int</type>
           <declname>maxBatches</declname>
         </param>
-        <param>
-          <type>bool</type>
-          <declname>timeActive</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>spaceActive</declname>
-        </param>
-        <param>
-          <type>bool</type>
-          <declname>hyperActive</declname>
-        </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="92" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="92" bodyend="147"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="64" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="64" bodyend="78"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a38f1c319b730f318c9ce89718e377ebf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -646,7 +328,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="148" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="79" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a0c3a1b76e6fce3713c6d6a8761ff1bf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -671,7 +353,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="151" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="82" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1acfae2cdc2983a8eb215fb334bcdb0863" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -688,7 +370,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="152" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="83" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a3de250a0703477a82312614785bcdb8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -717,49 +399,23 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="153" column="6"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1a516e1d332b2ce3d3307e2ee67ee0b94f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::Unfreeze</definition>
-        <argsstring>()</argsstring>
-        <name>Unfreeze</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="154" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="84" column="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="22" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="21" bodyend="155"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="23" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="22" bodyend="86"/>
     <listofallmembers>
-      <member refid="classDescentFunctor_1afd8cc7df3928cdff5d798b45389144d9" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ActiveParams</name></member>
-      <member refid="classDescentFunctor_1a363bfef318602a75e3bdba3e23cb38e9" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>BackwardTransform</name></member>
-      <member refid="classDescentFunctor_1aa4ac4a82816f4f9501e5a5cd96c521e3" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>BackwardTransform_Hyper</name></member>
-      <member refid="classDescentFunctor_1aa948a7525eb380f8e69730fddce4a699" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>BackwardTransform_Spatial</name></member>
-      <member refid="classDescentFunctor_1ab0f4dac51f523a6eba16a0eadc9bc627" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>BackwardTransform_Temporal</name></member>
       <member refid="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>bVector</name></member>
       <member refid="classDescentFunctor_1a0c3a1b76e6fce3713c6d6a8761ff1bf3" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>
       <member refid="classDescentFunctor_1acfae2cdc2983a8eb215fb334bcdb0863" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>
       <member refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>Data</name></member>
-      <member refid="classDescentFunctor_1a8d72ed3391cb867e5568ca2cc1b4c325" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DescentFunctor</name></member>
+      <member refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DescentFunctor</name></member>
       <member refid="classDescentFunctor_1a38f1c319b730f318c9ce89718e377ebf" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DistributeCalculations</name></member>
-      <member refid="classDescentFunctor_1a78455b0e5345ec7d495d3c9af61695ac" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ForwardTransform</name></member>
-      <member refid="classDescentFunctor_1a9b8a3d6e0f490a4a4fca6c5a022e9e19" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ForwardTransform_Hyper</name></member>
-      <member refid="classDescentFunctor_1acfde48e683f6c72b4d6538f14143426e" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ForwardTransform_Spatial</name></member>
-      <member refid="classDescentFunctor_1a1eb63eb2f604355eaab892aaf5d81f52" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ForwardTransform_Temporal</name></member>
-      <member refid="classDescentFunctor_1a54c89e2904dcda1e1f484ced58daa6df" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>freezeOuts</name></member>
-      <member refid="classDescentFunctor_1a8d0f68c56e365aa9d2a6804ea2627de8" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>FrozenHypers</name></member>
-      <member refid="classDescentFunctor_1a80f4fb498c367c3bf9752163cb13f8f5" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>FrozenSpace</name></member>
-      <member refid="classDescentFunctor_1a2bddad96900bc85af34e773c092c257f" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>FrozenTime</name></member>
+      <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>Efficiency</name></member>
       <member refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Gradient</name></member>
-      <member refid="classDescentFunctor_1af12f00f71067f3d5f070f1c5c9571c7e" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>HyperActive</name></member>
       <member refid="classDescentFunctor_1a1f998c03a9864f6bbdee2e7d7857c0d5" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>HyperBuffer</name></member>
       <member refid="classDescentFunctor_1a0d7e6f52b2aaa45042e280b80e9c87b3" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>HyperBufferLoc</name></member>
       <member refid="classDescentFunctor_1aa036f1543bdf104b4aea24d09979cd8e" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>HyperBufferSize</name></member>
@@ -769,23 +425,13 @@
       <member refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>LoopID</name></member>
       <member refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>MaxBatches</name></member>
       <member refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>mut_gaps</name></member>
-      <member refid="classDescentFunctor_1a78abada6e722740ff7844c4f7b4d528d" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>needlet_u</name></member>
-      <member refid="classDescentFunctor_1a10d7497dae2dfdeb7fd3c446575d7dd6" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>needlet_v</name></member>
-      <member refid="classDescentFunctor_1a70cf6d28e2db7355c2fe25fb9570fefb" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>needlet_w</name></member>
-      <member refid="classDescentFunctor_1a025988646eabaa265556e4c9a2ac088d" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>needletN</name></member>
       <member refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>NStars</name></member>
       <member refid="classDescentFunctor_1ab7a75984c4b9325a2b606b48a88d4622" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>OutputDir</name></member>
       <member refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ResetPosition</name></member>
-      <member refid="classDescentFunctor_1a0238893478e17443915b0c6506f09c04" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>RunningID</name></member>
       <member refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>SaveHyperBuffer</name></member>
       <member refid="classDescentFunctor_1a3de250a0703477a82312614785bcdb8b" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>SavePosition</name></member>
-      <member refid="classDescentFunctor_1a35b69a5fdb491503662d678bc76c0bfe" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>SpaceActive</name></member>
       <member refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>StarsInLastBatch</name></member>
       <member refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>Start</name></member>
-      <member refid="classDescentFunctor_1a830a7df6679e753994705183e41a78a8" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>TimeActive</name></member>
-      <member refid="classDescentFunctor_1accca748d668ed61a06261b7d835c5c7a" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>TransformedGradient</name></member>
-      <member refid="classDescentFunctor_1adcf093725a37c7203f07d3c9c841708b" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>TransformedPosition</name></member>
-      <member refid="classDescentFunctor_1a516e1d332b2ce3d3307e2ee67ee0b94f" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Unfreeze</name></member>
       <member refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Value</name></member>
     </listofallmembers>
   </compounddef>

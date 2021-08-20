@@ -17,7 +17,6 @@
     <member refid="classCommandArgs_1a93f101d465df0ff6e79950c6b8ac4cd5" kind="function"><name>ReadArguments</name></member>
   </compound>
   <compound refid="classDescentFunctor" kind="class"><name>DescentFunctor</name>
-    <member refid="classDescentFunctor_1a0238893478e17443915b0c6506f09c04" kind="variable"><name>RunningID</name></member>
     <member refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" kind="variable"><name>Data</name></member>
     <member refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kind="variable"><name>L</name></member>
     <member refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" kind="variable"><name>Start</name></member>
@@ -27,49 +26,67 @@
     <member refid="classDescentFunctor_1a80f5b8fea4509da871f7f838f7a9fc12" kind="variable"><name>HyperSaved</name></member>
     <member refid="classDescentFunctor_1a5e6955e5998f4b649283966dc7318e05" kind="variable"><name>hyperStep</name></member>
     <member refid="classDescentFunctor_1ab7a75984c4b9325a2b606b48a88d4622" kind="variable"><name>OutputDir</name></member>
-    <member refid="classDescentFunctor_1a025988646eabaa265556e4c9a2ac088d" kind="variable"><name>needletN</name></member>
-    <member refid="classDescentFunctor_1a78abada6e722740ff7844c4f7b4d528d" kind="variable"><name>needlet_u</name></member>
-    <member refid="classDescentFunctor_1a10d7497dae2dfdeb7fd3c446575d7dd6" kind="variable"><name>needlet_v</name></member>
-    <member refid="classDescentFunctor_1a70cf6d28e2db7355c2fe25fb9570fefb" kind="variable"><name>needlet_w</name></member>
+    <member refid="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" kind="variable"><name>bVector</name></member>
     <member refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" kind="variable"><name>NStars</name></member>
     <member refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" kind="variable"><name>StarsInLastBatch</name></member>
-    <member refid="classDescentFunctor_1a35b69a5fdb491503662d678bc76c0bfe" kind="variable"><name>SpaceActive</name></member>
-    <member refid="classDescentFunctor_1a830a7df6679e753994705183e41a78a8" kind="variable"><name>TimeActive</name></member>
-    <member refid="classDescentFunctor_1af12f00f71067f3d5f070f1c5c9571c7e" kind="variable"><name>HyperActive</name></member>
-    <member refid="classDescentFunctor_1afd8cc7df3928cdff5d798b45389144d9" kind="variable"><name>ActiveParams</name></member>
-    <member refid="classDescentFunctor_1adcf093725a37c7203f07d3c9c841708b" kind="variable"><name>TransformedPosition</name></member>
-    <member refid="classDescentFunctor_1accca748d668ed61a06261b7d835c5c7a" kind="variable"><name>TransformedGradient</name></member>
-    <member refid="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" kind="variable"><name>bVector</name></member>
-    <member refid="classDescentFunctor_1a54c89e2904dcda1e1f484ced58daa6df" kind="variable"><name>freezeOuts</name></member>
+    <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kind="variable"><name>Efficiency</name></member>
     <member refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kind="variable"><name>MaxBatches</name></member>
     <member refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" kind="variable"><name>LoopID</name></member>
     <member refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" kind="variable"><name>Value</name></member>
     <member refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" kind="variable"><name>Gradient</name></member>
     <member refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" kind="variable"><name>mut_gaps</name></member>
-    <member refid="classDescentFunctor_1a80f4fb498c367c3bf9752163cb13f8f5" kind="variable"><name>FrozenSpace</name></member>
-    <member refid="classDescentFunctor_1a2bddad96900bc85af34e773c092c257f" kind="variable"><name>FrozenTime</name></member>
-    <member refid="classDescentFunctor_1a8d0f68c56e365aa9d2a6804ea2627de8" kind="variable"><name>FrozenHypers</name></member>
-    <member refid="classDescentFunctor_1a78455b0e5345ec7d495d3c9af61695ac" kind="function"><name>ForwardTransform</name></member>
-    <member refid="classDescentFunctor_1acfde48e683f6c72b4d6538f14143426e" kind="function"><name>ForwardTransform_Spatial</name></member>
-    <member refid="classDescentFunctor_1a1eb63eb2f604355eaab892aaf5d81f52" kind="function"><name>ForwardTransform_Temporal</name></member>
-    <member refid="classDescentFunctor_1a9b8a3d6e0f490a4a4fca6c5a022e9e19" kind="function"><name>ForwardTransform_Hyper</name></member>
-    <member refid="classDescentFunctor_1a363bfef318602a75e3bdba3e23cb38e9" kind="function"><name>BackwardTransform</name></member>
-    <member refid="classDescentFunctor_1aa948a7525eb380f8e69730fddce4a699" kind="function"><name>BackwardTransform_Spatial</name></member>
-    <member refid="classDescentFunctor_1ab0f4dac51f523a6eba16a0eadc9bc627" kind="function"><name>BackwardTransform_Temporal</name></member>
-    <member refid="classDescentFunctor_1aa4ac4a82816f4f9501e5a5cd96c521e3" kind="function"><name>BackwardTransform_Hyper</name></member>
     <member refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" kind="function"><name>SaveHyperBuffer</name></member>
     <member refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" kind="function"><name>ResetPosition</name></member>
-    <member refid="classDescentFunctor_1a8d72ed3391cb867e5568ca2cc1b4c325" kind="function"><name>DescentFunctor</name></member>
+    <member refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" kind="function"><name>DescentFunctor</name></member>
     <member refid="classDescentFunctor_1a38f1c319b730f318c9ce89718e377ebf" kind="function"><name>DistributeCalculations</name></member>
     <member refid="classDescentFunctor_1a0c3a1b76e6fce3713c6d6a8761ff1bf3" kind="function"><name>Calculate</name></member>
     <member refid="classDescentFunctor_1acfae2cdc2983a8eb215fb334bcdb0863" kind="function"><name>Calculate</name></member>
     <member refid="classDescentFunctor_1a3de250a0703477a82312614785bcdb8b" kind="function"><name>SavePosition</name></member>
-    <member refid="classDescentFunctor_1a516e1d332b2ce3d3307e2ee67ee0b94f" kind="function"><name>Unfreeze</name></member>
   </compound>
   <compound refid="classEfficiencyVector" kind="class"><name>EfficiencyVector</name>
-    <member refid="classEfficiencyVector_1a138e823e4829aadd9e43b475848804cf" kind="variable"><name>Raw</name></member>
-    <member refid="classEfficiencyVector_1af4687a6e7c72f35b35310e2368335b25" kind="variable"><name>Transformed</name></member>
-    <member refid="classEfficiencyVector_1a92c8c4eb6b6a416e34e8932150f97dd8" kind="function"><name>Transform</name></member>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kind="enum"><name>VectorMode</name></member>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4af71605802003c74662a1e79c4bc2e72a" kind="enumvalue"><name>Raw</name></member>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4a5d730d648e4a125ffb26b657134d9b24" kind="enumvalue"><name>Transformed</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kind="enum"><name>VectorComponent</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea1f4c469d28d6d6118881152ba4d10ca7" kind="enumvalue"><name>Temporal</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ceacac34fdc2ea3edb2031c5bc689ac1114" kind="enumvalue"><name>Spatial</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea43b9bc5417f2033c529ed1bea4b64628" kind="enumvalue"><name>Hyper</name></member>
+    <member refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kind="variable"><name>RawPosition</name></member>
+    <member refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kind="variable"><name>TransformedPosition</name></member>
+    <member refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kind="variable"><name>RawGradient</name></member>
+    <member refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kind="variable"><name>TransformedGradient</name></member>
+    <member refid="classEfficiencyVector_1ad0b89892a7b0c20b208217b0efd6e827" kind="variable"><name>KnownGapList</name></member>
+    <member refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" kind="variable"><name>needletN</name></member>
+    <member refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kind="variable"><name>needlet_u</name></member>
+    <member refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kind="variable"><name>needlet_v</name></member>
+    <member refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kind="variable"><name>needlet_w</name></member>
+    <member refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" kind="variable"><name>bVector</name></member>
+    <member refid="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" kind="variable"><name>CholeskyKg</name></member>
+    <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kind="variable"><name>cholesky_tol</name></member>
+    <member refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kind="variable"><name>choleskyN</name></member>
+    <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
+    <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
+    <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
+    <member refid="classEfficiencyVector_1a11465197ea7af2c92cf4a6cb740ad7aa" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1a772d881ddda170a107779f648ba1b87c" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1a3883c0971a71b2f5a146d3bb7f4104ee" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1aa9e4ec6602df7d5d7e50f1b17ecff483" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1aa81a69e044d56f994299e89d026662f9" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1a0c0fcc832350f283ba054773b26bd2e9" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1a9517567ec8a6e57fc9bca6fdde68aafd" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1a234e0b297bb72d89f0f47c21b6aaeeeb" kind="function"><name>ForwardTransform</name></member>
+    <member refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kind="function"><name>BackwardTransform</name></member>
+    <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kind="function"><name>ForwardTransform_Hyper</name></member>
+    <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kind="function"><name>ForwardTransform_Spatial</name></member>
+    <member refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kind="function"><name>ForwardTransform_Temporal</name></member>
+    <member refid="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" kind="function"><name>BackwardTransform_Hyper</name></member>
+    <member refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" kind="function"><name>BackwardTransform_Spatial</name></member>
+    <member refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" kind="function"><name>BackwardTransform_Temporal</name></member>
+    <member refid="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" kind="function"><name>GenerateVector</name></member>
+    <member refid="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" kind="function"><name>LoadVector</name></member>
+    <member refid="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" kind="function"><name>LoadNeedlets</name></member>
+    <member refid="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" kind="function"><name>LoadCholesky</name></member>
+    <member refid="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" kind="function"><name>Reset</name></member>
   </compound>
   <compound refid="structFile" kind="struct"><name>File</name>
     <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kind="variable"><name>Name</name></member>
@@ -80,7 +97,6 @@
     <member refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" kind="variable"><name>NStars</name></member>
   </compound>
   <compound refid="classLikelihoodData" kind="class"><name>LikelihoodData</name>
-    <member refid="classLikelihoodData_1a9cb6c7ac3a9bfb1c9108ead8ea8fde91" kind="variable"><name>ID</name></member>
     <member refid="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" kind="variable"><name>Stars</name></member>
     <member refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" kind="variable"><name>healpix_fov_1</name></member>
     <member refid="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" kind="variable"><name>healpix_fov_2</name></member>
@@ -98,7 +114,7 @@
     <member refid="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" kind="variable"><name>grad_elu_xml2</name></member>
     <member refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" kind="variable"><name>VariancePopulations</name></member>
     <member refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" kind="variable"><name>Mode</name></member>
-    <member refid="classLikelihoodData_1abe754db1273e8ed99a0bf08a26c13aad" kind="function"><name>LikelihoodData</name></member>
+    <member refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" kind="function"><name>LikelihoodData</name></member>
     <member refid="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" kind="function"><name>GeneratePopulations</name></member>
   </compound>
   <compound refid="classLogLikelihood" kind="class"><name>LogLikelihood</name>
@@ -106,7 +122,7 @@
     <member refid="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" kind="variable"><name>Gradient</name></member>
     <member refid="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" kind="variable"><name>StarsUsed</name></member>
     <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kind="variable"><name>Data</name></member>
-    <member refid="classLogLikelihood_1a677cb07d3097385392fe49944e522858" kind="function"><name>LogLikelihood</name></member>
+    <member refid="classLogLikelihood_1a2dabecfc63956f1527ccda8098d63bf5" kind="function"><name>LogLikelihood</name></member>
     <member refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" kind="function"><name>Calculate</name></member>
     <member refid="classLogLikelihood_1a323459623fea6256267c9724ceea8ec9" kind="function"><name>Reset</name></member>
     <member refid="classLogLikelihood_1a85c0af6993edd46373165089a11b4fb7" kind="function"><name>PerStarContribution</name></member>
@@ -118,17 +134,9 @@
     <member refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" kind="function"><name>ExactPoissonContribution</name></member>
   </compound>
   <compound refid="classLogLikelihoodPrior" kind="class"><name>LogLikelihoodPrior</name>
-    <member refid="classLogLikelihoodPrior_1a26006b4353f2d1983cfd936f1969953c" kind="variable"><name>Kg_decomposed</name></member>
-    <member refid="classLogLikelihoodPrior_1a5b64d5b52eec4a6ab6b42345c77ba7f2" kind="variable"><name>CholeskyKg</name></member>
-    <member refid="classLogLikelihoodPrior_1ac4567245e5f7eaa048016dbb3c7ebac4" kind="variable"><name>cholesky_tol</name></member>
-    <member refid="classLogLikelihoodPrior_1acb82f3170dc5ef9992ca3c0b1d451e08" kind="variable"><name>choleskyN</name></member>
-    <member refid="classLogLikelihoodPrior_1aa0413d932c2bc78bde5b6b0d69efbaa3" kind="variable"><name>cholesky_u</name></member>
-    <member refid="classLogLikelihoodPrior_1a9ee359462c406bcd3e0a851eec71ba07" kind="variable"><name>cholesky_v</name></member>
-    <member refid="classLogLikelihoodPrior_1a4af02e24015068335bd22d870b0cfb32" kind="variable"><name>cholesky_w</name></member>
-    <member refid="classLogLikelihoodPrior_1a5aa0180264b8be7d7f4bf842bf3fc763" kind="function"><name>LogLikelihoodPrior</name></member>
-    <member refid="classLogLikelihoodPrior_1ac3213ddda043b381b0175ffd89445180" kind="function"><name>TransformPrior</name></member>
-    <member refid="classLogLikelihoodPrior_1ae3178e88d84bd9602a451d5742bc3538" kind="function"><name>RawPrior</name></member>
-    <member refid="classLogLikelihoodPrior_1a218acdef04bef419aebc1f5870469b42" kind="function"><name>MakeCovarianceMatrix</name></member>
+    <member refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" kind="function"><name>LogLikelihoodPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1abc301c0e84d5f8e459a5d578697e6649" kind="function"><name>TransformPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1a4ae49452332edccd86ed569dc85d7585" kind="function"><name>RawPrior</name></member>
   </compound>
   <compound refid="structMemoryBuffer" kind="struct"><name>MemoryBuffer</name>
     <member refid="structMemoryBuffer_1a9dd45cbef6dc3a2b739930e4dec409d3" kind="variable"><name>Size</name></member>
@@ -278,12 +286,11 @@
   <compound refid="VariancePopulation_8h" kind="file"><name>VariancePopulation.h</name>
   </compound>
   <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
+    <member refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
   </compound>
   <compound refid="GlobalConstants_8h" kind="file"><name>GlobalConstants.h</name>
-    <member refid="GlobalConstants_8h_1aedaf17ffacd0615a869d8a49d6d6b726" kind="define"><name>FILEGAP</name></member>
     <member refid="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" kind="define"><name>ERROR</name></member>
-    <member refid="GlobalConstants_8h_1a222a96bce520d86e95edc95efb9f5856" kind="define"><name>GlobalLog</name></member>
-    <member refid="GlobalConstants_8h_1afdab2359a7bc6cf0c2e883c63ce9cfd7" kind="define"><name>GlobalDebug</name></member>
     <member refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kind="variable"><name>RootID</name></member>
     <member refid="GlobalConstants_8h_1aeab1391c53c52eb2b029db07141d2c7c" kind="variable"><name>PipelineMinVisits</name></member>
     <member refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kind="variable"><name>TotalScanningTime</name></member>
@@ -308,7 +315,6 @@
   <compound refid="GlobalVariables_8h" kind="file"><name>GlobalVariables.h</name>
     <member refid="GlobalVariables_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
     <member refid="GlobalVariables_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
-    <member refid="GlobalVariables_8h_1a52a571ed4989a5de6b68bb06a58972ec" kind="define"><name>GLOBAL_LOGGING</name></member>
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kind="enum"><name>VarianceScaling</name></member>
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba054c79124c2ce286684afeaa9ed56726" kind="enumvalue"><name>NScaling</name></member>
     <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59ebae939c17b2563c480e0fe2bc793f2a5ba" kind="enumvalue"><name>MScaling</name></member>
@@ -319,8 +325,7 @@
     <member refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kind="variable"><name>Nm</name></member>
     <member refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" kind="variable"><name>NVariancePops</name></member>
     <member refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kind="variable"><name>hyperOrder</name></member>
-    <member refid="GlobalVariables_8h_1a7c36a597048b7516c28c7ccfb3e03fa5" kind="variable"><name>xtPriorNonGap</name></member>
-    <member refid="GlobalVariables_8h_1aa638f0bdf5fab923c414a10630cd4710" kind="variable"><name>xtPriorInsideGap</name></member>
+    <member refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" kind="variable"><name>xtPrior</name></member>
     <member refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kind="variable"><name>studentNu</name></member>
     <member refid="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" kind="variable"><name>sigmat</name></member>
     <member refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" kind="variable"><name>lm</name></member>
@@ -337,8 +342,6 @@
     <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
     <member refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" kind="variable"><name>useHyperPrior</name></member>
     <member refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kind="variable"><name>ignoreGapObs</name></member>
-    <member refid="GlobalVariables_8h_1abc1f58c1a2824a935e9edb84c273a240" kind="variable"><name>GlobalLoggingLevel</name></member>
-    <member refid="GlobalVariables_8h_1a753506c68278b2271e819b626a361c15" kind="variable"><name>GlobalDebuggingLevel</name></member>
     <member refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kind="variable"><name>GapList</name></member>
     <member refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kind="variable"><name>BufferedGapList</name></member>
     <member refid="GlobalVariables_8h_1a8d760d41f05317a4be2239e0d4582e51" kind="function"><name>initialisedVector</name></member>
