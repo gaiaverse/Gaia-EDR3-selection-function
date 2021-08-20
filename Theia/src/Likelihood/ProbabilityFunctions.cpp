@@ -303,10 +303,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 		double s2 = s2_base + pop->Variance(nPrime);
 	    double s = sqrt(s2);
 	    
-	    if (std::isnan(s) || std::isinf(s) )
-	    {
-			pop->Print(nPrime);
-		}
+
 	    
 		double value_Full;
 		double value_Approx;

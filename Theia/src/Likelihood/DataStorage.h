@@ -5,74 +5,11 @@
 #include "MiscFunctions.h"
 #include <string>
 #include <vector>
-
+#include "VariancePopulation.h"
 #include "../libs/JSL/JSL.h"
 
 enum Probability { NormalApproximation, PoissonBinomial};
 
-struct VariancePopulation
-{
-	double Fraction;
-	std::vector<double> PowerContributions;
-	
-	VariancePopulation(){};
-	VariancePopulation(double fraction,std::vector<double> contributions)
-	{
-		Fraction = fraction;
-		PowerContributions = contributions;				
-	}; 
-	
-
-	double Variance(double scaling)
-	{
-		double v = pow(PowerContributions[0],2);
-		
-		for (int i = 1; i <= hyperOrder/2; ++i)
-		{
-			int power = 2*i;
-			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
-			v += pow(term,power); 
-		} 
-		
-
-		return v;
-		
-	}
-	double dVariancedN(double scaling)
-	{
-		double v = 0;
-		
-		for (int i = 1; i <= hyperOrder/2; ++i)
-		{
-			int power = 2*i;
-			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
-			v += power * pow(term,power-1) * PowerContributions[power]; 
-		} 
-		return v;
-	}
-	double dVariancedAlpha(int term, double scaling)
-	{
-		double v;
-		if (term > 0)
-		{
-			if (term % 2 == 0)
-			{
-				double bracket = PowerContributions[term-1] + PowerContributions[term] * scaling;
-				v = term * pow(bracket,term - 1) * scaling;
-			}
-			else
-			{
-				double bracket = PowerContributions[term] + PowerContributions[term+1] * scaling;
-				v = (term + 1 ) * pow(bracket,term);
-			}
-		}
-		else
-		{
-			v = 2 * PowerContributions[0];
-		}
-		return v;
-	}
-};
 
 /*!
  A magical, mythical class? 

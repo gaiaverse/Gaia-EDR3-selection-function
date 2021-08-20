@@ -224,12 +224,12 @@
   </compound>
   <compound refid="structVariancePopulation" kind="struct"><name>VariancePopulation</name>
     <member refid="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" kind="variable"><name>Fraction</name></member>
-    <member refid="structVariancePopulation_1af81f6fdf859a22cc06de6f5bfb0ed0d0" kind="variable"><name>PowerContributions</name></member>
+    <member refid="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" kind="variable"><name>Term</name></member>
     <member refid="structVariancePopulation_1a1afdc6aabbc57c2f7738e72ad0455061" kind="function"><name>VariancePopulation</name></member>
     <member refid="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" kind="function"><name>VariancePopulation</name></member>
-    <member refid="structVariancePopulation_1a7328d57433a870f569cf6e2bcb12e2f3" kind="function"><name>Variance</name></member>
-    <member refid="structVariancePopulation_1a5a54f3140bc15898d3bf57340e19b90f" kind="function"><name>dVariancedN</name></member>
-    <member refid="structVariancePopulation_1ad2a89f4584be76a4822005764f2f6e6c" kind="function"><name>dVariancedAlpha</name></member>
+    <member refid="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" kind="function"><name>Variance</name></member>
+    <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" kind="function"><name>dVariancedN</name></member>
+    <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" kind="function"><name>dVariancedAlpha</name></member>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
   </compound>

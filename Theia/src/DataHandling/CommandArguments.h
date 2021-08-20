@@ -43,7 +43,7 @@ class CommandArgs
 		
 		
 		//! Pointers list so can easily loop over the (heterogenous) array for assigments
-		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps,&Minibatches,&HarnessRelease,&HarnessSlowDown};
+		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps,&Minibatches,&HarnessRelease,&HarnessSlowDown};
 		
 		//!Default constructor....doesn't do anything as the arguments self-initialise
 		CommandArgs(){};

@@ -88,7 +88,6 @@ VectorXd RootProcess()
 	
 	//set up other properties
 	op.Properties.MiniBatches = Args.Minibatches;
-	op.Properties.BurnInSteps = Args.FreezeSteps;
 	op.Progress.StepsPerPositionSave = Args.SaveSteps;
 	op.Progress.UniquePositionSaves = Args.SaveAllSteps;
 	

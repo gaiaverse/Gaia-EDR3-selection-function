@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structVariancePopulation" kind="struct" language="C++" prot="public">
     <compoundname>VariancePopulation</compoundname>
+    <includes refid="DataStorage_8h" local="no">DataStorage.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -9,25 +10,27 @@
         <argsstring></argsstring>
         <name>Fraction</name>
         <briefdescription>
+<para>The fraction of stars which belong to this population. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="15" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="15" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="20" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="20" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structVariancePopulation_1af81f6fdf859a22cc06de6f5bfb0ed0d0" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; VariancePopulation::PowerContributions</definition>
+        <definition>std::vector&lt;double&gt; VariancePopulation::Term</definition>
         <argsstring></argsstring>
-        <name>PowerContributions</name>
+        <name>Term</name>
         <briefdescription>
+<para>A list of the (unconstrained) prefactors within the polynomial expansion. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="16" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="16" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="23" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -37,12 +40,13 @@
         <argsstring>()</argsstring>
         <name>VariancePopulation</name>
         <briefdescription>
+<para>Default constructor. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="18" bodyend="18"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="26" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="26" bodyend="26"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -60,49 +64,91 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Constructor class <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fraction</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value assigned to Fraction </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>contributions</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The vector assigned to Term </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="19" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="19" bodyend="23"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="33" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="33" bodyend="37"/>
       </memberdef>
-      <memberdef kind="function" id="structVariancePopulation_1a7328d57433a870f569cf6e2bcb12e2f3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double VariancePopulation::Variance</definition>
-        <argsstring>(double scaling)</argsstring>
+        <argsstring>(double n)</argsstring>
         <name>Variance</name>
         <param>
           <type>double</type>
-          <declname>scaling</declname>
+          <declname>n</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Calculates the Variance contribution from this population <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>v a guaranteed positive number </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="26" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="26" bodyend="40"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="44" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="44" bodyend="58"/>
       </memberdef>
-      <memberdef kind="function" id="structVariancePopulation_1a5a54f3140bc15898d3bf57340e19b90f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double VariancePopulation::dVariancedN</definition>
-        <argsstring>(double scaling)</argsstring>
+        <argsstring>(double n)</argsstring>
         <name>dVariancedN</name>
         <param>
           <type>double</type>
-          <declname>scaling</declname>
+          <declname>n</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Calculates the derivative of the Variance with respect to the scaling parameter <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>dv/dn, the analytical derivative of the variance </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="41" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="41" bodyend="52"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="65" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="65" bodyend="76"/>
       </memberdef>
-      <memberdef kind="function" id="structVariancePopulation_1ad2a89f4584be76a4822005764f2f6e6c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
         <definition>double VariancePopulation::dVariancedAlpha</definition>
-        <argsstring>(int term, double scaling)</argsstring>
+        <argsstring>(int term, double n)</argsstring>
         <name>dVariancedAlpha</name>
         <param>
           <type>int</type>
@@ -110,28 +156,49 @@
         </param>
         <param>
           <type>double</type>
-          <declname>scaling</declname>
+          <declname>n</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Calculates the derivative of the variance with respect to the ith-order Term parameter <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>term</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>n</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>dv/d alpha_term, the derivative of the function </para>
+</simplesect>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="53" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="53" bodyend="74"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="84" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="84" bodyend="105"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
+<para>This is a structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="14" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="13" bodyend="75"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="17" bodyend="106"/>
     <listofallmembers>
-      <member refid="structVariancePopulation_1ad2a89f4584be76a4822005764f2f6e6c" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedAlpha</name></member>
-      <member refid="structVariancePopulation_1a5a54f3140bc15898d3bf57340e19b90f" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedN</name></member>
+      <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedAlpha</name></member>
+      <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedN</name></member>
       <member refid="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>Fraction</name></member>
-      <member refid="structVariancePopulation_1af81f6fdf859a22cc06de6f5bfb0ed0d0" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>PowerContributions</name></member>
-      <member refid="structVariancePopulation_1a7328d57433a870f569cf6e2bcb12e2f3" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>Variance</name></member>
+      <member refid="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>Term</name></member>
+      <member refid="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>Variance</name></member>
       <member refid="structVariancePopulation_1a1afdc6aabbc57c2f7738e72ad0455061" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>VariancePopulation</name></member>
       <member refid="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>VariancePopulation</name></member>
     </listofallmembers>

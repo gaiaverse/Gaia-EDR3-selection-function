@@ -31,7 +31,10 @@ Different prescriptions are possible with only minor modifications to the code, 
 Needlets
 *********
 
+(I don't quite understand enough about how these are generated....would be useful to have help on that!)
+
 **************************
 Needlet-Healpix Mapping
 **************************
 
+(I don't quite understand enough about how these are generated....would be useful to have help on that!)
