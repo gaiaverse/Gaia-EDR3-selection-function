@@ -42,15 +42,6 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 	}
 
 	double v;
-	switch (mode)
-	{
-		case Raw:
-			v = RawPosition[index];
-			break;
-		case Transformed:
-			v = TransformedPosition[index];
-			break;
-	}
 	
 	if (mode == Raw)
 	{
@@ -417,39 +408,39 @@ void EfficiencyVector::ForwardTransform_Hyper()
 	}	
 }
 
-//~ void DescentFunctor::BackwardTransform()
-//~ {
-	//~ BackwardTransform_Temporal();
+void EfficiencyVector::BackwardTransform()
+{
+	BackwardTransform_Temporal();
 	
 	//~ BackwardTransform_Spatial();
 	
 	//~ BackwardTransform_Hyper();
+}
 
-//~ }
-
-//~ void DescentFunctor::BackwardTransform_Temporal()
-//~ {
-
-	//~ double u = exp(-1.0/lt);
-	//~ double ua = 1.0/sqrt(1.0-u*u);
-	//~ double ub = -u*ua;
-	//~ double sigmata = sigmat/ua;
+void EfficiencyVector::BackwardTransform_Temporal()
+{
+	double u = exp(-1.0/lt);
+	double ua = 1.0/sqrt(1.0-u*u);
+	double ub = -u*ua;
+	double sigmata = sigmat/ua;
 	
-	//~ if (Nt > 1)
-	//~ {
-	    //~ Gradient[0] = sigmata * TransformedGradient[0];
-	    //~ for (int i = 1; i < Nt-1; i++) {
-	        //~ Gradient[i] = u * Gradient[i-1] + sigmata * TransformedGradient[i];
-	    //~ }
-	    //~ Gradient[Nt-1] = -ub * Gradient[Nt-2] + sigmat * TransformedGradient[Nt-1];
-	    
-	 
-	//~ }
-	//~ else
-	//~ {
-		//~ Gradient[0] = TransformedGradient[0]*sigmat;
-	//~ }
-//~ }
+	if (Nt > 1)
+	{
+	    double previous = sigmata * Access(Transformed,Temporal,Gradient,0);
+	    Assign(Raw,Temporal,Gradient,0,previous);
+	    for (int i = 1; i < Nt-1; i++) 
+	    {
+			previous = u * previous + sigmata * Access(Transformed,Temporal,Gradient,i);
+	        Assign(Raw,Temporal,Gradient,i,previous);
+	    }
+	    previous = -ub * previous + sigmat * Access(Transformed,Temporal,Gradient,Nt-1);
+	    Assign(Raw,Temporal,Gradient,Nt-1, previous);
+	}
+	else
+	{
+		Assign(Raw,Temporal,Gradient,0,sigmat*Access(Transformed,Temporal,Gradient,0));
+	}
+}
 
 //~ void DescentFunctor::BackwardTransform_Spatial()
 //~ {
