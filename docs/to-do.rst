@@ -18,8 +18,8 @@ Things that need doing, or doing better:
 
 * |ss| Write a decent to-do list |se|
 * Write an example-usage page
-* Create pages for all classes
-* Work out what a 'module index' is, and if we want one
+* |ss| Create pages for all classes |se|
+* |ss| Work out what a 'module index' is, and if we want one |se|
 * Link to paper in :doc:`background`
 * Complete the probability model description in :doc:`background`
 * How are the stellar observation lists generated / where can they be retrieved from? 
