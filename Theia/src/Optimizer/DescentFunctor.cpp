@@ -9,56 +9,13 @@ void DescentFunctor::ResetPosition()
 	Value = 0;
 }
 
-void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,const VectorXd  & x)
+void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave)
 {
-	std::string transBase = OutputDir + "/";
-	std::string intBase = OutputDir + "/";
-	Efficiency.ForwardTransform(x);
-	if (finalSave)
-	{
-		transBase += "FinalPosition_";
-		intBase = transBase;
-		
-	}
-	else
-	{
-		intBase += TempDirName + "/TempPosition";
-		transBase = intBase;
-		if (uniqueSave)
-		{
-			transBase += std::to_string(saveStep);
-		}
-		intBase += "_";
-		transBase += "_";
-	}
-	
-	
-	std::fstream rawfile;
-	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
-	
-	for (int i = 0; i < x.size(); ++i)
-	{
-		rawfile << std::setprecision(10) << x[i] << "\n";
-	}
-	std::fstream transfile;
-	transfile.open(transBase + "TransformedParameters.dat",std::ios::out);
-
-	
-	for (int i = 0; i < totalTransformedParams; ++i)
-	{
-		transfile << std::setprecision(10) << Efficiency.TransformedPosition[i] << "\n";
-		
-
-	}
-
-	rawfile.close();
-	transfile.close();
-	
-
+	Efficiency.Save(finalSave,saveStep,uniqueSave);
 }
 
 
-void DescentFunctor::DistributeCalculations(const VectorXd &inputPosition, int batchID, int effectiveBatches)
+void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosition, int batchID, int effectiveBatches)
 {
 	const int n =  totalTransformedParams;
 	
@@ -104,12 +61,12 @@ void DescentFunctor::DistributeCalculations(const VectorXd &inputPosition, int b
 }
 
 
-void DescentFunctor::Calculate(const VectorXd & x)
+void DescentFunctor::Calculate(const std::vector<double> & x)
 {	
 	Calculate(x,0,1);
 }
 
-void DescentFunctor::Calculate(const VectorXd &x, int batchID, int effectiveBatches)
+void DescentFunctor::Calculate(const std::vector<double> &x, int batchID, int effectiveBatches)
 {
 	DistributeCalculations(x,batchID,effectiveBatches);
 }

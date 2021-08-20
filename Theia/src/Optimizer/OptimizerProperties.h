@@ -2,10 +2,9 @@
 #include <ctime>
 #include <vector>
 
-enum OptimiserModes {ADAM, ADABADAM};
+
 struct OptimiserProperties
 {
-	OptimiserModes Mode;
 	int MiniBatches;
 	int BurnInSteps;
 	double StepSize;

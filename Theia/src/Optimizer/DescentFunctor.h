@@ -12,7 +12,6 @@
 #include "../Likelihood/ProbabilityFunctions.h"
 
 #include "../Main/EfficiencyVector.h"
-using Eigen::VectorXd;
 
 //DescentFunctor is a function-like class which acts as a wrapper for the gradient descent algorithm. 
 //The overloaded operator () allows the class to be called as a function by LBFGs, but the classlike nature allows the function to 
@@ -33,20 +32,13 @@ class DescentFunctor
 
 		//running values for the loglikelihood and gradient 
 
-		std::vector<std::vector<std::vector<double>>> HyperBuffer;
-		int HyperBufferLoc;
-		int HyperBufferSize = 30;
-		bool HyperSaved = false;
-		int hyperStep = 0;
-		std::string OutputDir;		
-		std::vector<double> bVector;
-		
+
 		
   
 		int NStars;
 		int StarsInLastBatch;
 		
-		EfficiencyVector Efficiency;
+		
 		
 		
 		void SaveHyperBuffer();
@@ -55,33 +47,30 @@ class DescentFunctor
 		int MaxBatches;
 	public:
 		int LoopID;
-
+		EfficiencyVector Efficiency;
 		double Value;
 		std::vector<double> Gradient;
 		
 		std::vector<double> mut_gaps;
 
-	    DescentFunctor(const std::vector<std::vector<Star>> & data, std::string outdir, std::string loadPosition, int nStars, int maxBatches): Data(data), L(data),Efficiency(loadPosition)
+	    DescentFunctor(const std::vector<std::vector<Star>> & data, std::string outdir, std::string loadPosition, int nStars, int maxBatches): Data(data), L(data),Efficiency(loadPosition,outdir)
 	    {
 			
 			NStars = nStars;
 			LoopID = 0;
-			Start = std::chrono::system_clock::now();
+
 			MaxBatches = maxBatches;		
 			
-			OutputDir = outdir;
-			
+
 			Value = 0;
 
-			HyperBuffer = std::vector(NVariancePops,std::vector(hyperOrder+2,std::vector(HyperBufferSize,0.0)));
-			HyperBufferLoc = 0;
 		}
-	    void DistributeCalculations(const VectorXd &y, int batchID, int effectiveBatches);
+	    void DistributeCalculations(const std::vector<double> &y, int batchID, int effectiveBatches);
  
 		
-		void Calculate(const VectorXd &x, int batchID, int effectiveBatches);
-		void Calculate(const VectorXd &x);
-		void SavePosition(bool finalSave, int saveStep, bool uniqueSave, const VectorXd & x);
+		void Calculate(const std::vector<double> &x, int batchID, int effectiveBatches);
+		void Calculate(const std::vector<double> &x);
+		void SavePosition(bool finalSave, int saveStep, bool uniqueSave);
 		
 };
 

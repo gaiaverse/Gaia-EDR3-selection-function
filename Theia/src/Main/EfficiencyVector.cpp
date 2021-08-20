@@ -1,7 +1,7 @@
 #include "EfficiencyVector.h"
 
 
-EfficiencyVector::EfficiencyVector(std::string load_location)
+EfficiencyVector::EfficiencyVector(std::string load_location, std::string saveLocation): SaveLocation(saveLocation)
 {
 	bool loadIn = !(load_location == "__null_location__");
 	RawPosition = std::vector<double>(totalRawParams,0.0);
@@ -337,11 +337,11 @@ void EfficiencyVector::Reset()
 	std::fill(RawGradient.begin(), RawGradient.end(),0);
 }
 
-void EfficiencyVector::ForwardTransform(const VectorXd &z)
+void EfficiencyVector::ForwardTransform(const std::vector<double> &z)
 {
 	Reset();
 
-	RawPosition = std::vector<double>(&z[0],z.data() + z.cols()*z.rows());
+	RawPosition = z;
 
 	ForwardTransform_Temporal();
 	
@@ -493,3 +493,46 @@ void EfficiencyVector::BackwardTransform_Hyper()
 		Assign(Raw,Hyper,Gradient,hyperFractionOffset+i,sum);
 	}	
 }	
+
+void EfficiencyVector::Save(bool finalSave,int saveStep,bool uniqueSave)
+{
+	std::string transBase = SaveLocation + "/";
+	std::string intBase = SaveLocation + "/";
+	
+	if (finalSave)
+	{
+		transBase += "FinalPosition_";
+		intBase = transBase;	
+	}
+	else
+	{
+		intBase += TempDirName + "/TempPosition";
+		transBase = intBase;
+		if (uniqueSave)
+		{
+			transBase += std::to_string(saveStep);
+		}
+		intBase += "_";
+		transBase += "_";
+	}
+	
+	
+	std::fstream rawfile;
+	rawfile.open(intBase + "InternalParameters.dat",std::ios::out);
+	
+	for (int i = 0; i < totalRawParams; ++i)
+	{
+		rawfile << std::setprecision(10) << RawPosition[i] << "\n";
+	}
+	std::fstream transfile;
+	transfile.open(transBase + "TransformedParameters.dat",std::ios::out);
+
+	
+	for (int i = 0; i < totalTransformedParams; ++i)
+	{
+		transfile << std::setprecision(10) << TransformedPosition[i] << "\n";
+	}
+
+	rawfile.close();
+	transfile.close();
+}

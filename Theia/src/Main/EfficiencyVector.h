@@ -17,7 +17,7 @@ class EfficiencyVector
 		enum VectorComponent {Temporal, Spatial, Hyper};
 		enum VectorType {Position, Gradient};
 	
-		EfficiencyVector(std::string load_location);
+		EfficiencyVector(std::string load_location,std::string save_location);
 	
 		//Access Functions
 		
@@ -38,10 +38,10 @@ class EfficiencyVector
 		std::vector<double> TransformedGradient;
 
 		std::vector<bool> KnownGapList;
-		void ForwardTransform(const VectorXd &z);
+		void ForwardTransform(const std::vector<double> &z);
 		void BackwardTransform();
+		void Save(bool finalSave,int saveStep,bool uniqueSave);
 	private:
-		//hyperbuffer?
 		void ForwardTransform_Hyper();
 		void ForwardTransform_Spatial();
 		void ForwardTransform_Temporal();
@@ -72,4 +72,7 @@ class EfficiencyVector
     	void LoadNeedlets();
     	void LoadCholesky();
     	void Reset();
+    	
+    	std::string SaveLocation;
+    	
 };

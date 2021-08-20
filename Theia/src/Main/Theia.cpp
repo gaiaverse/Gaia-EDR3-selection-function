@@ -45,7 +45,7 @@ int MaxStarsInCore;
 
 //RootProcess is the main action loop of the 0-ranked core. 
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
-VectorXd RootProcess()
+void RootProcess()
 {
 	std::cout << "\nRoot Process is intialising gradient descent framework. "<< JSL::PrintCurrentTime();
 	std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
@@ -55,14 +55,14 @@ VectorXd RootProcess()
 	int nParametersForWorkers = totalTransformedParams; 
 	
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
-	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
+	//~ VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
 	DescentFunctor fun = DescentFunctor(Data,Args.OutputDirectory,Args.StartVectorLocation,TotalStars,Args.Minibatches);
-	
+	std::vector<double> x = fun.Efficiency.RawPosition;
 
 
-	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
+	ADABADAM::Optimizer<DescentFunctor> op(fun);
 	
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
@@ -110,7 +110,7 @@ VectorXd RootProcess()
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);	
 	
 	
-	return x;
+	
 }
 
 //this is the main action loop of all core with rank > 0 
@@ -200,14 +200,13 @@ int main(int argc,char *argv[])
 	//~ Data[0].resize(1);
 	//~ GradientTest();
 
-	VectorXd x;
+	
 	if (ProcessRank == RootID) 
 	{
-		x = RootProcess();
+		RootProcess();
 	}
 	else
 	{
-		x = VectorXd::Zero(totalRawParams);
 		WorkerProcess();	
 	}
 
