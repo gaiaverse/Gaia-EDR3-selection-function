@@ -7,6 +7,7 @@
     <innerfile refid="LogLikelihoodPrior_8h">LogLikelihoodPrior.h</innerfile>
     <innerfile refid="MiscFunctions_8h">MiscFunctions.h</innerfile>
     <innerfile refid="ProbabilityFunctions_8h">ProbabilityFunctions.h</innerfile>
+    <innerfile refid="VariancePopulation_8h">VariancePopulation.h</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

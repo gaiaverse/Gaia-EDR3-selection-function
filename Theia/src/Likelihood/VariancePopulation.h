@@ -3,7 +3,7 @@
 
 
 /*!
- * This is a structure uses the hyperparameters from the EfficiencyVector to generate the variance + associated derivatives.
+ * This structure uses the hyperparameters from the EfficiencyVector to generate the variance + associated derivatives.
 */
 struct VariancePopulation
 {

@@ -275,6 +275,8 @@
     <member refid="ProbabilityFunctions_8h_1a653b1d81f66a9a87c3815143415f0538" kind="function"><name>logphi</name></member>
     <member refid="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" kind="function"><name>poisson_binomial_normal_lpmf</name></member>
   </compound>
+  <compound refid="VariancePopulation_8h" kind="file"><name>VariancePopulation.h</name>
+  </compound>
   <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
   </compound>
   <compound refid="GlobalConstants_8h" kind="file"><name>GlobalConstants.h</name>

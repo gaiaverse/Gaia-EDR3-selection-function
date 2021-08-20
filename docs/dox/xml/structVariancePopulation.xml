@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structVariancePopulation" kind="struct" language="C++" prot="public">
     <compoundname>VariancePopulation</compoundname>
-    <includes refid="DataStorage_8h" local="no">DataStorage.h</includes>
+    <includes refid="VariancePopulation_8h" local="no">VariancePopulation.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="20" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="20" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="11" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="23" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="23" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="14" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="14" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="26" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="26" bodyend="26"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="17" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="17" bodyend="17"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="33" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="33" bodyend="37"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="24" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="24" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="44" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="44" bodyend="58"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="35" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="35" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -137,13 +137,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>dv/dn, the analytical derivative of the variance </para>
+<simplesect kind="return"><para>The analytical derivative of the variance </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="65" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="65" bodyend="76"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="56" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="56" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -166,7 +166,7 @@
 <parametername>term</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the </para>
+<para>the order of the parameter with which the derivative is taken </para>
 </parameterdescription>
 </parameteritem>
 <parameteritem>
@@ -178,13 +178,13 @@
 </parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>dv/d alpha_term, the derivative of the function </para>
+<simplesect kind="return"><para>dv/d alpha_term </para>
 </simplesect>
 </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="84" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="84" bodyend="105"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="75" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="75" bodyend="96"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -192,7 +192,7 @@
     <detaileddescription>
 <para>This is a structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="17" bodyend="106"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="9" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="8" bodyend="97"/>
     <listofallmembers>
       <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedAlpha</name></member>
       <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedN</name></member>
