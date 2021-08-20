@@ -17,8 +17,9 @@ Theia is a tool for deriving the spatial and temporal components of the selectio
 	inputs
 	code-output
 	variables-arguments
+	data-loading
 	optimiser
-	likelihood
+	likelihood-overview
 	efficiency-vector
 	external-libs
 	to-do
