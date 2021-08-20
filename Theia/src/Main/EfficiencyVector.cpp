@@ -412,7 +412,7 @@ void EfficiencyVector::BackwardTransform()
 {
 	BackwardTransform_Temporal();
 	
-	//~ BackwardTransform_Spatial();
+	BackwardTransform_Spatial();
 	
 	//~ BackwardTransform_Hyper();
 }
@@ -442,34 +442,27 @@ void EfficiencyVector::BackwardTransform_Temporal()
 	}
 }
 
-//~ void DescentFunctor::BackwardTransform_Spatial()
-//~ {
-	//~ if (SpaceActive)
-	//~ {
-		//~ int insertOffset = 0;
-		//~ if (TimeActive)
-		//~ {
-			//~ insertOffset += Nt;
-		//~ }
-		//~ // yml
-		//~ std::fill(bVector.begin(), bVector.end(),0);
-		//~ for (int i = 0; i < needletN; ++i)
-		//~ {
-			//~ for (int m = 0; m < Nm; ++m)
-			//~ {
-				//~ bVector[needlet_v[i]*Nm+m] += needlet_w[i]*TransformedGradient[Nt+needlet_u[i]*Nm+m];
-			//~ }
-		//~ }
-		//~ // bms = Lmnzns
-		//~ for (int s = 0; s < Ns; ++s)
-		//~ {
-			//~ for (int i = 0; i < L.choleskyN; ++i)
-			//~ {
-				//~ Gradient[insertOffset+s*Nm+L.cholesky_v[i]] += L.cholesky_w[i] * bVector[s*Nm+L.cholesky_u[i]];
-			//~ }
-		//~ }
-	//~ }
-//~ }
+void EfficiencyVector::BackwardTransform_Spatial()
+{
+	// yml
+	std::fill(bVector.begin(), bVector.end(),0);
+	for (int i = 0; i < needletN; ++i)
+	{
+		for (int m = 0; m < Nm; ++m)
+		{
+			bVector[needlet_v[i]*Nm+m] += needlet_w[i]*Access(Transformed,Spatial,Gradient,needlet_u[i],m);
+		}
+	}
+	// bms = Lmnzns
+	for (int s = 0; s < Ns; ++s)
+	{
+		for (int i = 0; i < choleskyN; ++i)
+		{
+			double v = cholesky_w[i] * bVector[s*Nm+cholesky_u[i]];
+			Increment(Raw,Spatial,Gradient,s,cholesky_v[i], v);
+		}
+	}
+}
 
 //~ void DescentFunctor::BackwardTransform_Hyper()
 //~ {
