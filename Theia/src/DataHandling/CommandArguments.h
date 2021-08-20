@@ -6,8 +6,11 @@ using JSL::Argument;
 class CommandArgs
 {
 	public:
-		//initialisation stuff
+		
+		//!The value passed to `srand() <https://www.cplusplus.com/reference/cstdlib/srand/>`_ for reproducible randomness
 		Argument<int> RandomSeed = Argument<int>(0,"random-seed");
+		
+		//!The directory to search in for a valid savefile configuration for relaunch
 		Argument<std::string> StartVectorLocation = Argument<std::string>("__null_location__","restart");
 		
 		

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structProgressTracker" kind="struct" language="C++" prot="public">
     <compoundname>ProgressTracker</compoundname>
       <sectiondef kind="public-attrib">
@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="42" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="42" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="42" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a6dfeb8637c85c7310af398578d221bac" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="43" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="43" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="43" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1ae1c6ce39fe19ccf2d99e04d84bf8c52f" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="44" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="44" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="44" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a278dfc52759a8b774b7df65ddd474cbb" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="45" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="45" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="45" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a972f79a55a785d579031f956e52f92e8" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="46" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="46" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="46" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a42a1492c36b842d23968e36c01b58b91" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="47" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="47" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="47" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a89936bd25d378bb4c90fa278ce7cc373" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="49" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="49" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a1f87aa774affb12847fdf90e912ac147" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -105,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="50" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="50" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1a5b3ece79bcfab593be27396d393f6370" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -118,7 +118,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="52" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="52" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="52" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1ad0995169886380eae9bed1c416e20fe7" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="53" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="53" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="53" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1aa9e165a0b18af7d137a7b7bacf7e43bd" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -144,7 +144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="54" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="54" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="54" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structProgressTracker_1aa9d40fe1375a0e92aa429b8b1bf40ee6" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -157,14 +157,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="55" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="55" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="55" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="55" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="40" bodyend="56"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="41" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="40" bodyend="56"/>
     <listofallmembers>
       <member refid="structProgressTracker_1a89936bd25d378bb4c90fa278ce7cc373" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>BufferFileOpened</name></member>
       <member refid="structProgressTracker_1aa531f094e8ad975dfefc47ece359592d" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>CurrentSteps</name></member>

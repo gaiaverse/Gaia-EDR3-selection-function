@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="DescentFunctor_8h" kind="file" language="C++">
     <compoundname>DescentFunctor.h</compoundname>
     <includes local="no">vector</includes>
@@ -10,179 +10,179 @@
     <includes local="yes">../libs/JSL/JSL.h</includes>
     <includes refid="ProbabilityFunctions_8h" local="yes">../Likelihood/ProbabilityFunctions.h</includes>
     <incdepgraph>
-      <node id="382">
+      <node id="18">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="373">
-        <label>iomanip</label>
-      </node>
-      <node id="387">
-        <label>cmath</label>
-      </node>
-      <node id="372">
-        <label>string</label>
-      </node>
-      <node id="378">
+      <node id="14">
         <label>../Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h_source"/>
-        <childnode refid="366" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="368" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="374" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="379" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="380" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="381" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="382" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
-        </childnode>
-      </node>
-      <node id="385">
-        <label>MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h_source"/>
-        <childnode refid="378" relation="include">
-        </childnode>
-        <childnode refid="384" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="380">
-        <label>fstream</label>
+      <node id="9">
+        <label>iomanip</label>
       </node>
-      <node id="383">
+      <node id="19">
         <label>DataStorage.h</label>
         <link refid="DataStorage_8h_source"/>
-        <childnode refid="378" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="384" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="377" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="366" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="382" relation="include">
-        </childnode>
-      </node>
-      <node id="374">
-        <label>../libs/Eigen/Householder</label>
-      </node>
-      <node id="377">
-        <label>../DataHandling/Star.h</label>
-        <link refid="Star_8h_source"/>
-        <childnode refid="366" relation="include">
-        </childnode>
-        <childnode refid="372" relation="include">
-        </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
-      <node id="381">
-        <label>string.h</label>
-      </node>
-      <node id="386">
+      <node id="22">
         <label>ProbabilityFunctions.h</label>
         <link refid="ProbabilityFunctions_8h_source"/>
-        <childnode refid="378" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="384" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="383" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="387" relation="include">
-        </childnode>
-      </node>
-      <node id="366">
-        <label>vector</label>
-      </node>
-      <node id="368">
-        <label>../libs/Eigen/Core</label>
-      </node>
-      <node id="365">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h"/>
-        <childnode refid="366" relation="include">
-        </childnode>
-        <childnode refid="367" relation="include">
-        </childnode>
-        <childnode refid="368" relation="include">
-        </childnode>
-        <childnode refid="369" relation="include">
-        </childnode>
-        <childnode refid="384" relation="include">
-        </childnode>
-        <childnode refid="382" relation="include">
-        </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="23" relation="include">
         </childnode>
       </node>
-      <node id="369">
+      <node id="13">
+        <label>../DataHandling/Star.h</label>
+        <link refid="Star_8h_source"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>cmath</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="5">
         <label>../Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h_source"/>
-        <childnode refid="370" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="371">
-        <label>iostream</label>
+      <node id="16">
+        <label>fstream</label>
       </node>
-      <node id="375">
-        <label>../libs/Eigen/QR</label>
+      <node id="10">
+        <label>../libs/Eigen/Householder</label>
       </node>
-      <node id="379">
-        <label>../libs/Eigen/LU</label>
+      <node id="17">
+        <label>string.h</label>
       </node>
-      <node id="384">
+      <node id="2">
+        <label>vector</label>
+      </node>
+      <node id="20">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h_source"/>
-        <childnode refid="378" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="367">
-        <label>mpi.h</label>
+      <node id="4">
+        <label>../libs/Eigen/Core</label>
       </node>
-      <node id="370">
+      <node id="6">
         <label>LogLikelihood.h</label>
         <link refid="LogLikelihood_8h_source"/>
-        <childnode refid="366" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="368" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="374" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="376" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="377" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="378" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
-        <childnode refid="383" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
-      <node id="376">
+      <node id="7">
+        <label>iostream</label>
+      </node>
+      <node id="11">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="15">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="3">
+        <label>mpi.h</label>
+      </node>
+      <node id="12">
         <label>algorithm</label>
+      </node>
+      <node id="21">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h_source"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</label>
+        <link refid="DescentFunctor_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
       </node>
     </incdepgraph>
     <innerclass refid="classDescentFunctor" prot="public">DescentFunctor</innerclass>
@@ -196,7 +196,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="4" column="12" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="4" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="4" column="12" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="4" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="DescentFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" prot="public" static="no">
         <name>EIGEN_MPL2_ONLY</name>
@@ -206,7 +206,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="5" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="5" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="5" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="5" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -372,6 +372,6 @@
 <codeline lineno="156"><highlight class="normal"></highlight></codeline>
 <codeline lineno="157"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h"/>
   </compounddef>
 </doxygen>

@@ -15,8 +15,8 @@ Theia is a tool for deriving the spatial and temporal components of the selectio
 .. toctree::
 	background
 	inputs
-	compile-variables
-	compile-constants
+	code-output
+	variables-arguments
 	optimiser
 	likelihood
 	efficiency-vector
