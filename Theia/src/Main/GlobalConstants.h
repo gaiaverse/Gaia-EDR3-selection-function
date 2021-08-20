@@ -92,20 +92,8 @@ const double expm_density_cut = exp(-density_cut);
 
 
 //some useful macros
-#define FILEGAP << ", " << 
+//~ #define FILEGAP << ", " << 
 
 #define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}
- 
-#ifdef GLOBAL_LOGGING
-	#define GlobalLog(level, ...){	if (level <= GlobalLoggingLevel){__VA_ARGS__}}
-#else
-	#define GlobalLog(level, ...){}
-#endif	
-
-#ifdef GLOBAL_DEBUGGING
-	#define GlobalDebug(level, ...){	if (level <= GlobalDebuggingLevel){__VA_ARGS__}}
-#else
-	#define GlobalDebug(level, ...)
-#endif	
 	
 static_assert(hyperOrder % 2 == 0,"hyperOrder must be an even integer");

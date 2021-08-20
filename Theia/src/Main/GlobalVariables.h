@@ -37,8 +37,7 @@ const int hyperOrder = 4;	 //!< Order of the variance fitting, must be an even n
  * 
 */
 
-const double xtPriorNonGap = 6; //!< Mean of prior on xt outside of gaps
-const double xtPriorInsideGap = 6; //!< Mean of prior  on xt within the pre-listed gaps (unused)
+const double xtPrior = 6; //!< Mean of prior on xt outside of gaps
 const double studentNu = 0.5; //!<Student t nu parameter for zt prior
 
 
@@ -87,12 +86,6 @@ Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
 
 /// OUTPUT STUFF
-
-#define GLOBAL_LOGGING
-//#define GLOBAL_DEBUGGING
-
-const int GlobalLoggingLevel = 1;
-const int GlobalDebuggingLevel = 8;
 
 
 void PrintStatus(std::string location);

@@ -102,14 +102,13 @@ void CalculateBatches(int id, std::vector<File> & Files, int batches)
 void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource, int batches)
 {
 	if (ProcessRank == RootID)
-	{
-		GlobalLog(1,
-			std::cout << "Initialising starAllocation script...\n";
-			std::string command = "python3 src/DataHandling/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
-			system(command.c_str() );
-			std::cout << "Data allocation complete, beginning readin...." <<std::endl;
-		);
+	{	
+		std::cout << "Initialising starAllocation script...\n";
+		std::string command = "python3 src/DataHandling/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
+		system(command.c_str() );
+		std::cout << "Data allocation complete, beginning readin...." <<std::endl;
 	}
+	
 	MPI_Barrier(MPI_COMM_WORLD);
 	
 	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
@@ -167,14 +166,11 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 		);
 	}
 	auto end = std::chrono::system_clock::now();
-		std::string duration = JSL::FormatTimeDuration(start,end);
-	GlobalLog(1,
-		
-		std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
-	);
-	
-	
+	std::string duration = JSL::FormatTimeDuration(start,end);
+	std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
 
+	
+	
 	int MaxStarsInCore = 0;
 	MPI_Reduce(&allStarsLoaded,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
 	MPI_Reduce(&allStarsLoaded, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
@@ -182,11 +178,8 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	MPI_Barrier(MPI_COMM_WORLD);
 	if (ProcessRank==RootID)
 	{
-		GlobalLog(0,
-			std::cout << TotalStars << " stars have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
-		);
+		std::cout << TotalStars << " stars have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
-
 }
 

@@ -47,34 +47,21 @@ int MaxStarsInCore;
 //It initiates the LBFGS algorithm, and controls the workflow of the other cores
 VectorXd RootProcess()
 {
-	GlobalLog(1,
-		std::cout << "\nRoot Process is intialising gradient descent framework. "<< JSL::PrintCurrentTime();
-		std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
-	);
+	std::cout << "\nRoot Process is intialising gradient descent framework. "<< JSL::PrintCurrentTime();
+	std::cout << "\tAttempting to minimise " << totalRawParams << " parameters (mapped to " << totalTransformedParams << " in transform space)" << std::endl;
 	
 	//tell the workers to resize their parameter vectors + prepare for start
 	int nParameters = totalRawParams;
 	int nParametersForWorkers = totalTransformedParams; 
+	
 	MPI_Bcast(&nParametersForWorkers, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(Data,totalTransformedParams,Args.OutputDirectory,TotalStars,Args.Minibatches,true,true,true);
+	DescentFunctor fun = DescentFunctor(Data,Args.OutputDirectory,Args.StartVectorLocation,TotalStars,Args.Minibatches);
 	
-	//generate fake data
-	fun.FrozenTime = fun.mut_gaps;
-	fun.FrozenSpace = std::vector<double>(Nl*Nm,25.0);
-	VectorXd xSpoof = VectorXd::Zero(NHyper);
-	
-	//~ for (int i = Nt; i < totalRawParams; ++i)
-	//~ {
-		//~ xSpoof[i-Nt] = x[i];
-	//~ }
-	//~ for (int i = 0; i < NHyper; ++i)
-	//~ {
-		//~ xSpoof[i] = x[rawNonHyperParams + i];
-	//~ }
-	//~ x = xSpoof;
+
+
 	Optimizer<DescentFunctor> op = Optimizer<DescentFunctor>(fun);
 	
 	//set up the criteria for termination
@@ -114,11 +101,10 @@ VectorXd RootProcess()
 	// GO GO GO GO!
 	op.Minimize(x);
 		
-	GlobalLog(0,
-		std::cout << "\nSOLVER ENDED: " << op.Status.Converged << std::endl;
-		std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
-	);
-
+	
+	std::cout << "\nSOLVER ENDED: " << op.Status.Converged << std::endl;
+	std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
+	
 	//broadcast to workers that the minimization procedure has finished
 	int circuitBreaker = -1;
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);	
@@ -172,9 +158,7 @@ void WorkerProcess()
 		else
 		{
 			hasFinished = true;
-			GlobalLog(2,
-				std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
-			);
+			std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
 	}
 }
@@ -182,19 +166,17 @@ void WorkerProcess()
 
 void Welcome()
 {
-	GlobalLog(0,
-		if (ProcessRank == RootID)
-		{
-			std::cout << "\n\n----------------------------------------------\n";
-			std::cout << "\n~~ Gaia Selection Function Optimization ~~\n\n";
-			std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
-			std::cout << JSL::PrintCurrentTime();
-			std::cout << "\n----------------------------------------------\n\n";
-			std::cout << std::endl;
-		}
-	);
-	MPI_Barrier(MPI_COMM_WORLD);
+	if (ProcessRank == RootID)
+	{
+		std::cout << "\n\n----------------------------------------------\n";
+		std::cout << "\n~~ Gaia Selection Function Optimization ~~\n\n";
+		std::cout << "Root process online. " << JobSize - 1 << " workers connected.\n";
+		std::cout << JSL::PrintCurrentTime();
+		std::cout << "\n----------------------------------------------\n\n";
+		std::cout << std::endl;
+	}
 	
+	MPI_Barrier(MPI_COMM_WORLD);
 	PrintStatus(Args.OutputDirectory);
 	srand(Args.RandomSeed);
 }
@@ -233,12 +215,12 @@ int main(int argc,char *argv[])
 	//exit gracefully
 	MPI_Barrier(MPI_COMM_WORLD);
 	auto end = std::chrono::system_clock::now();
-	GlobalLog(0,
-		if (ProcessRank == RootID)
-		{
-			std::cout << "All workers reached end of line. Duration was: " << JSL::FormatTimeDuration(start,end) << "\n";
-		}
-	);
+
+	if (ProcessRank == RootID)
+	{
+		std::cout << "All workers reached end of line. Duration was: " << JSL::FormatTimeDuration(start,end) << "\n";
+	}
+
 	
 	MPI_Finalize();
 	return 0;

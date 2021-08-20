@@ -105,8 +105,8 @@ Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
 }
 void PrintStatus(std::string location)
 {
-	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","hyperOrder","NVariancePopulations","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","xt_Prior_normal","xt_Prior_gaps","xm_Prior"};
-	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)hyperOrder,(double)NVariancePops,(double)totalRawParams,(double)totalTransformedParams,(double)xtPriorNonGap,(double)sigmat,(double)lm,(double)lt,(double)xtPriorNonGap,(double)xtPriorInsideGap,double(xmPrior)};
+	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","hyperOrder","NVariancePopulations","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","xm_Prior"};
+	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)hyperOrder,(double)NVariancePops,(double)totalRawParams,(double)totalTransformedParams,(double)xtPrior,(double)sigmat,(double)lm,(double)lt,double(xmPrior)};
 	
 	std::fstream file;
 	file.open(location + "/OptimiserProperties.dat",std::ios::out);

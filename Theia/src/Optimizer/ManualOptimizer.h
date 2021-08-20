@@ -135,15 +135,7 @@ class Optimizer
 				int epochs = Progress.CurrentSteps + 1;
 				double epochL = 0;
 				epochGradient -= epochGradient;
-				
-				if (!burnInStopped && Progress.CurrentSteps >= Properties.BurnInSteps)
-				{
-					burnInStopped = true;
-					Functor.Unfreeze();
-					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-				}
-
-				
+								
 				std::vector<int> batchOrder = randomShuffle(EffectiveBatches);
 
 		
