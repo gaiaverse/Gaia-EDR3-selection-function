@@ -61,7 +61,7 @@ class DescentFunctor
 
 			MaxBatches = maxBatches;		
 			
-
+			Gradient = std::vector<double>(totalRawParams,0.0);
 			Value = 0;
 
 		}

@@ -21,6 +21,7 @@ namespace ADABADAM
 		{
 			sum += x[i]*x[i];
 		}
+		return sum;
 	}
 	double vectorDiffNorm(const std::vector<double> &x, const std::vector<double> &y)
 	{
@@ -30,6 +31,7 @@ namespace ADABADAM
 			double d = x[i] - y[i];
 			sum += d*d;
 		}
+		return sum;
 	}
 	std::vector<double> vectorDiff(const std::vector<double> &x, const std::vector<double> &y)
 	{
@@ -44,6 +46,7 @@ namespace ADABADAM
 		{
 			newVec[i] -= y[i];
 		}
+		return newVec;
 	}
 	
 	std::vector<int> randomShuffle(int n)
@@ -135,7 +138,7 @@ namespace ADABADAM
 			}
 				
 					
-			void ADABADAM(std::vector<double> &x)
+			void ADABADAM_Body(std::vector<double> &x)
 			{
 				int EffectiveBatches = Properties.MiniBatches;
 	
@@ -172,10 +175,10 @@ namespace ADABADAM
 			
 					for (int batches = 0; batches < EffectiveBatches; ++batches)
 					{
+						
 						int currentBatch = batchOrder[batches];
-								
+
 						Functor.Calculate(x,currentBatch,EffectiveBatches);
-	
 						//save initial position
 						
 						
@@ -577,7 +580,8 @@ namespace ADABADAM
 			{
 	
 				Initialise();
-				ADABADAM(x);
+				ADABADAM_Body(x);
+				//~ new_ADABADAM(x);
 			}
 	
 			std::string GetStatus()

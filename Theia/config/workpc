@@ -1,13 +1,14 @@
 output       ../../CodeOutput/worktest/
-data         ../../TestSets/gaps_parallel_spikes/
+data         ../../Data/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
 max-steps    200
 burnin       0
 save-steps   2
 unique-temp-save 1
-minibatch     128
+minibatch     16
 harness-slow  50
 harness-release 5
 
 
+	

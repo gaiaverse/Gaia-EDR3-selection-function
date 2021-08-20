@@ -40,57 +40,56 @@ F_dF GapEnforcer(double x)
 	return F_dF(v,dv);
 }
 
-void LogLikelihoodPrior::RawPrior(const std::vector<double>& RawParams, double * currentValue, std::vector<double> * currentGradient, int effectiveBatches)
+double LogLikelihoodPrior::RawPrior(EfficiencyVector &x, int effectiveBatches)
 {
 	
-	
+	double L = 0;
 	for (int i = 0; i < Nt; ++i)
 	{
-		F_dF p = StudentT(RawParams[i],0,studentNu);
-		currentValue[0] += p.F / effectiveBatches;
-		currentGradient[0][i] += p.dF / effectiveBatches;
+		double d = x.Access(x.Raw,x.Temporal,x.Position,i);
+		F_dF p = StudentT(d,0,studentNu);
+		L += p.F / effectiveBatches;
+		x.Increment(x.Raw,x.Temporal,x.Gradient,i,p.dF / effectiveBatches);
 	}
 	
 
 	for (int i = 0; i < Nm*Ns; ++i)
 	{
-		double d = RawParams[Nt + i];
-		F_dF p = Normal(RawParams[Nt + i],0,1);
-		currentValue[0] += p.F / effectiveBatches;
-		currentGradient[0][Nt + i] += p.dF / effectiveBatches;
+		double d = x.Access(x.Raw,x.Spatial,x.Position,i);
+		
+		F_dF p = Normal(d,0,1);
+		L += p.F / effectiveBatches;
+		x.Increment(x.Raw,x.Spatial,x.Gradient,i, p.dF / effectiveBatches);
 	}
 	
 	
-	if ( useHyperPrior)
-	{
-		for (int i = 1; i < hyperOrder+1; ++i)
-		{
-			for (int j = 0; j < NVariancePops; ++j)
-			{
-				int index = rawNonHyperParams + i * NVariancePops + j;
-				double d = RawParams[index];
-				F_dF p = Normal(d,0,1);
-				currentValue[0] += p.F / effectiveBatches;
-				double old = currentGradient[0][index];
-				currentGradient[0][index] += p.dF / effectiveBatches;
-				
-			}
-		}
-	}		
+	//~ if ( useHyperPrior)
+	//~ {
+		//~ for (int i = 0; i < hyperFractionOffset; ++i)
+		//~ {
+			//~ double d = x.Access(x.Raw,x.Hyper,x.Position,i);
+			//~ F_dF p = Normal(d,0,1);
+			//~ L += p.F / effectiveBatches;
+			//~ x.Assign(x.Raw,x.Hyper,x.Gradient,i, p.dF / effectiveBatches);
+		//~ }
+	//~ }		
+	return L;
 }
 
-void LogLikelihoodPrior::TransformPrior(const std::vector<double> & TransformPosition, double * currentValue, std::vector<double> & TransformGradient, int effectiveBatches)
+double LogLikelihoodPrior::TransformPrior(EfficiencyVector&x, int effectiveBatches)
 {
-	
+	double L = 0;
 	for (int i = 0; i < Nt; ++i)
 	{
 		if (BufferedGapList[i])
 		{
-			F_dF p = GapEnforcer(TransformPosition[i]);
-			currentValue[0] += p.F / effectiveBatches;
-			TransformGradient[i] += p.dF / effectiveBatches;
+			double d = x.Access(x.Transformed,x.Temporal,x.Position,i);
+			F_dF p = GapEnforcer(d);
+			L += p.F / effectiveBatches;
+			x.Increment(x.Transformed,x.Temporal,x.Gradient,i,p.dF / effectiveBatches);
 		}
 	}
-
+	return L;
+	
 }
 

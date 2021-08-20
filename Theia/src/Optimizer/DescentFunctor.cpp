@@ -17,18 +17,22 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave)
 
 void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosition, int batchID, int effectiveBatches)
 {
+	
 	const int n =  totalTransformedParams;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
-	MPI_Bcast(&batchID, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+
+	int breaker = batchID;
+	MPI_Bcast(&breaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
 	Efficiency.ForwardTransform(inputPosition);
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
-	
+
+
 	L.Calculate(Efficiency.TransformedPosition,batchID,effectiveBatches,MaxBatches);
-	
+
 	//collect values
 	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake
 	double Lsum = 0;
@@ -37,15 +41,23 @@ void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosi
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
-	MPI_Reduce(&L.Gradient[0], &Efficiency.TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+	
+	std::vector<double> gradientCatcher(totalTransformedParams,0.0);
+	MPI_Reduce(&L.Gradient[0], &gradientCatcher[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
+	
+
 	totalStarsUsed = std::max(1,totalStarsUsed);
 	
-	L.TransformPrior(Efficiency.TransformedPosition,&Lsum,Efficiency.TransformedGradient, effectiveBatches);
+	//Efficiency.TransformedGradient= gradientCatcher;
 	
+	
+	Lsum += L.TransformPrior(Efficiency, effectiveBatches);
+
 	Efficiency.BackwardTransform();
 	
-	L.RawPrior(Efficiency.RawPosition,&Lsum,&Efficiency.RawGradient,effectiveBatches);
 	
+	//Lsum += L.RawPrior(Efficiency,effectiveBatches);
+
 	Value = Lsum;
 
 	StarsInLastBatch = totalStarsUsed;
@@ -58,6 +70,7 @@ void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosi
 		Gradient[i] = -Efficiency.RawGradient[i] / StarsInLastBatch;
 	}
 	Value = -Value/StarsInLastBatch;
+	
 }
 
 

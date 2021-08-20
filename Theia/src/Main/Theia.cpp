@@ -61,9 +61,8 @@ void RootProcess()
 	DescentFunctor fun = DescentFunctor(Data,Args.OutputDirectory,Args.StartVectorLocation,TotalStars,Args.Minibatches);
 	std::vector<double> x = fun.Efficiency.RawPosition;
 
-
-	ADABADAM::Optimizer<DescentFunctor> op(fun);
 	
+	ADABADAM::Optimizer<DescentFunctor> op(fun);
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
@@ -106,10 +105,15 @@ void RootProcess()
 	std::cout << "\nSolver condition:\n" << op.GetStatus() << std::endl;
 	
 	//broadcast to workers that the minimization procedure has finished
+	std::cout << "Broadcasting final result" << std::endl;
+	
+	
+	
 	int circuitBreaker = -1;
+	
 	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);	
 	
-	
+	MPI_Barrier(MPI_COMM_WORLD);
 	
 }
 
@@ -145,6 +149,8 @@ void WorkerProcess()
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
+
+			
 			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
@@ -157,6 +163,8 @@ void WorkerProcess()
 		}
 		else
 		{
+			MPI_Barrier(MPI_COMM_WORLD);
+			std::cout << targetBatch << std::endl;
 			hasFinished = true;
 			std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}

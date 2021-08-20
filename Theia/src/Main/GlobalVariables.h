@@ -18,13 +18,13 @@ using Eigen::VectorXd;
 
 
 
-const int Nt =  8967691; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
+const int Nt =  896769; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
 
 const int healpix_order = 0; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
 
 const int needlet_order = -1; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
 
-const int Nm = 213; //!< Number of magnitude bins
+const int Nm = 10; //!< Number of magnitude bins
 
 const int NVariancePops = 3; //!< Number of variance populations (hyperparameter)
 
@@ -47,7 +47,7 @@ const double lm = 3; //!< Magnitude coupling lengthscale (in mag-bins)
 
 const double lt_revs = 1; //!<Temporal coupling lengthscale for zt (in Gaia revolution periods)
 
-const double xmPrior = -3; //!< Mean of gaussian prior on xml 
+const double xmPrior = 3; //!< Mean of gaussian prior on xml 
 
 
 const double gapPriorAlpha = 0.5; //!< Beta distribution alpha-value for the prior on the known gaps (in xt space)

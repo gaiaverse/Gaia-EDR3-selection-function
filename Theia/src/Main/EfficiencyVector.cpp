@@ -23,22 +23,29 @@ EfficiencyVector::EfficiencyVector(std::string load_location, std::string saveLo
 
 double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i)
 {	
-	int index;
+	//~ std::cout << "Access called: " << mode << component << type << i << std::endl;
+	int index = -1;
 	switch (component)
 	{
 		case Temporal:
 			index = i;
 			break;
+			
 		case Spatial:
+		{	
 			index = Nt + i;
 			break;
+		}
+		
 		case Hyper:
+		{
 			index = rawNonHyperParams + i;
 			if (mode == Transformed)
 			{
 				index = transformedNonHyperParams + i;
 			}
 			break;
+		}
 	}
 
 	double v;
@@ -47,6 +54,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 	{
 		if (type == Position)
 		{
+			
 			v = RawPosition[index];
 		}
 		if (type == Gradient)
@@ -65,6 +73,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 			v = TransformedGradient[index];
 		}
 	}
+
 	return v;
 }
 
@@ -72,13 +81,15 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 {
 	switch (component)
 	{
-		case Temporal:
+		case Temporal :
 			ERROR(2, "Incorrect access mode used for temporal component of the EfficiencyVector");
 			break;
-		case Spatial:
-			Access(mode, component,type, sl*Nm + m);
+		case Spatial :
+		{
+			return Access(mode, component,type, sl*Nm + m);
 			break;
-		case Hyper:
+		}
+		case Hyper :
 			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
 			break;
 	}
@@ -339,15 +350,14 @@ void EfficiencyVector::Reset()
 
 void EfficiencyVector::ForwardTransform(const std::vector<double> &z)
 {
+
 	Reset();
 
 	RawPosition = z;
-
 	ForwardTransform_Temporal();
-	
 	ForwardTransform_Spatial();
-	
 	ForwardTransform_Hyper();
+
 }
 
 void EfficiencyVector::ForwardTransform_Spatial()
@@ -410,11 +420,11 @@ void EfficiencyVector::ForwardTransform_Hyper()
 
 void EfficiencyVector::BackwardTransform()
 {
+
 	BackwardTransform_Temporal();
-	
 	BackwardTransform_Spatial();
-	
 	BackwardTransform_Hyper();
+
 }
 
 void EfficiencyVector::BackwardTransform_Temporal()
@@ -450,7 +460,8 @@ void EfficiencyVector::BackwardTransform_Spatial()
 	{
 		for (int m = 0; m < Nm; ++m)
 		{
-			bVector[needlet_v[i]*Nm+m] += needlet_w[i]*Access(Transformed,Spatial,Gradient,needlet_u[i],m);
+			double q = needlet_w[i]*Access(Transformed,Spatial,Gradient,needlet_u[i],m);
+			bVector[needlet_v[i]*Nm+m] += q;
 		}
 	}
 	// bms = Lmnzns
@@ -462,6 +473,8 @@ void EfficiencyVector::BackwardTransform_Spatial()
 			Increment(Raw,Spatial,Gradient,s,cholesky_v[i], v);
 		}
 	}
+	
+
 }
 
 void EfficiencyVector::BackwardTransform_Hyper()
