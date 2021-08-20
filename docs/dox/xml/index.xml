@@ -5,7 +5,6 @@
     <member refid="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" kind="variable"><name>StartVectorLocation</name></member>
     <member refid="classCommandArgs_1a47a53ea373bc6c81ed80c2b651e9c405" kind="variable"><name>GradLim</name></member>
     <member refid="classCommandArgs_1a9d8b6a8c21f7b330979c7a173994ca37" kind="variable"><name>MaxSteps</name></member>
-    <member refid="classCommandArgs_1aedd3311893f45b92b4a7f598792f7f2e" kind="variable"><name>FreezeSteps</name></member>
     <member refid="classCommandArgs_1af906f01863ff7b503914b462a8a7ddb5" kind="variable"><name>SaveSteps</name></member>
     <member refid="classCommandArgs_1ad1018830dc6772a972df87a843059416" kind="variable"><name>SaveAllSteps</name></member>
     <member refid="classCommandArgs_1ad16d6cadaedb80e8d3abfc51b3b73335" kind="variable"><name>Minibatches</name></member>

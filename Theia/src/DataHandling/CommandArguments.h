@@ -14,26 +14,48 @@ class CommandArgs
 		Argument<std::string> StartVectorLocation = Argument<std::string>("__null_location__","restart");
 		
 		
-		//optimiser properties
+		//!The maximum value of :math:`\nabla\mathcal{L}` which will be considered ‘converged’ 
 		Argument<double> GradLim = Argument<double>(0,"gradlim");
+		
+		//!The maximum number of epochs the optimiser may use before exiting
 		Argument<int> MaxSteps = Argument<int>(1000,"max-steps");
-		Argument<int> FreezeSteps = Argument<int>(0,"burnin");
+		
+		//!The number of steps between saving locations
 		Argument<int> SaveSteps = Argument<int>(1,"save-steps");
+		
+		//!If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation.
 		Argument<bool> SaveAllSteps = Argument<bool>(false,"unique-temp-save");
+		
+		//!The maximum number of batches used per epoch in the SGD prescription
 		Argument<int> Minibatches = Argument<int>(64,"minibatch");
+		
+		//!The factor by which step sizes are reduced when the harness is active
 		Argument<double> HarnessSlowDown = Argument<double>(10,"harness-slow");
+		
+		//!The number of full epochs over which the step size recovers from the HarnessSlowDown
 		Argument<int> HarnessRelease = Argument<int>(5,"harness-release");
 		
-		//save locations
+		//!The directory for the stellar data lists
 		Argument<std::string> DataSource= Argument<std::string>("../../Data/ShuffledData","data");
+		
+		//!The director for the output data (created if it doesn’t already exist)
 		Argument<std::string> OutputDirectory = Argument<std::string>("Output","output");
 		
 		
-		//put pointers in here so can easily loop over the (heterogenous) array
+		//! Pointers list so can easily loop over the (heterogenous) array for assigments
 		std::vector<JSL::ArgumentInterface *> argPointers = {&RandomSeed, &StartVectorLocation, &GradLim, &MaxSteps, &FreezeSteps, &DataSource, &OutputDirectory,&SaveSteps,&SaveAllSteps,&Minibatches,&HarnessRelease,&HarnessSlowDown};
 		
+		//!Default constructor....doesn't do anything as the arguments self-initialise
 		CommandArgs(){};
 		
+		
+		/*!
+		 * Initialise the command-line arguments, and check if a configuration file is requested. Note that there is no checking for repeat arguments or multiply defined trigger strings, so multiple assignments are perfectly possible. 
+		 * \param argc The system-provided command argument count
+		 * \param *argv[] The system-provided list of command arguments
+		 * \param ProcessRank The MPI-provided ID of the current process
+		 * \returns Initialises the object against the provided parameters
+		 */
 		void ReadArguments(int argc, char *argv[],int ProcessRank)
 		{
 			//check if using config file or command line arguments
@@ -55,9 +77,7 @@ class CommandArgs
 				}
 			}
 			
-			
-			
-			
+		
 			//if necessary, create the directories necessary for output saving
 			if (ProcessRank == RootID)
 			{
