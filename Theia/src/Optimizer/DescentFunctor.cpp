@@ -58,20 +58,17 @@ void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave,co
 }
 
 
-void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int batchID, int effectiveBatches)
+void DescentFunctor::DistributeCalculations(const VectorXd &inputPosition, int batchID, int effectiveBatches)
 {
 	const int n =  totalTransformedParams;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
-	int circuitBreaker = batchID;
-	MPI_Bcast(&circuitBreaker, 1, MPI_INT, RootID, MPI_COMM_WORLD);
+	MPI_Bcast(&batchID, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
-	Efficiency.ForwardTransform(RawPosition);
-	
+	Efficiency.ForwardTransform(inputPosition);
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
-	
 	
 	L.Calculate(Efficiency.TransformedPosition,batchID,effectiveBatches,MaxBatches);
 	
@@ -86,10 +83,9 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	MPI_Reduce(&L.Gradient[0], &Efficiency.TransformedGradient[0], n,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 	totalStarsUsed = std::max(1,totalStarsUsed);
 	
-	
 	L.TransformPrior(Efficiency.TransformedPosition,&Lsum,Efficiency.TransformedGradient, effectiveBatches);
 	
-	//~ BackwardTransform();
+	Efficiency.BackwardTransform();
 	
 	L.RawPrior(Efficiency.RawPosition,&Lsum,&Efficiency.RawGradient,effectiveBatches);
 	
@@ -100,12 +96,10 @@ void DescentFunctor::DistributeCalculations(const VectorXd &RawPosition, int bat
 	++LoopID;
 	
 	//negative sign for maximisation problem + normalise to number of stars
-	
 	for (int i = 0; i < Efficiency.RawGradient.size(); ++i)
 	{
-		Efficiency.RawGradient[i] = -Efficiency.RawGradient[i] / StarsInLastBatch;
+		Gradient[i] = -Efficiency.RawGradient[i] / StarsInLastBatch;
 	}
-	
 	Value = -Value/StarsInLastBatch;
 }
 
