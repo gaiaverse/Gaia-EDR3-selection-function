@@ -33,6 +33,8 @@ Properties of the Efficiency Vector
 Common Reused Numbers & Cutoffs
 ************************************
 
+.. _obs-n:
+
 .. doxygenvariable:: NumberLargerThanMaxObservations
 .. doxygenvariable:: VerySmallNumber
 .. doxygenvariable:: VerySmallLog

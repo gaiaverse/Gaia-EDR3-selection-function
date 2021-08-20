@@ -284,6 +284,7 @@
         <name>Nm</name>
         <initializer>= 213</initializer>
         <briefdescription>
+<para>Number of magnitude bins. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -731,7 +732,7 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>needlet_order<sp/>=<sp/>-1;<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nm<sp/>=<sp/>213;<sp/></highlight><highlight class="comment">//<sp/>Number<sp/>of<sp/>magnitude<sp/>bins</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nm<sp/>=<sp/>213;<sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NVariancePops<sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>

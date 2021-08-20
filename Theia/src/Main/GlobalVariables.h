@@ -24,7 +24,7 @@ const int healpix_order = 0; //!< Order of the healpix mapping, can be any integ
 
 const int needlet_order = -1; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
 
-const int Nm = 213; // Number of magnitude bins
+const int Nm = 213; //!< Number of magnitude bins
 
 const int NVariancePops = 3; //!< Number of variance populations (hyperparameter)
 

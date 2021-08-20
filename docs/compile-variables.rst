@@ -10,12 +10,17 @@ Defined within ``src/Main/GlobalVariables.h``.
 The following variables are defined at compile-time within the file and control important user-variables which must be set at compile time for performance reasons. 
 
 
+
 Efficiency Vector Parameters
 ***************************************
 
 These parameters primarily control the number of ordering of the elements within the :doc:`Efficiency Vector <efficiency-vector>`. 
 
 .. doxygenvariable:: Nt
+
+.. _Nm:
+
+.. doxygenvariable:: Nm
 .. doxygenvariable:: healpix_order	
 .. doxygenvariable:: needlet_order
 .. doxygenvariable:: NVariancePops
