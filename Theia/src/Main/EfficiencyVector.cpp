@@ -414,7 +414,7 @@ void EfficiencyVector::BackwardTransform()
 	
 	BackwardTransform_Spatial();
 	
-	//~ BackwardTransform_Hyper();
+	BackwardTransform_Hyper();
 }
 
 void EfficiencyVector::BackwardTransform_Temporal()
@@ -464,47 +464,32 @@ void EfficiencyVector::BackwardTransform_Spatial()
 	}
 }
 
-//~ void DescentFunctor::BackwardTransform_Hyper()
-//~ {
-	//~ if (HyperActive)
-	//~ {
-		//~ int insertOffset = 0;
-		//~ if (TimeActive)
-		//~ {
-			//~ insertOffset+=Nt;
-		//~ }
-		//~ if (SpaceActive)
-		//~ {
-			//~ insertOffset += Ns*Nm;
-		//~ }
+void EfficiencyVector::BackwardTransform_Hyper()
+{
+	for (int i = 0; i < hyperFractionOffset; ++i)
+	{
+		double df = Access(Transformed,Hyper,Gradient,i);	
+		Assign(Raw,Hyper,Gradient,i,df);		
+	}
+	
+	for (int i = 0; i < NVariancePops; ++i)
+	{
+		double xi = Access(Transformed,Hyper,Position,hyperFractionOffset+i);
+		double sum = 0;
 		
-		//~ for (int i = 0; i < hyperFractionOffset; ++i)
-		//~ {
-			//~ double x = TransformedPosition[transformedNonHyperParams + i];
-			//~ double df = TransformedGradient[transformedNonHyperParams + i];
+		for (int j = 0; j <  NVariancePops; ++j)
+		{
 
+			double xj = Access(Transformed,Hyper,Position,hyperFractionOffset + j);
+			double dfj = Access(Transformed,Hyper,Gradient,hyperFractionOffset + j);
 			
-			//~ Gradient[insertOffset + i] = df;		
-		//~ }
-		
-		//~ for (int i = 0; i < NVariancePops; ++i)
-		//~ {
-			//~ double xi = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ i];
-			//~ double sum = 0;
-			
-			//~ for (int j = 0; j <  NVariancePops; ++j)
-			//~ {
-				//~ double xj = TransformedPosition[transformedNonHyperParams + hyperFractionOffset+ j];
-				//~ double dfj = TransformedGradient[transformedNonHyperParams + hyperFractionOffset+ j];
-				
-				//~ double ijTerm = 0;
-				//~ if (i==j)
-				//~ {
-					//~ ijTerm = 1;
-				//~ }
-				//~ sum += dfj * xi*(ijTerm -xj);
-			//~ }
-			//~ Gradient[insertOffset + hyperFractionOffset + i] = sum;
-		//~ }	
-	//~ }
-//~ }	
+			double ijTerm = 0;
+			if (i==j)
+			{
+				ijTerm = 1;
+			}
+			sum += dfj * xi*(ijTerm -xj);
+		}
+		Assign(Raw,Hyper,Gradient,hyperFractionOffset+i,sum);
+	}	
+}	
