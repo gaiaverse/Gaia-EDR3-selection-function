@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structADABADAM_1_1OptimiserProperties" kind="struct" language="C++" prot="public">
+    <compoundname>ADABADAM::OptimiserProperties</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1a84214abbe8b2026780788935e724a009" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::OptimiserProperties::MiniBatches</definition>
+        <argsstring></argsstring>
+        <name>MiniBatches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="9" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1aa8e565efd262917c6b9f3c36d5e8424f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::OptimiserProperties::BurnInSteps</definition>
+        <argsstring></argsstring>
+        <name>BurnInSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1af4ce1872aac5201a10eb2e24edc12737" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::OptimiserProperties::StepSize</definition>
+        <argsstring></argsstring>
+        <name>StepSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="11" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1ace25a61a315527a92b4234a4fc13d389" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::OptimiserProperties::MinibatchDownStep</definition>
+        <argsstring></argsstring>
+        <name>MinibatchDownStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1a00168b755ab7b8d33dbb38e5c24003fc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::OptimiserProperties::MaxHarnessFactor</definition>
+        <argsstring></argsstring>
+        <name>MaxHarnessFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="13" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimiserProperties_1a815244b7f66d874995ec3a88e44a1d46" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::OptimiserProperties::HarnessReleaseSteps</definition>
+        <argsstring></argsstring>
+        <name>HarnessReleaseSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="14" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="8" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="7" bodyend="15"/>
+    <listofallmembers>
+      <member refid="structADABADAM_1_1OptimiserProperties_1aa8e565efd262917c6b9f3c36d5e8424f" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>BurnInSteps</name></member>
+      <member refid="structADABADAM_1_1OptimiserProperties_1a815244b7f66d874995ec3a88e44a1d46" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>HarnessReleaseSteps</name></member>
+      <member refid="structADABADAM_1_1OptimiserProperties_1a00168b755ab7b8d33dbb38e5c24003fc" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>MaxHarnessFactor</name></member>
+      <member refid="structADABADAM_1_1OptimiserProperties_1ace25a61a315527a92b4234a4fc13d389" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>MinibatchDownStep</name></member>
+      <member refid="structADABADAM_1_1OptimiserProperties_1a84214abbe8b2026780788935e724a009" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>MiniBatches</name></member>
+      <member refid="structADABADAM_1_1OptimiserProperties_1af4ce1872aac5201a10eb2e24edc12737" prot="public" virt="non-virtual"><scope>ADABADAM::OptimiserProperties</scope><name>StepSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

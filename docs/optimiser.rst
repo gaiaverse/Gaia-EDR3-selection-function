@@ -17,5 +17,5 @@ The ADABADAM (**Ada**\ ptive **B**\ atched, **Ada**\ ptive **M**\ oment) Estimat
 
 
 
-.. doxygenstruct:: ADABADAM::OptimiserStatus
+.. doxygenstruct:: ADABADAM::OptimizerStatus
 	:project: theia

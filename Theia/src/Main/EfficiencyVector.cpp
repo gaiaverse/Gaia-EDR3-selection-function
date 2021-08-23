@@ -398,6 +398,7 @@ void EfficiencyVector::ForwardTransform_Temporal()
 void EfficiencyVector::ForwardTransform_Hyper()
 {
 	// [[ Nt + Nl*Nm + (zeroth order weightings) + (first order weightings) + ... +(pop fractions) + popSum ]
+	
 	int offset = hyperFractionOffset;
 	double X = VerySmallLog;
 	

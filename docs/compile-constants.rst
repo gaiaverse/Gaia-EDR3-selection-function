@@ -16,6 +16,9 @@ Temporal Properties
 
 .. doxygenvariable:: TotalScanningTime
 .. doxygenvariable:: secondsPerNtStep
+
+.. _lt:
+
 .. doxygenvariable:: lt
 
 

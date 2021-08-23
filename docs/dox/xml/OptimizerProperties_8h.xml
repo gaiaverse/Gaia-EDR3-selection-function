@@ -33,9 +33,9 @@
         <link refid="ManualOptimizer_8h_source"/>
       </node>
     </invincdepgraph>
-    <innerclass refid="structADABADAM_1_1OptimiserProperties" prot="public">ADABADAM::OptimiserProperties</innerclass>
+    <innerclass refid="structADABADAM_1_1OptimizerProperties" prot="public">ADABADAM::OptimizerProperties</innerclass>
     <innerclass refid="structADABADAM_1_1StopConditions" prot="public">ADABADAM::StopConditions</innerclass>
-    <innerclass refid="structADABADAM_1_1OptimiserStatus" prot="public">ADABADAM::OptimiserStatus</innerclass>
+    <innerclass refid="structADABADAM_1_1OptimizerStatus" prot="public">ADABADAM::OptimizerStatus</innerclass>
     <innerclass refid="structADABADAM_1_1ProgressTracker" prot="public">ADABADAM::ProgressTracker</innerclass>
     <innerclass refid="structADABADAM_1_1MemoryBuffer" prot="public">ADABADAM::MemoryBuffer</innerclass>
     <innernamespace refid="namespaceADABADAM">ADABADAM</innernamespace>
@@ -50,7 +50,7 @@
 <codeline lineno="4"><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ADABADAM</highlight></codeline>
 <codeline lineno="6"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="7" refid="structADABADAM_1_1OptimiserProperties" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structADABADAM_1_1OptimiserProperties" kindref="compound">OptimiserProperties</ref></highlight></codeline>
+<codeline lineno="7" refid="structADABADAM_1_1OptimizerProperties" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structADABADAM_1_1OptimizerProperties" kindref="compound">OptimizerProperties</ref></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MiniBatches;</highlight></codeline>
 <codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>BurnInSteps;</highlight></codeline>
@@ -71,7 +71,7 @@
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>TerminationFile;</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
-<codeline lineno="28" refid="structADABADAM_1_1OptimiserStatus" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structADABADAM_1_1OptimiserStatus" kindref="compound">OptimiserStatus</ref></highlight></codeline>
+<codeline lineno="28" refid="structADABADAM_1_1OptimizerStatus" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structADABADAM_1_1OptimizerStatus" kindref="compound">OptimizerStatus</ref></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Continues;</highlight></codeline>
 <codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>Converged;</highlight></codeline>

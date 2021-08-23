@@ -29,8 +29,13 @@ These parameters primarily control the number of ordering of the elements within
 
 Priors & Lengthscales
 *************************************************
+.. _mut:
+
 .. doxygenvariable:: xtPrior
 .. doxygenvariable:: studentNu
+
+.. _sigmat:
+
 .. doxygenvariable:: sigmat
 .. doxygenvariable:: lt_revs
 

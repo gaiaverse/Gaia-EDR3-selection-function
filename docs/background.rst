@@ -38,3 +38,72 @@ Where :math:`F_k^n` is the set of all subsets of :math:`k` integers that can be 
 However, whilst analytically correct, this bears two problems for us: firstly it is expensive to compute, and secondly it is extremely unforgiving: if :math:`n = k`, then the allowed probabilities for :math:`p_i` are extremely constrained - and if :math:`k > n`, the distribution becomes meaningless. This is important for us, as the nominal scanning law is imperfect, and our inferred visitation times may very well diverge strongly from the actual visitations. 
 
 We therefore elect to use the more lenient normal approximation to the  Poisson Binomial, which allows for some additional variance. 
+
+
+.. _property-spaces:
+
+Property Spaces
+*********************
+
+Within this project, we encode our :doc:`efficiency-vector` on two different spaces, termed the ``Raw`` and ``Transformed`` spaces:
+
+* ``Raw`` space is the version handled by the optimizer, and the space on which the actual optimization occurs. This space is often referred to as :math:`z`-space, and the variables associated with it defined accordingly.
+* ``Transform`` space is the more physically/mathematically meaningful space, and the space which the Likelihood function operates within. This space is often referred to as :math:`x`-space, or :math:`p`-space.
+
+The spaces are linked by Forward and Backward transforms. The splitting of the spaces grants us a number of advantages:
+
+* We avoid a complex, interconnected prior by having a simple prior in ``Raw`` space
+* We can enforce bounds on our parameters with appropriate transforms (i.e. :math:`x_i > 0` can be enforced by :math:`x_i = e^{x_i}`)
+
+
+Variance Model
+---------------------
+
+.. _forward-transform:
+
+Forward Transform 
+====================
+
+The Forward Transform converts the ``Raw`` vector into the ``Transformed`` vector, such that :math:`\vec{x} = \text{ForwardTransform}(\vec{z})`.
+
+The Forward Transform has 3 components: Temporal, Spatial and Hyper. 
+
+Temporal Forward Transform 
+-------------------------------
+
+With :math:`Nt` components of both the temporal part of :math:`\vec{x}` and :math:`\vec{z}` (denoted :math:`\vec{x}^t` and :math:`\vec{z}^t` respectively), the transform is given by:
+
+.. math::
+	\begin{align}
+		q_{Nt-1} & = z^t_{Nt-1}
+		\\
+		q_i &  = \sqrt{1 - e^{- 2/\ell_t} } \times z^t_i + e^{-1/\ell_t} q_{i+1}
+		\\
+		x^t_i & = \mu_t + \sigma_t \times q_i
+	\end{align}
+	
+As the prior on :math:`\vec{z}^t` is simply the zero-mean, unit-normal Gaussian, :math:`\mu_t` and :math:`\sigma_t` are the corresponding :ref:`mean <mut>` and :ref:`standard deviations <sigmat>` of the prior on :math:`x_t`. The quantity :math:`\ell_t` is the :ref:`coupling lengthscale <lt>`, which enforces correlation between the temporal components. 
+
+Spatial Forward Transform
+-------------------------------
+
+Hyper Forward Transform 
+-------------------------------
+
+The hyperparameters associated with the coefficients of the `Variance Model`_ are unconstrained and hence unaltered by the transform:
+
+.. math::
+
+	x_{\text{coef}~i}^h = z_\text{coef}^h
+
+The hyperparameters associated with the population weightings, however, are constrained by the fact that they must be :math:`x_{\text{frac}~i}^h > 0` and :math:`\sum_i x_{\text{frac}~i}^h = 1`. This necessarily removes a degree of freedom, so there is an inherent degeneracy in this transform. We encode the transform such that:
+
+.. math::
+
+	x_{\text{frac}~i}^h = \frac{\exp(z_{\text{frac}~i}^h)}{\sum_i \exp(z_{\text{frac}~i}^h)}
+
+
+Backward Transform
+====================
+
+The Backward Transform is **not quite** the inverse of the Forward Transform -- instead of recovering :math:`z` from :math:`x`, we recover the associated *gradients*, such that :math:`\nabla_\vec{z} \mathcal{L} = \text{BackwardTransform}(\nabla_\vec{x} \mathcal{L})`.

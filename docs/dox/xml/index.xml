@@ -153,30 +153,11 @@
     <member refid="structADABADAM_1_1MemoryBuffer_1a6ec89787708be27dae727a95e1d150d1" kind="variable"><name>AnalysisSize</name></member>
     <member refid="structADABADAM_1_1MemoryBuffer_1ae39263a1b1c6154e1ebd74434473c0f7" kind="variable"><name>Analysis</name></member>
   </compound>
-  <compound refid="structADABADAM_1_1OptimiserProperties" kind="struct"><name>ADABADAM::OptimiserProperties</name>
-    <member refid="structADABADAM_1_1OptimiserProperties_1a84214abbe8b2026780788935e724a009" kind="variable"><name>MiniBatches</name></member>
-    <member refid="structADABADAM_1_1OptimiserProperties_1aa8e565efd262917c6b9f3c36d5e8424f" kind="variable"><name>BurnInSteps</name></member>
-    <member refid="structADABADAM_1_1OptimiserProperties_1af4ce1872aac5201a10eb2e24edc12737" kind="variable"><name>StepSize</name></member>
-    <member refid="structADABADAM_1_1OptimiserProperties_1ace25a61a315527a92b4234a4fc13d389" kind="variable"><name>MinibatchDownStep</name></member>
-    <member refid="structADABADAM_1_1OptimiserProperties_1a00168b755ab7b8d33dbb38e5c24003fc" kind="variable"><name>MaxHarnessFactor</name></member>
-    <member refid="structADABADAM_1_1OptimiserProperties_1a815244b7f66d874995ec3a88e44a1d46" kind="variable"><name>HarnessReleaseSteps</name></member>
-  </compound>
-  <compound refid="structADABADAM_1_1OptimiserStatus" kind="struct"><name>ADABADAM::OptimiserStatus</name>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a0a7cfbe48e0b47f523b1a98af776c9f0" kind="variable"><name>Continues</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1abdea9d811a0f320118870fa6706e582f" kind="variable"><name>Converged</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a858ff0ba93c4879cc7c78f1e195fd1e3" kind="variable"><name>TooManySteps</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a1025febeca7938a3626177bc73d26630" kind="variable"><name>ReachedGradConvergence</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a5020353b30664af6fcf759ffc02fe530" kind="variable"><name>ReachedStepConvergence</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a4e36be5de8ff2a85d44394246f03b15d" kind="variable"><name>ReachedFunctionConvergence</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a1aaba97ef8353803880396d55cc63f6a" kind="variable"><name>CarryingOnRegardless</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1a84ec8193284caf6abbeb9bbeeca7806d" kind="variable"><name>ExternalDownStep</name></member>
-    <member refid="structADABADAM_1_1OptimiserStatus_1ab0b30c7bcbe0b43471441f726468cdab" kind="variable"><name>ExternalTermination</name></member>
-  </compound>
   <compound refid="classADABADAM_1_1Optimizer" kind="class"><name>ADABADAM::Optimizer</name>
     <member refid="classADABADAM_1_1Optimizer_1a8ff1e630cd9a716c0b9532eafe080887" kind="variable"><name>Functor</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a2b648167c97a6ffa99773ac9cff6ed39" kind="variable"><name>Buffer</name></member>
-    <member refid="classADABADAM_1_1Optimizer_1a2fa1727d6e5080b450e6cab02866d2d9" kind="variable"><name>Status</name></member>
-    <member refid="classADABADAM_1_1Optimizer_1a80adf418aa7e612869dd0625d797856f" kind="variable"><name>Properties</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a74db938ffd35e81a35b00e4f19d679cf" kind="variable"><name>Status</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a60484de5e0edc3f468b43a04cf6d2760" kind="variable"><name>Properties</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a85b9dbc991ca7f4ab8331f53c6dfb43e" kind="variable"><name>HaltConditions</name></member>
     <member refid="classADABADAM_1_1Optimizer_1ab197dd3167b06ce223798da233a01607" kind="variable"><name>Progress</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a43b245fc6ea6f2ebf37e866f4e9467a9" kind="function"><name>SetDefaults</name></member>
@@ -194,6 +175,25 @@
     <member refid="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" kind="function"><name>Minimize</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a23365766563534625999627ed782d5f8" kind="function"><name>GetStatus</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a0f4e0955ba97dc4e1644c80356cabc3d" kind="function"><name>InitialiseSpeedControls</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1OptimizerProperties" kind="struct"><name>ADABADAM::OptimizerProperties</name>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kind="variable"><name>MiniBatches</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1aa833fd86c25ec3960a4d501692104d0b" kind="variable"><name>BurnInSteps</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" kind="variable"><name>StepSize</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" kind="variable"><name>MinibatchDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kind="variable"><name>MaxHarnessFactor</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kind="variable"><name>HarnessReleaseSteps</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1OptimizerStatus" kind="struct"><name>ADABADAM::OptimizerStatus</name>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a9ac9dc3b9934d3a3bf6370eba4968e84" kind="variable"><name>Continues</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kind="variable"><name>Converged</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a69a34cae9924b08720178027ee8a2c62" kind="variable"><name>TooManySteps</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a40cb570383c77058fa96b4856c78e9f6" kind="variable"><name>ReachedGradConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ab2d79284c4ba68339d144243c2da9876" kind="variable"><name>ReachedStepConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a3c4157c094a48a9a58d8ba5724874f92" kind="variable"><name>ReachedFunctionConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a277ce873a751efbb1dc12f725ea7f767" kind="variable"><name>CarryingOnRegardless</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ae8c48c5e102bee2c182567186fe7eea9" kind="variable"><name>ExternalDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ae6eb602b852ab6c35d38a651a1eeaf4e" kind="variable"><name>ExternalTermination</name></member>
   </compound>
   <compound refid="structADABADAM_1_1ProgressTracker" kind="struct"><name>ADABADAM::ProgressTracker</name>
     <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kind="variable"><name>CurrentSteps</name></member>

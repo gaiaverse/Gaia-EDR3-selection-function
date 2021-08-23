@@ -8,7 +8,11 @@
 #include "../Likelihood/ProbabilityFunctions.h"
 
 
-
+/*!
+ * 
+ * The Efficiency Vector is the central object for the Theia code. It encodes a proposed operating efficiency history for Gaia, and allows for the appropriate transforms between \verbatim embed:rst:inline :ref:`property-spaces` \endverbatim . 
+ * 
+ */
 
 class EfficiencyVector
 {
@@ -38,6 +42,11 @@ class EfficiencyVector
 		std::vector<double> TransformedGradient;
 
 		std::vector<bool> KnownGapList;
+		
+		/*!
+		 * Hello! See \verbatim embed:rst:inline :ref:`forward-transform` \endverbatim 
+		*/
+		
 		void ForwardTransform(const std::vector<double> &z);
 		void BackwardTransform();
 		void Save(bool finalSave,int saveStep,bool uniqueSave);
