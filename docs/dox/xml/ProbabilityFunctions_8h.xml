@@ -156,6 +156,8 @@
       <node id="5">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</label>
         <link refid="EfficiencyVector_8h_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>

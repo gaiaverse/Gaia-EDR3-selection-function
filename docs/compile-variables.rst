@@ -29,8 +29,7 @@ These parameters primarily control the number of ordering of the elements within
 
 Priors & Lengthscales
 *************************************************
-.. doxygenvariable:: xtPriorNonGap
-.. doxygenvariable:: xtPriorInsideGap
+.. doxygenvariable:: xtPrior
 .. doxygenvariable:: studentNu
 .. doxygenvariable:: sigmat
 .. doxygenvariable:: lt_revs

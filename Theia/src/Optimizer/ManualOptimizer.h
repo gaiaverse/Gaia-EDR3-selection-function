@@ -467,7 +467,7 @@ namespace ADABADAM
 	
 			void SaveProgress(int n)
 			{
-				std::string saveFile = Progress.SaveLocation + "OptimiserProgress.txt";
+				std::string saveFile = Progress.SaveLocation + "OptimizerProgress.txt";
 				std::fstream file;
 				int width = 20;
 				if (Progress.BufferFileOpened == false)
@@ -566,8 +566,8 @@ namespace ADABADAM
 			}
 		public:
 			
-			OptimiserStatus Status;
-			OptimiserProperties Properties;
+			OptimizerStatus Status;
+			OptimizerProperties Properties;
 			StopConditions HaltConditions;
 			ProgressTracker Progress;
 			

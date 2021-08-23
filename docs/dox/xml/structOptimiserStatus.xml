@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="30" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="30" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="29" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a70321c01ac661dabf5b180031e9b8bb2" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="31" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="31" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="30" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a9fa1878474d02076b4ec867808abaa3e" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -40,7 +40,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="32" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="32" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="31" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a58d7f4f4f10a4b1059b8290b6486e0d5" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -53,7 +53,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="33" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="32" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a854bfaef4df67e031069a00b6325ca86" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="34" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="34" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="33" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a2c0efe44cd78260c25e9e4551cfb9fa6" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -79,7 +79,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="35" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="35" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="34" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="34" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1ab4b142d6d72ddfd87174278faa7901ae" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -92,7 +92,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="36" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="36" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="35" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1af46b372523642690c97fe310dd04efdb" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -105,7 +105,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="37" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="37" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="36" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structOptimiserStatus_1a29dda78a363c436d68fbd5eb342cd862" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -118,14 +118,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="38" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="37" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="37" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="29" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="28" bodyend="39"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="28" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="27" bodyend="38"/>
     <listofallmembers>
       <member refid="structOptimiserStatus_1ab4b142d6d72ddfd87174278faa7901ae" prot="public" virt="non-virtual"><scope>OptimiserStatus</scope><name>CarryingOnRegardless</name></member>
       <member refid="structOptimiserStatus_1a7d45c2a7646e88ac74e2f81131f82dd2" prot="public" virt="non-virtual"><scope>OptimiserStatus</scope><name>Continues</name></member>

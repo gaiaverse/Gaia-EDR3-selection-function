@@ -121,6 +121,8 @@
       <node id="10">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</label>
         <link refid="EfficiencyVector_8h_source"/>
+        <childnode refid="7" relation="include">
+        </childnode>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
@@ -230,7 +232,7 @@
         <definition>const int Nt</definition>
         <argsstring></argsstring>
         <name>Nt</name>
-        <initializer>=  8967691</initializer>
+        <initializer>=  896769</initializer>
         <briefdescription>
 <para>Number of coarse time bins, can be 0 &lt; Nt &lt; TotalScanningTime. </para>
         </briefdescription>
@@ -275,7 +277,7 @@
         <definition>const int Nm</definition>
         <argsstring></argsstring>
         <name>Nm</name>
-        <initializer>= 213</initializer>
+        <initializer>= 10</initializer>
         <briefdescription>
 <para>Number of magnitude bins. </para>
         </briefdescription>
@@ -395,7 +397,7 @@
         <definition>const double xmPrior</definition>
         <argsstring></argsstring>
         <name>xmPrior</name>
-        <initializer>= -3</initializer>
+        <initializer>= 3</initializer>
         <briefdescription>
 <para>Mean of gaussian prior on xml. </para>
         </briefdescription>
@@ -677,13 +679,13 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nt<sp/>=<sp/><sp/>8967691;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nt<sp/>=<sp/><sp/>896769;<sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>healpix_order<sp/>=<sp/>0;<sp/></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>needlet_order<sp/>=<sp/>-1;<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nm<sp/>=<sp/>213;<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nm<sp/>=<sp/>10;<sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NVariancePops<sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
@@ -706,7 +708,7 @@
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lt_revs<sp/>=<sp/>1;<sp/></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xmPrior<sp/>=<sp/>-3;<sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xmPrior<sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gapPriorAlpha<sp/>=<sp/>0.5;<sp/></highlight></codeline>

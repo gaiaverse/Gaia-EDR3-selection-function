@@ -9,7 +9,7 @@ Optimiser
 
 
 
-.. doxygenclass:: Optimizer
+.. doxygenclass:: ADABADAM::Optimizer
 	:project: theia
 	
 	
@@ -17,5 +17,5 @@ The ADABADAM (**Ada**\ ptive **B**\ atched, **Ada**\ ptive **M**\ oment) Estimat
 
 
 
-.. doxygenstruct:: OptimiserStatus
+.. doxygenstruct:: ADABADAM::OptimiserStatus
 	:project: theia

@@ -20,28 +20,21 @@
     <member refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" kind="variable"><name>Data</name></member>
     <member refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kind="variable"><name>L</name></member>
     <member refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" kind="variable"><name>Start</name></member>
-    <member refid="classDescentFunctor_1a1f998c03a9864f6bbdee2e7d7857c0d5" kind="variable"><name>HyperBuffer</name></member>
-    <member refid="classDescentFunctor_1a0d7e6f52b2aaa45042e280b80e9c87b3" kind="variable"><name>HyperBufferLoc</name></member>
-    <member refid="classDescentFunctor_1aa036f1543bdf104b4aea24d09979cd8e" kind="variable"><name>HyperBufferSize</name></member>
-    <member refid="classDescentFunctor_1a80f5b8fea4509da871f7f838f7a9fc12" kind="variable"><name>HyperSaved</name></member>
-    <member refid="classDescentFunctor_1a5e6955e5998f4b649283966dc7318e05" kind="variable"><name>hyperStep</name></member>
-    <member refid="classDescentFunctor_1ab7a75984c4b9325a2b606b48a88d4622" kind="variable"><name>OutputDir</name></member>
-    <member refid="classDescentFunctor_1a93e65a21f5ba9c8836c2308816f6817d" kind="variable"><name>bVector</name></member>
     <member refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" kind="variable"><name>NStars</name></member>
     <member refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" kind="variable"><name>StarsInLastBatch</name></member>
-    <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kind="variable"><name>Efficiency</name></member>
     <member refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kind="variable"><name>MaxBatches</name></member>
     <member refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" kind="variable"><name>LoopID</name></member>
+    <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kind="variable"><name>Efficiency</name></member>
     <member refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" kind="variable"><name>Value</name></member>
     <member refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" kind="variable"><name>Gradient</name></member>
     <member refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" kind="variable"><name>mut_gaps</name></member>
     <member refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" kind="function"><name>SaveHyperBuffer</name></member>
     <member refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" kind="function"><name>ResetPosition</name></member>
     <member refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" kind="function"><name>DescentFunctor</name></member>
-    <member refid="classDescentFunctor_1a38f1c319b730f318c9ce89718e377ebf" kind="function"><name>DistributeCalculations</name></member>
-    <member refid="classDescentFunctor_1a0c3a1b76e6fce3713c6d6a8761ff1bf3" kind="function"><name>Calculate</name></member>
-    <member refid="classDescentFunctor_1acfae2cdc2983a8eb215fb334bcdb0863" kind="function"><name>Calculate</name></member>
-    <member refid="classDescentFunctor_1a3de250a0703477a82312614785bcdb8b" kind="function"><name>SavePosition</name></member>
+    <member refid="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" kind="function"><name>DistributeCalculations</name></member>
+    <member refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" kind="function"><name>Calculate</name></member>
+    <member refid="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" kind="function"><name>Calculate</name></member>
+    <member refid="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" kind="function"><name>SavePosition</name></member>
   </compound>
   <compound refid="classEfficiencyVector" kind="class"><name>EfficiencyVector</name>
     <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kind="enum"><name>VectorMode</name></member>
@@ -51,6 +44,9 @@
     <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea1f4c469d28d6d6118881152ba4d10ca7" kind="enumvalue"><name>Temporal</name></member>
     <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ceacac34fdc2ea3edb2031c5bc689ac1114" kind="enumvalue"><name>Spatial</name></member>
     <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea43b9bc5417f2033c529ed1bea4b64628" kind="enumvalue"><name>Hyper</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kind="enum"><name>VectorType</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4ad76b33744e33b33ccb8eb74a8f0d8e97" kind="enumvalue"><name>Position</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4aa1cd5f818bc45be8f0a693fadff98ca6" kind="enumvalue"><name>Gradient</name></member>
     <member refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kind="variable"><name>RawPosition</name></member>
     <member refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kind="variable"><name>TransformedPosition</name></member>
     <member refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kind="variable"><name>RawGradient</name></member>
@@ -67,15 +63,17 @@
     <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
     <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
     <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
-    <member refid="classEfficiencyVector_1a11465197ea7af2c92cf4a6cb740ad7aa" kind="function"><name>EfficiencyVector</name></member>
-    <member refid="classEfficiencyVector_1a772d881ddda170a107779f648ba1b87c" kind="function"><name>Access</name></member>
-    <member refid="classEfficiencyVector_1a3883c0971a71b2f5a146d3bb7f4104ee" kind="function"><name>Assign</name></member>
-    <member refid="classEfficiencyVector_1aa9e4ec6602df7d5d7e50f1b17ecff483" kind="function"><name>Increment</name></member>
-    <member refid="classEfficiencyVector_1aa81a69e044d56f994299e89d026662f9" kind="function"><name>Access</name></member>
-    <member refid="classEfficiencyVector_1a0c0fcc832350f283ba054773b26bd2e9" kind="function"><name>Assign</name></member>
-    <member refid="classEfficiencyVector_1a9517567ec8a6e57fc9bca6fdde68aafd" kind="function"><name>Increment</name></member>
-    <member refid="classEfficiencyVector_1a234e0b297bb72d89f0f47c21b6aaeeeb" kind="function"><name>ForwardTransform</name></member>
+    <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
+    <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1a93805eef9e2a06496fbf6ccbfff4cdb2" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1a2336e564c1bcb080a9b8d730d034f84d" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1a737c4a6882a787b61a687cf5efa0ee0e" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kind="function"><name>ForwardTransform</name></member>
     <member refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kind="function"><name>BackwardTransform</name></member>
+    <member refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kind="function"><name>Save</name></member>
     <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kind="function"><name>ForwardTransform_Hyper</name></member>
     <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kind="function"><name>ForwardTransform_Spatial</name></member>
     <member refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kind="function"><name>ForwardTransform_Temporal</name></member>
@@ -135,82 +133,81 @@
   </compound>
   <compound refid="classLogLikelihoodPrior" kind="class"><name>LogLikelihoodPrior</name>
     <member refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" kind="function"><name>LogLikelihoodPrior</name></member>
-    <member refid="classLogLikelihoodPrior_1abc301c0e84d5f8e459a5d578697e6649" kind="function"><name>TransformPrior</name></member>
-    <member refid="classLogLikelihoodPrior_1a4ae49452332edccd86ed569dc85d7585" kind="function"><name>RawPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1a9ab6a300487baff78f0caeac3f3f75e8" kind="function"><name>TransformPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" kind="function"><name>RawPrior</name></member>
   </compound>
-  <compound refid="structMemoryBuffer" kind="struct"><name>MemoryBuffer</name>
-    <member refid="structMemoryBuffer_1a9dd45cbef6dc3a2b739930e4dec409d3" kind="variable"><name>Size</name></member>
-    <member refid="structMemoryBuffer_1a86585015fa99011516592b628f70db83" kind="variable"><name>Position</name></member>
-    <member refid="structMemoryBuffer_1a4e662ae94caa8b785bd7275b895cc8fb" kind="variable"><name>StartTime</name></member>
-    <member refid="structMemoryBuffer_1ad72781d6a1db3dfbf6c81596c8a07f00" kind="variable"><name>LastSaveTime</name></member>
-    <member refid="structMemoryBuffer_1a3398f730a3eb1ae6c93b3e7df134522a" kind="variable"><name>OverrideTime</name></member>
-    <member refid="structMemoryBuffer_1ab047fd7f062b4db7bd4cdfff7bdaf62c" kind="variable"><name>Fs</name></member>
-    <member refid="structMemoryBuffer_1a130230435c568e4d3af8fc2bd3223293" kind="variable"><name>Gradnorms</name></member>
-    <member refid="structMemoryBuffer_1a99afdaad76269c41ed13560ff1fdafb7" kind="variable"><name>DXs</name></member>
-    <member refid="structMemoryBuffer_1a966ec2eb4f30c5b27bddccb16b6e1c1b" kind="variable"><name>Times</name></member>
-    <member refid="structMemoryBuffer_1ae3c426ed9ede4f5c56396efb4d124b9f" kind="variable"><name>MiniBatches</name></member>
-    <member refid="structMemoryBuffer_1aa86f98179ea101b944f96521e54c6efb" kind="variable"><name>Epochs</name></member>
-    <member refid="structMemoryBuffer_1a86fe83559e8e303db698259261fba8b8" kind="variable"><name>Batches</name></member>
-    <member refid="structMemoryBuffer_1a88f57d627727f3ae12f2e8cdcef9f7f6" kind="variable"><name>AnalysisSteps</name></member>
-    <member refid="structMemoryBuffer_1a2c7b1ba7dda880394e9f7b68c5b553d6" kind="variable"><name>AnalysisSize</name></member>
-    <member refid="structMemoryBuffer_1aaa05a44d029283a092aefd582977d1bb" kind="variable"><name>Analysis</name></member>
+  <compound refid="structADABADAM_1_1MemoryBuffer" kind="struct"><name>ADABADAM::MemoryBuffer</name>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a2c412afddea0ef799ba41875c9d76818" kind="variable"><name>Size</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a72cd71bdb0010e7855d369a8afa18127" kind="variable"><name>Position</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1acfaafc64e76da8e65b151e4fa47d1030" kind="variable"><name>StartTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a9d771fa2b6d919faa831f5f415485d42" kind="variable"><name>LastSaveTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ac83c89b9e094cc7c14d0c261f3ac8cc8" kind="variable"><name>OverrideTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1aa33883a707ec5489851bd402286a1429" kind="variable"><name>Fs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a139cfda602a424ca9c0986d520fe5790" kind="variable"><name>Gradnorms</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1adb2e685f7d2a863caf046bf4a3d0a432" kind="variable"><name>DXs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a6d1be32973eb7c314694a7e0f44b1426" kind="variable"><name>Times</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a95073ef182ced1e1bdf5e506fbf5d340" kind="variable"><name>MiniBatches</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ad9a13b1da67a97d2c0df769f4adcc179" kind="variable"><name>Epochs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a7386385a1aeeac03f49dd0b72209088d" kind="variable"><name>Batches</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a490e91144105a17b5c3fd4614b698c31" kind="variable"><name>AnalysisSteps</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a6ec89787708be27dae727a95e1d150d1" kind="variable"><name>AnalysisSize</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ae39263a1b1c6154e1ebd74434473c0f7" kind="variable"><name>Analysis</name></member>
   </compound>
-  <compound refid="structOptimiserProperties" kind="struct"><name>OptimiserProperties</name>
-    <member refid="structOptimiserProperties_1a95b49b57cd02916e840da511fa01e379" kind="variable"><name>Mode</name></member>
-    <member refid="structOptimiserProperties_1aacef8e01973bcece3214de56174778bb" kind="variable"><name>MiniBatches</name></member>
-    <member refid="structOptimiserProperties_1a8d1a326eff70cb4d8472b334e95d8b07" kind="variable"><name>BurnInSteps</name></member>
-    <member refid="structOptimiserProperties_1a8c385e907134c4491e8335bda1a51c1e" kind="variable"><name>StepSize</name></member>
-    <member refid="structOptimiserProperties_1a7aa5f01db46d5aa68660babb57eb4068" kind="variable"><name>MinibatchDownStep</name></member>
-    <member refid="structOptimiserProperties_1a6387c12bb01525748510c7e2dfed4339" kind="variable"><name>MaxHarnessFactor</name></member>
-    <member refid="structOptimiserProperties_1a04b7f1577650e7a618a6dce076071123" kind="variable"><name>HarnessReleaseSteps</name></member>
+  <compound refid="structADABADAM_1_1OptimiserProperties" kind="struct"><name>ADABADAM::OptimiserProperties</name>
+    <member refid="structADABADAM_1_1OptimiserProperties_1a84214abbe8b2026780788935e724a009" kind="variable"><name>MiniBatches</name></member>
+    <member refid="structADABADAM_1_1OptimiserProperties_1aa8e565efd262917c6b9f3c36d5e8424f" kind="variable"><name>BurnInSteps</name></member>
+    <member refid="structADABADAM_1_1OptimiserProperties_1af4ce1872aac5201a10eb2e24edc12737" kind="variable"><name>StepSize</name></member>
+    <member refid="structADABADAM_1_1OptimiserProperties_1ace25a61a315527a92b4234a4fc13d389" kind="variable"><name>MinibatchDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimiserProperties_1a00168b755ab7b8d33dbb38e5c24003fc" kind="variable"><name>MaxHarnessFactor</name></member>
+    <member refid="structADABADAM_1_1OptimiserProperties_1a815244b7f66d874995ec3a88e44a1d46" kind="variable"><name>HarnessReleaseSteps</name></member>
   </compound>
-  <compound refid="structOptimiserStatus" kind="struct"><name>OptimiserStatus</name>
-    <member refid="structOptimiserStatus_1a7d45c2a7646e88ac74e2f81131f82dd2" kind="variable"><name>Continues</name></member>
-    <member refid="structOptimiserStatus_1a70321c01ac661dabf5b180031e9b8bb2" kind="variable"><name>Converged</name></member>
-    <member refid="structOptimiserStatus_1a9fa1878474d02076b4ec867808abaa3e" kind="variable"><name>TooManySteps</name></member>
-    <member refid="structOptimiserStatus_1a58d7f4f4f10a4b1059b8290b6486e0d5" kind="variable"><name>ReachedGradConvergence</name></member>
-    <member refid="structOptimiserStatus_1a854bfaef4df67e031069a00b6325ca86" kind="variable"><name>ReachedStepConvergence</name></member>
-    <member refid="structOptimiserStatus_1a2c0efe44cd78260c25e9e4551cfb9fa6" kind="variable"><name>ReachedFunctionConvergence</name></member>
-    <member refid="structOptimiserStatus_1ab4b142d6d72ddfd87174278faa7901ae" kind="variable"><name>CarryingOnRegardless</name></member>
-    <member refid="structOptimiserStatus_1af46b372523642690c97fe310dd04efdb" kind="variable"><name>ExternalDownStep</name></member>
-    <member refid="structOptimiserStatus_1a29dda78a363c436d68fbd5eb342cd862" kind="variable"><name>ExternalTermination</name></member>
+  <compound refid="structADABADAM_1_1OptimiserStatus" kind="struct"><name>ADABADAM::OptimiserStatus</name>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a0a7cfbe48e0b47f523b1a98af776c9f0" kind="variable"><name>Continues</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1abdea9d811a0f320118870fa6706e582f" kind="variable"><name>Converged</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a858ff0ba93c4879cc7c78f1e195fd1e3" kind="variable"><name>TooManySteps</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a1025febeca7938a3626177bc73d26630" kind="variable"><name>ReachedGradConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a5020353b30664af6fcf759ffc02fe530" kind="variable"><name>ReachedStepConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a4e36be5de8ff2a85d44394246f03b15d" kind="variable"><name>ReachedFunctionConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a1aaba97ef8353803880396d55cc63f6a" kind="variable"><name>CarryingOnRegardless</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1a84ec8193284caf6abbeb9bbeeca7806d" kind="variable"><name>ExternalDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimiserStatus_1ab0b30c7bcbe0b43471441f726468cdab" kind="variable"><name>ExternalTermination</name></member>
   </compound>
-  <compound refid="classOptimizer" kind="class"><name>Optimizer</name>
-    <member refid="classOptimizer_1a48030ae6e65ec383e53557cc33aba2b9" kind="variable"><name>Functor</name></member>
-    <member refid="classOptimizer_1a0a44f212eda78b37981ecadf09eeb392" kind="variable"><name>Buffer</name></member>
-    <member refid="classOptimizer_1abe6112b42cbdc2d21d357eca8e6cddcf" kind="variable"><name>Status</name></member>
-    <member refid="classOptimizer_1a21a7d8f0ee189158efb5a5c45844b671" kind="variable"><name>Properties</name></member>
-    <member refid="classOptimizer_1af7371734bfa497aeef60185738d89a8e" kind="variable"><name>HaltConditions</name></member>
-    <member refid="classOptimizer_1aecc0f0b358ac630cc78fc40a3d737b53" kind="variable"><name>Progress</name></member>
-    <member refid="classOptimizer_1a4417a2798d284a0edf7e1a79a644ed3d" kind="function"><name>SetDefaults</name></member>
-    <member refid="classOptimizer_1ade073ae1d2e2f4d6567eacb7dbd314c1" kind="function"><name>Initialise</name></member>
-    <member refid="classOptimizer_1ab75c056e838cfa5de543d5ea086eae91" kind="function"><name>ADABADAM</name></member>
-    <member refid="classOptimizer_1aa88a68a284eeefdda2a2f5f46e82c0ab" kind="function"><name>CheckConvergence</name></member>
-    <member refid="classOptimizer_1a2e9cfe8c66054d48fe5e6cc91df9ade4" kind="function"><name>CheckMinibatches</name></member>
-    <member refid="classOptimizer_1a24a3ae5fae44ba26d79fe1b3810f4073" kind="function"><name>NeedsBatchReduction</name></member>
-    <member refid="classOptimizer_1ae672f3864600ee0c601ccb20a6e93d9c" kind="function"><name>UpdateProgress</name></member>
-    <member refid="classOptimizer_1a3ce30c818b135f3a9e1cc116c5e44924" kind="function"><name>SaveProgress</name></member>
-    <member refid="classOptimizer_1ab335af0357f88e0ec370c18efb590db9" kind="function"><name>InitialiseExternalFiles</name></member>
-    <member refid="classOptimizer_1ac5f343945e27107cb32f7f60ff0aa20f" kind="function"><name>CheckExternalFiles</name></member>
-    <member refid="classOptimizer_1a6372e32798ea72feec26358dd131bddf" kind="function"><name>CleanExternalFiles</name></member>
-    <member refid="classOptimizer_1ac0e9c13ba2d8779c27dcf1dee8ab0306" kind="function"><name>Optimizer</name></member>
-    <member refid="classOptimizer_1a1a87a01f13187f0aa30e5fbed82746d4" kind="function"><name>Minimize</name></member>
-    <member refid="classOptimizer_1a9bd0631315cd436b781b13a893b43570" kind="function"><name>GetStatus</name></member>
-    <member refid="classOptimizer_1a5764da74cea367e4fcfb109457775925" kind="function"><name>InitialiseSpeedControls</name></member>
+  <compound refid="classADABADAM_1_1Optimizer" kind="class"><name>ADABADAM::Optimizer</name>
+    <member refid="classADABADAM_1_1Optimizer_1a8ff1e630cd9a716c0b9532eafe080887" kind="variable"><name>Functor</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a2b648167c97a6ffa99773ac9cff6ed39" kind="variable"><name>Buffer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a2fa1727d6e5080b450e6cab02866d2d9" kind="variable"><name>Status</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a80adf418aa7e612869dd0625d797856f" kind="variable"><name>Properties</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a85b9dbc991ca7f4ab8331f53c6dfb43e" kind="variable"><name>HaltConditions</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1ab197dd3167b06ce223798da233a01607" kind="variable"><name>Progress</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a43b245fc6ea6f2ebf37e866f4e9467a9" kind="function"><name>SetDefaults</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8e3bc7c0b60f1966a9afa044dc492725" kind="function"><name>Initialise</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1aaa9cbc92f2f6e73b5c5519f7e5d49d8e" kind="function"><name>ADABADAM_Body</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a5eb97d9042e07d43df8bee42e4bdd1e9" kind="function"><name>CheckConvergence</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a6429082a232ed285df6a0a477d585ab9" kind="function"><name>CheckMinibatches</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a0356ffc804f64b3c6d0afdc06ce346ef" kind="function"><name>NeedsBatchReduction</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1ae8f2089142d18ce5076487012cb4ab48" kind="function"><name>UpdateProgress</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kind="function"><name>SaveProgress</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a83f5a64421c1daad8a40d8b9c61e5176" kind="function"><name>InitialiseExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" kind="function"><name>CheckExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8253c1c55048b1c7e79dd975de27e093" kind="function"><name>CleanExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a6e666554c2eed7330810f53cd826309b" kind="function"><name>Optimizer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" kind="function"><name>Minimize</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a23365766563534625999627ed782d5f8" kind="function"><name>GetStatus</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a0f4e0955ba97dc4e1644c80356cabc3d" kind="function"><name>InitialiseSpeedControls</name></member>
   </compound>
-  <compound refid="structProgressTracker" kind="struct"><name>ProgressTracker</name>
-    <member refid="structProgressTracker_1aa531f094e8ad975dfefc47ece359592d" kind="variable"><name>CurrentSteps</name></member>
-    <member refid="structProgressTracker_1a6dfeb8637c85c7310af398578d221bac" kind="variable"><name>MovingAverage</name></member>
-    <member refid="structProgressTracker_1ae1c6ce39fe19ccf2d99e04d84bf8c52f" kind="variable"><name>Harness</name></member>
-    <member refid="structProgressTracker_1a278dfc52759a8b774b7df65ddd474cbb" kind="variable"><name>SpeedController</name></member>
-    <member refid="structProgressTracker_1a972f79a55a785d579031f956e52f92e8" kind="variable"><name>StepsPerPositionSave</name></member>
-    <member refid="structProgressTracker_1a42a1492c36b842d23968e36c01b58b91" kind="variable"><name>UniquePositionSaves</name></member>
-    <member refid="structProgressTracker_1a89936bd25d378bb4c90fa278ce7cc373" kind="variable"><name>BufferFileOpened</name></member>
-    <member refid="structProgressTracker_1a1f87aa774affb12847fdf90e912ac147" kind="variable"><name>SaveLocation</name></member>
-    <member refid="structProgressTracker_1a5b3ece79bcfab593be27396d393f6370" kind="variable"><name>Hashes</name></member>
-    <member refid="structProgressTracker_1ad0995169886380eae9bed1c416e20fe7" kind="variable"><name>MaxHashes</name></member>
-    <member refid="structProgressTracker_1aa9e165a0b18af7d137a7b7bacf7e43bd" kind="variable"><name>SlowdownTriggers</name></member>
-    <member refid="structProgressTracker_1aa9d40fe1375a0e92aa429b8b1bf40ee6" kind="variable"><name>TimeSinceSingleBatch</name></member>
+  <compound refid="structADABADAM_1_1ProgressTracker" kind="struct"><name>ADABADAM::ProgressTracker</name>
+    <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kind="variable"><name>CurrentSteps</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a901eacadc8b511ef9ea8d8fb8cb6fdad" kind="variable"><name>MovingAverage</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" kind="variable"><name>Harness</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a699bbec86d18a96818a8c2fab7347e70" kind="variable"><name>SpeedController</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a22057f687813303d623e115d59baba08" kind="variable"><name>StepsPerPositionSave</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a3b6dc0b1e07f05a9cee9510dce507048" kind="variable"><name>UniquePositionSaves</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" kind="variable"><name>BufferFileOpened</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" kind="variable"><name>SaveLocation</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a7c3f518985d1790811e9c8382f366bec" kind="variable"><name>Hashes</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" kind="variable"><name>MaxHashes</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" kind="variable"><name>SlowdownTriggers</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a63b47212063f59708cc164c332532e00" kind="variable"><name>TimeSinceSingleBatch</name></member>
   </compound>
   <compound refid="classStar" kind="class"><name>Star</name>
     <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kind="variable"><name>nMeasure</name></member>
@@ -220,15 +217,15 @@
     <member refid="classStar_1ac174c691c269196c47324a13c3c9f903" kind="function"><name>Star</name></member>
     <member refid="classStar_1aace160d83fb4be45f11ca9db7dc7d51c" kind="function"><name>Star</name></member>
   </compound>
-  <compound refid="structStopConditions" kind="struct"><name>StopConditions</name>
-    <member refid="structStopConditions_1af2622385130b911bed2c486ae8c460ff" kind="variable"><name>MaxSteps</name></member>
-    <member refid="structStopConditions_1a43d87fc57a46592e5ebe7eb74ed0cf9f" kind="variable"><name>PositionChangeThreshold</name></member>
-    <member refid="structStopConditions_1a8b6e6f9c935df6006ded3a0879dd33de" kind="variable"><name>GradientThreshold</name></member>
-    <member refid="structStopConditions_1adc5c6c3a77f1d2162419ba06dbfa6b03" kind="variable"><name>FunctionChangeThreshold</name></member>
-    <member refid="structStopConditions_1af78938739bfb3fc5971b9cbb4e61331d" kind="variable"><name>SingleBatchStepThreshold</name></member>
-    <member refid="structStopConditions_1a4b1bfd27c0581edec18fe55ae1cdced3" kind="variable"><name>UseExternalInstructions</name></member>
-    <member refid="structStopConditions_1ac32b60d59dd9c352b5dccc54d817eb6a" kind="variable"><name>DownStepFile</name></member>
-    <member refid="structStopConditions_1ae590bf77b1deeee760750df2a11fa6d8" kind="variable"><name>TerminationFile</name></member>
+  <compound refid="structADABADAM_1_1StopConditions" kind="struct"><name>ADABADAM::StopConditions</name>
+    <member refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kind="variable"><name>MaxSteps</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a91588e199ade4a073925dc3b2b8d8209" kind="variable"><name>PositionChangeThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" kind="variable"><name>GradientThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" kind="variable"><name>FunctionChangeThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" kind="variable"><name>SingleBatchStepThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a406879138cff941f80b1f44a06106e03" kind="variable"><name>UseExternalInstructions</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" kind="variable"><name>DownStepFile</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" kind="variable"><name>TerminationFile</name></member>
   </compound>
   <compound refid="structVariancePopulation" kind="struct"><name>VariancePopulation</name>
     <member refid="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" kind="variable"><name>Fraction</name></member>
@@ -238,6 +235,13 @@
     <member refid="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" kind="function"><name>Variance</name></member>
     <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" kind="function"><name>dVariancedN</name></member>
     <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" kind="function"><name>dVariancedAlpha</name></member>
+  </compound>
+  <compound refid="namespaceADABADAM" kind="namespace"><name>ADABADAM</name>
+    <member refid="ManualOptimizer_8h_1a6daa2701fb4cfaeb09a51cd2a8fd9110" kind="function"><name>sgn</name></member>
+    <member refid="ManualOptimizer_8h_1adbecb22b119acb164dfb532bf7b69f55" kind="function"><name>norm</name></member>
+    <member refid="ManualOptimizer_8h_1a8383c920df127d40c1a15dea4e22b47f" kind="function"><name>vectorDiffNorm</name></member>
+    <member refid="ManualOptimizer_8h_1ac05031b7779daebbd07d9a68b4181260" kind="function"><name>vectorDiff</name></member>
+    <member refid="ManualOptimizer_8h_1a30978fca49d41c59890c4c5245a2f87b" kind="function"><name>randomShuffle</name></member>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
   </compound>
@@ -353,15 +357,8 @@
     <member refid="DescentFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
   </compound>
   <compound refid="ManualOptimizer_8h" kind="file"><name>ManualOptimizer.h</name>
-    <member refid="ManualOptimizer_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
-    <member refid="ManualOptimizer_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
-    <member refid="ManualOptimizer_8h_1a1ab31b90bc584c635ec159468ceed9b2" kind="function"><name>sgn</name></member>
-    <member refid="ManualOptimizer_8h_1afed92e0b891cde45cdca03f7d16a856e" kind="function"><name>randomShuffle</name></member>
   </compound>
   <compound refid="OptimizerProperties_8h" kind="file"><name>OptimizerProperties.h</name>
-    <member refid="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2" kind="enum"><name>OptimiserModes</name></member>
-    <member refid="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2adc9aaf26c6ab28af8b73cb24d59de341" kind="enumvalue"><name>ADAM</name></member>
-    <member refid="OptimizerProperties_8h_1a14409e376c7f28aaf2c3b1f9297c0da2af7674144b719b6c18ceeccad2a5e3784" kind="enumvalue"><name>ADABADAM</name></member>
   </compound>
   <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling</name>
   </compound>
