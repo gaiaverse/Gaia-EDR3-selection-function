@@ -155,12 +155,13 @@
         <argsstring></argsstring>
         <name>needletN</name>
         <briefdescription>
+<para>The number of needlet elements - unknown at run time as it depends on the spatial resolution chosen, and the chosen zero-rounding cutoff. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="135" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="135" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="146" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="146" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -168,12 +169,13 @@
         <argsstring></argsstring>
         <name>needlet_u</name>
         <briefdescription>
+<para>Non-zero i-indices in the needlet matrix. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="136" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="136" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="149" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -181,12 +183,13 @@
         <argsstring></argsstring>
         <name>needlet_v</name>
         <briefdescription>
+<para>Non-zero j-indices in the needlet matrix. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="137" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="137" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="152" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -196,10 +199,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>The values of P_ij, with ij determined from <ref refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kindref="member">needlet_u</ref> and <ref refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kindref="member">needlet_v</ref> </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="138" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="138" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="155" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -207,25 +211,69 @@
         <argsstring></argsstring>
         <name>bVector</name>
         <briefdescription>
+<para>A temporary holder (to prevent needless memory initialisations) for the spatial transform. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="139" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="139" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="158" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="158" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" prot="private" static="no" mutable="no">
-        <type>Eigen::Matrix&lt; double, <ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref>, <ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref> &gt;</type>
-        <definition>Eigen::Matrix&lt;double, Nm, Nm&gt; EfficiencyVector::CholeskyKg</definition>
+      <memberdef kind="variable" id="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EfficiencyVector::choleskyN</definition>
         <argsstring></argsstring>
-        <name>CholeskyKg</name>
+        <name>choleskyN</name>
         <briefdescription>
+<para>The <ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform()</ref> requires the use of a cholesky-decomposed matrix for the magnitude-coupling (encoded by <ref refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" kindref="member">lm</ref>). This required many cycles over elements which were near-zero. We have decomposed this into a list of <ref refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kindref="member">choleskyN</ref> elements which are significant, to cut the runtime of this expensive operation. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="142" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="142" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="161" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; EfficiencyVector::cholesky_u</definition>
+        <argsstring></argsstring>
+        <name>cholesky_u</name>
+        <briefdescription>
+<para>Non-zero i-indices of the cholesky-matrix Kg. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="164" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; EfficiencyVector::cholesky_v</definition>
+        <argsstring></argsstring>
+        <name>cholesky_v</name>
+        <briefdescription>
+<para>Non-zero j-indices of the cholesky-matrix Kg. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="167" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; EfficiencyVector::cholesky_w</definition>
+        <argsstring></argsstring>
+        <name>cholesky_w</name>
+        <briefdescription>
+<para>The value of CholeskyKg_ij, with ij determined from <ref refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kindref="member">cholesky_u</ref> and <ref refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kindref="member">cholesky_v</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="170" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -234,64 +282,13 @@
         <name>cholesky_tol</name>
         <initializer>= 1e-4</initializer>
         <briefdescription>
+<para>The &apos;significant value&apos; - values below this are assumed to be zero and not included in <ref refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kindref="member">cholesky_w</ref>. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="143" column="12" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="143" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int EfficiencyVector::choleskyN</definition>
-        <argsstring></argsstring>
-        <name>choleskyN</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="144" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="144" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; int &gt;</type>
-        <definition>std::vector&lt;int&gt; EfficiencyVector::cholesky_u</definition>
-        <argsstring></argsstring>
-        <name>cholesky_u</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="145" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="145" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; int &gt;</type>
-        <definition>std::vector&lt;int&gt; EfficiencyVector::cholesky_v</definition>
-        <argsstring></argsstring>
-        <name>cholesky_v</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="146" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="146" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; EfficiencyVector::cholesky_w</definition>
-        <argsstring></argsstring>
-        <name>cholesky_w</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="147" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="147" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="173" column="12" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -299,12 +296,13 @@
         <argsstring></argsstring>
         <name>SaveLocation</name>
         <briefdescription>
+<para>The directory where the <ref refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kindref="member">Save()</ref> function places its output. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="159" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="159" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="202" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="202" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -767,18 +765,19 @@
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
-      <memberdef kind="function" id="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void EfficiencyVector::ForwardTransform_Hyper</definition>
+        <definition>void EfficiencyVector::ForwardTransform_Temporal</definition>
         <argsstring>()</argsstring>
-        <name>ForwardTransform_Hyper</name>
+        <name>ForwardTransform_Temporal</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Temporal part of the <ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Temporal Forward Transform &lt;forward-transform-temporal&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="126" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="128" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -788,23 +787,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Spatial part of the <ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Spatial Forward Transform &lt;forward-transform-spatial&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="127" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="131" column="6"/>
       </memberdef>
-      <memberdef kind="function" id="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
-        <definition>void EfficiencyVector::ForwardTransform_Temporal</definition>
+        <definition>void EfficiencyVector::ForwardTransform_Hyper</definition>
         <argsstring>()</argsstring>
-        <name>ForwardTransform_Temporal</name>
+        <name>ForwardTransform_Hyper</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Hyperparameter part of the <ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Hyperparameter Forward Transform &lt;forward-transform-hyper&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="128" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="134" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -814,10 +815,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Temporal part of the <ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Temporal Backward Transform &lt;backward-transform-temporal&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="130" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="137" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -827,10 +829,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Spatial part of the <ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Spatial Backward Transform &lt;backward-transform-spatial&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="131" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="140" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -840,10 +843,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Executes the Hyperparameter part of the <ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform()</ref>. See<verbatim>embed:rst:inline :ref:`Hyperparameter Backward Transform &lt;backward-transform-hyper&gt;` </verbatim> for implementation details. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="132" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="143" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -853,11 +857,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Generates a random vector </para>
+<para>Generates a random Raw vector. All elements are initialised to +/- <ref refid="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" kindref="member">initialisationBounds</ref>. The zeroth-order spatial modes have an additional offset equal to <ref refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" kindref="member">xmInitialised</ref>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="153" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="178" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -871,10 +875,21 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Searches for a valid savefile given by the input. If it is of the correct length, loads it in as the <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">RawPosition</ref>, otherwise throws an error <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>load_location</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The name of the savefile to attempt to load` <linebreak/>
+ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="154" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="184" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -884,10 +899,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Searches for a valid needlet file and loads the contents into <ref refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kindref="member">needlet_u</ref>, <ref refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kindref="member">needlet_v</ref> and <ref refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kindref="member">needlet_w</ref>. See<verbatim>embed:rst:inline :ref:`Needlet Files &lt;needlet-files&gt;` </verbatim> for the required file properties. Run only at object initialisation. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="155" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="189" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -897,10 +913,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Generates a matrix CholeskyKg used for magnitude-correlations, then decomposes it into <ref refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kindref="member">choleskyN</ref> non-zero elements encodes by <ref refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kindref="member">cholesky_w</ref>. Run only at object initialisation. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="156" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="194" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -910,10 +927,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Sets the <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">RawPosition</ref>, <ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">RawGradient</ref>, <ref refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kindref="member">TransformedPosition</ref> and <ref refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kindref="member">TransformedGradient</ref> to empty vectors <ndash/> required because the transforms are additive so need a zero-base to work from (rather than simply overlaying the old values with the new ones) </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="157" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="199" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -921,7 +939,7 @@
     <detaileddescription>
 <para>The Efficiency Vector is the central object for the Theia code. It encodes a proposed operating efficiency history for Gaia, and allows for the appropriate transforms between<verbatim>embed:rst:inline :ref:`property-spaces` </verbatim> . </para>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="17" bodyend="161"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="17" bodyend="204"/>
     <listofallmembers>
       <member refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
       <member refid="classEfficiencyVector_1a93805eef9e2a06496fbf6ccbfff4cdb2" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
@@ -936,7 +954,6 @@
       <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_u</name></member>
       <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_v</name></member>
       <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_w</name></member>
-      <member refid="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>CholeskyKg</name></member>
       <member refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>choleskyN</name></member>
       <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>EfficiencyVector</name></member>
       <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>ForwardTransform</name></member>

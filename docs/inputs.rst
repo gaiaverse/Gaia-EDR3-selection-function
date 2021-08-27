@@ -27,6 +27,9 @@ Different prescriptions are possible with only minor modifications to the code, 
 * The length of the line (i.e. ``N``) can vary from star to star, but ``N-2`` should not exceed :ref:`NumberLargerThanMaxObservations <obs-n>`.
 * The lines within the datafiles are randomly shuffled
 
+
+.. _needlet-files:
+
 *********
 Needlets
 *********

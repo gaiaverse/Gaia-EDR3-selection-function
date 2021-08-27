@@ -56,12 +56,11 @@
     <member refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kind="variable"><name>needlet_v</name></member>
     <member refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kind="variable"><name>needlet_w</name></member>
     <member refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" kind="variable"><name>bVector</name></member>
-    <member refid="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" kind="variable"><name>CholeskyKg</name></member>
-    <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kind="variable"><name>cholesky_tol</name></member>
     <member refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kind="variable"><name>choleskyN</name></member>
     <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
     <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
     <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
+    <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kind="variable"><name>cholesky_tol</name></member>
     <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
     <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
     <member refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kind="function"><name>Access</name></member>
@@ -73,9 +72,9 @@
     <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kind="function"><name>ForwardTransform</name></member>
     <member refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kind="function"><name>BackwardTransform</name></member>
     <member refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kind="function"><name>Save</name></member>
-    <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kind="function"><name>ForwardTransform_Hyper</name></member>
-    <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kind="function"><name>ForwardTransform_Spatial</name></member>
     <member refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kind="function"><name>ForwardTransform_Temporal</name></member>
+    <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kind="function"><name>ForwardTransform_Spatial</name></member>
+    <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kind="function"><name>ForwardTransform_Hyper</name></member>
     <member refid="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" kind="function"><name>BackwardTransform_Hyper</name></member>
     <member refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" kind="function"><name>BackwardTransform_Spatial</name></member>
     <member refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" kind="function"><name>BackwardTransform_Temporal</name></member>

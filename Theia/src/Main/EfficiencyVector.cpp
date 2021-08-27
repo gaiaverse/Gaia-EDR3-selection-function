@@ -313,7 +313,7 @@ void EfficiencyVector::LoadCholesky()
 	}
 
 	//decompose to make CholeskyKg
-	CholeskyKg = Kg.llt().matrixL();
+	Eigen::Matrix<double, Nm, Nm> CholeskyKg = Kg.llt().matrixL();
 
 	std::vector<double> max_in_row = std::vector<double>(Nm,0);
 	for (int i = 0; i < Nm; i++) 

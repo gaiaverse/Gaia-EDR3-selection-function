@@ -123,39 +123,82 @@ class EfficiencyVector
 		*/
 		void Save(bool finalSave,int saveStep,bool uniqueSave);
 	private:
-		void ForwardTransform_Hyper();
-		void ForwardTransform_Spatial();
+	
+		/*! Executes the Temporal part of the ForwardTransform(). See \verbatim embed:rst:inline :ref:`Temporal Forward Transform <forward-transform-temporal>` \endverbatim for implementation details. */
 		void ForwardTransform_Temporal();
 		
+		/*! Executes the Spatial part of the ForwardTransform(). See \verbatim embed:rst:inline :ref:`Spatial Forward Transform <forward-transform-spatial>` \endverbatim for implementation details. */
+		void ForwardTransform_Spatial();
+		
+		/*! Executes the Hyperparameter part of the ForwardTransform(). See \verbatim embed:rst:inline :ref:`Hyperparameter Forward Transform <forward-transform-hyper>` \endverbatim for implementation details. */
+		void ForwardTransform_Hyper();
+		
+		/*! Executes the Temporal part of the BackwardTransform(). See \verbatim embed:rst:inline :ref:`Temporal Backward Transform <backward-transform-temporal>` \endverbatim for implementation details. */
 		void BackwardTransform_Hyper();
+		
+		/*! Executes the Spatial part of the BackwardTransform(). See \verbatim embed:rst:inline :ref:`Spatial Backward Transform <backward-transform-spatial>` \endverbatim for implementation details. */
 		void BackwardTransform_Spatial();
+		
+		/*! Executes the Hyperparameter part of the BackwardTransform(). See \verbatim embed:rst:inline :ref:`Hyperparameter Backward Transform <backward-transform-hyper>` \endverbatim for implementation details. */
 		void BackwardTransform_Temporal();
 		
-		//Needlet stuff - has to be public
+		//! The number of needlet elements - unknown at run time as it depends on the spatial resolution chosen, and the chosen zero-rounding cutoff
 		int needletN;
+		
+		//! Non-zero i-indices in the needlet matrix 
 		std::vector<int> needlet_u;
+    	
+    	//! Non-zero j-indices in the needlet matrix
     	std::vector<int> needlet_v;
+    	
+    	/*! The values of P_ij, with ij determined from #needlet_u and #needlet_v */  
     	std::vector<double> needlet_w;
+    	
+    	//! A temporary holder (to prevent needless memory initialisations) for the spatial transform
     	std::vector<double> bVector;
     	
-    	//Cholesky stuff
-    	Eigen::Matrix<double, Nm, Nm> CholeskyKg;
-    	double cholesky_tol = 1e-4;
+    	//! The #BackwardTransform() requires the use of a cholesky-decomposed matrix for the magnitude-coupling (encoded by #lm). This required many cycles over elements which were near-zero. We have decomposed this into a list of #choleskyN elements which are significant, to cut the runtime of this expensive operation.
 	    int choleskyN;
+	    
+	    //! Non-zero i-indices of the cholesky-matrix Kg
 	    std::vector<int> cholesky_u;
+	    
+	     //! Non-zero j-indices of the cholesky-matrix Kg
     	std::vector<int> cholesky_v;
+    	
+    	 //! The value of CholeskyKg_ij, with ij determined from #cholesky_u and #cholesky_v
     	std::vector<double> cholesky_w; 
     	
+    	//! The 'significant value' - values below this are assumed to be zero and not included in #cholesky_w
+    	double cholesky_tol = 1e-4;
     	
     	/*!
-    	 * Generates a random vector 
+    	 * Generates a random Raw vector. All elements are initialised to +/- #initialisationBounds. The zeroth-order spatial modes have an additional offset equal to #xmInitialised.
     	*/
     	void GenerateVector();
+    	
+    	/*!
+    	 * Searches for a valid savefile given by the input. If it is of the correct length, loads it in as the #RawPosition, otherwise throws an error
+    	 * \param load_location The name of the savefile to attempt to load`  
+    	*/
     	void LoadVector(std::string load_location);
+    	
+    	/*!
+    	 * Searches for a valid needlet file and loads the contents into #needlet_u, #needlet_v and #needlet_w. See  \verbatim embed:rst:inline :ref:`Needlet Files <needlet-files>` \endverbatim for the required file properties. Run only at object initialisation.
+    	*/
     	void LoadNeedlets();
+    	
+    	/*!
+    	 * Generates a matrix CholeskyKg used for magnitude-correlations, then decomposes it into #choleskyN non-zero elements encodes by #cholesky_w. Run only at object initialisation.
+    	 */
     	void LoadCholesky();
+    	
+    	/*!
+    	 * Sets the #RawPosition, #RawGradient, #TransformedPosition and #TransformedGradient to empty vectors -- required because the transforms are additive so need a zero-base to work from (rather than simply overlaying the old values with the new ones) 
+    	*/
     	void Reset();
     	
+    	//!The directory where the #Save() function places its output
     	std::string SaveLocation;
     	
 };

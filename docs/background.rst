@@ -69,6 +69,9 @@ The Forward Transform converts the ``Raw`` vector into the ``Transformed`` vecto
 
 The Forward Transform has 3 components: Temporal, Spatial and Hyper. 
 
+
+.. _forward-transform-temporal:
+
 Temporal Forward Transform 
 -------------------------------
 
@@ -85,6 +88,8 @@ With :math:`Nt` components of both the temporal part of :math:`\vec{x}` and :mat
 	
 As the prior on :math:`\vec{z}^t` is simply the zero-mean, unit-normal Gaussian, :math:`\mu_t` and :math:`\sigma_t` are the corresponding :ref:`mean <mut>` and :ref:`standard deviations <sigmat>` of the prior on :math:`x_t`. The quantity :math:`\ell_t` is the :ref:`coupling lengthscale <lt>`, which enforces correlation between the temporal components. 
 
+.. _forward-transform-spatial:
+
 Spatial Forward Transform
 -------------------------------
 
@@ -98,6 +103,7 @@ They are related to each other by:
 	
 **Need to go over this is some more detail**
 
+.. _forward-transform-hyper:
 
 Hyper Forward Transform 
 -------------------------------
@@ -123,3 +129,19 @@ Backward Transform
 ====================
 
 The Backward Transform is **not quite** the inverse of the Forward Transform -- instead of recovering :math:`z` from :math:`x`, we recover the associated *gradients*, such that :math:`\nabla_\vec{z} \mathcal{L} = \text{BackwardTransform}(\nabla_\vec{x} \mathcal{L})`.
+
+.. _backward-transform-temporal:
+
+Backward Forward Transform 
+-------------------------------
+
+
+.. _backward-transform-spatial:
+
+Spatial Backward Transform
+-------------------------------
+
+.. _backward-transform-hyper:
+
+Hyper Backward Transform 
+-------------------------------
