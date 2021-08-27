@@ -14,6 +14,8 @@ We do this by maximising the Likelihood that the data within the :ref:`Stellar D
 
 The maximal likelihood is found using a modified `ADAM optimizer <https://arxiv.org/abs/1412.6980>`_, which makes use of standard Stochastic Gradient Descent methods. 
 
+.. _model:
+
 Probability Model 
 *******************
 

@@ -10,12 +10,13 @@
         <argsstring></argsstring>
         <name>Stars</name>
         <briefdescription>
+<para>The storage location for the reference to the large amount of data passed to this object. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="24" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="24" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="26" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -23,12 +24,13 @@
         <argsstring></argsstring>
         <name>healpix_fov_1</name>
         <briefdescription>
+<para>A vector containing the healpix id that FOV_1 is looking at at each time index. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="28" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="28" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="29" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -36,12 +38,13 @@
         <argsstring></argsstring>
         <name>healpix_fov_2</name>
         <briefdescription>
+<para>A vector containing the healpix id that FOV_2 is looking at at each time index. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="29" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="29" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="32" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ab996d0af29ea194954e9ddfeba2bea9e" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -49,12 +52,13 @@
         <argsstring></argsstring>
         <name>time_mapping</name>
         <briefdescription>
+<para>A vector mapping the <ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref> coarse-grain times to the <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> bins that FOV_i uses and that the <ref refid="classStar" kindref="compound">Star</ref> objects refer to. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="30" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="30" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="35" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a930a1b35ff6c789074f50dc56bada379" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -62,12 +66,13 @@
         <argsstring></argsstring>
         <name>pmf_forward</name>
         <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store intermediary results for the convolutions in the PoissonBinomial calculations. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="37" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="37" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="40" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -75,12 +80,13 @@
         <argsstring></argsstring>
         <name>pmf_backward</name>
         <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store intermediary results for the convolutions in the PoissonBinomial calculations. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="38" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="43" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a22d6828dd96c1d54a3b70fe0ef613b15" prot="public" static="no" mutable="no">
         <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
@@ -88,71 +94,7 @@
         <argsstring></argsstring>
         <name>subpmf</name>
         <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="39" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="39" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::dfdp_constantN</definition>
-        <argsstring></argsstring>
-        <name>dfdp_constantN</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="41" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="41" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1a5778396081010881534302e7cc999b1f" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double LikelihoodData::dfdN_constantP</definition>
-        <argsstring></argsstring>
-        <name>dfdN_constantP</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="42" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="42" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::hypergradient</definition>
-        <argsstring></argsstring>
-        <name>hypergradient</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="44" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="44" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::pt</definition>
-        <argsstring></argsstring>
-        <name>pt</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="45" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="45" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::pml</definition>
-        <argsstring></argsstring>
-        <name>pml</name>
-        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store intermediary results for the convolutions in the PoissonBinomial calculations. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -160,25 +102,13 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="46" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="46" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::p</definition>
+        <definition>std::vector&lt;double&gt; LikelihoodData::dfdp_constantN</definition>
         <argsstring></argsstring>
-        <name>p</name>
+        <name>dfdp_constantN</name>
         <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="47" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="47" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; LikelihoodData::grad_elu_xml1</definition>
-        <argsstring></argsstring>
-        <name>grad_elu_xml1</name>
-        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store the value of the derivative of the per-star likelihood with respect to the individual observation probabilities. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
@@ -186,18 +116,103 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="49" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="49" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1a5778396081010881534302e7cc999b1f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double LikelihoodData::dfdN_constantP</definition>
+        <argsstring></argsstring>
+        <name>dfdN_constantP</name>
+        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store the value of the derivative of the per-star likelihood with respect to the variance-scaling parameter. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="52" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; LikelihoodData::hypergradient</definition>
+        <argsstring></argsstring>
+        <name>hypergradient</name>
+        <briefdescription>
+<para>The contributions towards the hyperparameter gradients. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="55" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; LikelihoodData::pt</definition>
+        <argsstring></argsstring>
+        <name>pt</name>
+        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store the values of the proposed operating efficiency of Gaia at each of the times that the star was observed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="58" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; LikelihoodData::pml</definition>
+        <argsstring></argsstring>
+        <name>pml</name>
+        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store the values of the proposed operating efficiency of Gaia at each of the spatial points that the star was observed at. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="61" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; LikelihoodData::p</definition>
+        <argsstring></argsstring>
+        <name>p</name>
+        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to store the pointwise product of pt * pml --&gt; the total likelihood that the star was seen at each of its given observations. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="64" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; LikelihoodData::grad_elu_xml1</definition>
+        <argsstring></argsstring>
+        <name>grad_elu_xml1</name>
+        <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to hold the spatial gradient components for FOV1. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="67" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
         <definition>std::vector&lt;double&gt; LikelihoodData::grad_elu_xml2</definition>
         <argsstring></argsstring>
         <name>grad_elu_xml2</name>
         <briefdescription>
+<para>A vector of length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, used to hold the spatial gradient components for FOV2. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="50" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="70" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" prot="public" static="no" mutable="no">
         <type>std::vector&lt; <ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref> &gt;</type>
@@ -205,12 +220,13 @@
         <argsstring></argsstring>
         <name>VariancePopulations</name>
         <briefdescription>
+<para>A container populated by the <ref refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" kindref="member">GeneratePopulations()</ref> function. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="53" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="53" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="74" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="74" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" prot="public" static="no" mutable="no">
         <type><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" kindref="member">Probability</ref></type>
@@ -218,12 +234,13 @@
         <argsstring></argsstring>
         <name>Mode</name>
         <briefdescription>
+<para>An enum which determines if the probability model used is PoissonBinomial, or the NormalApproximation. </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="54" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="54" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="77" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="77" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -240,27 +257,38 @@
 <para>Constructor function. </para>
         </briefdescription>
         <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector of <ref refid="classStar" kindref="compound">Star</ref> objects arranged according to the minibatching schedule. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="22" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="23" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void LikelihoodData::GeneratePopulations</definition>
-        <argsstring>(const std::vector&lt; double &gt; &amp;x)</argsstring>
+        <argsstring>(const EfficiencyVector &amp;x)</argsstring>
         <name>GeneratePopulations</name>
         <param>
-          <type>const std::vector&lt; double &gt; &amp;</type>
+          <type>const <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> &amp;</type>
           <declname>x</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>Generates a new set of <ref refid="structVariancePopulation" kindref="compound">VariancePopulation</ref> objects to be re-used throughout the <ref refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" kindref="member">LogLikelihood::Calculate()</ref> loop, and stores them in <ref refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" kindref="member">VariancePopulations</ref>. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="61" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="82" column="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -268,11 +296,11 @@
     <detaileddescription>
 <para>A class which packages most of the gnarly bits of <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>. This is essentially just a container class for the requisite data </para>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="17" bodyend="62"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="19" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="18" bodyend="83"/>
     <listofallmembers>
       <member refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>dfdN_constantP</name></member>
       <member refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>dfdp_constantN</name></member>
-      <member refid="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>GeneratePopulations</name></member>
+      <member refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>GeneratePopulations</name></member>
       <member refid="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>grad_elu_xml1</name></member>
       <member refid="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>grad_elu_xml2</name></member>
       <member refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" prot="public" virt="non-virtual"><scope>LikelihoodData</scope><name>healpix_fov_1</name></member>

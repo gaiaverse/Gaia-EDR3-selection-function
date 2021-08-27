@@ -63,10 +63,11 @@
     <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kind="variable"><name>cholesky_tol</name></member>
     <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
     <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
-    <member refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kind="function"><name>Access</name></member>
     <member refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kind="function"><name>Assign</name></member>
     <member refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kind="function"><name>Increment</name></member>
-    <member refid="classEfficiencyVector_1a93805eef9e2a06496fbf6ccbfff4cdb2" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1abf55a58821f7359a60566a6f843e6efc" kind="function"><name>Access</name></member>
     <member refid="classEfficiencyVector_1a2336e564c1bcb080a9b8d730d034f84d" kind="function"><name>Assign</name></member>
     <member refid="classEfficiencyVector_1a737c4a6882a787b61a687cf5efa0ee0e" kind="function"><name>Increment</name></member>
     <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kind="function"><name>ForwardTransform</name></member>
@@ -111,7 +112,7 @@
     <member refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" kind="variable"><name>VariancePopulations</name></member>
     <member refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" kind="variable"><name>Mode</name></member>
     <member refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" kind="function"><name>LikelihoodData</name></member>
-    <member refid="classLikelihoodData_1a1911a871964da019810ac0342352ae8c" kind="function"><name>GeneratePopulations</name></member>
+    <member refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" kind="function"><name>GeneratePopulations</name></member>
   </compound>
   <compound refid="classLogLikelihood" kind="class"><name>LogLikelihood</name>
     <member refid="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" kind="variable"><name>Value</name></member>
@@ -119,10 +120,10 @@
     <member refid="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" kind="variable"><name>StarsUsed</name></member>
     <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kind="variable"><name>Data</name></member>
     <member refid="classLogLikelihood_1a2dabecfc63956f1527ccda8098d63bf5" kind="function"><name>LogLikelihood</name></member>
-    <member refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" kind="function"><name>Calculate</name></member>
+    <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" kind="function"><name>Calculate</name></member>
     <member refid="classLogLikelihood_1a323459623fea6256267c9724ceea8ec9" kind="function"><name>Reset</name></member>
-    <member refid="classLogLikelihood_1a85c0af6993edd46373165089a11b4fb7" kind="function"><name>PerStarContribution</name></member>
-    <member refid="classLogLikelihood_1aec7a3964705a6a48a1d18011e330d585" kind="function"><name>GeneratePs</name></member>
+    <member refid="classLogLikelihood_1a03f95244f5a92714ef5d978d9f485970" kind="function"><name>PerStarContribution</name></member>
+    <member refid="classLogLikelihood_1a84ab748f78cdfaac5763d4cf020166ee" kind="function"><name>GeneratePs</name></member>
     <member refid="classLogLikelihood_1ae0db177a301dbcb1ceb13575585dc2b2" kind="function"><name>GenerateContribution</name></member>
     <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" kind="function"><name>AssignGradients</name></member>
     <member refid="classLogLikelihood_1a45c146d322f6a78b760383b624df66c8" kind="function"><name>NormalContribution</name></member>
@@ -270,6 +271,7 @@
     <member refid="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" kind="function"><name>sigmoid</name></member>
     <member refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kind="function"><name>elu</name></member>
     <member refid="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" kind="function"><name>elu_grad</name></member>
+    <member refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kind="function"><name>log_add_exp</name></member>
   </compound>
   <compound refid="ProbabilityFunctions_8h" kind="file"><name>ProbabilityFunctions.h</name>
     <member refid="ProbabilityFunctions_8h_1afb04ce96742a46c445e5fad7fc0854bc" kind="variable"><name>logphi_c</name></member>
@@ -278,7 +280,6 @@
     <member refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kind="function"><name>poisson_binomial_pmf_forward</name></member>
     <member refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kind="function"><name>poisson_binomial_pmf_backward</name></member>
     <member refid="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" kind="function"><name>poisson_binomial_subpmf</name></member>
-    <member refid="ProbabilityFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kind="function"><name>log_add_exp</name></member>
     <member refid="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" kind="function"><name>poisson_binomial_lpmf_forward</name></member>
     <member refid="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" kind="function"><name>poisson_binomial_lpmf_backward</name></member>
     <member refid="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" kind="function"><name>poisson_binomial_sublpmf</name></member>

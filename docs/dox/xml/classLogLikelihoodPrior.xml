@@ -103,16 +103,16 @@
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="8" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="7" bodyend="19"/>
     <listofallmembers>
       <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>AssignGradients</name></member>
-      <member refid="classLogLikelihood_1a748d75e2eb89965246436eb6a9274004" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Calculate</name></member>
+      <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Calculate</name></member>
       <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Data</name></member>
       <member refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>ExactPoissonContribution</name></member>
       <member refid="classLogLikelihood_1ae0db177a301dbcb1ceb13575585dc2b2" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>GenerateContribution</name></member>
-      <member refid="classLogLikelihood_1aec7a3964705a6a48a1d18011e330d585" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>GeneratePs</name></member>
+      <member refid="classLogLikelihood_1a84ab748f78cdfaac5763d4cf020166ee" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>GeneratePs</name></member>
       <member refid="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Gradient</name></member>
       <member refid="classLogLikelihood_1a2dabecfc63956f1527ccda8098d63bf5" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>LogLikelihood</name></member>
       <member refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>LogLikelihoodPrior</name></member>
       <member refid="classLogLikelihood_1a45c146d322f6a78b760383b624df66c8" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>NormalContribution</name></member>
-      <member refid="classLogLikelihood_1a85c0af6993edd46373165089a11b4fb7" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>PerStarContribution</name></member>
+      <member refid="classLogLikelihood_1a03f95244f5a92714ef5d978d9f485970" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>PerStarContribution</name></member>
       <member refid="classLogLikelihood_1a48e99798d1bad7dc63fdf2019acc1c7b" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>PoissonContribution</name></member>
       <member refid="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>RawPrior</name></member>
       <member refid="classLogLikelihood_1a323459623fea6256267c9724ceea8ec9" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Reset</name></member>

@@ -8,7 +8,6 @@
     <includes refid="MiscFunctions_8h" local="yes">MiscFunctions.h</includes>
     <includes local="no">cmath</includes>
     <includedby refid="LogLikelihood_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
-    <includedby refid="EfficiencyVector_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</includedby>
     <includedby refid="DescentFunctor_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</includedby>
     <incdepgraph>
       <node id="11">
@@ -60,6 +59,8 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
       </node>
       <node id="1">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
@@ -72,7 +73,7 @@
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="19" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
       </node>
       <node id="15">
@@ -85,7 +86,7 @@
         <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="19">
+      <node id="20">
         <label>cmath</label>
       </node>
       <node id="16">
@@ -93,6 +94,20 @@
       </node>
       <node id="8">
         <label>fstream</label>
+      </node>
+      <node id="19">
+        <label>../Main/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
       </node>
       <node id="5">
         <label>../libs/Eigen/Householder</label>
@@ -142,22 +157,12 @@
         <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
       <node id="3">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="4" relation="include">
-        </childnode>
-      </node>
-      <node id="5">
-        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="3" relation="include">
-        </childnode>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
@@ -306,27 +311,6 @@
         <inbodydescription>
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="12" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="12" declcolumn="7"/>
-      </memberdef>
-      <memberdef kind="function" id="ProbabilityFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>double</type>
-        <definition>double log_add_exp</definition>
-        <argsstring>(double a, double b)</argsstring>
-        <name>log_add_exp</name>
-        <param>
-          <type>double</type>
-          <declname>a</declname>
-        </param>
-        <param>
-          <type>double</type>
-          <declname>b</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="15" column="9" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="15" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -481,7 +465,7 @@
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" kindref="member">poisson_binomial_subpmf</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>pmf_forward,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>pmf_backward,<sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
 <codeline lineno="13"><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Log-versions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="ProbabilityFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kindref="member">log_add_exp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" kindref="member">poisson_binomial_lpmf_forward</ref>(std::vector&lt;double&gt;<sp/>&amp;<sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" kindref="member">poisson_binomial_lpmf_backward</ref>(std::vector&lt;double&gt;<sp/>&amp;<sp/>probs,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>result);</highlight></codeline>
 <codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><ref refid="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" kindref="member">poisson_binomial_sublpmf</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>m,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>probslen,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>lpmf_forward,<sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/>&amp;<sp/>lpmf_backward,<sp/>std::vector&lt;double&gt;<sp/>&amp;<sp/>result);</highlight></codeline>

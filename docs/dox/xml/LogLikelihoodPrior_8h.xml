@@ -36,41 +36,43 @@
       <node id="6">
         <label>iomanip</label>
       </node>
-      <node id="17">
+      <node id="20">
         <label>DataStorage.h</label>
         <link refid="DataStorage_8h"/>
         <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
-        </childnode>
-        <childnode refid="11" relation="include">
-        </childnode>
-        <childnode refid="19" relation="include">
-        </childnode>
-        <childnode refid="5" relation="include">
-        </childnode>
-        <childnode refid="3" relation="include">
-        </childnode>
-        <childnode refid="20" relation="include">
-        </childnode>
-        <childnode refid="16" relation="include">
-        </childnode>
-      </node>
-      <node id="21">
-        <label>ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="12" relation="include">
-        </childnode>
-        <childnode refid="18" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
         </childnode>
         <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="22" relation="include">
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
-      <node id="11">
+      <node id="22">
+        <label>ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="19">
         <label>../DataHandling/Star.h</label>
         <link refid="Star_8h"/>
         <childnode refid="3" relation="include">
@@ -80,7 +82,7 @@
         <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="22">
+      <node id="23">
         <label>cmath</label>
       </node>
       <node id="5">
@@ -91,13 +93,13 @@
         <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="23" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
       </node>
       <node id="14">
         <label>fstream</label>
       </node>
-      <node id="23">
+      <node id="11">
         <label>../Main/EfficiencyVector.h</label>
         <link refid="EfficiencyVector_8h"/>
         <childnode refid="3" relation="include">
@@ -106,9 +108,9 @@
         </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
       </node>
       <node id="8">
@@ -120,13 +122,13 @@
       <node id="3">
         <label>vector</label>
       </node>
-      <node id="20">
+      <node id="21">
         <label>VariancePopulation.h</label>
         <link refid="VariancePopulation_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
-      <node id="18">
+      <node id="17">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
         <childnode refid="12" relation="include">
@@ -156,11 +158,13 @@
         </childnode>
         <childnode refid="11" relation="include">
         </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="17" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="21" relation="include">
+        <childnode refid="22" relation="include">
         </childnode>
       </node>
       <node id="4">
@@ -175,12 +179,12 @@
       <node id="10">
         <label>algorithm</label>
       </node>
-      <node id="19">
-        <label>MiscFunctions.h</label>
+      <node id="18">
+        <label>../Likelihood/MiscFunctions.h</label>
         <link refid="MiscFunctions_8h"/>
         <childnode refid="12" relation="include">
         </childnode>
-        <childnode refid="18" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
       </node>
     </incdepgraph>

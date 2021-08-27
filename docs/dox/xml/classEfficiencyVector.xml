@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="38" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="38" bodyend="38"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="36" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="36" bodyend="36"/>
       </memberdef>
       <memberdef kind="enum" id="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" prot="public" static="no" strong="no">
         <type></type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="43" column="21" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="43" bodyend="43"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="41" column="21" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="41" bodyend="41"/>
       </memberdef>
       <memberdef kind="enum" id="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" prot="public" static="no" strong="no">
         <type></type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="48" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="48" bodyend="48"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="46" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="46" bodyend="46"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -99,11 +99,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The internal representation of the<verbatim>embed:rst:inline :math:`\vec{z}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
+<para>The internal representation of the<verbatim>embed:rst:inline :math:`\vec{z}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="22" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="22" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="20" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -113,11 +113,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The internal representation of the<verbatim>embed:rst:inline :math:`\vec{x}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
+<para>The internal representation of the<verbatim>embed:rst:inline :math:`\vec{x}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="25" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="23" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -127,11 +127,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The internal representation of the<verbatim>embed:rst:inline :math:`\nabla_z \mathcal{L}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
+<para>The internal representation of the<verbatim>embed:rst:inline :math:`\nabla_z \mathcal{L}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="28" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="28" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="26" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="26" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -141,11 +141,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The internal representation of the<verbatim>embed:rst:inline :math:`\nabla_x \mathcal{L}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
+<para>The internal representation of the<verbatim>embed:rst:inline :math:`\nabla_x \mathcal{L}` vector </verbatim>. Elements can be accessed manually, but internal structure is only guaranteed through the <ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access()</ref>, <ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign()</ref> and <ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment()</ref> commands. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="31" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="31" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="29" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-attrib">
@@ -161,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="146" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="146" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="149" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="149" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -175,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="149" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="149" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="152" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="152" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -189,7 +189,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="152" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="152" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="155" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -203,7 +203,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="155" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="155" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="158" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="158" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -217,7 +217,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="158" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="158" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="161" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="161" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -231,7 +231,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="161" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="161" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="164" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="164" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -245,7 +245,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="164" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="164" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="167" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="167" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" prot="private" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -259,7 +259,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="167" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="167" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="170" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -273,7 +273,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="170" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="170" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="173" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="173" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" prot="private" static="no" mutable="no">
         <type>double</type>
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="173" column="12" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="173" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="176" column="12" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="176" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" prot="private" static="no" mutable="no">
         <type>std::string</type>
@@ -302,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="202" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="202" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="205" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="205" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -322,7 +322,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Constructor function. <parameterlist kind="param"><parameteritem>
+<para>Constructor function for the master version of the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>load_location</parametername>
 </parameternamelist>
@@ -343,12 +343,29 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="56" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="54" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>EfficiencyVector::EfficiencyVector</definition>
+        <argsstring>(std::vector&lt; double &gt; newTransformed)</argsstring>
+        <name>EfficiencyVector</name>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>newTransformed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="59" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="classEfficiencyVector_1a033b602449285844551eaa10322eef68" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double EfficiencyVector::Access</definition>
-        <argsstring>(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index)</argsstring>
+        <argsstring>(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index) const</argsstring>
         <name>Access</name>
         <param>
           <type><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref></type>
@@ -408,7 +425,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="68" column="8"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="71" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -483,7 +500,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="78" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="81" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -558,12 +575,12 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="88" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="91" column="6"/>
       </memberdef>
-      <memberdef kind="function" id="classEfficiencyVector_1a93805eef9e2a06496fbf6ccbfff4cdb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="classEfficiencyVector_1abf55a58821f7359a60566a6f843e6efc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double EfficiencyVector::Access</definition>
-        <argsstring>(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2)</argsstring>
+        <argsstring>(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2) const</argsstring>
         <name>Access</name>
         <param>
           <type><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref></type>
@@ -588,11 +605,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>An overload for <ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access()</ref>, but for vector access which requires two indices for easy access. </para>
+<para>An overload for <ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access()</ref>, but for vector access which requires two indices for easy access. </para>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="93" column="8"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="96" column="8"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a2336e564c1bcb080a9b8d730d034f84d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -630,7 +647,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="98" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="101" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a737c4a6882a787b61a687cf5efa0ee0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -668,7 +685,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="103" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="106" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -695,7 +712,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="111" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="114" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -709,7 +726,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="116" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="119" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -761,7 +778,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="124" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="127" column="6"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -777,7 +794,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="128" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="131" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -791,7 +808,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="131" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="134" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -805,7 +822,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="134" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="137" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -819,7 +836,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="137" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="140" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -833,7 +850,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="140" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="143" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -847,7 +864,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="143" column="6"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="146" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -861,7 +878,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="178" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="181" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -889,7 +906,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="184" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="187" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -903,7 +920,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="189" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="192" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -917,7 +934,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="194" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="197" column="10"/>
       </memberdef>
       <memberdef kind="function" id="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -931,7 +948,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="199" column="10"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="202" column="10"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -939,10 +956,10 @@
     <detaileddescription>
 <para>The Efficiency Vector is the central object for the Theia code. It encodes a proposed operating efficiency history for Gaia, and allows for the appropriate transforms between<verbatim>embed:rst:inline :ref:`property-spaces` </verbatim> . </para>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="17" bodyend="204"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" line="16" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h" bodystart="15" bodyend="207"/>
     <listofallmembers>
-      <member refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
-      <member refid="classEfficiencyVector_1a93805eef9e2a06496fbf6ccbfff4cdb2" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
+      <member refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
+      <member refid="classEfficiencyVector_1abf55a58821f7359a60566a6f843e6efc" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Access</name></member>
       <member refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Assign</name></member>
       <member refid="classEfficiencyVector_1a2336e564c1bcb080a9b8d730d034f84d" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>Assign</name></member>
       <member refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>BackwardTransform</name></member>
@@ -956,6 +973,7 @@
       <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_w</name></member>
       <member refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>choleskyN</name></member>
       <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>EfficiencyVector</name></member>
+      <member refid="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>EfficiencyVector</name></member>
       <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" prot="public" virt="non-virtual"><scope>EfficiencyVector</scope><name>ForwardTransform</name></member>
       <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>ForwardTransform_Hyper</name></member>
       <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>ForwardTransform_Spatial</name></member>
