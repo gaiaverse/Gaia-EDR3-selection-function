@@ -51,3 +51,14 @@ double  elu_grad(double x, double elu_x)
     }
 }
 
+double  log_add_exp(double a, double b)
+{
+    if (a > b)
+    {
+        return a + log1p(exp(b-a));
+    }
+    else
+    {
+        return b + log1p(exp(a-b));
+    }
+}

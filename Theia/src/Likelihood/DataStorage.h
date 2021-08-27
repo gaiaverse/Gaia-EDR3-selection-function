@@ -7,20 +7,22 @@
 #include <vector>
 #include "VariancePopulation.h"
 #include "../libs/JSL/JSL.h"
+#include "../Main/EfficiencyVector.h"
 
 enum Probability { NormalApproximation, PoissonBinomial};
 
 
 /*!
-	A class which packages most of the gnarly bits of :doc:`likelihood`. This is essentially just a container class for the requisite data 
+	A class which packages most of the gnarly bits of LogLikelihood. This is essentially just a container class for the requisite data 
 */
 class LikelihoodData
 {
 	public:
 		
-		//! Constructor function
+		//! Constructor function \param data A vector of Star objects arranged according to the minibatching schedule. 
 		LikelihoodData(const std::vector<std::vector<Star>> &data);
 		
+		//! The storage location for the reference to the large amount of data passed to this object
 		const std::vector<std::vector<Star>> &Stars;
 		
 		//Indexing data, allows us to index properly into the 
@@ -52,12 +54,10 @@ class LikelihoodData
 		
 		std::vector<VariancePopulation> VariancePopulations;
 		Probability Mode;
-		
-		
-		
-		
-		
-		
-		void GeneratePopulations(const std::vector<double> & x);
+
+		/*
+		 * Generates a new  
+		*/
+		void GeneratePopulations(const EfficiencyVector & x);
 };
 

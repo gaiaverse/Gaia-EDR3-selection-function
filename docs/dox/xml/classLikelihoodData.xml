@@ -266,7 +266,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A class which packages most of the gnarly bits of :doc:<computeroutput>likelihood</computeroutput>. This is essentially just a container class for the requisite data </para>
+<para>A class which packages most of the gnarly bits of <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>. This is essentially just a container class for the requisite data </para>
     </detaileddescription>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="18" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="17" bodyend="62"/>
     <listofallmembers>

@@ -149,9 +149,9 @@ void WorkerProcess()
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
-
+			EfficiencyVector V(pos);
 			
-			L.Calculate(pos,targetBatch,effectiveBatches,Args.Minibatches);
+			L.Calculate(V,targetBatch,effectiveBatches,Args.Minibatches);
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			

@@ -11,7 +11,7 @@
 
 #define EIGEN_MPL2_ONLY
 
-
+#include "../Main/EfficiencyVector.h"
 #include "../DataHandling/Star.h"
 #include "../Main/GlobalVariables.h"
 #include "DataStorage.h"
@@ -48,7 +48,7 @@ class LogLikelihood
 		 \param maxBatches The original number of active minibatches
 		 \returns Assigns the value of L to #Value, and the associated gradient to #Gradient
 		*/
-		void Calculate(const std::vector<double> & position, int batchID, int effectiveBatches, int maxBatches);
+		void Calculate(const EfficiencyVector & position, int batchID, int effectiveBatches, int maxBatches);
 		
 	protected:
 		
@@ -57,9 +57,9 @@ class LogLikelihood
 
 		//internal functions
 		void Reset();
-		void PerStarContribution(int batchId, int starID,const std::vector<double> & position);
+		void PerStarContribution(int batchId, int starID,const EfficiencyVector & position);
 		
-		void GeneratePs(const Star * candidate,const std::vector<double> & position);
+		void GeneratePs(const Star * candidate,const EfficiencyVector & position);
 		void GenerateContribution(const Star * candidate);
 		
 		void AssignGradients(const Star * candidate);

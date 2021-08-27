@@ -19,9 +19,12 @@ EfficiencyVector::EfficiencyVector(std::string load_location, std::string saveLo
 	LoadNeedlets();
 	LoadCholesky();
 }
+EfficiencyVector::EfficiencyVector(std::vector<double> newTransformed)
+{
+	TransformedPosition= newTransformed;
+}
 
-
-double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i)
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i) const
 {	
 	//~ std::cout << "Access called: " << mode << component << type << i << std::endl;
 	int index = -1;
@@ -77,7 +80,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 	return v;
 }
 
-double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int sl, int m)
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int sl, int m) const
 {
 	switch (component)
 	{
@@ -91,6 +94,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 		}
 		case Hyper :
 			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
+			return Access(mode, component,type, sl*NVariancePops + m);
 			break;
 	}
 }

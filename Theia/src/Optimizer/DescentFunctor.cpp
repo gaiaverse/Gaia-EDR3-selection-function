@@ -31,7 +31,7 @@ void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosi
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 
 
-	L.Calculate(Efficiency.TransformedPosition,batchID,effectiveBatches,MaxBatches);
+	L.Calculate(Efficiency,batchID,effectiveBatches,MaxBatches);
 
 	//collect values
 	double l = L.Value; //as with the workers, have to store here temporarily for a reason I don't understand. It breaks if you MPI_Reduce(&L.Value), so learn from my mistake

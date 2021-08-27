@@ -87,17 +87,7 @@ void  poisson_binomial_subpmf(int m, int probslen, std::vector<std::vector<doubl
 
 }
 
-double  log_add_exp(double a, double b)
-{
-    if (a > b)
-    {
-        return a + log1p(exp(b-a));
-    }
-    else
-    {
-        return b + log1p(exp(a-b));
-    }
-}
+
 
 void  poisson_binomial_lpmf_forward(std::vector<double> & probs, int probslen, std::vector<std::vector<double>> & result)
 {

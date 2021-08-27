@@ -7,7 +7,7 @@ LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data): Data(d
 	Gradient = std::vector<double>(totalTransformedParams,0.0);
 }
 
-void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
+void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
 
 	
@@ -42,7 +42,7 @@ void LogLikelihood::Reset()
 
 
 
-void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
+void LogLikelihood::PerStarContribution(int batchId, int starID, const EfficiencyVector & x)
 {
 	const Star * candidate = &Data.Stars[batchId][starID];
 
@@ -52,7 +52,7 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vect
 	AssignGradients(candidate);
 }
 
-void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double> & x)
+void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & x)
 {
 	int n = candidate->nVisit;
 	//generate p vectors
@@ -64,18 +64,22 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		
 		//double time_multiplier = time_ratio * t - T;
 		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
-		double xt = x[T];
+		double xt = x.Access(x.Transformed,x.Temporal,x.Position,T);
 
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
-		double elu_xml1 = elu(x[idx1]);
-		double elu_xml2 = elu(x[idx2]);
+		
+		double xlm1 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_1[t], candidate->gBin);
+		double xlm2 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_2[t], candidate->gBin);
+		
+		double elu_xml1 = elu(xlm1);
+		double elu_xml2 = elu(xlm2);
 		
 		double pt = sigmoid(xt);
 		Data.pt[i] = pt;
 
-        Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
-        Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
+        Data.grad_elu_xml1[i] = elu_grad(xlm1, elu_xml1);
+        Data.grad_elu_xml2[i] = elu_grad(xlm2, elu_xml2);
 		Data.pml[i] = exp(-density_alpha * (elu_xml1 + elu_xml2));
 		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}

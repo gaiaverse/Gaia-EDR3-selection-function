@@ -58,19 +58,15 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data) : Sta
 	VariancePopulations = std::vector<VariancePopulation>(NVariancePops);
 }
 
-void LikelihoodData::GeneratePopulations(const std::vector<double> & x)
+void LikelihoodData::GeneratePopulations(const EfficiencyVector & x)
 {
-
-	
-	
 	for (int i = 0; i < NVariancePops; ++i)
 	{
-		double frac = x[transformedNonHyperParams + hyperFractionOffset + i];
+		double frac = x.Access(x.Transformed,x.Hyper,x.Position, hyperFractionOffset + i); 
 		std::vector<double> c(hyperOrder+1,0.0);
 		for (int j =  0; j <= hyperOrder; ++j)
 		{
-			//~ std::cout << "POW " << j << std::endl;
-			c[j] = x[transformedNonHyperParams + j*NVariancePops + i];
+			c[j] = x.Access(x.Transformed,x.Hyper,x.Position, j,i); 
 		}
 		
 		VariancePopulations[i] = VariancePopulation(frac,c);

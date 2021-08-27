@@ -5,9 +5,7 @@
 #include "../libs/Eigen/Core"
 #include "../Main/GlobalVariables.h"
 #include "../Main/GlobalConstants.h"
-#include "../Likelihood/ProbabilityFunctions.h"
-
-
+#include "../Likelihood/MiscFunctions.h"
 /*!
  * 
  * The Efficiency Vector is the central object for the Theia code. It encodes a proposed operating efficiency history for Gaia, and allows for the appropriate transforms between \verbatim embed:rst:inline :ref:`property-spaces` \endverbatim . 
@@ -49,12 +47,16 @@ class EfficiencyVector
 	
 	
 		/*! 
-		 * Constructor function.
+		 * Constructor function for the master version of the EfficiencyVector
 		 * \param load_location The location of a Raw position vector to load in (via a LoadVector() call). If set to a null value, #GenerateVector() is called instead.
 		 * \param save_location The directory into which the vector is saved
 		 */
 		EfficiencyVector(std::string load_location,std::string save_location);
 	
+		/*
+		 * Constructor for the basic version of the EfficiencyVector - when initialised in this way it has only the ability to index appropriately into the TransformedVector -- everything else is uninitiliased memory.
+		 */
+		EfficiencyVector(std::vector<double> newTransformed);
 		//Access Functions
 		
 		/*!
@@ -65,7 +67,8 @@ class EfficiencyVector
 		 * \param index The single-element index of the requested element
 		 * \returns The requested member of the Raw/Transformed Position/Gradient
 		*/
-		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index);
+		
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index) const;
 		
 		/*!
 		 * Assign a value to the specified component without needing to worry about the internal structure of the vector
@@ -90,7 +93,7 @@ class EfficiencyVector
 		/*!
 		 *  An overload for Access(), but for vector access which requires two indices for easy access. 
 		*/
-		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2);
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2) const;
 		
 		/*!
 		 *  An overload for Assign(), but for vector access which requires two indices for easy access. 

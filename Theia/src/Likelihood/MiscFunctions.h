@@ -5,7 +5,7 @@
 double  sigmoid(double x);
 double  elu(double x);
 double  elu_grad(double x, double elu_x);
-
+double  log_add_exp(double a, double b);
 
 const double one_over_root2 = 1.0/sqrt(2.0);
 const double one_over_root2pi = 1.0/sqrt(2.0*M_PI);
