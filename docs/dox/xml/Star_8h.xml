@@ -32,7 +32,7 @@
     <invincdepgraph>
       <node id="3">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</label>
-        <link refid="DataStorage_8h_source"/>
+        <link refid="DataStorage_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
@@ -40,7 +40,7 @@
       </node>
       <node id="7">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h_source"/>
+        <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
@@ -60,13 +60,13 @@
       </node>
       <node id="5">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h_source"/>
+        <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
       </node>
       <node id="8">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h_source"/>
+        <link refid="EfficiencyVector_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="6" relation="include">
@@ -74,17 +74,17 @@
       </node>
       <node id="4">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h_source"/>
+        <link refid="LogLikelihood_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
       </node>
       <node id="2">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h</label>
-        <link refid="DataLoading_8h_source"/>
+        <link refid="DataLoading_8h"/>
       </node>
       <node id="6">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h_source"/>
+        <link refid="DescentFunctor_8h"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classStar" prot="public">Star</innerclass>
@@ -102,13 +102,13 @@
 <codeline lineno="7" refid="classStar" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classStar" kindref="compound">Star</ref></highlight></codeline>
 <codeline lineno="8"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nMeasure;</highlight></codeline>
-<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nVisit;</highlight></codeline>
-<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>gBin;</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>int&gt;<sp/>TimeSeries;</highlight></codeline>
+<codeline lineno="10" refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kindref="member">nMeasure</ref>;</highlight></codeline>
+<codeline lineno="11" refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>;</highlight></codeline>
+<codeline lineno="12" refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kindref="member">gBin</ref>;</highlight></codeline>
+<codeline lineno="13" refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" kindref="member">TimeSeries</ref>;</highlight></codeline>
 <codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar" kindref="compound">Star</ref>();</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar" kindref="compound">Star</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bin,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapBegins,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapEnds,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ignoreGaps);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar_1ac174c691c269196c47324a13c3c9f903" kindref="member">Star</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar_1ac174c691c269196c47324a13c3c9f903" kindref="member">Star</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bin,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapBegins,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapEnds,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ignoreGaps);</highlight></codeline>
 <codeline lineno="17"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h"/>

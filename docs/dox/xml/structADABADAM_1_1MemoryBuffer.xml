@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structADABADAM_1_1MemoryBuffer" kind="struct" language="C++" prot="public">
     <compoundname>ADABADAM::MemoryBuffer</compoundname>
+    <includes refid="OptimizerProperties_8h" local="no">OptimizerProperties.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a2c412afddea0ef799ba41875c9d76818" prot="public" static="no" mutable="no">
         <type>int</type>

@@ -9,7 +9,7 @@
     <innerclass refid="structADABADAM_1_1ProgressTracker" prot="public">ADABADAM::ProgressTracker</innerclass>
     <innerclass refid="structADABADAM_1_1StopConditions" prot="public">ADABADAM::StopConditions</innerclass>
       <sectiondef kind="func">
-      <memberdef kind="function" id="ManualOptimizer_8h_1a6daa2701fb4cfaeb09a51cd2a8fd9110" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceADABADAM_1a6daa2701fb4cfaeb09a51cd2a8fd9110" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
           <param>
             <type>typename T</type>
@@ -31,7 +31,7 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="13" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="13" bodyend="15"/>
       </memberdef>
-      <memberdef kind="function" id="ManualOptimizer_8h_1adbecb22b119acb164dfb532bf7b69f55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double ADABADAM::norm</definition>
         <argsstring>(const std::vector&lt; double &gt; &amp;x)</argsstring>
@@ -48,7 +48,7 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="17" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="17" bodyend="25"/>
       </memberdef>
-      <memberdef kind="function" id="ManualOptimizer_8h_1a8383c920df127d40c1a15dea4e22b47f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
         <definition>double ADABADAM::vectorDiffNorm</definition>
         <argsstring>(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y)</argsstring>
@@ -69,7 +69,7 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="26" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="26" bodyend="35"/>
       </memberdef>
-      <memberdef kind="function" id="ManualOptimizer_8h_1ac05031b7779daebbd07d9a68b4181260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceADABADAM_1ac05031b7779daebbd07d9a68b4181260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
         <definition>std::vector&lt;double&gt; ADABADAM::vectorDiff</definition>
         <argsstring>(const std::vector&lt; double &gt; &amp;x, const std::vector&lt; double &gt; &amp;y)</argsstring>
@@ -90,7 +90,7 @@
         </inbodydescription>
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="36" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="36" bodyend="50"/>
       </memberdef>
-      <memberdef kind="function" id="ManualOptimizer_8h_1a30978fca49d41c59890c4c5245a2f87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="namespaceADABADAM_1a30978fca49d41c59890c4c5245a2f87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
         <definition>std::vector&lt;int&gt; ADABADAM::randomShuffle</definition>
         <argsstring>(int n)</argsstring>

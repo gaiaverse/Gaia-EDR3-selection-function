@@ -96,7 +96,7 @@
       </node>
       <node id="5">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</label>
-        <link refid="DataStorage_8h_source"/>
+        <link refid="DataStorage_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
@@ -104,7 +104,7 @@
       </node>
       <node id="9">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h_source"/>
+        <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="10" relation="include">
@@ -114,13 +114,13 @@
       </node>
       <node id="7">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h_source"/>
+        <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="8" relation="include">
         </childnode>
       </node>
       <node id="10">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h_source"/>
+        <link refid="EfficiencyVector_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
@@ -128,11 +128,11 @@
       </node>
       <node id="2">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h</label>
-        <link refid="CommandArguments_8h_source"/>
+        <link refid="CommandArguments_8h"/>
       </node>
       <node id="3">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalConstants.h</label>
-        <link refid="GlobalConstants_8h_source"/>
+        <link refid="GlobalConstants_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
@@ -148,17 +148,17 @@
       </node>
       <node id="6">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h_source"/>
+        <link refid="LogLikelihood_8h"/>
         <childnode refid="7" relation="include">
         </childnode>
       </node>
       <node id="4">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h</label>
-        <link refid="DataLoading_8h_source"/>
+        <link refid="DataLoading_8h"/>
       </node>
       <node id="11">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h_source"/>
+        <link refid="MiscFunctions_8h"/>
         <childnode refid="5" relation="include">
         </childnode>
         <childnode refid="9" relation="include">
@@ -166,7 +166,7 @@
       </node>
       <node id="8">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h_source"/>
+        <link refid="DescentFunctor_8h"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="define">
@@ -442,7 +442,7 @@
         <definition>const double gapPriorBeta</definition>
         <argsstring></argsstring>
         <name>gapPriorBeta</name>
-        <initializer>= gapPriorAlpha * exp(-gapPriorPeak)</initializer>
+        <initializer>= <ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref> * exp(-<ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref>)</initializer>
         <briefdescription>
 <para>Given peak value and alpha value, derive appropriate beta parameter. </para>
         </briefdescription>
@@ -528,11 +528,11 @@
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="76" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" prot="public" static="no" mutable="no">
-        <type>const VarianceScaling</type>
+        <type>const <ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kindref="member">VarianceScaling</ref></type>
         <definition>const VarianceScaling ScalingMode</definition>
         <argsstring></argsstring>
         <name>ScalingMode</name>
-        <initializer>= ActiveNScaling</initializer>
+        <initializer>= <ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kindref="member">ActiveNScaling</ref></initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -661,13 +661,13 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="GlobalVariables_8h_1aa69893f50bcb8cec4064f6bc1017497f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/Core&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/Householder&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/QR&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/LU&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="GlobalVariables_8h_1a56e1504926ca8dfaa658bed64aa32207" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -679,17 +679,17 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nt<sp/>=<sp/><sp/>896769;<sp/></highlight></codeline>
+<codeline lineno="21" refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref><sp/>=<sp/><sp/>896769;<sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>healpix_order<sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="23" refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" kindref="member">healpix_order</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>needlet_order<sp/>=<sp/>-1;<sp/></highlight></codeline>
+<codeline lineno="25" refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" kindref="member">needlet_order</ref><sp/>=<sp/>-1;<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nm<sp/>=<sp/>10;<sp/></highlight></codeline>
+<codeline lineno="27" refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref><sp/>=<sp/>10;<sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NVariancePops<sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="29" refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" kindref="member">NVariancePops</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>hyperOrder<sp/>=<sp/>4;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kindref="member">hyperOrder</ref><sp/>=<sp/>4;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
@@ -698,22 +698,22 @@
 <codeline lineno="37"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xtPrior<sp/>=<sp/>6;<sp/></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>studentNu<sp/>=<sp/>0.5;<sp/></highlight></codeline>
+<codeline lineno="40" refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" kindref="member">xtPrior</ref><sp/>=<sp/>6;<sp/></highlight></codeline>
+<codeline lineno="41" refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kindref="member">studentNu</ref><sp/>=<sp/>0.5;<sp/></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sigmat<sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="44" refid="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" kindref="member">sigmat</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
-<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lm<sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="46" refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" kindref="member">lm</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
-<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>lt_revs<sp/>=<sp/>1;<sp/></highlight></codeline>
+<codeline lineno="48" refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" kindref="member">lt_revs</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xmPrior<sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="50" refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" kindref="member">xmPrior</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
-<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gapPriorAlpha<sp/>=<sp/>0.5;<sp/></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gapPriorPeak<sp/>=<sp/>-6;<sp/></highlight></codeline>
-<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gapPriorBeta<sp/>=<sp/>gapPriorAlpha<sp/>*<sp/>exp(-gapPriorPeak);<sp/></highlight></codeline>
+<codeline lineno="53" refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref><sp/>=<sp/>0.5;<sp/></highlight></codeline>
+<codeline lineno="54" refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref><sp/>=<sp/>-6;<sp/></highlight></codeline>
+<codeline lineno="55" refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" kindref="member">gapPriorBeta</ref><sp/>=<sp/><ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref><sp/>*<sp/>exp(-<ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref>);<sp/></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="58"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
@@ -721,8 +721,8 @@
 <codeline lineno="60"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
 <codeline lineno="61"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="62"><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>initialisationBounds<sp/>=<sp/>0.3;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xmInitialised<sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="63" refid="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" kindref="member">initialisationBounds</ref><sp/>=<sp/>0.3;</highlight></codeline>
+<codeline lineno="64" refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" kindref="member">xmInitialised</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="65"><highlight class="normal"></highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
 <codeline lineno="67"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
@@ -730,27 +730,27 @@
 <codeline lineno="69"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
 <codeline lineno="70"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
-<codeline lineno="73"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>TempDirName=</highlight><highlight class="stringliteral">&quot;TempPositions&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="73" refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kindref="member">TempDirName</ref>=</highlight><highlight class="stringliteral">&quot;TempPositions&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>DataLoadCount<sp/>=<sp/>1e6;<sp/><sp/></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>magOffset<sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="75" refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kindref="member">DataLoadCount</ref><sp/>=<sp/>1e6;<sp/><sp/></highlight></codeline>
+<codeline lineno="76" refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kindref="member">magOffset</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
 <codeline lineno="79"><highlight class="normal"></highlight></codeline>
 <codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">//normal<sp/>approximation<sp/>variances</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>VarianceScaling<sp/>{NScaling,<sp/>MScaling,<sp/>ActiveNScaling};</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>VarianceScaling<sp/>ScalingMode<sp/>=<sp/>ActiveNScaling;</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>useHyperPrior<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ignoreGapObs<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
-<codeline lineno="85"><highlight class="normal">Eigen::VectorXd<sp/>initialisedVector(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,std::string<sp/>loadLocation);</highlight></codeline>
+<codeline lineno="81" refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kindref="member">VarianceScaling</ref><sp/>{<ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba054c79124c2ce286684afeaa9ed56726" kindref="member">NScaling</ref>,<sp/><ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59ebae939c17b2563c480e0fe2bc793f2a5ba" kindref="member">MScaling</ref>,<sp/><ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kindref="member">ActiveNScaling</ref>};</highlight></codeline>
+<codeline lineno="82" refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kindref="member">VarianceScaling</ref><sp/><ref refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kindref="member">ScalingMode</ref><sp/>=<sp/><ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kindref="member">ActiveNScaling</ref>;</highlight></codeline>
+<codeline lineno="83" refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" kindref="member">useHyperPrior</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84" refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kindref="member">ignoreGapObs</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">Eigen::VectorXd<sp/><ref refid="GlobalVariables_8h_1a8d760d41f05317a4be2239e0d4582e51" kindref="member">initialisedVector</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,std::string<sp/>loadLocation);</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
 <codeline lineno="87"><highlight class="normal"></highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
 <codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>PrintStatus(std::string<sp/>location);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal">std::vector&lt;bool&gt;<sp/>AssembleGapList(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>buffered);</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/>GapList;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/>BufferedGapList;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kindref="member">PrintStatus</ref>(std::string<sp/>location);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" kindref="member">AssembleGapList</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>buffered);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kindref="member">GapList</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kindref="member">BufferedGapList</ref>;</highlight></codeline>
 <codeline lineno="95"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h"/>

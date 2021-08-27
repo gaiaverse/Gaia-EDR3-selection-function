@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classADABADAM_1_1Optimizer" kind="class" language="C++" prot="public">
     <compoundname>ADABADAM::Optimizer</compoundname>
+    <includes refid="ManualOptimizer_8h" local="no">ManualOptimizer.h</includes>
     <templateparamlist>
       <param>
         <type>class T</type>
@@ -365,11 +366,15 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="5">
+      <node id="2">
+        <label>ADABADAM::MemoryBuffer</label>
+        <link refid="structADABADAM_1_1MemoryBuffer"/>
+      </node>
+      <node id="6">
         <label>ADABADAM::OptimizerStatus</label>
         <link refid="structADABADAM_1_1OptimizerStatus"/>
       </node>
-      <node id="2">
+      <node id="3">
         <label>ADABADAM::ProgressTracker</label>
         <link refid="structADABADAM_1_1ProgressTracker"/>
       </node>
@@ -377,23 +382,26 @@
         <label>ADABADAM::Optimizer&lt; T &gt;</label>
         <link refid="classADABADAM_1_1Optimizer"/>
         <childnode refid="2" relation="usage">
-          <edgelabel>Progress</edgelabel>
+          <edgelabel>Buffer</edgelabel>
         </childnode>
         <childnode refid="3" relation="usage">
-          <edgelabel>Properties</edgelabel>
+          <edgelabel>Progress</edgelabel>
         </childnode>
         <childnode refid="4" relation="usage">
-          <edgelabel>HaltConditions</edgelabel>
+          <edgelabel>Properties</edgelabel>
         </childnode>
         <childnode refid="5" relation="usage">
+          <edgelabel>HaltConditions</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
           <edgelabel>Status</edgelabel>
         </childnode>
       </node>
-      <node id="4">
+      <node id="5">
         <label>ADABADAM::StopConditions</label>
         <link refid="structADABADAM_1_1StopConditions"/>
       </node>
-      <node id="3">
+      <node id="4">
         <label>ADABADAM::OptimizerProperties</label>
         <link refid="structADABADAM_1_1OptimizerProperties"/>
       </node>

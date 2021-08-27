@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classStar" kind="class" language="C++" prot="public">
     <compoundname>Star</compoundname>
+    <includes refid="Star_8h" local="no">Star.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classStar_1abbd3c299046233f3e5f2cf100981e05e" prot="public" static="no" mutable="no">
         <type>unsigned short int</type>

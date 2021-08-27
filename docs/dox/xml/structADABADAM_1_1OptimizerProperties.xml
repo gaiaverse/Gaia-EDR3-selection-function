@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structADABADAM_1_1OptimizerProperties" kind="struct" language="C++" prot="public">
     <compoundname>ADABADAM::OptimizerProperties</compoundname>
+    <includes refid="OptimizerProperties_8h" local="no">OptimizerProperties.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" prot="public" static="no" mutable="no">
         <type>int</type>

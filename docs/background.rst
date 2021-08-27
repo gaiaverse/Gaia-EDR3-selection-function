@@ -40,6 +40,9 @@ However, whilst analytically correct, this bears two problems for us: firstly it
 We therefore elect to use the more lenient normal approximation to the  Poisson Binomial, which allows for some additional variance. 
 
 
+Variance Model
+===================
+
 .. _property-spaces:
 
 Property Spaces
@@ -56,8 +59,6 @@ The spaces are linked by Forward and Backward transforms. The splitting of the s
 * We can enforce bounds on our parameters with appropriate transforms (i.e. :math:`x_i > 0` can be enforced by :math:`x_i = e^{x_i}`)
 
 
-Variance Model
----------------------
 
 .. _forward-transform:
 
@@ -87,6 +88,17 @@ As the prior on :math:`\vec{z}^t` is simply the zero-mean, unit-normal Gaussian,
 Spatial Forward Transform
 -------------------------------
 
+We use spherical needlets to decompose the HEALPix-mapped sky into correlated units: our Raw spatial vector, :math:`\vec{z}_{ms}`, contains a needlet-weighting for the :math:`m`-band sky map, whilst the corresponding :math:`\vec{x}_{ml}` contains the efficiency parameter for the :math:`l`-th HEALPix location of the :math:`m`-band sky map. 
+
+They are related to each other by:
+
+.. math::
+
+	x_{ml, p} = \mu_p + \sigma \sum_{j = 0}^{\texttt{needlet_order}} \sum_{k = 0}^{N_j} 
+	
+**Need to go over this is some more detail**
+
+
 Hyper Forward Transform 
 -------------------------------
 
@@ -96,12 +108,16 @@ The hyperparameters associated with the coefficients of the `Variance Model`_ ar
 
 	x_{\text{coef}~i}^h = z_\text{coef}^h
 
-The hyperparameters associated with the population weightings, however, are constrained by the fact that they must be :math:`x_{\text{frac}~i}^h > 0` and :math:`\sum_i x_{\text{frac}~i}^h = 1`. This necessarily removes a degree of freedom, so there is an inherent degeneracy in this transform. We encode the transform such that:
+The hyperparameters associated with the population weightings, however, are constrained by the fact that they must be :math:`x_{\text{frac}~i}^h > 0` and :math:`\sum_i x_{\text{frac}~i}^h = 1`. The transform maps the unconstraintd :math:`\vec{z}` such that:
 
 .. math::
 
 	x_{\text{frac}~i}^h = \frac{\exp(z_{\text{frac}~i}^h)}{\sum_i \exp(z_{\text{frac}~i}^h)}
 
+This necessarily removes a degree of freedom, so there is an inherent degeneracy in this transform. 
+
+
+.. _backward-transform:
 
 Backward Transform
 ====================

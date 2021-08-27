@@ -213,7 +213,7 @@
         <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" line="53" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" prot="public" static="no" mutable="no">
-        <type>Probability</type>
+        <type><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" kindref="member">Probability</ref></type>
         <definition>Probability LikelihoodData::Mode</definition>
         <argsstring></argsstring>
         <name>Mode</name>

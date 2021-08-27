@@ -20,7 +20,7 @@
       </node>
       <node id="14">
         <label>GlobalVariables.h</label>
-        <link refid="GlobalVariables_8h_source"/>
+        <link refid="GlobalVariables_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="15" relation="include">
@@ -47,7 +47,7 @@
       </node>
       <node id="2">
         <label>Star.h</label>
-        <link refid="Star_8h_source"/>
+        <link refid="Star_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
@@ -81,7 +81,7 @@
       </node>
       <node id="13">
         <label>../Main/GlobalConstants.h</label>
-        <link refid="GlobalConstants_8h_source"/>
+        <link refid="GlobalConstants_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
@@ -203,7 +203,7 @@
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;Star.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="Star_8h" kindref="compound">Star.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ctime&gt;</highlight><highlight class="normal"></highlight></codeline>
@@ -219,18 +219,18 @@
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
 <codeline lineno="16" refid="structFileStarPairs" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFileStarPairs" kindref="compound">FileStarPairs</ref></highlight></codeline>
 <codeline lineno="17"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>FileName;</highlight></codeline>
-<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NStars;</highlight></codeline>
+<codeline lineno="18" refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" kindref="member">FileName</ref>;</highlight></codeline>
+<codeline lineno="19" refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" kindref="member">NStars</ref>;</highlight></codeline>
 <codeline lineno="20"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="21" refid="structFile" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFile" kindref="compound">File</ref></highlight></codeline>
 <codeline lineno="22"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/>Name;</highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Bin;</highlight></codeline>
+<codeline lineno="23" refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kindref="member">Name</ref>;</highlight></codeline>
+<codeline lineno="24" refid="structFile_1aced9c357d2c770816f23676e0a059d88" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFile_1aced9c357d2c770816f23676e0a059d88" kindref="member">Bin</ref>;</highlight></codeline>
 <codeline lineno="25"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal">std::vector&lt;File&gt;<sp/>GetAssignments(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,std::string<sp/>dataSource);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">std::vector&lt;File&gt;<sp/><ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,std::string<sp/>dataSource);</highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadData(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ProcessRank,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>JobSize,<sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>Data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>TotalStars,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dataSource,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" kindref="member">LoadData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ProcessRank,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>JobSize,<sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>Data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>TotalStars,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dataSource,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
     </programlisting>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h"/>
   </compounddef>

@@ -16,7 +16,7 @@
       </node>
       <node id="14">
         <label>../Main/GlobalVariables.h</label>
-        <link refid="GlobalVariables_8h_source"/>
+        <link refid="GlobalVariables_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
@@ -43,7 +43,7 @@
       </node>
       <node id="19">
         <label>DataStorage.h</label>
-        <link refid="DataStorage_8h_source"/>
+        <link refid="DataStorage_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
@@ -63,7 +63,7 @@
       </node>
       <node id="23">
         <label>ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h_source"/>
+        <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
@@ -77,7 +77,7 @@
       </node>
       <node id="13">
         <label>../DataHandling/Star.h</label>
-        <link refid="Star_8h_source"/>
+        <link refid="Star_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="8" relation="include">
@@ -93,7 +93,7 @@
       </node>
       <node id="5">
         <label>../Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h_source"/>
+        <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="6" relation="include">
         </childnode>
         <childnode refid="25" relation="include">
@@ -104,7 +104,7 @@
       </node>
       <node id="25">
         <label>../Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h_source"/>
+        <link refid="EfficiencyVector_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
@@ -127,13 +127,13 @@
       </node>
       <node id="22">
         <label>VariancePopulation.h</label>
-        <link refid="VariancePopulation_8h_source"/>
+        <link refid="VariancePopulation_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="20">
         <label>../Main/GlobalConstants.h</label>
-        <link refid="GlobalConstants_8h_source"/>
+        <link refid="GlobalConstants_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
       </node>
@@ -142,7 +142,7 @@
       </node>
       <node id="6">
         <label>LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h_source"/>
+        <link refid="LogLikelihood_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
@@ -185,7 +185,7 @@
       </node>
       <node id="21">
         <label>MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h_source"/>
+        <link refid="MiscFunctions_8h"/>
         <childnode refid="14" relation="include">
         </childnode>
         <childnode refid="20" relation="include">
@@ -244,8 +244,8 @@
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;mpi.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="DescentFunctor_8h_1aa69893f50bcb8cec4064f6bc1017497f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="DescentFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/Core&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight></codeline>
 <codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//~<sp/>#include<sp/>&quot;Star.h&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -267,53 +267,53 @@
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
 <codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//since<sp/>the<sp/>descent<sp/>functor<sp/>runs<sp/>only<sp/>once<sp/>(i.e.<sp/>on<sp/>Root),<sp/>we<sp/>would<sp/>still<sp/>like<sp/>root<sp/>to<sp/>use<sp/>its<sp/>CPU<sp/>cycles<sp/>to<sp/>do<sp/>some<sp/>calculating,<sp/>so<sp/>we<sp/>have<sp/>a<sp/>copy<sp/>of<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//the<sp/>structures<sp/>needed<sp/>to<sp/>do<sp/>liklihood<sp/>analysis<sp/>stored<sp/>within</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;Data;<sp/></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref><sp/>L;</highlight></codeline>
+<codeline lineno="27" refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<ref refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" kindref="member">Data</ref>;<sp/></highlight></codeline>
+<codeline lineno="28" refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref><sp/><ref refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kindref="member">L</ref>;</highlight></codeline>
 <codeline lineno="29"><highlight class="normal"></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::chrono::time_point&lt;std::chrono::system_clock&gt;<sp/>Start;</highlight></codeline>
+<codeline lineno="31" refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::chrono::time_point&lt;std::chrono::system_clock&gt;<sp/><ref refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" kindref="member">Start</ref>;</highlight></codeline>
 <codeline lineno="32"><highlight class="normal"></highlight></codeline>
 <codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//running<sp/>values<sp/>for<sp/>the<sp/>loglikelihood<sp/>and<sp/>gradient<sp/></highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="34"><highlight class="normal"></highlight></codeline>
 <codeline lineno="35"><highlight class="normal"></highlight></codeline>
 <codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>NStars;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>StarsInLastBatch;</highlight></codeline>
+<codeline lineno="38" refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" kindref="member">NStars</ref>;</highlight></codeline>
+<codeline lineno="39" refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" kindref="member">StarsInLastBatch</ref>;</highlight></codeline>
 <codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SaveHyperBuffer();</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ResetPosition();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" kindref="member">SaveHyperBuffer</ref>();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" kindref="member">ResetPosition</ref>();</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MaxBatches;</highlight></codeline>
+<codeline lineno="47" refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kindref="member">MaxBatches</ref>;</highlight></codeline>
 <codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>LoopID;</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref><sp/>Efficiency;</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Value;</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>Gradient;</highlight></codeline>
+<codeline lineno="49" refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" kindref="member">LoopID</ref>;</highlight></codeline>
+<codeline lineno="50" refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref><sp/><ref refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kindref="member">Efficiency</ref>;</highlight></codeline>
+<codeline lineno="51" refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" kindref="member">Value</ref>;</highlight></codeline>
+<codeline lineno="52" refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" kindref="member">Gradient</ref>;</highlight></codeline>
 <codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>mut_gaps;</highlight></codeline>
+<codeline lineno="54" refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" kindref="member">mut_gaps</ref>;</highlight></codeline>
 <codeline lineno="55"><highlight class="normal"></highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor" kindref="compound">DescentFunctor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>data,<sp/>std::string<sp/>outdir,<sp/>std::string<sp/>loadPosition,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nStars,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxBatches):<sp/>Data(data),<sp/>L(data),Efficiency(loadPosition,outdir)</highlight></codeline>
+<codeline lineno="56" refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" kindref="member">DescentFunctor</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>data,<sp/>std::string<sp/>outdir,<sp/>std::string<sp/>loadPosition,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nStars,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxBatches):<sp/><ref refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" kindref="member">Data</ref>(data),<sp/><ref refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kindref="member">L</ref>(data),<ref refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kindref="member">Efficiency</ref>(loadPosition,outdir)</highlight></codeline>
 <codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
 <codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NStars<sp/>=<sp/>nStars;</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LoopID<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" kindref="member">NStars</ref><sp/>=<sp/>nStars;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" kindref="member">LoopID</ref><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="61"><highlight class="normal"></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MaxBatches<sp/>=<sp/>maxBatches;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kindref="member">MaxBatches</ref><sp/>=<sp/>maxBatches;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Gradient<sp/>=<sp/>std::vector&lt;double&gt;(totalRawParams,0.0);</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Value<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" kindref="member">Gradient</ref><sp/>=<sp/>std::vector&lt;double&gt;(<ref refid="GlobalConstants_8h_1a30a64a6b17b075364135d42c0f488dc4" kindref="member">totalRawParams</ref>,0.0);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" kindref="member">Value</ref><sp/>=<sp/>0;</highlight></codeline>
 <codeline lineno="66"><highlight class="normal"></highlight></codeline>
 <codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>DistributeCalculations(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;y,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batchID,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" kindref="member">DistributeCalculations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;y,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batchID,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches);</highlight></codeline>
 <codeline lineno="69"><highlight class="normal"><sp/></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Calculate(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batchID,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches);</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Calculate(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;x);</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SavePosition(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finalSave,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saveStep,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniqueSave);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" kindref="member">Calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;x,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batchID,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>effectiveBatches);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" kindref="member">Calculate</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;x);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" kindref="member">SavePosition</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finalSave,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saveStep,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniqueSave);</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="75"><highlight class="normal">};</highlight></codeline>
 <codeline lineno="76"><highlight class="normal"></highlight></codeline>

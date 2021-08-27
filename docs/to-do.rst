@@ -24,6 +24,7 @@ Things that need doing, or doing better:
 * Complete the probability model description in :doc:`background`
 * How are the stellar observation lists generated / where can they be retrieved from? 
 * I'm not a 100% sure on what needlets and needlet-mappings do in :doc:`inputs`, would be nice to get confirmation of that
+* Write a more in-depth description of the spatial forward and backward transforms
 * Code output page
 * Document + clean up the :doc:`optimiser`
 * Document the private members of :doc:`likelihood`

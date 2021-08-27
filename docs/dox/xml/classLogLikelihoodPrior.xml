@@ -3,6 +3,7 @@
   <compounddef id="classLogLikelihoodPrior" kind="class" language="C++" prot="public">
     <compoundname>LogLikelihoodPrior</compoundname>
     <basecompoundref refid="classLogLikelihood" prot="public" virt="non-virtual">LogLikelihood</basecompoundref>
+    <includes refid="LogLikelihoodPrior_8h" local="no">LogLikelihoodPrior.h</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>

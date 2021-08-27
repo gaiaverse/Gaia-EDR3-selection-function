@@ -11,7 +11,7 @@
       </node>
       <node id="12">
         <label>../Main/GlobalVariables.h</label>
-        <link refid="GlobalVariables_8h_source"/>
+        <link refid="GlobalVariables_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
@@ -38,7 +38,7 @@
       </node>
       <node id="17">
         <label>DataStorage.h</label>
-        <link refid="DataStorage_8h_source"/>
+        <link refid="DataStorage_8h"/>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
@@ -58,7 +58,7 @@
       </node>
       <node id="21">
         <label>ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h_source"/>
+        <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
@@ -72,7 +72,7 @@
       </node>
       <node id="11">
         <label>../DataHandling/Star.h</label>
-        <link refid="Star_8h_source"/>
+        <link refid="Star_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="5" relation="include">
@@ -99,7 +99,7 @@
       </node>
       <node id="23">
         <label>../Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h_source"/>
+        <link refid="EfficiencyVector_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="7" relation="include">
@@ -122,13 +122,13 @@
       </node>
       <node id="20">
         <label>VariancePopulation.h</label>
-        <link refid="VariancePopulation_8h_source"/>
+        <link refid="VariancePopulation_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
       <node id="18">
         <label>../Main/GlobalConstants.h</label>
-        <link refid="GlobalConstants_8h_source"/>
+        <link refid="GlobalConstants_8h"/>
         <childnode refid="12" relation="include">
         </childnode>
       </node>
@@ -137,7 +137,7 @@
       </node>
       <node id="2">
         <label>LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h_source"/>
+        <link refid="LogLikelihood_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
         <childnode refid="4" relation="include">
@@ -177,7 +177,7 @@
       </node>
       <node id="19">
         <label>MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h_source"/>
+        <link refid="MiscFunctions_8h"/>
         <childnode refid="12" relation="include">
         </childnode>
         <childnode refid="18" relation="include">
@@ -193,7 +193,7 @@
       </node>
       <node id="2">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h_source"/>
+        <link refid="DescentFunctor_8h"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classLogLikelihoodPrior" prot="public">LogLikelihoodPrior</innerclass>
@@ -216,15 +216,15 @@
     </detaileddescription>
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;LogLikelihood.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2" refid="LogLikelihoodPrior_8h_1aa69893f50bcb8cec4064f6bc1017497f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="LogLikelihood_8h" kindref="compound">LogLikelihood.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/EfficiencyVector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>Eigen::VectorXd;</highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Eigen;</highlight></codeline>
 <codeline lineno="7" refid="classLogLikelihoodPrior" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref></highlight></codeline>
 <codeline lineno="8"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>data):<sp/><ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>(data){};</highlight></codeline>
+<codeline lineno="10" refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" kindref="member">LogLikelihoodPrior</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>data):<sp/><ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>(data){};</highlight></codeline>
 <codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>

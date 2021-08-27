@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classDescentFunctor" kind="class" language="C++" prot="public">
     <compoundname>DescentFunctor</compoundname>
+    <includes refid="DescentFunctor_8h" local="no">DescentFunctor.h</includes>
       <sectiondef kind="private-attrib">
       <memberdef kind="variable" id="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" prot="private" static="no" mutable="no">
         <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt; &gt; &amp;</type>
@@ -315,10 +316,30 @@
         <childnode refid="2" relation="usage">
           <edgelabel>Efficiency</edgelabel>
         </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>L</edgelabel>
+        </childnode>
       </node>
       <node id="2">
         <label>EfficiencyVector</label>
         <link refid="classEfficiencyVector"/>
+      </node>
+      <node id="5">
+        <label>LikelihoodData</label>
+        <link refid="classLikelihoodData"/>
+      </node>
+      <node id="3">
+        <label>LogLikelihoodPrior</label>
+        <link refid="classLogLikelihoodPrior"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>LogLikelihood</label>
+        <link refid="classLogLikelihood"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Data</edgelabel>
+        </childnode>
       </node>
     </collaborationgraph>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="22" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="21" bodyend="75"/>

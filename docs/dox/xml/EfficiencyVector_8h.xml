@@ -15,7 +15,7 @@
       </node>
       <node id="4">
         <label>../Main/GlobalVariables.h</label>
-        <link refid="GlobalVariables_8h_source"/>
+        <link refid="GlobalVariables_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="3" relation="include">
@@ -42,7 +42,7 @@
       </node>
       <node id="15">
         <label>DataStorage.h</label>
-        <link refid="DataStorage_8h_source"/>
+        <link refid="DataStorage_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
@@ -62,7 +62,7 @@
       </node>
       <node id="14">
         <label>../Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h_source"/>
+        <link refid="ProbabilityFunctions_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
@@ -76,7 +76,7 @@
       </node>
       <node id="16">
         <label>../DataHandling/Star.h</label>
-        <link refid="Star_8h_source"/>
+        <link refid="Star_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
         <childnode refid="17" relation="include">
@@ -118,13 +118,13 @@
       </node>
       <node id="19">
         <label>VariancePopulation.h</label>
-        <link refid="VariancePopulation_8h_source"/>
+        <link refid="VariancePopulation_8h"/>
         <childnode refid="2" relation="include">
         </childnode>
       </node>
       <node id="13">
         <label>../Main/GlobalConstants.h</label>
-        <link refid="GlobalConstants_8h_source"/>
+        <link refid="GlobalConstants_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
       </node>
@@ -142,7 +142,7 @@
       </node>
       <node id="18">
         <label>MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h_source"/>
+        <link refid="MiscFunctions_8h"/>
         <childnode refid="4" relation="include">
         </childnode>
         <childnode refid="13" relation="include">
@@ -152,7 +152,7 @@
     <invincdepgraph>
       <node id="2">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h_source"/>
+        <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="3" relation="include">
         </childnode>
       </node>
@@ -166,7 +166,7 @@
       </node>
       <node id="3">
         <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h_source"/>
+        <link refid="DescentFunctor_8h"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classEfficiencyVector" prot="public">EfficiencyVector</innerclass>
@@ -200,8 +200,8 @@
     <programlisting>
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/Core&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
@@ -211,70 +211,81 @@
 <codeline lineno="17" refid="classEfficiencyVector" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></highlight></codeline>
 <codeline lineno="18"><highlight class="normal">{</highlight></codeline>
 <codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>VectorMode<sp/>{Raw,<sp/>Transformed};</highlight></codeline>
-<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>VectorComponent<sp/>{Temporal,<sp/>Spatial,<sp/>Hyper};</highlight></codeline>
-<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>VectorType<sp/>{Position,<sp/>Gradient};</highlight></codeline>
-<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref>(std::string<sp/>load_location,std::string<sp/>save_location);</highlight></codeline>
-<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Access<sp/>Functions</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Access(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
-<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Assign(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Increment(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>Access(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2);</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Assign(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
-<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Increment(VectorMode<sp/>rawOrTransformed,<sp/>VectorComponent<sp/>component,<sp/>VectorType<sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="35"><highlight class="normal"></highlight></codeline>
-<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>RawPosition;</highlight></codeline>
-<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>TransformedPosition;</highlight></codeline>
-<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>RawGradient;</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>TransformedGradient;</highlight></codeline>
-<codeline lineno="43"><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;bool&gt;<sp/>KnownGapList;</highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;z);</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BackwardTransform();</highlight></codeline>
-<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Save(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finalSave,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saveStep,</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniqueSave);</highlight></codeline>
-<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ForwardTransform_Hyper();</highlight></codeline>
-<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ForwardTransform_Spatial();</highlight></codeline>
-<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ForwardTransform_Temporal();</highlight></codeline>
-<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BackwardTransform_Hyper();</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BackwardTransform_Spatial();</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BackwardTransform_Temporal();</highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Needlet<sp/>stuff<sp/>-<sp/>has<sp/>to<sp/>be<sp/>public</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>needletN;</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>needlet_u;</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>needlet_v;</highlight></codeline>
-<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>needlet_w;</highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>bVector;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Cholesky<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Matrix&lt;double,<sp/>Nm,<sp/>Nm&gt;<sp/>CholeskyKg;</highlight></codeline>
-<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>cholesky_tol<sp/>=<sp/>1e-4;</highlight></codeline>
-<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>choleskyN;</highlight></codeline>
-<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>cholesky_u;</highlight></codeline>
-<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/>cholesky_v;</highlight></codeline>
-<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>cholesky_w;<sp/></highlight></codeline>
-<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>GenerateVector();</highlight></codeline>
-<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadVector(std::string<sp/>load_location);</highlight></codeline>
-<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadNeedlets();</highlight></codeline>
-<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LoadCholesky();</highlight></codeline>
-<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset();</highlight></codeline>
-<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>SaveLocation;</highlight></codeline>
-<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="87"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22" refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">RawPosition</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kindref="member">TransformedPosition</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28" refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">RawGradient</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kindref="member">TransformedGradient</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38" refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>{<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4af71605802003c74662a1e79c4bc2e72a" kindref="member">Raw</ref>,<sp/><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4a5d730d648e4a125ffb26b657134d9b24" kindref="member">Transformed</ref>};</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>{<ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea1f4c469d28d6d6118881152ba4d10ca7" kindref="member">Temporal</ref>,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ceacac34fdc2ea3edb2031c5bc689ac1114" kindref="member">Spatial</ref>,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea43b9bc5417f2033c529ed1bea4b64628" kindref="member">Hyper</ref>};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>{<ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4ad76b33744e33b33ccb8eb74a8f0d8e97" kindref="member">Position</ref>,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4aa1cd5f818bc45be8f0a693fadff98ca6" kindref="member">Gradient</ref>};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kindref="member">EfficiencyVector</ref>(std::string<sp/>load_location,std::string<sp/>save_location);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Access<sp/>Functions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1aafb92f95d2a193d08d4dd6fa46991e6e" kindref="member">Access</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;z);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform</ref>();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kindref="member">Save</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finalSave,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saveStep,</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniqueSave);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kindref="member">ForwardTransform_Hyper</ref>();</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kindref="member">ForwardTransform_Spatial</ref>();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kindref="member">ForwardTransform_Temporal</ref>();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" kindref="member">BackwardTransform_Hyper</ref>();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" kindref="member">BackwardTransform_Spatial</ref>();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" kindref="member">BackwardTransform_Temporal</ref>();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Needlet<sp/>stuff<sp/>-<sp/>has<sp/>to<sp/>be<sp/>public</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135" refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" kindref="member">needletN</ref>;</highlight></codeline>
+<codeline lineno="136" refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kindref="member">needlet_u</ref>;</highlight></codeline>
+<codeline lineno="137" refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kindref="member">needlet_v</ref>;</highlight></codeline>
+<codeline lineno="138" refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kindref="member">needlet_w</ref>;</highlight></codeline>
+<codeline lineno="139" refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" kindref="member">bVector</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Cholesky<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Eigen::Matrix&lt;double,<sp/>Nm,<sp/>Nm&gt;<sp/><ref refid="classEfficiencyVector_1a67d4fa0b30f61faddde3690f974e8fa6" kindref="member">CholeskyKg</ref>;</highlight></codeline>
+<codeline lineno="143" refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kindref="member">cholesky_tol</ref><sp/>=<sp/>1e-4;</highlight></codeline>
+<codeline lineno="144" refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kindref="member">choleskyN</ref>;</highlight></codeline>
+<codeline lineno="145" refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kindref="member">cholesky_u</ref>;</highlight></codeline>
+<codeline lineno="146" refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kindref="member">cholesky_v</ref>;</highlight></codeline>
+<codeline lineno="147" refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kindref="member">cholesky_w</ref>;<sp/></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" kindref="member">GenerateVector</ref>();</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" kindref="member">LoadVector</ref>(std::string<sp/>load_location);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" kindref="member">LoadNeedlets</ref>();</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" kindref="member">LoadCholesky</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" kindref="member">Reset</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="159" refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kindref="member">SaveLocation</ref>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/EfficiencyVector.h"/>
   </compounddef>

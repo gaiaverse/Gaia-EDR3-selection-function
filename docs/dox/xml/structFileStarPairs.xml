@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structFileStarPairs" kind="struct" language="C++" prot="public">
     <compoundname>FileStarPairs</compoundname>
+    <includes refid="DataLoading_8h" local="no">DataLoading.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" prot="public" static="no" mutable="no">
         <type>std::string</type>

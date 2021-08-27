@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classCommandArgs" kind="class" language="C++" prot="public">
     <compoundname>CommandArgs</compoundname>
+    <includes refid="CommandArguments_8h" local="no">CommandArguments.h</includes>
       <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="classCommandArgs_1a7227f10097dae1825feea951fc3132a6" prot="public" static="no" mutable="no">
         <type>Argument&lt; int &gt;</type>
