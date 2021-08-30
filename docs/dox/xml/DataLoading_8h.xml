@@ -138,27 +138,6 @@
     <innerclass refid="structFileStarPairs" prot="public">FileStarPairs</innerclass>
     <innerclass refid="structFile" prot="public">File</innerclass>
       <sectiondef kind="func">
-      <memberdef kind="function" id="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>std::vector&lt; <ref refid="structFile" kindref="compound">File</ref> &gt;</type>
-        <definition>std::vector&lt;File&gt; GetAssignments</definition>
-        <argsstring>(int id, std::string dataSource)</argsstring>
-        <name>GetAssignments</name>
-        <param>
-          <type>int</type>
-          <declname>id</declname>
-        </param>
-        <param>
-          <type>std::string</type>
-          <declname>dataSource</declname>
-        </param>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="27" column="1"/>
-      </memberdef>
       <memberdef kind="function" id="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void LoadData</definition>
@@ -191,10 +170,116 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
+<para>The door to the dataloading functions. If loaded by the <ref refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kindref="member">RootID</ref> process, calls the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> and <ref refid="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" kindref="member">CalculateBatches()</ref>, before using that information to load the assigned stars into the required structures. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>ProcessRank</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The MPI ID of the calling process </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>JobSize</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of MPI workers available (used to determine how to distribute files to each worker) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to the container into which the data will be inserter </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TotalStars</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A reference to a counter which sums the total number of stars loaded into the worker, and hence into the parallel system </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataSource</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The location of the directory in which the stellar data is stored </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>batches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of minibatches the optimiser uses, and hence a determinant of the structure of the loaded data </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>No explicit returns, but the <computeroutput>Data</computeroutput> object becomes populated with <ref refid="classStar" kindref="compound">Star</ref> objects </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="50" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="structFile" kindref="compound">File</ref> &gt;</type>
+        <definition>std::vector&lt;File&gt; GetAssignments</definition>
+        <argsstring>(int id, std::string dataSource)</argsstring>
+        <name>GetAssignments</name>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>dataSource</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Compares the list of files assigned to the running process by the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol and those within the<verbatim>embed:rst:inline :ref:`stellar-directory` </verbatim>. If there is a match (which there <bold>really</bold> should be), it returns the assigned file objects as a list <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The MPI id of the running process, a number between 0 and NProcesses - 1 </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dataSource</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The directory in which the stellar data is stored </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A list of the <ref refid="structFile" kindref="compound">File</ref> objects assigned to this process </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="58" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CalculateBatches</definition>
+        <argsstring>(int id, std::vector&lt; File &gt; &amp;Files, int batches)</argsstring>
+        <name>CalculateBatches</name>
+        <param>
+          <type>int</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="structFile" kindref="compound">File</ref> &gt; &amp;</type>
+          <declname>Files</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>batches</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="29" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="61" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -217,20 +302,27 @@
 <codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/JSL/JSL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="15"><highlight class="normal"></highlight></codeline>
-<codeline lineno="16" refid="structFileStarPairs" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFileStarPairs" kindref="compound">FileStarPairs</ref></highlight></codeline>
-<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="18" refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" kindref="member">FileName</ref>;</highlight></codeline>
-<codeline lineno="19" refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" kindref="member">NStars</ref>;</highlight></codeline>
-<codeline lineno="20"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="21" refid="structFile" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFile" kindref="compound">File</ref></highlight></codeline>
-<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="23" refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kindref="member">Name</ref>;</highlight></codeline>
-<codeline lineno="24" refid="structFile_1aced9c357d2c770816f23676e0a059d88" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFile_1aced9c357d2c770816f23676e0a059d88" kindref="member">Bin</ref>;</highlight></codeline>
-<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal">std::vector&lt;File&gt;<sp/><ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,std::string<sp/>dataSource);</highlight></codeline>
-<codeline lineno="28"><highlight class="normal"></highlight></codeline>
-<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" kindref="member">LoadData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ProcessRank,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>JobSize,<sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>Data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>TotalStars,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dataSource,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
+<codeline lineno="19" refid="structFileStarPairs" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFileStarPairs" kindref="compound">FileStarPairs</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22" refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" kindref="member">FileName</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="25" refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" kindref="member">NStars</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structFile" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structFile" kindref="compound">File</ref></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33" refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kindref="member">Name</ref>;</highlight></codeline>
+<codeline lineno="34" refid="structFile_1aced9c357d2c770816f23676e0a059d88" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structFile_1aced9c357d2c770816f23676e0a059d88" kindref="member">Bin</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" kindref="member">LoadData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ProcessRank,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>JobSize,<sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<sp/>Data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>&amp;<sp/>TotalStars,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>dataSource,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">std::vector&lt;File&gt;<sp/><ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,std::string<sp/>dataSource);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" kindref="member">CalculateBatches</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>std::vector&lt;File&gt;<sp/>&amp;<sp/>Files,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h"/>
   </compounddef>

@@ -111,14 +111,6 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	
 	MPI_Barrier(MPI_COMM_WORLD);
 	
-	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-	std::vector<int> gapStarts;
-	std::vector<int> gapEnds;
-	forLineVectorIn(gapFile,' ',
-		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
-		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
-	);
-	
 	
 	auto start = std::chrono::system_clock::now();
 	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);

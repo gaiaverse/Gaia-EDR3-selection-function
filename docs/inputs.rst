@@ -13,6 +13,7 @@ The stellar observation lists are the core source of data for the code to run. T
 
 Different prescriptions are possible with only minor modifications to the code, however the default assumption is that the files will follow the following prescription:
 
+* All datafiles within the same directory (no subdirectories)
 * One datafile per magnitude bin (:ref:`Nm <Nm>` datafiles in total)
 * Filenames will be of the form "``n``.csv", where ``n`` runs from ``0`` to ``Nm-1``. 
 * Each line of the datafile corresponds to a single star
@@ -27,6 +28,31 @@ Different prescriptions are possible with only minor modifications to the code, 
 * The length of the line (i.e. ``N``) can vary from star to star, but ``N-2`` should not exceed :ref:`NumberLargerThanMaxObservations <obs-n>`.
 * The lines within the datafiles are randomly shuffled
 
+.. _stellar-directory:
+
+------------------
+Stellar Directory
+------------------
+
+In order to load in #DataLoadCount stars, it is useful to know a-priori how many stars are within the file. However, parsing such large text files on the fly can take an exceedingly long time, and would be annoying to run every time the system initialised. 
+
+We therefore require that, in the same directory as the datafiles, there exists a file called ``directory.dat``, which contains a precalculated directory of the number of stars in each file, in the format of:
+
+.. code-block:: text
+
+	1234 file1.csv
+	2927 file2.csv
+	9238 file3.csv
+	.
+	.
+	.
+	19282 fileN.csv
+
+Such a file can be easily generated with the following bash command:
+
+.. code-block:: bash
+	
+	wc -l *.csv > directory.dat
 
 .. _needlet-files:
 

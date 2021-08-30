@@ -4,15 +4,10 @@
 Data Loading, Core & Minibatch Allocation
 ############################################
 
-
-.. doxygenstruct:: FileStarPairs
-.. doxygenstruct::File
-
-.. doxygenfunction:: GetAssignments
-
-.. doxygenfunction::LoadData
-
 .. toctree::
 	star
+	data-loading-functions
+	data-loading-files
+	assignment-creation
 	:maxdepth: 4
 	:caption: Members:
