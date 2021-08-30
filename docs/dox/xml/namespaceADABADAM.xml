@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="namespaceADABADAM" kind="namespace" language="C++">
     <compoundname>ADABADAM</compoundname>
     <innerclass refid="structADABADAM_1_1MemoryBuffer" prot="public">ADABADAM::MemoryBuffer</innerclass>
@@ -29,7 +29,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="13" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="13" bodyend="15"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="13" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="13" bodyend="15"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -46,7 +46,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="17" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="17" bodyend="25"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="17" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="17" bodyend="25"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="26" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="26" bodyend="35"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="26" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="26" bodyend="35"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1ac05031b7779daebbd07d9a68b4181260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -88,7 +88,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="36" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="36" bodyend="50"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="36" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="36" bodyend="50"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1a30978fca49d41c59890c4c5245a2f87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
@@ -105,13 +105,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="52" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="52" bodyend="62"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="52" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="52" bodyend="62"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="12" column="1"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="12" column="1"/>
   </compounddef>
 </doxygen>

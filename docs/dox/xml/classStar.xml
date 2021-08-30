@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classStar" kind="class" language="C++" prot="public">
     <compoundname>Star</compoundname>
     <includes refid="Star_8h" local="no">Star.h</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="10" column="20" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" bodystart="10" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="10" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classStar_1ac00a219fe6c887b16cb72e263c676ea9" prot="public" static="no" mutable="no">
         <type>unsigned short int</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="11" column="20" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classStar_1a5d29a213dddb43a01b5058486ce6e323" prot="public" static="no" mutable="no">
         <type>unsigned int</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="12" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" bodystart="12" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="12" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" prot="public" static="no" mutable="no">
         <type>std::vector&lt; unsigned int &gt;</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="13" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" bodystart="13" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="13" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="13" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -69,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="15" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="15" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classStar_1aace160d83fb4be45f11ca9db7dc7d51c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -102,14 +102,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="16" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="16" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" line="8" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/Star.h" bodystart="7" bodyend="17"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="8" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="7" bodyend="17"/>
     <listofallmembers>
       <member refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" prot="public" virt="non-virtual"><scope>Star</scope><name>gBin</name></member>
       <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" prot="public" virt="non-virtual"><scope>Star</scope><name>nMeasure</name></member>

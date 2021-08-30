@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.17">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
   <compound refid="classCommandArgs" kind="class"><name>CommandArgs</name>
     <member refid="classCommandArgs_1a7227f10097dae1825feea951fc3132a6" kind="variable"><name>RandomSeed</name></member>
     <member refid="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" kind="variable"><name>StartVectorLocation</name></member>
@@ -359,16 +359,16 @@
   </compound>
   <compound refid="OptimizerProperties_8h" kind="file"><name>OptimizerProperties.h</name>
   </compound>
-  <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling</name>
+  <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling</name>
   </compound>
-  <compound refid="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood</name>
+  <compound refid="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood</name>
   </compound>
-  <compound refid="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main</name>
+  <compound refid="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main</name>
   </compound>
-  <compound refid="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer</name>
+  <compound refid="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer</name>
   </compound>
-  <compound refid="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src</name>
+  <compound refid="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src</name>
   </compound>
-  <compound refid="dir_0681e4331e8c0cb9b9006c8ffbe59bbe" kind="dir"><name>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia</name>
+  <compound refid="dir_0681e4331e8c0cb9b9006c8ffbe59bbe" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia</name>
   </compound>
 </doxygenindex>

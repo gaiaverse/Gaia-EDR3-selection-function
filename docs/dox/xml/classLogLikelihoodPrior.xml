@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classLogLikelihoodPrior" kind="class" language="C++" prot="public">
     <compoundname>LogLikelihoodPrior</compoundname>
     <basecompoundref refid="classLogLikelihood" prot="public" virt="non-virtual">LogLikelihood</basecompoundref>
@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="10" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="10" bodyend="10"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="10" bodyend="10"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihoodPrior_1a9ab6a300487baff78f0caeac3f3f75e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="15" column="12"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="15" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -62,7 +62,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="16" column="12"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="16" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -70,37 +70,37 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="1">
+      <node id="24">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="2" relation="public-inheritance">
+        <childnode refid="25" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="25">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="3">
+      <node id="28">
         <label>LikelihoodData</label>
         <link refid="classLikelihoodData"/>
       </node>
-      <node id="1">
+      <node id="26">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="2" relation="public-inheritance">
+        <childnode refid="27" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="2">
+      <node id="27">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="3" relation="usage">
+        <childnode refid="28" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="8" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="7" bodyend="19"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="8" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="7" bodyend="19"/>
     <listofallmembers>
       <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>AssignGradients</name></member>
       <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Calculate</name></member>

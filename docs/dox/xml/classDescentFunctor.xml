@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="classDescentFunctor" kind="class" language="C++" prot="public">
     <compoundname>DescentFunctor</compoundname>
     <includes refid="DescentFunctor_8h" local="no">DescentFunctor.h</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="27" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="27" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" prot="private" static="no" mutable="no">
         <type><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref></type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="28" column="20" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="28" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="28" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" prot="private" static="no" mutable="no">
         <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="31" column="25" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="31" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="31" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="38" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="38" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="39" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="47" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="47" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="47" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="47" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -95,7 +95,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="49" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="49" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" prot="public" static="no" mutable="no">
         <type><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></type>
@@ -108,7 +108,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="50" column="18" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="50" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -121,7 +121,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="51" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="51" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="51" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -134,7 +134,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="52" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="52" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="52" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -147,7 +147,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="54" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="54" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="54" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="54" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="44" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="44" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -175,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="45" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="45" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="56" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="56" bodyend="67"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="56" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="56" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -235,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="68" column="10"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="68" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -260,7 +260,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="71" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="71" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -277,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="72" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="72" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -302,7 +302,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="73" column="6"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="73" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -310,39 +310,39 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="1">
+      <node id="7">
         <label>DescentFunctor</label>
         <link refid="classDescentFunctor"/>
-        <childnode refid="2" relation="usage">
+        <childnode refid="8" relation="usage">
           <edgelabel>Efficiency</edgelabel>
         </childnode>
-        <childnode refid="3" relation="usage">
+        <childnode refid="9" relation="usage">
           <edgelabel>L</edgelabel>
         </childnode>
       </node>
-      <node id="2">
+      <node id="8">
         <label>EfficiencyVector</label>
         <link refid="classEfficiencyVector"/>
       </node>
-      <node id="5">
+      <node id="11">
         <label>LikelihoodData</label>
         <link refid="classLikelihoodData"/>
       </node>
-      <node id="3">
+      <node id="9">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="4" relation="public-inheritance">
+        <childnode refid="10" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="4">
+      <node id="10">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="5" relation="usage">
+        <childnode refid="11" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" line="22" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="21" bodyend="75"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="22" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="21" bodyend="75"/>
     <listofallmembers>
       <member refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>
       <member refid="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>

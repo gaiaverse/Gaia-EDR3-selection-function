@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
   <compounddef id="structADABADAM_1_1StopConditions" kind="struct" language="C++" prot="public">
     <compoundname>ADABADAM::StopConditions</compoundname>
     <includes refid="OptimizerProperties_8h" local="no">OptimizerProperties.h</includes>
@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="18" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="18" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="18" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a91588e199ade4a073925dc3b2b8d8209" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -28,7 +28,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="19" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="19" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="19" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="20" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="20" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="20" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="20" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -54,7 +54,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="21" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="21" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="22" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="22" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="22" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="22" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a406879138cff941f80b1f44a06106e03" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -80,7 +80,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="23" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="23" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="23" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -93,7 +93,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="24" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="24" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -106,14 +106,14 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="25" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="17" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="16" bodyend="27"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="17" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="16" bodyend="27"/>
     <listofallmembers>
       <member refid="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>DownStepFile</name></member>
       <member refid="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>FunctionChangeThreshold</name></member>
