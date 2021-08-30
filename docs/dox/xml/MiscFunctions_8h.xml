@@ -143,10 +143,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Some numbers we&apos;d rather not calculate again and again if possible </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="10" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -160,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="40" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -174,7 +174,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="12" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -190,10 +190,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Implements an expit sigmoid. Some cleverness was used to avoid numerical overflows for exp(large numbers). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be expit-ed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\sigma(x) = \frac{1}{1 + \exp(-x)}` </verbatim> </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="5" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="10" column="1"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -207,10 +216,19 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>A truncated exponential (apparently elu is a mahcine learning term?). For x &gt; <ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref>, returns exp(-x), otherwise returns the linear function which makes elu(x) both continuous and smooth. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be elu-ed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\text{elu}(x) =\begin{cases} \exp(-x) ~~~&amp; x &gt; \rho \\ (1 + \rho - x) \exp(-\rho) &amp; x \leq \rho  \end{cases}` </verbatim> </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="6" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="17" column="1"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -228,10 +246,26 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Calculate the gradient of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> evaluated at x. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value at which gradient is to be evaluated at </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elu_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the functional value of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> at the chosen point. Can avoid having to recalulate exp(x) if possible </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The requisite gradient </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="7" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="25" column="1"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -249,10 +283,26 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Given two (potentially very large) numbers a = log(x) ,b = log(y) we often want to know log(x+y). To compute this we need to take exponentials and then add/subtract them: even if the answer <emphasis>should</emphasis> be a finite number, the intermediary values can often lead to numerical overflows. This function calculates it in a much safer way. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logarithm of a large number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logarithm of another large number </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\log\left( e^a + e^b\right)` </verbatim>, calculated such that the intermediary results do not overflow </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="8" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="33" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -263,16 +313,20 @@
 <codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Implements<sp/>an<sp/>expit<sp/>sigmoid<sp/>via<sp/>the<sp/>tanh<sp/>method</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" kindref="member">sigmoid</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
-<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
-<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" kindref="member">elu_grad</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>elu_x);</highlight></codeline>
-<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kindref="member">log_add_exp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b);</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight></codeline>
-<codeline lineno="10" refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kindref="member">one_over_root2</ref><sp/>=<sp/>1.0/sqrt(2.0);</highlight></codeline>
-<codeline lineno="11" refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" kindref="member">one_over_root2pi</ref><sp/>=<sp/>1.0/sqrt(2.0*M_PI);</highlight></codeline>
-<codeline lineno="12" refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" kindref="member">root2_over_pi</ref><sp/>=<sp/>sqrt(2.0/M_PI);</highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" kindref="member">sigmoid</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" kindref="member">elu_grad</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>elu_x);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kindref="member">log_add_exp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kindref="member">one_over_root2</ref><sp/>=<sp/>1.0/sqrt(2.0);</highlight></codeline>
+<codeline lineno="40" refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" kindref="member">one_over_root2pi</ref><sp/>=<sp/>1.0/sqrt(2.0*M_PI);</highlight></codeline>
+<codeline lineno="41" refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" kindref="member">root2_over_pi</ref><sp/>=<sp/>sqrt(2.0/M_PI);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h"/>
   </compounddef>

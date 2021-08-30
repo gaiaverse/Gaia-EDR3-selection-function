@@ -366,42 +366,42 @@
     <detaileddescription>
     </detaileddescription>
     <collaborationgraph>
-      <node id="33">
+      <node id="35">
         <label>ADABADAM::MemoryBuffer</label>
         <link refid="structADABADAM_1_1MemoryBuffer"/>
       </node>
-      <node id="37">
+      <node id="39">
         <label>ADABADAM::OptimizerStatus</label>
         <link refid="structADABADAM_1_1OptimizerStatus"/>
       </node>
-      <node id="34">
+      <node id="36">
         <label>ADABADAM::ProgressTracker</label>
         <link refid="structADABADAM_1_1ProgressTracker"/>
       </node>
-      <node id="32">
+      <node id="34">
         <label>ADABADAM::Optimizer&lt; T &gt;</label>
         <link refid="classADABADAM_1_1Optimizer"/>
-        <childnode refid="33" relation="usage">
+        <childnode refid="35" relation="usage">
           <edgelabel>Buffer</edgelabel>
         </childnode>
-        <childnode refid="34" relation="usage">
+        <childnode refid="36" relation="usage">
           <edgelabel>Progress</edgelabel>
         </childnode>
-        <childnode refid="35" relation="usage">
+        <childnode refid="37" relation="usage">
           <edgelabel>Properties</edgelabel>
         </childnode>
-        <childnode refid="36" relation="usage">
+        <childnode refid="38" relation="usage">
           <edgelabel>HaltConditions</edgelabel>
         </childnode>
-        <childnode refid="37" relation="usage">
+        <childnode refid="39" relation="usage">
           <edgelabel>Status</edgelabel>
         </childnode>
       </node>
-      <node id="36">
+      <node id="38">
         <label>ADABADAM::StopConditions</label>
         <link refid="structADABADAM_1_1StopConditions"/>
       </node>
-      <node id="35">
+      <node id="37">
         <label>ADABADAM::OptimizerProperties</label>
         <link refid="structADABADAM_1_1OptimizerProperties"/>
       </node>

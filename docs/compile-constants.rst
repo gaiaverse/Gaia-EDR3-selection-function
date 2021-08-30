@@ -42,8 +42,13 @@ Common Reused Numbers & Cutoffs
 .. doxygenvariable:: VerySmallNumber
 .. doxygenvariable:: VerySmallLog
 .. doxygenvariable:: SingularityPreventer
+.. doxygenvariable:: spatialAddingPrefactor
+.. doxygenvariable:: elu_transitionPoint
+.. doxygenvariable:: exp_elu_transitionPoint
+
 
 Misc Parameters
 ********************
 .. doxygenvariable:: RootID
 .. doxygenvariable:: PipelineMinVisits
+

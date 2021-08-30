@@ -85,6 +85,12 @@
     <member refid="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" kind="function"><name>LoadCholesky</name></member>
     <member refid="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" kind="function"><name>Reset</name></member>
   </compound>
+  <compound refid="structF__dF" kind="struct"><name>F_dF</name>
+    <member refid="structF__dF_1a1989c3db31ab6428238f4145e4e0f311" kind="variable"><name>F</name></member>
+    <member refid="structF__dF_1ac0e2417c721948dafc6db9535a824a2b" kind="variable"><name>dF</name></member>
+    <member refid="structF__dF_1a4e8c66f3678ce840dcacee09e10f2403" kind="function"><name>F_dF</name></member>
+    <member refid="structF__dF_1a203b61bb3af93c149d1b13d8e1865940" kind="function"><name>F_dF</name></member>
+  </compound>
   <compound refid="structFile" kind="struct"><name>File</name>
     <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kind="variable"><name>Name</name></member>
     <member refid="structFile_1aced9c357d2c770816f23676e0a059d88" kind="variable"><name>Bin</name></member>
@@ -263,6 +269,9 @@
   </compound>
   <compound refid="LogLikelihoodPrior_8h" kind="file"><name>LogLikelihoodPrior.h</name>
     <member refid="LogLikelihoodPrior_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="LogLikelihoodPrior_8h_1a6dedf4c61aa1e85945bdeaa84a6a492d" kind="function"><name>Normal</name></member>
+    <member refid="LogLikelihoodPrior_8h_1a147a8187d8f7795760e2126f0e295e8d" kind="function"><name>StudentT</name></member>
+    <member refid="LogLikelihoodPrior_8h_1a4ead7f1d4083a40fcbdfd25fdc5cb4da" kind="function"><name>TemporalBetaPrior</name></member>
   </compound>
   <compound refid="MiscFunctions_8h" kind="file"><name>MiscFunctions.h</name>
     <member refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kind="variable"><name>one_over_root2</name></member>
@@ -307,9 +316,9 @@
     <member refid="GlobalConstants_8h_1ad1cb42f81dc669c161aaf0ee375e41d2" kind="variable"><name>VerySmallNumber</name></member>
     <member refid="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" kind="variable"><name>VerySmallLog</name></member>
     <member refid="GlobalConstants_8h_1a29fd98777063d8cc858d7c08b6ba0a10" kind="variable"><name>SingularityPreventer</name></member>
-    <member refid="GlobalConstants_8h_1a684e972e79d46a90cd5963eafce28894" kind="variable"><name>density_alpha</name></member>
-    <member refid="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" kind="variable"><name>density_cut</name></member>
-    <member refid="GlobalConstants_8h_1ac1b665f890830a0d7ef15fb5dd160994" kind="variable"><name>expm_density_cut</name></member>
+    <member refid="GlobalConstants_8h_1adb72cbb0616f7809f9138aa9c1b57ce9" kind="variable"><name>spatialAddingPrefactor</name></member>
+    <member refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kind="variable"><name>elu_transitionPoint</name></member>
+    <member refid="GlobalConstants_8h_1a26db948dca7e5ae760a238d5aff973f6" kind="variable"><name>exp_elu_transitionPoint</name></member>
   </compound>
   <compound refid="GlobalVariables_8h" kind="file"><name>GlobalVariables.h</name>
     <member refid="GlobalVariables_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>

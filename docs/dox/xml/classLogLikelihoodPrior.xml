@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="10" bodyend="10"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="82" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="82" bodyend="82"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihoodPrior_1a9ab6a300487baff78f0caeac3f3f75e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -38,10 +38,26 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Executes the Prior in transform space. Calls the TemporalBetaPrior on all x_t which lie within one of the pre-catalogued gaps, and hence ensures that our variance model expands to capture those gaps, rather than attempting to smooth over them. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current efficiency vector </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>effectiveBatches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current number of minibatches </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the prior. The associated gradients are loaded into <ref refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kindref="member">EfficiencyVector::TransformedGradient</ref> </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="15" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="92" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -59,33 +75,33 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Executes the Prior in Raw space. By design, the priors here are very simple (either <ref refid="LogLikelihoodPrior_8h_1a6dedf4c61aa1e85945bdeaa84a6a492d" kindref="member">Normal()</ref> or <ref refid="LogLikelihoodPrior_8h_1a147a8187d8f7795760e2126f0e295e8d" kindref="member">StudentT()</ref>) with zero mean and unit variance. The transform enforces any correlations or smoothing. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current efficiency vector (which has had <ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">EfficiencyVector::BackwardTransform()</ref> already called on it) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>effectiveBatches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the current number of minibatches </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the prior. The associated gradients are loaded into <ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">EfficiencyVector::RawGradient</ref> </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="16" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="100" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>A subclass of the <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>. This version is run by the Root process from within the <ref refid="classDescentFunctor" kindref="compound">DescentFunctor</ref> object. This object is almost identical to the base class, with the exception of its ability to call Prior functions. </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="24">
-        <label>LogLikelihoodPrior</label>
-        <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="25" relation="public-inheritance">
-        </childnode>
-      </node>
-      <node id="25">
-        <label>LogLikelihood</label>
-        <link refid="classLogLikelihood"/>
-      </node>
-    </inheritancegraph>
-    <collaborationgraph>
-      <node id="28">
-        <label>LikelihoodData</label>
-        <link refid="classLikelihoodData"/>
-      </node>
       <node id="26">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
@@ -95,12 +111,28 @@
       <node id="27">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="28" relation="usage">
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="30">
+        <label>LikelihoodData</label>
+        <link refid="classLikelihoodData"/>
+      </node>
+      <node id="28">
+        <label>LogLikelihoodPrior</label>
+        <link refid="classLogLikelihoodPrior"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>LogLikelihood</label>
+        <link refid="classLogLikelihood"/>
+        <childnode refid="30" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="8" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="7" bodyend="19"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="80" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="79" bodyend="103"/>
     <listofallmembers>
       <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>AssignGradients</name></member>
       <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Calculate</name></member>

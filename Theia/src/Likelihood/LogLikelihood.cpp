@@ -52,6 +52,7 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const Efficienc
 	AssignGradients(candidate);
 }
 
+
 void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & x)
 {
 	int n = candidate->nVisit;
@@ -80,7 +81,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & 
 
         Data.grad_elu_xml1[i] = elu_grad(xlm1, elu_xml1);
         Data.grad_elu_xml2[i] = elu_grad(xlm2, elu_xml2);
-		Data.pml[i] = exp(-density_alpha * (elu_xml1 + elu_xml2));
+		Data.pml[i] = exp(-spatialAddingPrefactor * (elu_xml1 + elu_xml2));
 		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}
 }
@@ -301,8 +302,8 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		
 		
 		Gradient[T] += Data.pt[i] * (1.0 - Data.pt[i]) * dfdP_time;
-		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * Data.pml[i] * dfdP_space;
-		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * Data.pml[i] * dfdP_space;
+		Gradient[index1] -= spatialAddingPrefactor * Data.grad_elu_xml1[i] * Data.pml[i] * dfdP_space;
+		Gradient[index2] -= spatialAddingPrefactor * Data.grad_elu_xml2[i] * Data.pml[i] * dfdP_space;
 	}
 	
 	for (int i = 0; i < NHyper; ++i)

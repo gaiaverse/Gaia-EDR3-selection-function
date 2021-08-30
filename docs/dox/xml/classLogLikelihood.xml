@@ -367,26 +367,26 @@
     <detaileddescription>
 <para>This class holds the data and functions necessary to calculate log p(data | x), where x is the provided <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref>. The majority of the guts + internal workings of the class are hidden away in the <ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref>. </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="21">
+      <node id="23">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="20" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="20">
+      <node id="22">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="23">
+      <node id="25">
         <label>LikelihoodData</label>
         <link refid="classLikelihoodData"/>
       </node>
-      <node id="22">
+      <node id="24">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="23" relation="usage">
+        <childnode refid="25" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>

@@ -154,12 +154,12 @@
         <param><defname>string</defname></param>
         <initializer>{ std::cout &lt;&lt; &quot;\n\nCRITICAL ERROR: &quot; &lt;&lt; string &lt;&lt; &quot;\nTerminating Job\n&quot;; exit(exitCode);}</initializer>
         <briefdescription>
-        </briefdescription>
+<para>A useful macro used to exit the code immediately + output a given error message into the terminal. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="97" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="98" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="98" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="var">
@@ -401,47 +401,47 @@
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="85" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="85" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="GlobalConstants_8h_1a684e972e79d46a90cd5963eafce28894" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="GlobalConstants_8h_1adb72cbb0616f7809f9138aa9c1b57ce9" prot="public" static="no" mutable="no">
         <type>const double</type>
-        <definition>const double density_alpha</definition>
+        <definition>const double spatialAddingPrefactor</definition>
         <argsstring></argsstring>
-        <name>density_alpha</name>
+        <name>spatialAddingPrefactor</name>
         <initializer>= 0.5*log(2.0)</initializer>
         <briefdescription>
-        </briefdescription>
+<para>The scaling prefactor used to convert x_ml(FOV_1) and x_ml(FOV_2) into a single probability associated with the looking posiiton of Gaia at a given time. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="89" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="89" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="88" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="88" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" prot="public" static="no" mutable="no">
         <type>const double</type>
-        <definition>const double density_cut</definition>
+        <definition>const double elu_transitionPoint</definition>
         <argsstring></argsstring>
-        <name>density_cut</name>
+        <name>elu_transitionPoint</name>
         <initializer>= -3.0</initializer>
         <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="90" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="90" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="GlobalConstants_8h_1ac1b665f890830a0d7ef15fb5dd160994" prot="public" static="no" mutable="no">
-        <type>const double</type>
-        <definition>const double expm_density_cut</definition>
-        <argsstring></argsstring>
-        <name>expm_density_cut</name>
-        <initializer>= exp(-<ref refid="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" kindref="member">density_cut</ref>)</initializer>
-        <briefdescription>
-        </briefdescription>
+<para>The truncation point for the <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> function. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="91" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="GlobalConstants_8h_1a26db948dca7e5ae760a238d5aff973f6" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double exp_elu_transitionPoint</definition>
+        <argsstring></argsstring>
+        <name>exp_elu_transitionPoint</name>
+        <initializer>= exp(-<ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref>)</initializer>
+        <briefdescription>
+<para>Scaling factor for <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> function below <ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref>, equal to exp(elu_transitionPoint) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" line="94" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h" bodystart="94" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -518,19 +518,16 @@
 <codeline lineno="83" refid="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" kindref="member">VerySmallLog</ref><sp/>=<sp/>-9999999999;</highlight></codeline>
 <codeline lineno="85" refid="GlobalConstants_8h_1a29fd98777063d8cc858d7c08b6ba0a10" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1a29fd98777063d8cc858d7c08b6ba0a10" kindref="member">SingularityPreventer</ref><sp/>=<sp/>1e-18;</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
-<codeline lineno="88"><highlight class="normal"></highlight><highlight class="comment">//spatial<sp/>probability<sp/>paramaters</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="89" refid="GlobalConstants_8h_1a684e972e79d46a90cd5963eafce28894" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1a684e972e79d46a90cd5963eafce28894" kindref="member">density_alpha</ref><sp/>=<sp/>0.5*log(2.0);</highlight></codeline>
-<codeline lineno="90" refid="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" kindref="member">density_cut</ref><sp/>=<sp/>-3.0;</highlight></codeline>
-<codeline lineno="91" refid="GlobalConstants_8h_1ac1b665f890830a0d7ef15fb5dd160994" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1ac1b665f890830a0d7ef15fb5dd160994" kindref="member">expm_density_cut</ref><sp/>=<sp/>exp(-<ref refid="GlobalConstants_8h_1a8643f684b84646178d2d71206063e9fa" kindref="member">density_cut</ref>);</highlight></codeline>
+<codeline lineno="88" refid="GlobalConstants_8h_1adb72cbb0616f7809f9138aa9c1b57ce9" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1adb72cbb0616f7809f9138aa9c1b57ce9" kindref="member">spatialAddingPrefactor</ref><sp/>=<sp/>0.5*log(2.0);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref><sp/>=<sp/>-3.0;</highlight></codeline>
 <codeline lineno="92"><highlight class="normal"></highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//some<sp/>useful<sp/>macros</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">//~<sp/>#define<sp/>FILEGAP<sp/>&lt;&lt;<sp/>&quot;,<sp/>&quot;<sp/>&lt;&lt;<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="GlobalConstants_8h_1a26db948dca7e5ae760a238d5aff973f6" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalConstants_8h_1a26db948dca7e5ae760a238d5aff973f6" kindref="member">exp_elu_transitionPoint</ref><sp/>=<sp/>exp(-<ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
 <codeline lineno="96"><highlight class="normal"></highlight></codeline>
-<codeline lineno="97" refid="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ERROR(exitCode,<sp/>string){<sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;\n\nCRITICAL<sp/>ERROR:<sp/>&quot;<sp/>&lt;&lt;<sp/>string<sp/>&lt;&lt;<sp/>&quot;\nTerminating<sp/>Job\n&quot;;<sp/>exit(exitCode);}</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="99"><highlight class="normal">static_assert(<ref refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kindref="member">hyperOrder</ref><sp/>%<sp/>2<sp/>==<sp/>0,</highlight><highlight class="stringliteral">&quot;hyperOrder<sp/>must<sp/>be<sp/>an<sp/>even<sp/>integer&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="98" refid="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" refkind="member"><highlight class="preprocessor">#define<sp/>ERROR(exitCode,<sp/>string){<sp/>std::cout<sp/>&lt;&lt;<sp/>&quot;\n\nCRITICAL<sp/>ERROR:<sp/>&quot;<sp/>&lt;&lt;<sp/>string<sp/>&lt;&lt;<sp/>&quot;\nTerminating<sp/>Job\n&quot;;<sp/>exit(exitCode);}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="100"><highlight class="normal">static_assert(<ref refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kindref="member">hyperOrder</ref><sp/>%<sp/>2<sp/>==<sp/>0,</highlight><highlight class="stringliteral">&quot;hyperOrder<sp/>must<sp/>be<sp/>an<sp/>even<sp/>integer&quot;</highlight><highlight class="normal">);</highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h"/>
   </compounddef>

@@ -84,16 +84,17 @@ const double VerySmallLog = -9999999999;
 //! Added to diagonal elements of matrices for stable inversion
 const double SingularityPreventer = 1e-18;
 
+//! The scaling prefactor used to convert x_ml(FOV_1) and x_ml(FOV_2) into a single probability associated with the looking posiiton of Gaia at a given time.
+const double spatialAddingPrefactor = 0.5*log(2.0);
 
-//spatial probability paramaters
-const double density_alpha = 0.5*log(2.0);
-const double density_cut = -3.0;
-const double expm_density_cut = exp(-density_cut);
+//!The truncation point for the elu() function
+const double elu_transitionPoint = -3.0;
+
+//! Scaling factor for elu() function below #elu_transitionPoint, equal to exp(elu_transitionPoint)
+const double exp_elu_transitionPoint = exp(-elu_transitionPoint);
 
 
-//some useful macros
-//~ #define FILEGAP << ", " << 
-
+//! A useful macro used to exit the code immediately + output a given error message into the terminal.
 #define ERROR(exitCode, string){ std::cout << "\n\nCRITICAL ERROR: " << string << "\nTerminating Job\n"; exit(exitCode);}
 	
 static_assert(hyperOrder % 2 == 0,"hyperOrder must be an even integer");
