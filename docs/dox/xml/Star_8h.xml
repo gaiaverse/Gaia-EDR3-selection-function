@@ -60,15 +60,15 @@
         <childnode refid="198" relation="include">
         </childnode>
       </node>
-      <node id="198">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h"/>
-      </node>
       <node id="197">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="198" relation="include">
         </childnode>
+      </node>
+      <node id="198">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
       </node>
       <node id="196">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
@@ -89,17 +89,21 @@
 <codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>star<sp/>class<sp/>(once<sp/>fully<sp/>integrated)<sp/>will<sp/>be<sp/>used<sp/>to<sp/>store<sp/>line-by-line<sp/>data<sp/>from<sp/>the<sp/>Gaia<sp/>data<sp/>files</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>There<sp/>will<sp/>be<sp/>~1.8bn<sp/>of<sp/>these<sp/>objects,<sp/>so<sp/>minimising<sp/>the<sp/>memory<sp/>they<sp/>occupy<sp/>will<sp/>be<sp/>a<sp/>high<sp/>priority</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="7" refid="classStar" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classStar" kindref="compound">Star</ref></highlight></codeline>
-<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
-<codeline lineno="10" refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kindref="member">nMeasure</ref>;</highlight></codeline>
-<codeline lineno="11" refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>;</highlight></codeline>
-<codeline lineno="12" refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kindref="member">gBin</ref>;</highlight></codeline>
-<codeline lineno="13" refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" kindref="member">TimeSeries</ref>;</highlight></codeline>
-<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar_1ac174c691c269196c47324a13c3c9f903" kindref="member">Star</ref>();</highlight></codeline>
-<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar_1ac174c691c269196c47324a13c3c9f903" kindref="member">Star</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bin,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapBegins,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;int&gt;<sp/>&amp;<sp/>gapEnds,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ignoreGaps);</highlight></codeline>
-<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="classStar" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classStar" kindref="compound">Star</ref></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="15" refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kindref="member">nMeasure</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18" refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21" refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kindref="member">gBin</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24" refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;unsigned<sp/>int&gt;<sp/><ref refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" kindref="member">TimeSeries</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classStar_1ab26d0fb5819d1a1621adf3596174db0d" kindref="member">Star</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::string&gt;<sp/>&amp;data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bin);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">};</highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h"/>
   </compounddef>

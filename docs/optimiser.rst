@@ -6,16 +6,12 @@ Optimiser
 ###########
 
 
+.. toctree::
+	optimiser-implementation
+	optimiser-data
+	likelihood-functor
+	:maxdepth: 4
+	:caption: Members:
 
 
 
-.. doxygenclass:: ADABADAM::Optimizer
-	:project: theia
-	
-	
-The ADABADAM (**Ada**\ ptive **B**\ atched, **Ada**\ ptive **M**\ oment) Estimator 
-
-
-
-.. doxygenstruct:: ADABADAM::OptimizerStatus
-	:project: theia

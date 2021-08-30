@@ -1,8 +1,8 @@
 .. descent-functor
 
 ######################
-Descent Functor
+Likelihood Functor
 ######################
 
-.. doxygenclass:: DescentFunctor
+.. doxygenclass:: LikelihoodFunctor
 	:private-members:

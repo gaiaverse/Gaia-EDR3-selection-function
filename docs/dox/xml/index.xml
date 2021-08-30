@@ -16,26 +16,6 @@
     <member refid="classCommandArgs_1a35597219abd5f941cf3d6ffbe9f62a04" kind="function"><name>CommandArgs</name></member>
     <member refid="classCommandArgs_1a93f101d465df0ff6e79950c6b8ac4cd5" kind="function"><name>ReadArguments</name></member>
   </compound>
-  <compound refid="classDescentFunctor" kind="class"><name>DescentFunctor</name>
-    <member refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" kind="variable"><name>Data</name></member>
-    <member refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kind="variable"><name>L</name></member>
-    <member refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" kind="variable"><name>Start</name></member>
-    <member refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" kind="variable"><name>NStars</name></member>
-    <member refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" kind="variable"><name>StarsInLastBatch</name></member>
-    <member refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kind="variable"><name>MaxBatches</name></member>
-    <member refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" kind="variable"><name>LoopID</name></member>
-    <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kind="variable"><name>Efficiency</name></member>
-    <member refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" kind="variable"><name>Value</name></member>
-    <member refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" kind="variable"><name>Gradient</name></member>
-    <member refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" kind="variable"><name>mut_gaps</name></member>
-    <member refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" kind="function"><name>SaveHyperBuffer</name></member>
-    <member refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" kind="function"><name>ResetPosition</name></member>
-    <member refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" kind="function"><name>DescentFunctor</name></member>
-    <member refid="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" kind="function"><name>DistributeCalculations</name></member>
-    <member refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" kind="function"><name>Calculate</name></member>
-    <member refid="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" kind="function"><name>Calculate</name></member>
-    <member refid="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" kind="function"><name>SavePosition</name></member>
-  </compound>
   <compound refid="classEfficiencyVector" kind="class"><name>EfficiencyVector</name>
     <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kind="enum"><name>VectorMode</name></member>
     <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4af71605802003c74662a1e79c4bc2e72a" kind="enumvalue"><name>Raw</name></member>
@@ -60,10 +40,10 @@
     <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
     <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
     <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
-    <member refid="classEfficiencyVector_1a555ce094a9aa6f53d10ffbf024347605" kind="variable"><name>cholesky_tol</name></member>
     <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
     <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
     <member refid="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1ad40a836afd1edd3c9e157eabd74444dc" kind="function"><name>EfficiencyVector</name></member>
     <member refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kind="function"><name>Access</name></member>
     <member refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kind="function"><name>Assign</name></member>
     <member refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kind="function"><name>Increment</name></member>
@@ -119,6 +99,19 @@
     <member refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" kind="variable"><name>Mode</name></member>
     <member refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" kind="function"><name>LikelihoodData</name></member>
     <member refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" kind="function"><name>GeneratePopulations</name></member>
+  </compound>
+  <compound refid="classLikelihoodFunctor" kind="class"><name>LikelihoodFunctor</name>
+    <member refid="classLikelihoodFunctor_1ab6ea4480411be12c392dea3fc0740423" kind="variable"><name>L</name></member>
+    <member refid="classLikelihoodFunctor_1ac771670ec93943effa6c8c364bb2928c" kind="variable"><name>MaxBatches</name></member>
+    <member refid="classLikelihoodFunctor_1a87256103d80cd3b4a983425df2b12152" kind="variable"><name>LoopID</name></member>
+    <member refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kind="variable"><name>Efficiency</name></member>
+    <member refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kind="variable"><name>Value</name></member>
+    <member refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kind="variable"><name>Gradient</name></member>
+    <member refid="classLikelihoodFunctor_1aa0bde3ba080a854b45d6d5f1fb2f2f64" kind="function"><name>LikelihoodFunctor</name></member>
+    <member refid="classLikelihoodFunctor_1aa3c3e2c8039d943f05938cd4210e2f26" kind="function"><name>Initialise</name></member>
+    <member refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kind="function"><name>Calculate</name></member>
+    <member refid="classLikelihoodFunctor_1ac495908241262a2de64f797533f2969d" kind="function"><name>Calculate</name></member>
+    <member refid="classLikelihoodFunctor_1a1699da139bf1231f032bea08b4b9022a" kind="function"><name>SavePosition</name></member>
   </compound>
   <compound refid="classLogLikelihood" kind="class"><name>LogLikelihood</name>
     <member refid="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" kind="variable"><name>Value</name></member>
@@ -219,8 +212,7 @@
     <member refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kind="variable"><name>nVisit</name></member>
     <member refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kind="variable"><name>gBin</name></member>
     <member refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" kind="variable"><name>TimeSeries</name></member>
-    <member refid="classStar_1ac174c691c269196c47324a13c3c9f903" kind="function"><name>Star</name></member>
-    <member refid="classStar_1aace160d83fb4be45f11ca9db7dc7d51c" kind="function"><name>Star</name></member>
+    <member refid="classStar_1ab26d0fb5819d1a1621adf3596174db0d" kind="function"><name>Star</name></member>
   </compound>
   <compound refid="structADABADAM_1_1StopConditions" kind="struct"><name>ADABADAM::StopConditions</name>
     <member refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kind="variable"><name>MaxSteps</name></member>
@@ -271,7 +263,7 @@
     <member refid="LogLikelihoodPrior_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
     <member refid="LogLikelihoodPrior_8h_1a6dedf4c61aa1e85945bdeaa84a6a492d" kind="function"><name>Normal</name></member>
     <member refid="LogLikelihoodPrior_8h_1a147a8187d8f7795760e2126f0e295e8d" kind="function"><name>StudentT</name></member>
-    <member refid="LogLikelihoodPrior_8h_1a4ead7f1d4083a40fcbdfd25fdc5cb4da" kind="function"><name>TemporalBetaPrior</name></member>
+    <member refid="LogLikelihoodPrior_8h_1ac748ff2809ad571b5fec77457149e035" kind="function"><name>TemporalBetaPrior</name></member>
   </compound>
   <compound refid="MiscFunctions_8h" kind="file"><name>MiscFunctions.h</name>
     <member refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kind="variable"><name>one_over_root2</name></member>
@@ -292,10 +284,6 @@
     <member refid="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" kind="function"><name>poisson_binomial_normal_lpmf</name></member>
   </compound>
   <compound refid="VariancePopulation_8h" kind="file"><name>VariancePopulation.h</name>
-  </compound>
-  <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
-    <member refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
-    <member refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
   </compound>
   <compound refid="GlobalConstants_8h" kind="file"><name>GlobalConstants.h</name>
     <member refid="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" kind="define"><name>ERROR</name></member>
@@ -350,15 +338,20 @@
     <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
     <member refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" kind="variable"><name>useHyperPrior</name></member>
     <member refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kind="variable"><name>ignoreGapObs</name></member>
+    <member refid="GlobalVariables_8h_1afe09b30166152f4509986791a90b314b" kind="variable"><name>cholesky_tol</name></member>
     <member refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kind="variable"><name>GapList</name></member>
     <member refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kind="variable"><name>BufferedGapList</name></member>
     <member refid="GlobalVariables_8h_1a8d760d41f05317a4be2239e0d4582e51" kind="function"><name>initialisedVector</name></member>
     <member refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kind="function"><name>PrintStatus</name></member>
     <member refid="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" kind="function"><name>AssembleGapList</name></member>
   </compound>
-  <compound refid="DescentFunctor_8h" kind="file"><name>DescentFunctor.h</name>
-    <member refid="DescentFunctor_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
-    <member refid="DescentFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+  <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
+    <member refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+  </compound>
+  <compound refid="LikelihoodFunctor_8h" kind="file"><name>LikelihoodFunctor.h</name>
+    <member refid="LikelihoodFunctor_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="LikelihoodFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
   </compound>
   <compound refid="ManualOptimizer_8h" kind="file"><name>ManualOptimizer.h</name>
   </compound>

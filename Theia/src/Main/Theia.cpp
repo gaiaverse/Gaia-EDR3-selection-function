@@ -18,7 +18,7 @@
 #include "../Optimizer/EfficiencyVector.h"
 #include "../DataHandling/Star.h"
 #include "../DataHandling/DataLoading.h"
-#include "../Optimizer/DescentFunctor.h"
+#include "../Optimizer/LikelihoodFunctor.h"
 #include "../Likelihood/LogLikelihood.h"
 #include "../Likelihood/LogLikelihoodPrior.h"
 #include "GlobalVariables.h"
@@ -58,11 +58,12 @@ void RootProcess()
 	//~ VectorXd x = initialisedVector(nParameters,Args.StartVectorLocation);
 
 	//initialise the functor & the solver
-	DescentFunctor fun = DescentFunctor(Data,Args.OutputDirectory,Args.StartVectorLocation,TotalStars,Args.Minibatches);
-	std::vector<double> x = fun.Efficiency.RawPosition;
+	LikelihoodFunctor functor = LikelihoodFunctor(Data,Args.Minibatches);
+	
+	std::vector<double> x = functor.Initialise(Args.OutputDirectory,Args.StartVectorLocation);
 
 	
-	ADABADAM::Optimizer<DescentFunctor> op(fun);
+	ADABADAM::Optimizer<LikelihoodFunctor> op(functor);
 	//set up the criteria for termination
 	op.HaltConditions.GradientThreshold = Args.GradLim;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;

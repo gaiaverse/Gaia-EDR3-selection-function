@@ -57,7 +57,10 @@ class EfficiencyVector
 		 * Constructor for the basic version of the EfficiencyVector - when initialised in this way it has only the ability to index appropriately into the TransformedVector -- everything else is uninitiliased memory.
 		 */
 		EfficiencyVector(std::vector<double> newTransformed);
-		//Access Functions
+		
+		//! Default constructor (does nothing except sit there like a lemon)
+		EfficiencyVector();
+		
 		
 		/*!
 		 * Access the specified component without needing to worry about the internal structure of the vector
@@ -171,9 +174,6 @@ class EfficiencyVector
     	
     	 //! The value of CholeskyKg_ij, with ij determined from #cholesky_u and #cholesky_v
     	std::vector<double> cholesky_w; 
-    	
-    	//! The 'significant value' - values below this are assumed to be zero and not included in #cholesky_w
-    	const double cholesky_tol = 1e-4;
     	
     	/*!
     	 * Generates a random Raw vector. All elements are initialised to +/- #initialisationBounds. The zeroth-order spatial modes have an additional offset equal to #xmInitialised.

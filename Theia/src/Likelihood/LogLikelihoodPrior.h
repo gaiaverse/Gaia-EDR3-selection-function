@@ -61,13 +61,13 @@ F_dF inline StudentT(double x, double mu, double nu)
 /*!
  * Implementation of (the logarithm of) the Beta-Distribution prior B(P = p | alpha, beta) where p is the probability associated with the temporal efficiency parameter x_t
  * \param x The temporal efficiency parameter x_t (given by p_t = sigmoid(double x_t) )
- * \param alpha The Beta distribution  alpha-parameter
- * \param sigma The Beta distribution beta-parameter
+ * \param alpha The Beta distribution  alpha-parameter (often set to #gapPriorAlpha)
+ * \param sigma The Beta distribution beta-parameter (often set to #gapPriorBeta)
 */
-F_dF inline TemporalBetaPrior(double x)
+F_dF inline TemporalBetaPrior(double x, double alpha, double beta)
 {
-	double v = gapPriorAlpha * x - (gapPriorBeta + gapPriorAlpha)* log(1.0 + exp(x));
-	double dv = (gapPriorAlpha - gapPriorBeta* exp(x))/(1 + exp(x));
+	double v = alpha * x - (beta + alpha)* log(1.0 + exp(x));
+	double dv = (alpha - beta* exp(x))/(1 + exp(x));
 	return F_dF(v,dv);
 };
 

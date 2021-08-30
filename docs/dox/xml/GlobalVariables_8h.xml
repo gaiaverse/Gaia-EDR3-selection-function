@@ -16,160 +16,160 @@
     <includedby refid="GlobalConstants_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</includedby>
     <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
     <includedby refid="MiscFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</includedby>
-    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
     <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
     <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
     <incdepgraph>
-      <node id="375">
+      <node id="355">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="376">
+      <node id="356">
         <label>iomanip</label>
       </node>
-      <node id="366">
+      <node id="346">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="367" relation="include">
+        <childnode refid="347" relation="include">
         </childnode>
-        <childnode refid="368" relation="include">
+        <childnode refid="348" relation="include">
         </childnode>
-        <childnode refid="369" relation="include">
+        <childnode refid="349" relation="include">
         </childnode>
-        <childnode refid="370" relation="include">
+        <childnode refid="350" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="351" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="352" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
+        <childnode refid="353" relation="include">
         </childnode>
-        <childnode refid="374" relation="include">
+        <childnode refid="354" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="355" relation="include">
         </childnode>
-        <childnode refid="376" relation="include">
+        <childnode refid="356" relation="include">
         </childnode>
       </node>
-      <node id="372">
+      <node id="352">
         <label>fstream</label>
       </node>
-      <node id="369">
+      <node id="349">
         <label>../libs/Eigen/Householder</label>
       </node>
-      <node id="373">
+      <node id="353">
         <label>string.h</label>
       </node>
-      <node id="367">
+      <node id="347">
         <label>vector</label>
       </node>
-      <node id="368">
+      <node id="348">
         <label>../libs/Eigen/Core</label>
       </node>
-      <node id="374">
+      <node id="354">
         <label>iostream</label>
       </node>
-      <node id="370">
+      <node id="350">
         <label>../libs/Eigen/QR</label>
       </node>
-      <node id="371">
+      <node id="351">
         <label>../libs/Eigen/LU</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="380">
+      <node id="360">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h</label>
         <link refid="DataLoading_8h"/>
       </node>
-      <node id="377">
+      <node id="357">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="378" relation="include">
+        <childnode refid="358" relation="include">
         </childnode>
-        <childnode refid="379" relation="include">
+        <childnode refid="359" relation="include">
         </childnode>
-        <childnode refid="381" relation="include">
+        <childnode refid="361" relation="include">
         </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="366" relation="include">
         </childnode>
-        <childnode refid="387" relation="include">
+        <childnode refid="367" relation="include">
         </childnode>
-        <childnode refid="382" relation="include">
+        <childnode refid="362" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="365" relation="include">
         </childnode>
       </node>
-      <node id="378">
+      <node id="358">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h</label>
         <link refid="CommandArguments_8h"/>
       </node>
-      <node id="386">
+      <node id="366">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
         <link refid="MiscFunctions_8h"/>
-        <childnode refid="381" relation="include">
+        <childnode refid="361" relation="include">
         </childnode>
-        <childnode refid="387" relation="include">
+        <childnode refid="367" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="365" relation="include">
         </childnode>
       </node>
-      <node id="381">
+      <node id="361">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
         <link refid="DataStorage_8h"/>
-        <childnode refid="382" relation="include">
+        <childnode refid="362" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="365" relation="include">
         </childnode>
       </node>
-      <node id="385">
+      <node id="367">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="361" relation="include">
+        </childnode>
+        <childnode refid="362" relation="include">
+        </childnode>
+        <childnode refid="363" relation="include">
+        </childnode>
+        <childnode refid="364" relation="include">
+        </childnode>
+      </node>
+      <node id="365">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
         <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="382" relation="include">
+        <childnode refid="362" relation="include">
         </childnode>
-        <childnode refid="384" relation="include">
+        <childnode refid="364" relation="include">
         </childnode>
       </node>
-      <node id="384">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h"/>
-      </node>
-      <node id="383">
+      <node id="363">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="384" relation="include">
+        <childnode refid="364" relation="include">
         </childnode>
       </node>
-      <node id="387">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="381" relation="include">
-        </childnode>
-        <childnode refid="382" relation="include">
-        </childnode>
-        <childnode refid="383" relation="include">
-        </childnode>
-        <childnode refid="384" relation="include">
-        </childnode>
-      </node>
-      <node id="379">
+      <node id="359">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="380" relation="include">
+        <childnode refid="360" relation="include">
         </childnode>
-        <childnode refid="381" relation="include">
+        <childnode refid="361" relation="include">
         </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="366" relation="include">
         </childnode>
-        <childnode refid="387" relation="include">
+        <childnode refid="367" relation="include">
         </childnode>
-        <childnode refid="385" relation="include">
+        <childnode refid="365" relation="include">
         </childnode>
-        <childnode refid="384" relation="include">
+        <childnode refid="364" relation="include">
         </childnode>
       </node>
-      <node id="382">
+      <node id="364">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
+      </node>
+      <node id="362">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
         <link refid="LogLikelihood_8h"/>
-        <childnode refid="383" relation="include">
+        <childnode refid="363" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -552,6 +552,20 @@
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="84" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="84" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="GlobalVariables_8h_1afe09b30166152f4509986791a90b314b" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double cholesky_tol</definition>
+        <argsstring></argsstring>
+        <name>cholesky_tol</name>
+        <initializer>= 1e-4</initializer>
+        <briefdescription>
+<para>The &apos;significant value&apos; - values below this are assumed to be zero and not included in #LogLikelihood::cholesky_w. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="88" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" prot="public" static="no" mutable="no">
         <type>std::vector&lt; bool &gt;</type>
         <definition>std::vector&lt;bool&gt; GapList</definition>
@@ -563,7 +577,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="93" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="95" column="1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" prot="public" static="no" mutable="no">
         <type>std::vector&lt; bool &gt;</type>
@@ -576,7 +590,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="94" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="96" column="1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -616,7 +630,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="91" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="93" column="1"/>
       </memberdef>
       <memberdef kind="function" id="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; bool &gt;</type>
@@ -633,7 +647,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="92" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="94" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -726,14 +740,15 @@
 <codeline lineno="84" refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kindref="member">ignoreGapObs</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="85"><highlight class="normal">Eigen::VectorXd<sp/><ref refid="GlobalVariables_8h_1a8d760d41f05317a4be2239e0d4582e51" kindref="member">initialisedVector</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n,std::string<sp/>loadLocation);</highlight></codeline>
 <codeline lineno="86"><highlight class="normal"></highlight></codeline>
-<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="GlobalVariables_8h_1afe09b30166152f4509986791a90b314b" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1afe09b30166152f4509986791a90b314b" kindref="member">cholesky_tol</ref><sp/>=<sp/>1e-4;</highlight></codeline>
 <codeline lineno="89"><highlight class="normal"></highlight></codeline>
-<codeline lineno="90"><highlight class="normal"></highlight></codeline>
-<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kindref="member">PrintStatus</ref>(std::string<sp/>location);</highlight></codeline>
-<codeline lineno="92"><highlight class="normal">std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" kindref="member">AssembleGapList</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>buffered);</highlight></codeline>
-<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kindref="member">GapList</ref>;</highlight></codeline>
-<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kindref="member">BufferedGapList</ref>;</highlight></codeline>
-<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kindref="member">PrintStatus</ref>(std::string<sp/>location);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" kindref="member">AssembleGapList</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>buffered);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kindref="member">GapList</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::vector&lt;bool&gt;<sp/><ref refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kindref="member">BufferedGapList</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h"/>
   </compounddef>

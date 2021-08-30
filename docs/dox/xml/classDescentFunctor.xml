@@ -4,70 +4,18 @@
     <compoundname>DescentFunctor</compoundname>
     <includes refid="DescentFunctor_8h" local="no">DescentFunctor.h</includes>
       <sectiondef kind="private-attrib">
-      <memberdef kind="variable" id="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" prot="private" static="no" mutable="no">
-        <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt; &gt; &amp;</type>
-        <definition>const std::vector&lt;std::vector&lt;Star&gt; &gt;&amp; DescentFunctor::Data</definition>
-        <argsstring></argsstring>
-        <name>Data</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="27" bodyend="-1"/>
-      </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" prot="private" static="no" mutable="no">
         <type><ref refid="classLogLikelihoodPrior" kindref="compound">LogLikelihoodPrior</ref></type>
         <definition>LogLikelihoodPrior DescentFunctor::L</definition>
         <argsstring></argsstring>
         <name>L</name>
         <briefdescription>
-        </briefdescription>
+<para><ref refid="classDescentFunctor" kindref="compound">DescentFunctor</ref> passes messages to workers, but also calculates its own portion of the Likelihood, and as a guaranteed priveleged worker, also can call the associated priors. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" prot="private" static="no" mutable="no">
-        <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
-        <definition>std::chrono::time_point&lt;std::chrono::system_clock&gt; DescentFunctor::Start</definition>
-        <argsstring></argsstring>
-        <name>Start</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="31" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="31" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::NStars</definition>
-        <argsstring></argsstring>
-        <name>NStars</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="38" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="38" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" prot="private" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::StarsInLastBatch</definition>
-        <argsstring></argsstring>
-        <name>StarsInLastBatch</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -80,13 +28,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="47" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="47" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="28" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int DescentFunctor::LoopID</definition>
+      <memberdef kind="variable" id="classDescentFunctor_1a331e435898db27b1f531cbc2f22eafb9" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int DescentFunctor::LoopID</definition>
         <argsstring></argsstring>
         <name>LoopID</name>
         <briefdescription>
@@ -95,7 +43,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="49" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="30" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" prot="public" static="no" mutable="no">
         <type><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></type>
@@ -108,7 +56,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="50" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="31" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -121,7 +69,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="51" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="51" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -134,83 +82,82 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="52" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="52" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; DescentFunctor::mut_gaps</definition>
-        <argsstring></argsstring>
-        <name>mut_gaps</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="54" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="54" bodyend="-1"/>
-      </memberdef>
-      </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::SaveHyperBuffer</definition>
-        <argsstring>()</argsstring>
-        <name>SaveHyperBuffer</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="44" column="1"/>
-      </memberdef>
-      <memberdef kind="function" id="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>void</type>
-        <definition>void DescentFunctor::ResetPosition</definition>
-        <argsstring>()</argsstring>
-        <name>ResetPosition</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="45" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="34" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="34" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="classDescentFunctor_1a61d4e37e594611a9189c580d0b1bb34c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
         <definition>DescentFunctor::DescentFunctor</definition>
-        <argsstring>(const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data, std::string outdir, std::string loadPosition, int nStars, int maxBatches)</argsstring>
+        <argsstring>(const std::vector&lt; std::vector&lt; Star &gt;&gt; &amp;data, int maxBatches)</argsstring>
         <name>DescentFunctor</name>
         <param>
           <type>const std::vector&lt; std::vector&lt; <ref refid="classStar" kindref="compound">Star</ref> &gt;&gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>std::string</type>
-          <declname>outdir</declname>
+          <type>int</type>
+          <declname>maxBatches</declname>
         </param>
+        <briefdescription>
+<para>Constructor class <ndash/> initialises <ref refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" kindref="member">L</ref> and <ref refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" kindref="member">MaxBatches</ref>. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data, arranged according to the minibatching schedule. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxBatches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the original number of minibatches which are used </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="38" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="38" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classDescentFunctor_1a7e957b2dc3ac4e9811683a3eb4d5b04c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; DescentFunctor::Initialise</definition>
+        <argsstring>(std::string loadPosition, std::string outdir)</argsstring>
+        <name>Initialise</name>
         <param>
           <type>std::string</type>
           <declname>loadPosition</declname>
         </param>
         <param>
-          <type>int</type>
-          <declname>nStars</declname>
-        </param>
-        <param>
-          <type>int</type>
-          <declname>maxBatches</declname>
+          <type>std::string</type>
+          <declname>outdir</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>A separate chunk of almost-constructor, initialising the remaning components + getting the starting position. An argument could be made that this should be part of the constructor, but it is kept separate so that you can re-run the optimisation with a different starting position without destroying the object, you can just reinitialise it. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>loadPosition</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The place for <ref refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kindref="member">Efficiency</ref> to check for valid starting positions </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>outdir</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The output directory where savefiles are located </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref> component of <ref refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" kindref="member">Efficiency</ref>, the default starting point for the optimiser </para></simplesect>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="56" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="56" bodyend="67"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="46" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="46" bodyend="53"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -235,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="68" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="55" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -260,7 +207,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="71" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="60" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -277,7 +224,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="72" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="61" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -302,13 +249,13 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="73" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="62" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para>A function-like class which acts as a wrapper for the function calls used by the gradient descent algorithm and the necessary message passing for communication with the workers. The overloaded operator () allows the class to be called as a function, but it can store data preventing the need for reloading the data or passing huge numbers of arguments. </para>    </detaileddescription>
     <collaborationgraph>
       <node id="7">
         <label>DescentFunctor</label>
@@ -342,25 +289,19 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="22" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="21" bodyend="75"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h" bodystart="20" bodyend="64"/>
     <listofallmembers>
       <member refid="classDescentFunctor_1a4b586bc098cbe08b3a8b369e885a8588" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>
       <member refid="classDescentFunctor_1a7fd19567fb1c1bfcd3dcad6bc2f251d1" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Calculate</name></member>
-      <member refid="classDescentFunctor_1a0c4173cf13cce63474b225d7aca1f6c0" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>Data</name></member>
-      <member refid="classDescentFunctor_1aa0b287a709f7eac8b7fcb80f1e344a08" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DescentFunctor</name></member>
+      <member refid="classDescentFunctor_1a61d4e37e594611a9189c580d0b1bb34c" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DescentFunctor</name></member>
       <member refid="classDescentFunctor_1ac77b17c45b575d7004568704cce43e95" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>DistributeCalculations</name></member>
       <member refid="classDescentFunctor_1aa771beb4bb1cb23459a6c8bd16e1cc86" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Efficiency</name></member>
       <member refid="classDescentFunctor_1acb32f6b34a3eb2d0ebf170a674ab1c02" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Gradient</name></member>
+      <member refid="classDescentFunctor_1a7e957b2dc3ac4e9811683a3eb4d5b04c" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Initialise</name></member>
       <member refid="classDescentFunctor_1a4174651fcfa7f5365f8c58ff10429668" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>L</name></member>
-      <member refid="classDescentFunctor_1a14a7ae0eb78ad3a56a289ee300119104" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>LoopID</name></member>
+      <member refid="classDescentFunctor_1a331e435898db27b1f531cbc2f22eafb9" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>LoopID</name></member>
       <member refid="classDescentFunctor_1a6be30bf17fdfbbee2aa843cc27e890cc" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>MaxBatches</name></member>
-      <member refid="classDescentFunctor_1a424da8de442d996ae9062bbedbcd7868" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>mut_gaps</name></member>
-      <member refid="classDescentFunctor_1a6c8b80e8c7361808c674732764a876ca" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>NStars</name></member>
-      <member refid="classDescentFunctor_1a9f0378462ebcb40124f0fc4d6461ea4b" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>ResetPosition</name></member>
-      <member refid="classDescentFunctor_1ad7695a8e8234fda260f2410e37a6ca03" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>SaveHyperBuffer</name></member>
       <member refid="classDescentFunctor_1a5f84a874914560f2c0e7eb296a300227" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>SavePosition</name></member>
-      <member refid="classDescentFunctor_1acfb9a65264be1fce908664f1694f8149" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>StarsInLastBatch</name></member>
-      <member refid="classDescentFunctor_1ae5ad30709341c67c2daaf65a61765b46" prot="private" virt="non-virtual"><scope>DescentFunctor</scope><name>Start</name></member>
       <member refid="classDescentFunctor_1a09bd6f8a2558a7530486ae0605f44983" prot="public" virt="non-virtual"><scope>DescentFunctor</scope><name>Value</name></member>
     </listofallmembers>
   </compounddef>

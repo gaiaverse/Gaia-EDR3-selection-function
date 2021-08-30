@@ -25,6 +25,7 @@ Things that need doing, or doing better:
 * |ss| Document the :doc:`probability-functions` |se|
 * |ss| Document the Misc functions |se|
 * |ss| Document the :doc:`likelihood-prior` |se|
+* |ss| Document the Descent Functor class |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -34,7 +35,7 @@ Things that need doing, or doing better:
 * Write a more in-depth description of the spatial forward and backward transforms
 * Code output page
 * Document + clean up the :doc:`optimiser`
-* Document the Descent Functor class
 * Document the DataLoading functions
 * Document the Star class
+* Document all GlobalVariables
 * Document the starAllocation script

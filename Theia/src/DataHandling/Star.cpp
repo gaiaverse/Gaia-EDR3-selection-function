@@ -1,54 +1,19 @@
 #include "Star.h"
-Star::Star()
-{
-	//designed to throw an error when it uses an unitialized star to access memory
-	gBin = -9999999999999;
-}
-Star::Star(const std::vector<std::string> & data, int bin, const std::vector<int> & gapsStart, const std::vector<int> & gapsEnd,bool ignoreGapObs)
+
+Star::Star(const std::vector<std::string> & data, int bin)
 {
 	//the gaia data is stored as a csv with columns as follows:
 	//Column 0: Number of Measurements reported by Gaia
 	//Column 1: Number of visits predicted 
 	//Column 2->?, the predicted times at which the star was visited (variable number of columns) 
 	
-	bool allGapsPassed = false;
-	int currentGap = 0;
-	int nGaps = gapsStart.size();
-	int obs = 0;
 	
 	for (int i = 2; i < data.size(); ++i)
 	{
 		int t = stoi(data[i]);
 		
-		bool inGap = false;
-		if (!allGapsPassed)
-		{
-			if (t > gapsEnd[currentGap])
-			{
-				while (currentGap < nGaps && t > gapsEnd[currentGap])
-				{
-					++currentGap;
-				}
-			}
+		TimeSeries.push_back(t);
 			
-			if (currentGap == nGaps)
-			{
-				allGapsPassed = true;
-			}
-			else
-			{
-				if (t >= gapsStart[currentGap] && t<=gapsEnd[currentGap])
-				{
-					inGap = true;
-				}
-			}
-		}
-		
-		if (!inGap || ignoreGapObs== false)
-		{
-			TimeSeries.push_back(t);
-		}
-		
 	}
 	
 	

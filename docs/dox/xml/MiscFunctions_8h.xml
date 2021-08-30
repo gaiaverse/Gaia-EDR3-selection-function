@@ -5,7 +5,7 @@
     <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
     <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
     <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
-    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
     <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
     <incdepgraph>
       <node id="283">
@@ -96,26 +96,8 @@
         <childnode refid="291" relation="include">
         </childnode>
       </node>
-      <node id="291">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="288" relation="include">
-        </childnode>
-        <childnode refid="290" relation="include">
-        </childnode>
-      </node>
-      <node id="290">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h"/>
-      </node>
-      <node id="289">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="290" relation="include">
-        </childnode>
-      </node>
       <node id="292">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h</label>
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
         <link refid="EfficiencyVector_8h"/>
         <childnode refid="287" relation="include">
         </childnode>
@@ -125,6 +107,24 @@
         </childnode>
         <childnode refid="290" relation="include">
         </childnode>
+      </node>
+      <node id="291">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="289">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="290">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
       </node>
       <node id="288">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>

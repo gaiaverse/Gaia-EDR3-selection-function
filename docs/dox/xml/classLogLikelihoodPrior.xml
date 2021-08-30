@@ -57,7 +57,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="92" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="90" column="1"/>
       </memberdef>
       <memberdef kind="function" id="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -94,13 +94,13 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="100" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="98" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A subclass of the <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>. This version is run by the Root process from within the <ref refid="classDescentFunctor" kindref="compound">DescentFunctor</ref> object. This object is almost identical to the base class, with the exception of its ability to call Prior functions. </para>    </detaileddescription>
+<para>A subclass of the <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref>. This version is run by the Root process from within the DescentFunctor object. This object is almost identical to the base class, with the exception of its ability to call Prior functions. </para>    </detaileddescription>
     <inheritancegraph>
       <node id="26">
         <label>LogLikelihoodPrior</label>
@@ -132,7 +132,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="80" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="79" bodyend="103"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="80" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="79" bodyend="99"/>
     <listofallmembers>
       <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" prot="protected" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>AssignGradients</name></member>
       <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" prot="public" virt="non-virtual"><scope>LogLikelihoodPrior</scope><name>Calculate</name></member>

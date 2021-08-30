@@ -24,6 +24,11 @@ EfficiencyVector::EfficiencyVector(std::vector<double> newTransformed)
 	TransformedPosition= newTransformed;
 }
 
+EfficiencyVector::EfficiencyVector()
+{
+	//Nothing happens here, just needs to be there so classes don't cry when non-brace-initialised
+}
+
 double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i) const
 {	
 	//~ std::cout << "Access called: " << mode << component << type << i << std::endl;

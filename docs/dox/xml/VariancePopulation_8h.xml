@@ -38,15 +38,15 @@
         <childnode refid="323" relation="include">
         </childnode>
       </node>
-      <node id="323">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/DescentFunctor.h</label>
-        <link refid="DescentFunctor_8h"/>
-      </node>
       <node id="322">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
         <childnode refid="323" relation="include">
         </childnode>
+      </node>
+      <node id="323">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
       </node>
       <node id="321">
         <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>

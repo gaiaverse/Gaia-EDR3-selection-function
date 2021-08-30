@@ -1,23 +1,21 @@
-#include "DescentFunctor.h"
+#include "LikelihoodFunctor.h"
 
 //the overloaded () operator executes the full evaluation of L and GradL at a given position x
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
 
-void DescentFunctor::ResetPosition()
-{
-	Value = 0;
-}
-
-void DescentFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave)
+void LikelihoodFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave)
 {
 	Efficiency.Save(finalSave,saveStep,uniqueSave);
 }
 
+void LikelihoodFunctor::Calculate(const std::vector<double> & x)
+{	
+	Calculate(x,0,1);
+}
 
-void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosition, int batchID, int effectiveBatches)
+void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int effectiveBatches)
 {
-	
 	const int n =  totalTransformedParams;
 	
 	//circuitBreaker signal to workers, telling them to initiate another loop
@@ -27,7 +25,7 @@ void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosi
 	MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 	
 	//Transform then broadcast the vector to workers
-	Efficiency.ForwardTransform(inputPosition);
+	Efficiency.ForwardTransform(x);
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 
 
@@ -60,26 +58,14 @@ void DescentFunctor::DistributeCalculations(const std::vector<double> &inputPosi
 
 	Value = Lsum;
 
-	StarsInLastBatch = totalStarsUsed;
+	int StarsInLastBatch = totalStarsUsed;
 
 	++LoopID;
 	
 	//negative sign for maximisation problem + normalise to number of stars
 	for (int i = 0; i < Efficiency.RawGradient.size(); ++i)
 	{
-		Gradient[i] = -Efficiency.RawGradient[i] / StarsInLastBatch;
+		Gradient[i] = -Efficiency.RawGradient[i] / totalStarsUsed;
 	}
-	Value = -Value/StarsInLastBatch;
-	
-}
-
-
-void DescentFunctor::Calculate(const std::vector<double> & x)
-{	
-	Calculate(x,0,1);
-}
-
-void DescentFunctor::Calculate(const std::vector<double> &x, int batchID, int effectiveBatches)
-{
-	DistributeCalculations(x,batchID,effectiveBatches);
+	Value = -Value/totalStarsUsed;
 }

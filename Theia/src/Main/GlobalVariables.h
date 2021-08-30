@@ -84,6 +84,8 @@ const bool useHyperPrior = true;
 const bool ignoreGapObs = false;
 Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
 
+//! The 'significant value' - values below this are assumed to be zero and not included in #LogLikelihood::cholesky_w
+const double cholesky_tol = 1e-4;
 
 /// OUTPUT STUFF
 
