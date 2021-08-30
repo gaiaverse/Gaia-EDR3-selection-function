@@ -34,9 +34,6 @@ class LogLikelihood
 		//! The number of stars within the last-called minibatch
 		int StarsUsed;
 		
-		
-		
-		
 		/*!
 		 \brief Constructor function. 
 		 \param data A vector of Star objects arranged according to the minibatching schedule. 

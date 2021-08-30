@@ -20,6 +20,8 @@ Things that need doing, or doing better:
 * |ss| Create pages for all classes |se|
 * |ss| Work out what a 'module index' is, and if we want one |se|
 * |ss| Create + properly document the :doc:`efficiency-vector` class |se|
+* |ss| Document the private members of :doc:`likelihood` |se|
+* |ss| Document the :doc:`likelihood-data` class |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -29,8 +31,6 @@ Things that need doing, or doing better:
 * Write a more in-depth description of the spatial forward and backward transforms
 * Code output page
 * Document + clean up the :doc:`optimiser`
-* Document the private members of :doc:`likelihood`
-* Document the :doc:`likelihood-data` class
 * Document the Descent Functor class
 * Document the Misc functions & Probability Functions
 * Document the LogLikeliehood Prior
