@@ -15,7 +15,7 @@
 
 //~ #include "libs/LBFG/LBFGS.h"
 
-#include "EfficiencyVector.h"
+#include "../Optimizer/EfficiencyVector.h"
 #include "../DataHandling/Star.h"
 #include "../DataHandling/DataLoading.h"
 #include "../Optimizer/DescentFunctor.h"

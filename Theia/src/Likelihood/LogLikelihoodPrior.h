@@ -1,7 +1,7 @@
 #pragma once
 #define EIGEN_STACK_ALLOCATION_LIMIT 0
 #include "LogLikelihood.h"
-#include "../Main/EfficiencyVector.h"
+#include "../Optimizer/EfficiencyVector.h"
 using Eigen::VectorXd;
 using namespace Eigen;
 
@@ -80,9 +80,7 @@ class LogLikelihoodPrior : public LogLikelihood
 {
 	public:
 		LogLikelihoodPrior(const std::vector<std::vector<Star>> & data): LogLikelihood(data){};
-	
-		
-	     
+	   
 	    /*! 
 	     *Executes the Prior in transform space. Calls the TemporalBetaPrior on all x_t which lie within one of the pre-catalogued gaps, and hence ensures that our variance model expands to capture those gaps, rather than attempting to smooth over them.
 	     \param x The current efficiency vector 
@@ -98,6 +96,4 @@ class LogLikelihoodPrior : public LogLikelihood
 	     * \returns The value of the prior. The associated gradients are loaded into #EfficiencyVector::RawGradient
 	    */
 	    double RawPrior(EfficiencyVector & x, int effectiveBatches);
-		
-
 };

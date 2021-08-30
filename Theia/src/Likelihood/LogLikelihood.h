@@ -11,7 +11,7 @@
 
 #define EIGEN_MPL2_ONLY
 
-#include "../Main/EfficiencyVector.h"
+#include "../Optimizer/EfficiencyVector.h"
 #include "../DataHandling/Star.h"
 #include "../Main/GlobalVariables.h"
 #include "DataStorage.h"

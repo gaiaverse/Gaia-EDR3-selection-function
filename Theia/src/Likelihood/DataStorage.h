@@ -7,7 +7,7 @@
 #include <vector>
 #include "VariancePopulation.h"
 #include "../libs/JSL/JSL.h"
-#include "../Main/EfficiencyVector.h"
+#include "../Optimizer/EfficiencyVector.h"
 
 enum Probability { NormalApproximation, PoissonBinomial};
 

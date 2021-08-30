@@ -11,7 +11,7 @@
 #include "../libs/JSL/JSL.h"
 #include "../Likelihood/ProbabilityFunctions.h"
 
-#include "../Main/EfficiencyVector.h"
+#include "EfficiencyVector.h"
 
 //DescentFunctor is a function-like class which acts as a wrapper for the gradient descent algorithm. 
 //The overloaded operator () allows the class to be called as a function by LBFGs, but the classlike nature allows the function to 
