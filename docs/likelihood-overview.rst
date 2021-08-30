@@ -14,6 +14,7 @@ The Likelihood
 	likelihood-prior
 	likelihood-data
 	variance-population
+	probability-functions
 	descent-functor
 	:maxdepth: 4
 	:caption: Members:

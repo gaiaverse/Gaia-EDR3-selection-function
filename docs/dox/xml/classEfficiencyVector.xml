@@ -256,9 +256,9 @@
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" line="173" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/EfficiencyVector.h" bodystart="173" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" prot="private" static="no" mutable="no">
-        <type>double</type>
-        <definition>double EfficiencyVector::cholesky_tol</definition>
+      <memberdef kind="variable" id="classEfficiencyVector_1a555ce094a9aa6f53d10ffbf024347605" prot="private" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double EfficiencyVector::cholesky_tol</definition>
         <argsstring></argsstring>
         <name>cholesky_tol</name>
         <initializer>= 1e-4</initializer>
@@ -900,7 +900,7 @@
       <member refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>BackwardTransform_Spatial</name></member>
       <member refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>BackwardTransform_Temporal</name></member>
       <member refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>bVector</name></member>
-      <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_tol</name></member>
+      <member refid="classEfficiencyVector_1a555ce094a9aa6f53d10ffbf024347605" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_tol</name></member>
       <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_u</name></member>
       <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_v</name></member>
       <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" prot="private" virt="non-virtual"><scope>EfficiencyVector</scope><name>cholesky_w</name></member>

@@ -60,7 +60,7 @@
     <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
     <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
     <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
-    <member refid="classEfficiencyVector_1aedbc084569d77d34b0a86545d686ad38" kind="variable"><name>cholesky_tol</name></member>
+    <member refid="classEfficiencyVector_1a555ce094a9aa6f53d10ffbf024347605" kind="variable"><name>cholesky_tol</name></member>
     <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
     <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
     <member refid="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" kind="function"><name>EfficiencyVector</name></member>
@@ -274,16 +274,12 @@
     <member refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kind="function"><name>log_add_exp</name></member>
   </compound>
   <compound refid="ProbabilityFunctions_8h" kind="file"><name>ProbabilityFunctions.h</name>
-    <member refid="ProbabilityFunctions_8h_1afb04ce96742a46c445e5fad7fc0854bc" kind="variable"><name>logphi_c</name></member>
-    <member refid="ProbabilityFunctions_8h_1a05de0c589c0b9d42588c9e15cec9e83b" kind="variable"><name>logphi_r</name></member>
-    <member refid="ProbabilityFunctions_8h_1afc88f52f504ed0ebf64a50c27484d840" kind="variable"><name>logphi_q</name></member>
     <member refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kind="function"><name>poisson_binomial_pmf_forward</name></member>
     <member refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kind="function"><name>poisson_binomial_pmf_backward</name></member>
     <member refid="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" kind="function"><name>poisson_binomial_subpmf</name></member>
     <member refid="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" kind="function"><name>poisson_binomial_lpmf_forward</name></member>
     <member refid="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" kind="function"><name>poisson_binomial_lpmf_backward</name></member>
     <member refid="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" kind="function"><name>poisson_binomial_sublpmf</name></member>
-    <member refid="ProbabilityFunctions_8h_1a653b1d81f66a9a87c3815143415f0538" kind="function"><name>logphi</name></member>
     <member refid="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" kind="function"><name>poisson_binomial_normal_lpmf</name></member>
   </compound>
   <compound refid="VariancePopulation_8h" kind="file"><name>VariancePopulation.h</name>

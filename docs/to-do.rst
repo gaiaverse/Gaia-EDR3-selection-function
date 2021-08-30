@@ -22,6 +22,7 @@ Things that need doing, or doing better:
 * |ss| Create + properly document the :doc:`efficiency-vector` class |se|
 * |ss| Document the private members of :doc:`likelihood` |se|
 * |ss| Document the :doc:`likelihood-data` class |se|
+* |ss| Document the :doc:`probability-functions` |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -32,7 +33,7 @@ Things that need doing, or doing better:
 * Code output page
 * Document + clean up the :doc:`optimiser`
 * Document the Descent Functor class
-* Document the Misc functions & Probability Functions
+* Document the Misc functions & 
 * Document the LogLikeliehood Prior
 * Document the DataLoading functions
 * Document the Star class
