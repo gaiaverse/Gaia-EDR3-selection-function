@@ -42,7 +42,7 @@ double LogLikelihoodPrior::TransformPrior(EfficiencyVector&x, int effectiveBatch
 	double L = 0;
 	for (int i = 0; i < Nt; ++i)
 	{
-		if (BufferedGapList[i])
+		if (GapList[i])
 		{
 			double d = x.Access(x.Transformed,x.Temporal,x.Position,i);
 			F_dF p = TemporalBetaPrior(d,gapPriorAlpha,gapPriorBeta);

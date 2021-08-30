@@ -41,3 +41,12 @@ Needlet-Healpix Mapping
 **************************
 
 (I don't quite understand enough about how these are generated....would be useful to have help on that!)
+
+
+.. _gap-list:
+
+**************************
+Gap Catalogued 
+**************************
+
+Stored in gaps_prior.dat

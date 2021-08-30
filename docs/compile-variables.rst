@@ -59,3 +59,15 @@ Data Properties
 .. doxygenvariable:: TempDirName
 .. doxygenvariable:: DataLoadCount
 .. doxygenvariable:: magOffset
+
+
+Misc. Likelihood Parameters
+*****************************
+
+.. doxygenvariable:: GapList
+
+.. doxygenenum:: VarianceScaling
+
+.. doxygenvariable:: ScalingMode
+
+.. doxygenvariable:: choleskyTolerance

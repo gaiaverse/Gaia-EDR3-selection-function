@@ -338,7 +338,7 @@ void EfficiencyVector::LoadCholesky()
 	{
 		for (int j = 0; j <= i; j++) 
 		{
-			if (abs(CholeskyKg(i,j)) > cholesky_tol * max_in_row[i])
+			if (abs(CholeskyKg(i,j)) > choleskyTolerance * max_in_row[i])
 			{
 				choleskyN += 1;
 				cholesky_u.push_back(i);

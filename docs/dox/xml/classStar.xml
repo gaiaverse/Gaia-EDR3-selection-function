@@ -49,7 +49,7 @@
         <argsstring></argsstring>
         <name>TimeSeries</name>
         <briefdescription>
-<para>A vector of detection times (in units of 10s timebins) that Gaia is predicted to have visited the star. A vector of length <ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>, with members between 0 and <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> - 1. </para>        </briefdescription>
+<para>A vector of detection times (in units of 10s timebins) that Gaia is predicted to have visited the star. A vector of length <ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>, with members between 0 and <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> - 1. Annoyingly <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> exceeds the size of a <computeroutput>short int</computeroutput>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>

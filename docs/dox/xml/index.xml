@@ -335,15 +335,10 @@
     <member refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kind="variable"><name>TempDirName</name></member>
     <member refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kind="variable"><name>DataLoadCount</name></member>
     <member refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kind="variable"><name>magOffset</name></member>
-    <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
-    <member refid="GlobalVariables_8h_1a716d0c072e7631c360c4b65144e855ae" kind="variable"><name>useHyperPrior</name></member>
-    <member refid="GlobalVariables_8h_1a958d6e59b680cdd916383477c793892c" kind="variable"><name>ignoreGapObs</name></member>
-    <member refid="GlobalVariables_8h_1afe09b30166152f4509986791a90b314b" kind="variable"><name>cholesky_tol</name></member>
     <member refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kind="variable"><name>GapList</name></member>
-    <member refid="GlobalVariables_8h_1a2f4745e6f2130ca7b560a8da7762355b" kind="variable"><name>BufferedGapList</name></member>
-    <member refid="GlobalVariables_8h_1a8d760d41f05317a4be2239e0d4582e51" kind="function"><name>initialisedVector</name></member>
+    <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
+    <member refid="GlobalVariables_8h_1a8408fb8d5622d0530c3c2b5754fbda07" kind="variable"><name>choleskyTolerance</name></member>
     <member refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kind="function"><name>PrintStatus</name></member>
-    <member refid="GlobalVariables_8h_1a49ef5f8e3d470cd0c73142f2bce992b8" kind="function"><name>AssembleGapList</name></member>
   </compound>
   <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
     <member refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>

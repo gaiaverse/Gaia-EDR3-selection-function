@@ -1,108 +1,6 @@
 #include "GlobalVariables.h"
 #include "GlobalConstants.h"
 
-Eigen::VectorXd initialisedVector(int n, std::string loadLocation)
-{
-	VectorXd x;
-	bool loadIn = !(loadLocation == "__null_location__");
-	if (loadIn)
-	{
-		
-		VectorXd possibleX = VectorXd::Zero(n);
-		
-		int i = 0;
-		forLineIn(loadLocation,
-			if (i >= n)
-			{
-				ERROR(100,"Asked to load in start position from file, but it was the wrong length");
-			}
-			
-			double value; 
-			try
-			{
-				value = std::stod(FILE_LINE);
-			}
-			catch(const std::exception& e)
-			{
-				value = 0;
-				  //sometimes the stod fails for values <1e-300, so just default these to zero
-
-			}
-			
-			
-			possibleX[i] = value;
-			++i;
-			
-		);
-		
-		bool wentUnder = (i < n);
-		if (wentUnder)
-		{
-			std::cout << "End quit, i = " << i << "  n = " << n << "  " << wentUnder<< std::endl;
-			ERROR(100,"Asked to load in start position from file, but it was the wrong length");
-		}
-		
-		x = possibleX;
-	}
-	else
-	{
-		x = initialisationBounds*VectorXd::Random(n);
-		
-		//initialise spatial part properly
-		
-		Eigen::Matrix<double, Nm, Nm> Kg;
-		for (int i = 0; i < Nm; i++) 
-		{
-			for (int j = 0; j < i; j++) 
-			{
-				Kg(i,j) = Kg(j,i) = exp(-pow(i - j,2)/(2.0*lm*lm));
-			}
-			Kg(i,i) = 1.0 + SingularityPreventer;
-		}
-		
-		//decompose to make CholeskyKg
-		Eigen::Matrix<double, Nm, Nm> CholeskyKg = Kg.llt().matrixL();
-		Eigen::Matrix<double, Nm, Nm>  Inverted = CholeskyKg.inverse();
-		
-		Eigen::VectorXd mums = VectorXd::Constant(Nm,xmInitialised - xmPrior);
-		
-		mums = Inverted * mums;
-		
-		for (int i = 0; i < Nm; ++i)
-		{
-			x[Nt+i] += mums[i];
-		}
-		
-		
-		//hyper parameters
-		for (int i = 0; i < hyperOrder+ 1; ++i)
-		{			
-			double prior;
-			if ( i > 0)
-			{
-				prior = 0;
-			}
-			else
-			{
-				prior = 3;
-			}
-			//~ double prior = -0.01;
-			
-			for (int j = 0;j < NVariancePops; ++j)
-			{
-				int index = rawNonHyperParams + i*NVariancePops + j;
-				x[index] = (prior + x[index])/(100*(i+1));
-			}
-			
-		}
-		for (int i = 0; i < NVariancePops; ++i)
-		{
-			x[rawNonHyperParams + hyperFractionOffset + i] = log(pow(10,-2*i));
-		}
-	}
-
-	return x;
-}
 void PrintStatus(std::string location)
 {
 	std::vector<std::string> properties = {"Nt","Nm","healpix_order","needlet_order","Nl","Ns","hyperOrder","NVariancePopulations","totalRawParams","totalTransformedParams","mu_t","sigma_t","l_m","l_t","xm_Prior"};
@@ -125,7 +23,7 @@ std::vector<bool> AssembleGapList(bool buffered)
 	double timeFactor = (double)TotalScanningTime/Nt;
 	int it = 0;
 	bool inGap = false;
-	double borderWidthRevs = 0.01;
+	double borderWidthRevs = 0.03;
 	int modifiedBorderWidth = borderWidthRevs*2160;
 	bool inBorder= false;
 	int trueTime = 0;
@@ -173,5 +71,7 @@ std::vector<bool> AssembleGapList(bool buffered)
 	return list;
 	
 }
+
+//define this here so that the extern in the header file is assigned on startup
 std::vector<bool> GapList = AssembleGapList(false);
-std::vector<bool> BufferedGapList = AssembleGapList(true);
+

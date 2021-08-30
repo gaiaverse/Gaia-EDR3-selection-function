@@ -76,22 +76,37 @@ const int DataLoadCount = 1e6;	//!< The maximum number of lines which can be loa
 const int magOffset = 0; //!<offset of loaded files from 0.csv (assuming default file/bin association)
 
 
+/*
+ * 
+ * Likelihood Stuff
+ * 
+*/
 
-//normal approximation variances
-enum VarianceScaling {NScaling, MScaling, ActiveNScaling};
+//! A list of length #Nt. GapList[i] is true if t[i] corresponds to a time during which our \verbatim embed:rst:inline :ref:`gap-list` \endverbatim indicates Gaia was deactivated.
+extern std::vector<bool> GapList;
+
+
+//! The three kinds of scaling we have incorporated into the Variance Model.
+enum VarianceScaling 
+{
+		//! Scaling parameter is the (fixed) number of visitation of a star
+		NScaling, 
+		//! Scaling parameter is the mean predicted number of detections (i.e. the sum of probabilities p_t * p_ml)
+		MScaling, 
+		
+		//! Scaling parameter is the mean predicted number of times the star was visited whilst Gaia was turned on (i.e. the sum of probabilities p_t)
+		ActiveNScaling
+};
+
+//! The chosen kind of scaling
 const VarianceScaling ScalingMode = ActiveNScaling;
-const bool useHyperPrior = true;
-const bool ignoreGapObs = false;
-Eigen::VectorXd initialisedVector(int n,std::string loadLocation);
+
 
 //! The 'significant value' - values below this are assumed to be zero and not included in #LogLikelihood::cholesky_w
-const double cholesky_tol = 1e-4;
+const double choleskyTolerance = 1e-4;
 
 /// OUTPUT STUFF
 
-
 void PrintStatus(std::string location);
-std::vector<bool> AssembleGapList(bool buffered);
-extern std::vector<bool> GapList;
-extern std::vector<bool> BufferedGapList;
+
 

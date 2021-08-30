@@ -26,6 +26,8 @@ Things that need doing, or doing better:
 * |ss| Document the Misc functions |se|
 * |ss| Document the :doc:`likelihood-prior` |se|
 * |ss| Document the Descent Functor class |se|
+* |ss| Document the Star class |se|
+* |ss| Document all GlobalVariables |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -33,9 +35,7 @@ Things that need doing, or doing better:
 * How are the stellar observation lists generated / where can they be retrieved from? 
 * I'm not a 100% sure on what needlets and needlet-mappings do in :doc:`inputs`, would be nice to get confirmation of that
 * Write a more in-depth description of the spatial forward and backward transforms
-* Code output page
+* Code output page 
 * Document + clean up the :doc:`optimiser`
 * Document the DataLoading functions
-* Document the Star class
-* Document all GlobalVariables
 * Document the starAllocation script
