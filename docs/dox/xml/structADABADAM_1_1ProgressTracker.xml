@@ -110,7 +110,7 @@
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Enumerates the current progress and position of the optimiser. Contains information about various trackers and info about how the optimiser is moving. </para>    </briefdescription>
+<para>Enumerates the current progress and position of the optimizer. Contains information about various trackers and info about how the optimizer is moving. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="99" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="98" bodyend="123"/>

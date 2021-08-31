@@ -14,25 +14,25 @@ class CommandArgs
 		Argument<std::string> StartVectorLocation = Argument<std::string>("__null_location__","restart");
 		
 		
-		//!The maximum value of :math:`\nabla\mathcal{L}` which will be considered ‘converged’ 
+		//!The maximum value of :math:`\nabla\mathcal{L}` which will be considered ‘converged’ via #ADABADAM::StopConditions::GradientThreshold
 		Argument<double> GradLim = Argument<double>(0,"gradlim");
 		
-		//!The maximum number of epochs the optimiser may use before exiting
+		//!The maximum number of epochs the optimizer may use before exiting, via #ADABADAM::StopConditions::MaxSteps
 		Argument<int> MaxSteps = Argument<int>(1000,"max-steps");
 		
-		//!The number of steps between saving locations
+		//!The number of steps between saving locations via #ADABADAM::OptimizerProperties::StepsPerPositionSave
 		Argument<int> SaveSteps = Argument<int>(1,"save-steps");
 		
-		//!If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation.
+		//!If true, the temporary vectors are saved uniquely via via #ADABADAM::OptimizerProperties::UniquePositionSaves. Recommended to set this to false to prevent huge amounts of data generation.
 		Argument<bool> SaveAllSteps = Argument<bool>(false,"unique-temp-save");
 		
-		//!The maximum number of batches used per epoch in the SGD prescription
+		//!The maximum number of batches used per epoch in the SGD prescription via via #ADABADAM::OptimizerProperties::MiniBatches
 		Argument<int> Minibatches = Argument<int>(64,"minibatch");
 		
-		//!The factor by which step sizes are reduced when the harness is active
+		//!The factor by which step sizes are reduced when the harness is active, via #ADABADAM::OptimizerProperties::MaxHarnessFactor
 		Argument<double> HarnessSlowDown = Argument<double>(10,"harness-slow");
 		
-		//!The number of full epochs over which the step size recovers from the HarnessSlowDown
+		//!The number of full epochs over which the step size recovers from the HarnessSlowDown, via #ADABADAM::OptimizerProperties::HarnessReleaseSteps
 		Argument<int> HarnessRelease = Argument<int>(5,"harness-release");
 		
 		//!The directory for the stellar data lists

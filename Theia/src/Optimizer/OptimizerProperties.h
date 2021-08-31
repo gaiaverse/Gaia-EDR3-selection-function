@@ -8,10 +8,10 @@ namespace ADABADAM
 	//!General properties of the Optimiser - along with StopConditions, these are initialised by the user before optimisation starts.
 	struct OptimizerProperties
 	{
-		/*!The number of \verbatim embed:rst:inline :doc:`minibatches <minibatching>` used by the optimiser \endverbatim. This number is mutable and changes as downsteps are invoked */
+		/*!The number of \verbatim embed:rst:inline :doc:`minibatches <minibatching>` used by the optimizer \endverbatim. This number is mutable and changes as downsteps are invoked */
 		int MiniBatches;
 		
-		//! The multiplicative prefactor all changes to the position have. In a dumb optimiser it would be the magnitude of the step-vector, but the ADAM stuff messes around with that.
+		//! The multiplicative prefactor all changes to the position have. In a dumb optimizer it would be the magnitude of the step-vector, but the ADAM stuff messes around with that.
 		double StepSize;
 		
 		//! A vector of the same dimensionality as the optimizing space. The step size multiplyer of x[i] is StepSize * SpeedController[i].
@@ -34,13 +34,13 @@ namespace ADABADAM
 
 	};
 	
-	//! A series of conditions and variables which assert when and how the optimiser will quit, and if it will consider itself to have `converge' when it does so.
+	//! A series of conditions and variables which assert when and how the optimizer will quit, and if it will consider itself to have `converge' when it does so.
 	struct StopConditions
 	{
 		//! The maximum number of complete epochs that the optimizer can take. If ProgressTracker::CurrentSteps exceeds this number, the optimizer quits and OptimizerStatus::Converged is set to false.
 		int MaxSteps;
 		
-		//! The smallest value of |dx| that the optimiser can take in an epoch before the OptimizerStatus::Converged is set to true. If set to 0, this condition is ignored.
+		//! The smallest value of |dx| that the optimizer can take in an epoch before the OptimizerStatus::Converged is set to true. If set to 0, this condition is ignored.
 		double PositionChangeThreshold;
 		
 		//! The smallest value of |dF/dX| that the Optimizer can take in an epoch before the OptimizerStatus::Converged is set to true. If set to 0, this condition is ignored
@@ -66,13 +66,13 @@ namespace ADABADAM
 	//! Large scale status variables for the optimizer - mostly used to communicate if and why the optimser stopped.
 	struct OptimizerStatus
 	{
-		//! If true, the optimiser continues on to the next loop. If false, quits, unless CarryingOnRegardless gets in the way.
+		//! If true, the optimizer continues on to the next loop. If false, quits, unless CarryingOnRegardless gets in the way.
 		bool Continues;
 		
 		//! If true, the optimizer is considered 'converged'. If false and the optimizer stopped, then it was forced to despite still moving. 
 		bool Converged;
 		
-		//! A flag which is set which forces the optimiser to ignore a Continues == false flag
+		//! A flag which is set which forces the optimizer to ignore a Continues == false flag
 		bool CarryingOnRegardless;
 		
 		//! Flag which is set when StopConditions::MaxSteps was triggered
@@ -94,7 +94,7 @@ namespace ADABADAM
 		bool ExternalTermination;
 	};
 	
-	//! Enumerates the current progress and position of the optimiser. Contains information about various trackers and info about how the optimiser is moving.
+	//! Enumerates the current progress and position of the optimizer. Contains information about various trackers and info about how the optimizer is moving.
 	struct ProgressTracker
 	{
 		//! The current number of complete epochs 

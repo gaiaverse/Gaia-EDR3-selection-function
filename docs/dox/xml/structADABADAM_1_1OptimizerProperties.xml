@@ -12,7 +12,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The number of<verbatim>embed:rst:inline :doc:`minibatches &lt;minibatching&gt;` used by the optimiser </verbatim>. This number is mutable and changes as downsteps are invoked </para>        </detaileddescription>
+<para>The number of<verbatim>embed:rst:inline :doc:`minibatches &lt;minibatching&gt;` used by the optimizer </verbatim>. This number is mutable and changes as downsteps are invoked </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
@@ -23,7 +23,7 @@
         <argsstring></argsstring>
         <name>StepSize</name>
         <briefdescription>
-<para>The multiplicative prefactor all changes to the position have. In a dumb optimiser it would be the magnitude of the step-vector, but the ADAM stuff messes around with that. </para>        </briefdescription>
+<para>The multiplicative prefactor all changes to the position have. In a dumb optimizer it would be the magnitude of the step-vector, but the ADAM stuff messes around with that. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>

@@ -39,7 +39,7 @@
         <name>GradLim</name>
         <initializer>= Argument&lt;double&gt;(0,&quot;gradlim&quot;)</initializer>
         <briefdescription>
-<para>The maximum value of :math:<computeroutput>\nabla\mathcal{L}</computeroutput> which will be considered ‘converged’ </para>        </briefdescription>
+<para>The maximum value of :math:<computeroutput>\nabla\mathcal{L}</computeroutput> which will be considered ‘converged’ via <ref refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" kindref="member">ADABADAM::StopConditions::GradientThreshold</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -53,7 +53,7 @@
         <name>MaxSteps</name>
         <initializer>= Argument&lt;int&gt;(1000,&quot;max-steps&quot;)</initializer>
         <briefdescription>
-<para>The maximum number of epochs the optimiser may use before exiting. </para>        </briefdescription>
+<para>The maximum number of epochs the optimizer may use before exiting, via <ref refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kindref="member">ADABADAM::StopConditions::MaxSteps</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -67,7 +67,7 @@
         <name>SaveSteps</name>
         <initializer>= Argument&lt;int&gt;(1,&quot;save-steps&quot;)</initializer>
         <briefdescription>
-<para>The number of steps between saving locations. </para>        </briefdescription>
+<para>The number of steps between saving locations via <ref refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kindref="member">ADABADAM::OptimizerProperties::StepsPerPositionSave</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -81,7 +81,7 @@
         <name>SaveAllSteps</name>
         <initializer>= Argument&lt;bool&gt;(false,&quot;unique-temp-save&quot;)</initializer>
         <briefdescription>
-<para>If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation. </para>        </briefdescription>
+<para>If true, the temporary vectors are saved uniquely via via <ref refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kindref="member">ADABADAM::OptimizerProperties::UniquePositionSaves</ref>. Recommended to set this to false to prevent huge amounts of data generation. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -95,7 +95,7 @@
         <name>Minibatches</name>
         <initializer>= Argument&lt;int&gt;(64,&quot;minibatch&quot;)</initializer>
         <briefdescription>
-<para>The maximum number of batches used per epoch in the SGD prescription. </para>        </briefdescription>
+<para>The maximum number of batches used per epoch in the SGD prescription via via <ref refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kindref="member">ADABADAM::OptimizerProperties::MiniBatches</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -109,7 +109,7 @@
         <name>HarnessSlowDown</name>
         <initializer>= Argument&lt;double&gt;(10,&quot;harness-slow&quot;)</initializer>
         <briefdescription>
-<para>The factor by which step sizes are reduced when the harness is active. </para>        </briefdescription>
+<para>The factor by which step sizes are reduced when the harness is active, via <ref refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kindref="member">ADABADAM::OptimizerProperties::MaxHarnessFactor</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -123,7 +123,7 @@
         <name>HarnessRelease</name>
         <initializer>= Argument&lt;int&gt;(5,&quot;harness-release&quot;)</initializer>
         <briefdescription>
-<para>The number of full epochs over which the step size recovers from the HarnessSlowDown. </para>        </briefdescription>
+<para>The number of full epochs over which the step size recovers from the HarnessSlowDown, via <ref refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kindref="member">ADABADAM::OptimizerProperties::HarnessReleaseSteps</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>

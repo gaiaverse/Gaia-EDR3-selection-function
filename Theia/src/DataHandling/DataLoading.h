@@ -43,7 +43,7 @@ struct File
  * \param Data A reference to the container into which the data will be inserter 
  * \param TotalStars A reference to a counter which sums the total number of stars loaded into the worker, and hence into the parallel system
  * \param dataSource The location of the directory in which the stellar data is stored 
- * \param batches The number of minibatches the optimiser uses, and hence a determinant of the structure of the loaded data
+ * \param batches The number of minibatches the optimizer uses, and hence a determinant of the structure of the loaded data
  * \returns No explicit returns, but the ``Data`` object becomes populated with Star objects
  * 
 */ 

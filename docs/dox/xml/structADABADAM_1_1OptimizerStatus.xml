@@ -10,7 +10,7 @@
         <argsstring></argsstring>
         <name>Continues</name>
         <briefdescription>
-<para>If true, the optimiser continues on to the next loop. If false, quits, unless CarryingOnRegardless gets in the way. </para>        </briefdescription>
+<para>If true, the optimizer continues on to the next loop. If false, quits, unless CarryingOnRegardless gets in the way. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
@@ -36,7 +36,7 @@
         <argsstring></argsstring>
         <name>CarryingOnRegardless</name>
         <briefdescription>
-<para>A flag which is set which forces the optimiser to ignore a Continues == false flag. </para>        </briefdescription>
+<para>A flag which is set which forces the optimizer to ignore a Continues == false flag. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>

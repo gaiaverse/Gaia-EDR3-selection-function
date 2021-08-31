@@ -210,7 +210,7 @@
 <parametername>batches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of minibatches the optimiser uses, and hence a determinant of the structure of the loaded data </para></parameterdescription>
+<para>The number of minibatches the optimizer uses, and hence a determinant of the structure of the loaded data </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>No explicit returns, but the <computeroutput>Data</computeroutput> object becomes populated with <ref refid="classStar" kindref="compound">Star</ref> objects </para></simplesect>

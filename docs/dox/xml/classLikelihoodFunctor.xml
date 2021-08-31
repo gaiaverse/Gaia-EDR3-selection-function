@@ -153,7 +153,7 @@
 <para>The output directory where savefiles are located </para></parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref> component of <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref>, the default starting point for the optimiser </para></simplesect>
+<simplesect kind="return"><para>The <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref> component of <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref>, the default starting point for the optimizer </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
@@ -179,7 +179,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref> object. Then uses MPI to collect these objects, call the associated Priors and then populate the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects for the optimiser to use. <parameterlist kind="param"><parameteritem>
+<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref> object. Then uses MPI to collect these objects, call the associated Priors and then populate the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects for the optimizer to use. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>x</parametername>
 </parameternamelist>
@@ -198,7 +198,7 @@
 <parametername>effectiveBatches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The current number of minibatches used by the optimiser </para></parameterdescription>
+<para>The current number of minibatches used by the optimizer </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>No explicit return, but populates the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects </para></simplesect>

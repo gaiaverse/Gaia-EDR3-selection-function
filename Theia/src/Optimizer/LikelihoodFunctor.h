@@ -48,7 +48,7 @@ class LikelihoodFunctor
 		/*! A separate chunk of almost-constructor, initialising the remaning components + getting the starting position. An argument could be made that this should be part of the constructor, but it is kept separate so that you can re-run the optimisation with a different starting position without destroying the object, you can just reinitialise it. 
 		 *\param loadPosition The place for #Efficiency to check for valid starting positions
 		 * \param outdir The output directory where savefiles are located
-		 * \returns The EfficiencyVector::RawPosition component of #Efficiency,  the default starting point for the optimiser
+		 * \returns The EfficiencyVector::RawPosition component of #Efficiency,  the default starting point for the optimizer
 		*/
 		std::vector<double> Initialise(std::string loadPosition, std::string outdir)
 		{
@@ -61,10 +61,10 @@ class LikelihoodFunctor
 		
 
 		/*!
-		 * A required function call for templating values of the ADABADAM::Optimizer class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their LogLikelihood object. Then uses MPI to collect these objects, call the associated Priors and then populate the #Value and #Gradient objects for the optimiser to use.  
+		 * A required function call for templating values of the ADABADAM::Optimizer class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their LogLikelihood object. Then uses MPI to collect these objects, call the associated Priors and then populate the #Value and #Gradient objects for the optimizer to use.  
 		 * \param x The new value of the EfficiencyVector::RawPosition, the current proposed operating efficiency
 		 * \param batchID The current (randomised) batchID from which to draw the population of stars used to calculate the likelihood. Can be 0 <= batchID < effectiveBatches
-		 * \param effectiveBatches The current number of minibatches used by the optimiser
+		 * \param effectiveBatches The current number of minibatches used by the optimizer
 		 * \returns No explicit return, but populates the #Value and #Gradient objects
 		*/
 		void Calculate(const std::vector<double> &x, int batchID, int effectiveBatches);

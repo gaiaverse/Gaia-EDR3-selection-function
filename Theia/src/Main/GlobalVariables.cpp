@@ -7,7 +7,7 @@ void PrintStatus(std::string location)
 	std::vector<double> vals = {(double)Nt,(double)Nm,(double)healpix_order, (double)needlet_order, (double)Nl,(double)Ns,(double)hyperOrder,(double)NVariancePops,(double)totalRawParams,(double)totalTransformedParams,(double)xtPrior,(double)sigmat,(double)lm,(double)lt,double(xmPrior)};
 	
 	std::fstream file;
-	file.open(location + "/OptimiserProperties.dat",std::ios::out);
+	file.open(location + "/OptimizerProperties.dat",std::ios::out);
 	int w = 15;
 	
 	for (int i = 0; i < properties.size(); ++i)
