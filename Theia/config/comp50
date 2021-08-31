@@ -1,7 +1,7 @@
 output       ../../Output/Production_1/
 data         ../../Data/ShuffledData/
 random-seed  0
-gradlim      1e-7
+gradlim      0
 max-steps    5000
 save-steps   10
 unique-temp-save 1
