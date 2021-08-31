@@ -4,6 +4,8 @@
 Data-Loading Functions
 #######################
 
+.. _load-data:
+
 .. doxygenfunction:: LoadData
 
 .. doxygenfunction:: GetAssignments

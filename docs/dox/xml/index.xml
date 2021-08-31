@@ -247,7 +247,7 @@
   <compound refid="DataLoading_8h" kind="file"><name>DataLoading.h</name>
     <member refid="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" kind="function"><name>LoadData</name></member>
     <member refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kind="function"><name>GetAssignments</name></member>
-    <member refid="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" kind="function"><name>CalculateBatches</name></member>
+    <member refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kind="function"><name>CalculateBatches</name></member>
   </compound>
   <compound refid="Star_8h" kind="file"><name>Star.h</name>
   </compound>

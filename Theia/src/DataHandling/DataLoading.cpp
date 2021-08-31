@@ -1,8 +1,7 @@
 #include "DataLoading.h"
 std::vector<int> Bins;
 
-std::vector<int> NumberOfStarsInFile;
-std::vector<int> StarsLeftInFile;
+
 std::vector<std::vector<int>> batchCounts;
 
 
@@ -65,8 +64,10 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 }
 
 
-void CalculateBatches(int id, std::vector<File> & Files, int batches)
+void CalculateBatches(std::vector<File> & Files, int batches)
 {
+	
+	
 	int bRemaining = batches;
 	int NFiles = Files.size();
 	batchCounts = std::vector<std::vector<int>>(batches,std::vector<int>(NFiles,0));
@@ -114,7 +115,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	
 	auto start = std::chrono::system_clock::now();
 	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);
-	CalculateBatches(ProcessRank,Files,batches);
+	CalculateBatches(Files,batches);
 
 	//resize datafile
 	Data.resize(batches);

@@ -13,9 +13,9 @@ The stellar observation lists are the core source of data for the code to run. T
 
 Different prescriptions are possible with only minor modifications to the code, however the default assumption is that the files will follow the following prescription:
 
-* All datafiles within the same directory (no subdirectories)
-* One datafile per magnitude bin (:ref:`Nm <Nm>` datafiles in total)
-* Filenames will be of the form "``n``.csv", where ``n`` runs from ``0`` to ``Nm-1``. 
+* All datafiles within the same directory (no subdirectories) *
+* One magnitude bin per datafile (:ref:`Nm <Nm>` datafiles in total)
+* Filenames will be of the form "``n``.csv", where ``n`` runs from ``0`` to ``Nm-1``. * 
 * Each line of the datafile corresponds to a single star
 * The lines will be comma-separated lists with the following entries::
 
@@ -27,6 +27,8 @@ Different prescriptions are possible with only minor modifications to the code, 
 	element N, final_visitation_time
 * The length of the line (i.e. ``N``) can vary from star to star, but ``N-2`` should not exceed :ref:`NumberLargerThanMaxObservations <obs-n>`.
 * The lines within the datafiles are randomly shuffled
+
+Lines marked with a '*' are assumptions of the :doc:`assignment-creation` protocol, instead of the core Theia code, so are less stringent as long as the protocols are updated.
 
 .. _stellar-directory:
 

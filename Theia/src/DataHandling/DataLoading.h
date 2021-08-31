@@ -37,7 +37,7 @@ struct File
 
 
 /*!
- * The door to the dataloading functions. If loaded by the #RootID process, calls the  \verbatim embed:rst:inline :doc:`assignment-creation` \endverbatim protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then GetAssignments() and CalculateBatches(), before using that information to load the assigned stars into the required structures. 
+ * If loaded by the #RootID process, calls the  \verbatim embed:rst:inline :doc:`assignment-creation` \endverbatim protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then GetAssignments() and CalculateBatches(), before using that information to load the assigned stars into the \verbatim embed:rst:inline :doc:`required structures <minibatching>` \endverbatim. 
  * \param ProcessRank The MPI ID of the calling process
  * \param JobSize The number of MPI workers available (used to determine how to distribute files to each worker)
  * \param Data A reference to the container into which the data will be inserter 
@@ -57,7 +57,9 @@ void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<
 */
 std::vector<File> GetAssignments(int id,std::string dataSource);
 
-/*
- *  
+/*!
+ * Generates a separation scheme to split the Nstars in each file approximately equally across the minibatches - where there is a rounding error or overflow, the final batch is used to store the excess. 
+ * \param Files the output of GetAssignments()
+ * \param batches the maximum number of minibatches
 */
-void CalculateBatches(int id, std::vector<File> & Files, int batches);
+void CalculateBatches(std::vector<File> & Files, int batches);

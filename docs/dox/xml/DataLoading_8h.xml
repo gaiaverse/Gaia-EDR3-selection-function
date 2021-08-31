@@ -170,7 +170,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The door to the dataloading functions. If loaded by the <ref refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kindref="member">RootID</ref> process, calls the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> and <ref refid="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" kindref="member">CalculateBatches()</ref>, before using that information to load the assigned stars into the required structures. <parameterlist kind="param"><parameteritem>
+<para>If loaded by the <ref refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kindref="member">RootID</ref> process, calls the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> and <ref refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kindref="member">CalculateBatches()</ref>, before using that information to load the assigned stars into the<verbatim>embed:rst:inline :doc:`required structures &lt;minibatching&gt;` </verbatim>. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>ProcessRank</parametername>
 </parameternamelist>
@@ -256,15 +256,11 @@
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="58" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
         <definition>void CalculateBatches</definition>
-        <argsstring>(int id, std::vector&lt; File &gt; &amp;Files, int batches)</argsstring>
+        <argsstring>(std::vector&lt; File &gt; &amp;Files, int batches)</argsstring>
         <name>CalculateBatches</name>
-        <param>
-          <type>int</type>
-          <declname>id</declname>
-        </param>
         <param>
           <type>std::vector&lt; <ref refid="structFile" kindref="compound">File</ref> &gt; &amp;</type>
           <declname>Files</declname>
@@ -276,10 +272,25 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>Generates a separation scheme to split the Nstars in each file approximately equally across the minibatches - where there is a rounding error or overflow, the final batch is used to store the excess. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>Files</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the output of <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>batches</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the maximum number of minibatches </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="61" column="1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="65" column="1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -321,8 +332,7 @@
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="58"><highlight class="normal">std::vector&lt;File&gt;<sp/><ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,std::string<sp/>dataSource);</highlight></codeline>
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a58ba2074d8c02ad2cdd133726be1a8f7" kindref="member">CalculateBatches</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>std::vector&lt;File&gt;<sp/>&amp;<sp/>Files,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
+<codeline lineno="65"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kindref="member">CalculateBatches</ref>(std::vector&lt;File&gt;<sp/>&amp;<sp/>Files,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
     </programlisting>
     <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h"/>
   </compounddef>

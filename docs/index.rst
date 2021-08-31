@@ -22,8 +22,9 @@ Theia is a tool for deriving the spatial and temporal components of the selectio
 	likelihood-overview
 	efficiency-vector
 	external-libs
+	running-code
 	to-do
-	:maxdepth: 4
+	:maxdepth: 2
 	:caption: Contents:
 
 
