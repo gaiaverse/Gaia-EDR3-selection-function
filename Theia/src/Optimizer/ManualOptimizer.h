@@ -10,10 +10,12 @@
 
 namespace ADABADAM
 {
+	//! A type-ambivilant implementation of the sign(x) function with sign(0) == 0 \param val a member of any type where `<` is defined \returns -1, 0 or 1 
 	template <typename T> int sgn(T val) {
 	    return (T(0) < val) - (val < T(0));
 	}
 	
+	//! Calculates the standard Euclidean norm of a provided vector \param x A vector on R^n \returns ||x|| = sqrt(x.x)
 	double norm(const std::vector<double> &x)
 	{
 		double sum = 0;
@@ -23,16 +25,8 @@ namespace ADABADAM
 		}
 		return sum;
 	}
-	double vectorDiffNorm(const std::vector<double> &x, const std::vector<double> &y)
-	{
-		double sum = 0;
-		for (int i = 0; i < x.size(); ++i)
-		{
-			double d = x[i] - y[i];
-			sum += d*d;
-		}
-		return sum;
-	}
+	
+	//! Calculates the pointwise difference off a vector \param x a vector on R^n \param y a vector also on R^n \returns A vector z such that z_i = x_i - y_i
 	std::vector<double> vectorDiff(const std::vector<double> &x, const std::vector<double> &y)
 	{
 		if (x.size() != y.size())
@@ -49,6 +43,24 @@ namespace ADABADAM
 		return newVec;
 	}
 	
+	//! Calculates the norm of the difference between two vectors. Quicker than calculating diff() then norm(), at the cost of some duplicate code \param x a vector on R^n \param y a vector also on R^n \returns ||x -y|| = sqrt( (x-y).(x-y) )
+	double vectorDiffNorm(const std::vector<double> &x, const std::vector<double> &y)
+	{
+		if (x.size() != y.size())
+		{
+			std::cout << "Vectors of different sizes passed to ADABADAM::vectorDiffNorm, exit!" << std::endl;
+			exit(5);
+		}
+		double sum = 0;
+		for (int i = 0; i < x.size(); ++i)
+		{
+			double d = x[i] - y[i];
+			sum += d*d;
+		}
+		return sum;
+	}
+	
+	//! Generates a randomly shuffled array of numbers between 0 and n-1. Suitable for then randomly looping over an object. \param n The number of random elements \returns a randomly ordered vector of unique elements between 0 and n-1
 	std::vector<int> randomShuffle(int n)
 	{
 		std::vector<int> order;
@@ -61,15 +73,30 @@ namespace ADABADAM
 		return order;
 	}
 	
+	
+	
+	/*!
+	 * An implementation of the The ADABADAM (Adaptive Batched, Adaptive Moment) Estimator. The object is templated against the #Functor object, which contains the function that is to be minimized. 
+	*/
 	template<class T>
 	class Optimizer
 	{
 		private:
+			/*!
+			 * A function-like class which acts as the templating property of this class. In order to work with this optimizer, the chosen functor should have the following properties:
+			 *  * ``void Calculate(std::vector<double> x, int batchID, int minibatch)`` function which populates the ``Value`` and ``Gradient`` members
+			 *  * ``void SavePosition(bool finalSave,int saveStep,bool uniqueSave)`` function which (optionally) saves the last used value of x to file.
+			 *  * ``double Value`` member, populated by Calculate()
+			 *  * ``std::vector<double>> Gradient`` member, populated by Calculate()
+			 * 
+			 * See LikelihoodFunctor for an example of a valid Functor object for this class.
+			*/
 			T & Functor;
 	
+			/*!Part of the  \verbatim embed:rst:inline :doc:`optimiser-data` \endverbatim. See that page for more information*/
 			MemoryBuffer Buffer;
 			
-				
+			//! Sets the default values for several elements of Buffer, Status, Properties and HaltConditions, so that they aren't awfully uninitialised if the user forgets to set them. Called during the constructor function.
 			void SetDefaults()
 			{
 				HaltConditions.MaxSteps = 10000;
@@ -95,6 +122,7 @@ namespace ADABADAM
 				Properties.StepsPerPositionSave = 1;
 			}
 			
+			//! Sets the relevant values of Status, Progress and Buffer to their appropriate values for the beginning of an optimisation loop. Called during #Minimize(), so any changes made after construction are erased. 
 			void Initialise()
 			{
 				Status.TooManySteps = false;
@@ -136,7 +164,7 @@ namespace ADABADAM
 				}
 			}
 				
-					
+			/*! The bulk of the ADABADAM machinery, excuting the main workflow. For a discussion about what this funciton does, see  \verbatim embed:rst:inline :ref:`adabadam-theory` \endverbatim. \param x The initial starting position to optimize towards. */
 			void ADABADAM_Body(std::vector<double> &x)
 			{
 				int EffectiveBatches = Properties.MiniBatches;
@@ -195,7 +223,7 @@ namespace ADABADAM
 							m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 							v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 							
-							double effectiveRate = learningRate * Progress.Harness * Properties.SpeedController[i];
+							double effectiveRate = learningRate * Progress.Harness;
 							double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
 							
 							
@@ -213,7 +241,7 @@ namespace ADABADAM
 							double df_mini = Functor.Value - previousMinibatch;
 							previousMinibatch = Functor.Value;
 							double sqrtgNorm = sqrt(gNorm);
-							UpdateProgress(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
+							UpdateBuffer(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
 						}
 						if (!initSaved)
 						{
@@ -237,7 +265,7 @@ namespace ADABADAM
 					
 					++Progress.CurrentSteps;
 					CheckExternalFiles();
-					UpdateProgress(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx,x);
+					UpdateBuffer(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx,x);
 					
 					double newBatches = CheckMinibatches(df,EffectiveBatches);
 					
@@ -283,11 +311,12 @@ namespace ADABADAM
 					}
 					
 				}
-				SaveProgress(Buffer.Position);
+				SaveBuffer(Buffer.Position);
 				Functor.SavePosition(true,0,Properties.UniquePositionSaves);
 				CleanExternalFiles();
 			}
 				
+			//! Check the current progress of the optimizer against the StopConditions to see if convergence has been reached. Updates the values of Status if the conditions have been met. \param dg The norm of the Gradient \param df The change in the functional value across the epoch \param dx The norm of the total dx change across the epoch
 			void CheckConvergence( double dg, double df, double dx)
 			{
 				if (Progress.CurrentSteps > HaltConditions.MaxSteps)
@@ -326,6 +355,7 @@ namespace ADABADAM
 				}
 			} 
 	
+			//! Looks for a reason to reduce the number of minibatches, either due to NeedsBatchReduction() returning true, or because OptimizerStatus::ExternalDownStep is true. Divides the current minibatches by OptimizerProperties::MinibatchDownStep \param df The change in the functional value across the epoch \param currentSize the current number of minibatches used \returns the number of minibatches which will be used going forwards
 			int CheckMinibatches(double df,int currentSize)
 			{
 			
@@ -357,6 +387,12 @@ namespace ADABADAM
 				return newSize;
 			}
 	
+			/*!
+			 * Looks through the MemoryBuffer::Analysis vector to look for problematic trends which would indicate that a minibatch reduction is needed. These triggers are: 
+			 * 1. More than 3 sign changes in df across the buffer's duration (i.e. oscillatory behaviour)
+			 * 2. Mean df across buffer duration is positive (i.e. not minimizing)
+			 * 3. More than 2 ProgressTracker::Harness triggers since the last minibatch downchange
+			*/
 			bool NeedsBatchReduction()
 			{
 				bool batchesAreAProblem = false;
@@ -389,7 +425,8 @@ namespace ADABADAM
 				return batchesAreAProblem;
 			}
 	
-			void UpdateProgress(int batch, int nBatches,double F, double G, double dF,double dxNorm,const std::vector<double> & x)
+			//! Inserts relevant values into the Buffer. If the buffer is full, or it was a long time (c.f. MemoryBuffer::OverrideTime) since the last save, it then calls SaveBuffer(). Also included in this are the progress bars and output to the terminal. 
+			void UpdateBuffer(int batch, int nBatches,double F, double G, double dF,double dxNorm,const std::vector<double> & x)
 			{
 				int i = Buffer.Position;
 				Buffer.MiniBatches[i] = batch;
@@ -408,7 +445,7 @@ namespace ADABADAM
 				std::chrono::duration<double> savediff = time - Buffer.LastSaveTime;
 				if (Buffer.Position >= Buffer.Size || savediff.count() >= Buffer.OverrideTime)
 				{
-					SaveProgress(std::min(Buffer.Size,Buffer.Position));
+					SaveBuffer(std::min(Buffer.Size,Buffer.Position));
 					Buffer.Position = 0;
 					Buffer.LastSaveTime = time;
 				}
@@ -425,7 +462,7 @@ namespace ADABADAM
 					{
 						std::cout << "]";
 					}
-					std::cout << " complete, at Calculation Evaluation " << Functor.LoopID << "\n";
+					std::cout << " complete\n";
 					std::cout << "\t\t\t(L,Gradnorm,dL,|dx|,nBatch) = (" << std::setprecision(10) << F << ", " <<  std::setprecision(10) << G << ", " << std::setprecision(10) << dF << ", " << std::setprecision(10) << dxNorm << ", " << nBatches <<")\n"; 
 					
 					
@@ -461,7 +498,8 @@ namespace ADABADAM
 				
 			}
 	
-			void SaveProgress(int n)
+			//! Called by UpdateBuffer(), this saves the contents of the Buffer into the file given by the ProgressTracker::SaveLocation member of Progress.
+			void SaveBuffer(int n)
 			{
 				std::string saveFile = Progress.SaveLocation + "OptimizerProgress.txt";
 				std::fstream file;
@@ -499,7 +537,7 @@ namespace ADABADAM
 				file.close();
 			}
 	
-	
+			//! Creates and writes the default values (and explanatory text) to the StopConditions::DownStepFile and StopConditions::TerminationFile of HaltConditions.
 			void InitialiseExternalFiles()
 			{
 				
@@ -517,6 +555,7 @@ namespace ADABADAM
 				
 			}
 			
+			//! Reads the default values (and explanatory text) to the StopConditions::DownStepFile and StopConditions::TerminationFile of HaltConditions. If they are 1, sets the relevant flags OptimizerStatus::ExternalDownstep and OptimizerStatus::ExternalTermination respectively.
 			void CheckExternalFiles()
 			{
 				if (HaltConditions.UseExternalInstructions)
@@ -548,6 +587,7 @@ namespace ADABADAM
 				}
 			}
 			
+			//! After the optimizer has completed, delete the files created by InitialiseExternalFiles(). It's always good to clean up your mess.
 			void CleanExternalFiles()
 			{
 				if (HaltConditions.UseExternalInstructions)
@@ -562,24 +602,33 @@ namespace ADABADAM
 			}
 		public:
 			
+			/*!Part of the  \verbatim embed:rst:inline :doc:`optimiser-data` \endverbatim. See that page for more information*/
 			OptimizerStatus Status;
+			
+			/*!Part of the  \verbatim embed:rst:inline :doc:`optimiser-data` \endverbatim. See that page for more information*/
 			OptimizerProperties Properties;
+			
+			/*!Part of the  \verbatim embed:rst:inline :doc:`optimiser-data` \endverbatim. See that page for more information*/
 			StopConditions HaltConditions;
+			
+			/*!Part of the  \verbatim embed:rst:inline :doc:`optimiser-data` \endverbatim. See that page for more information*/
 			ProgressTracker Progress;
 			
+			
+			//! Constructor class. Doesn't do much except initialise #Functor and call SetDefaults()
 			Optimizer<T>(T& functor) : Functor(functor)
 			{
 				SetDefaults();	
 			}
 		
+			//! Calls Initialise() to properly clean everything before launching into the meat of matters: actually performing the ADABADAM_Body() optimization.
 			void Minimize(std::vector<double> & x)
 			{
-	
 				Initialise();
 				ADABADAM_Body(x);
-				//~ new_ADABADAM(x);
 			}
 	
+			//! Returns a nicely formatted string detailing the contents of #Status. Useful for outputting a debrief after optimization has stopped.
 			std::string GetStatus()
 			{
 				std::string s = "";
@@ -600,25 +649,7 @@ namespace ADABADAM
 				s+= "\n";
 				return s;
 			}
-			
-			void InitialiseSpeedControls(std::vector<int> sizes, std::vector<double> speeds)
-			{
-				int n = 0;
-				for (int i = 0; i < sizes.size(); ++i)
-				{
-					n+=sizes[i];
-				}
-				int c = 0;
-				Properties.SpeedController.resize(n);
-				for (int i = 0; i < sizes.size(); ++i)
-				{
-					for (int j = 0; j < sizes[i]; ++j)
-					{
-						Properties.SpeedController[c] = speeds[i];
-						++c; 
-					}
-				}
-			}
+
 	};
 }
 

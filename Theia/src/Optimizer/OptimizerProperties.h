@@ -14,9 +14,6 @@ namespace ADABADAM
 		//! The multiplicative prefactor all changes to the position have. In a dumb optimizer it would be the magnitude of the step-vector, but the ADAM stuff messes around with that.
 		double StepSize;
 		
-		//! A vector of the same dimensionality as the optimizing space. The step size multiplyer of x[i] is StepSize * SpeedController[i].
-		std::vector<double> SpeedController;
-		
 		//!The number which #MiniBatches is divided by when a downstep is called for
 		double MinibatchDownStep;
 		

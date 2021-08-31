@@ -164,20 +164,18 @@
     <member refid="classADABADAM_1_1Optimizer_1a5eb97d9042e07d43df8bee42e4bdd1e9" kind="function"><name>CheckConvergence</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a6429082a232ed285df6a0a477d585ab9" kind="function"><name>CheckMinibatches</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a0356ffc804f64b3c6d0afdc06ce346ef" kind="function"><name>NeedsBatchReduction</name></member>
-    <member refid="classADABADAM_1_1Optimizer_1ae8f2089142d18ce5076487012cb4ab48" kind="function"><name>UpdateProgress</name></member>
-    <member refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kind="function"><name>SaveProgress</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a59f0a2aefce0a19843901086a95df02a" kind="function"><name>UpdateBuffer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a84be520d8cb763af01abd3062c48d57b" kind="function"><name>SaveBuffer</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a83f5a64421c1daad8a40d8b9c61e5176" kind="function"><name>InitialiseExternalFiles</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" kind="function"><name>CheckExternalFiles</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a8253c1c55048b1c7e79dd975de27e093" kind="function"><name>CleanExternalFiles</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a6e666554c2eed7330810f53cd826309b" kind="function"><name>Optimizer</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" kind="function"><name>Minimize</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a23365766563534625999627ed782d5f8" kind="function"><name>GetStatus</name></member>
-    <member refid="classADABADAM_1_1Optimizer_1a0f4e0955ba97dc4e1644c80356cabc3d" kind="function"><name>InitialiseSpeedControls</name></member>
   </compound>
   <compound refid="structADABADAM_1_1OptimizerProperties" kind="struct"><name>ADABADAM::OptimizerProperties</name>
     <member refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kind="variable"><name>MiniBatches</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" kind="variable"><name>StepSize</name></member>
-    <member refid="structADABADAM_1_1OptimizerProperties_1a6b17b03f668af6c2f2094006e82bacd9" kind="variable"><name>SpeedController</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" kind="variable"><name>MinibatchDownStep</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kind="variable"><name>MaxHarnessFactor</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kind="variable"><name>HarnessReleaseSteps</name></member>
@@ -234,8 +232,8 @@
   <compound refid="namespaceADABADAM" kind="namespace"><name>ADABADAM</name>
     <member refid="namespaceADABADAM_1a6daa2701fb4cfaeb09a51cd2a8fd9110" kind="function"><name>sgn</name></member>
     <member refid="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" kind="function"><name>norm</name></member>
-    <member refid="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" kind="function"><name>vectorDiffNorm</name></member>
     <member refid="namespaceADABADAM_1ac05031b7779daebbd07d9a68b4181260" kind="function"><name>vectorDiff</name></member>
+    <member refid="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" kind="function"><name>vectorDiffNorm</name></member>
     <member refid="namespaceADABADAM_1a30978fca49d41c59890c4c5245a2f87b" kind="function"><name>randomShuffle</name></member>
   </compound>
   <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>

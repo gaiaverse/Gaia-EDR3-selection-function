@@ -3,7 +3,7 @@
 #############################
 ADABADAM Optimiser
 #############################
-The ADABADAM (**Ada**\ ptive **B**\ atched, **Ada**\ ptive **M**\ oment) Estimator 
+
 
 
 
