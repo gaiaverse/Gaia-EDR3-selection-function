@@ -37,7 +37,7 @@ struct File
 
 
 /*!
- * If loaded by the #RootID process, calls the  \verbatim embed:rst:inline :doc:`assignment-creation` \endverbatim protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then GetAssignments() and CalculateBatches(), before using that information to load the assigned stars into the \verbatim embed:rst:inline :doc:`required structures <minibatching>` \endverbatim. 
+ * If loaded by the #RootID process, calls the  \verbatim embed:rst:inline :doc:`assignment-creation` \endverbatim protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then GetAssignments() and CalculateBatches(), before using that information to load the assigned stars into the \verbatim embed:rst:inline :ref:`required structures <minibatching>` \endverbatim. 
  * \param ProcessRank The MPI ID of the calling process
  * \param JobSize The number of MPI workers available (used to determine how to distribute files to each worker)
  * \param Data A reference to the container into which the data will be inserter 

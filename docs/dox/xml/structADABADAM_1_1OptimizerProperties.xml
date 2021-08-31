@@ -12,7 +12,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>The number of<verbatim>embed:rst:inline :doc:`minibatches &lt;minibatching&gt;` used by the optimizer </verbatim>. This number is mutable and changes as downsteps are invoked </para>        </detaileddescription>
+<para>The number of<verbatim>embed:rst:inline :ref:`minibatches &lt;minibatching&gt;` used by the optimizer </verbatim>. This number is mutable and changes as downsteps are invoked </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
@@ -95,13 +95,55 @@
         </inbodydescription>
         <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="30" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="30" bodyend="-1"/>
       </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1a19ec0404b84ce5bd53b2a819de1a32b4" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ADABADAM::OptimizerProperties::adamBeta1</definition>
+        <argsstring></argsstring>
+        <name>adamBeta1</name>
+        <briefdescription>
+<para>The beta1 parameter of a normal ADAM optimiser <ndash/> the first moment weighting factor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1a244f65db7f7cedf6e6d37a72ceb2e289" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ADABADAM::OptimizerProperties::adamBeta2</definition>
+        <argsstring></argsstring>
+        <name>adamBeta2</name>
+        <briefdescription>
+<para>The beta2 parameter of a normal ADAM optimiser <ndash/> the second moment weighting factor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="36" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1aa1f7c2a31f1ca80b7f65f3512db59356" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::OptimizerProperties::Dimensions</definition>
+        <argsstring></argsstring>
+        <name>Dimensions</name>
+        <briefdescription>
+<para>The dimensionality of the optimizing space. Determined when <ref refid="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" kindref="member">Optimizer::Minimize()</ref> is called. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
       </sectiondef>
     <briefdescription>
 <para>General properties of the Optimiser - along with <ref refid="structADABADAM_1_1StopConditions" kindref="compound">StopConditions</ref>, these are initialised by the user before optimisation starts. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="32"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="40"/>
     <listofallmembers>
+      <member refid="structADABADAM_1_1OptimizerProperties_1a19ec0404b84ce5bd53b2a819de1a32b4" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>adamBeta1</name></member>
+      <member refid="structADABADAM_1_1OptimizerProperties_1a244f65db7f7cedf6e6d37a72ceb2e289" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>adamBeta2</name></member>
+      <member refid="structADABADAM_1_1OptimizerProperties_1aa1f7c2a31f1ca80b7f65f3512db59356" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>Dimensions</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>HarnessReleaseSteps</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>MaxHarnessFactor</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>MinibatchDownStep</name></member>

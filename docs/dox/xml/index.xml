@@ -160,6 +160,8 @@
     <member refid="classADABADAM_1_1Optimizer_1ab197dd3167b06ce223798da233a01607" kind="variable"><name>Progress</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a43b245fc6ea6f2ebf37e866f4e9467a9" kind="function"><name>SetDefaults</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a8e3bc7c0b60f1966a9afa044dc492725" kind="function"><name>Initialise</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8f21b01d041104c4af8f0c3253e5ab84" kind="function"><name>ADABADAM_Batch</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a5384c9cdea64e7ccd1ffc7dbe21cdd79" kind="function"><name>ADABADAM_Epoch</name></member>
     <member refid="classADABADAM_1_1Optimizer_1aaa9cbc92f2f6e73b5c5519f7e5d49d8e" kind="function"><name>ADABADAM_Body</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a5eb97d9042e07d43df8bee42e4bdd1e9" kind="function"><name>CheckConvergence</name></member>
     <member refid="classADABADAM_1_1Optimizer_1a6429082a232ed285df6a0a477d585ab9" kind="function"><name>CheckMinibatches</name></member>
@@ -181,6 +183,9 @@
     <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kind="variable"><name>HarnessReleaseSteps</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kind="variable"><name>StepsPerPositionSave</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kind="variable"><name>UniquePositionSaves</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a19ec0404b84ce5bd53b2a819de1a32b4" kind="variable"><name>adamBeta1</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a244f65db7f7cedf6e6d37a72ceb2e289" kind="variable"><name>adamBeta2</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1aa1f7c2a31f1ca80b7f65f3512db59356" kind="variable"><name>Dimensions</name></member>
   </compound>
   <compound refid="structADABADAM_1_1OptimizerStatus" kind="struct"><name>ADABADAM::OptimizerStatus</name>
     <member refid="structADABADAM_1_1OptimizerStatus_1a9ac9dc3b9934d3a3bf6370eba4968e84" kind="variable"><name>Continues</name></member>
@@ -195,6 +200,7 @@
   </compound>
   <compound refid="structADABADAM_1_1ProgressTracker" kind="struct"><name>ADABADAM::ProgressTracker</name>
     <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kind="variable"><name>CurrentSteps</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1aa67e6ae7e23401865ab5176f18ea18b2" kind="variable"><name>CurrentMinibatches</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" kind="variable"><name>Harness</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" kind="variable"><name>BufferFileOpened</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" kind="variable"><name>SaveLocation</name></member>
@@ -202,6 +208,10 @@
     <member refid="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" kind="variable"><name>MaxHashes</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" kind="variable"><name>SlowdownTriggers</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1ae3e590c4f984ab91b08139af68c87e77" kind="variable"><name>EpochsSinceSingleBatch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ace5fd0a5df1a9e85022df68d4f4c9899" kind="variable"><name>LearningRate</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1aaa511c069db9d7e74bc64e1159575085" kind="variable"><name>PreviousEpoch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a73ed16b97ffd817d50146296a03e3fc2" kind="variable"><name>PreviousMinibatch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a0f04c9ea82e293d0d131a586bf66ca81" kind="variable"><name>InitialSaveComplete</name></member>
   </compound>
   <compound refid="classStar" kind="class"><name>Star</name>
     <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kind="variable"><name>nMeasure</name></member>

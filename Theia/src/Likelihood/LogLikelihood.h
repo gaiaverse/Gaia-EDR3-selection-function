@@ -36,7 +36,7 @@ class LogLikelihood
 		
 		/*!
 		 \brief Constructor function. 
-		 \param data A vector of Star objects arranged according to the minibatching schedule. 
+		 \param data A vector of Star objects arranged according to the \verbatim embed:rst:inline :ref:`minibatching schedule <minibatching>` \endverbatim. 
 		*/
 		LogLikelihood(const std::vector<std::vector<Star>> & data);
 		

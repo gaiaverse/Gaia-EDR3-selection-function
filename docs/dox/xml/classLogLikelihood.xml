@@ -78,7 +78,7 @@
 <parametername>data</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A vector of <ref refid="classStar" kindref="compound">Star</ref> objects arranged according to the minibatching schedule. </para></parameterdescription>
+<para>A vector of <ref refid="classStar" kindref="compound">Star</ref> objects arranged according to the<verbatim>embed:rst:inline :ref:`minibatching schedule &lt;minibatching&gt;` </verbatim>. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 </para>        </detaileddescription>

@@ -8,7 +8,7 @@ namespace ADABADAM
 	//!General properties of the Optimiser - along with StopConditions, these are initialised by the user before optimisation starts.
 	struct OptimizerProperties
 	{
-		/*!The number of \verbatim embed:rst:inline :doc:`minibatches <minibatching>` used by the optimizer \endverbatim. This number is mutable and changes as downsteps are invoked */
+		/*!The number of \verbatim embed:rst:inline :ref:`minibatches <minibatching>` used by the optimizer \endverbatim. This number is mutable and changes as downsteps are invoked */
 		int MiniBatches;
 		
 		//! The multiplicative prefactor all changes to the position have. In a dumb optimizer it would be the magnitude of the step-vector, but the ADAM stuff messes around with that.
@@ -29,6 +29,14 @@ namespace ADABADAM
 		//!If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation. Usually set by the user from the command line via CommandArgs::SaveAllSteps
 		bool UniquePositionSaves;
 
+		//! The beta1 parameter of a normal ADAM optimiser -- the first moment weighting factor
+		bool adamBeta1;
+		
+		//! The beta2 parameter of a normal ADAM optimiser -- the second moment weighting factor
+		bool adamBeta2;
+		
+		//! The dimensionality of the optimizing space. Determined when Optimizer::Minimize() is called. 
+		int Dimensions;
 	};
 	
 	//! A series of conditions and variables which assert when and how the optimizer will quit, and if it will consider itself to have `converge' when it does so.
@@ -97,6 +105,9 @@ namespace ADABADAM
 		//! The current number of complete epochs 
 		int CurrentSteps;
 		
+		//! The current number of minibatches, cannot be higher than OptimizerProperties::MiniBatches
+		int CurrentMinibatches;
+		
 		//! The current speed multiplier. Usually set to 1, if an event occurs, the harness is set to 1/#OptimizerProperties::MaxHarnessValue and hence slows down the rate of change of the optimizere, and hence protects it from rapid changes induced by changes in the optimizer, rather than changes in the function.
 		double Harness;
 		
@@ -117,6 +128,17 @@ namespace ADABADAM
 		
 		//! The number of epochs since a downstep to 1 minibatch. Used to determine if StopConditions::SingleBatchStepThreshold applies
 		int EpochsSinceSingleBatch;
+		
+		//! The current learning rate -- very closely related to OptimizerProperties::StepSize, but can be reduced if a step is taken which increases the functional value. 
+		double LearningRate;
+		
+		//! Previous functional value so per-epoch progress can be compared
+		double PreviousEpoch;
+		//! Previous functional value so per-step progress can be compared
+		double PreviousMinibatch;
+		
+		//! Used to indicate that the zeroth position has been saved to file
+		bool InitialSaveComplete;
 	};
 	
 	//! A set of internal memory buffers and controls for when to execute them. Used to hold a buffer for Optimizer::SaveProgress() and also the long-term analysis in Optimizer::CheckConvergence()

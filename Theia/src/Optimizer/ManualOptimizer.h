@@ -135,7 +135,10 @@ namespace ADABADAM
 				Status.ExternalTermination = false;
 				Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 				Progress.BufferFileOpened = false;
+				Progress.InitialSaveComplete = false;
 				
+				Progress.PreviousEpoch = 9999999;
+				Progress.PreviousMinibatch = 999999;
 				Buffer.Position = 0;
 				Buffer.StartTime = std::chrono::system_clock::now();
 				Buffer.LastSaveTime = std::chrono::system_clock::now();
@@ -164,152 +167,154 @@ namespace ADABADAM
 				}
 			}
 				
-			/*! The bulk of the ADABADAM machinery, excuting the main workflow. For a discussion about what this funciton does, see  \verbatim embed:rst:inline :ref:`adabadam-theory` \endverbatim. \param x The initial starting position to optimize towards. */
+			//! Executes the per-minibatch portion, asking #Functor to calculate a gradient, and then using that to generate a step, dx, thereby performing a single optimization step.
+			void ADABADAM_Batch(int t, std::vector<double> &m, std::vector<double> &v, std::vector<double> &x, std::vector<double> & epochGradient, double & epochL, const int batches, const std::vector<int> & batchOrder)
+			{
+				const double eps = 1e-10;
+				int currentBatch = batchOrder[batches];
+
+				Functor.Calculate(x,currentBatch,Progress.CurrentMinibatches);
+				//save initial position
+				
+				
+				double b1Mod = 1.0/(1.0 - pow(Properties.adamBeta1,t));
+				double b2Mod = 1.0/(1.0 - pow(Properties.adamBeta2,t));			
+				
+				double gNorm = 0;
+				double dxNorm = 0;
+			
+				for (int i = 0; i < Properties.Dimensions; ++i)
+				{
+					double g = Functor.Gradient[i];
+				
+					gNorm += g*g;
+					m[i] = Properties.adamBeta1 * m[i] + (1.0 - Properties.adamBeta1)*g;
+					v[i] = Properties.adamBeta2* v[i] + (1.0 - Properties.adamBeta2) * (g*g);
+					
+					double effectiveRate = Progress.LearningRate * Progress.Harness;
+					double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
+					
+					
+					dxNorm += dx_i * dx_i;
+					x[i] += dx_i;
+					epochGradient[i] += g;
+				}	
+				
+				++t;
+				
+				epochL += Functor.Value;
+
+				if (Progress.CurrentMinibatches > 1)
+				{
+					double df_mini = Functor.Value - Progress.PreviousMinibatch;
+					Progress.PreviousMinibatch = Functor.Value;
+					double sqrtgNorm = sqrt(gNorm);
+					UpdateBuffer(batches,Progress.CurrentMinibatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
+				}
+				if (!Progress.InitialSaveComplete)
+				{
+					Progress.PreviousEpoch = Functor.Value;
+					Functor.SavePosition(false,0,Properties.UniquePositionSaves);
+					Progress.InitialSaveComplete = true;
+				}
+				double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * Progress.CurrentMinibatches));
+
+				Progress.Harness = std::min(1.0,Progress.Harness * harnessFactor);
+			};
+			
+			
+			//! Executes the per-Epoch loop: generates a random order for the minibatches and then loops over them, calling ADABADAM_Batch(), before performing convergence and downstep checks.
+			void ADABADAM_Epoch(int & t, std::vector<double> &m, std::vector<double> &v, std::vector<double> & epochGradient, std::vector<double> &x, std::vector<double> & oldX)
+			{
+				
+				int epochs = Progress.CurrentSteps + 1;
+				
+				double epochL = 0;
+				std::fill(epochGradient.begin(), epochGradient.end(),0.0);
+								
+				std::vector<int> batchOrder = randomShuffle(Progress.CurrentMinibatches);
+
+		
+				for (int batches = 0; batches < Progress.CurrentMinibatches; ++batches)
+				{
+					ADABADAM_Batch(t,m,v,x,epochGradient, epochL, batches,batchOrder);		
+				}
+				
+				epochL/=Progress.CurrentMinibatches;
+				double df = epochL - Progress.PreviousEpoch;
+				Progress.PreviousEpoch = epochL;
+				double epochGradNorm = norm(epochGradient)/sqrt(Progress.CurrentMinibatches);
+				double epochDx = vectorDiffNorm(x,oldX);
+				oldX = x;
+				
+				++Progress.CurrentSteps;
+				CheckExternalFiles();
+				UpdateBuffer(-1,Progress.CurrentMinibatches,epochL,epochGradNorm,df,epochDx,x);
+				
+				double newBatches = CheckMinibatches(df,Progress.CurrentMinibatches);
+				
+				if (newBatches < Progress.CurrentMinibatches)
+				{
+					Progress.CurrentMinibatches = newBatches;
+					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
+					Properties.StepSize = Properties.StepSize;
+					std::cout << "\t\t\t\tThe stepsize has been reduced to " << Progress.CurrentMinibatches << " with a learning rate " << Progress.LearningRate << std::endl;
+
+				}
+				
+				
+				if (df > 0)
+				{
+					Progress.LearningRate *= 0.5;
+					++Progress.SlowdownTriggers;
+				}
+				if (df < 0)
+				{
+					Progress.LearningRate *= 1.01;
+					if (Progress.LearningRate > Properties.StepSize)
+					{
+						Progress.LearningRate = Properties.StepSize;
+					}
+				}
+				
+				
+				CheckConvergence(norm(epochGradient),df,epochDx);
+				if (Status.Continues == false && (Progress.CurrentMinibatches > 1 || Progress.Harness < 1) && !Status.ExternalTermination)
+				{
+					Status.Continues = true;
+					Progress.CurrentMinibatches = std::max(1,Progress.CurrentMinibatches/2);
+					if (Progress.Harness ==1)
+					{
+						Progress.Harness = 1.0/Properties.MaxHarnessFactor;
+					}
+					std::cout << "\t\t\t\tThe stepsize has been reduced to " << Progress.CurrentMinibatches << " with a learning rate " << Progress.LearningRate << std::endl;
+
+				}
+					
+				
+			}
+				
+			
+			/*! The bulk of the ADABADAM machinery, excuting the main workflow. For a discussion about what this function does, see  \verbatim embed:rst:inline :ref:`adabadam-theory` \endverbatim. \param x The initial starting position to optimize towards. */
 			void ADABADAM_Body(std::vector<double> &x)
 			{
-				int EffectiveBatches = Properties.MiniBatches;
+				Progress.CurrentMinibatches = Properties.MiniBatches;
 	
-				int Dimensions = x.size();
-				
+				int n = x.size();
+				Properties.Dimensions = n;
 				
 				//initialise ADAM vectors
-				std::vector<double> m(Dimensions,0.0);
-				std::vector<double> v(Dimensions,0.0);
-				std::vector<double> epochGradient(Dimensions,0.0);
+				std::vector<double> m(n,0.0);
+				std::vector<double> v(n,0.0);
+				std::vector<double> epochGradient(n,0.0);
 				std::vector<double> oldX = x;
-				
-				//ADAM Variables
-				double beta1 = 0.7;
-				double beta2 = 0.99;
-				double eps = 1e-10;
-				double learningRate = Properties.StepSize;
-				
-				double previousEpoch = 99999999;
-				double previousMinibatch = 9999999;
-				
 				int t = 1;
 	
-				bool burnInStopped = false;
+		
 				bool initSaved = false;
 				while (Status.Continues && ~Status.CarryingOnRegardless)
 				{
-					int epochs = Progress.CurrentSteps + 1;
-					double epochL = 0;
-					std::fill(epochGradient.begin(), epochGradient.end(),0.0);
-									
-					std::vector<int> batchOrder = randomShuffle(EffectiveBatches);
-	
-			
-					for (int batches = 0; batches < EffectiveBatches; ++batches)
-					{
-						
-						int currentBatch = batchOrder[batches];
-
-						Functor.Calculate(x,currentBatch,EffectiveBatches);
-						//save initial position
-						
-						
-						double b1Mod = 1.0/(1.0 - pow(beta1,t));
-						double b2Mod = 1.0/(1.0 - pow(beta2,t));			
-						
-						double gNorm = 0;
-						double dxNorm = 0;
-					
-						for (int i = 0; i < Dimensions; ++i)
-						{
-							double g = Functor.Gradient[i];
-						
-							gNorm += g*g;
-							m[i] = beta1 * m[i] + (1.0 - beta1)*g;
-							v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
-							
-							double effectiveRate = learningRate * Progress.Harness;
-							double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
-							
-							
-							dxNorm += dx_i * dx_i;
-							x[i] += dx_i;
-							epochGradient[i] += g;
-						}	
-						
-						++t;
-						
-						epochL += Functor.Value;
-	
-						if (EffectiveBatches > 1)
-						{
-							double df_mini = Functor.Value - previousMinibatch;
-							previousMinibatch = Functor.Value;
-							double sqrtgNorm = sqrt(gNorm);
-							UpdateBuffer(batches,EffectiveBatches,Functor.Value,sqrtgNorm,df_mini,sqrt(dxNorm),x);
-						}
-						if (!initSaved)
-						{
-							previousEpoch = Functor.Value;
-							Functor.SavePosition(false,0,Properties.UniquePositionSaves);
-							initSaved = true;
-						}
-						double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * EffectiveBatches));
-	
-						Progress.Harness = std::min(1.0,Progress.Harness * harnessFactor);
-						
-						
-					}
-					
-					epochL/=EffectiveBatches;
-					double df = epochL - previousEpoch;
-					previousEpoch = epochL;
-					double epochGradNorm = norm(epochGradient)/sqrt(EffectiveBatches);
-					double epochDx = vectorDiffNorm(x,oldX);
-					oldX = x;
-					
-					++Progress.CurrentSteps;
-					CheckExternalFiles();
-					UpdateBuffer(-1,EffectiveBatches,epochL,epochGradNorm,df,epochDx,x);
-					
-					double newBatches = CheckMinibatches(df,EffectiveBatches);
-					
-					if (newBatches < EffectiveBatches)
-					{
-						EffectiveBatches = newBatches;
-						Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-						learningRate = learningRate/4;
-						Properties.StepSize = Properties.StepSize;
-						std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
-	
-					}
-					
-					
-					if (df > 0)
-					{
-						learningRate *= 0.5;
-						++Progress.SlowdownTriggers;
-						beta1 = 0.2;
-					}
-					if (df < 0)
-					{
-						learningRate *= 1.01;
-						beta1 = 0.8;
-						if (learningRate > Properties.StepSize)
-						{
-							learningRate = Properties.StepSize;
-						}
-					}
-					
-					
-					CheckConvergence(norm(epochGradient),df,epochDx);
-					if (Status.Continues == false && (EffectiveBatches > 1 || Progress.Harness < 1) && !Status.ExternalTermination)
-					{
-						Status.Continues = true;
-						EffectiveBatches = std::max(1,EffectiveBatches/2);
-						if (Progress.Harness ==1)
-						{
-							Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-						}
-						std::cout << "\t\t\t\tThe stepsize has been reduced to " << EffectiveBatches << " with a learning rate " << learningRate << std::endl;
-	
-					}
-					
+					ADABADAM_Epoch(t, m, v, epochGradient, x, oldX);
 				}
 				SaveBuffer(Buffer.Position);
 				Functor.SavePosition(true,0,Properties.UniquePositionSaves);

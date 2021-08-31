@@ -30,6 +30,8 @@ Things that need doing, or doing better:
 * |ss| Document all GlobalVariables |se|
 * |ss| Document the DataLoading functions |se|
 * |ss| Document the starAllocation script |se|
+* |ss| Document + clean up the :doc:`optimiser` class |se|
+* |ss| Document what ADABADAM does |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -38,6 +40,5 @@ Things that need doing, or doing better:
 * I'm not a 100% sure on what needlets and needlet-mappings do in :doc:`inputs`, would be nice to get confirmation of that
 * Write a more in-depth description of the spatial forward and backward transforms
 * Code output page 
-* Document + clean up the :doc:`optimiser`
 * Document parallelisation scheme
 * Document minibatching scheme

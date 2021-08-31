@@ -170,7 +170,7 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>If loaded by the <ref refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kindref="member">RootID</ref> process, calls the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> and <ref refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kindref="member">CalculateBatches()</ref>, before using that information to load the assigned stars into the<verbatim>embed:rst:inline :doc:`required structures &lt;minibatching&gt;` </verbatim>. <parameterlist kind="param"><parameteritem>
+<para>If loaded by the <ref refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kindref="member">RootID</ref> process, calls the<verbatim>embed:rst:inline :doc:`assignment-creation` </verbatim> protocol (an external Python file), and uses MPI to block all other workers from continuing until the script completes. All workers then <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> and <ref refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kindref="member">CalculateBatches()</ref>, before using that information to load the assigned stars into the<verbatim>embed:rst:inline :ref:`required structures &lt;minibatching&gt;` </verbatim>. <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>ProcessRank</parametername>
 </parameternamelist>
