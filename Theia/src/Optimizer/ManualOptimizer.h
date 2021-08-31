@@ -92,7 +92,7 @@ namespace ADABADAM
 				Buffer.OverrideTime = 300;
 				Progress.SaveLocation = "";
 				Progress.MaxHashes = 32;
-				Progress.StepsPerPositionSave = 1;
+				Properties.StepsPerPositionSave = 1;
 			}
 			
 			void Initialise()
@@ -195,7 +195,7 @@ namespace ADABADAM
 							m[i] = beta1 * m[i] + (1.0 - beta1)*g;
 							v[i] = beta2 * v[i] + (1.0 - beta2) * (g*g);
 							
-							double effectiveRate = learningRate * Progress.Harness * Progress.SpeedController[i];
+							double effectiveRate = learningRate * Progress.Harness * Properties.SpeedController[i];
 							double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
 							
 							
@@ -218,7 +218,7 @@ namespace ADABADAM
 						if (!initSaved)
 						{
 							previousEpoch = Functor.Value;
-							Functor.SavePosition(false,0,Progress.UniquePositionSaves);
+							Functor.SavePosition(false,0,Properties.UniquePositionSaves);
 							initSaved = true;
 						}
 						double harnessFactor = pow(Properties.MaxHarnessFactor, 1.0/(Properties.HarnessReleaseSteps * EffectiveBatches));
@@ -284,7 +284,7 @@ namespace ADABADAM
 					
 				}
 				SaveProgress(Buffer.Position);
-				Functor.SavePosition(true,0,Progress.UniquePositionSaves);
+				Functor.SavePosition(true,0,Properties.UniquePositionSaves);
 				CleanExternalFiles();
 			}
 				
@@ -320,7 +320,7 @@ namespace ADABADAM
 				}
 				
 				Status.CarryingOnRegardless = false;
-				if (Status.Continues == false && Progress.TimeSinceSingleBatch < HaltConditions.SingleBatchStepThreshold)
+				if (Status.Continues == false && Progress.EpochsSinceSingleBatch < HaltConditions.SingleBatchStepThreshold)
 				{
 					Status.CarryingOnRegardless = true || !Status.ExternalTermination;
 				}
@@ -352,7 +352,7 @@ namespace ADABADAM
 				}		
 				if (currentSize == 1)
 				{
-					++Progress.TimeSinceSingleBatch;
+					++Progress.EpochsSinceSingleBatch;
 				}
 				return newSize;
 			}
@@ -380,9 +380,8 @@ namespace ADABADAM
 				double mean = sum / N;
 			
 				int problematicSignChanges = std::max(2,N/3);
-				if ((mean > 0) || signChanges >= problematicSignChanges || Progress.SlowdownTriggers > 5)
+				if ((mean > 0) || signChanges >= problematicSignChanges || Progress.SlowdownTriggers > 2)
 				{
-					
 					batchesAreAProblem = true;
 				}
 	
@@ -416,9 +415,7 @@ namespace ADABADAM
 				
 				if (batch == -1)
 				{
-					double frac = 0.9;
-					Progress.MovingAverage = frac*Progress.MovingAverage + (1.0- frac)*dF;
-					
+
 					
 					if (nBatches == 1)
 					{
@@ -433,9 +430,9 @@ namespace ADABADAM
 					
 					
 					
-					if (Progress.CurrentSteps % Progress.StepsPerPositionSave == 0)
+					if (Progress.CurrentSteps % Properties.StepsPerPositionSave == 0)
 					{
-						Functor.SavePosition(false,Progress.CurrentSteps,Progress.UniquePositionSaves);
+						Functor.SavePosition(false,Progress.CurrentSteps,Properties.UniquePositionSaves);
 					}
 					std::cout << "\t\t\t" << JSL::PrintCurrentTime();
 				}
@@ -612,12 +609,12 @@ namespace ADABADAM
 					n+=sizes[i];
 				}
 				int c = 0;
-				Progress.SpeedController.resize(n);
+				Properties.SpeedController.resize(n);
 				for (int i = 0; i < sizes.size(); ++i)
 				{
 					for (int j = 0; j < sizes[i]; ++j)
 					{
-						Progress.SpeedController[c] = speeds[i];
+						Properties.SpeedController[c] = speeds[i];
 						++c; 
 					}
 				}

@@ -75,8 +75,8 @@ void RootProcess()
 	
 	//set up other properties
 	op.Properties.MiniBatches = Args.Minibatches;
-	op.Progress.StepsPerPositionSave = Args.SaveSteps;
-	op.Progress.UniquePositionSaves = Args.SaveAllSteps;
+	op.Properties.StepsPerPositionSave = Args.SaveSteps;
+	op.Properties.UniquePositionSaves = Args.SaveAllSteps;
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;

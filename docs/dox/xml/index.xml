@@ -177,34 +177,33 @@
   <compound refid="structADABADAM_1_1OptimizerProperties" kind="struct"><name>ADABADAM::OptimizerProperties</name>
     <member refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kind="variable"><name>MiniBatches</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" kind="variable"><name>StepSize</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a6b17b03f668af6c2f2094006e82bacd9" kind="variable"><name>SpeedController</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" kind="variable"><name>MinibatchDownStep</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kind="variable"><name>MaxHarnessFactor</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kind="variable"><name>HarnessReleaseSteps</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kind="variable"><name>StepsPerPositionSave</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kind="variable"><name>UniquePositionSaves</name></member>
   </compound>
   <compound refid="structADABADAM_1_1OptimizerStatus" kind="struct"><name>ADABADAM::OptimizerStatus</name>
     <member refid="structADABADAM_1_1OptimizerStatus_1a9ac9dc3b9934d3a3bf6370eba4968e84" kind="variable"><name>Continues</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kind="variable"><name>Converged</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a277ce873a751efbb1dc12f725ea7f767" kind="variable"><name>CarryingOnRegardless</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1a69a34cae9924b08720178027ee8a2c62" kind="variable"><name>TooManySteps</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1a40cb570383c77058fa96b4856c78e9f6" kind="variable"><name>ReachedGradConvergence</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1ab2d79284c4ba68339d144243c2da9876" kind="variable"><name>ReachedStepConvergence</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1a3c4157c094a48a9a58d8ba5724874f92" kind="variable"><name>ReachedFunctionConvergence</name></member>
-    <member refid="structADABADAM_1_1OptimizerStatus_1a277ce873a751efbb1dc12f725ea7f767" kind="variable"><name>CarryingOnRegardless</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1ae8c48c5e102bee2c182567186fe7eea9" kind="variable"><name>ExternalDownStep</name></member>
     <member refid="structADABADAM_1_1OptimizerStatus_1ae6eb602b852ab6c35d38a651a1eeaf4e" kind="variable"><name>ExternalTermination</name></member>
   </compound>
   <compound refid="structADABADAM_1_1ProgressTracker" kind="struct"><name>ADABADAM::ProgressTracker</name>
     <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kind="variable"><name>CurrentSteps</name></member>
-    <member refid="structADABADAM_1_1ProgressTracker_1a901eacadc8b511ef9ea8d8fb8cb6fdad" kind="variable"><name>MovingAverage</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" kind="variable"><name>Harness</name></member>
-    <member refid="structADABADAM_1_1ProgressTracker_1a699bbec86d18a96818a8c2fab7347e70" kind="variable"><name>SpeedController</name></member>
-    <member refid="structADABADAM_1_1ProgressTracker_1a22057f687813303d623e115d59baba08" kind="variable"><name>StepsPerPositionSave</name></member>
-    <member refid="structADABADAM_1_1ProgressTracker_1a3b6dc0b1e07f05a9cee9510dce507048" kind="variable"><name>UniquePositionSaves</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" kind="variable"><name>BufferFileOpened</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" kind="variable"><name>SaveLocation</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a7c3f518985d1790811e9c8382f366bec" kind="variable"><name>Hashes</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" kind="variable"><name>MaxHashes</name></member>
     <member refid="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" kind="variable"><name>SlowdownTriggers</name></member>
-    <member refid="structADABADAM_1_1ProgressTracker_1a63b47212063f59708cc164c332532e00" kind="variable"><name>TimeSinceSingleBatch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ae3e590c4f984ab91b08139af68c87e77" kind="variable"><name>EpochsSinceSingleBatch</name></member>
   </compound>
   <compound refid="classStar" kind="class"><name>Star</name>
     <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kind="variable"><name>nMeasure</name></member>

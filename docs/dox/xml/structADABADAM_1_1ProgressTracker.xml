@@ -10,25 +10,12 @@
         <argsstring></argsstring>
         <name>CurrentSteps</name>
         <briefdescription>
-        </briefdescription>
+<para>The current number of complete epochs. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="69" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="69" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a901eacadc8b511ef9ea8d8fb8cb6fdad" prot="public" static="no" mutable="no">
-        <type>double</type>
-        <definition>double ADABADAM::ProgressTracker::MovingAverage</definition>
-        <argsstring></argsstring>
-        <name>MovingAverage</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="70" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="70" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="101" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="101" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -36,51 +23,12 @@
         <argsstring></argsstring>
         <name>Harness</name>
         <briefdescription>
-        </briefdescription>
+<para>The current speed multiplier. Usually set to 1, if an event occurs, the harness is set to 1/#OptimizerProperties::MaxHarnessValue and hence slows down the rate of change of the optimizere, and hence protects it from rapid changes induced by changes in the optimizer, rather than changes in the function. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="71" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="71" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a699bbec86d18a96818a8c2fab7347e70" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; double &gt;</type>
-        <definition>std::vector&lt;double&gt; ADABADAM::ProgressTracker::SpeedController</definition>
-        <argsstring></argsstring>
-        <name>SpeedController</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="72" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="72" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a22057f687813303d623e115d59baba08" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int ADABADAM::ProgressTracker::StepsPerPositionSave</definition>
-        <argsstring></argsstring>
-        <name>StepsPerPositionSave</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="73" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="73" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a3b6dc0b1e07f05a9cee9510dce507048" prot="public" static="no" mutable="no">
-        <type>bool</type>
-        <definition>bool ADABADAM::ProgressTracker::UniquePositionSaves</definition>
-        <argsstring></argsstring>
-        <name>UniquePositionSaves</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="74" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="74" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="104" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -88,12 +36,12 @@
         <argsstring></argsstring>
         <name>BufferFileOpened</name>
         <briefdescription>
-        </briefdescription>
+<para>If false, when <ref refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kindref="member">Optimizer::SaveProgress()</ref> is called, overwrites the existing file and inserts appropriate headers. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="76" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="76" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="107" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="107" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" prot="public" static="no" mutable="no">
         <type>std::string</type>
@@ -101,12 +49,12 @@
         <argsstring></argsstring>
         <name>SaveLocation</name>
         <briefdescription>
-        </briefdescription>
+<para>The location into which the <ref refid="structADABADAM_1_1MemoryBuffer" kindref="compound">MemoryBuffer</ref> object is saved. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="77" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="77" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="110" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="110" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a7c3f518985d1790811e9c8382f366bec" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -114,12 +62,12 @@
         <argsstring></argsstring>
         <name>Hashes</name>
         <briefdescription>
-        </briefdescription>
+<para>The current number of hashes in the progress bar. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="79" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="79" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="113" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="113" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -127,12 +75,12 @@
         <argsstring></argsstring>
         <name>MaxHashes</name>
         <briefdescription>
-        </briefdescription>
+<para>The number of hashes in a full progress bar. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="80" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="80" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="116" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="116" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -140,45 +88,41 @@
         <argsstring></argsstring>
         <name>SlowdownTriggers</name>
         <briefdescription>
-        </briefdescription>
+<para>Then number of times that the Harness has been invoked due to i.e. the function increasing in value. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="81" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="81" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="119" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="119" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1a63b47212063f59708cc164c332532e00" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structADABADAM_1_1ProgressTracker_1ae3e590c4f984ab91b08139af68c87e77" prot="public" static="no" mutable="no">
         <type>int</type>
-        <definition>int ADABADAM::ProgressTracker::TimeSinceSingleBatch</definition>
+        <definition>int ADABADAM::ProgressTracker::EpochsSinceSingleBatch</definition>
         <argsstring></argsstring>
-        <name>TimeSinceSingleBatch</name>
+        <name>EpochsSinceSingleBatch</name>
         <briefdescription>
-        </briefdescription>
+<para>The number of epochs since a downstep to 1 minibatch. Used to determine if <ref refid="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" kindref="member">StopConditions::SingleBatchStepThreshold</ref> applies. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="82" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="82" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="122" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="122" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Enumerates the current progress and position of the optimiser. Contains information about various trackers and info about how the optimiser is moving. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="68" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="67" bodyend="83"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="99" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="98" bodyend="123"/>
     <listofallmembers>
       <member refid="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>BufferFileOpened</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>CurrentSteps</name></member>
+      <member refid="structADABADAM_1_1ProgressTracker_1ae3e590c4f984ab91b08139af68c87e77" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>EpochsSinceSingleBatch</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>Harness</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1a7c3f518985d1790811e9c8382f366bec" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>Hashes</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>MaxHashes</name></member>
-      <member refid="structADABADAM_1_1ProgressTracker_1a901eacadc8b511ef9ea8d8fb8cb6fdad" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>MovingAverage</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>SaveLocation</name></member>
       <member refid="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>SlowdownTriggers</name></member>
-      <member refid="structADABADAM_1_1ProgressTracker_1a699bbec86d18a96818a8c2fab7347e70" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>SpeedController</name></member>
-      <member refid="structADABADAM_1_1ProgressTracker_1a22057f687813303d623e115d59baba08" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>StepsPerPositionSave</name></member>
-      <member refid="structADABADAM_1_1ProgressTracker_1a63b47212063f59708cc164c332532e00" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>TimeSinceSingleBatch</name></member>
-      <member refid="structADABADAM_1_1ProgressTracker_1a3b6dc0b1e07f05a9cee9510dce507048" prot="public" virt="non-virtual"><scope>ADABADAM::ProgressTracker</scope><name>UniquePositionSaves</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

@@ -10,12 +10,12 @@
         <argsstring></argsstring>
         <name>Size</name>
         <briefdescription>
-        </briefdescription>
+<para>The allowed size of the memory buffer <ndash/> when full, saves the file and loops back around. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="86" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="86" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="129" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a72cd71bdb0010e7855d369a8afa18127" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -23,12 +23,12 @@
         <argsstring></argsstring>
         <name>Position</name>
         <briefdescription>
-        </briefdescription>
+<para>The current position of the memory buffer. initialised to 0 and increments each calculation. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="87" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="87" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="132" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="132" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1acfaafc64e76da8e65b151e4fa47d1030" prot="public" static="no" mutable="no">
         <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
@@ -36,12 +36,12 @@
         <argsstring></argsstring>
         <name>StartTime</name>
         <briefdescription>
-        </briefdescription>
+<para>The time at which the optimizer began the current optimization run. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="88" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="88" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="135" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a9d771fa2b6d919faa831f5f415485d42" prot="public" static="no" mutable="no">
         <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
@@ -49,12 +49,12 @@
         <argsstring></argsstring>
         <name>LastSaveTime</name>
         <briefdescription>
-        </briefdescription>
+<para>The last time at which a <ref refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kindref="member">Optimizer::SaveProgress()</ref> call was made. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="89" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="89" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="138" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="138" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1ac83c89b9e094cc7c14d0c261f3ac8cc8" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -62,12 +62,12 @@
         <argsstring></argsstring>
         <name>OverrideTime</name>
         <briefdescription>
-        </briefdescription>
+<para>If LastSaveTime exceeds this parameter, an <ref refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kindref="member">Optimizer::SaveProgress()</ref> call is made, even if the buffer is not full. Usually set to 5 minutes (in seconds) </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="90" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="90" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="141" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1aa33883a707ec5489851bd402286a1429" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -75,12 +75,12 @@
         <argsstring></argsstring>
         <name>Fs</name>
         <briefdescription>
-        </briefdescription>
+<para>A vector containing the last-calculated value of the functional value. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="92" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="92" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="144" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="144" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a139cfda602a424ca9c0986d520fe5790" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -88,12 +88,12 @@
         <argsstring></argsstring>
         <name>Gradnorms</name>
         <briefdescription>
-        </briefdescription>
+<para>A vector containing the last-calculated value of the absolute value of the gradient. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="93" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="93" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="147" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="147" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1adb2e685f7d2a863caf046bf4a3d0a432" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -101,12 +101,12 @@
         <argsstring></argsstring>
         <name>DXs</name>
         <briefdescription>
-        </briefdescription>
+<para>A vector containing the last-calculated value of the absolute value |dx|. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="94" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="94" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="150" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="150" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a6d1be32973eb7c314694a7e0f44b1426" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -114,12 +114,12 @@
         <argsstring></argsstring>
         <name>Times</name>
         <briefdescription>
-        </briefdescription>
+<para>A vector containing the times (measured in seconds from initialisation) that the other values were calculated at. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="95" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="95" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="153" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="153" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a95073ef182ced1e1bdf5e506fbf5d340" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -127,12 +127,12 @@
         <argsstring></argsstring>
         <name>MiniBatches</name>
         <briefdescription>
-        </briefdescription>
+<para>A vector containing the minibatch ID for the associated calculations. -1 is used to indicate a whole-epoch average. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="96" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="96" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="156" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="156" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1ad9a13b1da67a97d2c0df769f4adcc179" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -140,12 +140,12 @@
         <argsstring></argsstring>
         <name>Epochs</name>
         <briefdescription>
-        </briefdescription>
+<para>The epoch IDs for the associated calculations. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="97" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="97" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="159" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="159" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a7386385a1aeeac03f49dd0b72209088d" prot="public" static="no" mutable="no">
         <type>std::vector&lt; int &gt;</type>
@@ -153,12 +153,12 @@
         <argsstring></argsstring>
         <name>Batches</name>
         <briefdescription>
-        </briefdescription>
+<para>The number of minibatches being used for each of the associated calculations. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="98" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="98" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="162" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="162" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a490e91144105a17b5c3fd4614b698c31" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -166,12 +166,12 @@
         <argsstring></argsstring>
         <name>AnalysisSteps</name>
         <briefdescription>
-        </briefdescription>
+<para>The current position of the AnalysisBuffer. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="100" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="100" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="165" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="165" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1a6ec89787708be27dae727a95e1d150d1" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -179,12 +179,12 @@
         <argsstring></argsstring>
         <name>AnalysisSize</name>
         <briefdescription>
-        </briefdescription>
+<para>The size of the AnalysisBuffer. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="101" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="101" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="168" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="168" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1MemoryBuffer_1ae39263a1b1c6154e1ebd74434473c0f7" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -192,19 +192,19 @@
         <argsstring></argsstring>
         <name>Analysis</name>
         <briefdescription>
-        </briefdescription>
+<para>A buffer of previously calculated values of F. Stored separately from <ref refid="structADABADAM_1_1MemoryBuffer_1aa33883a707ec5489851bd402286a1429" kindref="member">Fs</ref> as the Analysis buffer is used to determine downstep properties so it is beneficial for its size to be small, indepenedent of the buffer. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="102" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="102" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="171" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="171" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>A set of internal memory buffers and controls for when to execute them. Used to hold a buffer for <ref refid="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" kindref="member">Optimizer::SaveProgress()</ref> and also the long-term analysis in <ref refid="classADABADAM_1_1Optimizer_1a5eb97d9042e07d43df8bee42e4bdd1e9" kindref="member">Optimizer::CheckConvergence()</ref> </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="85" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="84" bodyend="103"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="127" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="126" bodyend="172"/>
     <listofallmembers>
       <member refid="structADABADAM_1_1MemoryBuffer_1ae39263a1b1c6154e1ebd74434473c0f7" prot="public" virt="non-virtual"><scope>ADABADAM::MemoryBuffer</scope><name>Analysis</name></member>
       <member refid="structADABADAM_1_1MemoryBuffer_1a6ec89787708be27dae727a95e1d150d1" prot="public" virt="non-virtual"><scope>ADABADAM::MemoryBuffer</scope><name>AnalysisSize</name></member>

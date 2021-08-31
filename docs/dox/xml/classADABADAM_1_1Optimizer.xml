@@ -48,7 +48,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="568" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="568" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="565" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="565" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classADABADAM_1_1Optimizer_1a60484de5e0edc3f468b43a04cf6d2760" prot="public" static="no" mutable="no">
         <type><ref refid="structADABADAM_1_1OptimizerProperties" kindref="compound">OptimizerProperties</ref></type>
@@ -61,7 +61,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="569" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="569" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="566" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="566" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classADABADAM_1_1Optimizer_1a85b9dbc991ca7f4ab8331f53c6dfb43e" prot="public" static="no" mutable="no">
         <type><ref refid="structADABADAM_1_1StopConditions" kindref="compound">StopConditions</ref></type>
@@ -74,7 +74,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="570" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="570" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="567" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="567" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classADABADAM_1_1Optimizer_1ab197dd3167b06ce223798da233a01607" prot="public" static="no" mutable="no">
         <type><ref refid="structADABADAM_1_1ProgressTracker" kindref="compound">ProgressTracker</ref></type>
@@ -87,7 +87,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="571" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="571" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="568" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="568" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="private-func">
@@ -191,7 +191,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="360" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="360" bodyend="391"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="360" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="360" bodyend="390"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1ae8f2089142d18ce5076487012cb4ab48" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -232,7 +232,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="393" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="393" bodyend="465"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="392" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="392" bodyend="462"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a965f7ebc054d1f7495ab7e342766d7f4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -249,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="467" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="467" bodyend="503"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="464" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="464" bodyend="500"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a83f5a64421c1daad8a40d8b9c61e5176" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -262,7 +262,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="506" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="506" bodyend="521"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="503" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="503" bodyend="518"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -275,7 +275,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="523" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="523" bodyend="552"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="520" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="520" bodyend="549"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a8253c1c55048b1c7e79dd975de27e093" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -288,7 +288,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="554" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="554" bodyend="565"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="551" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="551" bodyend="562"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -307,7 +307,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="571" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="573" bodyend="576"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="568" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="570" bodyend="573"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -324,7 +324,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="578" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="578" bodyend="584"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="575" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="575" bodyend="581"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a23365766563534625999627ed782d5f8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::string</type>
@@ -337,7 +337,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="586" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="586" bodyend="605"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="583" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="583" bodyend="602"/>
       </memberdef>
       <memberdef kind="function" id="classADABADAM_1_1Optimizer_1a0f4e0955ba97dc4e1644c80356cabc3d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -358,7 +358,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="607" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="607" bodyend="624"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="604" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="604" bodyend="621"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -406,7 +406,7 @@
         <link refid="structADABADAM_1_1OptimizerProperties"/>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="66" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="65" bodyend="625"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="66" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="65" bodyend="622"/>
     <listofallmembers>
       <member refid="classADABADAM_1_1Optimizer_1aaa9cbc92f2f6e73b5c5519f7e5d49d8e" prot="private" virt="non-virtual"><scope>ADABADAM::Optimizer</scope><name>ADABADAM_Body</name></member>
       <member refid="classADABADAM_1_1Optimizer_1a2b648167c97a6ffa99773ac9cff6ed39" prot="private" virt="non-virtual"><scope>ADABADAM::Optimizer</scope><name>Buffer</name></member>

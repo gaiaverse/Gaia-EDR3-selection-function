@@ -14,6 +14,9 @@ namespace ADABADAM
 		//! The multiplicative prefactor all changes to the position have. In a dumb optimiser it would be the magnitude of the step-vector, but the ADAM stuff messes around with that.
 		double StepSize;
 		
+		//! A vector of the same dimensionality as the optimizing space. The step size multiplyer of x[i] is StepSize * SpeedController[i].
+		std::vector<double> SpeedController;
+		
 		//!The number which #MiniBatches is divided by when a downstep is called for
 		double MinibatchDownStep;
 		
@@ -22,6 +25,13 @@ namespace ADABADAM
 		
 		//! The number of complete epochs over which the Harness disables. The harness changes value every minibatch loop, but will always complete after a set number of epochs. Usually set by the user from the command line via CommandArgs::HarnessRelease
 		int HarnessReleaseSteps;
+		
+		//!The number of epochs taken by the optimizer before Optimizer::SaveProgress() is called. Usually set by the user from the command line via CommandArgs::SaveSteps
+		int StepsPerPositionSave;
+		
+		//!If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation. Usually set by the user from the command line via CommandArgs::SaveAllSteps
+		bool UniquePositionSaves;
+
 	};
 	
 	//! A series of conditions and variables which assert when and how the optimiser will quit, and if it will consider itself to have `converge' when it does so.
@@ -53,54 +63,111 @@ namespace ADABADAM
 		
 	};
 	
-	//! Large scale status variables for the optimizer - 
+	//! Large scale status variables for the optimizer - mostly used to communicate if and why the optimser stopped.
 	struct OptimizerStatus
 	{
+		//! If true, the optimiser continues on to the next loop. If false, quits, unless CarryingOnRegardless gets in the way.
 		bool Continues;
+		
+		//! If true, the optimizer is considered 'converged'. If false and the optimizer stopped, then it was forced to despite still moving. 
 		bool Converged;
-		bool TooManySteps;
-		bool ReachedGradConvergence;
-		bool ReachedStepConvergence;
-		bool ReachedFunctionConvergence;
+		
+		//! A flag which is set which forces the optimiser to ignore a Continues == false flag
 		bool CarryingOnRegardless;
+		
+		//! Flag which is set when StopConditions::MaxSteps was triggered
+		bool TooManySteps;
+		
+		//! Flag which is set when StopConditions::GradientThreshold was triggered
+		bool ReachedGradConvergence;
+		
+		//! Flag which is set when StopConditions::PositionChangeThreshold was triggered
+		bool ReachedStepConvergence;
+		
+		//! Flag which is set when StopConditions::FunctionChangeThreshold was triggered
+		bool ReachedFunctionConvergence;
+		
+		//! Flag which is set when StopConditions::DownStepFile was triggered
 		bool ExternalDownStep;
+		
+		//! Flag which is set when StopConditions::TerminationFile was triggered
 		bool ExternalTermination;
 	};
+	
+	//! Enumerates the current progress and position of the optimiser. Contains information about various trackers and info about how the optimiser is moving.
 	struct ProgressTracker
 	{
+		//! The current number of complete epochs 
 		int CurrentSteps;
-		double MovingAverage;
-		double Harness;
-		std::vector<double> SpeedController;
-		int StepsPerPositionSave;
-		bool UniquePositionSaves;
 		
+		//! The current speed multiplier. Usually set to 1, if an event occurs, the harness is set to 1/#OptimizerProperties::MaxHarnessValue and hence slows down the rate of change of the optimizere, and hence protects it from rapid changes induced by changes in the optimizer, rather than changes in the function.
+		double Harness;
+		
+		//! If false, when Optimizer::SaveProgress() is called, overwrites the existing file and inserts appropriate headers.
 		bool BufferFileOpened;
+		
+		//! The location into which the MemoryBuffer object is saved
 		std::string SaveLocation;
 		
+		//! The current number of hashes in the progress bar
 		int Hashes;
+		
+		//! The number of hashes in a full progress bar
 		int MaxHashes;
+		
+		//! Then number of times that the Harness has been invoked due to i.e. the function increasing in value. 
 		int SlowdownTriggers;
-		int TimeSinceSingleBatch;
+		
+		//! The number of epochs since a downstep to 1 minibatch. Used to determine if StopConditions::SingleBatchStepThreshold applies
+		int EpochsSinceSingleBatch;
 	};
+	
+	//! A set of internal memory buffers and controls for when to execute them. Used to hold a buffer for Optimizer::SaveProgress() and also the long-term analysis in Optimizer::CheckConvergence()
 	struct MemoryBuffer
 	{
+		//! The allowed size of the memory buffer -- when full, saves the file and loops back around
 		int Size;
+		
+		//! The current position of the memory buffer. initialised to 0 and increments each calculation.
 		int Position;
+		
+		//! The time at which the optimizer began the current optimization run
 		std::chrono::time_point<std::chrono::system_clock> StartTime;
+		
+		//! The last time at which a Optimizer::SaveProgress() call was made
 		std::chrono::time_point<std::chrono::system_clock> LastSaveTime;
+		
+		//! If LastSaveTime exceeds this parameter, an Optimizer::SaveProgress() call is made, even if the buffer is not full. Usually set to 5 minutes (in seconds)
 		int OverrideTime;
 		
+		//! A vector containing the last-calculated value of the functional value
 		std::vector<double> Fs;
+		
+		//! A vector containing the last-calculated value of the absolute value of the gradient
 		std::vector<double> Gradnorms;
+		
+		//! A vector containing the last-calculated value of the absolute value |dx|
 		std::vector<double> DXs;
+		
+		//! A vector containing the times (measured in seconds from initialisation) that the other values were calculated at
 		std::vector<double> Times;
+		
+		//! A vector containing the minibatch ID for the associated calculations. -1 is used to indicate a whole-epoch average. 
 		std::vector<int> MiniBatches;
+		
+		//! The epoch IDs for the associated calculations
 		std::vector<int> Epochs;
+		
+		//! The number of minibatches being used for each of the associated calculations
 		std::vector<int> Batches;
 		
+		//! The current position of the AnalysisBuffer
 		int AnalysisSteps;
+		
+		//! The size of the AnalysisBuffer
 		int AnalysisSize;
+		
+		//! A buffer of previously calculated values of F. Stored separately from #Fs as the Analysis buffer is used to determine downstep properties so it is beneficial for its size to be small, indepenedent of the buffer.
 		std::vector<double> Analysis;
 	};
 }
