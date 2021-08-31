@@ -10,8 +10,6 @@ gifPlot(files,N1,N2,gap,"evolution_zoom.gif",false);
 % temporalPlot(files,N2);
 
 
-
-
 function getData(timeGap)
 f = load("SyncTime.mat");
 SyncCurrentTime = datetime('now');
