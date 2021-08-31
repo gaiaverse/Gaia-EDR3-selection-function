@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="classStar" kind="class" language="C++" prot="public">
+    <compoundname>Star</compoundname>
+    <includes refid="Star_8h" local="no">Star.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classStar_1abbd3c299046233f3e5f2cf100981e05e" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int Star::nMeasure</definition>
+        <argsstring></argsstring>
+        <name>nMeasure</name>
+        <briefdescription>
+<para>The number of times that a star ended up in the Gaia Astrometric Pipeline (a &apos;detection&apos;). Referred to as <computeroutput>k</computeroutput> in our probability work. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="15" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classStar_1ac00a219fe6c887b16cb72e263c676ea9" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int Star::nVisit</definition>
+        <argsstring></argsstring>
+        <name>nVisit</name>
+        <briefdescription>
+<para>The predicted number of times that Gaia would have seen the star, had it been operating at 100% efficiency for the entire time period, and perfectly followed the commanded scanning law. Referred to as <computeroutput>n</computeroutput> in our probability work. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="18" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classStar_1a5d29a213dddb43a01b5058486ce6e323" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Star::gBin</definition>
+        <argsstring></argsstring>
+        <name>gBin</name>
+        <briefdescription>
+<para>The magnitude bin assigned to the star - a number between 0 and <ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref> -1. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; unsigned int &gt;</type>
+        <definition>std::vector&lt;unsigned int&gt; Star::TimeSeries</definition>
+        <argsstring></argsstring>
+        <name>TimeSeries</name>
+        <briefdescription>
+<para>A vector of detection times (in units of 10s timebins) that Gaia is predicted to have visited the star. A vector of length <ref refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kindref="member">nVisit</ref>, with members between 0 and <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> - 1. Annoyingly <ref refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kindref="member">TotalScanningTime</ref> exceeds the size of a <computeroutput>short int</computeroutput>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classStar_1ab26d0fb5819d1a1621adf3596174db0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Star::Star</definition>
+        <argsstring>(const std::vector&lt; std::string &gt; &amp;data, int bin)</argsstring>
+        <name>Star</name>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bin</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor function <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A tokenized string representing the line of the input file, assuming the prescription detailed in the<verbatim>embed:rst:inline :ref:`data file specification &lt;star-list&gt;` </verbatim> </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The magnitude bin for <ref refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kindref="member">gBin</ref> </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="32" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A class which represents a single line from one of the<verbatim>embed:rst:inline :ref:`stellar data files &lt;star-list&gt;` </verbatim> There are up to 1.8bn of these objects held in memory at any one time, so optimising their memory usage is important. </para>    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/Star.h" bodystart="11" bodyend="33"/>
+    <listofallmembers>
+      <member refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" prot="public" virt="non-virtual"><scope>Star</scope><name>gBin</name></member>
+      <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" prot="public" virt="non-virtual"><scope>Star</scope><name>nMeasure</name></member>
+      <member refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" prot="public" virt="non-virtual"><scope>Star</scope><name>nVisit</name></member>
+      <member refid="classStar_1ab26d0fb5819d1a1621adf3596174db0d" prot="public" virt="non-virtual"><scope>Star</scope><name>Star</name></member>
+      <member refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" prot="public" virt="non-virtual"><scope>Star</scope><name>TimeSeries</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

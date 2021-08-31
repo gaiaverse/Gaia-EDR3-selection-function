@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structFile" kind="struct" language="C++" prot="public">
+    <compoundname>File</compoundname>
+    <includes refid="DataLoading_8h" local="no">DataLoading.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string File::Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFile_1aced9c357d2c770816f23676e0a059d88" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int File::Bin</definition>
+        <argsstring></argsstring>
+        <name>Bin</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="34" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A way of keeping the name of the file and the associated magnitude bin together, forever, in perfect harmony. </para>    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="32" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" bodystart="31" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structFile_1aced9c357d2c770816f23676e0a059d88" prot="public" virt="non-virtual"><scope>File</scope><name>Bin</name></member>
+      <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" prot="public" virt="non-virtual"><scope>File</scope><name>Name</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

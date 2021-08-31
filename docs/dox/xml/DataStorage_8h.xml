@@ -1,0 +1,270 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="DataStorage_8h" kind="file" language="C++">
+    <compoundname>DataStorage.h</compoundname>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <includes refid="Star_8h" local="yes">../DataHandling/Star.h</includes>
+    <includes refid="MiscFunctions_8h" local="yes">MiscFunctions.h</includes>
+    <includes local="no">string</includes>
+    <includes local="no">vector</includes>
+    <includes refid="VariancePopulation_8h" local="yes">VariancePopulation.h</includes>
+    <includes local="yes">../libs/JSL/JSL.h</includes>
+    <includes refid="EfficiencyVector_8h" local="yes">../Optimizer/EfficiencyVector.h</includes>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <incdepgraph>
+      <node id="210">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="211">
+        <label>iomanip</label>
+      </node>
+      <node id="214">
+        <label>string</label>
+      </node>
+      <node id="201">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="203" relation="include">
+        </childnode>
+        <childnode refid="204" relation="include">
+        </childnode>
+        <childnode refid="205" relation="include">
+        </childnode>
+        <childnode refid="206" relation="include">
+        </childnode>
+        <childnode refid="207" relation="include">
+        </childnode>
+        <childnode refid="208" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+        <childnode refid="210" relation="include">
+        </childnode>
+        <childnode refid="211" relation="include">
+        </childnode>
+      </node>
+      <node id="215">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+      </node>
+      <node id="216">
+        <label>VariancePopulation.h</label>
+        <link refid="VariancePopulation_8h"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+      </node>
+      <node id="207">
+        <label>fstream</label>
+      </node>
+      <node id="200">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+        <childnode refid="213" relation="include">
+        </childnode>
+        <childnode refid="215" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="216" relation="include">
+        </childnode>
+        <childnode refid="210" relation="include">
+        </childnode>
+        <childnode refid="217" relation="include">
+        </childnode>
+      </node>
+      <node id="217">
+        <label>../Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="203" relation="include">
+        </childnode>
+        <childnode refid="201" relation="include">
+        </childnode>
+        <childnode refid="212" relation="include">
+        </childnode>
+        <childnode refid="215" relation="include">
+        </childnode>
+      </node>
+      <node id="204">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="213">
+        <label>../DataHandling/Star.h</label>
+        <link refid="Star_8h"/>
+        <childnode refid="202" relation="include">
+        </childnode>
+        <childnode refid="214" relation="include">
+        </childnode>
+        <childnode refid="209" relation="include">
+        </childnode>
+      </node>
+      <node id="208">
+        <label>string.h</label>
+      </node>
+      <node id="202">
+        <label>vector</label>
+      </node>
+      <node id="203">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="209">
+        <label>iostream</label>
+      </node>
+      <node id="205">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="206">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="212">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h"/>
+        <childnode refid="201" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="218">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="219" relation="include">
+        </childnode>
+        <childnode refid="222" relation="include">
+        </childnode>
+      </node>
+      <node id="222">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="219" relation="include">
+        </childnode>
+        <childnode refid="221" relation="include">
+        </childnode>
+      </node>
+      <node id="220">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="221" relation="include">
+        </childnode>
+      </node>
+      <node id="221">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
+      </node>
+      <node id="219">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h"/>
+        <childnode refid="220" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classLikelihoodData" prot="public">LikelihoodData</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" prot="public" static="no">
+        <name>Probability</name>
+        <enumvalue id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54ea00bb67a1daee733a1f5346311dafa31d" prot="public">
+          <name>NormalApproximation</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54eac83211c45e8315686a7a45d3fb7586f7" prot="public">
+          <name>PoissonBinomial</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../DataHandling/Star.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="MiscFunctions_8h" kindref="compound">MiscFunctions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="VariancePopulation_8h" kindref="compound">VariancePopulation.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/JSL/JSL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Optimizer/EfficiencyVector.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" kindref="member">Probability</ref><sp/>{<sp/><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54ea00bb67a1daee733a1f5346311dafa31d" kindref="member">NormalApproximation</ref>,<sp/><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54eac83211c45e8315686a7a45d3fb7586f7" kindref="member">PoissonBinomial</ref>};</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="classLikelihoodData" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" kindref="member">LikelihoodData</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;data);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;std::vector&lt;Star&gt;&gt;<sp/>&amp;<ref refid="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" kindref="member">Stars</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" kindref="member">healpix_fov_1</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32" refid="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" kindref="member">healpix_fov_2</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="classLikelihoodData_1ab996d0af29ea194954e9ddfeba2bea9e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classLikelihoodData_1ab996d0af29ea194954e9ddfeba2bea9e" kindref="member">time_mapping</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="classLikelihoodData_1a930a1b35ff6c789074f50dc56bada379" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="classLikelihoodData_1a930a1b35ff6c789074f50dc56bada379" kindref="member">pmf_forward</ref>;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43" refid="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" kindref="member">pmf_backward</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="classLikelihoodData_1a22d6828dd96c1d54a3b70fe0ef613b15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;std::vector&lt;double&gt;&gt;<sp/><ref refid="classLikelihoodData_1a22d6828dd96c1d54a3b70fe0ef613b15" kindref="member">subpmf</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49" refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" kindref="member">dfdp_constantN</ref>;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" kindref="member">dfdN_constantP</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55" refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" kindref="member">hypergradient</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="58" refid="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" kindref="member">pt</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="61" refid="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" kindref="member">pml</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64" refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" kindref="member">p</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67" refid="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" kindref="member">grad_elu_xml1</ref>;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70" refid="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" kindref="member">grad_elu_xml2</ref>;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74" refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;VariancePopulation&gt;<sp/><ref refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" kindref="member">VariancePopulations</ref>;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77" refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" kindref="member">Probability</ref><sp/><ref refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" kindref="member">Mode</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" kindref="member">GeneratePopulations</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref><sp/>&amp;<sp/>x);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h"/>
+  </compounddef>
+</doxygen>

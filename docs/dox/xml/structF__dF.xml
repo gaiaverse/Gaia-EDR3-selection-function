@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structF__dF" kind="struct" language="C++" prot="public">
+    <compoundname>F_dF</compoundname>
+    <includes refid="LogLikelihoodPrior_8h" local="no">LogLikelihoodPrior.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structF__dF_1a1989c3db31ab6428238f4145e4e0f311" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double F_dF::F</definition>
+        <argsstring></argsstring>
+        <name>F</name>
+        <briefdescription>
+<para>Functional value. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="15" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structF__dF_1ac0e2417c721948dafc6db9535a824a2b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double F_dF::dF</definition>
+        <argsstring></argsstring>
+        <name>dF</name>
+        <briefdescription>
+<para>Functional derivative. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="17" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structF__dF_1a4e8c66f3678ce840dcacee09e10f2403" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>F_dF::F_dF</definition>
+        <argsstring>()</argsstring>
+        <name>F_dF</name>
+        <briefdescription>
+<para>Default constructor: zero-initialised values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="20" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="20" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="structF__dF_1a203b61bb3af93c149d1b13d8e1865940" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>F_dF::F_dF</definition>
+        <argsstring>(double f, double df)</argsstring>
+        <name>F_dF</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>df</declname>
+        </param>
+        <briefdescription>
+<para>In-place constructor function. Sets the passed values to their stored counterparts. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="26" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="26" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A holder struct for the value and derivative of functions of a single variable. Useful in non-correlated priors </para>    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" line="13" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h" bodystart="12" bodyend="27"/>
+    <listofallmembers>
+      <member refid="structF__dF_1ac0e2417c721948dafc6db9535a824a2b" prot="public" virt="non-virtual"><scope>F_dF</scope><name>dF</name></member>
+      <member refid="structF__dF_1a1989c3db31ab6428238f4145e4e0f311" prot="public" virt="non-virtual"><scope>F_dF</scope><name>F</name></member>
+      <member refid="structF__dF_1a4e8c66f3678ce840dcacee09e10f2403" prot="public" virt="non-virtual"><scope>F_dF</scope><name>F_dF</name></member>
+      <member refid="structF__dF_1a203b61bb3af93c149d1b13d8e1865940" prot="public" virt="non-virtual"><scope>F_dF</scope><name>F_dF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

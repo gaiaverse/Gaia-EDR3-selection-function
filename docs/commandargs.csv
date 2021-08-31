@@ -1,0 +1,14 @@
+Variable Name,Type,Trigger,Purpose,Default Value
+``ConfigFile``,``std::string``,config,"The first argument read: if set away from the default, reverts to reading all arguments from the chosen configuration file instead of the command line.",“__null_location__”
+``ConfigDelimiter``,``char``,config-delim,The delimiter character used to parse the config file,' ‘
+``RandomSeed``,``int``,random-seed,The value passed to `srand() <https://www.cplusplus.com/reference/cstdlib/srand/>`_ at startup for reproducible randomness,0
+``DataSource``,``std::string``,data,The directory for the stellar data lists,“../../Data/ShuffledData”
+``OutputDirectory``,``std::string``,output,The director for the output data (created if it doesn’t already exist),“Output”
+``StartVectorLocation``,``std::string```,restart,"The directory to search in for a valid savefile for vector initialisation (if set to default, uses random vector)",“__null_location__”
+``GradLim``,``double``,gradlim,The maximum value of :math:`\nabla\mathcal{L}` which will be considered ‘converged’ ,0
+``MaxSteps``,``int``,max-steps,The maximum number of epochs the optimiser may use before exiting,1000
+``SaveSteps``,``int``,save-steps,The number of steps between saving locations,1
+``SaveAllSteps``,``bool``,unique-temp-save,"If true, the temporary, raw vectors are saved uniquely. Recommended to set this to false to prevent huge amounts of data generation.",0
+``Minibatches``,``int``,minibatch,The maximum number of batches used per epoch in the SGD prescription,64
+``HarnessSlowDown``,``double``,harness-slow,The factor by which step sizes are reduced when the harness is active,10
+``HarnessRelease``,``int``,harness-release,The number of full epochs over which the step size recovers from the HarnessSlowDown,5

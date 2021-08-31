@@ -8,6 +8,9 @@ global M
 global lBar
 import sys
 
+## This is an implementation of the File-Core Allocation Protocol. See the relevant documentation page for details.
+
+
 rootToFiles = "../../SlimmedData/"
 M = 20
 

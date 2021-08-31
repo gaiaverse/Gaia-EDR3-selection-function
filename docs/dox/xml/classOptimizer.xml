@@ -1,0 +1,426 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="classOptimizer" kind="class" language="C++" prot="public">
+    <compoundname>Optimizer</compoundname>
+    <templateparamlist>
+      <param>
+        <type>class T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classOptimizer_1a48030ae6e65ec383e53557cc33aba2b9" prot="private" static="no" mutable="no">
+        <type>T &amp;</type>
+        <definition>T&amp; Optimizer&lt; T &gt;::Functor</definition>
+        <argsstring></argsstring>
+        <name>Functor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="34" column="4" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOptimizer_1a0a44f212eda78b37981ecadf09eeb392" prot="private" static="no" mutable="no">
+        <type><ref refid="structMemoryBuffer" kindref="compound">MemoryBuffer</ref></type>
+        <definition>MemoryBuffer Optimizer&lt; T &gt;::Buffer</definition>
+        <argsstring></argsstring>
+        <name>Buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="36" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classOptimizer_1abe6112b42cbdc2d21d357eca8e6cddcf" prot="public" static="no" mutable="no">
+        <type><ref refid="structOptimiserStatus" kindref="compound">OptimiserStatus</ref></type>
+        <definition>OptimiserStatus Optimizer&lt; T &gt;::Status</definition>
+        <argsstring></argsstring>
+        <name>Status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="540" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="540" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOptimizer_1a21a7d8f0ee189158efb5a5c45844b671" prot="public" static="no" mutable="no">
+        <type><ref refid="structOptimiserProperties" kindref="compound">OptimiserProperties</ref></type>
+        <definition>OptimiserProperties Optimizer&lt; T &gt;::Properties</definition>
+        <argsstring></argsstring>
+        <name>Properties</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="541" column="21" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="541" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOptimizer_1af7371734bfa497aeef60185738d89a8e" prot="public" static="no" mutable="no">
+        <type><ref refid="structStopConditions" kindref="compound">StopConditions</ref></type>
+        <definition>StopConditions Optimizer&lt; T &gt;::HaltConditions</definition>
+        <argsstring></argsstring>
+        <name>HaltConditions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="542" column="16" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="542" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOptimizer_1aecc0f0b358ac630cc78fc40a3d737b53" prot="public" static="no" mutable="no">
+        <type><ref refid="structProgressTracker" kindref="compound">ProgressTracker</ref></type>
+        <definition>ProgressTracker Optimizer&lt; T &gt;::Progress</definition>
+        <argsstring></argsstring>
+        <name>Progress</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="543" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="543" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOptimizer_1a4417a2798d284a0edf7e1a79a644ed3d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::SetDefaults</definition>
+        <argsstring>()</argsstring>
+        <name>SetDefaults</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="39" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="39" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1ade073ae1d2e2f4d6567eacb7dbd314c1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::Initialise</definition>
+        <argsstring>()</argsstring>
+        <name>Initialise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="65" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="65" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1ab75c056e838cfa5de543d5ea086eae91" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::ADABADAM</definition>
+        <argsstring>(VectorXd &amp;x)</argsstring>
+        <name>ADABADAM</name>
+        <param>
+          <type>VectorXd &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="107" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="107" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1aa88a68a284eeefdda2a2f5f46e82c0ab" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::CheckConvergence</definition>
+        <argsstring>(const VectorXd &amp;dg, double df, double dx)</argsstring>
+        <name>CheckConvergence</name>
+        <param>
+          <type>const VectorXd &amp;</type>
+          <declname>dg</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="263" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="263" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a2e9cfe8c66054d48fe5e6cc91df9ade4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Optimizer&lt; T &gt;::CheckMinibatches</definition>
+        <argsstring>(double df, int currentSize)</argsstring>
+        <name>CheckMinibatches</name>
+        <param>
+          <type>double</type>
+          <declname>df</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>currentSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="301" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="301" bodyend="330"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a24a3ae5fae44ba26d79fe1b3810f4073" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Optimizer&lt; T &gt;::NeedsBatchReduction</definition>
+        <argsstring>()</argsstring>
+        <name>NeedsBatchReduction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="332" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="332" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1ae672f3864600ee0c601ccb20a6e93d9c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::UpdateProgress</definition>
+        <argsstring>(int batch, int nBatches, double F, double G, double dF, double dxNorm, const VectorXd &amp;x)</argsstring>
+        <name>UpdateProgress</name>
+        <param>
+          <type>int</type>
+          <declname>batch</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nBatches</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>F</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>G</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dF</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dxNorm</declname>
+        </param>
+        <param>
+          <type>const VectorXd &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="365" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="365" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a3ce30c818b135f3a9e1cc116c5e44924" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::SaveProgress</definition>
+        <argsstring>(int n)</argsstring>
+        <name>SaveProgress</name>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="439" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="439" bodyend="475"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1ab335af0357f88e0ec370c18efb590db9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::InitialiseExternalFiles</definition>
+        <argsstring>()</argsstring>
+        <name>InitialiseExternalFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="478" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="478" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1ac5f343945e27107cb32f7f60ff0aa20f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::CheckExternalFiles</definition>
+        <argsstring>()</argsstring>
+        <name>CheckExternalFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="495" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="495" bodyend="524"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a6372e32798ea72feec26358dd131bddf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::CleanExternalFiles</definition>
+        <argsstring>()</argsstring>
+        <name>CleanExternalFiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="526" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="526" bodyend="537"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOptimizer_1ac0e9c13ba2d8779c27dcf1dee8ab0306" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Optimizer&lt; T &gt;::Optimizer</definition>
+        <argsstring>(T &amp;functor)</argsstring>
+        <name>Optimizer</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>functor</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="543" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="545" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a1a87a01f13187f0aa30e5fbed82746d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::Minimize</definition>
+        <argsstring>(VectorXd &amp;x)</argsstring>
+        <name>Minimize</name>
+        <param>
+          <type>VectorXd &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="550" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="550" bodyend="563"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a9bd0631315cd436b781b13a893b43570" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Optimizer&lt; T &gt;::GetStatus</definition>
+        <argsstring>()</argsstring>
+        <name>GetStatus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="565" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="565" bodyend="584"/>
+      </memberdef>
+      <memberdef kind="function" id="classOptimizer_1a5764da74cea367e4fcfb109457775925" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Optimizer&lt; T &gt;::InitialiseSpeedControls</definition>
+        <argsstring>(std::vector&lt; int &gt; sizes, std::vector&lt; double &gt; speeds)</argsstring>
+        <name>InitialiseSpeedControls</name>
+        <param>
+          <type>std::vector&lt; int &gt;</type>
+          <declname>sizes</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt;</type>
+          <declname>speeds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="586" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="586" bodyend="603"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>OptimiserStatus</label>
+        <link refid="structOptimiserStatus"/>
+      </node>
+      <node id="2">
+        <label>StopConditions</label>
+        <link refid="structStopConditions"/>
+      </node>
+      <node id="1">
+        <label>Optimizer&lt; T &gt;</label>
+        <link refid="classOptimizer"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>HaltConditions</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Properties</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>Status</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>Progress</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ProgressTracker</label>
+        <link refid="structProgressTracker"/>
+      </node>
+      <node id="3">
+        <label>OptimiserProperties</label>
+        <link refid="structOptimiserProperties"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="32" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="31" bodyend="604"/>
+    <listofallmembers>
+      <member refid="classOptimizer_1ab75c056e838cfa5de543d5ea086eae91" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>ADABADAM</name></member>
+      <member refid="classOptimizer_1a0a44f212eda78b37981ecadf09eeb392" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>Buffer</name></member>
+      <member refid="classOptimizer_1aa88a68a284eeefdda2a2f5f46e82c0ab" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>CheckConvergence</name></member>
+      <member refid="classOptimizer_1ac5f343945e27107cb32f7f60ff0aa20f" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>CheckExternalFiles</name></member>
+      <member refid="classOptimizer_1a2e9cfe8c66054d48fe5e6cc91df9ade4" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>CheckMinibatches</name></member>
+      <member refid="classOptimizer_1a6372e32798ea72feec26358dd131bddf" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>CleanExternalFiles</name></member>
+      <member refid="classOptimizer_1a48030ae6e65ec383e53557cc33aba2b9" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>Functor</name></member>
+      <member refid="classOptimizer_1a9bd0631315cd436b781b13a893b43570" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>GetStatus</name></member>
+      <member refid="classOptimizer_1af7371734bfa497aeef60185738d89a8e" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>HaltConditions</name></member>
+      <member refid="classOptimizer_1ade073ae1d2e2f4d6567eacb7dbd314c1" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>Initialise</name></member>
+      <member refid="classOptimizer_1ab335af0357f88e0ec370c18efb590db9" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>InitialiseExternalFiles</name></member>
+      <member refid="classOptimizer_1a5764da74cea367e4fcfb109457775925" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>InitialiseSpeedControls</name></member>
+      <member refid="classOptimizer_1a1a87a01f13187f0aa30e5fbed82746d4" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>Minimize</name></member>
+      <member refid="classOptimizer_1a24a3ae5fae44ba26d79fe1b3810f4073" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>NeedsBatchReduction</name></member>
+      <member refid="classOptimizer_1ac0e9c13ba2d8779c27dcf1dee8ab0306" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>Optimizer</name></member>
+      <member refid="classOptimizer_1aecc0f0b358ac630cc78fc40a3d737b53" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>Progress</name></member>
+      <member refid="classOptimizer_1a21a7d8f0ee189158efb5a5c45844b671" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>Properties</name></member>
+      <member refid="classOptimizer_1a3ce30c818b135f3a9e1cc116c5e44924" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>SaveProgress</name></member>
+      <member refid="classOptimizer_1a4417a2798d284a0edf7e1a79a644ed3d" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>SetDefaults</name></member>
+      <member refid="classOptimizer_1abe6112b42cbdc2d21d357eca8e6cddcf" prot="public" virt="non-virtual"><scope>Optimizer</scope><name>Status</name></member>
+      <member refid="classOptimizer_1ae672f3864600ee0c601ccb20a6e93d9c" prot="private" virt="non-virtual"><scope>Optimizer</scope><name>UpdateProgress</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

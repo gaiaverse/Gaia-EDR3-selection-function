@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structProgressTracker" kind="struct" language="C++" prot="public">
+    <compoundname>ProgressTracker</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structProgressTracker_1aa531f094e8ad975dfefc47ece359592d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::CurrentSteps</definition>
+        <argsstring></argsstring>
+        <name>CurrentSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="41" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a6dfeb8637c85c7310af398578d221bac" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ProgressTracker::MovingAverage</definition>
+        <argsstring></argsstring>
+        <name>MovingAverage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="42" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1ae1c6ce39fe19ccf2d99e04d84bf8c52f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ProgressTracker::Harness</definition>
+        <argsstring></argsstring>
+        <name>Harness</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="43" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a278dfc52759a8b774b7df65ddd474cbb" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ProgressTracker::SpeedController</definition>
+        <argsstring></argsstring>
+        <name>SpeedController</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="44" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a972f79a55a785d579031f956e52f92e8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::StepsPerPositionSave</definition>
+        <argsstring></argsstring>
+        <name>StepsPerPositionSave</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="45" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a42a1492c36b842d23968e36c01b58b91" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ProgressTracker::UniquePositionSaves</definition>
+        <argsstring></argsstring>
+        <name>UniquePositionSaves</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="46" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a89936bd25d378bb4c90fa278ce7cc373" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ProgressTracker::BufferFileOpened</definition>
+        <argsstring></argsstring>
+        <name>BufferFileOpened</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="48" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a1f87aa774affb12847fdf90e912ac147" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string ProgressTracker::SaveLocation</definition>
+        <argsstring></argsstring>
+        <name>SaveLocation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="49" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1a5b3ece79bcfab593be27396d393f6370" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::Hashes</definition>
+        <argsstring></argsstring>
+        <name>Hashes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="51" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1ad0995169886380eae9bed1c416e20fe7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::MaxHashes</definition>
+        <argsstring></argsstring>
+        <name>MaxHashes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="52" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1aa9e165a0b18af7d137a7b7bacf7e43bd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::SlowdownTriggers</definition>
+        <argsstring></argsstring>
+        <name>SlowdownTriggers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="53" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structProgressTracker_1aa9d40fe1375a0e92aa429b8b1bf40ee6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ProgressTracker::TimeSinceSingleBatch</definition>
+        <argsstring></argsstring>
+        <name>TimeSinceSingleBatch</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="54" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="40" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="39" bodyend="55"/>
+    <listofallmembers>
+      <member refid="structProgressTracker_1a89936bd25d378bb4c90fa278ce7cc373" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>BufferFileOpened</name></member>
+      <member refid="structProgressTracker_1aa531f094e8ad975dfefc47ece359592d" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>CurrentSteps</name></member>
+      <member refid="structProgressTracker_1ae1c6ce39fe19ccf2d99e04d84bf8c52f" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>Harness</name></member>
+      <member refid="structProgressTracker_1a5b3ece79bcfab593be27396d393f6370" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>Hashes</name></member>
+      <member refid="structProgressTracker_1ad0995169886380eae9bed1c416e20fe7" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>MaxHashes</name></member>
+      <member refid="structProgressTracker_1a6dfeb8637c85c7310af398578d221bac" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>MovingAverage</name></member>
+      <member refid="structProgressTracker_1a1f87aa774affb12847fdf90e912ac147" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>SaveLocation</name></member>
+      <member refid="structProgressTracker_1aa9e165a0b18af7d137a7b7bacf7e43bd" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>SlowdownTriggers</name></member>
+      <member refid="structProgressTracker_1a278dfc52759a8b774b7df65ddd474cbb" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>SpeedController</name></member>
+      <member refid="structProgressTracker_1a972f79a55a785d579031f956e52f92e8" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>StepsPerPositionSave</name></member>
+      <member refid="structProgressTracker_1aa9d40fe1375a0e92aa429b8b1bf40ee6" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>TimeSinceSingleBatch</name></member>
+      <member refid="structProgressTracker_1a42a1492c36b842d23968e36c01b58b91" prot="public" virt="non-virtual"><scope>ProgressTracker</scope><name>UniquePositionSaves</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

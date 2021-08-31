@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir">
+    <compoundname>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood</compoundname>
+    <innerfile refid="DataStorage_8h">DataStorage.h</innerfile>
+    <innerfile refid="LogLikelihood_8h">LogLikelihood.h</innerfile>
+    <innerfile refid="LogLikelihoodPrior_8h">LogLikelihoodPrior.h</innerfile>
+    <innerfile refid="MiscFunctions_8h">MiscFunctions.h</innerfile>
+    <innerfile refid="ProbabilityFunctions_8h">ProbabilityFunctions.h</innerfile>
+    <innerfile refid="VariancePopulation_8h">VariancePopulation.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/"/>
+  </compounddef>
+</doxygen>

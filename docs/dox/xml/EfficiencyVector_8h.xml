@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="EfficiencyVector_8h" kind="file" language="C++">
+    <compoundname>EfficiencyVector.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="yes">../libs/Eigen/Core</includes>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <includes refid="MiscFunctions_8h" local="yes">../Likelihood/MiscFunctions.h</includes>
+    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="LogLikelihoodPrior_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</includedby>
+    <includedby refid="LikelihoodFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</includedby>
+    <incdepgraph>
+      <node id="378">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="379">
+        <label>iomanip</label>
+      </node>
+      <node id="371">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h"/>
+        <childnode refid="369" relation="include">
+        </childnode>
+        <childnode refid="370" relation="include">
+        </childnode>
+        <childnode refid="372" relation="include">
+        </childnode>
+        <childnode refid="373" relation="include">
+        </childnode>
+        <childnode refid="374" relation="include">
+        </childnode>
+        <childnode refid="375" relation="include">
+        </childnode>
+        <childnode refid="376" relation="include">
+        </childnode>
+        <childnode refid="377" relation="include">
+        </childnode>
+        <childnode refid="378" relation="include">
+        </childnode>
+        <childnode refid="379" relation="include">
+        </childnode>
+      </node>
+      <node id="381">
+        <label>../Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="371" relation="include">
+        </childnode>
+        <childnode refid="380" relation="include">
+        </childnode>
+      </node>
+      <node id="375">
+        <label>fstream</label>
+      </node>
+      <node id="368">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="369" relation="include">
+        </childnode>
+        <childnode refid="370" relation="include">
+        </childnode>
+        <childnode refid="371" relation="include">
+        </childnode>
+        <childnode refid="380" relation="include">
+        </childnode>
+        <childnode refid="381" relation="include">
+        </childnode>
+      </node>
+      <node id="372">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="376">
+        <label>string.h</label>
+      </node>
+      <node id="369">
+        <label>vector</label>
+      </node>
+      <node id="370">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="377">
+        <label>iostream</label>
+      </node>
+      <node id="373">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="374">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="380">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h"/>
+        <childnode refid="371" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="383">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="384" relation="include">
+        </childnode>
+        <childnode refid="387" relation="include">
+        </childnode>
+      </node>
+      <node id="382">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="383" relation="include">
+        </childnode>
+        <childnode refid="384" relation="include">
+        </childnode>
+        <childnode refid="385" relation="include">
+        </childnode>
+        <childnode refid="386" relation="include">
+        </childnode>
+      </node>
+      <node id="387">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="384" relation="include">
+        </childnode>
+        <childnode refid="386" relation="include">
+        </childnode>
+      </node>
+      <node id="385">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="386" relation="include">
+        </childnode>
+      </node>
+      <node id="386">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
+      </node>
+      <node id="384">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h"/>
+        <childnode refid="385" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classEfficiencyVector" prot="public">EfficiencyVector</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" prot="public" static="no">
+        <name>EIGEN_STACK_ALLOCATION_LIMIT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" line="3" column="11" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" prot="public" static="no">
+        <name>EIGEN_MPL2_ONLY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" line="4" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_STACK_ALLOCATION_LIMIT<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EIGEN_MPL2_ONLY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../libs/Eigen/Core&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Likelihood/MiscFunctions.h&quot;</highlight></codeline>
+<codeline lineno="15" refid="classEfficiencyVector" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">RawPosition</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23" refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kindref="member">TransformedPosition</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">RawGradient</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kindref="member">TransformedGradient</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36" refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>{<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4af71605802003c74662a1e79c4bc2e72a" kindref="member">Raw</ref>,<sp/><ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4a5d730d648e4a125ffb26b657134d9b24" kindref="member">Transformed</ref>};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>{<ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea1f4c469d28d6d6118881152ba4d10ca7" kindref="member">Temporal</ref>,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ceacac34fdc2ea3edb2031c5bc689ac1114" kindref="member">Spatial</ref>,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea43b9bc5417f2033c529ed1bea4b64628" kindref="member">Hyper</ref>};</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>{<ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4ad76b33744e33b33ccb8eb74a8f0d8e97" kindref="member">Position</ref>,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4aa1cd5f818bc45be8f0a693fadff98ca6" kindref="member">Gradient</ref>};</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector_1ad40a836afd1edd3c9e157eabd74444dc" kindref="member">EfficiencyVector</ref>(std::string<sp/>load_location,std::string<sp/>save_location);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector_1ad40a836afd1edd3c9e157eabd74444dc" kindref="member">EfficiencyVector</ref>(std::vector&lt;double&gt;<sp/>newTransformed);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classEfficiencyVector_1ad40a836afd1edd3c9e157eabd74444dc" kindref="member">EfficiencyVector</ref>();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kindref="member">Access</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2)<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kindref="member">Assign</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>value);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kindref="member">Increment</ref>(<ref refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kindref="member">VectorMode</ref><sp/>rawOrTransformed,<sp/><ref refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kindref="member">VectorComponent</ref><sp/>component,<sp/><ref refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kindref="member">VectorType</ref><sp/>positionOrGradient,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index2,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>newValue);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kindref="member">ForwardTransform</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;double&gt;<sp/>&amp;z);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kindref="member">BackwardTransform</ref>();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kindref="member">Save</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>finalSave,</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>saveStep,</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniqueSave);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kindref="member">ForwardTransform_Temporal</ref>();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kindref="member">ForwardTransform_Spatial</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kindref="member">ForwardTransform_Hyper</ref>();</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" kindref="member">BackwardTransform_Hyper</ref>();</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" kindref="member">BackwardTransform_Spatial</ref>();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" kindref="member">BackwardTransform_Temporal</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="152" refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" kindref="member">needletN</ref>;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="155" refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kindref="member">needlet_u</ref>;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="158" refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kindref="member">needlet_v</ref>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161" refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kindref="member">needlet_w</ref>;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="164" refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" kindref="member">bVector</ref>;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="167" refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kindref="member">choleskyN</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="170" refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kindref="member">cholesky_u</ref>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="173" refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;int&gt;<sp/><ref refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kindref="member">cholesky_v</ref>;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="176" refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/><ref refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kindref="member">cholesky_w</ref>;<sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" kindref="member">GenerateVector</ref>();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" kindref="member">LoadVector</ref>(std::string<sp/>load_location);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" kindref="member">LoadNeedlets</ref>();</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" kindref="member">LoadCholesky</ref>();</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" kindref="member">Reset</ref>();</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="205" refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/><ref refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kindref="member">SaveLocation</ref>;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h"/>
+  </compounddef>
+</doxygen>

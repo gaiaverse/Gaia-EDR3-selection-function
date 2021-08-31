@@ -65,8 +65,10 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 }
 
 
-void CalculateBatches(int id, std::vector<File> & Files, int batches)
+void CalculateBatches(std::vector<File> & Files, int batches)
 {
+	
+	
 	int bRemaining = batches;
 	int NFiles = Files.size();
 	batchCounts = std::vector<std::vector<int>>(batches,std::vector<int>(NFiles,0));
@@ -102,28 +104,19 @@ void CalculateBatches(int id, std::vector<File> & Files, int batches)
 void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<Star>> & Data, int & TotalStars,const std::string dataSource, int batches)
 {
 	if (ProcessRank == RootID)
-	{
-		GlobalLog(1,
-			std::cout << "Initialising starAllocation script...\n";
-			std::string command = "python3 src/DataHandling/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
-			system(command.c_str() );
-			std::cout << "Data allocation complete, beginning readin...." <<std::endl;
-		);
+	{	
+		std::cout << "Initialising starAllocation script...\n";
+		std::string command = "python3 src/DataHandling/starAllocation.py " + dataSource + " " + std::to_string(JobSize);
+		system(command.c_str() );
+		std::cout << "Data allocation complete, beginning readin...." <<std::endl;
 	}
-	MPI_Barrier(MPI_COMM_WORLD);
 	
-	std::string gapFile = "../../ModelInputs/gaps_prior.dat";
-	std::vector<int> gapStarts;
-	std::vector<int> gapEnds;
-	forLineVectorIn(gapFile,' ',
-		gapStarts.push_back(stoi(FILE_LINE_VECTOR[0]));
-		gapEnds.push_back(stoi(FILE_LINE_VECTOR[1]));
-	);
+	MPI_Barrier(MPI_COMM_WORLD);
 	
 	
 	auto start = std::chrono::system_clock::now();
 	std::vector<File> Files = GetAssignments(ProcessRank,dataSource);
-	CalculateBatches(ProcessRank,Files,batches);
+	CalculateBatches(Files,batches);
 
 	//resize datafile
 	Data.resize(batches);
@@ -147,7 +140,7 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 				++batch;
 			}
 
-			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin,gapStarts,gapEnds,ignoreGapObs));
+			Data[batch].push_back(Star(FILE_LINE_VECTOR,gBin));
 
 			++starsLoaded;
 			++allStarsLoaded;
@@ -167,14 +160,11 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 		);
 	}
 	auto end = std::chrono::system_clock::now();
-		std::string duration = JSL::FormatTimeDuration(start,end);
-	GlobalLog(1,
-		
-		std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
-	);
-	
-	
+	std::string duration = JSL::FormatTimeDuration(start,end);
+	std::cout << "\tProcess " << ProcessRank << " has loaded in " << allStarsLoaded << " datapoints in " << duration << std::endl; 
 
+	
+	
 	int MaxStarsInCore = 0;
 	MPI_Reduce(&allStarsLoaded,&TotalStars,1,MPI_INT,MPI_SUM,RootID,MPI_COMM_WORLD);
 	MPI_Reduce(&allStarsLoaded, &MaxStarsInCore, 1,MPI_INT, MPI_MAX, RootID,MPI_COMM_WORLD);
@@ -182,11 +172,8 @@ void  LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector
 	MPI_Barrier(MPI_COMM_WORLD);
 	if (ProcessRank==RootID)
 	{
-		GlobalLog(0,
-			std::cout << TotalStars << " stars have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
-		);
+		std::cout << TotalStars << " stars have been loaded into memory (max stars in core: " << MaxStarsInCore << ")" << std::endl;
 	}
 	MPI_Barrier(MPI_COMM_WORLD);
-
 }
 

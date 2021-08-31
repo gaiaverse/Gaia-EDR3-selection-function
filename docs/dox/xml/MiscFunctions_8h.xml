@@ -1,0 +1,333 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="MiscFunctions_8h" kind="file" language="C++">
+    <compoundname>MiscFunctions.h</compoundname>
+    <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
+    <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
+    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <incdepgraph>
+      <node id="283">
+        <label>../libs/JSL/JSL.h</label>
+      </node>
+      <node id="284">
+        <label>iomanip</label>
+      </node>
+      <node id="274">
+        <label>../Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h"/>
+        <childnode refid="275" relation="include">
+        </childnode>
+        <childnode refid="276" relation="include">
+        </childnode>
+        <childnode refid="277" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+        <childnode refid="279" relation="include">
+        </childnode>
+        <childnode refid="280" relation="include">
+        </childnode>
+        <childnode refid="281" relation="include">
+        </childnode>
+        <childnode refid="282" relation="include">
+        </childnode>
+        <childnode refid="283" relation="include">
+        </childnode>
+        <childnode refid="284" relation="include">
+        </childnode>
+      </node>
+      <node id="273">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="274" relation="include">
+        </childnode>
+        <childnode refid="285" relation="include">
+        </childnode>
+      </node>
+      <node id="280">
+        <label>fstream</label>
+      </node>
+      <node id="277">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="281">
+        <label>string.h</label>
+      </node>
+      <node id="275">
+        <label>vector</label>
+      </node>
+      <node id="276">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="282">
+        <label>iostream</label>
+      </node>
+      <node id="278">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="279">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="285">
+        <label>../Main/GlobalConstants.h</label>
+        <link refid="GlobalConstants_8h"/>
+        <childnode refid="274" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="286">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="292" relation="include">
+        </childnode>
+        <childnode refid="291" relation="include">
+        </childnode>
+      </node>
+      <node id="287">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="291" relation="include">
+        </childnode>
+      </node>
+      <node id="292">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="287" relation="include">
+        </childnode>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="289" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="291">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="288" relation="include">
+        </childnode>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="289">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="290" relation="include">
+        </childnode>
+      </node>
+      <node id="290">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
+      </node>
+      <node id="288">
+        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h"/>
+        <childnode refid="289" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double one_over_root2</definition>
+        <argsstring></argsstring>
+        <name>one_over_root2</name>
+        <initializer>= 1.0/sqrt(2.0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Some numbers we&apos;d rather not calculate again and again if possible </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double one_over_root2pi</definition>
+        <argsstring></argsstring>
+        <name>one_over_root2pi</name>
+        <initializer>= 1.0/sqrt(2.0*M_PI)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="40" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" prot="public" static="no" mutable="no">
+        <type>const double</type>
+        <definition>const double root2_over_pi</definition>
+        <argsstring></argsstring>
+        <name>root2_over_pi</name>
+        <initializer>= sqrt(2.0/M_PI)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double sigmoid</definition>
+        <argsstring>(double x)</argsstring>
+        <name>sigmoid</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Implements an expit sigmoid. Some cleverness was used to avoid numerical overflows for exp(large numbers). <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be expit-ed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\sigma(x) = \frac{1}{1 + \exp(-x)}` </verbatim> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="10" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double elu</definition>
+        <argsstring>(double x)</argsstring>
+        <name>elu</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A truncated exponential (apparently elu is a mahcine learning term?). For x &gt; <ref refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kindref="member">elu_transitionPoint</ref>, returns exp(-x), otherwise returns the linear function which makes elu(x) both continuous and smooth. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to be elu-ed </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\text{elu}(x) =\begin{cases} \exp(-x) ~~~&amp; x &gt; \rho \\ (1 + \rho - x) \exp(-\rho) &amp; x \leq \rho  \end{cases}` </verbatim> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="17" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double elu_grad</definition>
+        <argsstring>(double x, double elu_x)</argsstring>
+        <name>elu_grad</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>elu_x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Calculate the gradient of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> evaluated at x. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The value at which gradient is to be evaluated at </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>elu_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the functional value of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> at the chosen point. Can avoid having to recalulate exp(x) if possible </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The requisite gradient </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="25" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double log_add_exp</definition>
+        <argsstring>(double a, double b)</argsstring>
+        <name>log_add_exp</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Given two (potentially very large) numbers a = log(x) ,b = log(y) we often want to know log(x+y). To compute this we need to take exponentials and then add/subtract them: even if the answer <emphasis>should</emphasis> be a finite number, the intermediary values can often lead to numerical overflows. This function calculates it in a much safer way. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logarithm of a large number </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The logarithm of another large number </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\log\left( e^a + e^b\right)` </verbatim>, calculated such that the intermediary results do not overflow </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="33" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalVariables.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../Main/GlobalConstants.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" kindref="member">sigmoid</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" kindref="member">elu_grad</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>elu_x);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><ref refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kindref="member">log_add_exp</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>a,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>b);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kindref="member">one_over_root2</ref><sp/>=<sp/>1.0/sqrt(2.0);</highlight></codeline>
+<codeline lineno="40" refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" kindref="member">one_over_root2pi</ref><sp/>=<sp/>1.0/sqrt(2.0*M_PI);</highlight></codeline>
+<codeline lineno="41" refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" kindref="member">root2_over_pi</ref><sp/>=<sp/>sqrt(2.0/M_PI);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h"/>
+  </compounddef>
+</doxygen>

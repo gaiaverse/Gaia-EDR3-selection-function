@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="structADABADAM_1_1StopConditions" kind="struct" language="C++" prot="public">
+    <compoundname>ADABADAM::StopConditions</compoundname>
+    <includes refid="OptimizerProperties_8h" local="no">OptimizerProperties.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::StopConditions::MaxSteps</definition>
+        <argsstring></argsstring>
+        <name>MaxSteps</name>
+        <briefdescription>
+<para>The maximum number of complete epochs that the optimizer can take. If <ref refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kindref="member">ProgressTracker::CurrentSteps</ref> exceeds this number, the optimizer quits and <ref refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kindref="member">OptimizerStatus::Converged</ref> is set to false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="46" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a91588e199ade4a073925dc3b2b8d8209" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::StopConditions::PositionChangeThreshold</definition>
+        <argsstring></argsstring>
+        <name>PositionChangeThreshold</name>
+        <briefdescription>
+<para>The smallest value of |dx| that the optimizer can take in an epoch before the <ref refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kindref="member">OptimizerStatus::Converged</ref> is set to true. If set to 0, this condition is ignored. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::StopConditions::GradientThreshold</definition>
+        <argsstring></argsstring>
+        <name>GradientThreshold</name>
+        <briefdescription>
+<para>The smallest value of |dF/dX| that the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">Optimizer</ref> can take in an epoch before the <ref refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kindref="member">OptimizerStatus::Converged</ref> is set to true. If set to 0, this condition is ignored. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="52" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ADABADAM::StopConditions::FunctionChangeThreshold</definition>
+        <argsstring></argsstring>
+        <name>FunctionChangeThreshold</name>
+        <briefdescription>
+<para>The smallest value of |dF| that the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">Optimizer</ref> can take in an epoch before the <ref refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kindref="member">OptimizerStatus::Converged</ref> is set to true. If set to 0, this condition is ignored. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="55" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ADABADAM::StopConditions::SingleBatchStepThreshold</definition>
+        <argsstring></argsstring>
+        <name>SingleBatchStepThreshold</name>
+        <briefdescription>
+<para>After the downstep to 1 minibatch occurs, force at least this number of epochs to occur before the system can terminate (implemented to prevent premature termination after the full information is given to the system). </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="58" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a406879138cff941f80b1f44a06106e03" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ADABADAM::StopConditions::UseExternalInstructions</definition>
+        <argsstring></argsstring>
+        <name>UseExternalInstructions</name>
+        <briefdescription>
+<para>If true, looks in the <ref refid="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" kindref="member">DownStepFile</ref> and <ref refid="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" kindref="member">TerminationFile</ref> at the end of each epoch, and executes those instructions. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="61" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string ADABADAM::StopConditions::DownStepFile</definition>
+        <argsstring></argsstring>
+        <name>DownStepFile</name>
+        <briefdescription>
+<para>The location of the file which <ref refid="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" kindref="member">Optimizer::CheckExternalFiles()</ref> searches. If the file contains a 1, triggers a downstep. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="64" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string ADABADAM::StopConditions::TerminationFile</definition>
+        <argsstring></argsstring>
+        <name>TerminationFile</name>
+        <briefdescription>
+<para>The location of the file which <ref refid="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" kindref="member">Optimizer::CheckExternalFiles()</ref> searches. If the file contains a 1, triggers the optimisation to complete and <ref refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kindref="member">OptimizerStatus::Converged</ref> is set to false. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="67" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>A series of conditions and variables which assert when and how the optimizer will quit, and if it will consider itself to have `converge&apos; when it does so. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="44" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="43" bodyend="69"/>
+    <listofallmembers>
+      <member refid="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>DownStepFile</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>FunctionChangeThreshold</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>GradientThreshold</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>MaxSteps</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1a91588e199ade4a073925dc3b2b8d8209" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>PositionChangeThreshold</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>SingleBatchStepThreshold</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>TerminationFile</name></member>
+      <member refid="structADABADAM_1_1StopConditions_1a406879138cff941f80b1f44a06106e03" prot="public" virt="non-virtual"><scope>ADABADAM::StopConditions</scope><name>UseExternalInstructions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

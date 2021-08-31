@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structOptimiserProperties" kind="struct" language="C++" prot="public">
+    <compoundname>OptimiserProperties</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structOptimiserProperties_1aacef8e01973bcece3214de56174778bb" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int OptimiserProperties::MiniBatches</definition>
+        <argsstring></argsstring>
+        <name>MiniBatches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="8" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structOptimiserProperties_1a8d1a326eff70cb4d8472b334e95d8b07" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int OptimiserProperties::BurnInSteps</definition>
+        <argsstring></argsstring>
+        <name>BurnInSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="9" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structOptimiserProperties_1a8c385e907134c4491e8335bda1a51c1e" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double OptimiserProperties::StepSize</definition>
+        <argsstring></argsstring>
+        <name>StepSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structOptimiserProperties_1a7aa5f01db46d5aa68660babb57eb4068" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double OptimiserProperties::MinibatchDownStep</definition>
+        <argsstring></argsstring>
+        <name>MinibatchDownStep</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="11" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structOptimiserProperties_1a6387c12bb01525748510c7e2dfed4339" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double OptimiserProperties::MaxHarnessFactor</definition>
+        <argsstring></argsstring>
+        <name>MaxHarnessFactor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structOptimiserProperties_1a04b7f1577650e7a618a6dce076071123" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int OptimiserProperties::HarnessReleaseSteps</definition>
+        <argsstring></argsstring>
+        <name>HarnessReleaseSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="13" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="7" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="6" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structOptimiserProperties_1a8d1a326eff70cb4d8472b334e95d8b07" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>BurnInSteps</name></member>
+      <member refid="structOptimiserProperties_1a04b7f1577650e7a618a6dce076071123" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>HarnessReleaseSteps</name></member>
+      <member refid="structOptimiserProperties_1a6387c12bb01525748510c7e2dfed4339" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>MaxHarnessFactor</name></member>
+      <member refid="structOptimiserProperties_1a7aa5f01db46d5aa68660babb57eb4068" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>MinibatchDownStep</name></member>
+      <member refid="structOptimiserProperties_1aacef8e01973bcece3214de56174778bb" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>MiniBatches</name></member>
+      <member refid="structOptimiserProperties_1a8c385e907134c4491e8335bda1a51c1e" prot="public" virt="non-virtual"><scope>OptimiserProperties</scope><name>StepSize</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

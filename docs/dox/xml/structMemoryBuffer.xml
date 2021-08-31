@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structMemoryBuffer" kind="struct" language="C++" prot="public">
+    <compoundname>MemoryBuffer</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structMemoryBuffer_1a9dd45cbef6dc3a2b739930e4dec409d3" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MemoryBuffer::Size</definition>
+        <argsstring></argsstring>
+        <name>Size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="58" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a86585015fa99011516592b628f70db83" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MemoryBuffer::Position</definition>
+        <argsstring></argsstring>
+        <name>Position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="59" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a4e662ae94caa8b785bd7275b895cc8fb" prot="public" static="no" mutable="no">
+        <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
+        <definition>std::chrono::time_point&lt;std::chrono::system_clock&gt; MemoryBuffer::StartTime</definition>
+        <argsstring></argsstring>
+        <name>StartTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="60" column="25" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1ad72781d6a1db3dfbf6c81596c8a07f00" prot="public" static="no" mutable="no">
+        <type>std::chrono::time_point&lt; std::chrono::system_clock &gt;</type>
+        <definition>std::chrono::time_point&lt;std::chrono::system_clock&gt; MemoryBuffer::LastSaveTime</definition>
+        <argsstring></argsstring>
+        <name>LastSaveTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="61" column="25" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a3398f730a3eb1ae6c93b3e7df134522a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MemoryBuffer::OverrideTime</definition>
+        <argsstring></argsstring>
+        <name>OverrideTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="62" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1ab047fd7f062b4db7bd4cdfff7bdaf62c" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; MemoryBuffer::Fs</definition>
+        <argsstring></argsstring>
+        <name>Fs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="64" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a130230435c568e4d3af8fc2bd3223293" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; MemoryBuffer::Gradnorms</definition>
+        <argsstring></argsstring>
+        <name>Gradnorms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="65" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a99afdaad76269c41ed13560ff1fdafb7" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; MemoryBuffer::DXs</definition>
+        <argsstring></argsstring>
+        <name>DXs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="66" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a966ec2eb4f30c5b27bddccb16b6e1c1b" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; MemoryBuffer::Times</definition>
+        <argsstring></argsstring>
+        <name>Times</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="67" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1ae3c426ed9ede4f5c56396efb4d124b9f" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; MemoryBuffer::MiniBatches</definition>
+        <argsstring></argsstring>
+        <name>MiniBatches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="68" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1aa86f98179ea101b944f96521e54c6efb" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; MemoryBuffer::Epochs</definition>
+        <argsstring></argsstring>
+        <name>Epochs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="69" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a86fe83559e8e303db698259261fba8b8" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; int &gt;</type>
+        <definition>std::vector&lt;int&gt; MemoryBuffer::Batches</definition>
+        <argsstring></argsstring>
+        <name>Batches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="70" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a88f57d627727f3ae12f2e8cdcef9f7f6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MemoryBuffer::AnalysisSteps</definition>
+        <argsstring></argsstring>
+        <name>AnalysisSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="72" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1a2c7b1ba7dda880394e9f7b68c5b553d6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MemoryBuffer::AnalysisSize</definition>
+        <argsstring></argsstring>
+        <name>AnalysisSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="73" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structMemoryBuffer_1aaa05a44d029283a092aefd582977d1bb" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; MemoryBuffer::Analysis</definition>
+        <argsstring></argsstring>
+        <name>Analysis</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="74" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="57" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="56" bodyend="75"/>
+    <listofallmembers>
+      <member refid="structMemoryBuffer_1aaa05a44d029283a092aefd582977d1bb" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Analysis</name></member>
+      <member refid="structMemoryBuffer_1a2c7b1ba7dda880394e9f7b68c5b553d6" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>AnalysisSize</name></member>
+      <member refid="structMemoryBuffer_1a88f57d627727f3ae12f2e8cdcef9f7f6" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>AnalysisSteps</name></member>
+      <member refid="structMemoryBuffer_1a86fe83559e8e303db698259261fba8b8" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Batches</name></member>
+      <member refid="structMemoryBuffer_1a99afdaad76269c41ed13560ff1fdafb7" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>DXs</name></member>
+      <member refid="structMemoryBuffer_1aa86f98179ea101b944f96521e54c6efb" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Epochs</name></member>
+      <member refid="structMemoryBuffer_1ab047fd7f062b4db7bd4cdfff7bdaf62c" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Fs</name></member>
+      <member refid="structMemoryBuffer_1a130230435c568e4d3af8fc2bd3223293" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Gradnorms</name></member>
+      <member refid="structMemoryBuffer_1ad72781d6a1db3dfbf6c81596c8a07f00" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>LastSaveTime</name></member>
+      <member refid="structMemoryBuffer_1ae3c426ed9ede4f5c56396efb4d124b9f" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>MiniBatches</name></member>
+      <member refid="structMemoryBuffer_1a3398f730a3eb1ae6c93b3e7df134522a" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>OverrideTime</name></member>
+      <member refid="structMemoryBuffer_1a86585015fa99011516592b628f70db83" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Position</name></member>
+      <member refid="structMemoryBuffer_1a9dd45cbef6dc3a2b739930e4dec409d3" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Size</name></member>
+      <member refid="structMemoryBuffer_1a4e662ae94caa8b785bd7275b895cc8fb" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>StartTime</name></member>
+      <member refid="structMemoryBuffer_1a966ec2eb4f30c5b27bddccb16b6e1c1b" prot="public" virt="non-virtual"><scope>MemoryBuffer</scope><name>Times</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir">
+    <compoundname>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main</compoundname>
+    <innerfile refid="GlobalConstants_8h">GlobalConstants.h</innerfile>
+    <innerfile refid="GlobalVariables_8h">GlobalVariables.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/"/>
+  </compounddef>
+</doxygen>

@@ -1,5 +1,5 @@
-output       ../../CodeOutput/hometest/
-data         ../../TestSets/gaps_parallel_spikes/
+output       ../../CodeOutput/worktest/
+data         ../../Data/gaps_parallel_spikes/
 random-seed  3
 gradlim      1e-5
 max-steps    200
@@ -11,3 +11,4 @@ harness-slow  50
 harness-release 5
 
 
+	

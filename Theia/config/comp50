@@ -1,12 +1,11 @@
-output       ../../Output/PrepRun_1/
+output       ../../Output/Production_1/
 data         ../../Data/ShuffledData/
 random-seed  0
-gradlim      1e-7
+gradlim      0
 max-steps    5000
-burnin       0
-save-steps   5
+save-steps   10
 unique-temp-save 1
-minibatch     64
-harness-slow  20
+minibatch     128
+harness-slow  40
 harness-release 5
 

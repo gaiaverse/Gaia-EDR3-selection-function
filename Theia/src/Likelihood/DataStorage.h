@@ -5,142 +5,80 @@
 #include "MiscFunctions.h"
 #include <string>
 #include <vector>
-
+#include "VariancePopulation.h"
 #include "../libs/JSL/JSL.h"
+#include "../Optimizer/EfficiencyVector.h"
 
 enum Probability { NormalApproximation, PoissonBinomial};
 
-struct VariancePopulation
-{
-	double Fraction;
-	std::vector<double> PowerContributions;
-	
-	VariancePopulation(){};
-	VariancePopulation(double fraction,std::vector<double> contributions)
-	{
-		Fraction = fraction;
-		PowerContributions = contributions;				
-	}; 
-	
 
-	double Variance(double scaling)
-	{
-		double v = pow(PowerContributions[0],2);
-		
-		for (int i = 1; i <= hyperOrder/2; ++i)
-		{
-			int power = 2*i;
-			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
-			v += pow(term,power); 
-		} 
-		
-
-		return v;
-		
-	}
-	double dVariancedN(double scaling)
-	{
-		double v = 0;
-		
-		for (int i = 1; i <= hyperOrder/2; ++i)
-		{
-			int power = 2*i;
-			double term = PowerContributions[power-1] + PowerContributions[power] * scaling;
-			v += power * pow(term,power-1) * PowerContributions[power]; 
-		} 
-		return v;
-	}
-	double dVariancedAlpha(int term, double scaling)
-	{
-		double v;
-		if (term > 0)
-		{
-			if (term % 2 == 0)
-			{
-				double bracket = PowerContributions[term-1] + PowerContributions[term] * scaling;
-				v = term * pow(bracket,term - 1) * scaling;
-			}
-			else
-			{
-				double bracket = PowerContributions[term] + PowerContributions[term+1] * scaling;
-				v = (term + 1 ) * pow(bracket,term);
-			}
-		}
-		else
-		{
-			v = 2 * PowerContributions[0];
-		}
-		return v;
-	}
-	void Print(double scale)
-	{
-		std::cout << "I have fraction: " << Fraction << " and\n" ;
-		for (int i = 0; i <= hyperOrder; ++i)
-		{
-			std::cout << "a" << i << " = " << PowerContributions[i] << ";" <<std::endl;
-		}
-		
-		std::cout << "SO: V(n) = " << PowerContributions[0];
-		for (int i = 1; i<= hyperOrder/2; ++i)
-		{
-			int power = 2*i-1;
-			std::cout << "+ (" << PowerContributions[power] << " + " << PowerContributions[power+1] << "*n).^" << power+1;
-		}
-		std::cout<< "\n With n = " << scale << " I have: \n";
-		
-		
-		std::cout << "V = " << Variance(scale) << std::endl;
-		std::cout << "dVdN = " << dVariancedN(scale) << std::endl;
-		for (int i = 0; i < hyperOrder + 1; ++i)
-		{
-			std::cout << "dVdA_" << i << " = " << dVariancedAlpha(i,scale) << std::endl;
-		}
-	}
-};
+/*!
+	A class which packages most of the gnarly bits of LogLikelihood. This is essentially just a container class for the requisite data 
+*/
 class LikelihoodData
 {
 	public:
-	
-		LikelihoodData(const std::vector<std::vector<Star>> &data, int id);
 		
-		int ID;
+		//! Constructor function \param data A vector of Star objects arranged according to the minibatching schedule. 
+		LikelihoodData(const std::vector<std::vector<Star>> &data);
+		
+		//! The storage location for the reference to the large amount of data passed to this object
 		const std::vector<std::vector<Star>> &Stars;
 		
-		//Indexing data, allows us to index properly into the 
-		//spatial and temporal parts of the vector
+		//! A vector containing the healpix id that FOV_1 is looking at at each time index
 		std::vector<int> healpix_fov_1;
+		
+		//! A vector containing the healpix id that FOV_2 is looking at at each time index
     	std::vector<int> healpix_fov_2;
+    	
+    	//! A vector mapping the #Nt coarse-grain times to the #TotalScanningTime bins that FOV_i uses and that the Star objects refer to
     	std::vector<int> time_mapping;
 
 	
 	
-		//frequently overwritten vectors
-		//makes sense to initialise these vectors to a large size and be careful about memory access
-		//rather than continually create and delete them 
+		//! A vector of length #NumberLargerThanMaxObservations, used to store intermediary results for the convolutions in the PoissonBinomial calculations
 		std::vector<std::vector<double>> pmf_forward;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store intermediary results for the convolutions in the PoissonBinomial calculations
 		std::vector<std::vector<double>> pmf_backward;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store intermediary results for the convolutions in the PoissonBinomial calculations
 		std::vector<std::vector<double>> subpmf;
 		
+		//!A vector of length #NumberLargerThanMaxObservations, used to store the value of the derivative of the per-star likelihood with respect to the individual observation probabilities
 		std::vector<double> dfdp_constantN;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store the value of the derivative of the per-star likelihood with respect to the variance-scaling parameter
 		double dfdN_constantP;
 		
+		//! The contributions towards the hyperparameter gradients
 		std::vector<double> hypergradient;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store the values of the proposed operating efficiency of Gaia at each of the times that the star was observed
 		std::vector<double> pt;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store the values of the proposed operating efficiency of Gaia at each of the spatial points that the star was observed at
 		std::vector<double> pml;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to store the pointwise product of pt * pml --> the total likelihood that the star was seen at each of its given observations
 		std::vector<double> p;
-
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to hold the spatial gradient components for FOV1
 		std::vector<double> grad_elu_xml1;
+		
+		//! A vector of length #NumberLargerThanMaxObservations, used to hold the spatial gradient components for FOV2
 		std::vector<double> grad_elu_xml2;
 		
 		
+		//! A container populated by the GeneratePopulations() function
 		std::vector<VariancePopulation> VariancePopulations;
+		
+		//! An enum which determines if the probability model used is PoissonBinomial, or the NormalApproximation
 		Probability Mode;
-		
-		
-		
-		
-		
-		
-		void GeneratePopulations(const std::vector<double> & x);
+
+		/*!
+		 * Generates a new set of VariancePopulation objects to be re-used throughout the LogLikelihood::Calculate() loop, and stores them in #VariancePopulations.
+		*/
+		void GeneratePopulations(const EfficiencyVector & x);
 };
 

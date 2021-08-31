@@ -1,13 +1,13 @@
 #include "LogLikelihood.h"
 
-LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data, int id): Data(data,id)
+LogLikelihood::LogLikelihood(const std::vector<std::vector<Star>> &data): Data(data)
 {
 	Value = 0.0;
 	StarsUsed = 0;
 	Gradient = std::vector<double>(totalTransformedParams,0.0);
 }
 
-void LogLikelihood::Calculate(const std::vector<double> & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
+void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, int effectiveBatches, int maxBatches)
 {
 
 	
@@ -42,7 +42,7 @@ void LogLikelihood::Reset()
 
 
 
-void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vector<double> & x)
+void LogLikelihood::PerStarContribution(int batchId, int starID, const EfficiencyVector & x)
 {
 	const Star * candidate = &Data.Stars[batchId][starID];
 
@@ -52,7 +52,8 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const std::vect
 	AssignGradients(candidate);
 }
 
-void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double> & x)
+
+void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & x)
 {
 	int n = candidate->nVisit;
 	//generate p vectors
@@ -64,19 +65,23 @@ void LogLikelihood::GeneratePs(const Star * candidate, const std::vector<double>
 		
 		//double time_multiplier = time_ratio * t - T;
 		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
-		double xt = x[T];
+		double xt = x.Access(x.Transformed,x.Temporal,x.Position,T);
 
 		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
 		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
-		double elu_xml1 = elu(x[idx1]);
-		double elu_xml2 = elu(x[idx2]);
+		
+		double xlm1 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_1[t], candidate->gBin);
+		double xlm2 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_2[t], candidate->gBin);
+		
+		double elu_xml1 = elu(xlm1);
+		double elu_xml2 = elu(xlm2);
 		
 		double pt = sigmoid(xt);
 		Data.pt[i] = pt;
 
-        Data.grad_elu_xml1[i] = elu_grad(x[idx1], elu_xml1);
-        Data.grad_elu_xml2[i] = elu_grad(x[idx2], elu_xml2);
-		Data.pml[i] = exp(-density_alpha * (elu_xml1 + elu_xml2));
+        Data.grad_elu_xml1[i] = elu_grad(xlm1, elu_xml1);
+        Data.grad_elu_xml2[i] = elu_grad(xlm2, elu_xml2);
+		Data.pml[i] = exp(-spatialAddingPrefactor * (elu_xml1 + elu_xml2));
 		Data.p[i] = Data.pt[i] *Data.pml[i];
 	}
 }
@@ -253,49 +258,9 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 		{
 			dfdp_i -= exp(Data.subpmf[2][i]-log_likelihood);
 		}
-		
-		
-		if (std::isnan(dfdp_i) || std::isinf(dfdp_i))
-		{
-			dfdpEmergency = true;
-		}
 		Data.dfdp_constantN[i] = dfdp_i;
 	}
 	
-	if (std::isnan(contribution) || std::isinf(contribution) || dfdpEmergency)
-	{
-		std::cout << "\n\n Error detected! NaN found in Value calculation on core " << Data.ID << "\n";
-		std::cout << "n = " << n << "k = " << k << std::endl;
-		std::cout << "likelihood = " << likelihood << "  correction = " << correction << "\n";
-		std::cout << "triggered loop inversion: " << triggeredLoopInvert << "\n";
-		std::cout << "log_likelihood = " << log_likelihood << "  log_correction = " << log_correction << "\n";
-		std::cout << "p = (";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.p[i] << ", ";
-		}
-		std::cout << ")\n\nl_pmf = (";
-		for (int i = 0; i <= n; ++i)
-		{
-			double v = Data.pmf_forward[n-1][i];
-
-			std::cout << v << ",";
-		}
-		
-		std::cout << "\nsub_pmf_0 \t\tsub_pmf_1\t\tsub_pmf_2";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.subpmf[0][i] << "\t\t" << Data.subpmf[1][i] << "\t\t" << Data.subpmf[2][i] << "\n";
-		}
-		
-		std::cout << "\n\ndfdp = (";
-		for (int i = 0; i < n; ++i)
-		{
-			std::cout << Data.dfdp_constantN[i] << ", ";
-		}
-		std::cout << ")\n\n";
-		ERROR(100, "See above output");
-	}
 }
 void LogLikelihood::AssignGradients(const Star * candidate)
 {
@@ -337,8 +302,8 @@ void LogLikelihood::AssignGradients(const Star * candidate)
 		
 		
 		Gradient[T] += Data.pt[i] * (1.0 - Data.pt[i]) * dfdP_time;
-		Gradient[index1] -= density_alpha * Data.grad_elu_xml1[i] * Data.pml[i] * dfdP_space;
-		Gradient[index2] -= density_alpha * Data.grad_elu_xml2[i] * Data.pml[i] * dfdP_space;
+		Gradient[index1] -= spatialAddingPrefactor * Data.grad_elu_xml1[i] * Data.pml[i] * dfdP_space;
+		Gradient[index2] -= spatialAddingPrefactor * Data.grad_elu_xml2[i] * Data.pml[i] * dfdP_space;
 	}
 	
 	for (int i = 0; i < NHyper; ++i)

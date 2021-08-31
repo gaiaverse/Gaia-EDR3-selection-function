@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structStopConditions" kind="struct" language="C++" prot="public">
+    <compoundname>StopConditions</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structStopConditions_1af2622385130b911bed2c486ae8c460ff" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int StopConditions::MaxSteps</definition>
+        <argsstring></argsstring>
+        <name>MaxSteps</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="17" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1a43d87fc57a46592e5ebe7eb74ed0cf9f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double StopConditions::PositionChangeThreshold</definition>
+        <argsstring></argsstring>
+        <name>PositionChangeThreshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="18" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1a8b6e6f9c935df6006ded3a0879dd33de" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double StopConditions::GradientThreshold</definition>
+        <argsstring></argsstring>
+        <name>GradientThreshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="19" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1adc5c6c3a77f1d2162419ba06dbfa6b03" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double StopConditions::FunctionChangeThreshold</definition>
+        <argsstring></argsstring>
+        <name>FunctionChangeThreshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="20" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1af78938739bfb3fc5971b9cbb4e61331d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int StopConditions::SingleBatchStepThreshold</definition>
+        <argsstring></argsstring>
+        <name>SingleBatchStepThreshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="21" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1a4b1bfd27c0581edec18fe55ae1cdced3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool StopConditions::UseExternalInstructions</definition>
+        <argsstring></argsstring>
+        <name>UseExternalInstructions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="22" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1ac32b60d59dd9c352b5dccc54d817eb6a" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string StopConditions::DownStepFile</definition>
+        <argsstring></argsstring>
+        <name>DownStepFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="23" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structStopConditions_1ae590bf77b1deeee760750df2a11fa6d8" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string StopConditions::TerminationFile</definition>
+        <argsstring></argsstring>
+        <name>TerminationFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="24" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" line="16" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="15" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structStopConditions_1ac32b60d59dd9c352b5dccc54d817eb6a" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>DownStepFile</name></member>
+      <member refid="structStopConditions_1adc5c6c3a77f1d2162419ba06dbfa6b03" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>FunctionChangeThreshold</name></member>
+      <member refid="structStopConditions_1a8b6e6f9c935df6006ded3a0879dd33de" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>GradientThreshold</name></member>
+      <member refid="structStopConditions_1af2622385130b911bed2c486ae8c460ff" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>MaxSteps</name></member>
+      <member refid="structStopConditions_1a43d87fc57a46592e5ebe7eb74ed0cf9f" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>PositionChangeThreshold</name></member>
+      <member refid="structStopConditions_1af78938739bfb3fc5971b9cbb4e61331d" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>SingleBatchStepThreshold</name></member>
+      <member refid="structStopConditions_1ae590bf77b1deeee760750df2a11fa6d8" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>TerminationFile</name></member>
+      <member refid="structStopConditions_1a4b1bfd27c0581edec18fe55ae1cdced3" prot="public" virt="non-virtual"><scope>StopConditions</scope><name>UseExternalInstructions</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,374 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.13">
+  <compound refid="classCommandArgs" kind="class"><name>CommandArgs</name>
+    <member refid="classCommandArgs_1a7227f10097dae1825feea951fc3132a6" kind="variable"><name>RandomSeed</name></member>
+    <member refid="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" kind="variable"><name>StartVectorLocation</name></member>
+    <member refid="classCommandArgs_1a47a53ea373bc6c81ed80c2b651e9c405" kind="variable"><name>GradLim</name></member>
+    <member refid="classCommandArgs_1a9d8b6a8c21f7b330979c7a173994ca37" kind="variable"><name>MaxSteps</name></member>
+    <member refid="classCommandArgs_1af906f01863ff7b503914b462a8a7ddb5" kind="variable"><name>SaveSteps</name></member>
+    <member refid="classCommandArgs_1ad1018830dc6772a972df87a843059416" kind="variable"><name>SaveAllSteps</name></member>
+    <member refid="classCommandArgs_1ad16d6cadaedb80e8d3abfc51b3b73335" kind="variable"><name>Minibatches</name></member>
+    <member refid="classCommandArgs_1ae64dd25052a877832d3db4e289f1bb13" kind="variable"><name>HarnessSlowDown</name></member>
+    <member refid="classCommandArgs_1a2a92d19a8106254917659b8d432b8fd2" kind="variable"><name>HarnessRelease</name></member>
+    <member refid="classCommandArgs_1a5e4469cda4fd80e0d827a11147b15afa" kind="variable"><name>DataSource</name></member>
+    <member refid="classCommandArgs_1adf5dd695a6a88eed97d1317d534af4d6" kind="variable"><name>OutputDirectory</name></member>
+    <member refid="classCommandArgs_1ab0522bf4c5550780b9ff929fbc272f72" kind="variable"><name>argPointers</name></member>
+    <member refid="classCommandArgs_1a35597219abd5f941cf3d6ffbe9f62a04" kind="function"><name>CommandArgs</name></member>
+    <member refid="classCommandArgs_1a93f101d465df0ff6e79950c6b8ac4cd5" kind="function"><name>ReadArguments</name></member>
+  </compound>
+  <compound refid="classEfficiencyVector" kind="class"><name>EfficiencyVector</name>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4" kind="enum"><name>VectorMode</name></member>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4af71605802003c74662a1e79c4bc2e72a" kind="enumvalue"><name>Raw</name></member>
+    <member refid="classEfficiencyVector_1a8e1e1afed067c831ddc13cd8e5c151e4a5d730d648e4a125ffb26b657134d9b24" kind="enumvalue"><name>Transformed</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ce" kind="enum"><name>VectorComponent</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea1f4c469d28d6d6118881152ba4d10ca7" kind="enumvalue"><name>Temporal</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06ceacac34fdc2ea3edb2031c5bc689ac1114" kind="enumvalue"><name>Spatial</name></member>
+    <member refid="classEfficiencyVector_1a1e89ac32a6ccd470704e47dd810c06cea43b9bc5417f2033c529ed1bea4b64628" kind="enumvalue"><name>Hyper</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4" kind="enum"><name>VectorType</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4ad76b33744e33b33ccb8eb74a8f0d8e97" kind="enumvalue"><name>Position</name></member>
+    <member refid="classEfficiencyVector_1a65f0adb44f99d2a0c1f2d546d64e43f4aa1cd5f818bc45be8f0a693fadff98ca6" kind="enumvalue"><name>Gradient</name></member>
+    <member refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kind="variable"><name>RawPosition</name></member>
+    <member refid="classEfficiencyVector_1a0d2424de7608bed885b7a7321913cb15" kind="variable"><name>TransformedPosition</name></member>
+    <member refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kind="variable"><name>RawGradient</name></member>
+    <member refid="classEfficiencyVector_1a810e0f6fba51ea2eacd3a3d986415fbc" kind="variable"><name>TransformedGradient</name></member>
+    <member refid="classEfficiencyVector_1aa3314c7a77eee1b9c142bd37ca32077b" kind="variable"><name>needletN</name></member>
+    <member refid="classEfficiencyVector_1aceae3fe91db02eb630c849815457d22b" kind="variable"><name>needlet_u</name></member>
+    <member refid="classEfficiencyVector_1ac887f4e790bedbcb5a969173e3895ff2" kind="variable"><name>needlet_v</name></member>
+    <member refid="classEfficiencyVector_1a43c3f807bbcc7b11ed9ee2e3928cbd1a" kind="variable"><name>needlet_w</name></member>
+    <member refid="classEfficiencyVector_1a6d05dcbafa38c84009537ba380b2fe43" kind="variable"><name>bVector</name></member>
+    <member refid="classEfficiencyVector_1a6c12f66fe7058b4617dd4c7b73841e4b" kind="variable"><name>choleskyN</name></member>
+    <member refid="classEfficiencyVector_1a2484e0d3fea3c1de9384f5d853f1abcb" kind="variable"><name>cholesky_u</name></member>
+    <member refid="classEfficiencyVector_1acd914161b38f70d4cdc02ec219e40877" kind="variable"><name>cholesky_v</name></member>
+    <member refid="classEfficiencyVector_1a886c500dba7bcca59afffa0902b51aa5" kind="variable"><name>cholesky_w</name></member>
+    <member refid="classEfficiencyVector_1af5d8451a52b8d7de5a0c4cc53e72f747" kind="variable"><name>SaveLocation</name></member>
+    <member refid="classEfficiencyVector_1a772e2dd16923237ca5971a8163455de3" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1a0915fbeb6956e6f89ff6a7d56abdb69c" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1ad40a836afd1edd3c9e157eabd74444dc" kind="function"><name>EfficiencyVector</name></member>
+    <member refid="classEfficiencyVector_1a033b602449285844551eaa10322eef68" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1afbdf71db7057f158abede4fa470c32a1" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1afa8c6e37087830a63766b21f80265031" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1abf55a58821f7359a60566a6f843e6efc" kind="function"><name>Access</name></member>
+    <member refid="classEfficiencyVector_1a2336e564c1bcb080a9b8d730d034f84d" kind="function"><name>Assign</name></member>
+    <member refid="classEfficiencyVector_1a737c4a6882a787b61a687cf5efa0ee0e" kind="function"><name>Increment</name></member>
+    <member refid="classEfficiencyVector_1a7f78df05a85c55da6540a9d890f9eb1c" kind="function"><name>ForwardTransform</name></member>
+    <member refid="classEfficiencyVector_1a27e4486f1c1c6bd5a686b9878463981e" kind="function"><name>BackwardTransform</name></member>
+    <member refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kind="function"><name>Save</name></member>
+    <member refid="classEfficiencyVector_1a78c4ab8dbe00681622055e0352fbdff5" kind="function"><name>ForwardTransform_Temporal</name></member>
+    <member refid="classEfficiencyVector_1a0a7e1892047098090974d5c758073736" kind="function"><name>ForwardTransform_Spatial</name></member>
+    <member refid="classEfficiencyVector_1a172d7490ecc7c369b82a8f7e685ea26a" kind="function"><name>ForwardTransform_Hyper</name></member>
+    <member refid="classEfficiencyVector_1ac1344956069266f6867a39b0cfe2da3c" kind="function"><name>BackwardTransform_Hyper</name></member>
+    <member refid="classEfficiencyVector_1ae46ca7023b58c6f1561bfe1c1e2dab9e" kind="function"><name>BackwardTransform_Spatial</name></member>
+    <member refid="classEfficiencyVector_1af9e2a378068b22ce64ac77b6975822ec" kind="function"><name>BackwardTransform_Temporal</name></member>
+    <member refid="classEfficiencyVector_1ae8bdfb62ee948b8eea9251d32a0d8c72" kind="function"><name>GenerateVector</name></member>
+    <member refid="classEfficiencyVector_1ab967f5458056d0c32f289e3abb9362f5" kind="function"><name>LoadVector</name></member>
+    <member refid="classEfficiencyVector_1acc7bdab17106b8cc57e4e3058ab30d61" kind="function"><name>LoadNeedlets</name></member>
+    <member refid="classEfficiencyVector_1ad44083c55751371cdc78cdfd9d040f87" kind="function"><name>LoadCholesky</name></member>
+    <member refid="classEfficiencyVector_1ab2c6d55d16af0c0031908a9fd927dfdd" kind="function"><name>Reset</name></member>
+  </compound>
+  <compound refid="structF__dF" kind="struct"><name>F_dF</name>
+    <member refid="structF__dF_1a1989c3db31ab6428238f4145e4e0f311" kind="variable"><name>F</name></member>
+    <member refid="structF__dF_1ac0e2417c721948dafc6db9535a824a2b" kind="variable"><name>dF</name></member>
+    <member refid="structF__dF_1a4e8c66f3678ce840dcacee09e10f2403" kind="function"><name>F_dF</name></member>
+    <member refid="structF__dF_1a203b61bb3af93c149d1b13d8e1865940" kind="function"><name>F_dF</name></member>
+  </compound>
+  <compound refid="structFile" kind="struct"><name>File</name>
+    <member refid="structFile_1afcb65fdfafd4c6373b4c9d3e1ca9459d" kind="variable"><name>Name</name></member>
+    <member refid="structFile_1aced9c357d2c770816f23676e0a059d88" kind="variable"><name>Bin</name></member>
+  </compound>
+  <compound refid="structFileStarPairs" kind="struct"><name>FileStarPairs</name>
+    <member refid="structFileStarPairs_1aec9230582e62f0acf8838794aea7e490" kind="variable"><name>FileName</name></member>
+    <member refid="structFileStarPairs_1a2c8e51cf299f1dbbf2e9d73614aee650" kind="variable"><name>NStars</name></member>
+  </compound>
+  <compound refid="classLikelihoodData" kind="class"><name>LikelihoodData</name>
+    <member refid="classLikelihoodData_1a4c970663e2cd6c3e0b1a8e353854ce5f" kind="variable"><name>Stars</name></member>
+    <member refid="classLikelihoodData_1a0c7b79c0856b8d63180245c7a423b262" kind="variable"><name>healpix_fov_1</name></member>
+    <member refid="classLikelihoodData_1a2caf37a2748bbb0bd91b818c3af51502" kind="variable"><name>healpix_fov_2</name></member>
+    <member refid="classLikelihoodData_1ab996d0af29ea194954e9ddfeba2bea9e" kind="variable"><name>time_mapping</name></member>
+    <member refid="classLikelihoodData_1a930a1b35ff6c789074f50dc56bada379" kind="variable"><name>pmf_forward</name></member>
+    <member refid="classLikelihoodData_1aaf104aa3161c2a6be5f1db9aa946c4ab" kind="variable"><name>pmf_backward</name></member>
+    <member refid="classLikelihoodData_1a22d6828dd96c1d54a3b70fe0ef613b15" kind="variable"><name>subpmf</name></member>
+    <member refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" kind="variable"><name>dfdp_constantN</name></member>
+    <member refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" kind="variable"><name>dfdN_constantP</name></member>
+    <member refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" kind="variable"><name>hypergradient</name></member>
+    <member refid="classLikelihoodData_1a2b64e9d5f3c7e213acc1624dee4f083c" kind="variable"><name>pt</name></member>
+    <member refid="classLikelihoodData_1a1e6b3b209c44b5d459858ceaa58fca57" kind="variable"><name>pml</name></member>
+    <member refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" kind="variable"><name>p</name></member>
+    <member refid="classLikelihoodData_1a214d9b6e92856dff046ba31ce3c931e9" kind="variable"><name>grad_elu_xml1</name></member>
+    <member refid="classLikelihoodData_1ac803a4c9bd059ea6e23248cde5ff7290" kind="variable"><name>grad_elu_xml2</name></member>
+    <member refid="classLikelihoodData_1a1a1b8c65c6e8c79e0a19d3ccaa812087" kind="variable"><name>VariancePopulations</name></member>
+    <member refid="classLikelihoodData_1af71c3fde62f3e51803d19bd878f274c0" kind="variable"><name>Mode</name></member>
+    <member refid="classLikelihoodData_1a64c3a250e9c956e8cc77718aa17c26eb" kind="function"><name>LikelihoodData</name></member>
+    <member refid="classLikelihoodData_1a0141e0d7b6460738c54bdd67b902df9e" kind="function"><name>GeneratePopulations</name></member>
+  </compound>
+  <compound refid="classLikelihoodFunctor" kind="class"><name>LikelihoodFunctor</name>
+    <member refid="classLikelihoodFunctor_1ab6ea4480411be12c392dea3fc0740423" kind="variable"><name>L</name></member>
+    <member refid="classLikelihoodFunctor_1ac771670ec93943effa6c8c364bb2928c" kind="variable"><name>MaxBatches</name></member>
+    <member refid="classLikelihoodFunctor_1a87256103d80cd3b4a983425df2b12152" kind="variable"><name>LoopID</name></member>
+    <member refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kind="variable"><name>Efficiency</name></member>
+    <member refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kind="variable"><name>Value</name></member>
+    <member refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kind="variable"><name>Gradient</name></member>
+    <member refid="classLikelihoodFunctor_1aa0bde3ba080a854b45d6d5f1fb2f2f64" kind="function"><name>LikelihoodFunctor</name></member>
+    <member refid="classLikelihoodFunctor_1aa3c3e2c8039d943f05938cd4210e2f26" kind="function"><name>Initialise</name></member>
+    <member refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kind="function"><name>Calculate</name></member>
+    <member refid="classLikelihoodFunctor_1ac495908241262a2de64f797533f2969d" kind="function"><name>Calculate</name></member>
+    <member refid="classLikelihoodFunctor_1a1699da139bf1231f032bea08b4b9022a" kind="function"><name>SavePosition</name></member>
+  </compound>
+  <compound refid="classLogLikelihood" kind="class"><name>LogLikelihood</name>
+    <member refid="classLogLikelihood_1a97ff9863958ffb93e74da07721a30cc6" kind="variable"><name>Value</name></member>
+    <member refid="classLogLikelihood_1af6d93b053cfdc1966318018831a849ec" kind="variable"><name>Gradient</name></member>
+    <member refid="classLogLikelihood_1a3a4e3a1d76a663bca3705b471af583cc" kind="variable"><name>StarsUsed</name></member>
+    <member refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kind="variable"><name>Data</name></member>
+    <member refid="classLogLikelihood_1a2dabecfc63956f1527ccda8098d63bf5" kind="function"><name>LogLikelihood</name></member>
+    <member refid="classLogLikelihood_1af963f0f27156553eb1ac94355c83792b" kind="function"><name>Calculate</name></member>
+    <member refid="classLogLikelihood_1a323459623fea6256267c9724ceea8ec9" kind="function"><name>Reset</name></member>
+    <member refid="classLogLikelihood_1a03f95244f5a92714ef5d978d9f485970" kind="function"><name>PerStarContribution</name></member>
+    <member refid="classLogLikelihood_1a84ab748f78cdfaac5763d4cf020166ee" kind="function"><name>GeneratePs</name></member>
+    <member refid="classLogLikelihood_1ae0db177a301dbcb1ceb13575585dc2b2" kind="function"><name>GenerateContribution</name></member>
+    <member refid="classLogLikelihood_1a525d4693f7231cb70405af68d2c2c6e9" kind="function"><name>AssignGradients</name></member>
+    <member refid="classLogLikelihood_1a45c146d322f6a78b760383b624df66c8" kind="function"><name>NormalContribution</name></member>
+    <member refid="classLogLikelihood_1a48e99798d1bad7dc63fdf2019acc1c7b" kind="function"><name>PoissonContribution</name></member>
+    <member refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" kind="function"><name>ExactPoissonContribution</name></member>
+  </compound>
+  <compound refid="classLogLikelihoodPrior" kind="class"><name>LogLikelihoodPrior</name>
+    <member refid="classLogLikelihoodPrior_1aa769400889b28af885fde28e10dcfe58" kind="function"><name>LogLikelihoodPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1a9ab6a300487baff78f0caeac3f3f75e8" kind="function"><name>TransformPrior</name></member>
+    <member refid="classLogLikelihoodPrior_1a8fe936a7812290b880fb2283f0853310" kind="function"><name>RawPrior</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1MemoryBuffer" kind="struct"><name>ADABADAM::MemoryBuffer</name>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a2c412afddea0ef799ba41875c9d76818" kind="variable"><name>Size</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a72cd71bdb0010e7855d369a8afa18127" kind="variable"><name>Position</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1acfaafc64e76da8e65b151e4fa47d1030" kind="variable"><name>StartTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a9d771fa2b6d919faa831f5f415485d42" kind="variable"><name>LastSaveTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ac83c89b9e094cc7c14d0c261f3ac8cc8" kind="variable"><name>OverrideTime</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1aa33883a707ec5489851bd402286a1429" kind="variable"><name>Fs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a139cfda602a424ca9c0986d520fe5790" kind="variable"><name>Gradnorms</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1adb2e685f7d2a863caf046bf4a3d0a432" kind="variable"><name>DXs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a6d1be32973eb7c314694a7e0f44b1426" kind="variable"><name>Times</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a95073ef182ced1e1bdf5e506fbf5d340" kind="variable"><name>MiniBatches</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ad9a13b1da67a97d2c0df769f4adcc179" kind="variable"><name>Epochs</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a7386385a1aeeac03f49dd0b72209088d" kind="variable"><name>Batches</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a490e91144105a17b5c3fd4614b698c31" kind="variable"><name>AnalysisSteps</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1a6ec89787708be27dae727a95e1d150d1" kind="variable"><name>AnalysisSize</name></member>
+    <member refid="structADABADAM_1_1MemoryBuffer_1ae39263a1b1c6154e1ebd74434473c0f7" kind="variable"><name>Analysis</name></member>
+  </compound>
+  <compound refid="classADABADAM_1_1Optimizer" kind="class"><name>ADABADAM::Optimizer</name>
+    <member refid="classADABADAM_1_1Optimizer_1a8ff1e630cd9a716c0b9532eafe080887" kind="variable"><name>Functor</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a2b648167c97a6ffa99773ac9cff6ed39" kind="variable"><name>Buffer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a74db938ffd35e81a35b00e4f19d679cf" kind="variable"><name>Status</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a60484de5e0edc3f468b43a04cf6d2760" kind="variable"><name>Properties</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a85b9dbc991ca7f4ab8331f53c6dfb43e" kind="variable"><name>HaltConditions</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1ab197dd3167b06ce223798da233a01607" kind="variable"><name>Progress</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a43b245fc6ea6f2ebf37e866f4e9467a9" kind="function"><name>SetDefaults</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8e3bc7c0b60f1966a9afa044dc492725" kind="function"><name>Initialise</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8f21b01d041104c4af8f0c3253e5ab84" kind="function"><name>ADABADAM_Batch</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a5384c9cdea64e7ccd1ffc7dbe21cdd79" kind="function"><name>ADABADAM_Epoch</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1aaa9cbc92f2f6e73b5c5519f7e5d49d8e" kind="function"><name>ADABADAM_Body</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a5eb97d9042e07d43df8bee42e4bdd1e9" kind="function"><name>CheckConvergence</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a6429082a232ed285df6a0a477d585ab9" kind="function"><name>CheckMinibatches</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a0356ffc804f64b3c6d0afdc06ce346ef" kind="function"><name>NeedsBatchReduction</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a59f0a2aefce0a19843901086a95df02a" kind="function"><name>UpdateBuffer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a84be520d8cb763af01abd3062c48d57b" kind="function"><name>SaveBuffer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a83f5a64421c1daad8a40d8b9c61e5176" kind="function"><name>InitialiseExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a56343e7b2a86bff31ddf7f1f50dd11ae" kind="function"><name>CheckExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a8253c1c55048b1c7e79dd975de27e093" kind="function"><name>CleanExternalFiles</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a6e666554c2eed7330810f53cd826309b" kind="function"><name>Optimizer</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a91a9bdbfee82ec5afc0e8c576d047767" kind="function"><name>Minimize</name></member>
+    <member refid="classADABADAM_1_1Optimizer_1a23365766563534625999627ed782d5f8" kind="function"><name>GetStatus</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1OptimizerProperties" kind="struct"><name>ADABADAM::OptimizerProperties</name>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kind="variable"><name>MiniBatches</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" kind="variable"><name>StepSize</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" kind="variable"><name>MinibatchDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kind="variable"><name>MaxHarnessFactor</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kind="variable"><name>HarnessReleaseSteps</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kind="variable"><name>StepsPerPositionSave</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kind="variable"><name>UniquePositionSaves</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a19ec0404b84ce5bd53b2a819de1a32b4" kind="variable"><name>adamBeta1</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1a244f65db7f7cedf6e6d37a72ceb2e289" kind="variable"><name>adamBeta2</name></member>
+    <member refid="structADABADAM_1_1OptimizerProperties_1aa1f7c2a31f1ca80b7f65f3512db59356" kind="variable"><name>Dimensions</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1OptimizerStatus" kind="struct"><name>ADABADAM::OptimizerStatus</name>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a9ac9dc3b9934d3a3bf6370eba4968e84" kind="variable"><name>Continues</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a4c767e3ef11b03e82a365f1cee83600a" kind="variable"><name>Converged</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a277ce873a751efbb1dc12f725ea7f767" kind="variable"><name>CarryingOnRegardless</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a69a34cae9924b08720178027ee8a2c62" kind="variable"><name>TooManySteps</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a40cb570383c77058fa96b4856c78e9f6" kind="variable"><name>ReachedGradConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ab2d79284c4ba68339d144243c2da9876" kind="variable"><name>ReachedStepConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1a3c4157c094a48a9a58d8ba5724874f92" kind="variable"><name>ReachedFunctionConvergence</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ae8c48c5e102bee2c182567186fe7eea9" kind="variable"><name>ExternalDownStep</name></member>
+    <member refid="structADABADAM_1_1OptimizerStatus_1ae6eb602b852ab6c35d38a651a1eeaf4e" kind="variable"><name>ExternalTermination</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1ProgressTracker" kind="struct"><name>ADABADAM::ProgressTracker</name>
+    <member refid="structADABADAM_1_1ProgressTracker_1ace0954c9dcb390f1a9c5bf5d98bd29a8" kind="variable"><name>CurrentSteps</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1aa67e6ae7e23401865ab5176f18ea18b2" kind="variable"><name>CurrentMinibatches</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ac466c2e582586b8ab1a196f613283fb3" kind="variable"><name>Harness</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a243e0e89113dd657c5c6a61ffd62aa32" kind="variable"><name>BufferFileOpened</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a376c716747afeec5ee3a2084cb9a9f4f" kind="variable"><name>SaveLocation</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a7c3f518985d1790811e9c8382f366bec" kind="variable"><name>Hashes</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a24109da3557f1b8733fa4913d8dbfa25" kind="variable"><name>MaxHashes</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a27b2e352502ca5c3976d57f4387f7d26" kind="variable"><name>SlowdownTriggers</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ae3e590c4f984ab91b08139af68c87e77" kind="variable"><name>EpochsSinceSingleBatch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1ace5fd0a5df1a9e85022df68d4f4c9899" kind="variable"><name>LearningRate</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1aaa511c069db9d7e74bc64e1159575085" kind="variable"><name>PreviousEpoch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a73ed16b97ffd817d50146296a03e3fc2" kind="variable"><name>PreviousMinibatch</name></member>
+    <member refid="structADABADAM_1_1ProgressTracker_1a0f04c9ea82e293d0d131a586bf66ca81" kind="variable"><name>InitialSaveComplete</name></member>
+  </compound>
+  <compound refid="classStar" kind="class"><name>Star</name>
+    <member refid="classStar_1abbd3c299046233f3e5f2cf100981e05e" kind="variable"><name>nMeasure</name></member>
+    <member refid="classStar_1ac00a219fe6c887b16cb72e263c676ea9" kind="variable"><name>nVisit</name></member>
+    <member refid="classStar_1a5d29a213dddb43a01b5058486ce6e323" kind="variable"><name>gBin</name></member>
+    <member refid="classStar_1aaf5c50e6d1c9905c76a0bc2922de97d0" kind="variable"><name>TimeSeries</name></member>
+    <member refid="classStar_1ab26d0fb5819d1a1621adf3596174db0d" kind="function"><name>Star</name></member>
+  </compound>
+  <compound refid="structADABADAM_1_1StopConditions" kind="struct"><name>ADABADAM::StopConditions</name>
+    <member refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kind="variable"><name>MaxSteps</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a91588e199ade4a073925dc3b2b8d8209" kind="variable"><name>PositionChangeThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" kind="variable"><name>GradientThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1ac88824ff9afcca8bfc8fd93904876ceb" kind="variable"><name>FunctionChangeThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1ab927c3dd6d47de41feea341b38aead96" kind="variable"><name>SingleBatchStepThreshold</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a406879138cff941f80b1f44a06106e03" kind="variable"><name>UseExternalInstructions</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a06f790a66ef112c2950409d614ad2375" kind="variable"><name>DownStepFile</name></member>
+    <member refid="structADABADAM_1_1StopConditions_1a08aab0a437030cd29f20c735587eb629" kind="variable"><name>TerminationFile</name></member>
+  </compound>
+  <compound refid="structVariancePopulation" kind="struct"><name>VariancePopulation</name>
+    <member refid="structVariancePopulation_1aaaa1da9b4ed3f0d460a49cd0078330eb" kind="variable"><name>Fraction</name></member>
+    <member refid="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" kind="variable"><name>Term</name></member>
+    <member refid="structVariancePopulation_1a1afdc6aabbc57c2f7738e72ad0455061" kind="function"><name>VariancePopulation</name></member>
+    <member refid="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" kind="function"><name>VariancePopulation</name></member>
+    <member refid="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" kind="function"><name>Variance</name></member>
+    <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" kind="function"><name>dVariancedN</name></member>
+    <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" kind="function"><name>dVariancedAlpha</name></member>
+  </compound>
+  <compound refid="namespaceADABADAM" kind="namespace"><name>ADABADAM</name>
+    <member refid="namespaceADABADAM_1a6daa2701fb4cfaeb09a51cd2a8fd9110" kind="function"><name>sgn</name></member>
+    <member refid="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" kind="function"><name>norm</name></member>
+    <member refid="namespaceADABADAM_1ac05031b7779daebbd07d9a68b4181260" kind="function"><name>vectorDiff</name></member>
+    <member refid="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" kind="function"><name>vectorDiffNorm</name></member>
+    <member refid="namespaceADABADAM_1a30978fca49d41c59890c4c5245a2f87b" kind="function"><name>randomShuffle</name></member>
+  </compound>
+  <compound refid="namespaceEigen" kind="namespace"><name>Eigen</name>
+  </compound>
+  <compound refid="CommandArguments_8h" kind="file"><name>CommandArguments.h</name>
+  </compound>
+  <compound refid="DataLoading_8h" kind="file"><name>DataLoading.h</name>
+    <member refid="DataLoading_8h_1a1116cde3845310f341731e7f717c0d0b" kind="function"><name>LoadData</name></member>
+    <member refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kind="function"><name>GetAssignments</name></member>
+    <member refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kind="function"><name>CalculateBatches</name></member>
+  </compound>
+  <compound refid="Star_8h" kind="file"><name>Star.h</name>
+  </compound>
+  <compound refid="DataStorage_8h" kind="file"><name>DataStorage.h</name>
+    <member refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54e" kind="enum"><name>Probability</name></member>
+    <member refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54ea00bb67a1daee733a1f5346311dafa31d" kind="enumvalue"><name>NormalApproximation</name></member>
+    <member refid="DataStorage_8h_1afe8656b4ac10c1a4a3e39cbecda9c54eac83211c45e8315686a7a45d3fb7586f7" kind="enumvalue"><name>PoissonBinomial</name></member>
+  </compound>
+  <compound refid="LogLikelihood_8h" kind="file"><name>LogLikelihood.h</name>
+    <member refid="LogLikelihood_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="LogLikelihood_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+  </compound>
+  <compound refid="LogLikelihoodPrior_8h" kind="file"><name>LogLikelihoodPrior.h</name>
+    <member refid="LogLikelihoodPrior_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="LogLikelihoodPrior_8h_1a6dedf4c61aa1e85945bdeaa84a6a492d" kind="function"><name>Normal</name></member>
+    <member refid="LogLikelihoodPrior_8h_1a147a8187d8f7795760e2126f0e295e8d" kind="function"><name>StudentT</name></member>
+    <member refid="LogLikelihoodPrior_8h_1ac748ff2809ad571b5fec77457149e035" kind="function"><name>TemporalBetaPrior</name></member>
+  </compound>
+  <compound refid="MiscFunctions_8h" kind="file"><name>MiscFunctions.h</name>
+    <member refid="MiscFunctions_8h_1a035beb45b016dda0bf6cfdf0363e79c6" kind="variable"><name>one_over_root2</name></member>
+    <member refid="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" kind="variable"><name>one_over_root2pi</name></member>
+    <member refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" kind="variable"><name>root2_over_pi</name></member>
+    <member refid="MiscFunctions_8h_1aa924e8c95bc498ebc9f8e08a0c491e7c" kind="function"><name>sigmoid</name></member>
+    <member refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kind="function"><name>elu</name></member>
+    <member refid="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" kind="function"><name>elu_grad</name></member>
+    <member refid="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" kind="function"><name>log_add_exp</name></member>
+  </compound>
+  <compound refid="ProbabilityFunctions_8h" kind="file"><name>ProbabilityFunctions.h</name>
+    <member refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kind="function"><name>poisson_binomial_pmf_forward</name></member>
+    <member refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kind="function"><name>poisson_binomial_pmf_backward</name></member>
+    <member refid="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" kind="function"><name>poisson_binomial_subpmf</name></member>
+    <member refid="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" kind="function"><name>poisson_binomial_lpmf_forward</name></member>
+    <member refid="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" kind="function"><name>poisson_binomial_lpmf_backward</name></member>
+    <member refid="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" kind="function"><name>poisson_binomial_sublpmf</name></member>
+    <member refid="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" kind="function"><name>poisson_binomial_normal_lpmf</name></member>
+  </compound>
+  <compound refid="VariancePopulation_8h" kind="file"><name>VariancePopulation.h</name>
+  </compound>
+  <compound refid="GlobalConstants_8h" kind="file"><name>GlobalConstants.h</name>
+    <member refid="GlobalConstants_8h_1adb6be90814db78c31a9cba5282571a07" kind="define"><name>ERROR</name></member>
+    <member refid="GlobalConstants_8h_1a141392895ac8f4c5731336933b012f29" kind="variable"><name>RootID</name></member>
+    <member refid="GlobalConstants_8h_1aeab1391c53c52eb2b029db07141d2c7c" kind="variable"><name>PipelineMinVisits</name></member>
+    <member refid="GlobalConstants_8h_1ae2978990f3210459750d9b0f6c214970" kind="variable"><name>TotalScanningTime</name></member>
+    <member refid="GlobalConstants_8h_1a06f77834ff83e05fe31fd919eced9b28" kind="variable"><name>secondsPerNtStep</name></member>
+    <member refid="GlobalConstants_8h_1aad4c75e786a703dbf2e1123a2d8ca9f4" kind="variable"><name>lt</name></member>
+    <member refid="GlobalConstants_8h_1a27996c716450a1295fe62bada51cc608" kind="variable"><name>Nl</name></member>
+    <member refid="GlobalConstants_8h_1a3490bb846d2422704fe14bd5985b8b47" kind="variable"><name>Ns</name></member>
+    <member refid="GlobalConstants_8h_1afbbf79d40e5acd414a0f731f665d1a39" kind="variable"><name>NHyper</name></member>
+    <member refid="GlobalConstants_8h_1a053910dff43b2fcd8ab32b97fb0481da" kind="variable"><name>rawNonHyperParams</name></member>
+    <member refid="GlobalConstants_8h_1aba50580eaf4dee5ddc642c86f26b59e1" kind="variable"><name>transformedNonHyperParams</name></member>
+    <member refid="GlobalConstants_8h_1a30a64a6b17b075364135d42c0f488dc4" kind="variable"><name>totalRawParams</name></member>
+    <member refid="GlobalConstants_8h_1ae0db6f76f317d33ec86e20bd2f4d97a9" kind="variable"><name>totalTransformedParams</name></member>
+    <member refid="GlobalConstants_8h_1aaafbffbcd13ec5d52120cde0b8e4d56d" kind="variable"><name>hyperFractionOffset</name></member>
+    <member refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kind="variable"><name>NumberLargerThanMaxObservations</name></member>
+    <member refid="GlobalConstants_8h_1ad1cb42f81dc669c161aaf0ee375e41d2" kind="variable"><name>VerySmallNumber</name></member>
+    <member refid="GlobalConstants_8h_1afbbd6c3da2c89ca8bfefdd6a3d33dba3" kind="variable"><name>VerySmallLog</name></member>
+    <member refid="GlobalConstants_8h_1a29fd98777063d8cc858d7c08b6ba0a10" kind="variable"><name>SingularityPreventer</name></member>
+    <member refid="GlobalConstants_8h_1adb72cbb0616f7809f9138aa9c1b57ce9" kind="variable"><name>spatialAddingPrefactor</name></member>
+    <member refid="GlobalConstants_8h_1a2a112215e81fedf8140020901e4116ef" kind="variable"><name>elu_transitionPoint</name></member>
+    <member refid="GlobalConstants_8h_1a26db948dca7e5ae760a238d5aff973f6" kind="variable"><name>exp_elu_transitionPoint</name></member>
+  </compound>
+  <compound refid="GlobalVariables_8h" kind="file"><name>GlobalVariables.h</name>
+    <member refid="GlobalVariables_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="GlobalVariables_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+    <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kind="enum"><name>VarianceScaling</name></member>
+    <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba054c79124c2ce286684afeaa9ed56726" kind="enumvalue"><name>NScaling</name></member>
+    <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59ebae939c17b2563c480e0fe2bc793f2a5ba" kind="enumvalue"><name>MScaling</name></member>
+    <member refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kind="enumvalue"><name>ActiveNScaling</name></member>
+    <member refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kind="variable"><name>Nt</name></member>
+    <member refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" kind="variable"><name>healpix_order</name></member>
+    <member refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" kind="variable"><name>needlet_order</name></member>
+    <member refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kind="variable"><name>Nm</name></member>
+    <member refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" kind="variable"><name>NVariancePops</name></member>
+    <member refid="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" kind="variable"><name>hyperOrder</name></member>
+    <member refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" kind="variable"><name>xtPrior</name></member>
+    <member refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kind="variable"><name>studentNu</name></member>
+    <member refid="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" kind="variable"><name>sigmat</name></member>
+    <member refid="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" kind="variable"><name>lm</name></member>
+    <member refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" kind="variable"><name>lt_revs</name></member>
+    <member refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" kind="variable"><name>xmPrior</name></member>
+    <member refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kind="variable"><name>gapPriorAlpha</name></member>
+    <member refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kind="variable"><name>gapPriorPeak</name></member>
+    <member refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" kind="variable"><name>gapPriorBeta</name></member>
+    <member refid="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" kind="variable"><name>initialisationBounds</name></member>
+    <member refid="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" kind="variable"><name>xmInitialised</name></member>
+    <member refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kind="variable"><name>TempDirName</name></member>
+    <member refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kind="variable"><name>DataLoadCount</name></member>
+    <member refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kind="variable"><name>magOffset</name></member>
+    <member refid="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" kind="variable"><name>GapList</name></member>
+    <member refid="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" kind="variable"><name>ScalingMode</name></member>
+    <member refid="GlobalVariables_8h_1a8408fb8d5622d0530c3c2b5754fbda07" kind="variable"><name>choleskyTolerance</name></member>
+    <member refid="GlobalVariables_8h_1a28293786f33e666ad454a11410528b09" kind="function"><name>PrintStatus</name></member>
+  </compound>
+  <compound refid="EfficiencyVector_8h" kind="file"><name>EfficiencyVector.h</name>
+    <member refid="EfficiencyVector_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+  </compound>
+  <compound refid="LikelihoodFunctor_8h" kind="file"><name>LikelihoodFunctor.h</name>
+    <member refid="LikelihoodFunctor_8h_1aa69893f50bcb8cec4064f6bc1017497f" kind="define"><name>EIGEN_STACK_ALLOCATION_LIMIT</name></member>
+    <member refid="LikelihoodFunctor_8h_1a56e1504926ca8dfaa658bed64aa32207" kind="define"><name>EIGEN_MPL2_ONLY</name></member>
+  </compound>
+  <compound refid="ManualOptimizer_8h" kind="file"><name>ManualOptimizer.h</name>
+  </compound>
+  <compound refid="OptimizerProperties_8h" kind="file"><name>OptimizerProperties.h</name>
+  </compound>
+  <compound refid="dir_f6c381002d14419d46b0855ac2e79474" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling</name>
+  </compound>
+  <compound refid="dir_27dc48ac8f1e2183863cf404a23cd75c" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood</name>
+  </compound>
+  <compound refid="dir_7ab18e81297531cd815408aa3639c9f5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main</name>
+  </compound>
+  <compound refid="dir_5b33b82c44092ecd03b3d80b0c3255b5" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer</name>
+  </compound>
+  <compound refid="dir_6e180694b14ca2ec2bcabe396bff6f17" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src</name>
+  </compound>
+  <compound refid="dir_0681e4331e8c0cb9b9006c8ffbe59bbe" kind="dir"><name>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia</name>
+  </compound>
+</doxygenindex>

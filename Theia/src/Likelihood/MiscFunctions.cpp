@@ -15,23 +15,11 @@ double  sigmoid(double x)
     }
 }
 
-/*
 double  elu(double x)
 {
-	return exp(-x);
-}
-
-double  elu_grad(double x, double elu_x)
-{
-	return -elu_x;
-}
-*/
-
-double  elu(double x)
-{
-    if (x < density_cut)
+    if (x < elu_transitionPoint)
     {
-        return (1.0 + density_cut - x)*expm_density_cut; 
+        return (1.0 + elu_transitionPoint - x)*exp_elu_transitionPoint; 
     }
     else
     {
@@ -41,9 +29,9 @@ double  elu(double x)
 
 double  elu_grad(double x, double elu_x)
 {
-    if (x < density_cut)
+    if (x < elu_transitionPoint)
     {
-        return -expm_density_cut; 
+        return -exp_elu_transitionPoint; 
     }
     else
     {
@@ -51,3 +39,14 @@ double  elu_grad(double x, double elu_x)
     }
 }
 
+double  log_add_exp(double a, double b)
+{
+    if (a > b)
+    {
+        return a + log1p(exp(b-a));
+    }
+    else
+    {
+        return b + log1p(exp(a-b));
+    }
+}
