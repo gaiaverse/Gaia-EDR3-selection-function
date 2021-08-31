@@ -10,5 +10,6 @@ The ADABADAM (**Ada**\ ptive **B**\ atched, **Ada**\ ptive **M**\ oment) Estimat
 
 .. doxygenclass:: ADABADAM::Optimizer
 	:project: theia
+	:private-members:
 	
 	

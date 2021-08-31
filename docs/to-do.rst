@@ -28,6 +28,8 @@ Things that need doing, or doing better:
 * |ss| Document the Descent Functor class |se|
 * |ss| Document the Star class |se|
 * |ss| Document all GlobalVariables |se|
+* |ss| Document the DataLoading functions |se|
+* |ss| Document the starAllocation script |se|
 * Write an example-usage page
 * Link to paper in :doc:`background`
 * Get full definitions of needlet_u vector from Douglas
@@ -37,5 +39,5 @@ Things that need doing, or doing better:
 * Write a more in-depth description of the spatial forward and backward transforms
 * Code output page 
 * Document + clean up the :doc:`optimiser`
-* Document the DataLoading functions
-* Document the starAllocation script
+* Document parallelisation scheme
+* Document minibatching scheme

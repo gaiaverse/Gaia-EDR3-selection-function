@@ -176,7 +176,6 @@
   </compound>
   <compound refid="structADABADAM_1_1OptimizerProperties" kind="struct"><name>ADABADAM::OptimizerProperties</name>
     <member refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kind="variable"><name>MiniBatches</name></member>
-    <member refid="structADABADAM_1_1OptimizerProperties_1aa833fd86c25ec3960a4d501692104d0b" kind="variable"><name>BurnInSteps</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" kind="variable"><name>StepSize</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" kind="variable"><name>MinibatchDownStep</name></member>
     <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kind="variable"><name>MaxHarnessFactor</name></member>

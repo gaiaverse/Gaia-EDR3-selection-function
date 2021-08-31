@@ -1,7 +1,8 @@
 #include "DataLoading.h"
 std::vector<int> Bins;
 
-
+std::vector<int> NumberOfStarsInFile;
+std::vector<int> StarsLeftInFile;
 std::vector<std::vector<int>> batchCounts;
 
 

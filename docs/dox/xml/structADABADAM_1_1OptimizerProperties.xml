@@ -12,23 +12,10 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-        </detaileddescription>
+<para>The number of<verbatim>embed:rst:inline :doc:`minibatches &lt;minibatching&gt;` used by the optimiser </verbatim>. This number is mutable and changes as downsteps are invoked </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="9" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1aa833fd86c25ec3960a4d501692104d0b" prot="public" static="no" mutable="no">
-        <type>int</type>
-        <definition>int ADABADAM::OptimizerProperties::BurnInSteps</definition>
-        <argsstring></argsstring>
-        <name>BurnInSteps</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="10" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1a23c39bea2f919fe0c9bfbcfb05721150" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -36,12 +23,12 @@
         <argsstring></argsstring>
         <name>StepSize</name>
         <briefdescription>
-        </briefdescription>
+<para>The multiplicative prefactor all changes to the position have. In a dumb optimiser it would be the magnitude of the step-vector, but the ADAM stuff messes around with that. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="15" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="15" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -49,12 +36,12 @@
         <argsstring></argsstring>
         <name>MinibatchDownStep</name>
         <briefdescription>
-        </briefdescription>
+<para>The number which <ref refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kindref="member">MiniBatches</ref> is divided by when a downstep is called for. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="12" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="12" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="18" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -62,12 +49,12 @@
         <argsstring></argsstring>
         <name>MaxHarnessFactor</name>
         <briefdescription>
-        </briefdescription>
+<para>The maximum value of #ProgressTracker::Harness, the rate at which the optimizer slows its progress when a change (such as initialisation, or a minibatch downstep) occurs. Bigger values mean a slower movement. Usually set by the user from the command line via <ref refid="classCommandArgs_1ae64dd25052a877832d3db4e289f1bb13" kindref="member">CommandArgs::HarnessSlowDown</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="13" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="13" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" prot="public" static="no" mutable="no">
         <type>int</type>
@@ -75,21 +62,20 @@
         <argsstring></argsstring>
         <name>HarnessReleaseSteps</name>
         <briefdescription>
-        </briefdescription>
+<para>The number of complete epochs over which the Harness disables. The harness changes value every minibatch loop, but will always complete after a set number of epochs. Usually set by the user from the command line via <ref refid="classCommandArgs_1a2a92d19a8106254917659b8d432b8fd2" kindref="member">CommandArgs::HarnessRelease</ref>. </para>        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="14" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="14" bodyend="-1"/>
+        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>General properties of the Optimiser - along with <ref refid="structADABADAM_1_1StopConditions" kindref="compound">StopConditions</ref>, these are initialised by the user before optimisation starts. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="8" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="7" bodyend="15"/>
+    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" line="10" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/OptimizerProperties.h" bodystart="9" bodyend="25"/>
     <listofallmembers>
-      <member refid="structADABADAM_1_1OptimizerProperties_1aa833fd86c25ec3960a4d501692104d0b" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>BurnInSteps</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>HarnessReleaseSteps</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>MaxHarnessFactor</name></member>
       <member refid="structADABADAM_1_1OptimizerProperties_1acf0992fecc2a77ce5a88100d5101f59a" prot="public" virt="non-virtual"><scope>ADABADAM::OptimizerProperties</scope><name>MinibatchDownStep</name></member>

@@ -80,7 +80,6 @@ namespace ADABADAM
 				
 
 				Properties.MiniBatches = 1;
-				Properties.BurnInSteps = 0;
 				Properties.StepSize = 0.05;			
 				
 				Properties.HarnessReleaseSteps = 5;
