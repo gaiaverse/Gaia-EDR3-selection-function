@@ -65,6 +65,7 @@ void RootProcess()
 	
 	ADABADAM::Optimizer<LikelihoodFunctor> op(functor);
 	//set up the criteria for termination
+	
 	op.HaltConditions.GradientThreshold = 0;
 	op.HaltConditions.MaxSteps = Args.MaxSteps;
 	op.HaltConditions.FunctionChangeThreshold = 0;
