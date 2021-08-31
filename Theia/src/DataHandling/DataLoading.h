@@ -57,5 +57,7 @@ void LoadData(const int ProcessRank, const int JobSize, std::vector<std::vector<
 */
 std::vector<File> GetAssignments(int id,std::string dataSource);
 
-
+/*
+ *  
+*/
 void CalculateBatches(int id, std::vector<File> & Files, int batches);

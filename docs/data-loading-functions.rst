@@ -9,5 +9,4 @@ Data-Loading Functions
 .. doxygenfunction:: GetAssignments
 
 
-
 .. doxygenfunction:: CalculateBatches
