@@ -153,7 +153,6 @@ void WorkerProcess()
 		else
 		{
 			MPI_Barrier(MPI_COMM_WORLD);
-			std::cout << targetBatch << std::endl;
 			hasFinished = true;
 			std::cout << "\tWorker " << ProcessRank << " recieved the signal to end the calculation " << std::endl;
 		}
