@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classLikelihoodFunctor" kind="class" language="C++" prot="public">
     <compoundname>LikelihoodFunctor</compoundname>
     <includes refid="LikelihoodFunctor_8h" local="no">LikelihoodFunctor.h</includes>
@@ -10,12 +10,13 @@
         <argsstring></argsstring>
         <name>L</name>
         <briefdescription>
-<para>Allows the calling process to calculate its own portion of the Likelihood, and as a guaranteed priveleged worker, also can call the associated priors. </para>        </briefdescription>
+<para>Allows the calling process to calculate its own portion of the Likelihood, and as a guaranteed priveleged worker, also can call the associated priors. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="25" column="20" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodFunctor_1ac771670ec93943effa6c8c364bb2928c" prot="private" static="no" mutable="no">
         <type>int</type>
@@ -23,12 +24,13 @@
         <argsstring></argsstring>
         <name>MaxBatches</name>
         <briefdescription>
-<para>The maximum number of minibatches which are used (and which therefore define the structure of <ref refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kindref="member">LogLikelihoodPrior::Data</ref>) </para>        </briefdescription>
+<para>The maximum number of minibatches which are used (and which therefore define the structure of <ref refid="classLogLikelihood_1ae89760ae57fa9e0ce5ef01c2b35cf487" kindref="member">LogLikelihoodPrior::Data</ref>) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="28" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="28" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="28" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="28" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-attrib">
@@ -38,12 +40,13 @@
         <argsstring></argsstring>
         <name>LoopID</name>
         <briefdescription>
-<para>The total number of calls that have been passed to DistributeCalculations() </para>        </briefdescription>
+<para>The total number of calls that have been passed to DistributeCalculations() </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="32" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="32" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="32" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="32" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" prot="public" static="no" mutable="no">
         <type><ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref></type>
@@ -51,12 +54,13 @@
         <argsstring></argsstring>
         <name>Efficiency</name>
         <briefdescription>
-<para>The current proposed efficiency vector. </para>        </briefdescription>
+<para>The current proposed efficiency vector. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="35" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="35" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="35" column="18" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="35" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" prot="public" static="no" mutable="no">
         <type>double</type>
@@ -64,12 +68,13 @@
         <argsstring></argsstring>
         <name>Value</name>
         <briefdescription>
-<para>A required member for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. After <ref refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kindref="member">Calculate()</ref> is called, holds current value of the Functor. <emphasis>Note that we perform an explicit renormalisation of this value, dividing through by the number of stars used to calculate it (hence it is the approximate per-star Value). In addition, as <ref refid="namespaceADABADAM" kindref="compound">ADABADAM</ref> attempts to minimise functions, whilst the Likelihood returns a value we wish to</emphasis> <bold>maximise</bold>, <emphasis>so this is the negation of that value</emphasis>. </para>        </briefdescription>
+<para>A required member for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. After <ref refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kindref="member">Calculate()</ref> is called, holds current value of the Functor. <emphasis>Note that we perform an explicit renormalisation of this value, dividing through by the number of stars used to calculate it (hence it is the approximate per-star Value). In addition, as <ref refid="namespaceADABADAM" kindref="compound">ADABADAM</ref> attempts to minimise functions, whilst the Likelihood returns a value we wish to</emphasis> <bold>maximise</bold>, <emphasis>so this is the negation of that value</emphasis>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="38" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="38" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="38" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -77,12 +82,13 @@
         <argsstring></argsstring>
         <name>Gradient</name>
         <briefdescription>
-<para>A required member for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. After <ref refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kindref="member">Calculate()</ref> is called, holds current value of the Gradient. <emphasis>Note that we perform an explicit renormalisation of this value, dividing through by the number of stars used to calculate it (hence it is the approximate per-star Value). In addition, as <ref refid="namespaceADABADAM" kindref="compound">ADABADAM</ref> attempts to minimise functions, whilst the Likelihood returns a value we wish to</emphasis> <bold>maximise</bold>, <emphasis>so this value is equal to the product of -1 and</emphasis> <ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">EfficiencyVector::RawGradient</ref>. </para>        </briefdescription>
+<para>A required member for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. After <ref refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" kindref="member">Calculate()</ref> is called, holds current value of the Gradient. <emphasis>Note that we perform an explicit renormalisation of this value, dividing through by the number of stars used to calculate it (hence it is the approximate per-star Value). In addition, as <ref refid="namespaceADABADAM" kindref="compound">ADABADAM</ref> attempts to minimise functions, whilst the Likelihood returns a value we wish to</emphasis> <bold>maximise</bold>, <emphasis>so this value is equal to the product of -1 and</emphasis> <ref refid="classEfficiencyVector_1a8f6899a8c3efe809bbac5f50a2dc694b" kindref="member">EfficiencyVector::RawGradient</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="41" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="41" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -100,27 +106,31 @@
           <declname>maxBatches</declname>
         </param>
         <briefdescription>
-<para>Constructor class <ndash/> initialises <ref refid="classLikelihoodFunctor_1ab6ea4480411be12c392dea3fc0740423" kindref="member">L</ref> and <ref refid="classLikelihoodFunctor_1ac771670ec93943effa6c8c364bb2928c" kindref="member">MaxBatches</ref>. </para>        </briefdescription>
+<para>Constructor class <ndash/> initialises <ref refid="classLikelihoodFunctor_1ab6ea4480411be12c392dea3fc0740423" kindref="member">L</ref> and <ref refid="classLikelihoodFunctor_1ac771670ec93943effa6c8c364bb2928c" kindref="member">MaxBatches</ref>. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>data</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The data, arranged according to the minibatching schedule. </para></parameterdescription>
+<para>The data, arranged according to the minibatching schedule.</para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>maxBatches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the original number of minibatches which are used </para></parameterdescription>
+<para>the original number of minibatches which are used </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="45" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="45" bodyend="46"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="45" column="5" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="45" bodyend="46"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodFunctor_1aa3c3e2c8039d943f05938cd4210e2f26" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -143,21 +153,25 @@
 <parametername>loadPosition</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The place for <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref> to check for valid starting positions </para></parameterdescription>
+<para>The place for <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref> to check for valid starting positions </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>outdir</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The output directory where savefiles are located </para></parameterdescription>
+<para>The output directory where savefiles are located </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref> component of <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref>, the default starting point for the optimizer </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>The <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref> component of <ref refid="classLikelihoodFunctor_1ae1c7848398d12e4c4a1196a7ef2dd95e" kindref="member">Efficiency</ref>, the default starting point for the optimizer </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="53" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="53" bodyend="60"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="53" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="53" bodyend="60"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -179,33 +193,39 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref> object. Then uses MPI to collect these objects, call the associated Priors and then populate the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects for the optimizer to use. <parameterlist kind="param"><parameteritem>
+<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class, and the main work loop of the class. Sends MPI messages to the workers and instructs them to calculate the next value of their <ref refid="classLogLikelihood" kindref="compound">LogLikelihood</ref> object. Then uses MPI to collect these objects, call the associated Priors and then populate the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects for the optimizer to use. <linebreak/>
+ <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The new value of the <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref>, the current proposed operating efficiency </para></parameterdescription>
+<para>The new value of the <ref refid="classEfficiencyVector_1a47715a6c886a44c414aac13d44c9c2ce" kindref="member">EfficiencyVector::RawPosition</ref>, the current proposed operating efficiency </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>batchID</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The current (randomised) batchID from which to draw the population of stars used to calculate the likelihood. Can be 0 &lt;= batchID &lt; effectiveBatches </para></parameterdescription>
+<para>The current (randomised) batchID from which to draw the population of stars used to calculate the likelihood. Can be 0 &lt;= batchID &lt; effectiveBatches </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>effectiveBatches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The current number of minibatches used by the optimizer </para></parameterdescription>
+<para>The current number of minibatches used by the optimizer </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>No explicit return, but populates the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>No explicit return, but populates the <ref refid="classLikelihoodFunctor_1a258ee12e3dec739293d99f234387acea" kindref="member">Value</ref> and <ref refid="classLikelihoodFunctor_1a1851e611aaaf2e2872bf3f4a6e660326" kindref="member">Gradient</ref> objects </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="70" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="70" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodFunctor_1ac495908241262a2de64f797533f2969d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -217,12 +237,13 @@
           <declname>x</declname>
         </param>
         <briefdescription>
-<para>An overloading alias in case minibatching is ever disabled: calls Calculate(x,0,1) </para>        </briefdescription>
+<para>An overloading alias in case minibatching is ever disabled: calls Calculate(x,0,1) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="73" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="73" column="6"/>
       </memberdef>
       <memberdef kind="function" id="classLikelihoodFunctor_1a1699da139bf1231f032bea08b4b9022a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -244,50 +265,52 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. Saves the current value of Efficiency to file via the <ref refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kindref="member">EfficiencyVector::Save()</ref> call. </para>        </detaileddescription>
+<para>A required function call for templating values of the <ref refid="classADABADAM_1_1Optimizer" kindref="compound">ADABADAM::Optimizer</ref> class. Saves the current value of Efficiency to file via the <ref refid="classEfficiencyVector_1a9c9dd040c8388d68c2628b4e646b9dc5" kindref="member">EfficiencyVector::Save()</ref> call. </para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="78" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="78" column="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>A function-like class which acts as a wrapper for the function calls used by the gradient descent algorithm and the necessary message passing for communication with the workers. The overloaded operator () allows the class to be called as a function, but it can store data preventing the need for reloading the data or passing huge numbers of arguments. </para>    </detaileddescription>
+<para>A function-like class which acts as a wrapper for the function calls used by the gradient descent algorithm and the necessary message passing for communication with the workers. The overloaded operator () allows the class to be called as a function, but it can store data preventing the need for reloading the data or passing huge numbers of arguments. </para>
+    </detaileddescription>
     <collaborationgraph>
-      <node id="17">
+      <node id="1">
         <label>LikelihoodFunctor</label>
         <link refid="classLikelihoodFunctor"/>
-        <childnode refid="18" relation="usage">
+        <childnode refid="2" relation="usage">
           <edgelabel>Efficiency</edgelabel>
         </childnode>
-        <childnode refid="19" relation="usage">
+        <childnode refid="3" relation="usage">
           <edgelabel>L</edgelabel>
         </childnode>
       </node>
-      <node id="18">
+      <node id="2">
         <label>EfficiencyVector</label>
         <link refid="classEfficiencyVector"/>
       </node>
-      <node id="21">
+      <node id="5">
         <label>LikelihoodData</label>
         <link refid="classLikelihoodData"/>
       </node>
-      <node id="19">
+      <node id="3">
         <label>LogLikelihoodPrior</label>
         <link refid="classLogLikelihoodPrior"/>
-        <childnode refid="20" relation="public-inheritance">
+        <childnode refid="4" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="20">
+      <node id="4">
         <label>LogLikelihood</label>
         <link refid="classLogLikelihood"/>
-        <childnode refid="21" relation="usage">
+        <childnode refid="5" relation="usage">
           <edgelabel>Data</edgelabel>
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="20" bodyend="80"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" line="21" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h" bodystart="20" bodyend="80"/>
     <listofallmembers>
       <member refid="classLikelihoodFunctor_1a3676f5f57b1337dc9162b094f4c05741" prot="public" virt="non-virtual"><scope>LikelihoodFunctor</scope><name>Calculate</name></member>
       <member refid="classLikelihoodFunctor_1ac495908241262a2de64f797533f2969d" prot="public" virt="non-virtual"><scope>LikelihoodFunctor</scope><name>Calculate</name></member>

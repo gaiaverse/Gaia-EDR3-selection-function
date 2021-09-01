@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="structVariancePopulation" kind="struct" language="C++" prot="public">
     <compoundname>VariancePopulation</compoundname>
     <includes refid="VariancePopulation_8h" local="no">VariancePopulation.h</includes>
@@ -10,12 +10,13 @@
         <argsstring></argsstring>
         <name>Fraction</name>
         <briefdescription>
-<para>The fraction of stars which belong to this population. </para>        </briefdescription>
+<para>The fraction of stars which belong to this population. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="11" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structVariancePopulation_1a9cc46ef0d886bc0c3025be0ff04c3b17" prot="public" static="no" mutable="no">
         <type>std::vector&lt; double &gt;</type>
@@ -23,12 +24,13 @@
         <argsstring></argsstring>
         <name>Term</name>
         <briefdescription>
-<para>A list of the (unconstrained) prefactors within the polynomial expansion. </para>        </briefdescription>
+<para>A list of the (unconstrained) prefactors within the polynomial expansion. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="14" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="14" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="14" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="14" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -38,12 +40,13 @@
         <argsstring>()</argsstring>
         <name>VariancePopulation</name>
         <briefdescription>
-<para>Default constructor. </para>        </briefdescription>
+<para>Default constructor. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="17" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="17" bodyend="17"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="17" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="17" bodyend="17"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1a0a0e089d1cc596857052c0043547adb1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -66,20 +69,23 @@
 <parametername>fraction</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The value assigned to Fraction </para></parameterdescription>
+<para>The value assigned to Fraction </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>contributions</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector assigned to Term </para></parameterdescription>
+<para>The vector assigned to Term </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="24" bodyend="28"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="24" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="24" bodyend="28"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1a4e9580c8aa87407563b2fec8fc381126" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -98,14 +104,17 @@
 <parametername>n</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The variance scaling parameter </para></parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>v a guaranteed positive number </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>v a guaranteed positive number </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="35" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="35" bodyend="49"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="35" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="35" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -124,14 +133,17 @@
 <parametername>n</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The variance scaling parameter </para></parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The analytical derivative of the variance </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>The analytical derivative of the variance </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="56" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="56" bodyend="67"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="56" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="56" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>double</type>
@@ -154,28 +166,33 @@
 <parametername>term</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the order of the parameter with which the derivative is taken </para></parameterdescription>
+<para>the order of the parameter with which the derivative is taken </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>n</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The variance scaling parameter </para></parameterdescription>
+<para>The variance scaling parameter </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>dv/d alpha_term </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>dv/d alpha_term </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="75" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="75" bodyend="96"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="75" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="75" bodyend="96"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para>This structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>    </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" line="9" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="8" bodyend="97"/>
+<para>This structure uses the hyperparameters from the <ref refid="classEfficiencyVector" kindref="compound">EfficiencyVector</ref> to generate the variance + associated derivatives. </para>
+    </detaileddescription>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" line="9" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/VariancePopulation.h" bodystart="8" bodyend="97"/>
     <listofallmembers>
       <member refid="structVariancePopulation_1aa29ca35d49e3cbcbe18e6873d7a3a6d8" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedAlpha</name></member>
       <member refid="structVariancePopulation_1ad2d444d0f63390f4f3673efaac9f929e" prot="public" virt="non-virtual"><scope>VariancePopulation</scope><name>dVariancedN</name></member>

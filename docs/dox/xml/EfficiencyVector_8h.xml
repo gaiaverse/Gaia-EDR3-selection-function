@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="EfficiencyVector_8h" kind="file" language="C++">
     <compoundname>EfficiencyVector.h</compoundname>
     <includes local="no">vector</includes>
@@ -7,138 +7,138 @@
     <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
     <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
     <includes refid="MiscFunctions_8h" local="yes">../Likelihood/MiscFunctions.h</includes>
-    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
-    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
-    <includedby refid="LogLikelihoodPrior_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</includedby>
-    <includedby refid="LikelihoodFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</includedby>
+    <includedby refid="DataStorage_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="LogLikelihoodPrior_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</includedby>
+    <includedby refid="LikelihoodFunctor_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</includedby>
     <incdepgraph>
-      <node id="378">
+      <node id="11">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="379">
-        <label>iomanip</label>
-      </node>
-      <node id="371">
+      <node id="4">
         <label>../Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="369" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="370" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="372" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="373" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="374" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="375" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="376" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="377" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="378" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="379" relation="include">
-        </childnode>
-      </node>
-      <node id="381">
-        <label>../Likelihood/MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h"/>
-        <childnode refid="371" relation="include">
-        </childnode>
-        <childnode refid="380" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="375">
+      <node id="12">
+        <label>iomanip</label>
+      </node>
+      <node id="8">
         <label>fstream</label>
       </node>
-      <node id="368">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
         <link refid="EfficiencyVector_8h"/>
-        <childnode refid="369" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="370" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="371" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="380" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="381" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="372">
+      <node id="5">
         <label>../libs/Eigen/Householder</label>
       </node>
-      <node id="376">
+      <node id="9">
         <label>string.h</label>
       </node>
-      <node id="369">
+      <node id="2">
         <label>vector</label>
       </node>
-      <node id="370">
-        <label>../libs/Eigen/Core</label>
-      </node>
-      <node id="377">
-        <label>iostream</label>
-      </node>
-      <node id="373">
-        <label>../libs/Eigen/QR</label>
-      </node>
-      <node id="374">
-        <label>../libs/Eigen/LU</label>
-      </node>
-      <node id="380">
+      <node id="13">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="371" relation="include">
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="7">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="14">
+        <label>../Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="383">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+      <node id="2">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</label>
         <link refid="DataStorage_8h"/>
-        <childnode refid="384" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="387" relation="include">
-        </childnode>
-      </node>
-      <node id="382">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="383" relation="include">
-        </childnode>
-        <childnode refid="384" relation="include">
-        </childnode>
-        <childnode refid="385" relation="include">
-        </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="387">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+      <node id="6">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
         <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="384" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="386" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="385">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+      <node id="4">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="386" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="386">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
-        <link refid="LikelihoodFunctor_8h"/>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
       </node>
-      <node id="384">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+      <node id="3">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
         <link refid="LogLikelihood_8h"/>
-        <childnode refid="385" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
+      </node>
+      <node id="5">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
       </node>
     </invincdepgraph>
     <innerclass refid="classEfficiencyVector" prot="public">EfficiencyVector</innerclass>
@@ -152,7 +152,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" line="3" column="11" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="3" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h" line="3" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="3" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="EfficiencyVector_8h_1a56e1504926ca8dfaa658bed64aa32207" prot="public" static="no">
         <name>EIGEN_MPL2_ONLY</name>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" line="4" column="9" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="4" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h" line="4" column="9" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h" bodystart="4" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -271,6 +271,6 @@
 <codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="207"><highlight class="normal">};</highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h"/>
   </compounddef>
 </doxygen>

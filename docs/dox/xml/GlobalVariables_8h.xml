@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="GlobalVariables_8h" kind="file" language="C++">
     <compoundname>GlobalVariables.h</compoundname>
     <includes local="no">vector</includes>
@@ -12,164 +12,164 @@
     <includes local="no">iostream</includes>
     <includes local="yes">../libs/JSL/JSL.h</includes>
     <includes local="no">iomanip</includes>
-    <includedby refid="CommandArguments_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h</includedby>
-    <includedby refid="GlobalConstants_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</includedby>
-    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
-    <includedby refid="MiscFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</includedby>
-    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
-    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
-    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <includedby refid="CommandArguments_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h</includedby>
+    <includedby refid="GlobalConstants_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalConstants.h</includedby>
+    <includedby refid="DataStorage_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="MiscFunctions_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
     <incdepgraph>
-      <node id="355">
+      <node id="10">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="356">
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h</label>
+        <link refid="GlobalVariables_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
         <label>iomanip</label>
       </node>
-      <node id="346">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h</label>
-        <link refid="GlobalVariables_8h"/>
-        <childnode refid="347" relation="include">
-        </childnode>
-        <childnode refid="348" relation="include">
-        </childnode>
-        <childnode refid="349" relation="include">
-        </childnode>
-        <childnode refid="350" relation="include">
-        </childnode>
-        <childnode refid="351" relation="include">
-        </childnode>
-        <childnode refid="352" relation="include">
-        </childnode>
-        <childnode refid="353" relation="include">
-        </childnode>
-        <childnode refid="354" relation="include">
-        </childnode>
-        <childnode refid="355" relation="include">
-        </childnode>
-        <childnode refid="356" relation="include">
-        </childnode>
-      </node>
-      <node id="352">
+      <node id="7">
         <label>fstream</label>
       </node>
-      <node id="349">
+      <node id="4">
         <label>../libs/Eigen/Householder</label>
       </node>
-      <node id="353">
+      <node id="8">
         <label>string.h</label>
       </node>
-      <node id="347">
+      <node id="2">
         <label>vector</label>
       </node>
-      <node id="348">
+      <node id="3">
         <label>../libs/Eigen/Core</label>
       </node>
-      <node id="354">
+      <node id="9">
         <label>iostream</label>
       </node>
-      <node id="350">
+      <node id="5">
         <label>../libs/Eigen/QR</label>
       </node>
-      <node id="351">
+      <node id="6">
         <label>../libs/Eigen/LU</label>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="360">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h</label>
-        <link refid="DataLoading_8h"/>
-      </node>
-      <node id="357">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="358" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="359" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="361" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="366" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="367" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="362" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="365" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
-      <node id="358">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h</label>
+      <node id="5">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</label>
+        <link refid="DataStorage_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+        <link refid="LogLikelihoodPrior_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h</label>
         <link refid="CommandArguments_8h"/>
       </node>
-      <node id="366">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h"/>
-        <childnode refid="361" relation="include">
-        </childnode>
-        <childnode refid="367" relation="include">
-        </childnode>
-        <childnode refid="365" relation="include">
-        </childnode>
-      </node>
-      <node id="361">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
-        <link refid="DataStorage_8h"/>
-        <childnode refid="362" relation="include">
-        </childnode>
-        <childnode refid="365" relation="include">
-        </childnode>
-      </node>
-      <node id="367">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="361" relation="include">
-        </childnode>
-        <childnode refid="362" relation="include">
-        </childnode>
-        <childnode refid="363" relation="include">
-        </childnode>
-        <childnode refid="364" relation="include">
-        </childnode>
-      </node>
-      <node id="365">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="362" relation="include">
-        </childnode>
-        <childnode refid="364" relation="include">
-        </childnode>
-      </node>
-      <node id="363">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
-        <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="364" relation="include">
-        </childnode>
-      </node>
-      <node id="359">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalConstants.h</label>
+      <node id="3">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="360" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="361" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="366" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="367" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="365" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="364" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
       </node>
-      <node id="364">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+      <node id="6">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h</label>
+        <link refid="DataLoading_8h"/>
+      </node>
+      <node id="8">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
         <link refid="LikelihoodFunctor_8h"/>
       </node>
-      <node id="362">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h"/>
-        <childnode refid="363" relation="include">
+      <node id="10">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -183,7 +183,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="3" column="11" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="3" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="3" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="3" bodyend="-1"/>
       </memberdef>
       <memberdef kind="define" id="GlobalVariables_8h_1a56e1504926ca8dfaa658bed64aa32207" prot="public" static="no">
         <name>EIGEN_MPL2_ONLY</name>
@@ -193,40 +193,45 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="9" column="14" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="9" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="9" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="9" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="enum">
-      <memberdef kind="enum" id="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" prot="public" static="no">
+      <memberdef kind="enum" id="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" prot="public" static="no" strong="no">
+        <type></type>
         <name>VarianceScaling</name>
         <enumvalue id="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba054c79124c2ce286684afeaa9ed56726" prot="public">
           <name>NScaling</name>
           <briefdescription>
-<para>Scaling parameter is the (fixed) number of visitation of a star. </para>          </briefdescription>
+<para>Scaling parameter is the (fixed) number of visitation of a star. </para>
+          </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
         <enumvalue id="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59ebae939c17b2563c480e0fe2bc793f2a5ba" prot="public">
           <name>MScaling</name>
           <briefdescription>
-<para>Scaling parameter is the mean predicted number of detections (i.e. the sum of probabilities p_t * p_ml) </para>          </briefdescription>
+<para>Scaling parameter is the mean predicted number of detections (i.e. the sum of probabilities p_t * p_ml) </para>
+          </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
         <enumvalue id="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" prot="public">
           <name>ActiveNScaling</name>
           <briefdescription>
-<para>Scaling parameter is the mean predicted number of times the star was visited whilst Gaia was turned on (i.e. the sum of probabilities p_t) </para>          </briefdescription>
+<para>Scaling parameter is the mean predicted number of times the star was visited whilst Gaia was turned on (i.e. the sum of probabilities p_t) </para>
+          </briefdescription>
           <detaileddescription>
           </detaileddescription>
         </enumvalue>
         <briefdescription>
-<para>The three kinds of scaling we have incorporated into the Variance Model. </para>        </briefdescription>
+<para>The three kinds of scaling we have incorporated into the Variance Model. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="91" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="90" bodyend="99"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="91" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="90" bodyend="99"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="var">
@@ -235,56 +240,60 @@
         <definition>const int Nt</definition>
         <argsstring></argsstring>
         <name>Nt</name>
-        <initializer>=  896769</initializer>
+        <initializer>= 8967691</initializer>
         <briefdescription>
-<para>Number of coarse time bins, can be 0 &lt; Nt &lt; TotalScanningTime. </para>        </briefdescription>
+<para>Number of coarse time bins, can be 0 &lt; Nt &lt; TotalScanningTime. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="21" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="21" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" prot="public" static="no" mutable="no">
         <type>const int</type>
         <definition>const int healpix_order</definition>
         <argsstring></argsstring>
         <name>healpix_order</name>
-        <initializer>= 0</initializer>
+        <initializer>= 6</initializer>
         <briefdescription>
-<para>Order of the healpix mapping, can be any integer &gt;= 0. Higher numbers = more pixels on the map. </para>        </briefdescription>
+<para>Order of the healpix mapping, can be any integer &gt;= 0. Higher numbers = more pixels on the map. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="23" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="23" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="23" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="23" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" prot="public" static="no" mutable="no">
         <type>const int</type>
         <definition>const int needlet_order</definition>
         <argsstring></argsstring>
         <name>needlet_order</name>
-        <initializer>= -1</initializer>
+        <initializer>= 5</initializer>
         <briefdescription>
-<para>Maximum order of needlets used, can be any integer -1 &lt;= needlet_order &lt;= healpix_order. Higher numbers = finer detail within the map. </para>        </briefdescription>
+<para>Maximum order of needlets used, can be any integer -1 &lt;= needlet_order &lt;= healpix_order. Higher numbers = finer detail within the map. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="25" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="25" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="25" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="25" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" prot="public" static="no" mutable="no">
         <type>const int</type>
         <definition>const int Nm</definition>
         <argsstring></argsstring>
         <name>Nm</name>
-        <initializer>= 10</initializer>
+        <initializer>= 213</initializer>
         <briefdescription>
-<para>Number of magnitude bins. </para>        </briefdescription>
+<para>Number of magnitude bins. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="27" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="27" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -293,12 +302,13 @@
         <name>NVariancePops</name>
         <initializer>= 3</initializer>
         <briefdescription>
-<para>Number of variance populations (hyperparameter) </para>        </briefdescription>
+<para>Number of variance populations (hyperparameter) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="29" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="29" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="29" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="29" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a41fa78aaf40d2cd69fe5eec9edcf405d" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -307,26 +317,28 @@
         <name>hyperOrder</name>
         <initializer>= 4</initializer>
         <briefdescription>
-<para>Order of the variance fitting, must be an even number. </para>        </briefdescription>
+<para>Order of the variance fitting, must be an even number. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="31" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="31" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="31" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="31" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double xtPrior</definition>
         <argsstring></argsstring>
         <name>xtPrior</name>
-        <initializer>= 6</initializer>
+        <initializer>= 8</initializer>
         <briefdescription>
-<para>Mean of prior on xt outside of gaps. </para>        </briefdescription>
+<para>Mean of prior on xt outside of gaps. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="40" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="40" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="40" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -335,12 +347,13 @@
         <name>studentNu</name>
         <initializer>= 0.5</initializer>
         <briefdescription>
-<para>Student t nu parameter for zt prior. </para>        </briefdescription>
+<para>Student t nu parameter for zt prior. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="41" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="41" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a5d6e120e54bfb68fb1980f886ef2115b" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -349,12 +362,13 @@
         <name>sigmat</name>
         <initializer>= 3</initializer>
         <briefdescription>
-<para>Standard deviation of zt/xt prior (sort of) </para>        </briefdescription>
+<para>Standard deviation of zt/xt prior (sort of) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="44" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="44" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="44" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1acf735ef91a437e28dc8b9d632cd0f9cf" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -363,12 +377,13 @@
         <name>lm</name>
         <initializer>= 3</initializer>
         <briefdescription>
-<para>Magnitude coupling lengthscale (in mag-bins) </para>        </briefdescription>
+<para>Magnitude coupling lengthscale (in mag-bins) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="46" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="46" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="46" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -377,26 +392,28 @@
         <name>lt_revs</name>
         <initializer>= 1</initializer>
         <briefdescription>
-<para>Temporal coupling lengthscale for zt (in Gaia revolution periods) </para>        </briefdescription>
+<para>Temporal coupling lengthscale for zt (in Gaia revolution periods) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="48" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="48" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="48" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double xmPrior</definition>
         <argsstring></argsstring>
         <name>xmPrior</name>
-        <initializer>= 3</initializer>
+        <initializer>= - 3</initializer>
         <briefdescription>
-<para>Mean of gaussian prior on xml. </para>        </briefdescription>
+<para>Mean of gaussian prior on xml. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="50" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="50" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="50" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -405,26 +422,28 @@
         <name>gapPriorAlpha</name>
         <initializer>= 0.5</initializer>
         <briefdescription>
-<para>Beta distribution alpha-value for the prior on the known gaps (in xt space) </para>        </briefdescription>
+<para>Beta distribution alpha-value for the prior on the known gaps (in xt space) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="53" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="53" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="53" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" prot="public" static="no" mutable="no">
         <type>const double</type>
         <definition>const double gapPriorPeak</definition>
         <argsstring></argsstring>
         <name>gapPriorPeak</name>
-        <initializer>= -6</initializer>
+        <initializer>= -8</initializer>
         <briefdescription>
-<para>Beta distribution peak value of xt. </para>        </briefdescription>
+<para>Beta distribution peak value of xt. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="54" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="54" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="54" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="54" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -433,12 +452,13 @@
         <name>gapPriorBeta</name>
         <initializer>= <ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref> * exp(-<ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref>)</initializer>
         <briefdescription>
-<para>Given peak value and alpha value, derive appropriate beta parameter. </para>        </briefdescription>
+<para>Given peak value and alpha value, derive appropriate beta parameter. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="55" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="55" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="55" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="55" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1af20776553edf8b34dc21439127a9731a" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -447,12 +467,13 @@
         <name>initialisationBounds</name>
         <initializer>= 0.3</initializer>
         <briefdescription>
-<para>Unless otherwise specified, the efficiency vector randomly initialises values between +/- this value. </para>        </briefdescription>
+<para>Unless otherwise specified, the efficiency vector randomly initialises values between +/- this value. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="63" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="63" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="63" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="63" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a554bc21708e3346cb921c2579e63088d" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -461,12 +482,13 @@
         <name>xmInitialised</name>
         <initializer>= 3</initializer>
         <briefdescription>
-<para>The initialisation value of the zeroth-order (whole-sky) spatial mode. </para>        </briefdescription>
+<para>The initialisation value of the zeroth-order (whole-sky) spatial mode. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="64" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="64" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="64" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="64" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" prot="public" static="no" mutable="no">
         <type>const std::string</type>
@@ -475,26 +497,28 @@
         <name>TempDirName</name>
         <initializer>=&quot;TempPositions&quot;</initializer>
         <briefdescription>
-<para>The subdirectory within the output directory used to save non-converged positions. </para>        </briefdescription>
+<para>The subdirectory within the output directory used to save non-converged positions. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="73" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="73" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="73" column="19" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" prot="public" static="no" mutable="no">
         <type>const int</type>
         <definition>const int DataLoadCount</definition>
         <argsstring></argsstring>
         <name>DataLoadCount</name>
-        <initializer>= 1e6</initializer>
+        <initializer>= 0</initializer>
         <briefdescription>
-<para>The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read. </para>        </briefdescription>
+<para>The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="75" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="75" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="75" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="75" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" prot="public" static="no" mutable="no">
         <type>const int</type>
@@ -503,12 +527,13 @@
         <name>magOffset</name>
         <initializer>= 0</initializer>
         <briefdescription>
-<para>offset of loaded files from 0.csv (assuming default file/bin association) </para>        </briefdescription>
+<para>offset of loaded files from 0.csv (assuming default file/bin association) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="76" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="76" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="76" column="11" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="76" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a9555abe640b7a8a7a2fd65d9abd7b9ae" prot="public" static="no" mutable="no">
         <type>std::vector&lt; bool &gt;</type>
@@ -516,12 +541,14 @@
         <argsstring></argsstring>
         <name>GapList</name>
         <briefdescription>
-<para>A list of length <ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref>. GapList[i] is true if t[i] corresponds to a time during which our. </para>        </briefdescription>
+<para>A list of length <ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref>. GapList[i] is true if t[i] corresponds to a time during which our. </para>
+        </briefdescription>
         <detaileddescription>
-<para><verbatim>embed:rst:inline :ref:`gap-list` </verbatim> indicates Gaia was deactivated. </para>        </detaileddescription>
+<para><verbatim>embed:rst:inline :ref:`gap-list` </verbatim> indicates Gaia was deactivated. </para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="86" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="86" column="20" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" declline="86" declcolumn="20"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a53555809843502b1c01d13fffe39c440" prot="public" static="no" mutable="no">
         <type>const <ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eb" kindref="member">VarianceScaling</ref></type>
@@ -530,12 +557,13 @@
         <name>ScalingMode</name>
         <initializer>= <ref refid="GlobalVariables_8h_1acbd3b8bf59e5fcafbbe4d1b42b6a59eba20fb7266f035bffaf79bbcb31e912ed3" kindref="member">ActiveNScaling</ref></initializer>
         <briefdescription>
-<para>The chosen kind of scaling. </para>        </briefdescription>
+<para>The chosen kind of scaling. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="102" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="102" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="102" column="23" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="102" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="GlobalVariables_8h_1a8408fb8d5622d0530c3c2b5754fbda07" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -544,12 +572,13 @@
         <name>choleskyTolerance</name>
         <initializer>= 1e-4</initializer>
         <briefdescription>
-<para>The &apos;significant value&apos; - values below this are assumed to be zero and not included in #LogLikelihood::cholesky_w. </para>        </briefdescription>
+<para>The &apos;significant value&apos; - values below this are assumed to be zero and not included in #LogLikelihood::cholesky_w. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="106" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" bodystart="106" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="106" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" bodystart="106" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -563,12 +592,13 @@
           <declname>location</declname>
         </param>
         <briefdescription>
-<para>OUTPUT STUFF. </para>        </briefdescription>
+<para>OUTPUT STUFF. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h" line="110" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" line="110" column="6" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h" declline="110" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -596,13 +626,13 @@
 <codeline lineno="18"><highlight class="normal"></highlight></codeline>
 <codeline lineno="19"><highlight class="normal"></highlight></codeline>
 <codeline lineno="20"><highlight class="normal"></highlight></codeline>
-<codeline lineno="21" refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref><sp/>=<sp/><sp/>896769;<sp/></highlight></codeline>
+<codeline lineno="21" refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ad5b77eda2b853c333cc8f41313a4db6f" kindref="member">Nt</ref><sp/>=<sp/>8967691;<sp/></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight></codeline>
-<codeline lineno="23" refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" kindref="member">healpix_order</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
+<codeline lineno="23" refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1abd4f95713fd18d9f874745bc50cb505c" kindref="member">healpix_order</ref><sp/>=<sp/>6;<sp/></highlight></codeline>
 <codeline lineno="24"><highlight class="normal"></highlight></codeline>
-<codeline lineno="25" refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" kindref="member">needlet_order</ref><sp/>=<sp/>-1;<sp/></highlight></codeline>
+<codeline lineno="25" refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1aa0e3d3b91e55159f14bc13612fcefb25" kindref="member">needlet_order</ref><sp/>=<sp/>5;<sp/></highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27" refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref><sp/>=<sp/>10;<sp/></highlight></codeline>
+<codeline lineno="27" refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a764a1a9971bc6c28293f779be3c9fc5d" kindref="member">Nm</ref><sp/>=<sp/>213;<sp/></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>
 <codeline lineno="29" refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a668a967fda9afa29c488cc2cacde33e2" kindref="member">NVariancePops</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="30"><highlight class="normal"></highlight></codeline>
@@ -615,7 +645,7 @@
 <codeline lineno="37"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
 <codeline lineno="38"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="39"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" kindref="member">xtPrior</ref><sp/>=<sp/>6;<sp/></highlight></codeline>
+<codeline lineno="40" refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1af9f0c80f5b39edebf82fabeebc68aa06" kindref="member">xtPrior</ref><sp/>=<sp/>8;<sp/></highlight></codeline>
 <codeline lineno="41" refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a9b09509bf403bd78c9a71723e6c8b833" kindref="member">studentNu</ref><sp/>=<sp/>0.5;<sp/></highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
 <codeline lineno="43"><highlight class="normal"></highlight></codeline>
@@ -625,11 +655,11 @@
 <codeline lineno="47"><highlight class="normal"></highlight></codeline>
 <codeline lineno="48" refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a74c1f3b3c11d24dc444b44fd225ee2b8" kindref="member">lt_revs</ref><sp/>=<sp/>1;<sp/></highlight></codeline>
 <codeline lineno="49"><highlight class="normal"></highlight></codeline>
-<codeline lineno="50" refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" kindref="member">xmPrior</ref><sp/>=<sp/>3;<sp/></highlight></codeline>
+<codeline lineno="50" refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ac4552a07174c351419edc8cac5865789" kindref="member">xmPrior</ref><sp/>=<sp/>-<sp/>3;<sp/></highlight></codeline>
 <codeline lineno="51"><highlight class="normal"></highlight></codeline>
 <codeline lineno="52"><highlight class="normal"></highlight></codeline>
 <codeline lineno="53" refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref><sp/>=<sp/>0.5;<sp/></highlight></codeline>
-<codeline lineno="54" refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref><sp/>=<sp/>-6;<sp/></highlight></codeline>
+<codeline lineno="54" refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref><sp/>=<sp/>-8;<sp/></highlight></codeline>
 <codeline lineno="55" refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a003533627b29150db2384181311aa8ac" kindref="member">gapPriorBeta</ref><sp/>=<sp/><ref refid="GlobalVariables_8h_1ac11ee13c11c616e3ade4e671a5557fb8" kindref="member">gapPriorAlpha</ref><sp/>*<sp/>exp(-<ref refid="GlobalVariables_8h_1a6fe8c7269bd0ed3061f55f063b9f9876" kindref="member">gapPriorPeak</ref>);<sp/></highlight></codeline>
 <codeline lineno="56"><highlight class="normal"></highlight></codeline>
 <codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
@@ -649,7 +679,7 @@
 <codeline lineno="71"><highlight class="normal"></highlight></codeline>
 <codeline lineno="73" refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" refkind="member"><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="GlobalVariables_8h_1a00dc9e90e8a46e9ba7697b1dee47ed45" kindref="member">TempDirName</ref>=</highlight><highlight class="stringliteral">&quot;TempPositions&quot;</highlight><highlight class="normal">;</highlight></codeline>
 <codeline lineno="74"><highlight class="normal"></highlight></codeline>
-<codeline lineno="75" refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kindref="member">DataLoadCount</ref><sp/>=<sp/>1e6;<sp/><sp/></highlight></codeline>
+<codeline lineno="75" refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a52885715fc4a49e79f353dcdf77fdfaa" kindref="member">DataLoadCount</ref><sp/>=<sp/>0;<sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline lineno="76" refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="GlobalVariables_8h_1a7423ee2e9438c25697ef55d72afa9537" kindref="member">magOffset</ref><sp/>=<sp/>0;<sp/></highlight></codeline>
 <codeline lineno="77"><highlight class="normal"></highlight></codeline>
 <codeline lineno="78"><highlight class="normal"></highlight></codeline>
@@ -680,6 +710,6 @@
 <codeline lineno="111"><highlight class="normal"></highlight></codeline>
 <codeline lineno="112"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Main/GlobalVariables.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Main/GlobalVariables.h"/>
   </compounddef>
 </doxygen>

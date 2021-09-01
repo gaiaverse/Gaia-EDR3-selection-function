@@ -1,135 +1,135 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="MiscFunctions_8h" kind="file" language="C++">
     <compoundname>MiscFunctions.h</compoundname>
     <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
     <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
-    <includedby refid="DataStorage_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</includedby>
-    <includedby refid="EfficiencyVector_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
-    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
+    <includedby refid="DataStorage_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</includedby>
+    <includedby refid="EfficiencyVector_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</includedby>
+    <includedby refid="ProbabilityFunctions_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</includedby>
     <incdepgraph>
-      <node id="283">
+      <node id="11">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="284">
-        <label>iomanip</label>
-      </node>
-      <node id="274">
+      <node id="2">
         <label>../Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="275" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="276" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="277" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="278" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="279" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="280" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="281" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="282" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="283" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="284" relation="include">
-        </childnode>
-      </node>
-      <node id="273">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h"/>
-        <childnode refid="274" relation="include">
-        </childnode>
-        <childnode refid="285" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="280">
+      <node id="12">
+        <label>iomanip</label>
+      </node>
+      <node id="8">
         <label>fstream</label>
       </node>
-      <node id="277">
+      <node id="5">
         <label>../libs/Eigen/Householder</label>
       </node>
-      <node id="281">
+      <node id="9">
         <label>string.h</label>
       </node>
-      <node id="275">
+      <node id="3">
         <label>vector</label>
       </node>
-      <node id="276">
-        <label>../libs/Eigen/Core</label>
-      </node>
-      <node id="282">
-        <label>iostream</label>
-      </node>
-      <node id="278">
-        <label>../libs/Eigen/QR</label>
-      </node>
-      <node id="279">
-        <label>../libs/Eigen/LU</label>
-      </node>
-      <node id="285">
+      <node id="13">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="274" relation="include">
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="7">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="286">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h"/>
-        <childnode refid="287" relation="include">
-        </childnode>
-        <childnode refid="292" relation="include">
-        </childnode>
-        <childnode refid="291" relation="include">
-        </childnode>
-      </node>
-      <node id="287">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/DataStorage.h</label>
+      <node id="2">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/DataStorage.h</label>
         <link refid="DataStorage_8h"/>
-        <childnode refid="288" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="291" relation="include">
-        </childnode>
-      </node>
-      <node id="292">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="287" relation="include">
-        </childnode>
-        <childnode refid="288" relation="include">
-        </childnode>
-        <childnode refid="289" relation="include">
-        </childnode>
-        <childnode refid="290" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
-      <node id="291">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+      <node id="6">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
         <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="288" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="290" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="289">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+      <node id="4">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="290" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="290">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+      <node id="7">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+        <link refid="LogLikelihood_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
         <link refid="LikelihoodFunctor_8h"/>
       </node>
-      <node id="288">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
-        <link refid="LogLikelihood_8h"/>
-        <childnode refid="289" relation="include">
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
         </childnode>
       </node>
     </invincdepgraph>
@@ -143,10 +143,11 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Some numbers we&apos;d rather not calculate again and again if possible </para>        </detaileddescription>
+<para>Some numbers we&apos;d rather not calculate again and again if possible </para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="39" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="MiscFunctions_8h_1a874c2fd0c23ce16da3dea1b0a259a82a" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -160,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="40" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="40" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="40" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" prot="public" static="no" mutable="no">
         <type>const double</type>
@@ -174,7 +175,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="41" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="41" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="41" column="14" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" bodystart="41" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="func">
@@ -195,14 +196,17 @@
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Value to be expit-ed </para></parameterdescription>
+<para>Value to be expit-ed </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\sigma(x) = \frac{1}{1 + \exp(-x)}` </verbatim> </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\sigma(x) = \frac{1}{1 + \exp(-x)}` </verbatim> </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="10" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="10" column="9" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" declline="10" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -221,14 +225,17 @@
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>Value to be elu-ed </para></parameterdescription>
+<para>Value to be elu-ed </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\text{elu}(x) =\begin{cases} \exp(-x) ~~~&amp; x &gt; \rho \\ (1 + \rho - x) \exp(-\rho) &amp; x \leq \rho  \end{cases}` </verbatim> </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\text{elu}(x) =\begin{cases} \exp(-x) ~~~&amp; x &gt; \rho \\ (1 + \rho - x) \exp(-\rho) &amp; x \leq \rho  \end{cases}` </verbatim> </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="17" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="17" column="9" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" declline="17" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a2fc0c1f97d3c7b71f573d09054466b7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -251,21 +258,25 @@
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The value at which gradient is to be evaluated at </para></parameterdescription>
+<para>The value at which gradient is to be evaluated at </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>elu_x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the functional value of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> at the chosen point. Can avoid having to recalulate exp(x) if possible </para></parameterdescription>
+<para>the functional value of <ref refid="MiscFunctions_8h_1a111fa185b6a522f6b384634af3f21190" kindref="member">elu()</ref> at the chosen point. Can avoid having to recalulate exp(x) if possible </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The requisite gradient </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>The requisite gradient </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="25" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="25" column="9" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" declline="25" declcolumn="9"/>
       </memberdef>
       <memberdef kind="function" id="MiscFunctions_8h_1a6ba35d2f5ab07b47794689868b1814a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -288,21 +299,25 @@
 <parametername>a</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The logarithm of a large number </para></parameterdescription>
+<para>The logarithm of a large number </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>b</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The logarithm of another large number </para></parameterdescription>
+<para>The logarithm of another large number </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\log\left( e^a + e^b\right)` </verbatim>, calculated such that the intermediary results do not overflow </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para><verbatim>embed:rst:inline :math:`\log\left( e^a + e^b\right)` </verbatim>, calculated such that the intermediary results do not overflow </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h" line="33" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" line="33" column="9" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h" declline="33" declcolumn="9"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -328,6 +343,6 @@
 <codeline lineno="41" refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="MiscFunctions_8h_1af548c4bc6606b72808048fb4c930fc36" kindref="member">root2_over_pi</ref><sp/>=<sp/>sqrt(2.0/M_PI);</highlight></codeline>
 <codeline lineno="42"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/MiscFunctions.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/MiscFunctions.h"/>
   </compounddef>
 </doxygen>

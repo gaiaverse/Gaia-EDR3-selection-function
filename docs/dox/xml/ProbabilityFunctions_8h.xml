@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="ProbabilityFunctions_8h" kind="file" language="C++">
     <compoundname>ProbabilityFunctions.h</compoundname>
     <includes refid="GlobalVariables_8h" local="yes">../Main/GlobalVariables.h</includes>
@@ -7,174 +7,174 @@
     <includes refid="DataStorage_8h" local="yes">DataStorage.h</includes>
     <includes refid="MiscFunctions_8h" local="yes">MiscFunctions.h</includes>
     <includes local="no">cmath</includes>
-    <includedby refid="LogLikelihood_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
-    <includedby refid="LikelihoodFunctor_8h" local="yes">/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</includedby>
+    <includedby refid="LogLikelihood_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</includedby>
+    <includedby refid="LikelihoodFunctor_8h" local="yes">/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</includedby>
     <incdepgraph>
-      <node id="303">
+      <node id="11">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="304">
-        <label>iomanip</label>
-      </node>
-      <node id="312">
-        <label>cmath</label>
-      </node>
-      <node id="308">
-        <label>string</label>
-      </node>
-      <node id="294">
+      <node id="2">
         <label>../Main/GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="295" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="296" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="297" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="298" relation="include">
+        <childnode refid="6" relation="include">
         </childnode>
-        <childnode refid="299" relation="include">
+        <childnode refid="7" relation="include">
         </childnode>
-        <childnode refid="300" relation="include">
+        <childnode refid="8" relation="include">
         </childnode>
-        <childnode refid="301" relation="include">
+        <childnode refid="9" relation="include">
         </childnode>
-        <childnode refid="302" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
-        <childnode refid="303" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="304" relation="include">
-        </childnode>
-      </node>
-      <node id="309">
-        <label>MiscFunctions.h</label>
-        <link refid="MiscFunctions_8h"/>
-        <childnode refid="294" relation="include">
-        </childnode>
-        <childnode refid="305" relation="include">
+        <childnode refid="12" relation="include">
         </childnode>
       </node>
-      <node id="310">
-        <label>VariancePopulation.h</label>
-        <link refid="VariancePopulation_8h"/>
-        <childnode refid="295" relation="include">
-        </childnode>
+      <node id="12">
+        <label>iomanip</label>
       </node>
-      <node id="300">
-        <label>fstream</label>
-      </node>
-      <node id="306">
+      <node id="14">
         <label>DataStorage.h</label>
         <link refid="DataStorage_8h"/>
-        <childnode refid="294" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="305" relation="include">
+        <childnode refid="13" relation="include">
         </childnode>
-        <childnode refid="307" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="309" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="308" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="295" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="310" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="303" relation="include">
+        <childnode refid="11" relation="include">
         </childnode>
-        <childnode refid="311" relation="include">
-        </childnode>
-      </node>
-      <node id="311">
-        <label>../Optimizer/EfficiencyVector.h</label>
-        <link refid="EfficiencyVector_8h"/>
-        <childnode refid="295" relation="include">
-        </childnode>
-        <childnode refid="296" relation="include">
-        </childnode>
-        <childnode refid="294" relation="include">
-        </childnode>
-        <childnode refid="305" relation="include">
-        </childnode>
-        <childnode refid="309" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
       </node>
-      <node id="297">
-        <label>../libs/Eigen/Householder</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+        <link refid="ProbabilityFunctions_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
       </node>
-      <node id="307">
+      <node id="15">
         <label>../DataHandling/Star.h</label>
         <link refid="Star_8h"/>
-        <childnode refid="295" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="308" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="302" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="301">
+      <node id="20">
+        <label>cmath</label>
+      </node>
+      <node id="16">
+        <label>string</label>
+      </node>
+      <node id="8">
+        <label>fstream</label>
+      </node>
+      <node id="19">
+        <label>../Optimizer/EfficiencyVector.h</label>
+        <link refid="EfficiencyVector_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="9">
         <label>string.h</label>
       </node>
-      <node id="293">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
-        <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="294" relation="include">
-        </childnode>
-        <childnode refid="305" relation="include">
-        </childnode>
-        <childnode refid="306" relation="include">
-        </childnode>
-        <childnode refid="309" relation="include">
-        </childnode>
-        <childnode refid="312" relation="include">
-        </childnode>
-      </node>
-      <node id="295">
+      <node id="3">
         <label>vector</label>
       </node>
-      <node id="296">
-        <label>../libs/Eigen/Core</label>
+      <node id="18">
+        <label>VariancePopulation.h</label>
+        <link refid="VariancePopulation_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
       </node>
-      <node id="302">
-        <label>iostream</label>
-      </node>
-      <node id="298">
-        <label>../libs/Eigen/QR</label>
-      </node>
-      <node id="299">
-        <label>../libs/Eigen/LU</label>
-      </node>
-      <node id="305">
+      <node id="13">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="294" relation="include">
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="10">
+        <label>iostream</label>
+      </node>
+      <node id="6">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="7">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="17">
+        <label>MiscFunctions.h</label>
+        <link refid="MiscFunctions_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
         </childnode>
       </node>
     </incdepgraph>
     <invincdepgraph>
-      <node id="313">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h</label>
         <link refid="ProbabilityFunctions_8h"/>
-        <childnode refid="314" relation="include">
+        <childnode refid="2" relation="include">
         </childnode>
-        <childnode refid="316" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="315">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
+      <node id="3">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihoodPrior.h</label>
         <link refid="LogLikelihoodPrior_8h"/>
-        <childnode refid="316" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
       </node>
-      <node id="316">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
-        <link refid="LikelihoodFunctor_8h"/>
-      </node>
-      <node id="314">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/LogLikelihood.h</label>
+      <node id="2">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/LogLikelihood.h</label>
         <link refid="LogLikelihood_8h"/>
-        <childnode refid="315" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
+      </node>
+      <node id="4">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/LikelihoodFunctor.h</label>
+        <link refid="LikelihoodFunctor_8h"/>
       </node>
     </invincdepgraph>
       <sectiondef kind="func">
@@ -203,27 +203,31 @@
 <parametername>probs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para></parameterdescription>
+<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>probslen</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para></parameterdescription>
+<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[n-1][k]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para></parameterdescription>
+<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[n-1][k]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="16" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="16" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="16" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -250,27 +254,31 @@
 <parametername>probs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para></parameterdescription>
+<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>probslen</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para></parameterdescription>
+<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[k][n-1]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para></parameterdescription>
+<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[k][n-1]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="24" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="24" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="24" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1afd75d17c92adef15ae23fac959929b44" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -305,34 +313,39 @@
 <parametername>m</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An offset parameter either #PipelineMinVisists -1 , k-1 or k, depending on the properties of the star which have been observed. </para></parameterdescription>
+<para>An offset parameter either #PipelineMinVisists -1 , k-1 or k, depending on the properties of the star which have been observed. </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>pmf_forward</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output of <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref> </para></parameterdescription>
+<para>the output of <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref> </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>pmf_backward</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output of <ref refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kindref="member">poisson_binomial_pmf_backward()</ref> </para></parameterdescription>
+<para>the output of <ref refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kindref="member">poisson_binomial_pmf_backward()</ref> </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector into which the results are inserted in-place </para></parameterdescription>
+<para>The vector into which the results are inserted in-place </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="33" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="33" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="33" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1a86f6309231e624f956de86197020c697" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -354,32 +367,36 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Called by <ref refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" kindref="member">LogLikelihood::ExactPoissonContribution()</ref>. Almost identical to <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref>, but operates in log-space and has a far higher level of precision, and crucially is <bold>much slower</bold>. This should only be called when the results of the original function are in doubt (p ~1 or p~0, or result[x][y] <ndash/>&gt; infty) <parameterlist kind="param"><parameteritem>
+<para>Called by <ref refid="classLogLikelihood_1ac848d93699c16868bf4da1884fe5c45a" kindref="member">LogLikelihood::ExactPoissonContribution()</ref>. Almost identical to <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref>, but operates in log-space and has a far higher level of precision, and crucially is <bold>much slower</bold>. This should only be called when the results of the original function are in doubt (p ~1 or p~0, or result[x][y] --&gt; infty) <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>probs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para></parameterdescription>
+<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>probslen</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para></parameterdescription>
+<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[n-1][k]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para></parameterdescription>
+<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[n-1][k]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="41" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="41" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="41" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1adf0ba186c49b1aa5a0d32c64aae31fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -406,27 +423,31 @@
 <parametername>probs</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para></parameterdescription>
+<para>The vector of probabilities to calculate the Poisson Binomial on. This vector has length <ref refid="GlobalConstants_8h_1a7a2781dd616d965ec2bb2df8cf652704" kindref="member">NumberLargerThanMaxObservations</ref>, to prevent continual re-initialisation </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>probslen</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para></parameterdescription>
+<para>The number of elements of <computeroutput>probs</computeroutput> which are initialised. Referred to as <computeroutput>n</computeroutput> in our theory work </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[k][n-1]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para></parameterdescription>
+<para>A reference to a matrix / vector-of-vectors used to store the output result in-place. The value of p(K = k| probs) is at element <computeroutput>[k][n-1]</computeroutput>. The rest of the object is populated with intermediary results needed to calculate the derivative of the result w.r.t. the probabilities. </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="50" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="50" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="50" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1aa49648706e9e2fe89ad930913848e545" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -461,34 +482,39 @@
 <parametername>m</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>An offset parameter either #PipelineMinVisists -1 , k-1 or k, depending on the properties of the star which have been observed. </para></parameterdescription>
+<para>An offset parameter either #PipelineMinVisists -1 , k-1 or k, depending on the properties of the star which have been observed. </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>pmf_forward</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output of <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref> </para></parameterdescription>
+<para>the output of <ref refid="ProbabilityFunctions_8h_1aaf3edde1db0b61fb8a749132f7af7219" kindref="member">poisson_binomial_pmf_forward()</ref> </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>pmf_backward</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output of <ref refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kindref="member">poisson_binomial_pmf_backward()</ref> </para></parameterdescription>
+<para>the output of <ref refid="ProbabilityFunctions_8h_1ab18da1a53be9c4718fcbda438b70586f" kindref="member">poisson_binomial_pmf_backward()</ref> </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>result</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The vector into which the results are inserted in-place </para></parameterdescription>
+<para>The vector into which the results are inserted in-place </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="59" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="59" column="7" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="59" declcolumn="7"/>
       </memberdef>
       <memberdef kind="function" id="ProbabilityFunctions_8h_1aadeaeef85d31cfc560877be3cb6c5f7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -515,28 +541,33 @@
 <parametername>k</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of detections within the Gaia population for the target star </para></parameterdescription>
+<para>The number of detections within the Gaia population for the target star </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>probslen</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of visitation of the star (called <computeroutput>n</computeroutput> in theory work) </para></parameterdescription>
+<para>The number of visitation of the star (called <computeroutput>n</computeroutput> in theory work) </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>data</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A <ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref> object, including an initialised <ref refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" kindref="member">LikelihoodData::p</ref> vector. </para></parameterdescription>
+<para>A <ref refid="classLikelihoodData" kindref="compound">LikelihoodData</ref> object, including an initialised <ref refid="classLikelihoodData_1ac8cba3cd7ccaa7bcade1ad9590cd7e0a" kindref="member">LikelihoodData::p</ref> vector. </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>The probability p(K = k | p), and populates the gradient vectors <ref refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" kindref="member">LikelihoodData::dfdp_constantN</ref>, <ref refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" kindref="member">LikelihoodData::dfdN_constantP</ref> and <ref refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" kindref="member">LikelihoodData::hypergradient</ref> </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>The probability p(K = k | p), and populates the gradient vectors <ref refid="classLikelihoodData_1ac6d1fcbd9277f3858edf5330f4ddf9ba" kindref="member">LikelihoodData::dfdp_constantN</ref>, <ref refid="classLikelihoodData_1a5778396081010881534302e7cc999b1f" kindref="member">LikelihoodData::dfdN_constantP</ref> and <ref refid="classLikelihoodData_1a2783d19e10a237046558f19a5b092b08" kindref="member">LikelihoodData::hypergradient</ref> </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="68" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" line="68" column="8" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h" declline="68" declcolumn="8"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -570,6 +601,6 @@
 <codeline lineno="69"><highlight class="normal"></highlight></codeline>
 <codeline lineno="70"><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Likelihood/ProbabilityFunctions.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Likelihood/ProbabilityFunctions.h"/>
   </compounddef>
 </doxygen>

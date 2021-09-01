@@ -50,14 +50,7 @@ class LikelihoodFunctor
 		 * \param outdir The output directory where savefiles are located
 		 * \returns The EfficiencyVector::RawPosition component of #Efficiency,  the default starting point for the optimizer
 		*/
-		std::vector<double> Initialise(std::string loadPosition, std::string outdir)
-		{
-			LoopID = 0;
-			Efficiency = EfficiencyVector(loadPosition,outdir);
-			Gradient = std::vector<double>(totalRawParams,0.0);
-			Value = 0;
-			return Efficiency.RawPosition;
-		}
+		std::vector<double> Initialise(std::string loadPosition, std::string outdir);
 		
 
 		/*!

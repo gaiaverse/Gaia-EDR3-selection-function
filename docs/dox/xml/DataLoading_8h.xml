@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="DataLoading_8h" kind="file" language="C++">
     <compoundname>DataLoading.h</compoundname>
     <includes refid="Star_8h" local="yes">Star.h</includes>
@@ -15,123 +15,123 @@
     <includes refid="GlobalConstants_8h" local="yes">../Main/GlobalConstants.h</includes>
     <includes local="yes">../libs/JSL/JSL.h</includes>
     <incdepgraph>
-      <node id="187">
+      <node id="21">
         <label>../libs/JSL/JSL.h</label>
       </node>
-      <node id="176">
-        <label>iomanip</label>
-      </node>
-      <node id="173">
-        <label>stdlib.h</label>
-      </node>
-      <node id="175">
-        <label>numeric</label>
-      </node>
-      <node id="167">
-        <label>/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h</label>
-        <link refid="DataLoading_8h"/>
-        <childnode refid="168" relation="include">
-        </childnode>
-        <childnode refid="172" relation="include">
-        </childnode>
-        <childnode refid="173" relation="include">
-        </childnode>
-        <childnode refid="174" relation="include">
-        </childnode>
-        <childnode refid="175" relation="include">
-        </childnode>
-        <childnode refid="171" relation="include">
-        </childnode>
-        <childnode refid="176" relation="include">
-        </childnode>
-        <childnode refid="177" relation="include">
-        </childnode>
-        <childnode refid="169" relation="include">
-        </childnode>
-        <childnode refid="178" relation="include">
-        </childnode>
-        <childnode refid="179" relation="include">
-        </childnode>
-        <childnode refid="187" relation="include">
-        </childnode>
-      </node>
-      <node id="170">
-        <label>string</label>
-      </node>
-      <node id="180">
+      <node id="14">
         <label>GlobalVariables.h</label>
         <link refid="GlobalVariables_8h"/>
-        <childnode refid="169" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="181" relation="include">
+        <childnode refid="15" relation="include">
         </childnode>
-        <childnode refid="182" relation="include">
+        <childnode refid="16" relation="include">
         </childnode>
-        <childnode refid="183" relation="include">
+        <childnode refid="17" relation="include">
         </childnode>
-        <childnode refid="184" relation="include">
+        <childnode refid="18" relation="include">
         </childnode>
-        <childnode refid="185" relation="include">
+        <childnode refid="19" relation="include">
         </childnode>
-        <childnode refid="186" relation="include">
+        <childnode refid="20" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
-        <childnode refid="187" relation="include">
+        <childnode refid="21" relation="include">
         </childnode>
-        <childnode refid="176" relation="include">
+        <childnode refid="10" relation="include">
         </childnode>
       </node>
-      <node id="185">
-        <label>fstream</label>
+      <node id="10">
+        <label>iomanip</label>
       </node>
-      <node id="182">
-        <label>../libs/Eigen/Householder</label>
-      </node>
-      <node id="168">
+      <node id="2">
         <label>Star.h</label>
         <link refid="Star_8h"/>
-        <childnode refid="169" relation="include">
+        <childnode refid="3" relation="include">
         </childnode>
-        <childnode refid="170" relation="include">
+        <childnode refid="4" relation="include">
         </childnode>
-        <childnode refid="171" relation="include">
+        <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="186">
+      <node id="7">
+        <label>stdlib.h</label>
+      </node>
+      <node id="9">
+        <label>numeric</label>
+      </node>
+      <node id="4">
+        <label>string</label>
+      </node>
+      <node id="19">
+        <label>fstream</label>
+      </node>
+      <node id="16">
+        <label>../libs/Eigen/Householder</label>
+      </node>
+      <node id="20">
         <label>string.h</label>
       </node>
-      <node id="174">
+      <node id="8">
         <label>ctime</label>
       </node>
-      <node id="169">
+      <node id="3">
         <label>vector</label>
       </node>
-      <node id="181">
-        <label>../libs/Eigen/Core</label>
-      </node>
-      <node id="171">
-        <label>iostream</label>
-      </node>
-      <node id="183">
-        <label>../libs/Eigen/QR</label>
-      </node>
-      <node id="184">
-        <label>../libs/Eigen/LU</label>
-      </node>
-      <node id="179">
+      <node id="13">
         <label>../Main/GlobalConstants.h</label>
         <link refid="GlobalConstants_8h"/>
-        <childnode refid="180" relation="include">
+        <childnode refid="14" relation="include">
         </childnode>
       </node>
-      <node id="178">
+      <node id="15">
+        <label>../libs/Eigen/Core</label>
+      </node>
+      <node id="5">
+        <label>iostream</label>
+      </node>
+      <node id="1">
+        <label>/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h</label>
+        <link refid="DataLoading_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>../libs/Eigen/QR</label>
+      </node>
+      <node id="18">
+        <label>../libs/Eigen/LU</label>
+      </node>
+      <node id="12">
         <label>chrono</label>
       </node>
-      <node id="177">
+      <node id="11">
         <label>mpi.h</label>
       </node>
-      <node id="172">
+      <node id="6">
         <label>stdio.h</label>
       </node>
     </incdepgraph>
@@ -175,49 +175,57 @@
 <parametername>ProcessRank</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The MPI ID of the calling process </para></parameterdescription>
+<para>The MPI ID of the calling process </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>JobSize</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of MPI workers available (used to determine how to distribute files to each worker) </para></parameterdescription>
+<para>The number of MPI workers available (used to determine how to distribute files to each worker) </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>Data</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to the container into which the data will be inserter </para></parameterdescription>
+<para>A reference to the container into which the data will be inserter </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>TotalStars</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A reference to a counter which sums the total number of stars loaded into the worker, and hence into the parallel system </para></parameterdescription>
+<para>A reference to a counter which sums the total number of stars loaded into the worker, and hence into the parallel system </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>dataSource</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The location of the directory in which the stellar data is stored </para></parameterdescription>
+<para>The location of the directory in which the stellar data is stored </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>batches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of minibatches the optimizer uses, and hence a determinant of the structure of the loaded data </para></parameterdescription>
+<para>The number of minibatches the optimizer uses, and hence a determinant of the structure of the loaded data </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>No explicit returns, but the <computeroutput>Data</computeroutput> object becomes populated with <ref refid="classStar" kindref="compound">Star</ref> objects </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>No explicit returns, but the <computeroutput>Data</computeroutput> object becomes populated with <ref refid="classStar" kindref="compound">Star</ref> objects </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="50" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="50" column="6" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" declline="50" declcolumn="6"/>
       </memberdef>
       <memberdef kind="function" id="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; <ref refid="structFile" kindref="compound">File</ref> &gt;</type>
@@ -240,21 +248,25 @@
 <parametername>id</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The MPI id of the running process, a number between 0 and NProcesses - 1 </para></parameterdescription>
+<para>The MPI id of the running process, a number between 0 and NProcesses - 1 </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>dataSource</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The directory in which the stellar data is stored </para></parameterdescription>
+<para>The directory in which the stellar data is stored </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A list of the <ref refid="structFile" kindref="compound">File</ref> objects assigned to this process </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>A list of the <ref refid="structFile" kindref="compound">File</ref> objects assigned to this process </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="58" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="58" column="13" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" declline="58" declcolumn="13"/>
       </memberdef>
       <memberdef kind="function" id="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>void</type>
@@ -277,20 +289,23 @@
 <parametername>Files</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the output of <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> </para></parameterdescription>
+<para>the output of <ref refid="DataLoading_8h_1a56471718bff17aefd9382d6bf500deea" kindref="member">GetAssignments()</ref> </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>batches</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>the maximum number of minibatches </para></parameterdescription>
+<para>the maximum number of minibatches </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-</para>        </detaileddescription>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h" line="65" column="1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" line="65" column="6" declfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h" declline="65" declcolumn="6"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -334,6 +349,6 @@
 <codeline lineno="59"><highlight class="normal"></highlight></codeline>
 <codeline lineno="65"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="DataLoading_8h_1a6f0701930a53ce756919c103fa77a047" kindref="member">CalculateBatches</ref>(std::vector&lt;File&gt;<sp/>&amp;<sp/>Files,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>batches);</highlight></codeline>
     </programlisting>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/DataLoading.h"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/DataLoading.h"/>
   </compounddef>
 </doxygen>

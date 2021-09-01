@@ -10,10 +10,12 @@ EfficiencyVector::EfficiencyVector(std::string load_location, std::string saveLo
 	TransformedGradient= std::vector<double>(totalTransformedParams,0.0);
 	if (loadIn)
 	{
+		std::cout << "Loading in previous location from " << load_location;
 		LoadVector(load_location);
 	}
 	else
 	{
+		std::cout << "Randomly generating start position for me!" << std::endl;
 		GenerateVector();	
 	}
 	LoadNeedlets();

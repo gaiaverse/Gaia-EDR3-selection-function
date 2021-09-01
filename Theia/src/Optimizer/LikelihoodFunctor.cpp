@@ -4,6 +4,15 @@
 //this function is executed only once (by root), and distributes the task to the remaining workers
 
 
+std::vector<double> LikelihoodFunctor::Initialise(std::string loadPosition, std::string outdir)
+{
+	LoopID = 0;
+	Efficiency = EfficiencyVector(loadPosition,outdir);
+	Gradient = std::vector<double>(totalRawParams,0.0);
+	Value = 0;
+	return Efficiency.RawPosition;
+}
+
 void LikelihoodFunctor::SavePosition(bool finalSave,int saveStep,bool uniqueSave)
 {
 	Efficiency.Save(finalSave,saveStep,uniqueSave);

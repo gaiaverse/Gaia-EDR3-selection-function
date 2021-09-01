@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="classCommandArgs" kind="class" language="C++" prot="public">
     <compoundname>CommandArgs</compoundname>
     <includes refid="CommandArguments_8h" local="no">CommandArguments.h</includes>
@@ -11,12 +11,13 @@
         <name>RandomSeed</name>
         <initializer>= Argument&lt;int&gt;(0,&quot;random-seed&quot;)</initializer>
         <briefdescription>
-<para>The value passed to <computeroutput>srand() &lt;<ulink url="https://www.cplusplus.com/reference/cstdlib/srand/">https://www.cplusplus.com/reference/cstdlib/srand/</ulink>&gt;</computeroutput>_ for reproducible randomness. </para>        </briefdescription>
+<para>The value passed to <computeroutput>srand() &lt;<ulink url="https://www.cplusplus.com/reference/cstdlib/srand/">https://www.cplusplus.com/reference/cstdlib/srand/</ulink>&gt;</computeroutput>_ for reproducible randomness. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="11" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="11" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="11" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="11" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" prot="public" static="no" mutable="no">
         <type>Argument&lt; std::string &gt;</type>
@@ -25,12 +26,13 @@
         <name>StartVectorLocation</name>
         <initializer>= Argument&lt;std::string&gt;(&quot;__null_location__&quot;,&quot;restart&quot;)</initializer>
         <briefdescription>
-<para>The directory to search in for a valid savefile configuration for relaunch. </para>        </briefdescription>
+<para>The directory to search in for a valid savefile configuration for relaunch. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="14" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="14" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="14" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="14" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1a47a53ea373bc6c81ed80c2b651e9c405" prot="public" static="no" mutable="no">
         <type>Argument&lt; double &gt;</type>
@@ -39,12 +41,13 @@
         <name>GradLim</name>
         <initializer>= Argument&lt;double&gt;(0,&quot;gradlim&quot;)</initializer>
         <briefdescription>
-<para>The maximum value of :math:<computeroutput>\nabla\mathcal{L}</computeroutput> which will be considered ‘converged’ via <ref refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" kindref="member">ADABADAM::StopConditions::GradientThreshold</ref>. </para>        </briefdescription>
+<para>The maximum value of :math:<computeroutput>\nabla\mathcal{L}</computeroutput> which will be considered ‘converged’ via <ref refid="structADABADAM_1_1StopConditions_1a17b0fa5ef935eee7cd2389a488941192" kindref="member">ADABADAM::StopConditions::GradientThreshold</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="18" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="18" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="18" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1a9d8b6a8c21f7b330979c7a173994ca37" prot="public" static="no" mutable="no">
         <type>Argument&lt; int &gt;</type>
@@ -53,12 +56,13 @@
         <name>MaxSteps</name>
         <initializer>= Argument&lt;int&gt;(1000,&quot;max-steps&quot;)</initializer>
         <briefdescription>
-<para>The maximum number of epochs the optimizer may use before exiting, via <ref refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kindref="member">ADABADAM::StopConditions::MaxSteps</ref>. </para>        </briefdescription>
+<para>The maximum number of epochs the optimizer may use before exiting, via <ref refid="structADABADAM_1_1StopConditions_1a863a8b97f74d2e8f2850c04c3d244e78" kindref="member">ADABADAM::StopConditions::MaxSteps</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="21" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="21" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="21" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="21" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1af906f01863ff7b503914b462a8a7ddb5" prot="public" static="no" mutable="no">
         <type>Argument&lt; int &gt;</type>
@@ -67,12 +71,13 @@
         <name>SaveSteps</name>
         <initializer>= Argument&lt;int&gt;(1,&quot;save-steps&quot;)</initializer>
         <briefdescription>
-<para>The number of steps between saving locations via <ref refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kindref="member">ADABADAM::OptimizerProperties::StepsPerPositionSave</ref>. </para>        </briefdescription>
+<para>The number of steps between saving locations via <ref refid="structADABADAM_1_1OptimizerProperties_1acfdcb6438ba88bfae9f150f755cf0a10" kindref="member">ADABADAM::OptimizerProperties::StepsPerPositionSave</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="24" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="24" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="24" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="24" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1ad1018830dc6772a972df87a843059416" prot="public" static="no" mutable="no">
         <type>Argument&lt; bool &gt;</type>
@@ -81,12 +86,13 @@
         <name>SaveAllSteps</name>
         <initializer>= Argument&lt;bool&gt;(false,&quot;unique-temp-save&quot;)</initializer>
         <briefdescription>
-<para>If true, the temporary vectors are saved uniquely via via <ref refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kindref="member">ADABADAM::OptimizerProperties::UniquePositionSaves</ref>. Recommended to set this to false to prevent huge amounts of data generation. </para>        </briefdescription>
+<para>If true, the temporary vectors are saved uniquely via via <ref refid="structADABADAM_1_1OptimizerProperties_1aa262b9c40b40f1bf159ee9ced6a9d741" kindref="member">ADABADAM::OptimizerProperties::UniquePositionSaves</ref>. Recommended to set this to false to prevent huge amounts of data generation. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="27" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="27" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="27" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="27" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1ad16d6cadaedb80e8d3abfc51b3b73335" prot="public" static="no" mutable="no">
         <type>Argument&lt; int &gt;</type>
@@ -95,12 +101,13 @@
         <name>Minibatches</name>
         <initializer>= Argument&lt;int&gt;(64,&quot;minibatch&quot;)</initializer>
         <briefdescription>
-<para>The maximum number of batches used per epoch in the SGD prescription via via <ref refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kindref="member">ADABADAM::OptimizerProperties::MiniBatches</ref>. </para>        </briefdescription>
+<para>The maximum number of batches used per epoch in the SGD prescription via via <ref refid="structADABADAM_1_1OptimizerProperties_1a397637b0871ad8103662b9264a1627cb" kindref="member">ADABADAM::OptimizerProperties::MiniBatches</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="30" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="30" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="30" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="30" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1ae64dd25052a877832d3db4e289f1bb13" prot="public" static="no" mutable="no">
         <type>Argument&lt; double &gt;</type>
@@ -109,12 +116,13 @@
         <name>HarnessSlowDown</name>
         <initializer>= Argument&lt;double&gt;(10,&quot;harness-slow&quot;)</initializer>
         <briefdescription>
-<para>The factor by which step sizes are reduced when the harness is active, via <ref refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kindref="member">ADABADAM::OptimizerProperties::MaxHarnessFactor</ref>. </para>        </briefdescription>
+<para>The factor by which step sizes are reduced when the harness is active, via <ref refid="structADABADAM_1_1OptimizerProperties_1ab419538ab81259cc75db460aba02376b" kindref="member">ADABADAM::OptimizerProperties::MaxHarnessFactor</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="33" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="33" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="33" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="33" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1a2a92d19a8106254917659b8d432b8fd2" prot="public" static="no" mutable="no">
         <type>Argument&lt; int &gt;</type>
@@ -123,12 +131,13 @@
         <name>HarnessRelease</name>
         <initializer>= Argument&lt;int&gt;(5,&quot;harness-release&quot;)</initializer>
         <briefdescription>
-<para>The number of full epochs over which the step size recovers from the HarnessSlowDown, via <ref refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kindref="member">ADABADAM::OptimizerProperties::HarnessReleaseSteps</ref>. </para>        </briefdescription>
+<para>The number of full epochs over which the step size recovers from the HarnessSlowDown, via <ref refid="structADABADAM_1_1OptimizerProperties_1abd2950cf469a697c78d398d67917f0fe" kindref="member">ADABADAM::OptimizerProperties::HarnessReleaseSteps</ref>. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="36" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="36" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="36" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="36" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1a5e4469cda4fd80e0d827a11147b15afa" prot="public" static="no" mutable="no">
         <type>Argument&lt; std::string &gt;</type>
@@ -137,12 +146,13 @@
         <name>DataSource</name>
         <initializer>= Argument&lt;std::string&gt;(&quot;../../Data/ShuffledData&quot;,&quot;data&quot;)</initializer>
         <briefdescription>
-<para>The directory for the stellar data lists. </para>        </briefdescription>
+<para>The directory for the stellar data lists. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="39" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="39" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="39" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1adf5dd695a6a88eed97d1317d534af4d6" prot="public" static="no" mutable="no">
         <type>Argument&lt; std::string &gt;</type>
@@ -151,12 +161,13 @@
         <name>OutputDirectory</name>
         <initializer>= Argument&lt;std::string&gt;(&quot;Output&quot;,&quot;output&quot;)</initializer>
         <briefdescription>
-<para>The director for the output data (created if it doesn’t already exist) </para>        </briefdescription>
+<para>The director for the output data (created if it doesn’t already exist) </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="42" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="42" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="42" column="10" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classCommandArgs_1ab0522bf4c5550780b9ff929fbc272f72" prot="public" static="no" mutable="no">
         <type>std::vector&lt; JSL::ArgumentInterface * &gt;</type>
@@ -165,12 +176,13 @@
         <name>argPointers</name>
         <initializer>= {&amp;<ref refid="classCommandArgs_1a7227f10097dae1825feea951fc3132a6" kindref="member">RandomSeed</ref>, &amp;<ref refid="classCommandArgs_1acaf9e3be3c41eeb7f3fe61d26312a0ad" kindref="member">StartVectorLocation</ref>, &amp;<ref refid="classCommandArgs_1a47a53ea373bc6c81ed80c2b651e9c405" kindref="member">GradLim</ref>, &amp;<ref refid="classCommandArgs_1a9d8b6a8c21f7b330979c7a173994ca37" kindref="member">MaxSteps</ref>, &amp;<ref refid="classCommandArgs_1a5e4469cda4fd80e0d827a11147b15afa" kindref="member">DataSource</ref>, &amp;<ref refid="classCommandArgs_1adf5dd695a6a88eed97d1317d534af4d6" kindref="member">OutputDirectory</ref>,&amp;<ref refid="classCommandArgs_1af906f01863ff7b503914b462a8a7ddb5" kindref="member">SaveSteps</ref>,&amp;<ref refid="classCommandArgs_1ad1018830dc6772a972df87a843059416" kindref="member">SaveAllSteps</ref>,&amp;<ref refid="classCommandArgs_1ad16d6cadaedb80e8d3abfc51b3b73335" kindref="member">Minibatches</ref>,&amp;<ref refid="classCommandArgs_1a2a92d19a8106254917659b8d432b8fd2" kindref="member">HarnessRelease</ref>,&amp;<ref refid="classCommandArgs_1ae64dd25052a877832d3db4e289f1bb13" kindref="member">HarnessSlowDown</ref>}</initializer>
         <briefdescription>
-<para>Pointers list so can easily loop over the (heterogenous) array for assigments. </para>        </briefdescription>
+<para>Pointers list so can easily loop over the (heterogenous) array for assigments. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="46" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="46" bodyend="-1"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="46" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="46" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
@@ -180,12 +192,13 @@
         <argsstring>()</argsstring>
         <name>CommandArgs</name>
         <briefdescription>
-<para>Default constructor....doesn&apos;t do anything as the arguments self-initialise. </para>        </briefdescription>
+<para>Default constructor....doesn&apos;t do anything as the arguments self-initialise. </para>
+        </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="49" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="49" bodyend="49"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="49" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="49" bodyend="49"/>
       </memberdef>
       <memberdef kind="function" id="classCommandArgs_1a93f101d465df0ff6e79950c6b8ac4cd5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
@@ -213,28 +226,33 @@
 <parametername>argc</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The system-provided command argument count </para></parameterdescription>
+<para>The system-provided command argument count </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>*argv[]</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The system-provided list of command arguments </para></parameterdescription>
+<para>The system-provided list of command arguments </para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>ProcessRank</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The MPI-provided ID of the current process </para></parameterdescription>
+<para>The MPI-provided ID of the current process </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>Initialises the object against the provided parameters </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>Initialises the object against the provided parameters </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="59" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="59" bodyend="92"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="59" column="6" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="59" bodyend="92"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -278,7 +296,7 @@
         <label>Argument&lt; double &gt;</label>
       </node>
     </collaborationgraph>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" line="7" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="6" bodyend="96"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" line="7" column="1" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/DataHandling/CommandArguments.h" bodystart="6" bodyend="96"/>
     <listofallmembers>
       <member refid="classCommandArgs_1ab0522bf4c5550780b9ff929fbc272f72" prot="public" virt="non-virtual"><scope>CommandArgs</scope><name>argPointers</name></member>
       <member refid="classCommandArgs_1a35597219abd5f941cf3d6ffbe9f62a04" prot="public" virt="non-virtual"><scope>CommandArgs</scope><name>CommandArgs</name></member>

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
   <compounddef id="namespaceADABADAM" kind="namespace" language="C++">
     <compoundname>ADABADAM</compoundname>
     <innerclass refid="structADABADAM_1_1MemoryBuffer" prot="public">ADABADAM::MemoryBuffer</innerclass>
@@ -24,21 +24,25 @@
           <declname>val</declname>
         </param>
         <briefdescription>
-<para>A type-ambivilant implementation of the sign(x) function with sign(0) == 0. </para>        </briefdescription>
+<para>A type-ambivilant implementation of the sign(x) function with sign(0) == 0. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>val</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a member of any type where <computeroutput>&lt;</computeroutput> is defined </para></parameterdescription>
+<para>a member of any type where <computeroutput>&lt;</computeroutput> is defined </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>-1, 0 or 1 </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>-1, 0 or 1 </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="14" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="14" bodyend="16"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="14" column="17" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="14" bodyend="16"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -50,21 +54,25 @@
           <declname>x</declname>
         </param>
         <briefdescription>
-<para>Calculates the standard Euclidean norm of a provided vector. </para>        </briefdescription>
+<para>Calculates the standard Euclidean norm of a provided vector. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>A vector on R^n </para></parameterdescription>
+<para>A vector on R^n </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>||x|| = sqrt(x.x) </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>||x|| = sqrt(x.x) </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="19" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="19" bodyend="27"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="19" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="19" bodyend="27"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1ac05031b7779daebbd07d9a68b4181260" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; double &gt;</type>
@@ -80,28 +88,33 @@
           <declname>y</declname>
         </param>
         <briefdescription>
-<para>Calculates the pointwise difference off a vector. </para>        </briefdescription>
+<para>Calculates the pointwise difference off a vector. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a vector on R^n </para></parameterdescription>
+<para>a vector on R^n</para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>y</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a vector also on R^n </para></parameterdescription>
+<para>a vector also on R^n </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>A vector z such that z_i = x_i - y_i </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>A vector z such that z_i = x_i - y_i </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="30" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="30" bodyend="44"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="30" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="30" bodyend="44"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1a8383c920df127d40c1a15dea4e22b47f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>double</type>
@@ -117,28 +130,33 @@
           <declname>y</declname>
         </param>
         <briefdescription>
-<para>Calculates the norm of the difference between two vectors. Quicker than calculating diff() then <ref refid="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" kindref="member">norm()</ref>, at the cost of some duplicate code. </para>        </briefdescription>
+<para>Calculates the norm of the difference between two vectors. Quicker than calculating diff() then <ref refid="namespaceADABADAM_1adbecb22b119acb164dfb532bf7b69f55" kindref="member">norm()</ref>, at the cost of some duplicate code. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>x</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a vector on R^n </para></parameterdescription>
+<para>a vector on R^n</para>
+</parameterdescription>
 </parameteritem>
 <parameteritem>
 <parameternamelist>
 <parametername>y</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>a vector also on R^n </para></parameterdescription>
+<para>a vector also on R^n </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>||x -y|| = sqrt( (x-y).(x-y) ) </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>||x -y|| = sqrt( (x-y).(x-y) ) </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="47" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="47" bodyend="61"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="47" column="8" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="47" bodyend="61"/>
       </memberdef>
       <memberdef kind="function" id="namespaceADABADAM_1a30978fca49d41c59890c4c5245a2f87b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type>std::vector&lt; int &gt;</type>
@@ -150,27 +168,31 @@
           <declname>n</declname>
         </param>
         <briefdescription>
-<para>Generates a randomly shuffled array of numbers between 0 and n-1. Suitable for then randomly looping over an object. </para>        </briefdescription>
+<para>Generates a randomly shuffled array of numbers between 0 and n-1. Suitable for then randomly looping over an object. </para>
+        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>n</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>The number of random elements </para></parameterdescription>
+<para>The number of random elements </para>
+</parameterdescription>
 </parameteritem>
 </parameterlist>
-<simplesect kind="return"><para>a randomly ordered vector of unique elements between 0 and n-1 </para></simplesect>
-</para>        </detaileddescription>
+<simplesect kind="return"><para>a randomly ordered vector of unique elements between 0 and n-1 </para>
+</simplesect>
+</para>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="64" column="1" bodyfile="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="64" bodyend="74"/>
+        <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="64" column="13" bodyfile="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" bodystart="64" bodyend="74"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="/home/fraserj/Documents/Work/GaiaSelectionFunction/Code/Theia/src/Optimizer/ManualOptimizer.h" line="12" column="1"/>
+    <location file="/home/jack/Documents/Work/GaiaCompleteness/Code/Theia/src/Optimizer/ManualOptimizer.h" line="12" column="1"/>
   </compounddef>
 </doxygen>
