@@ -60,7 +60,7 @@ void RootProcess()
 	//initialise the functor & the solver
 	LikelihoodFunctor functor = LikelihoodFunctor(Data,Args.Minibatches);
 	
-	std::vector<double> x = functor.Initialise(Args.OutputDirectory,Args.StartVectorLocation);
+	std::vector<double> x = functor.Initialise(Args.StartVectorLocation,Args.OutputDirectory);
 
 	
 	ADABADAM::Optimizer<LikelihoodFunctor> op(functor);
