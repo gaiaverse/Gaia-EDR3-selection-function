@@ -100,7 +100,6 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 			break;
 		}
 		case Hyper :
-			ERROR(2, "Incorrect access mode used for hyper component of the EfficiencyVector");
 			return Access(mode, component,type, sl*NVariancePops + m);
 			break;
 	}
