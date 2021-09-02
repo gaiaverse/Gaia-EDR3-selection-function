@@ -35,6 +35,7 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	
 	//Transform then broadcast the vector to workers
 	Efficiency.ForwardTransform(x);
+
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 
 
@@ -54,27 +55,22 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	
 
 	totalStarsUsed = std::max(1,totalStarsUsed);
+	Efficiency.TransformedGradient= gradientCatcher;
 	
-	//Efficiency.TransformedGradient= gradientCatcher;
-	
-	
+
 	Lsum += L.TransformPrior(Efficiency, effectiveBatches);
 
 	Efficiency.BackwardTransform();
 	
 	
-	//Lsum += L.RawPrior(Efficiency,effectiveBatches);
+	Lsum += L.RawPrior(Efficiency,effectiveBatches);
 
-	Value = Lsum;
-
-	int StarsInLastBatch = totalStarsUsed;
-
-	++LoopID;
-	
+	++LoopID;	
 	//negative sign for maximisation problem + normalise to number of stars
 	for (int i = 0; i < Efficiency.RawGradient.size(); ++i)
 	{
-		Gradient[i] = -Efficiency.RawGradient[i] / totalStarsUsed;
+		Gradient[i] = - Efficiency.RawGradient[i] / totalStarsUsed;
 	}
-	Value = -Value/totalStarsUsed;
+	Value = -Lsum/totalStarsUsed;
+	
 }

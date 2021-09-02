@@ -120,6 +120,9 @@ namespace ADABADAM
 				Progress.SaveLocation = "";
 				Progress.MaxHashes = 32;
 				Properties.StepsPerPositionSave = 1;
+				
+				Properties.adamBeta1 = 0.7;
+				Properties.adamBeta2 = 0.99;
 			}
 			
 			//! Sets the relevant values of Status, Progress and Buffer to their appropriate values for the beginning of an optimisation loop. Called during #Minimize(), so any changes made after construction are erased. 
@@ -156,6 +159,7 @@ namespace ADABADAM
 				Buffer.AnalysisSteps = 0;
 				Buffer.Analysis = std::vector<double>(Buffer.AnalysisSize,0);
 				
+				Progress.LearningRate = Properties.StepSize;
 				Progress.Hashes = 0;
 				Progress.CurrentSteps = 0;
 				Progress.SlowdownTriggers = 0;
@@ -182,7 +186,7 @@ namespace ADABADAM
 				
 				double gNorm = 0;
 				double dxNorm = 0;
-			
+				
 				for (int i = 0; i < Properties.Dimensions; ++i)
 				{
 					double g = Functor.Gradient[i];
@@ -192,8 +196,8 @@ namespace ADABADAM
 					v[i] = Properties.adamBeta2* v[i] + (1.0 - Properties.adamBeta2) * (g*g);
 					
 					double effectiveRate = Progress.LearningRate * Progress.Harness;
-					double dx_i = -b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
 					
+					double dx_i = - b1Mod * m[i] /  ((sqrt(v[i]*b2Mod) + eps) ) * effectiveRate;
 					
 					dxNorm += dx_i * dx_i;
 					x[i] += dx_i;

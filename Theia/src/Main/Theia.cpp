@@ -81,7 +81,7 @@ void RootProcess()
 	
 	op.Properties.MaxHarnessFactor = Args.HarnessSlowDown;
 	op.Properties.HarnessReleaseSteps = Args.HarnessRelease;
-	op.Properties.StepSize= 0.008;
+	op.Properties.StepSize= 0.08;
 		
 	op.Progress.SaveLocation = (std::string)Args.OutputDirectory + "/";
 		

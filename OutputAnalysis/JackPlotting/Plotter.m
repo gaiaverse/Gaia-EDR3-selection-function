@@ -3,7 +3,7 @@ set(0,'defaultTextInterpreter','latex');
 files = ["worktest"];
 % getData(62);
 N1 = 0;
-N2 = 20;
+N2 = 100;
 gap = 2;
 progressPlot(files,0)
 gifPlot(files,N1,N2,gap,"evolution_zoom.gif",false);
@@ -58,7 +58,7 @@ for i = 1:length(folders)
 		number = numbers;
 	end
 	folder = folders(i);
-	properties = readtable("../../../CodeOutput/" + folder + "/OptimiserProperties.dat","ReadRowNames",true,"Delimiter","=");
+	properties = readtable("../../../CodeOutput/" + folder + "/OptimizerProperties.dat","ReadRowNames",true,"Delimiter","=");
 	pData = table2array(properties)';
     vnames = properties.Properties.RowNames;
     properties = array2table(pData,"VariableNames",vnames);
@@ -197,8 +197,8 @@ for i = 1:length(folders)
 	title("Spatial Components " + frameTitle);
 	xlabel("Source file, $i$.csv");
 	ylabel("Mean $x_{ml}$ on sky")
-	xlim([0,Nm-1])
-	ylim(yl)
+	xlim([0,max(1,Nm-1)])
+% 	ylim(yl)
 	grid on;
 	
 	
@@ -249,7 +249,7 @@ for i = 1:length(files)
 end
 
 for i = 1:length(files)
-	file = "../../../CodeOutput/" + files(i) + "/OptimiserProgress.txt";
+	file = "../../../CodeOutput/" + files(i) + "/OptimizerProgress.txt";
 	f = readtable(file);
 	
 	fullEpoch = f(f.Batch == -1,:);

@@ -30,10 +30,10 @@ namespace ADABADAM
 		bool UniquePositionSaves;
 
 		//! The beta1 parameter of a normal ADAM optimiser -- the first moment weighting factor
-		bool adamBeta1;
+		double adamBeta1;
 		
 		//! The beta2 parameter of a normal ADAM optimiser -- the second moment weighting factor
-		bool adamBeta2;
+		double adamBeta2;
 		
 		//! The dimensionality of the optimizing space. Determined when Optimizer::Minimize() is called. 
 		int Dimensions;
