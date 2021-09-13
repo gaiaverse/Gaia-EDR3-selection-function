@@ -38,7 +38,7 @@ const int hyperOrder = 4;	 //!< Order of the variance fitting, must be an even n
 */
 
 const double xtPrior = 8; //!< Mean of prior on xt outside of gaps
-const double studentNu = 0.5; //!<Student t nu parameter for zt prior
+const double studentNu = 0.8; //!<Student t nu parameter for zt prior
 
 
 const double sigmat = 3; //!< Standard deviation of zt/xt prior (sort of)
@@ -50,8 +50,8 @@ const double lt_revs = 1; //!<Temporal coupling lengthscale for zt (in Gaia revo
 const double xmPrior = - 3; //!< Mean of gaussian prior on xml 
 
 
-const double gapPriorAlpha = 0.5; //!< Beta distribution alpha-value for the prior on the known gaps (in xt space)
-const double gapPriorPeak = -8; //!< Beta distribution peak value of xt 
+const double gapPriorAlpha = 0.05; //!< Beta distribution alpha-value for the prior on the known gaps (in xt space)
+const double gapPriorPeak = -10; //!< Beta distribution peak value of xt 
 const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak); //!< Given peak value and alpha value, derive appropriate beta parameter
 
 /*
