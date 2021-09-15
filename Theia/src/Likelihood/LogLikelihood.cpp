@@ -13,25 +13,32 @@ void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, 
 	
 	Reset();	
 	Data.GeneratePopulations(x);
-	//~ int realBatchesPerEffective = maxBatches / effectiveBatches;
+	int realBatchesPerEffective = maxBatches / effectiveBatches;
 	
-	//~ int start = effectiveBatchID * realBatchesPerEffective;
-	//~ int end = maxBatches;
-	//~ if (effectiveBatchID < effectiveBatches-1)
-	//~ {
-		//~ end = (effectiveBatchID+1) * realBatchesPerEffective;
-	//~ }
-	//~ StarsUsed = 0;
+	int start = effectiveBatchID * realBatchesPerEffective;
+	int end = maxBatches;
+	if (effectiveBatchID < effectiveBatches-1)
+	{
+		end = (effectiveBatchID+1) * realBatchesPerEffective;
+	}
+	StarsUsed = 0;
 	
-	//~ for (int i = start; i < end; ++i)
-	//~ {
-		//~ int n = Data.Stars[i].size();
-		//~ for (int j = 0; j < n; ++j)
-		//~ {
-			//~ PerStarContribution(i,j,x);
-		//~ }
-		//~ StarsUsed += n;
-	//~ }
+	std::string p = "I am preparing to calculate batches ";
+	for (int i = start; i < end; ++i)
+	{
+		p += std::to_string(i) + ", ";
+	}
+	std::cout << p << std::endl;
+	
+	for (int i = start; i < end; ++i)
+	{
+		int n = Data.Stars[i].size();
+		for (int j = 0; j < n; ++j)
+		{
+			PerStarContribution(i,j,x);
+		}
+		StarsUsed += n;
+	}
 	StarsUsed = 1;
 }
 
@@ -49,8 +56,8 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const Efficienc
 
 	GeneratePs(candidate,x);
 	
-	//~ GenerateContribution(candidate);
-	//~ AssignGradients(candidate);
+	GenerateContribution(candidate);
+	AssignGradients(candidate);
 }
 
 
