@@ -1,6 +1,6 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
-files = ["Production_1"];
+files = ["Production_2"];
 getData(62);
 N1 = 0;
 N2 = 30;

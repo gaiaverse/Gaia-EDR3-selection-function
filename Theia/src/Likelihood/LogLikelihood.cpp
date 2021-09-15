@@ -49,8 +49,8 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const Efficienc
 
 	GeneratePs(candidate,x);
 	
-	GenerateContribution(candidate);
-	AssignGradients(candidate);
+	//~ GenerateContribution(candidate);
+	//~ AssignGradients(candidate);
 }
 
 
@@ -101,6 +101,7 @@ void LogLikelihood::GenerateContribution(const Star candidate)
 		case NormalApproximation:
 		{
 			NormalContribution(candidate);
+			break;
 		}
 	}
 }
