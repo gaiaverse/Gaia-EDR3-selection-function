@@ -71,7 +71,7 @@ class EfficiencyVector
 		 * \returns The requested member of the Raw/Transformed Position/Gradient
 		*/
 		
-		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index) const;
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, const int index) const;
 		
 		/*!
 		 * Assign a value to the specified component without needing to worry about the internal structure of the vector
@@ -81,7 +81,7 @@ class EfficiencyVector
 		 * \param index The single-element index of the requested element
 		 * \param newValue The value to be assigned to the chosen element
 		*/
-		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient,int index, double newValue);
+		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient,const int index, const double newValue);
 		
 		/*!
 		 * Increments the value of a specified component without needing to worry about the internal structure of the vector
@@ -91,22 +91,22 @@ class EfficiencyVector
 		 * \param index The single-element index of the requested element
 		 * \param value The value to be added to the chosen element
 		*/
-		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index, double value);
+		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, const int index, const double value);
 		
 		/*!
 		 *  An overload for Access(), but for vector access which requires two indices for easy access. 
 		*/
-		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2) const;
+		double Access(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, const int index1, const int index2) const;
 		
 		/*!
 		 *  An overload for Assign(), but for vector access which requires two indices for easy access. 
 		*/
-		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2, double value);
+		void Assign(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, const int index1, const int index2, const double value);
 		
 		/*!
 		 *  An overload for Increment(), but for vector access which requires two indices for easy access. 
 		*/
-		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, int index1, int index2, double newValue);
+		void Increment(VectorMode rawOrTransformed, VectorComponent component, VectorType positionOrGradient, const int index1, const int index2, const double newValue);
 		
 
 			

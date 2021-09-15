@@ -13,25 +13,26 @@ void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, 
 	
 	Reset();	
 	Data.GeneratePopulations(x);
-	int realBatchesPerEffective = maxBatches / effectiveBatches;
+	//~ int realBatchesPerEffective = maxBatches / effectiveBatches;
 	
-	int start = effectiveBatchID * realBatchesPerEffective;
-	int end = maxBatches;
-	if (effectiveBatchID < effectiveBatches-1)
-	{
-		end = (effectiveBatchID+1) * realBatchesPerEffective;
-	}
-	StarsUsed = 0;
+	//~ int start = effectiveBatchID * realBatchesPerEffective;
+	//~ int end = maxBatches;
+	//~ if (effectiveBatchID < effectiveBatches-1)
+	//~ {
+		//~ end = (effectiveBatchID+1) * realBatchesPerEffective;
+	//~ }
+	//~ StarsUsed = 0;
 	
-	for (int i = start; i < end; ++i)
-	{
-		int n = Data.Stars[i].size();
-		for (int j = 0; j < n; ++j)
-		{
-			PerStarContribution(i,j,x);
-		}
-		StarsUsed += n;
-	}
+	//~ for (int i = start; i < end; ++i)
+	//~ {
+		//~ int n = Data.Stars[i].size();
+		//~ for (int j = 0; j < n; ++j)
+		//~ {
+			//~ PerStarContribution(i,j,x);
+		//~ }
+		//~ StarsUsed += n;
+	//~ }
+	StarsUsed = 1;
 }
 
 void LogLikelihood::Reset()
@@ -44,7 +45,7 @@ void LogLikelihood::Reset()
 
 void LogLikelihood::PerStarContribution(int batchId, int starID, const EfficiencyVector & x)
 {
-	const Star * candidate = &Data.Stars[batchId][starID];
+	const Star candidate = Data.Stars[batchId][starID];
 
 	GeneratePs(candidate,x);
 	
@@ -53,25 +54,25 @@ void LogLikelihood::PerStarContribution(int batchId, int starID, const Efficienc
 }
 
 
-void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & x)
+void LogLikelihood::GeneratePs(const Star candidate, const EfficiencyVector & x)
 {
-	int n = candidate->nVisit;
+	int n = candidate.nVisit;
 	//generate p vectors
 
 	for (int i = 0; i < n; ++i)
 	{
-		int t= candidate->TimeSeries[i];
+		int t= candidate.TimeSeries[i];
 		int T= Data.time_mapping[t];
 		
 		//double time_multiplier = time_ratio * t - T;
 		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
 		double xt = x.Access(x.Transformed,x.Temporal,x.Position,T);
 
-		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate->gBin;
-		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate->gBin;
+		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate.gBin;
+		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate.gBin;
 		
-		double xlm1 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_1[t], candidate->gBin);
-		double xlm2 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_2[t], candidate->gBin);
+		double xlm1 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_1[t], candidate.gBin);
+		double xlm2 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_2[t], candidate.gBin);
 		
 		double elu_xml1 = elu(xlm1);
 		double elu_xml2 = elu(xlm2);
@@ -86,7 +87,7 @@ void LogLikelihood::GeneratePs(const Star * candidate, const EfficiencyVector & 
 	}
 }
 
-void LogLikelihood::GenerateContribution(const Star * candidate)
+void LogLikelihood::GenerateContribution(const Star candidate)
 {
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
@@ -103,17 +104,17 @@ void LogLikelihood::GenerateContribution(const Star * candidate)
 		}
 	}
 }
-void LogLikelihood::NormalContribution(const Star * candidate)
+void LogLikelihood::NormalContribution(const Star candidate)
 {
-	int n = candidate->nVisit;
-	int k = candidate->nMeasure;
+	int n = candidate.nVisit;
+	int k = candidate.nMeasure;
 	Value += poisson_binomial_normal_lpmf(k, n, Data);
 }
 
-void LogLikelihood::PoissonContribution(const Star * candidate)
+void LogLikelihood::PoissonContribution(const Star candidate)
 {
-	int n = candidate->nVisit;
-	int k = candidate->nMeasure;
+	int n = candidate.nVisit;
+	int k = candidate.nMeasure;
 
 	// lots of probability black magic stuff in this function
 	// Ask Douglas for help!
@@ -195,10 +196,10 @@ void LogLikelihood::PoissonContribution(const Star * candidate)
 	
 }
 
-void LogLikelihood::ExactPoissonContribution(const Star * candidate)
+void LogLikelihood::ExactPoissonContribution(const Star candidate)
 {
-	int n = candidate->nVisit;
-	int k = candidate->nMeasure;
+	int n = candidate.nVisit;
+	int k = candidate.nMeasure;
 
 	// Even more black magic happening here - structurally the same as above, but with logs happening all over the shop
 	// Ask Douglas for help!
@@ -262,15 +263,15 @@ void LogLikelihood::ExactPoissonContribution(const Star * candidate)
 	}
 	
 }
-void LogLikelihood::AssignGradients(const Star * candidate)
+void LogLikelihood::AssignGradients(const Star candidate)
 {
-	int n = candidate->nVisit;
+	int n = candidate.nVisit;
 	for (int i = 0; i < n; ++i)
 	{		
-		int t= candidate->TimeSeries[i];
+		int t= candidate.TimeSeries[i];
 		int T= Data.time_mapping[t];
 		
-		int offset = Nt + candidate->gBin;
+		int offset = Nt + candidate.gBin;
 		int index1 = offset +  Data.healpix_fov_1[t] * Nm;
 		int index2 = offset +  Data.healpix_fov_2[t] * Nm;
 		

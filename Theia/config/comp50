@@ -1,4 +1,4 @@
-output       ../../Output/Production_2/
+output       ../../Output/MemCheck/
 data         ../../Data/ShuffledData/
 random-seed  0
 gradlim      0
@@ -8,4 +8,4 @@ unique-temp-save 1
 minibatch     8
 harness-slow  40
 harness-release 5
-restart ../../Output/Production_1/TempPosition_InternalParameters.dat
+restart ../../Output/Swappiness_100/TempPosition_InternalParameters.dat

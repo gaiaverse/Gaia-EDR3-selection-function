@@ -31,7 +31,7 @@ EfficiencyVector::EfficiencyVector()
 	//Nothing happens here, just needs to be there so classes don't cry when non-brace-initialised
 }
 
-double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int i) const
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, const int i) const
 {	
 	//~ std::cout << "Access called: " << mode << component << type << i << std::endl;
 	int index = -1;
@@ -87,7 +87,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 	return v;
 }
 
-double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, int sl, int m) const
+double EfficiencyVector::Access(VectorMode mode, VectorComponent component, VectorType type, const int sl, const int m) const
 {
 	switch (component)
 	{
@@ -105,7 +105,7 @@ double EfficiencyVector::Access(VectorMode mode, VectorComponent component, Vect
 	}
 }
 
-void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type, int i, double newValue)
+void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type, const int i, const double newValue)
 {	
 	int index;
 	switch (component)
@@ -150,7 +150,7 @@ void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, Vector
 	
 }
 
-void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type,int sl, int m, double newValue)
+void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, VectorType type,const int sl, const int m, const double newValue)
 {
 	switch (component)
 	{
@@ -166,7 +166,7 @@ void EfficiencyVector::Assign(VectorMode mode, VectorComponent component, Vector
 	}
 }
 
-void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type,int i, double value)
+void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type, const int i, const double value)
 {	
 	int index;
 	switch (component)
@@ -211,7 +211,7 @@ void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, Vec
 	}
 }
 
-void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type,int sl, int m, double value)
+void EfficiencyVector::Increment(VectorMode mode, VectorComponent component, VectorType type, const int sl, const int m, const double value)
 {
 	switch (component)
 	{
