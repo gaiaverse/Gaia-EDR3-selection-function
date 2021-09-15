@@ -28,6 +28,18 @@ void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, 
 	{
 		p += std::to_string(i) + ", ";
 	}
+	p += "\nMy vectors have the following sizes:";
+	p+= "  Data[i] " + std::to_string(Data.Stars[start].size());
+	p+= "  dfdp(N) " + std::to_string(Data.dfdp_constantN.size());
+	p += "  hypergradient " + std::to_string(Data.hypergradient.size());
+	p +=  "  pt " + std::to_string(Data.pt.size());
+	p += "   pml  " + std::to_string(Data.pml.size());
+	p += "   p " + std::to_string(Data.p.size() );
+	p += "   elu_grad  " + std::to_string(Data.grad_elu_xml1.size() ) + "  " + std::to_string(Data.grad_elu_xml2.size() );
+	p += "  Varpop  " + std::to_string(Data.VariancePopulations.size() );
+	p += "   x.transform  " + std::to_string(x.TransformedGradient.size() ) + "   " + std::to_string(x.TransformedPosition.size() );
+	p += "   x.raw  " + std::to_string(x.RawGradient.size() ) + "   " + std::to_string(x.RawPosition.size() );
+	p += "   healpix  " + std::to_string(Data.healpix_fov_1.size() ) + "   " + std::to_string(Data.healpix_fov_2.size() );
 	std::cout << p << std::endl;
 	
 	for (int i = start; i < end; ++i)
@@ -39,7 +51,6 @@ void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, 
 		}
 		StarsUsed += n;
 	}
-	StarsUsed = 1;
 }
 
 void LogLikelihood::Reset()
