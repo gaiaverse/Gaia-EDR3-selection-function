@@ -8,4 +8,4 @@ unique-temp-save 1
 minibatch     8
 harness-slow  40
 harness-release 5
-restart ../../Output/Swappiness_100/TempPosition_InternalParameters.dat
+restart ../../Output/Swappiness_100/TempPosition/TempPosition_InternalParameters.dat
