@@ -72,7 +72,7 @@ const double xmInitialised = 3; //!< The initialisation value of the zeroth-orde
 //! The subdirectory within the output directory used to save non-converged positions
 const std::string TempDirName="TempPositions";
 
-const int DataLoadCount = 5e6;	//!< The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read.
+const int DataLoadCount = 2e7;	//!< The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read.
 const int magOffset = 0; //!<offset of loaded files from 0.csv (assuming default file/bin association)
 
 

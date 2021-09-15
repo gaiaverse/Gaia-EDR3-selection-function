@@ -34,7 +34,7 @@ void LogLikelihood::Calculate(const EfficiencyVector & x, int effectiveBatchID, 
 	p += "  hypergradient " + std::to_string(Data.hypergradient.size());
 	p +=  "  pt " + std::to_string(Data.pt.size());
 	p += "   pml  " + std::to_string(Data.pml.size());
-	p += "   p " + std::to_string(Data.p.size() );
+	p += "   qp " + std::to_string(Data.p.size() );
 	p += "   elu_grad  " + std::to_string(Data.grad_elu_xml1.size() ) + "  " + std::to_string(Data.grad_elu_xml2.size() );
 	p += "  Varpop  " + std::to_string(Data.VariancePopulations.size() );
 	p += "   x.transform  " + std::to_string(x.TransformedGradient.size() ) + "   " + std::to_string(x.TransformedPosition.size() );
@@ -86,8 +86,8 @@ void LogLikelihood::GeneratePs(const Star candidate, const EfficiencyVector & x)
 		//double xt = (1.0-time_multiplier) * x[T] + time_multiplier * x[T+1];
 		double xt = x.Access(x.Transformed,x.Temporal,x.Position,T);
 
-		int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate.gBin;
-		int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate.gBin;
+		//~ int idx1 = Nt + Data.healpix_fov_1[t] * Nm + candidate.gBin;
+		//~ int idx2 = Nt + Data.healpix_fov_2[t] * Nm + candidate.gBin;
 		
 		double xlm1 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_1[t], candidate.gBin);
 		double xlm2 =  x.Access(x.Transformed,x.Spatial,x.Position,Data.healpix_fov_2[t], candidate.gBin);
