@@ -300,9 +300,9 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 
 	for (int i =0; i < NVariancePops; ++i)
 	{
-		VariancePopulation * pop = &data.VariancePopulations[i];
+		VariancePopulation pop = data.VariancePopulations[i];
 		
-		double s2 = s2_base + pop->Variance(nPrime);
+		double s2 = s2_base + pop.Variance(nPrime);
 	    double s = sqrt(s2);
 	    
 
@@ -332,18 +332,18 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 
 		double logPhiMin, dlogPhiMin;
 	    logphi(-(PipelineMinVisits-m-0.5)/s,logPhiMin, dlogPhiMin);
-	    value_Full = logPhiDifference - logPhiMin + log(pop->Fraction);
+	    value_Full = logPhiDifference - logPhiMin + log(pop.Fraction);
 	    dlpmf_dm -= dlogPhiMin/s;
 	    dlpmf_ds2 -= 0.5*(PipelineMinVisits-m-0.5)*dlogPhiMin/s/s2;
 
 		populationValues[i] = value_Full;
 
-		data.hypergradient[hyperFractionOffset + i] = 1.0/pop->Fraction;
+		data.hypergradient[hyperFractionOffset + i] = 1.0/pop.Fraction;
 		
 
 		for (int j = 0; j <= hyperOrder; ++j)
 		{
-			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pop->dVariancedAlpha(j,nPrime);
+			data.hypergradient[j*NVariancePops+i] = dlpmf_ds2 * pop.dVariancedAlpha(j,nPrime);
 		}
 		
 		
@@ -353,7 +353,7 @@ double poisson_binomial_normal_lpmf(int k, int probslen, LikelihoodData & data)
 	        populationGradients[i][j] = grad_full;	      
 	    }
 
-	    varianceAccumulator[i] = pop->dVariancedN(nPrime) * dlpmf_ds2;
+	    varianceAccumulator[i] = pop.dVariancedN(nPrime) * dlpmf_ds2;
     }
     
     double value = VerySmallLog;
