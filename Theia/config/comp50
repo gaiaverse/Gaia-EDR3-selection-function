@@ -1,11 +1,11 @@
-output       ../../Output/MemCheck/
+output       ../../Output/Production_4/
 data         ../../Data/ShuffledData/
 random-seed  0
 gradlim      0
 max-steps    5000
-save-steps   10
+save-steps   2
 unique-temp-save 1
-minibatch     8
+minibatch     16
 harness-slow  40
 harness-release 5
 restart ../../Output/Swappiness_100/TempPositions/TempPosition_InternalParameters.dat

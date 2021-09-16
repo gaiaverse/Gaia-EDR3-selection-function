@@ -10,8 +10,9 @@ EfficiencyVector::EfficiencyVector(std::string load_location, std::string saveLo
 	TransformedGradient= std::vector<double>(totalTransformedParams,0.0);
 	if (loadIn)
 	{
-		std::cout << "Loading in previous location from " << load_location;
+		std::cout << "Loading in previous location from " << load_location << "....";
 		LoadVector(load_location);
+		std::cout << "Load completed." << std::endl;
 	}
 	else
 	{
