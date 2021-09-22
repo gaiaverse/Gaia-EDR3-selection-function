@@ -27,7 +27,7 @@ class ValidationTestset:
         self.xMagnitudeSpace = meanMagnitudeSpace*np.ones((self.magnitudeBinNumber,self.healpixPixelNumber))
         
         # Check it exists, if not then create
-        self.directory = f'./TestSets/{self.testsetName}/'
+        self.directory = f'./Data/TestSets/{self.testsetName}/'
         if not os.path.exists(self.directory):
             os.makedirs(self.directory)
 
@@ -85,7 +85,7 @@ class ValidationTestset:
                 
         # Write true parameters
         X = np.concatenate([self.xTime,self.xMagnitudeSpace.T.flatten()])
-        np.savetxt(self.directory+'True_TransformedParameters.dat', X)
+        np.savetxt(self.directory+'True_TransformedParameters.dat', np.c_[X])
         
         parameters = {}
         missingParameter = -1
