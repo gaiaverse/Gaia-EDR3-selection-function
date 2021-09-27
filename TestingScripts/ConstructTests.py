@@ -145,7 +145,7 @@ gapsTest.applyEdr3Gaps()
 gapsTest.generateTestset()
 
 # Galaxy recovery
-galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=200000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=200000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpix_order=7)
 galaxyTest.applyGalacticCrowding()
 g_bins = np.arange(1.7,23.05,0.1)
 g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
@@ -153,7 +153,7 @@ galaxyTest.applyMagnitudeTrend(g_midbins)
 galaxyTest.generateTestset()
 
 # Full recovery
-fullTest = ValidationTestset(testsetName='full', sourceNumber=200000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+fullTest = ValidationTestset(testsetName='full', sourceNumber=200000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpix_order=7)
 fullTest.applyEdr3Gaps()
 fullTest.applyGalacticCrowding()
 fullTest.applyMagnitudeTrend(g_midbins)
