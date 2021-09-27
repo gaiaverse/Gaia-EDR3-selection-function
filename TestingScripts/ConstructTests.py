@@ -49,7 +49,7 @@ class ValidationTestset:
             self.data[i]['magnitude'] = np.random.randint(0,self.magnitudeBinNumber)
     
         # Calculate probabilities
-        healpix_fov = pd.read_csv(self.directoryModelInputs+f'scanninglaw_to_healpix_{healpix_order}.csv')
+        healpix_fov = pd.read_csv(self.directoryModelInputs+f'scanninglaw_to_healpix_{self.healpixOrderNumber}.csv')
         healpix_fov_1 = healpix_fov['fov_1_hpx']
         healpix_fov_2 = healpix_fov['fov_2_hpx']
         for i in tqdm.tqdm(range(self.sourceNumber)):
