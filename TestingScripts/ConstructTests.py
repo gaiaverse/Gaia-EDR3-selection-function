@@ -115,7 +115,7 @@ class ValidationTestset:
             f.write(line_values)
             
     def applyEdr3Gaps(self):
-        timsteps = np.linspace(1666.4384902198801, 2704.3655735533684, self.timestepNumber)
+        timesteps = np.linspace(1666.4384902198801, 2704.3655735533684, self.timestepNumber)
         obmt = 1717.6256+(timesteps + 2455197.5 - 2457023.5 - 0.25)*4
         gaps = pd.read_csv(self.directoryModelInputs+'edr3_gaps.csv')
         for start,end in zip(gaps['tbeg'].values,gaps['tend'].values):
