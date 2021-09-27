@@ -53,8 +53,8 @@ class ValidationTestset:
         healpix_fov_1 = healpix_fov['fov_1_hpx']
         healpix_fov_2 = healpix_fov['fov_2_hpx']
         for i in tqdm.tqdm(range(self.sourceNumber)):
-            self.data[i]['probabilities'] = special.expit(xTime[self.data[i]['times']])*
-                                        special.expit(xMagnitudeSpace[self.data[i]['magnitude'],healpix_fov_1[self.data[i]['times']]]
+            self.data[i]['probabilities'] = special.expit(xTime[self.data[i]['times']])* \
+                                        special.expit(xMagnitudeSpace[self.data[i]['magnitude'],healpix_fov_1[self.data[i]['times']]] \
                                                      +xMagnitudeSpace[self.data[i]['magnitude'],healpix_fov_2[self.data[i]['times']]])
         
         # Subsample
