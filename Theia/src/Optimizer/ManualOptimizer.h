@@ -262,8 +262,6 @@ namespace ADABADAM
 					Progress.CurrentMinibatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					Properties.StepSize = Properties.StepSize;
-					std::cout << "\t\t\t\tThe stepsize has been reduced to " << Progress.CurrentMinibatches << " with a learning rate " << Progress.LearningRate << std::endl;
-
 				}
 				
 				
@@ -291,8 +289,6 @@ namespace ADABADAM
 					{
 						Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 					}
-					std::cout << "\t\t\t\tThe stepsize has been reduced to " << Progress.CurrentMinibatches << " with a learning rate " << Progress.LearningRate << std::endl;
-
 				}
 					
 				

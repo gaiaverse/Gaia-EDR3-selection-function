@@ -38,7 +38,9 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 
-
+	std::string s = "Root is preparing to calculate." + JSL::PrintCurrentTime();
+	std::cout << s << std::endl;
+	
 	L.Calculate(Efficiency,batchID,effectiveBatches,MaxBatches);
 
 	//collect values
@@ -46,6 +48,10 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	double Lsum = 0;
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
+	
+	std::string s2 = "Root has completed calculations, ready to recieve broadcast." + JSL::PrintCurrentTime();
+	std::cout << s2 << std::endl;
+	
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 
 	MPI_Reduce(&l, &Lsum, 1,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
@@ -72,5 +78,6 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 		Gradient[i] = - Efficiency.RawGradient[i] / totalStarsUsed;
 	}
 	Value = -Lsum/totalStarsUsed;
-	
+	std::string s3 = "Root has completed computation loop." + JSL::PrintCurrentTime();
+	std::cout << s3 << std::endl;
 }

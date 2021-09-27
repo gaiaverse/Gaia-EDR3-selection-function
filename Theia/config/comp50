@@ -5,7 +5,7 @@ gradlim      0
 max-steps    5000
 save-steps   2
 unique-temp-save 1
-minibatch     16
+minibatch     1
 harness-slow  40
 harness-release 5
-restart ../../Output/Swappiness_100/TempPositions/TempPosition_InternalParameters.dat
+restart ../../Output/Production_4/TempPositions/TempPosition_InternalParameters.dat

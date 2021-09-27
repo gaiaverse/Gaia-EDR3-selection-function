@@ -133,22 +133,29 @@ void WorkerProcess()
 
 		if (targetBatch >= 0)
 		{	
-		
+			
+			
 			MPI_Bcast(&effectiveBatches, 1, MPI_INT, RootID, MPI_COMM_WORLD);
 			//recive new position data, copy it into position vector, then calculate likelihood contribution
 			MPI_Bcast(&pos[0], dimensionality, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 			
+			
 			EfficiencyVector V(pos);
+			std::string s = "Worker " + std::to_string(ProcessRank) + " has produced their efficiency vector, and is preparing to calculate." + JSL::PrintCurrentTime();
+			std::cout << s << std::endl;
 			
 			L.Calculate(V,targetBatch,effectiveBatches,Args.Minibatches);
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
 			int nS = L.StarsUsed;
 			
 			//broadcast results back to root 
+			std::string s2 = "Worker " + std::to_string(ProcessRank) + " has completed calculations, preparing for broadcast." + JSL::PrintCurrentTime();
+			std::cout << s2 << std::endl;
 			MPI_Reduce(&nS, NULL, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&l,NULL,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&L.Gradient[0], NULL, dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
-			
+			std::string s3 = "Worker " + std::to_string(ProcessRank) + " has completed broadcast." + JSL::PrintCurrentTime();
+			std::cout << s3 << std::endl;
 		}
 		else
 		{
