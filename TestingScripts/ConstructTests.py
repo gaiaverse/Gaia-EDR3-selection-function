@@ -14,7 +14,7 @@ class ValidationTestset:
     def __init__(self, testsetName, sourceNumber=1, magnitudeBinNumber=1, healpixOrderNumber=0, meanTime = largeNumber, meanMagnitudeSpace = largeNumber, minimumMeasurementNumber = 0):
         self.timestepNumber = 8967691
         
-        self.testsetName = name
+        self.testsetName = testsetName
         self.sourceNumber = int(sourceNumber)
         self.magnitudeBinNumber = int(magnitudeBinNumber)
         self.healpixOrderNumber = int(healpixOrderNumber)
