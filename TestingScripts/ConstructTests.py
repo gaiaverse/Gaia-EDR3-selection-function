@@ -83,7 +83,7 @@ class ValidationTestset:
 
         for m in range(self.magnitudeBinNumber):
             with open(self.directoryTestset+f'{m}.csv', 'w') as f:
-                f.writelines("{}\n".format(line) for line in writeLines[m])
+                f.writelines("{}\n".format(line) for line in writeLine[m])
                 
         # Write true parameters
         X = np.concatenate([self.xTime,self.xMagnitudeSpace.T.flatten()])
