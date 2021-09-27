@@ -257,22 +257,23 @@ namespace ADABADAM
 				
 				double newBatches = CheckMinibatches(df,Progress.CurrentMinibatches);
 				
+				bool justSlowed = false;
 				if (newBatches < Progress.CurrentMinibatches)
 				{
 					Progress.CurrentMinibatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-					Properties.StepSize = Properties.StepSize;
+					justSlowed = true;
 				}
 				
 				
-				if (df > 0)
+				if (df > 0 && justSlowed == false)
 				{
 					Progress.LearningRate *= 0.5;
 					++Progress.SlowdownTriggers;
 				}
 				if (df < 0)
 				{
-					Progress.LearningRate *= 1.01;
+					Progress.LearningRate *= 1.02;
 					if (Progress.LearningRate > Properties.StepSize)
 					{
 						Progress.LearningRate = Properties.StepSize;

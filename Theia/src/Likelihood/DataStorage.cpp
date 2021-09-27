@@ -54,7 +54,7 @@ LikelihoodData::LikelihoodData(const std::vector<std::vector<Star>> &data) : Sta
 		time_mapping[i] = std::min(Nt-1,(int)round(time_ratio*i));
 	}
 	
-	Mode = NormalApproximation;
+	Mode = PoissonBinomial;
 	VariancePopulations = std::vector<VariancePopulation>(NVariancePops);
 }
 

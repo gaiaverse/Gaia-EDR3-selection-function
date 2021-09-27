@@ -38,8 +38,8 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 
 	MPI_Bcast(&Efficiency.TransformedPosition[0], n, MPI_DOUBLE, RootID, MPI_COMM_WORLD);
 
-	std::string s = "Root is preparing to calculate." + JSL::PrintCurrentTime();
-	std::cout << s << std::endl;
+	//~ std::string s = "Root is preparing to calculate." + JSL::PrintCurrentTime();
+	//~ std::cout << s << std::endl;
 	
 	L.Calculate(Efficiency,batchID,effectiveBatches,MaxBatches);
 
@@ -49,8 +49,8 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	int stars = L.StarsUsed;
 	int totalStarsUsed = 0;
 	
-	std::string s2 = "Root has completed calculations, ready to recieve broadcast." + JSL::PrintCurrentTime();
-	std::cout << s2 << std::endl;
+	//~ std::string s2 = "Root has completed calculations, ready to recieve broadcast." + JSL::PrintCurrentTime();
+	//~ std::cout << s2 << std::endl;
 	
 	MPI_Reduce(&stars, &totalStarsUsed, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 
@@ -64,7 +64,7 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	Efficiency.TransformedGradient= gradientCatcher;
 	
 
-	Lsum += L.TransformPrior(Efficiency, effectiveBatches);
+	//Lsum += L.TransformPrior(Efficiency, effectiveBatches);
 
 	Efficiency.BackwardTransform();
 	
@@ -78,6 +78,6 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 		Gradient[i] = - Efficiency.RawGradient[i] / totalStarsUsed;
 	}
 	Value = -Lsum/totalStarsUsed;
-	std::string s3 = "Root has completed computation loop." + JSL::PrintCurrentTime();
-	std::cout << s3 << std::endl;
+	//~ std::string s3 = "Root has completed computation loop." + JSL::PrintCurrentTime();
+	//~ std::cout << s3 << std::endl;
 }
