@@ -111,8 +111,8 @@ class ValidationTestset:
         line_values = ','.join(map(str, line_header))
         
         with open(self.directoryTestset+f'Optimiser_Properties.dat', 'w') as f:
-            f.writeline(line_header)
-            f.writeline(line_values)
+            f.write(line_header)
+            f.write(line_values)
             
     def applyEdr3Gaps(self):
         timsteps = np.linspace(1666.4384902198801, 2704.3655735533684, self.timestepNumber)
