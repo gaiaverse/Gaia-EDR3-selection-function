@@ -37,15 +37,15 @@ const int hyperOrder = 4;	 //!< Order of the variance fitting, must be an even n
  * 
 */
 
-const double xtPrior = 3; //!< Mean of prior on xt outside of gaps
-const double studentNu = 0.6; //!<Student t nu parameter for zt prior
+const double xtPrior = 8; //!< Mean of prior on xt outside of gaps
+const double studentNu = 0.8; //!<Student t nu parameter for zt prior
 
 
 const double sigmat = 3; //!< Standard deviation of zt/xt prior (sort of)
 
 const double lm = 3; //!< Magnitude coupling lengthscale (in mag-bins)
 
-const double lt_revs = 20; //!<Temporal coupling lengthscale for zt (in Gaia revolution periods)
+const double lt_revs = 2; //!<Temporal coupling lengthscale for zt (in Gaia revolution periods)
 
 const double xmPrior = -3; //!< Mean of gaussian prior on xml 
 

@@ -139,7 +139,7 @@ namespace ADABADAM
 				Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 				Progress.BufferFileOpened = false;
 				Progress.InitialSaveComplete = false;
-				
+				Progress.EpochsSinceLastHarness = 0;
 				Progress.PreviousEpoch = 9999999;
 				Progress.PreviousMinibatch = 999999;
 				Buffer.Position = 0;
@@ -265,11 +265,17 @@ namespace ADABADAM
 					justSlowed = true;
 				}
 				
-				
+				++Progress.EpochsSinceLastHarness;
 				if (df > 0 && justSlowed == false)
 				{
-					Progress.LearningRate *= 0.5;
+					double mult = 0.5;
+					if (Progress.EpochsSinceLastHarness < 10)
+					{
+						mult = pow(0.999,Progress.EpochsSinceLastHarness);
+					}
+					Progress.LearningRate *= mult;
 					++Progress.SlowdownTriggers;
+					Progress.EpochsSinceLastHarness = 0;
 				}
 				if (df < 0)
 				{

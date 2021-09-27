@@ -3,11 +3,11 @@ set(0,'defaultTextInterpreter','latex');
 files = ["TestRuns/flat"];
 % getData(62);
 N1 = 0;
-N2 = 450;
-gap = 150;
-progressPlot(files,100)
-gifPlot(files,N1,N2,gap,"evolution_zoom.gif",false);
-% temporalPlot(files,N2);
+N2 = 170;
+gap = 10;
+progressPlot(files,80)
+% gifPlot(files,N1,N2,gap,"evolution_flat.gif",false);
+temporalPlot(files,N2);
 
 
 function getData(timeGap)

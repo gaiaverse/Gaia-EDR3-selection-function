@@ -139,6 +139,9 @@ namespace ADABADAM
 		
 		//! Used to indicate that the zeroth position has been saved to file
 		bool InitialSaveComplete;
+		
+		//!Stops the harness from slowing it down too much
+		int EpochsSinceLastHarness;
 	};
 	
 	//! A set of internal memory buffers and controls for when to execute them. Used to hold a buffer for Optimizer::SaveProgress() and also the long-term analysis in Optimizer::CheckConvergence()
