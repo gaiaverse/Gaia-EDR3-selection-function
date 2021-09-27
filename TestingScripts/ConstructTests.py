@@ -108,7 +108,7 @@ class ValidationTestset:
             line_header.append(k)
             line_values.append(v)
         line_header = ','.join(map(str, line_header))+'\n'
-        line_values = ','.join(map(str, line_header))
+        line_values = ','.join(map(str, line_values))
         
         with open(self.directoryTestset+f'Optimiser_Properties.dat', 'w') as f:
             f.write(line_header)
