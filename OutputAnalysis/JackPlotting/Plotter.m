@@ -1,13 +1,13 @@
 set(groot, 'defaultAxesTickLabelInterpreter','latex'); set(groot, 'defaultLegendInterpreter','latex');
 set(0,'defaultTextInterpreter','latex');
-files = ["Production_4"];
-getData(62);
+files = ["TestRuns/flat"];
+% getData(62);
 N1 = 0;
-N2 = 10;
-gap = 2;
-progressPlot(files,0)
-gifPlot(files,N1,N2,gap,"evolution_zoom.gif",false);
-% temporalPlot(files,N2);
+N2 = 170;
+gap = 10;
+progressPlot(files,80)
+% gifPlot(files,N1,N2,gap,"evolution_flat.gif",false);
+temporalPlot(files,N2);
 
 
 function getData(timeGap)

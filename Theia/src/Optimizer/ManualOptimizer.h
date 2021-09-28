@@ -139,7 +139,7 @@ namespace ADABADAM
 				Progress.Harness = 1.0/Properties.MaxHarnessFactor;
 				Progress.BufferFileOpened = false;
 				Progress.InitialSaveComplete = false;
-				
+				Progress.EpochsSinceLastHarness = 0;
 				Progress.PreviousEpoch = 9999999;
 				Progress.PreviousMinibatch = 999999;
 				Buffer.Position = 0;
@@ -257,22 +257,29 @@ namespace ADABADAM
 				
 				double newBatches = CheckMinibatches(df,Progress.CurrentMinibatches);
 				
+				bool justSlowed = false;
 				if (newBatches < Progress.CurrentMinibatches)
 				{
 					Progress.CurrentMinibatches = newBatches;
 					Progress.Harness = 1.0/Properties.MaxHarnessFactor;
-					Properties.StepSize = Properties.StepSize;
+					justSlowed = true;
 				}
 				
-				
-				if (df > 0)
+				++Progress.EpochsSinceLastHarness;
+				if (df > 0 && justSlowed == false)
 				{
-					Progress.LearningRate *= 0.5;
+					double mult = 0.5;
+					if (Progress.EpochsSinceLastHarness < 10)
+					{
+						mult = pow(0.999,Progress.EpochsSinceLastHarness);
+					}
+					Progress.LearningRate *= mult;
 					++Progress.SlowdownTriggers;
+					Progress.EpochsSinceLastHarness = 0;
 				}
 				if (df < 0)
 				{
-					Progress.LearningRate *= 1.01;
+					Progress.LearningRate *= 1.02;
 					if (Progress.LearningRate > Properties.StepSize)
 					{
 						Progress.LearningRate = Properties.StepSize;
