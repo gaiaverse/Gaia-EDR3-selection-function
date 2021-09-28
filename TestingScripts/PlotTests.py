@@ -6,23 +6,23 @@ import healpy as hp
 
 # Load in parameters
 #directory = '/mnt/extraspace/GaiaSelectionFunction/Code/C++/Test/SlimTest/'
-directory = '/Users/douglasboubert/Science/gaia-selection-function/Gaia-EDR3-selection-function/Python/data/Diagnostic10_fixedTime_spatialInit/'
-params = pd.read_csv(directory+'Optimiser_Properties.dat',skipinitialspace=True)
-Nt = int(params['Nt'][0])
-Nm = int(params['Nm'][0])
-Nl = int(params['Nl'][0])
+directory = '/Users/douglasboubert/Science/gaia-selection-function/Gaia-EDR3-selection-function/TestingScripts/data/Diagnostic66_activeScaling_quadratic/'
+params = pd.read_csv(directory+'OptimiserProperties.dat',skipinitialspace=True,sep=' = ',header=None, index_col=0).T
+Nt = int(params['Nt'].values[0])
+Nm = int(params['Nm'].values[0])
+Nl = int(params['Nl'].values[0])
 alpha = 0.5*np.log(2)
 a = -3.0
 
 # Load in gaps
-gaps = pd.read_csv('/Users/douglasboubert/Science/gaia-selection-function/Gaia-EDR3-selection-function/Python/data/edr3_gaps.csv')
+gaps = pd.read_csv('/Users/douglasboubert/Science/gaia-selection-function/Gaia-EDR3-selection-function/TestingScripts/data/edr3_gaps.csv')
 
 # Load in transformed parameters
-file = 'TempPositions/TempPosition225_TransformedParameters.dat'
-#file = 'TempPositions/TempPosition49_TransformedParameters.dat'
-#file = 'FinalPosition_TransformedParameters.dat'
-xt = pd.read_csv(directory+file,header=None)[0][:Nt].values
-xml = np.reshape(pd.read_csv(directory+file,header=None)[0][Nt:].values,(Nl,Nm)).T
+#file = 'TempPosition168_TransformedParameters.dat'
+#file = 'TempPositions/TempPosition24_TransformedParameters.dat'
+file = 'FinalPosition_TransformedParameters.dat'
+xt = pd.read_csv(directory+file,header=None,skipinitialspace=True)[0][:Nt].values
+xml = np.reshape(pd.read_csv(directory+file,header=None)[0][Nt:Nt+Nl*Nm].values,(Nl,Nm)).T
 pml = np.exp(-2.0*alpha*np.exp(-xml))
 pml[xml<a] = np.exp(-2.0*alpha*(1.0-xml[xml<a]+a)*np.exp(-a))
 
@@ -93,7 +93,7 @@ if Nm>1 and Nl>12:
             plt.axes(axes[i,j])
             m = 4*i + j
             try:
-                hp.mollview(xml[10*m+2], nest=False, xsize=1000, title=f'g={g[10*m+2]:.2f}', hold=True, min=-5,max=5,cmap='RdBu_r', cbar=True,coord=['C','G'],notext=True)
+                hp.mollview(xml[10*m+2], nest=False, xsize=1000, title=f'g={g[10*m+2]:.2f}', hold=True, min=-10,max=10,cmap='RdBu_r', cbar=True,coord=['C','G'],notext=True)
             except IndexError:
                 plt.axis('off')
     plt.savefig(directory+'plot_xml.png',dpi=300,facecolor='w',bbox_inches='tight')
@@ -110,6 +110,21 @@ if Nm>1 and Nl>12:
             except IndexError:
                 plt.axis('off')
     plt.savefig(directory+'plot_pml.png',dpi=300,facecolor='w',bbox_inches='tight')
+    plt.close()
+
+if False:
+    # Plot - xml
+    fig, axes = plt.subplots(ncols=3,nrows=2,figsize=(9,4))
+    for i in range(2):
+        for j in range(3):
+            plt.axes(axes[i,j])
+            m = 3*i + j
+            idx = 180+2*m
+            try:
+                hp.mollview(xml[idx], nest=False, xsize=2000, title=f'g={g[idx]+0.05:.2f}', hold=True, min=-5,max=5,cmap='RdBu_r', cbar=True,coord=['C','G'],notext=True)
+            except IndexError:
+                plt.axis('off')
+    plt.savefig(directory+'plot_xml_fancy.png',dpi=300,facecolor='w',bbox_inches='tight')
     plt.close()
 
 
