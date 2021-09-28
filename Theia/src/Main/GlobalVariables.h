@@ -20,9 +20,9 @@ using Eigen::VectorXd;
 
 const int Nt = 8967691; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
 
-const int healpix_order = 0; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
+const int healpix_order = 1; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
 
-const int needlet_order = -1; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
+const int needlet_order = 0; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
 
 const int Nm = 1; //!< Number of magnitude bins
 

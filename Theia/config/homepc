@@ -1,13 +1,13 @@
-output       ../../CodeOutput/hometest2/
-data         ../../Data/TestSets/gaps_parallel_spikes_hard/
-random-seed  3
+output       ../../CodeOutput/TestSets/gaps/
+data         ../../Data/TestSets/gaps/
+random-seed  2
 gradlim      0
 max-steps    2000
 burnin       0
-save-steps   5
+save-steps   2
 unique-temp-save 1
-minibatch     32
-harness-slow  100
-harness-release 10
+minibatch     16
+harness-slow  20
+harness-release 5
 
 
