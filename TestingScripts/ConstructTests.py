@@ -28,7 +28,7 @@ class ValidationTestset:
         self.xMagnitudeSpace = meanMagnitudeSpace*np.ones((self.magnitudeBinNumber,self.healpixPixelNumber))
         
         # Check it exists, if not then create
-        self.directoryRoot = '/mnt/extraspace/GaiaSelectionFunction/'
+        self.directoryRoot = '../../'
         self.directoryModelInputs = self.directoryRoot + 'ModelInputs/'
         self.directoryTestset = self.directoryRoot + f'Data/TestSets2/{self.testsetName}/'
         if not os.path.exists(self.directoryTestset):
@@ -74,18 +74,17 @@ class ValidationTestset:
         #            data[i]['k'] += np.round(np.random.normal(0,variance_baseline_2+variance_scaling_2*data[i]['n'])).astype(int)
                            
         # Cull
-        nonCulled = self.sourceNumber
+        skippable = []
         for i in tqdm.tqdm(range(self.sourceNumber)):
             if self.data[i]['measurements'] < self.minimumMeasurementNumber:
-                del self.data[i]
-                nonCulled -= 1
+                skippable.append(i)
                
-        print("Nonculled", self.sourceNumber, "Culled", nonCulled)
-                
+       
         # Write to file
         writeLine = {m:[] for m in range(self.magnitudeBinNumber)}
-        for i in tqdm.tqdm(range(nonCulled)):
-            writeLine[self.data[i]['magnitude']].append(f"{self.data[i]['measurements']},{self.data[i]['observations']},"+','.join(map(str, self.data[i]['times'])))
+        for i in tqdm.tqdm(range(self.sourceNumber)):
+			if i not in skippable:
+				writeLine[self.data[i]['magnitude']].append(f"{self.data[i]['measurements']},{self.data[i]['observations']},"+','.join(map(str, self.data[i]['times'])))
 
         for m in range(self.magnitudeBinNumber):
             with open(self.directoryTestset+f'{m}.csv', 'w') as f:
@@ -142,11 +141,11 @@ class ValidationTestset:
         
 
 # Flat recovery
-flatTest = ValidationTestset(testsetName='flat', sourceNumber=100000, meanTime = 0.0)
+flatTest = ValidationTestset(testsetName='flat', sourceNumber=10000, meanTime = 0.0)
 flatTest.generateTestset()
 
 # Gaps recovery
-gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=100000)
+gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=10000)
 gapsTest.applyEdr3Gaps()
 gapsTest.generateTestset()
 
