@@ -79,7 +79,7 @@ class ValidationTestset:
             if self.data[i]['measurements'] < self.minimumMeasurementNumber:
                 del self.data[i]
             else:
-				nonCulled +=1
+                nonCulled +=1
                
                 
         # Write to file
