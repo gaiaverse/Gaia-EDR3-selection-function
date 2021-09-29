@@ -1,3 +1,4 @@
+
 import numpy as np
 import tqdm
 import pandas as pd
@@ -45,6 +46,7 @@ class ValidationTestset:
             del raw_times
         
         # Random assign magnitudes
+       
         for i in tqdm.tqdm(range(self.sourceNumber)):
             self.data[i]['magnitude'] = np.random.randint(0,self.magnitudeBinNumber)
     
@@ -72,15 +74,17 @@ class ValidationTestset:
         #            data[i]['k'] += np.round(np.random.normal(0,variance_baseline_2+variance_scaling_2*data[i]['n'])).astype(int)
                            
         # Cull
-        unCulledStars = self.sourceNumber
+        nonCulled = 0
         for i in tqdm.tqdm(range(self.sourceNumber)):
             if self.data[i]['measurements'] < self.minimumMeasurementNumber:
                 del self.data[i]
-                unCulledStars -= 1
+            else:
+				nonCulled +=1
+               
                 
         # Write to file
         writeLine = {m:[] for m in range(self.magnitudeBinNumber)}
-        for i in tqdm.tqdm(range(unCulledStars)):
+        for i in tqdm.tqdm(range(nonCulled)):
             writeLine[self.data[i]['magnitude']].append(f"{self.data[i]['measurements']},{self.data[i]['observations']},"+','.join(map(str, self.data[i]['times'])))
 
         for m in range(self.magnitudeBinNumber):
@@ -138,16 +142,16 @@ class ValidationTestset:
         
 
 # Flat recovery
-flatTest = ValidationTestset(testsetName='flat', sourceNumber=10000, meanTime = 0.0)
+flatTest = ValidationTestset(testsetName='flat', sourceNumber=100000, meanTime = 0.0)
 flatTest.generateTestset()
 
 # Gaps recovery
-gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=10000)
+gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=100000)
 gapsTest.applyEdr3Gaps()
 gapsTest.generateTestset()
 
 # Galaxy recovery
-galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=100000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpix_order=7)
+galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=100000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
 galaxyTest.applyGalacticCrowding()
 g_bins = np.arange(1.7,23.05,0.1)
 g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
@@ -155,7 +159,7 @@ galaxyTest.applyMagnitudeTrend(g_midbins)
 galaxyTest.generateTestset()
 
 # Full recovery
-fullTest = ValidationTestset(testsetName='full', sourceNumber=100000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpix_order=7)
+fullTest = ValidationTestset(testsetName='full', sourceNumber=100000, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
 fullTest.applyEdr3Gaps()
 fullTest.applyGalacticCrowding()
 fullTest.applyMagnitudeTrend(g_midbins)
