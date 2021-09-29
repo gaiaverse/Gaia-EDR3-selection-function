@@ -74,13 +74,13 @@ class ValidationTestset:
         #            data[i]['k'] += np.round(np.random.normal(0,variance_baseline_2+variance_scaling_2*data[i]['n'])).astype(int)
                            
         # Cull
-        nonCulled = 0
+        nonCulled = self.sourceNumber
         for i in tqdm.tqdm(range(self.sourceNumber)):
             if self.data[i]['measurements'] < self.minimumMeasurementNumber:
                 del self.data[i]
-            else:
-                nonCulled +=1
+                nonCulled -= 1
                
+        print("Nonculled", self.sourceNumber, "Culled", nonCulled)
                 
         # Write to file
         writeLine = {m:[] for m in range(self.magnitudeBinNumber)}
