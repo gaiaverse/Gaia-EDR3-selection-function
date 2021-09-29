@@ -28,7 +28,7 @@ class ValidationTestset:
         self.xMagnitudeSpace = meanMagnitudeSpace*np.ones((self.magnitudeBinNumber,self.healpixPixelNumber))
         
         # Check it exists, if not then create
-        self.directoryRoot = '../../'
+        self.directoryRoot = '/mnt/extraspace/GaiaSelectionFunction'
         self.directoryModelInputs = self.directoryRoot + 'ModelInputs/'
         self.directoryTestset = self.directoryRoot + f'Data/TestSets2/{self.testsetName}/'
         if not os.path.exists(self.directoryTestset):
@@ -83,12 +83,12 @@ class ValidationTestset:
         # Write to file
         writeLine = {m:[] for m in range(self.magnitudeBinNumber)}
         for i in tqdm.tqdm(range(self.sourceNumber)):
-			if i not in skippable:
-				writeLine[self.data[i]['magnitude']].append(f"{self.data[i]['measurements']},{self.data[i]['observations']},"+','.join(map(str, self.data[i]['times'])))
+            if i not in skippable:
+                 writeLine[self.data[i]['magnitude']].append(f"{self.data[i]['measurements']},{self.data[i]['observations']},"+','.join(map(str, self.data[i]['times'])))
 
         for m in range(self.magnitudeBinNumber):
             with open(self.directoryTestset+f'{m}.csv', 'w') as f:
-                f.writelines("{}\n".format(line) for line in writeLine[m])
+                 f.writelines("{}\n".format(line) for line in writeLine[m])
                 
         # Write true parameters
         X = np.concatenate([self.xTime,self.xMagnitudeSpace.T.flatten()])
