@@ -271,11 +271,15 @@ namespace ADABADAM
 					double mult = 0.5;
 					if (Progress.EpochsSinceLastHarness < 10)
 					{
-						mult = pow(0.999,Progress.EpochsSinceLastHarness);
+						mult = pow(0.95,Progress.EpochsSinceLastHarness);
+					}
+					else
+					{
+						Progress.EpochsSinceLastHarness = 0;
 					}
 					Progress.LearningRate *= mult;
 					++Progress.SlowdownTriggers;
-					Progress.EpochsSinceLastHarness = 0;
+					
 				}
 				if (df < 0)
 				{

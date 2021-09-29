@@ -1,11 +1,11 @@
-output       ../../CodeOutput/TestRuns/flat/
-data         ../../Data/TestSets/flat/
-random-seed  1
+output       ../../CodeOutput/TestRuns/galaxy/
+data         ../../Data/TestSets/galaxy/
+random-seed  2
 gradlim      1e-5
 max-steps    20000
 save-steps   10
 unique-temp-save 1
-minibatch     16
+minibatch     32
 harness-slow  10
 harness-release 5
 
