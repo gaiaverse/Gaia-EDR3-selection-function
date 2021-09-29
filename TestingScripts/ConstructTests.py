@@ -28,7 +28,7 @@ class ValidationTestset:
         self.xMagnitudeSpace = meanMagnitudeSpace*np.ones((self.magnitudeBinNumber,self.healpixPixelNumber))
         
         # Check it exists, if not then create
-        self.directoryRoot = '/mnt/extraspace/GaiaSelectionFunction'
+        self.directoryRoot = '/mnt/extraspace/GaiaSelectionFunction/'
         self.directoryModelInputs = self.directoryRoot + 'ModelInputs/'
         self.directoryTestset = self.directoryRoot + f'Data/TestSets2/{self.testsetName}/'
         if not os.path.exists(self.directoryTestset):
