@@ -141,11 +141,11 @@ class ValidationTestset:
         
 
 # Flat recovery
-flatTest = ValidationTestset(testsetName='flat', sourceNumber=10000, meanTime = 0.0)
+flatTest = ValidationTestset(testsetName='flat', sourceNumber=100000, meanTime = 0.0)
 flatTest.generateTestset()
 
 # Gaps recovery
-gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=10000)
+gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=100000)
 gapsTest.applyEdr3Gaps()
 gapsTest.generateTestset()
 
