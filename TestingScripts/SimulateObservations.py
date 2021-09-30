@@ -16,8 +16,8 @@ from numba import njit
             
 ##### Load in sources and assign to bins
 N_core = 5
-N_chunk = int(2e5)
-N_block = 50
+N_chunk = int(2e1)
+N_block = 5
 N_sources = N_chunk*N_block
 N_maxobs = 256
 print('Using',N_core,'cores.')
@@ -25,7 +25,7 @@ print('Using',N_core,'cores.')
 ##### Load in data that all will need
     
 # Scanning law
-_data = pd.read_csv('./CommandedScanLaw_001.csv')
+_data = pd.read_csv('../../ModelInputs/CommandedScanLaw_001.csv')
 _columns = ['jd_time', 'ra_fov1', 'dec_fov1', 'ra_fov2', 'dec_fov2']
 _keys = ['tcb_at_gaia', 'ra_fov_1', 'dec_fov_1', 'ra_fov_2', 'dec_fov_2']
 _box = {}
