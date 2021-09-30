@@ -146,7 +146,7 @@ void WorkerProcess()
 			
 			EfficiencyVector V(pos);
 			std::string s = "Worker " + std::to_string(ProcessRank) + " has produced their efficiency vector, and is preparing to calculate." + JSL::PrintCurrentTime();
-			std::cout << s << std::endl;
+			//~ std::cout << s << std::endl;
 			
 			L.Calculate(V,targetBatch,effectiveBatches,Args.Minibatches);
 			double l = L.Value; //for some reason, have to copy into a temporary value here - MPI fails otherwise(?)
@@ -154,12 +154,12 @@ void WorkerProcess()
 			
 			//broadcast results back to root 
 			std::string s2 = "Worker " + std::to_string(ProcessRank) + " has completed calculations, preparing for broadcast." + JSL::PrintCurrentTime();
-			std::cout << s2 << std::endl;
+			//~ std::cout << s2 << std::endl;
 			MPI_Reduce(&nS, NULL, 1,MPI_INT, MPI_SUM, RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&l,NULL,1,MPI_DOUBLE,MPI_SUM,RootID,MPI_COMM_WORLD);
 			MPI_Reduce(&L.Gradient[0], NULL, dimensionality,MPI_DOUBLE, MPI_SUM, RootID,MPI_COMM_WORLD);
 			std::string s3 = "Worker " + std::to_string(ProcessRank) + " has completed broadcast." + JSL::PrintCurrentTime();
-			std::cout << s3 << std::endl;
+			//~ std::cout << s3 << std::endl;
 		}
 		else
 		{
