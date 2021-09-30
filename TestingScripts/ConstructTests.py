@@ -140,11 +140,14 @@ class ValidationTestset:
         self.xMagnitudeSpace += y[:,np.newaxis]
         
 
+NMax = 1e7
+
 # Flat recovery
-flatTest = ValidationTestset(testsetName='flat', sourceNumber=100000, meanTime = 0.0)
+flatTest = ValidationTestset(testsetName='flat', sourceNumber=NMax, meanTime = 0.0)
 flatTest.generateTestset()
 
 # Gaps recovery
+<<<<<<< HEAD
 #gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=100000)
 #gapsTest.applyEdr3Gaps()
 #gapsTest.generateTestset()
@@ -163,3 +166,23 @@ flatTest.generateTestset()
 #fullTest.applyGalacticCrowding()
 #fullTest.applyMagnitudeTrend(g_midbins)
 #fullTest.generateTestset()
+=======
+gapsTest = ValidationTestset(testsetName='gaps', sourceNumber=NMax)
+gapsTest.applyEdr3Gaps()
+gapsTest.generateTestset()
+
+# Galaxy recovery
+galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=NMax, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+galaxyTest.applyGalacticCrowding()
+g_bins = np.arange(1.7,23.05,0.1)
+g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
+galaxyTest.applyMagnitudeTrend(g_midbins)
+galaxyTest.generateTestset()
+
+# Full recovery
+fullTest = ValidationTestset(testsetName='full', sourceNumber=NMax, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+fullTest.applyEdr3Gaps()
+fullTest.applyGalacticCrowding()
+fullTest.applyMagnitudeTrend(g_midbins)
+fullTest.generateTestset()
+>>>>>>> b93764b43744ee6e599fcd685e08734fa813e879
