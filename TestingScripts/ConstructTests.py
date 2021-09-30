@@ -158,12 +158,14 @@ if mode == 1:
 	gapsTest.applyEdr3Gaps()
 	gapsTest.generateTestset()
 
+
+g_bins = np.arange(1.7,23.05,0.1)
+g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
+
 if mode == 2:
 	# Galaxy recovery
 	galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=NMax, magnitudeBinNumber=213, meanMagnitudeSpace=0.0, healpixOrderNumber=7)
 	galaxyTest.applyGalacticCrowding()
-	g_bins = np.arange(1.7,23.05,0.1)
-	g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
 	galaxyTest.applyMagnitudeTrend(g_midbins)
 	galaxyTest.generateTestset()
 
