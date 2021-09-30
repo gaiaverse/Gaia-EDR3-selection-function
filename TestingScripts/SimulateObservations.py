@@ -23,9 +23,11 @@ N_maxobs = 256
 print('Using',N_core,'cores.')
 
 ##### Load in data that all will need
-    
+
+targetDir = "../../ModelInputs/"
+
 # Scanning law
-_data = pd.read_csv('../../ModelInputs/CommandedScanLaw_001.csv')
+_data = pd.read_csv(targetDir + 'CommandedScanLaw_001.csv')
 _columns = ['jd_time', 'ra_fov1', 'dec_fov1', 'ra_fov2', 'dec_fov2']
 _keys = ['tcb_at_gaia', 'ra_fov_1', 'dec_fov_1', 'ra_fov_2', 'dec_fov_2']
 _box = {}
@@ -45,7 +47,7 @@ print('Loaded scanning law.')
 
 # Emphemeris
 speed_of_light_AU_per_day = 299792458.0*(86400.0/149597870.700/1e3)
-gaia_ephem_data = pd.read_csv('./horizons_results_gaia.txt',skiprows=64)
+gaia_ephem_data = pd.read_csv(targetDir + 'horizons_results_gaia.txt',skiprows=64)
 gaia_ephem_box = {k:gaia_ephem_data[k].values for k in ['JDTDB','X','Y','Z','VX','VY','VZ']}
 gaia_ephem_velocity = interpolate.interp1d( gaia_ephem_box['JDTDB']-2455197.5, np.stack([gaia_ephem_box['VX'],gaia_ephem_box['VY'],gaia_ephem_box['VZ']])/speed_of_light_AU_per_day, kind='cubic')
 gaia_velocity = gaia_ephem_velocity(fov_times).T
@@ -152,7 +154,7 @@ def mp_worker(args):
 
 if True:
     
-    with h5py.File('simulated_times.h5', 'w') as f:
+    with h5py.File(targetDir + 'simulated_times.h5', 'w') as f:
         
         # Create datasets
         f.create_dataset('source_id', compression = "lzf", chunks = (N_chunk,), shape = (N_sources,), dtype = np.uint64, fletcher32 = False, shuffle = True, scaleoffset=0)
@@ -162,7 +164,7 @@ if True:
         f.create_dataset('fov_2_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
 
 
-with h5py.File('simulated_times.h5', 'a') as f:
+with h5py.File(targetDIr + 'simulated_times.h5', 'a') as f:
     #flag = f['source_id'][::N_chunk]
     
     
