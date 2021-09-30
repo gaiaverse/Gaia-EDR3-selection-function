@@ -20,11 +20,11 @@ using Eigen::VectorXd;
 
 const int Nt = 8967691; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
 
-const int healpix_order = 5; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
+const int healpix_order = 0; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
 
-const int needlet_order = 4; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
+const int needlet_order = -1; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
 
-const int Nm = 213; //!< Number of magnitude bins
+const int Nm = 1; //!< Number of magnitude bins
 
 
 const int NVariancePops = 3; //!< Number of variance populations (hyperparameter)
@@ -42,7 +42,7 @@ const double xtPrior = 8; //!< Mean of prior on xt outside of gaps
 const double studentNu = 0.8; //!<Student t nu parameter for zt prior
 
 
-const double sigmat = 2; //!< Standard deviation of zt/xt prior (sort of)
+const double sigmat = 1; //!< Standard deviation of zt/xt prior (sort of)
 
 const double lm = 3; //!< Magnitude coupling lengthscale (in mag-bins)
 
