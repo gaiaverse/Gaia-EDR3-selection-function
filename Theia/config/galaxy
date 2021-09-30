@@ -6,7 +6,7 @@ max-steps    500
 save-steps   10
 unique-temp-save 0
 minibatch     16
-harness-slow  10
+harness-slow  2
 harness-release 5
 
 

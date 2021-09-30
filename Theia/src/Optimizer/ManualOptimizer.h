@@ -268,10 +268,10 @@ namespace ADABADAM
 				++Progress.EpochsSinceLastHarness;
 				if (df > 0 && justSlowed == false)
 				{
-					double mult = 0.5;
-					if (Progress.EpochsSinceLastHarness < 10)
+					double mult = 0.7;
+					if (Progress.EpochsSinceLastHarness < 5)
 					{
-						mult = pow(0.95,Progress.EpochsSinceLastHarness);
+						mult = pow(0.96,Progress.EpochsSinceLastHarness);
 					}
 					else
 					{
@@ -283,7 +283,7 @@ namespace ADABADAM
 				}
 				if (df < 0)
 				{
-					Progress.LearningRate *= 1.02;
+					Progress.LearningRate *= 1.05;
 					if (Progress.LearningRate > Properties.StepSize)
 					{
 						Progress.LearningRate = Properties.StepSize;
