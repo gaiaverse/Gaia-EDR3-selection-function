@@ -16,8 +16,8 @@ from numba import njit
             
 ##### Load in sources and assign to bins
 N_core = 5
-N_chunk = int(2e1)
-N_block = 5
+N_chunk = int(2e5)
+N_block = 50
 N_sources = N_chunk*N_block
 N_maxobs = 256
 print('Using',N_core,'cores.')
