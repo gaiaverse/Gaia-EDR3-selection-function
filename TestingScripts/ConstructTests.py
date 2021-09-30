@@ -140,7 +140,7 @@ class ValidationTestset:
         self.xMagnitudeSpace += y[:,np.newaxis]
         
 
-NMax = 1e6
+NMax = 1e7
 
 # Flat recovery
 flatTest = ValidationTestset(testsetName='flat', sourceNumber=NMax, meanTime = 0.0)
