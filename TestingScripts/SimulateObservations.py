@@ -164,7 +164,7 @@ if True:
         f.create_dataset('fov_2_times', compression = "lzf", chunks = (N_chunk, N_maxobs, ), shape = (N_sources, N_maxobs, ), dtype = np.uint32, fletcher32 = False, shuffle = True, scaleoffset=0)
 
 
-with h5py.File(targetDIr + 'simulated_times.h5', 'a') as f:
+with h5py.File(targetDir + 'simulated_times.h5', 'a') as f:
     #flag = f['source_id'][::N_chunk]
     
     
