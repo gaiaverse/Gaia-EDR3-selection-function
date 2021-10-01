@@ -5,8 +5,8 @@ gradlim      1e-5
 max-steps    500
 save-steps   10
 unique-temp-save 0
-minibatch     16
-harness-slow  2
+minibatch     32
+harness-slow  5
 harness-release 5
 
 
