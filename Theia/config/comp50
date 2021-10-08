@@ -1,11 +1,10 @@
-output       ../../Output/Production_5/
+output       ../../Output/Production_BurnIn/
 data         ../../Data/ShuffledData/
 random-seed  0
 gradlim      0
 max-steps    5000
-save-steps   2
+save-steps   10
 unique-temp-save 1
 minibatch     1
 harness-slow  40
 harness-release 5
-restart ../../Output/Production_4/TempPositions/TempPosition_InternalParameters.dat

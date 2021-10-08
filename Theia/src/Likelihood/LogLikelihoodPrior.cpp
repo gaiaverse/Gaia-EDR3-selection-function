@@ -24,16 +24,15 @@ double LogLikelihoodPrior::RawPrior(EfficiencyVector &x, int effectiveBatches)
 	}
 	
 	
-	//~ if ( useHyperPrior)
-	//~ {
-		//~ for (int i = 0; i < hyperFractionOffset; ++i)
-		//~ {
-			//~ double d = x.Access(x.Raw,x.Hyper,x.Position,i);
-			//~ F_dF p = Normal(d,0,1);
-			//~ L += p.F / effectiveBatches;
-			//~ x.Assign(x.Raw,x.Hyper,x.Gradient,i, p.dF / effectiveBatches);
-		//~ }
-	//~ }		
+
+	for (int i = 0; i < hyperFractionOffset; ++i)
+	{
+		double d = x.Access(x.Raw,x.Hyper,x.Position,i);
+		F_dF p = Normal(d,0,1);
+		L += p.F / effectiveBatches;
+		x.Assign(x.Raw,x.Hyper,x.Gradient,i, p.dF / effectiveBatches);
+	}
+		
 	return L;
 }
 

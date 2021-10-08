@@ -20,9 +20,9 @@ using Eigen::VectorXd;
 
 const int Nt = 8967691; //!< Number of coarse time bins, can be 0 < Nt < TotalScanningTime 
 
-const int healpix_order = 6; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
+const int healpix_order = 5; //!< Order of the healpix mapping, can be any integer >= 0. Higher numbers = more pixels on the map.
 
-const int needlet_order = 5; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
+const int needlet_order = 4; //!< Maximum order of needlets used, can be any integer -1 <= needlet_order <= healpix_order. Higher numbers = finer detail within the map.
 
 const int Nm = 213; //!< Number of magnitude bins
 
@@ -44,11 +44,11 @@ const double studentNu = 0.8; //!<Student t nu parameter for zt prior
 
 const double sigmat = 3; //!< Standard deviation of zt/xt prior (sort of)
 
-const double lm = 3; //!< Magnitude coupling lengthscale (in mag-bins)
+const double lm = 1; //!< Magnitude coupling lengthscale (in mag-bins)
 
 const double lt_revs = 2; //!<Temporal coupling lengthscale for zt (in Gaia revolution periods)
 
-const double xmPrior = -3; //!< Mean of gaussian prior on xml 
+const double xmPrior = -4; //!< Mean of gaussian prior on xml 
 
 
 const double gapPriorAlpha = 0.01; //!< Beta distribution alpha-value for the prior on the known gaps (in xt space)
@@ -62,7 +62,7 @@ const double gapPriorBeta = gapPriorAlpha * exp(-gapPriorPeak); //!< Given peak 
 */
 
 const double initialisationBounds = 1;//!< Unless otherwise specified, the efficiency vector randomly initialises values between +/- this value
-const double xmInitialised = 3; //!< The initialisation value of the zeroth-order (whole-sky) spatial mode. 
+const double xmInitialised = 7; //!< The initialisation value of the zeroth-order (whole-sky) spatial mode. 
 
 /*
  * 
@@ -73,7 +73,7 @@ const double xmInitialised = 3; //!< The initialisation value of the zeroth-orde
 //! The subdirectory within the output directory used to save non-converged positions
 const std::string TempDirName="TempPositions";
 
-const int DataLoadCount = 1e6;	//!< The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read.
+const int DataLoadCount = 4e6;	//!< The maximum number of lines which can be loaded from a file. If the number is 0, or exceeds the number of lines within the file, the entire file is read.
 const int magOffset = 0; //!<offset of loaded files from 0.csv (assuming default file/bin association)
 
 
