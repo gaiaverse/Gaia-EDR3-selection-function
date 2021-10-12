@@ -35,7 +35,7 @@ class ValidationTestset:
         # Check it exists, if not then create
         self.directoryRoot = '/mnt/extraspace/GaiaSelectionFunction/'
         self.directoryModelInputs = self.directoryRoot + 'ModelInputs/'
-        self.directoryTestset = self.directoryRoot + f'Data/TestSets2/{self.testsetName}/'
+        self.directoryTestset = self.directoryRoot + f'Data/TestSets3/{self.testsetName}/'
         if not os.path.exists(self.directoryTestset):
             os.makedirs(self.directoryTestset)
 
@@ -145,7 +145,7 @@ class ValidationTestset:
         self.xMagnitudeSpace += y[:,np.newaxis]
         
 
-NMax = 1e7
+NMax = 1e4
 
 if mode == 0:
 	# Flat recovery
@@ -159,7 +159,7 @@ if mode == 1:
 	gapsTest.generateTestset()
 
 
-g_bins = np.arange(1.7,23.05,0.1)
+g_bins = np.arange(1.7,23.05,0.2)
 g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
 
 if mode == 2:
