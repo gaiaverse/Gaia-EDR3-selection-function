@@ -55,7 +55,7 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 				}
 				if (!fileInDirectory)
 				{
-					ERROR(2,"A file was in the core allocation file, but was not included in the datasource directory");
+					ERROR(2,"A file (" +f.Name + ") was in the core allocation file, but was not included in the datasource directory");
 				}
 				
 			}
