@@ -53,11 +53,11 @@ class ValidationTestset:
         # Random assign magnitudes
        
         for i in tqdm.tqdm(range(self.sourceNumber)):
-			raw = np.random.rand(1,1)
-			transformed = 1.0/(1 + exp(-10*(raw - 0.5)))
-			extractedG = np.floor(self.magnitudeBinNumber * transformed)
+            raw = np.random.rand(1,1)
+            transformed = 1.0/(1 + exp(-10*(raw - 0.5)))
+            extractedG = np.floor(self.magnitudeBinNumber * transformed)
             # ~ self.data[i]['magnitude'] = np.random.randint(0,self.magnitudeBinNumber)
-			self.data[i]['magnitude'] = extractedG
+            self.data[i]['magnitude'] = extractedG
         # Calculate probabilities
         healpix_fov = pd.read_csv(self.directoryModelInputs+f'scanninglaw_to_healpix_{self.healpixOrderNumber}.csv')
         healpix_fov_1 = healpix_fov['fov_1_hpx']
