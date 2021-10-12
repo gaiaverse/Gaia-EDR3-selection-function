@@ -183,7 +183,8 @@ def printAllocation(fileAssign):
 	f = open("../../ModelInputs/coreAssignments.dat","w")
 	f.write(output)
 	f.close()
-	
+
+print("Attempting to allocate files in: " + rootToFiles)
 generateBinDict(rootToFiles)
 
 	
