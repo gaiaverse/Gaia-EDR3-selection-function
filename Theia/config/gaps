@@ -1,5 +1,5 @@
 output       ../../CodeOutput/TestRuns/gaps/
-data         ../../Data/TestSets/gaps/
+data         ../../Data/TestSets3/gaps/
 random-seed  0
 gradlim      1e-5
 max-steps    500

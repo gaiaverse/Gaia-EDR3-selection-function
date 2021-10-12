@@ -1,5 +1,5 @@
 output       ../../CodeOutput/TestRuns/flat/
-data         ../../Data/TestSets/flat/
+data         ../../Data/TestSets3/flat/
 random-seed  0
 gradlim      1e-5
 max-steps    500

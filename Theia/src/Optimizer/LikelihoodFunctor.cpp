@@ -64,7 +64,7 @@ void LikelihoodFunctor::Calculate(const std::vector<double> &x, int batchID, int
 	Efficiency.TransformedGradient= gradientCatcher;
 	
 
-	Lsum += L.TransformPrior(Efficiency, effectiveBatches);
+	//Lsum += L.TransformPrior(Efficiency, effectiveBatches);
 
 	Efficiency.BackwardTransform();
 	
