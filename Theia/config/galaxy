@@ -1,5 +1,5 @@
 output       ../../CodeOutput/TestRuns/galaxy/
-data         ../../Data/TestSets3/galaxy/
+data         ../../Data/TestSets/galaxy/
 random-seed  0
 gradlim      1e-5
 max-steps    500
