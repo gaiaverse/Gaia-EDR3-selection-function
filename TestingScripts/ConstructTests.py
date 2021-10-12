@@ -54,7 +54,7 @@ class ValidationTestset:
        
         for i in tqdm.tqdm(range(self.sourceNumber)):
             raw = np.random.rand(1,1)
-            transformed = 1.0/(1 + exp(-10*(raw - 0.5)))
+            transformed = 1.0/(1 + np.exp(-10*(raw - 0.5)))
             extractedG = np.floor(self.magnitudeBinNumber * transformed)
             # ~ self.data[i]['magnitude'] = np.random.randint(0,self.magnitudeBinNumber)
             self.data[i]['magnitude'] = extractedG
