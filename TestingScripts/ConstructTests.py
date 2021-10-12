@@ -164,14 +164,14 @@ g_midbins = 0.5*(g_bins[1:]+g_bins[:-1])
 
 if mode == 2:
 	# Galaxy recovery
-	galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=NMax, magnitudeBinNumber=len(g_bins), meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+	galaxyTest = ValidationTestset(testsetName='galaxy', sourceNumber=NMax, magnitudeBinNumber=len(g_midbins), meanMagnitudeSpace=0.0, healpixOrderNumber=7)
 	galaxyTest.applyGalacticCrowding()
 	galaxyTest.applyMagnitudeTrend(g_midbins)
 	galaxyTest.generateTestset()
 
 if mode == 3:
 	# Full recovery
-	fullTest = ValidationTestset(testsetName='full', sourceNumber=NMax, magnitudeBinNumber=len(g_bins), meanMagnitudeSpace=0.0, healpixOrderNumber=7)
+	fullTest = ValidationTestset(testsetName='full', sourceNumber=NMax, magnitudeBinNumber=len(g_midbins), meanMagnitudeSpace=0.0, healpixOrderNumber=7)
 	fullTest.applyEdr3Gaps()
 	fullTest.applyGalacticCrowding()
 	fullTest.applyMagnitudeTrend(g_midbins)
