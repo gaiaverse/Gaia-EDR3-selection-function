@@ -148,7 +148,7 @@ class ValidationTestset:
         self.xMagnitudeSpace += y[:,np.newaxis]
         
 
-NMax = 1e4
+NMax = 1e6
 
 if mode == 0:
 	# Flat recovery
