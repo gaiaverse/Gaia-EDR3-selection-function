@@ -16,7 +16,6 @@ std::vector<File> GetAssignments(int id,std::string dataSource)
 			f.FileName = FILE_LINE_VECTOR[1];
 			f.NStars = std::stoi(FILE_LINE_VECTOR[0]);
 			files.push_back(f);
-			std::cout << f.FileName << std::endl;
 	);
 	std::vector<File> Files;
 	
